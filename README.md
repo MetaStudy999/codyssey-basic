@@ -57,7 +57,7 @@ Term Project
 |---:|---|---|---|---|---|---|---|
 | 01 | B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
 | 02 | B1-2 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
-| 03 | B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
+| 03 | B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수 | PASS | G8 MERGE | EXPLAINABLE | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
 | 04 | B2-2 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
 | 05 | B3-1 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
 | 06 | B3-2 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |

@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | B1-1 | Linux & OS | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B1-2 | Linux & OS | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B2-1 | Python & Git | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B2-1 | Python & Git | PASS | G8 MERGE | EXPLAINABLE | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | B2-2 | Python & Git | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B3-1 | Data Structures & Algorithms | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B3-2 | Data Structures & Algorithms | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
