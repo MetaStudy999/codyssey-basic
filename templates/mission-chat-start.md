@@ -12,22 +12,39 @@
 
 Repository: `MetaStudy999/codyssey-basic`
 
-Baseline SHA: `<CONTROL_TOWER_BASELINE_SHA>`
+### Active Wave Discovery
 
-먼저 Baseline SHA 기준으로 다음을 읽고 현재 작업 규칙으로 적용한다.
+먼저 대표 Repository의 현재 `main`에서 아래 파일만 읽는다.
+
+- `config/waves/20260808-01.yaml`
+
+여기에서 다음을 찾는다.
+
+- `control_tower.baseline_sha`
+- 현재 `<MISSION_ID>`의 `repository`
+- 현재 `<MISSION_ID>`의 `packet`
+
+이후 Governance와 Mission 판단은 반드시 `baseline_sha`에 고정하여 읽는다. Workcell 도중 임의로 최신 `main`으로 기준을 바꾸지 않는다.
+
+Baseline SHA: `<CONTROL_TOWER_BASELINE_SHA — active wave 값 사용>`
+
+Mission Starter Packet: `<MISSION_PACKET_PATH — active wave 값 사용>`
+
+Baseline SHA 기준으로 다음을 읽고 현재 작업 규칙으로 적용한다.
 
 1. `AGENTS.md`
 2. `docs/00-governance/multi-agent-mission-engineering.md`
 3. `docs/00-governance/source-discovery-fallback-protocol.md`
 4. `docs/00-governance/parallel-mission-execution.md`
 5. `config/missions.yaml`
-6. 현재 Mission과 직접 관련된 대표 repo 문서
+6. 현재 Mission의 Starter Packet
+7. 현재 Mission과 직접 관련된 대표 repo 문서
 
 ## TARGET
 
 Mission: `<MISSION_ID>`
 
-Repository: `<MISSION_REPOSITORY>`
+Repository: `<MISSION_REPOSITORY — active wave 값 사용>`
 
 ## WRITE BOUNDARY
 
@@ -55,9 +72,11 @@ Source를 다음 상태 중 하나로 분류한다.
 
 확인되지 않은 내용을 공식 Requirement로 만들지 않는다.
 
+Starter Packet의 Mission-derived Scope도 G1에서 공식 Source와 재대조하기 전에는 확정 Requirement가 아니다.
+
 ## FIRST DELIVERABLE
 
-구현 전에 `Mission Work Packet`을 작성한다.
+구현 전에 Starter Packet을 실제 Source와 Repository Baseline에 맞게 검증·수정하여 현재 Mission Repository의 `MISSION-WORK-PACKET.md`로 확정한다.
 
 최소 산출:
 
@@ -77,7 +96,7 @@ Source를 다음 상태 중 하나로 분류한다.
 14. G1~G8 Checklist
 15. STOP Rule
 
-템플릿 기준: 대표 repo `templates/mission-work-packet.md`
+공통 템플릿 기준: 대표 repo `templates/mission-work-packet.md`
 
 ## EXECUTION
 
@@ -88,6 +107,8 @@ Work Packet이 확정된 뒤 다음 Gate를 순서대로 수행한다.
 각 Gate 종료 조건을 만족할 때만 다음 Gate로 이동한다.
 
 실제 환경을 AI가 검증할 수 없으면 임의 PASS하지 말고 `NEEDS-RUNTIME`으로 표시하고 사용자에게 최소 실행 절차만 요청한다.
+
+후속 Mission이 선행 Mission의 실제 결과를 재사용해야 한다면 G2 BUILD 직전에 Dependency를 확인한다. 운영상 권장 연계를 공식 요구사항으로 임의 승격하지 않는다.
 
 ## MULTI-AGENT ROUTING
 
