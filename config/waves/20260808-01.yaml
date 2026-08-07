@@ -3,11 +3,11 @@ wave:
   id: "20260808-01"
   purpose: "Codyssey Basic B1-1 through B7-2 parallel mission execution"
   started_at: "2026-08-08T03:24:00+09:00"
-  status: PREPARING
+  status: READY
 
 control_tower:
   repository: "MetaStudy999/codyssey-basic"
-  baseline_sha: "TO_BE_FROZEN_AFTER_PACKET_PUBLICATION"
+  baseline_sha: "0d1581b3e82366988f57e1d76da311c028b8e15e"
   integration_mode: "SERIAL"
   mission_workcell_write_access: false
 
@@ -37,3 +37,4 @@ notes:
   - "Mission-derived starter scope must be revalidated against accessible official sources before it becomes a confirmed requirement."
   - "Official mission progress remains in config/missions.yaml."
   - "Representative integration is one mission at a time."
+  - "The frozen baseline contains Governance plus all 15 Starter Packets. This manifest-freeze commit is intentionally outside that baseline."
