@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0] - 2026-08-08
+
+### Added
+- `config/missions.yaml` 기반 G1~G8 미션 진행 상태 메타데이터
+- `scripts/sync_progress.py` 진행 현황 생성기와 `--check` 검증 모드
+- GitHub Pages용 `site/data/missions.json` 자동 생성
+- `Sync Mission Progress` GitHub Actions workflow
+
+### Changed
+- README, Progress Dashboard, GitHub Pages가 하나의 진행 상태 원본을 사용하도록 연결
+- GitHub Pages의 하드코딩된 `TODO` 표시를 JSON 기반 동적 렌더링으로 교체
+
 ## [1.0.0] - 2026-08-07
 
 ### Added
