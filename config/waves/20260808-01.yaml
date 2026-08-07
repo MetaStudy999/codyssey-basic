@@ -19,7 +19,7 @@ workcells:
   - {chat: 2, mission: B1-2, repository: "MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting", packet: "docs/00-governance/work-packets/b1-2.md", prompt: "docs/00-governance/workcell-prompts/b1-2.md", workcell_status: READY, integration_status: PENDING}
   - {chat: 3, mission: B2-1, repository: "MetaStudy999/codyssey-basic-b2-1-budget-tracker", packet: "docs/00-governance/work-packets/b2-1.md", prompt: "docs/00-governance/workcell-prompts/b2-1.md", workcell_status: READY, integration_status: PENDING}
   - {chat: 4, mission: B2-2, repository: "MetaStudy999/codyssey-basic-b2-2-git-team-collaboration", packet: "docs/00-governance/work-packets/b2-2.md", prompt: "docs/00-governance/workcell-prompts/b2-2.md", workcell_status: READY, integration_status: PENDING}
-  - {chat: 5, mission: B3-1, repository: "MetaStudy999/codyssey-basic-b3-1-fast-data-store", packet: "docs/00-governance/work-packets/b3-1.md", prompt: "docs/00-governance/workcell-prompts/b3-1.md", workcell_status: READY, integration_status: PENDING}
+  - {chat: 5, mission: B3-1, repository: "MetaStudy999/codyssey-basic-b3-1-fast-data-store", packet: "docs/00-governance/work-packets/b3-1.md", prompt: "docs/00-governance/workcell-prompts/b3-1.md", workcell_status: COMPLETE, integration_status: PENDING}
   - {chat: 6, mission: B3-2, repository: "MetaStudy999/codyssey-basic-b3-2-file-change-tracker", packet: "docs/00-governance/work-packets/b3-2.md", prompt: "docs/00-governance/workcell-prompts/b3-2.md", workcell_status: READY, integration_status: PENDING}
   - {chat: 7, mission: B4-1, repository: "MetaStudy999/codyssey-basic-b4-1-portfolio", packet: "docs/00-governance/work-packets/b4-1.md", prompt: "docs/00-governance/workcell-prompts/b4-1.md", workcell_status: READY, integration_status: PENDING}
   - {chat: 8, mission: B4-2, repository: "MetaStudy999/codyssey-basic-b4-2-interactive-web-app", packet: "docs/00-governance/work-packets/b4-2.md", prompt: "docs/00-governance/workcell-prompts/b4-2.md", workcell_status: READY, integration_status: PENDING}
@@ -38,5 +38,6 @@ notes:
   - "Mission-derived starter scope must be revalidated against accessible official sources before it becomes a confirmed requirement."
   - "Official mission progress remains in config/missions.yaml."
   - "Representative integration is one mission at a time."
+  - "B3-1 Workcell is COMPLETE with merged mission PR and PASS handoff; official config/missions.yaml integration remains PENDING until preceding missions are serially integrated."
   - "The frozen baseline contains Governance plus all 15 Starter Packets. This manifest-freeze commit is intentionally outside that baseline."
   - "Workcell prompt files are launchers stored on current main; after launch, Governance is evaluated against the frozen baseline."
