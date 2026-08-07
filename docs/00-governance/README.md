@@ -10,6 +10,7 @@
 4. 실제 검증되지 않은 결과를 PASS로 표시하지 않는다.
 5. v1.0 구조 변경은 실제 필요가 확인된 경우에만 수행한다.
 6. Mission/Evaluation Source는 파일 존재 여부뿐 아니라 실제 내용 유효성을 확인한 뒤 사용한다.
+7. 개별 Mission 실행은 병렬화할 수 있지만 대표 Repository의 상태 통합은 한 번에 하나씩 수행한다.
 
 ## Source of Truth
 
@@ -35,6 +36,26 @@ Mission PDF → Mission Markdown → Evaluation → 공식 운영자료 → 요�
   - Loop Engineering
   - Fusion Engineering
   - ChatGPT / Codex / GitHub Copilot / Claude / Gemini / Grok 역할 분리와 선택적 Agent Routing
+
+## Parallel Mission Execution
+
+- [Parallel Mission Execution & Serial Integration](./parallel-mission-execution.md)
+  - B1-1~B7-2를 15개 독립 Chat Workcell에서 병렬 실행
+  - 모든 Workcell이 동일 Control Tower baseline SHA 사용
+  - 병렬 실행 중 대표 Repository는 READ ONLY
+  - Source Discovery와 Mission Work Packet 우선 작성
+  - Dependency-Gated Build
+  - `HANDOFF.md` + `mission-result.yaml` 표준 결과 전달
+  - 대표 Repository는 B1-1 → B7-2 순으로 직렬 통합
+  - 진행 상태는 `config/missions.yaml`만 수정
+
+### 병렬 실행 템플릿
+
+- `templates/mission-chat-start.md` — 새 Mission 채팅 시작 프롬프트
+- `templates/mission-work-packet.md` — Workcell 실행 계약
+- `templates/mission-handoff.md` — 사람용 Handoff
+- `templates/mission-result.yaml` — 기계 판독용 결과 계약
+- `templates/parallel-wave.yaml` — 15개 Workcell Wave 운영 Ledger
 
 ## 변경 분류
 

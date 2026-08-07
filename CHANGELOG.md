@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0] - 2026-08-08
+
+### Added
+- `docs/00-governance/parallel-mission-execution.md` 병렬 Mission Workcell / 직렬 대표 통합 운영 규격
+- `templates/mission-chat-start.md` 새 Mission 채팅 시작 프롬프트
+- `templates/mission-work-packet.md` Mission 실행 계약 템플릿
+- `templates/mission-handoff.md` 사람용 Mission Handoff 템플릿
+- `templates/mission-result.yaml` 기계 판독용 Mission 결과 계약
+- `templates/parallel-wave.yaml` B1-1~B7-2 15개 병렬 Workcell Wave 운영 Ledger
+
+### Changed
+- 개별 Mission Repository는 병렬 실행할 수 있고 대표 Repository 상태 반영은 순차 통합하도록 `AGENTS.md` 정책 확장
+- 병렬 Workcell에서 대표 Repository를 READ ONLY로 유지하고 동일 Control Tower baseline SHA를 사용하도록 규정
+- Source Discovery·Work Packet·Dependency-Gated Build·Handoff 기반의 실행/통합 경계를 명확화
+
 ## [1.1.0] - 2026-08-08
 
 ### Added
