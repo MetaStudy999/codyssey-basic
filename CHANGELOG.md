@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0] - 2026-08-08
+
+### Added
+- `docs/00-governance/workcell-prompts/`에 B1-1~B7-2 15개 Mission별 전용 Chat Workcell 실행 프롬프트
+- `docs/00-governance/workcell-prompts/README.md`에 새 채팅용 15개 한 줄 launcher
+
+### Changed
+- Active Wave `config/waves/20260808-01.yaml`에 각 Workcell의 `prompt` 경로를 추가
+- Governance index에서 Mission별 prompt와 one-line launcher를 직접 탐색하도록 연결
+
+### Policy
+- Workcell prompt는 현재 `main`에서 읽는 launcher이며, Mission Governance와 Requirement 판단은 Active Wave의 frozen baseline 및 G1 SOURCE 결과를 따른다.
+- 한 줄 launcher만 새 채팅에 입력해도 해당 Mission의 전체 수행 규칙을 불러오도록 구성한다.
+
 ## [1.3.0] - 2026-08-08
 
 ### Added

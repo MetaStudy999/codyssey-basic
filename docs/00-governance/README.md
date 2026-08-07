@@ -58,13 +58,20 @@ Mission PDF → Mission Markdown → Evaluation → 공식 운영자료 → 요�
   - Runtime/Evidence 계획
   - 각 Workcell이 G1에서 실제 Source와 재대조 후 `MISSION-WORK-PACKET.md`로 확정
 - Active Wave: `config/waves/20260808-01.yaml`
-  - Mission → Repository → Starter Packet 매핑
+  - Mission → Repository → Starter Packet → Workcell Prompt 매핑
   - 공통 Control Tower baseline SHA
   - Workcell 상태와 Serial Integration 순서
 
+### Mission Workcell Chat Prompts
+
+- [B1-1~B7-2 One-line Launcher & Prompt Index](./workcell-prompts/README.md)
+  - 15개 Mission별 전용 실행 프롬프트
+  - 새 채팅창에 넣는 한 줄 launcher 제공
+  - launcher는 현재 `main`에서 읽고, 실제 Governance는 Active Wave의 frozen baseline을 적용
+
 ### 병렬 실행 템플릿
 
-- `templates/mission-chat-start.md` — 새 Mission 채팅 시작 프롬프트
+- `templates/mission-chat-start.md` — 새 Mission 채팅 시작 프롬프트 템플릿
 - `templates/mission-work-packet.md` — Workcell 실행 계약
 - `templates/mission-handoff.md` — 사람용 Handoff
 - `templates/mission-result.yaml` — 기계 판독용 결과 계약
