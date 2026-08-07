@@ -1,9 +1,59 @@
 const domainGrid = document.querySelector('#domain-grid');
 const missionGrid = document.querySelector('#mission-grid');
 const progressSummary = document.querySelector('#progress-summary');
+const siteNav = document.querySelector('.site-nav');
+const menuToggle = document.querySelector('#menu-toggle');
+const primaryMenu = document.querySelector('#primary-menu');
+const mobileMenuMedia = window.matchMedia('(max-width: 768px)');
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+}
+
+function setMenuOpen(isOpen, {returnFocus = false} = {}) {
+  if (!menuToggle || !primaryMenu) return;
+
+  primaryMenu.classList.toggle('is-open', isOpen);
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+
+  const icon = menuToggle.querySelector('.menu-icon');
+  if (icon) icon.textContent = isOpen ? '✕' : '☰';
+
+  if (!isOpen && returnFocus) menuToggle.focus();
+}
+
+function initMobileMenu() {
+  if (!siteNav || !menuToggle || !primaryMenu) return;
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    setMenuOpen(!isOpen);
+  });
+
+  primaryMenu.addEventListener('click', event => {
+    if (mobileMenuMedia.matches && event.target.closest('a')) {
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener('click', event => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    if (mobileMenuMedia.matches && isOpen && !siteNav.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    if (event.key === 'Escape' && isOpen) {
+      setMenuOpen(false, {returnFocus: true});
+    }
+  });
+
+  mobileMenuMedia.addEventListener('change', event => {
+    if (!event.matches) setMenuOpen(false);
+  });
 }
 
 function renderDomains(domains) {
@@ -88,4 +138,5 @@ async function loadProgress() {
   }
 }
 
+initMobileMenu();
 loadProgress();
