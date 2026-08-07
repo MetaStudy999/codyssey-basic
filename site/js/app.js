@@ -30,19 +30,48 @@ function renderSummary(missions) {
   `;
 }
 
+function getGateProgress(mission) {
+  const gateStates = Object.values(mission.gates || {});
+  const total = gateStates.length;
+  const completed = gateStates.filter(status => status === 'PASS').length;
+  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+  return {completed, total, percent};
+}
+
 function renderMissions(missions) {
-  missionGrid.innerHTML = missions.map(mission => `
-    <article class="card">
-      <div class="card-topline">
-        <span class="badge">${escapeHtml(mission.status)}</span>
-        <span class="gate">${escapeHtml(mission.current_gate_label)}</span>
-      </div>
-      <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
-      <p class="muted">${escapeHtml(mission.domain_name_en)} · Learning: ${escapeHtml(mission.learning)}</p>
-      <p class="muted">Build · Test · Runtime · Evidence · Learn</p>
-      <a class="card-link" href="${escapeHtml(mission.repo)}">Repository →</a>
-    </article>
-  `).join('');
+  missionGrid.innerHTML = missions.map(mission => {
+    const progress = getGateProgress(mission);
+    const progressLabel = `${progress.completed}/${progress.total} Gates · ${progress.percent}%`;
+
+    return `
+      <article class="card mission-card">
+        <div class="card-topline">
+          <span class="badge">${escapeHtml(mission.status)}</span>
+          <span class="gate">${escapeHtml(mission.current_gate_label)}</span>
+        </div>
+        <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
+        <p class="muted">${escapeHtml(mission.domain_name_en)} · Learning: ${escapeHtml(mission.learning)}</p>
+        <p class="muted">Build · Test · Runtime · Evidence · Learn</p>
+        <div class="mission-progress">
+          <div class="progress-meta">
+            <span>Gate Progress</span>
+            <strong>${progressLabel}</strong>
+          </div>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="${escapeHtml(mission.id)} gate progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="${progress.percent}"
+          >
+            <span class="progress-fill" style="width:${progress.percent}%"></span>
+          </div>
+        </div>
+        <a class="card-link" href="${escapeHtml(mission.repo)}">Repository →</a>
+      </article>
+    `;
+  }).join('');
 }
 
 async function loadProgress() {
