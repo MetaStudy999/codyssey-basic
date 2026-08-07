@@ -1,0 +1,49 @@
+version: 1
+course: codyssey-basic
+status_values: [TODO, IMPLEMENTED, TESTED, PASS, NEEDS-RUNTIME, BLOCKED]
+learning_values: [NOT-STUDIED, PRACTICED, EXPLAINABLE, MASTERED]
+
+domains:
+  - id: B1
+    name: Linux와 OS
+    name_en: Linux & OS
+    units:
+      - {id: B1-1, kind: mission, official_requirement: required, execution_required: true, title: "컴퓨터가 알아서 자기 상태를 점검하게 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor", status: TODO, learning: NOT-STUDIED}
+      - {id: B1-2, kind: mission, official_requirement: required, execution_required: true, title: "컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기", repo: "https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting", status: TODO, learning: NOT-STUDIED}
+  - id: B2
+    name: Python과 Git 심화
+    name_en: Python & Git Advanced
+    units:
+      - {id: B2-1, kind: mission, official_requirement: required, execution_required: true, title: "나만의 용돈 기입장 프로그램 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker", status: TODO, learning: NOT-STUDIED}
+      - {id: B2-2, kind: mission, official_requirement: required, execution_required: true, title: "친구 3~5명과 함께 프로그램 만드는 법 연습하기", repo: "https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration", status: TODO, learning: NOT-STUDIED}
+  - id: B3
+    name: 자료구조와 알고리즘
+    name_en: Data Structures & Algorithms
+    units:
+      - {id: B3-1, kind: mission, official_requirement: required, execution_required: true, title: "정보를 엄청 빠르게 찾아주는 작은 저장소 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store", status: TODO, learning: NOT-STUDIED}
+      - {id: B3-2, kind: mission, official_requirement: required, execution_required: true, title: "파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker", status: TODO, learning: NOT-STUDIED}
+  - id: B4
+    name: 웹 핵심과 프론트엔드
+    name_en: Web Core & Front-end
+    units:
+      - {id: B4-1, kind: mission, official_requirement: required, execution_required: true, title: "나를 소개하는 웹페이지 처음부터 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio", status: TODO, learning: NOT-STUDIED}
+      - {id: B4-2, kind: mission, official_requirement: optional, execution_required: true, title: "버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app", status: TODO, learning: NOT-STUDIED}
+  - id: B5
+    name: 데이터베이스와 백엔드
+    name_en: Database & Back-end
+    units:
+      - {id: B5-1, kind: mission, official_requirement: required, execution_required: true, title: "정보를 깔끔하게 정리하는 디지털 서랍장 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design", status: TODO, learning: NOT-STUDIED}
+      - {id: B5-2, kind: mission, official_requirement: optional, execution_required: true, title: "글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app", status: TODO, learning: NOT-STUDIED}
+      - {id: B5-3, kind: mission, official_requirement: optional, execution_required: true, title: "로그인이 되고 회원끼리 연결되는 웹 서비스 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service", status: TODO, learning: NOT-STUDIED}
+  - id: B6
+    name: 클라우드와 AI API
+    name_en: Cloud & AI API
+    units:
+      - {id: B6-1, kind: mission, official_requirement: required, execution_required: true, title: "내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기", repo: "https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment", status: TODO, learning: NOT-STUDIED}
+      - {id: B6-2, kind: mission, official_requirement: required, execution_required: true, title: "내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기", repo: "https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer", status: TODO, learning: NOT-STUDIED}
+  - id: B7
+    name: Term Project
+    name_en: Term Project
+    units:
+      - {id: B7-1, kind: term-project, official_requirement: required, execution_required: true, title: "웹 기반 AI 챗봇 서비스 개발 프로젝트", repo: "https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot", status: TODO, learning: NOT-STUDIED}
+      - {id: B7-2, kind: term-project, official_requirement: mission-pdf-does-not-state-required-or-optional, execution_required: true, title: "웹 기반 AI 챗봇 서비스 고도화 프로젝트", repo: "https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot", status: TODO, learning: NOT-STUDIED}
