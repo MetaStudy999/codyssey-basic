@@ -40,6 +40,9 @@
 - Mission Workcell에서 이 대표 Repository는 `READ ONLY`다.
 - Mission Workcell은 자신의 Mission Repository만 수정하며 다른 Mission Repository를 수정하지 않는다.
 - 모든 Workcell은 G1 SOURCE에서 Source Discovery를 먼저 수행하고, 구현 전 `Mission Work Packet`을 확정한다.
+- 활성 Wave는 `config/waves/20260808-01.yaml`에서 확인한다.
+- 각 Workcell은 `docs/00-governance/work-packets/<mission-id-lower>.md`의 Mission별 Starter Packet을 읽고, G1 결과로 현재 Mission Repository의 `MISSION-WORK-PACKET.md`를 확정한다.
+- Starter Packet은 사전 구조일 뿐 최종 Requirement가 아니며, 실제 Mission/Evaluation Source와 반드시 재대조한다.
 - Source Discovery·Repository Inventory·Requirement Mapping·TOC·Mission Contract는 15개 Workcell에서 병렬 수행할 수 있다.
 - 후속 Mission이 선행 Mission의 실제 결과를 재사용해야 할 때만 G2 BUILD 직전에 Dependency를 확인한다. 공식 Dependency와 운영상 권장 관계를 구분한다.
 - Mission이 끝나면 `HANDOFF.md`와 `mission-result.yaml`을 남기고 대표 Repository 상태를 직접 갱신하지 않는다.
