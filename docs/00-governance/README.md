@@ -49,6 +49,19 @@ Mission PDF → Mission Markdown → Evaluation → 공식 운영자료 → 요�
   - 대표 Repository는 B1-1 → B7-2 순으로 직렬 통합
   - 진행 상태는 `config/missions.yaml`만 수정
 
+### Mission Work Packets
+
+- [B1-1~B7-2 Starter Packet Index](./work-packets/README.md)
+  - 15개 Mission별 사전 수행내역
+  - Mission-specific TOC
+  - G1~G8 실행 체크포인트
+  - Runtime/Evidence 계획
+  - 각 Workcell이 G1에서 실제 Source와 재대조 후 `MISSION-WORK-PACKET.md`로 확정
+- Active Wave: `config/waves/20260808-01.yaml`
+  - Mission → Repository → Starter Packet 매핑
+  - 공통 Control Tower baseline SHA
+  - Workcell 상태와 Serial Integration 순서
+
 ### 병렬 실행 템플릿
 
 - `templates/mission-chat-start.md` — 새 Mission 채팅 시작 프롬프트

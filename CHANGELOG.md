@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0] - 2026-08-08
+
+### Added
+- `docs/00-governance/work-packets/`에 B1-1~B7-2 15개 Mission별 Starter Work Packet
+- `config/waves/20260808-01.yaml` 첫 15-Workcell 병렬 실행 Wave manifest
+- `config/waves/README.md` Wave Ledger 운영 규칙
+
+### Changed
+- 각 Workcell이 Active Wave에서 baseline SHA와 Mission별 packet/repository를 찾도록 `templates/mission-chat-start.md` 보강
+- `AGENTS.md`에 Active Wave와 Mission별 Starter Packet 사용 규칙 추가
+- Governance index에서 15개 Work Packet과 Active Wave를 직접 탐색할 수 있도록 연결
+
+### Policy
+- Starter Packet의 Mission-derived Scope는 G1 SOURCE 재검증 전까지 확정 Requirement가 아님
+- Evaluation은 각 Workcell에서 다시 탐색하며 발견 전 `UNVERIFIED`
+- 병렬 Workcell은 대표 Repository를 READ ONLY로 유지하고 자신의 Mission Repository에만 `MISSION-WORK-PACKET.md`를 확정
+
 ## [1.2.0] - 2026-08-08
 
 ### Added
