@@ -1,0 +1,95 @@
+schema_version: 1
+wave:
+  id: "<YYYYMMDD-01>"
+  purpose: "Codyssey Basic B1-1 through B7-2 parallel mission execution"
+  started_at: "<ISO8601>"
+
+control_tower:
+  repository: "MetaStudy999/codyssey-basic"
+  baseline_sha: "<SHA>"
+  integration_mode: "SERIAL"
+  mission_workcell_write_access: false
+
+workcells:
+  - mission: B1-1
+    repository: "MetaStudy999/codyssey-basic-b1-1-system-monitor"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B1-2
+    repository: "MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B2-1
+    repository: "MetaStudy999/codyssey-basic-b2-1-budget-tracker"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B2-2
+    repository: "MetaStudy999/codyssey-basic-b2-2-git-team-collaboration"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B3-1
+    repository: "MetaStudy999/codyssey-basic-b3-1-fast-data-store"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B3-2
+    repository: "MetaStudy999/codyssey-basic-b3-2-file-change-tracker"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B4-1
+    repository: "MetaStudy999/codyssey-basic-b4-1-portfolio"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B4-2
+    repository: "MetaStudy999/codyssey-basic-b4-2-interactive-web-app"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B5-1
+    repository: "MetaStudy999/codyssey-basic-b5-1-database-design"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B5-2
+    repository: "MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B5-3
+    repository: "MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B6-1
+    repository: "MetaStudy999/codyssey-basic-b6-1-cloud-deployment"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B6-2
+    repository: "MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B7-1
+    repository: "MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+  - mission: B7-2
+    repository: "MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot"
+    workcell_status: NOT_STARTED
+    integration_status: PENDING
+
+integration_order:
+  - B1-1
+  - B1-2
+  - B2-1
+  - B2-2
+  - B3-1
+  - B3-2
+  - B4-1
+  - B4-2
+  - B5-1
+  - B5-2
+  - B5-3
+  - B6-1
+  - B6-2
+  - B7-1
+  - B7-2
+
+notes:
+  - "workcell_status is a wave coordination field, not the official mission progress SSOT."
+  - "Official progress remains in config/missions.yaml."
+  - "Mission workcells may run in parallel; representative integration is one mission at a time."
