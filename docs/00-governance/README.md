@@ -14,6 +14,16 @@
 
 Mission PDF → Mission Markdown → Evaluation → 공식 운영자료 → 요구사항/증빙 매핑 → README → 학습문서 → 코드 → 테스트 → 보고서 → Evidence
 
+## Multi-Agent Mission Engineering
+
+- [Multi-Agent Mission Engineering Playbook](./multi-agent-mission-engineering.md)
+  - Prompt Engineering
+  - Context Engineering
+  - Harness Engineering
+  - Loop Engineering
+  - Fusion Engineering
+  - ChatGPT / Codex / GitHub Copilot / Claude / Gemini / Grok 역할 분리와 선택적 Agent Routing
+
 ## 변경 분류
 
 - 현재 미션에 필수: 해당 미션 Repository
