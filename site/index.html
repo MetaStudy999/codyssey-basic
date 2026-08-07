@@ -9,7 +9,28 @@
 </head>
 <body>
   <header class="hero">
-    <nav><a href="#domains">Domains</a><a href="#missions">Missions</a><a href="#path">Expert Path</a><a href="https://github.com/MetaStudy999/codyssey-basic">GitHub</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="nav-brand" href="#">CODYSSEY BASIC</a>
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-menu"
+          aria-label="메뉴 열기"
+        >
+          <span class="menu-icon" aria-hidden="true">☰</span>
+        </button>
+        <div id="primary-menu" class="nav-links">
+          <a href="#domains">Domains</a>
+          <a href="#missions">Missions</a>
+          <a href="#path">Expert Path</a>
+          <a href="https://github.com/MetaStudy999/codyssey-basic">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
     <div class="hero-inner">
       <p class="eyebrow">CODYSSEY AI/SW BASIC</p>
       <h1>From Linux Fundamentals<br>to Full-stack AI Services</h1>
