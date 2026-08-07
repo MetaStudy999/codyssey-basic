@@ -15,8 +15,6 @@
 
 - **GitHub Pages (Live):** https://metastudy999.github.io/codyssey-basic/
 - **GitHub Repository:** https://github.com/MetaStudy999/codyssey-basic
-- **GitHub Pages 설정 따라하기 (Google Docs):** https://docs.google.com/document/d/1Uh_dRSzbCV4Ed6QzwE1pB1afv-cftifjKfii07yhg2I/edit?usp=drivesdk
-- **Codyssey Basic Google Drive:** https://drive.google.com/drive/u/0/folders/1XKooAwcflOWMzq_6krhSH7x4k_-jr0pY
 
 ## 2. 전체 학습 흐름
 
@@ -117,7 +115,6 @@ G1 SOURCE → G2 BUILD → G3 TEST → G4 REVIEW
 - **공개 상태:** ✅ Live
 - **공개 주소:** https://metastudy999.github.io/codyssey-basic/
 - **배포 방식:** GitHub Actions
-- **설정 따라하기:** https://docs.google.com/document/d/1Uh_dRSzbCV4Ed6QzwE1pB1afv-cftifjKfii07yhg2I/edit?usp=drivesdk
 
 ## 11. 변경 원칙
 
