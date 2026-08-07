@@ -26,7 +26,8 @@
 
     <section id="missions">
       <h2>Mission Progress</h2>
-      <p class="muted">상태 원본은 <code>config/missions.yaml</code>입니다. 현재 사이트 v0.1은 기본 구조를 먼저 제공합니다.</p>
+      <p class="muted"><code>config/missions.yaml</code>이 진행 상태의 단일 기준 원본이며, 이 화면은 자동 생성된 JSON을 읽어 표시합니다.</p>
+      <div id="progress-summary" class="progress-summary" aria-live="polite"></div>
       <div id="mission-grid" class="grid"></div>
     </section>
 
