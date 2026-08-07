@@ -33,6 +33,20 @@
 - Source Gap과 불명확한 요구는 명시적으로 기록하고, 실제 근거가 생기기 전까지 공식 요구사항이나 PASS 근거로 사용하지 않는다.
 - 세부 규칙은 `docs/00-governance/source-discovery-fallback-protocol.md`를 따른다.
 
+## 병렬 Mission Workcell / 직렬 통합 규칙
+
+- B1-1~B7-2의 개별 Mission Repository는 서로 분리된 채팅 Workcell에서 병렬 실행할 수 있다.
+- 병렬 Workcell은 시작 시 동일한 Control Tower `main` commit SHA를 Baseline으로 기록한다.
+- Mission Workcell에서 이 대표 Repository는 `READ ONLY`다.
+- Mission Workcell은 자신의 Mission Repository만 수정하며 다른 Mission Repository를 수정하지 않는다.
+- 모든 Workcell은 G1 SOURCE에서 Source Discovery를 먼저 수행하고, 구현 전 `Mission Work Packet`을 확정한다.
+- Source Discovery·Repository Inventory·Requirement Mapping·TOC·Mission Contract는 15개 Workcell에서 병렬 수행할 수 있다.
+- 후속 Mission이 선행 Mission의 실제 결과를 재사용해야 할 때만 G2 BUILD 직전에 Dependency를 확인한다. 공식 Dependency와 운영상 권장 관계를 구분한다.
+- Mission이 끝나면 `HANDOFF.md`와 `mission-result.yaml`을 남기고 대표 Repository 상태를 직접 갱신하지 않는다.
+- 대표 Repository 반영은 `B1-1 → B1-2 → ... → B7-2` 순서로 한 번에 하나의 Handoff만 검증·통합한다.
+- 대표 상태 통합 시 `config/missions.yaml`만 수정 원본으로 사용하고 생성 결과물을 직접 편집하지 않는다.
+- 세부 규칙은 `docs/00-governance/parallel-mission-execution.md`를 따른다.
+
 ## 진행 상태 Single Source of Truth
 
 - 과정 진행 메타데이터의 유일한 수정 원본은 `config/missions.yaml`이다.
@@ -40,11 +54,11 @@
 - 생성 결과물을 직접 수정하지 말고 `python scripts/sync_progress.py`로 동기화한다.
 - 수행 상태와 학습 상태는 분리한다. `PASS`가 곧 `MASTERED`를 의미하지 않는다.
 
-## 수행 순서
+## 대표 Repository 통합 순서
 
 B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2 → B4-1 → B4-2 → B5-1 → B5-2 → B5-3 → B6-1 → B6-2 → B7-1 → B7-2
 
-한 실행 단위를 완료·병합한 뒤 다음 단위로 이동한다.
+개별 Mission 실행은 병렬화할 수 있지만, 대표 Repository 상태 반영과 통합은 위 순서대로 한 실행 단위를 완료·병합한 뒤 다음 단위로 이동한다.
 
 ## Completion Gate
 
