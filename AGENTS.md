@@ -20,6 +20,19 @@
 
 외부 책·논문·사이트·뉴스는 공식 요구사항을 대체하지 않는다. 이해·검증·확장에만 사용한다.
 
+## Source Discovery 규칙
+
+- G1 SOURCE 시작 전에 Mission과 Evaluation 후보를 확장자와 파일명에 관계없이 먼저 탐색한다.
+- PDF, Markdown, 기타 텍스트 Source를 실제 내용 기준으로 확인한다.
+- 파일이 존재해도 0바이트, 공백뿐, 제목/placeholder뿐이면 `EMPTY`로 본다.
+- 텍스트 추출이 안 되는 PDF는 이미지 기반일 수 있으므로 곧바로 `EMPTY`로 판정하지 않는다.
+- Source는 `VALID / PARTIAL / EMPTY / MISSING / UNREADABLE / DUPLICATE / CONFLICT / HISTORICAL / UNVERIFIED` 중 하나로 분류한다.
+- 자료 상태에 따라 `FULL SOURCE / MISSION-LED / EVALUATION-LED / PARTIAL SOURCE / SOURCE GAP / SOURCE CONFLICT` 모드로 진행한다.
+- 상위 Source가 없거나 비어 있다고 하위 자료나 AI 일반지식으로 공식 요구사항을 만들어내지 않는다.
+- Source가 부족해도 Repository Inventory, 환경 확인, 기존 코드·테스트 분석 등 안전한 작업은 계속할 수 있다.
+- Source Gap과 불명확한 요구는 명시적으로 기록하고, 실제 근거가 생기기 전까지 공식 요구사항이나 PASS 근거로 사용하지 않는다.
+- 세부 규칙은 `docs/00-governance/source-discovery-fallback-protocol.md`를 따른다.
+
 ## 진행 상태 Single Source of Truth
 
 - 과정 진행 메타데이터의 유일한 수정 원본은 `config/missions.yaml`이다.
