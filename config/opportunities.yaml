@@ -1,0 +1,21 @@
+version: 1
+status_values: [NOW, NEXT, WATCH, ARCHIVE]
+
+types:
+  - competition
+  - contest
+  - hackathon
+  - seminar
+  - conference
+  - meetup
+  - call-for-papers
+  - call-for-projects
+  - call-for-participants
+  - research-opportunity
+  - open-source-opportunity
+  - grant-support
+  - startup-opportunity
+
+# 시한이 있는 실제 행사는 수시로 바뀌므로 여기에는 구조만 정의한다.
+# 등록 시 반드시 공식 URL, 신청 마감일, 행사일, 관련 Domain/Mission, 확인일을 기록한다.
+opportunities: []
