@@ -20,6 +20,13 @@
 
 외부 책·논문·사이트·뉴스는 공식 요구사항을 대체하지 않는다. 이해·검증·확장에만 사용한다.
 
+## 진행 상태 Single Source of Truth
+
+- 과정 진행 메타데이터의 유일한 수정 원본은 `config/missions.yaml`이다.
+- `README.md`의 `AUTO:MISSION_PROGRESS` 영역, `docs/03-progress/progress.md`, `site/data/missions.json`은 생성 결과물이다.
+- 생성 결과물을 직접 수정하지 말고 `python scripts/sync_progress.py`로 동기화한다.
+- 수행 상태와 학습 상태는 분리한다. `PASS`가 곧 `MASTERED`를 의미하지 않는다.
+
 ## 수행 순서
 
 B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2 → B4-1 → B4-2 → B5-1 → B5-2 → B5-3 → B6-1 → B6-2 → B7-1 → B7-2
