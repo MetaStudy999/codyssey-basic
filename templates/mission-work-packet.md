@@ -235,3 +235,21 @@ Mission 종료 시 다음을 작성한다.
 - `mission-result.yaml`
 
 대표 Repository를 직접 갱신하지 않는다. Handoff만 전달하고 Serial Integration 단계에서 대표 상태를 갱신한다.
+
+## 19. Live Telemetry Contract
+
+각 Mission Repository는 다음 파일을 유지한다.
+
+```text
+.live/mission-status.json
+```
+
+필수 원칙:
+
+- G1~G8 중 하나의 상태가 바뀔 때마다 같은 논리적 변경 안에서 telemetry를 갱신한다.
+- `mission`, `repository`, `updated_at`, `workcell_status`, `current_gate`, `gates`를 기록한다.
+- 실제 검증 전에는 `PASS`를 기록하지 않는다.
+- Live telemetry는 대표 Repository의 공식 상태를 변경하지 않는다.
+- 공식 상태의 SSOT는 계속 `config/missions.yaml`이다.
+- Dashboard는 자동 polling하지 않는다. 사용자가 수동 갱신할 때만 Mission Repository를 조회한다.
+- 수동 polling 후 300초 동안 재조회가 잠긴다.
