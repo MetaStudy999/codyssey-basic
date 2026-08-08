@@ -6,6 +6,7 @@
   <meta name="description" content="Codyssey AI/SW Basic 학습·검증·포트폴리오 Control Tower">
   <title>Codyssey AI/SW Basic</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/workcells.css">
 </head>
 <body>
   <header class="hero">
@@ -39,8 +40,8 @@
       <h1>Parallel Workcells.<br>Serial Integration.</h1>
       <p>7 Domains · 15 Execution Units · G1→G8 Evidence-driven Delivery</p>
       <div class="hero-actions">
-        <a class="button" href="#missions">Mission Progress</a>
-        <a class="button button-secondary" href="#workcells">Start Workcells</a>
+        <a class="button" href="#missions">Official Progress</a>
+        <a class="button button-secondary" href="#workcells">Live Workcells</a>
       </div>
     </div>
   </header>
@@ -71,7 +72,7 @@
           <p>B1-1 → B1-2 → … → B7-2 순서로 대표 repo에 하나씩 반영합니다.</p>
         </article>
       </div>
-      <p class="notice">Mission 카드의 상태는 <code>config/missions.yaml</code>에 이미 직렬 통합된 결과만 표시합니다. 개별 Workcell에서 작업 중인 결과는 Handoff 검증과 대표 repo 통합 후 반영됩니다.</p>
+      <p class="notice">아래에는 두 상태를 분리해 표시합니다. <strong>Mission Progress</strong>는 <code>config/missions.yaml</code>에 직렬 통합된 공식 상태이고, <strong>Workcell Live Status</strong>는 Active Wave ledger에 기록된 병렬 작업 상태입니다.</p>
     </section>
 
     <section id="domains">
@@ -87,11 +88,11 @@
     <section id="missions">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">INTEGRATED STATE</p>
+          <p class="section-kicker">OFFICIAL · SERIAL INTEGRATION</p>
           <h2>Mission Progress</h2>
         </div>
       </div>
-      <p class="muted"><code>config/missions.yaml</code>이 진행 상태의 Single Source of Truth이며, 이 화면은 자동 생성된 <code>site/data/missions.json</code>을 읽어 표시합니다.</p>
+      <p class="muted"><code>config/missions.yaml</code>이 공식 진행 상태의 Single Source of Truth이며, 이 화면은 자동 생성된 <code>site/data/missions.json</code>을 읽어 표시합니다.</p>
       <div id="progress-summary" class="progress-summary" aria-live="polite"></div>
       <div id="mission-grid" class="grid"></div>
     </section>
@@ -99,10 +100,15 @@
     <section id="workcells">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">PARALLEL EXECUTION</p>
-          <h2>Mission Workcells</h2>
+          <p class="section-kicker">LIVE · PARALLEL EXECUTION</p>
+          <h2>Workcell Live Status</h2>
         </div>
+        <span id="workcell-wave-chip" class="status-chip status-ready">LOADING WAVE</span>
       </div>
+      <p class="muted">Active Wave의 <code>workcell_status</code>와 <code>integration_status</code>를 별도 데이터로 표시합니다. Workcell이 완료되어도 직렬 통합 전에는 공식 Mission Progress가 바뀌지 않습니다.</p>
+      <div id="workcell-summary" class="progress-summary" aria-live="polite"></div>
+      <div id="workcell-grid" class="grid workcell-grid"></div>
+
       <div class="execution-flow" aria-label="Mission execution flow">
         <span>Source Discovery</span><b>→</b><span>Work Packet</span><b>→</b><span>G1–G8</span><b>→</b><span>HANDOFF</span><b>→</b><span>Serial Integration</span>
       </div>
@@ -119,8 +125,8 @@
         </a>
         <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/config/waves/20260808-01.yaml">
           <span>03</span>
-          <strong>Active Wave</strong>
-          <small>Mission → Repository → Packet → Prompt 매핑</small>
+          <strong>Active Wave Ledger</strong>
+          <small>Mission → Repository → Packet → Prompt → Live Status</small>
         </a>
       </div>
     </section>
@@ -162,7 +168,7 @@
     </section>
   </main>
 
-  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Updated for Parallel Workcell Operations</footer>
+  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Official Progress + Live Workcells</footer>
   <script src="./js/app.js"></script>
 </body>
 </html>
