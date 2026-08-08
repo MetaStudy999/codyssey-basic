@@ -72,7 +72,7 @@
           <p>B1-1 → B1-2 → … → B7-2 순서로 대표 repo에 하나씩 반영합니다.</p>
         </article>
       </div>
-      <p class="notice">아래에는 두 상태를 분리해 표시합니다. <strong>Mission Progress</strong>는 <code>config/missions.yaml</code>에 직렬 통합된 공식 상태이고, <strong>Workcell Live Status</strong>는 Active Wave ledger에 기록된 병렬 작업 상태입니다.</p>
+      <p class="notice">아래에는 두 상태를 분리해 표시합니다. <strong>Mission Progress</strong>는 <code>config/missions.yaml</code>에 직렬 통합된 공식 상태이고, <strong>Workcell Live Status</strong>는 각 Mission Repository의 <code>.live/mission-status.json</code>을 사용자가 수동 조회한 실행 상태입니다.</p>
     </section>
 
     <section id="domains">
@@ -100,12 +100,18 @@
     <section id="workcells">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">LIVE · PARALLEL EXECUTION</p>
+          <p class="section-kicker">LIVE · MANUAL POLLING</p>
           <h2>Workcell Live Status</h2>
         </div>
         <span id="workcell-wave-chip" class="status-chip status-ready">LOADING WAVE</span>
       </div>
-      <p class="muted">Active Wave의 <code>workcell_status</code>와 <code>integration_status</code>를 별도 데이터로 표시합니다. Workcell이 완료되어도 직렬 통합 전에는 공식 Mission Progress가 바뀌지 않습니다.</p>
+      <p class="muted">자동 polling은 사용하지 않습니다. 아래 버튼을 누를 때만 15개 Mission Repository의 <code>.live/mission-status.json</code>을 직접 조회합니다. 한 번 조회하면 5분 동안 재조회 버튼이 비활성화됩니다. 공식 Mission Progress는 별도의 Serial Integration이 완료되어야 변경됩니다.</p>
+
+      <div class="live-poll-controls" aria-label="Workcell live status manual refresh">
+        <button id="poll-live-status" class="poll-button" type="button">Mission 상태 수동 갱신</button>
+        <span id="live-poll-meta" class="poll-meta" aria-live="polite">아직 수동 갱신하지 않았습니다.</span>
+      </div>
+
       <div id="workcell-summary" class="progress-summary" aria-live="polite"></div>
       <div id="workcell-grid" class="grid workcell-grid"></div>
 
@@ -126,7 +132,7 @@
         <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/config/waves/20260808-01.yaml">
           <span>03</span>
           <strong>Active Wave Ledger</strong>
-          <small>Mission → Repository → Packet → Prompt → Live Status</small>
+          <small>Mission → Repository → Packet → Prompt → Integration Status</small>
         </a>
       </div>
     </section>
@@ -168,7 +174,7 @@
     </section>
   </main>
 
-  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Official Progress + Live Workcells</footer>
+  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Official Progress + Manual Live Workcells</footer>
   <script src="./js/app.js"></script>
 </body>
 </html>
