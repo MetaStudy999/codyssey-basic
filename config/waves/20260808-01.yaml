@@ -14,6 +14,15 @@ control_tower:
 starter_packet_root: "docs/00-governance/work-packets"
 workcell_prompt_root: "docs/00-governance/workcell-prompts"
 
+live_status:
+  mission_path: ".live/mission-status.json"
+  update_on_gate_change: true
+  dashboard_polling: "MANUAL"
+  manual_poll_cooldown_seconds: 300
+  automatic_polling: false
+  official_progress_source: "config/missions.yaml"
+  rule: "Live telemetry never promotes official Mission Progress; official state changes only through Serial Integration."
+
 workcells:
   - {chat: 1, mission: B1-1, repository: "MetaStudy999/codyssey-basic-b1-1-system-monitor", packet: "docs/00-governance/work-packets/b1-1.md", prompt: "docs/00-governance/workcell-prompts/b1-1.md", workcell_status: READY, integration_status: PENDING}
   - {chat: 2, mission: B1-2, repository: "MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting", packet: "docs/00-governance/work-packets/b1-2.md", prompt: "docs/00-governance/workcell-prompts/b1-2.md", workcell_status: READY, integration_status: PENDING}
@@ -38,10 +47,12 @@ notes:
   - "Mission-derived starter scope must be revalidated against accessible official sources before it becomes a confirmed requirement."
   - "Official mission progress remains in config/missions.yaml."
   - "Representative integration is one mission at a time."
+  - "Every Mission Repository maintains .live/mission-status.json and updates it when a G1-G8 gate changes."
+  - "The dashboard never polls Mission Repositories automatically; the user initiates polling manually and the refresh control is locked for 300 seconds after each poll."
   - "B2-1 Workcell is COMPLETE and its verified result is already INTEGRATED into config/missions.yaml."
   - "B3-1 Workcell is COMPLETE with merged mission PR and PASS handoff; official config/missions.yaml integration remains PENDING until preceding missions are serially integrated."
   - "B4-1 Workcell is PARTIAL/near completion: core build, tests, review, evidence, learning, and Pages runtime are verified, while two API runtime edge states and final HANDOFF artifacts remain."
   - "B5-2 Workcell is COMPLETE with merged mission PR, 12/12 requirements PASS, 6/6 automated tests PASS, runtime/evidence complete, and BLOCKER=0/MAJOR=0; official config/missions.yaml integration remains PENDING until the serial integration order reaches B5-2."
-  - "Workcell Live Status is published from this Active Wave ledger to site/data/workcells.json and GitHub Pages."
+  - "Workcell fallback status is published from this Active Wave ledger to site/data/workcells.json and GitHub Pages."
   - "The frozen baseline contains Governance plus all 15 Starter Packets. This manifest-freeze commit is intentionally outside that baseline."
   - "Workcell prompt files are launchers stored on current main; after launch, Governance is evaluated against the frozen baseline."

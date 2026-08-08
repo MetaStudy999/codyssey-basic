@@ -13,12 +13,15 @@
 }
 
 .status-partial,
-.status-waiting-upstream {
+.status-waiting-upstream,
+.status-needs-runtime {
   background: #fef3c7;
   color: #92400e;
 }
 
-.status-working {
+.status-working,
+.status-tested,
+.status-implemented {
   background: #dbeafe;
   color: #1d4ed8;
 }
@@ -41,6 +44,110 @@
 .integration-pending {
   background: #f1f5f9;
   color: #475569;
+}
+
+.live-poll-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.poll-button {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #0f172a;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.poll-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.poll-button:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.poll-meta {
+  color: #64748b;
+  font-size: .86rem;
+}
+
+.live-mission-progress {
+  margin: 14px 0;
+}
+
+.live-gates {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.live-gate {
+  display: block;
+  padding: 5px 6px;
+  border-radius: 7px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: .66rem;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-gate-pass,
+.live-gate-complete {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.live-gate-partial,
+.live-gate-needs-runtime {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.live-gate-implemented,
+.live-gate-tested,
+.live-gate-working {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.live-updated {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: .72rem;
+}
+
+.live-progress-unavailable {
+  display: grid;
+  gap: 4px;
+  margin: 14px 0;
+  padding: 12px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  color: #64748b;
+  font-size: .8rem;
+}
+
+.live-progress-unavailable strong {
+  color: #334155;
 }
 
 .workcell-state-row {
@@ -70,5 +177,14 @@
 @media (max-width: 768px) {
   #workcell-grid {
     grid-template-columns: 1fr;
+  }
+
+  .live-gates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-poll-controls {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
