@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.6.0] - 2026-08-09
+
+### Added
+- GitHub Pages에 `Workcell Live Status` 대시보드 추가
+- Active Wave ledger에서 `workcell_status`와 `integration_status`를 생성하는 `site/data/workcells.json` 파이프라인 추가
+- Workcell 카드에서 Mission Repo, Prompt, checkpoint 문서로 바로 이동 가능
+
+### Changed
+- `scripts/sync_progress.py`가 공식 Mission 상태와 병렬 Workcell 상태를 각각 생성하도록 확장
+- `config/waves/**` 변경 시 Progress Sync와 GitHub Pages가 자동 갱신되도록 workflow trigger 확장
+- Active Wave의 확인된 실제 상태를 정리: B2-1 `COMPLETE/INTEGRATED`, B3-1 `COMPLETE/PENDING`, B4-1 `PARTIAL/PENDING`, B5-2 `COMPLETE/PENDING`
+
+### Policy
+- 공식 Mission Progress SSOT는 계속 `config/missions.yaml`
+- 병렬 Workcell Live Status SSOT는 Active Wave `config/waves/*.yaml`
+- Workcell 완료와 공식 Serial Integration 완료를 웹에서 별도 상태로 표시
+
 ## [1.5.0] - 2026-08-09
 
 ### Changed
