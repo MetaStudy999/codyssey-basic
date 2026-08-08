@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'config/missions.yaml'
+      - 'config/waves/**'
       - 'scripts/sync_progress.py'
       - 'site/**'
       - '.github/workflows/pages.yml'
@@ -30,7 +31,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate progress data
+      - name: Generate Control Tower data
         run: |
           python -m pip install --disable-pip-version-check pyyaml
           python scripts/sync_progress.py
