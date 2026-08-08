@@ -23,8 +23,11 @@
           <span class="menu-icon" aria-hidden="true">☰</span>
         </button>
         <div id="primary-menu" class="nav-links">
+          <a href="#control-tower">Control Tower</a>
           <a href="#domains">Domains</a>
           <a href="#missions">Missions</a>
+          <a href="#workcells">Workcells</a>
+          <a href="#governance">Governance</a>
           <a href="#path">Expert Path</a>
           <a href="https://github.com/MetaStudy999/codyssey-basic">GitHub</a>
         </div>
@@ -32,33 +35,134 @@
     </nav>
 
     <div class="hero-inner">
-      <p class="eyebrow">CODYSSEY AI/SW BASIC</p>
-      <h1>From Linux Fundamentals<br>to Full-stack AI Services</h1>
-      <p>7 Domains · 15 Execution Units · Evidence-driven Portfolio</p>
-      <a class="button" href="#missions">Explore Missions</a>
+      <p class="eyebrow">CODYSSEY AI/SW BASIC · CONTROL TOWER</p>
+      <h1>Parallel Workcells.<br>Serial Integration.</h1>
+      <p>7 Domains · 15 Execution Units · G1→G8 Evidence-driven Delivery</p>
+      <div class="hero-actions">
+        <a class="button" href="#missions">Mission Progress</a>
+        <a class="button button-secondary" href="#workcells">Start Workcells</a>
+      </div>
     </div>
   </header>
 
   <main>
+    <section id="control-tower">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">CURRENT OPERATING MODEL</p>
+          <h2>Control Tower Snapshot</h2>
+        </div>
+        <span class="status-chip status-ready">ACTIVE WAVE READY</span>
+      </div>
+      <div class="control-grid">
+        <article class="control-card">
+          <span class="control-label">Active Wave</span>
+          <strong>20260808-01</strong>
+          <p>15개 Mission Workcell을 독립 채팅에서 병렬 실행합니다.</p>
+        </article>
+        <article class="control-card">
+          <span class="control-label">Frozen Baseline</span>
+          <strong><code>0d1581b3…</code></strong>
+          <p>Governance와 15개 Starter Packet이 포함된 공통 기준입니다.</p>
+        </article>
+        <article class="control-card">
+          <span class="control-label">Integration</span>
+          <strong>Serial Only</strong>
+          <p>B1-1 → B1-2 → … → B7-2 순서로 대표 repo에 하나씩 반영합니다.</p>
+        </article>
+      </div>
+      <p class="notice">Mission 카드의 상태는 <code>config/missions.yaml</code>에 이미 직렬 통합된 결과만 표시합니다. 개별 Workcell에서 작업 중인 결과는 Handoff 검증과 대표 repo 통합 후 반영됩니다.</p>
+    </section>
+
     <section id="domains">
-      <h2>7 Domains</h2>
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">CURRICULUM MAP</p>
+          <h2>7 Domains</h2>
+        </div>
+      </div>
       <div id="domain-grid" class="grid"></div>
     </section>
 
     <section id="missions">
-      <h2>Mission Progress</h2>
-      <p class="muted"><code>config/missions.yaml</code>이 진행 상태의 단일 기준 원본이며, 이 화면은 자동 생성된 JSON을 읽어 표시합니다.</p>
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">INTEGRATED STATE</p>
+          <h2>Mission Progress</h2>
+        </div>
+      </div>
+      <p class="muted"><code>config/missions.yaml</code>이 진행 상태의 Single Source of Truth이며, 이 화면은 자동 생성된 <code>site/data/missions.json</code>을 읽어 표시합니다.</p>
       <div id="progress-summary" class="progress-summary" aria-live="polite"></div>
       <div id="mission-grid" class="grid"></div>
     </section>
 
+    <section id="workcells">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PARALLEL EXECUTION</p>
+          <h2>Mission Workcells</h2>
+        </div>
+      </div>
+      <div class="execution-flow" aria-label="Mission execution flow">
+        <span>Source Discovery</span><b>→</b><span>Work Packet</span><b>→</b><span>G1–G8</span><b>→</b><span>HANDOFF</span><b>→</b><span>Serial Integration</span>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-prompts/README.md">
+          <span>01</span>
+          <strong>One-line Launchers</strong>
+          <small>B1-1~B7-2 새 채팅 시작 문장</small>
+        </a>
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/tree/main/docs/00-governance/work-packets">
+          <span>02</span>
+          <strong>Starter Work Packets</strong>
+          <small>Mission별 사전 수행내역과 G1~G8 계획</small>
+        </a>
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/config/waves/20260808-01.yaml">
+          <span>03</span>
+          <strong>Active Wave</strong>
+          <small>Mission → Repository → Packet → Prompt 매핑</small>
+        </a>
+      </div>
+    </section>
+
+    <section id="governance">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">QUALITY & TRACEABILITY</p>
+          <h2>Governance</h2>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/source-discovery-fallback-protocol.md">
+          <span>SOURCE</span>
+          <strong>Source Discovery</strong>
+          <small>PDF/MD/빈 파일/누락/충돌을 상태 기반으로 판정</small>
+        </a>
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/multi-agent-mission-engineering.md">
+          <span>AGENTS</span>
+          <strong>Multi-Agent Engineering</strong>
+          <small>Prompt · Context · Harness · Loop · Fusion</small>
+        </a>
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/parallel-mission-execution.md">
+          <span>FLOW</span>
+          <strong>Parallel / Serial Protocol</strong>
+          <small>병렬 Mission 실행과 직렬 Control Tower 통합</small>
+        </a>
+      </div>
+    </section>
+
     <section id="path">
-      <h2>Expert Path</h2>
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PROFESSIONAL GROWTH</p>
+          <h2>Expert Path</h2>
+        </div>
+      </div>
       <div class="path">LEARN <span>→</span> BUILD <span>→</span> BREAK <span>→</span> MEASURE <span>→</span> EXPLAIN <span>→</span> CONTRIBUTE <span>→</span> CHALLENGE <span>→</span> CREATE</div>
     </section>
   </main>
 
-  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio</footer>
+  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Updated for Parallel Workcell Operations</footer>
   <script src="./js/app.js"></script>
 </body>
 </html>
