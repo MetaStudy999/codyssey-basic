@@ -1,6 +1,9 @@
 const domainGrid = document.querySelector('#domain-grid');
 const missionGrid = document.querySelector('#mission-grid');
 const progressSummary = document.querySelector('#progress-summary');
+const workcellGrid = document.querySelector('#workcell-grid');
+const workcellSummary = document.querySelector('#workcell-summary');
+const workcellWaveChip = document.querySelector('#workcell-wave-chip');
 const siteNav = document.querySelector('.site-nav');
 const menuToggle = document.querySelector('#menu-toggle');
 const primaryMenu = document.querySelector('#primary-menu');
@@ -10,7 +13,11 @@ const CONTROL_TOWER_REPO = 'https://github.com/MetaStudy999/codyssey-basic';
 const WORKCELL_PROMPT_ROOT = `${CONTROL_TOWER_REPO}/blob/main/docs/00-governance/workcell-prompts`;
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  return String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+}
+
+function statusClass(value) {
+  return String(value || 'unknown').toLowerCase().replace(/[^a-z0-9]+/g, '-');
 }
 
 function setMenuOpen(isOpen, {returnFocus = false} = {}) {
@@ -121,7 +128,7 @@ function renderMissions(missions) {
     return `
       <article class="card mission-card">
         <div class="card-topline">
-          <span class="badge status-${escapeHtml(mission.status.toLowerCase())}">${escapeHtml(mission.status)}</span>
+          <span class="badge status-${statusClass(mission.status)}">${escapeHtml(mission.status)}</span>
           <span class="gate">${escapeHtml(mission.current_gate_label)}</span>
         </div>
         <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
@@ -153,6 +160,64 @@ function renderMissions(missions) {
   }).join('');
 }
 
+function renderWorkcellSummary(data) {
+  const cells = data.workcells || [];
+  const count = status => cells.filter(cell => cell.workcell_status === status).length;
+  const integrated = cells.filter(cell => cell.integration_status === 'INTEGRATED').length;
+  const complete = count('COMPLETE');
+  const partial = count('PARTIAL');
+  const ready = count('READY');
+  const working = count('WORKING');
+  const waiting = count('WAITING-UPSTREAM');
+
+  workcellSummary.innerHTML = `
+    <strong>${complete} COMPLETE</strong>
+    <span>PARTIAL ${partial}</span>
+    <span>WORKING ${working}</span>
+    <span>WAITING ${waiting}</span>
+    <span>READY ${ready}</span>
+    <span>INTEGRATED ${integrated}/${cells.length}</span>
+  `;
+
+  if (workcellWaveChip) {
+    const waveId = data.wave?.id || 'UNKNOWN';
+    const waveStatus = data.wave?.status || 'UNKNOWN';
+    workcellWaveChip.textContent = `WAVE ${waveId} · ${waveStatus}`;
+  }
+}
+
+function renderWorkcells(data) {
+  const cells = data.workcells || [];
+  workcellGrid.innerHTML = cells.map(cell => {
+    const status = cell.workcell_status || 'UNKNOWN';
+    const integration = cell.integration_status || 'PENDING';
+    const statusDoc = cell.status_doc_url
+      ? `<a class="card-link card-link-secondary" href="${escapeHtml(cell.status_doc_url)}">Checkpoint →</a>`
+      : '';
+
+    return `
+      <article class="card workcell-card">
+        <div class="card-topline">
+          <span class="badge status-${statusClass(status)}">${escapeHtml(status)}</span>
+          <span class="integration-chip integration-${statusClass(integration)}">${escapeHtml(integration)}</span>
+        </div>
+        <h3>${escapeHtml(cell.mission)} · ${escapeHtml(cell.title_en)}</h3>
+        <p class="muted">Chat ${String(cell.chat || '').padStart(2, '0')} · ${escapeHtml(cell.domain_name_en)}</p>
+        <p class="mission-title-ko">${escapeHtml(cell.title)}</p>
+        <div class="workcell-state-row">
+          <span>Workcell</span><strong>${escapeHtml(status)}</strong>
+          <span>Official integration</span><strong>${escapeHtml(integration)}</strong>
+        </div>
+        <div class="card-actions">
+          ${cell.repo_url ? `<a class="card-link" href="${escapeHtml(cell.repo_url)}">Mission Repo →</a>` : ''}
+          ${cell.prompt_url ? `<a class="card-link card-link-secondary" href="${escapeHtml(cell.prompt_url)}">Prompt →</a>` : ''}
+          ${statusDoc}
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
 async function loadProgress() {
   try {
     const response = await fetch('./data/missions.json', {cache: 'no-store'});
@@ -162,10 +227,25 @@ async function loadProgress() {
     renderSummary(data.missions);
     renderMissions(data.missions);
   } catch (error) {
-    progressSummary.textContent = '진행 데이터를 불러오지 못했습니다.';
-    missionGrid.innerHTML = `<article class="card"><h3>Data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
+    progressSummary.textContent = '공식 진행 데이터를 불러오지 못했습니다.';
+    missionGrid.innerHTML = `<article class="card"><h3>Mission data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
+  }
+}
+
+async function loadWorkcells() {
+  try {
+    const response = await fetch('./data/workcells.json', {cache: 'no-store'});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    renderWorkcellSummary(data);
+    renderWorkcells(data);
+  } catch (error) {
+    workcellSummary.textContent = 'Workcell live 데이터를 불러오지 못했습니다.';
+    workcellGrid.innerHTML = `<article class="card"><h3>Workcell data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
+    if (workcellWaveChip) workcellWaveChip.textContent = 'WAVE DATA ERROR';
   }
 }
 
 initMobileMenu();
 loadProgress();
+loadWorkcells();
