@@ -5,6 +5,7 @@
 
 ## 포함 Mission
 - [B5-1 SQL Database](b5-1-database-design.md)
+  - [B5-1 평가·학습 가이드](b5-1-evaluation-guide.md)
 - [B5-2 FastAPI CRUD](b5-2-fastapi-crud.md)
 - [B5-3 Auth & Relations](b5-3-auth-relations.md)
 
