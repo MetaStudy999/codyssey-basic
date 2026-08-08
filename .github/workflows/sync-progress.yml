@@ -30,7 +30,7 @@ jobs:
           python scripts/sync_progress.py
       - name: Commit generated files when changed
         run: |
-          if git diff --quiet -- README.md docs/03-progress/progress.md site/data/missions.json site/data/workcells.json; then
+          if [ -z "$(git status --porcelain -- README.md docs/03-progress/progress.md site/data/missions.json site/data/workcells.json)" ]; then
             echo "Generated Control Tower files are already synchronized."
             exit 0
           fi
