@@ -42,5 +42,6 @@ notes:
   - "B3-1 Workcell is COMPLETE with merged mission PR and PASS handoff; official config/missions.yaml integration remains PENDING until preceding missions are serially integrated."
   - "B4-1 Workcell is PARTIAL/near completion: core build, tests, review, evidence, learning, and Pages runtime are verified, while two API runtime edge states and final HANDOFF artifacts remain."
   - "B5-2 Workcell is COMPLETE with merged mission PR, 12/12 requirements PASS, 6/6 automated tests PASS, runtime/evidence complete, and BLOCKER=0/MAJOR=0; official config/missions.yaml integration remains PENDING until the serial integration order reaches B5-2."
+  - "Workcell Live Status is published from this Active Wave ledger to site/data/workcells.json and GitHub Pages."
   - "The frozen baseline contains Governance plus all 15 Starter Packets. This manifest-freeze commit is intentionally outside that baseline."
   - "Workcell prompt files are launchers stored on current main; after launch, Governance is evaluated against the frozen baseline."
