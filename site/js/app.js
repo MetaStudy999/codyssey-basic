@@ -6,6 +6,9 @@ const menuToggle = document.querySelector('#menu-toggle');
 const primaryMenu = document.querySelector('#primary-menu');
 const mobileMenuMedia = window.matchMedia('(max-width: 768px)');
 
+const CONTROL_TOWER_REPO = 'https://github.com/MetaStudy999/codyssey-basic';
+const WORKCELL_PROMPT_ROOT = `${CONTROL_TOWER_REPO}/blob/main/docs/00-governance/workcell-prompts`;
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 }
@@ -32,23 +35,17 @@ function initMobileMenu() {
   });
 
   primaryMenu.addEventListener('click', event => {
-    if (mobileMenuMedia.matches && event.target.closest('a')) {
-      setMenuOpen(false);
-    }
+    if (mobileMenuMedia.matches && event.target.closest('a')) setMenuOpen(false);
   });
 
   document.addEventListener('click', event => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    if (mobileMenuMedia.matches && isOpen && !siteNav.contains(event.target)) {
-      setMenuOpen(false);
-    }
+    if (mobileMenuMedia.matches && isOpen && !siteNav.contains(event.target)) setMenuOpen(false);
   });
 
   document.addEventListener('keydown', event => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    if (event.key === 'Escape' && isOpen) {
-      setMenuOpen(false, {returnFocus: true});
-    }
+    if (event.key === 'Escape' && isOpen) setMenuOpen(false, {returnFocus: true});
   });
 
   mobileMenuMedia.addEventListener('change', event => {
@@ -56,24 +53,50 @@ function initMobileMenu() {
   });
 }
 
-function renderDomains(domains) {
-  domainGrid.innerHTML = domains.map(domain => `
-    <article class="card">
-      <span class="badge">${escapeHtml(domain.id)}</span>
-      <h3>${escapeHtml(domain.name_en)}</h3>
-      <p class="muted">${escapeHtml(domain.name)}</p>
-      <p class="muted">Curriculum · Mission · Resources · Expert Path</p>
-    </article>
-  `).join('');
+function getOfficialLabel(mission) {
+  if (mission.kind === 'term-project') return 'Term Project';
+  if (mission.official_requirement === 'required') return 'Required';
+  if (mission.official_requirement === 'optional') return 'Optional';
+  return 'Execution Unit';
+}
+
+function renderDomains(domains, missions) {
+  domainGrid.innerHTML = domains.map(domain => {
+    const units = missions.filter(mission => mission.domain_id === domain.id);
+    const passed = units.filter(mission => mission.status === 'PASS').length;
+    const gatePasses = units.reduce((sum, mission) => (
+      sum + Object.values(mission.gates || {}).filter(status => status === 'PASS').length
+    ), 0);
+    const gateTotal = units.reduce((sum, mission) => sum + Object.keys(mission.gates || {}).length, 0);
+
+    return `
+      <article class="card domain-card">
+        <div class="card-topline">
+          <span class="badge">${escapeHtml(domain.id)}</span>
+          <span class="gate">${passed}/${units.length} PASS</span>
+        </div>
+        <h3>${escapeHtml(domain.name_en)}</h3>
+        <p class="muted">${escapeHtml(domain.name)}</p>
+        <p class="domain-stats">${units.length} execution unit${units.length === 1 ? '' : 's'} · ${gatePasses}/${gateTotal} gates integrated</p>
+      </article>
+    `;
+  }).join('');
 }
 
 function renderSummary(missions) {
-  const pass = missions.filter(m => m.status === 'PASS').length;
-  const tested = missions.filter(m => m.status === 'TESTED').length;
-  const implemented = missions.filter(m => m.status === 'IMPLEMENTED').length;
-  const runtime = missions.filter(m => m.status === 'NEEDS-RUNTIME').length;
+  const statusCount = status => missions.filter(m => m.status === status).length;
+  const pass = statusCount('PASS');
+  const tested = statusCount('TESTED');
+  const implemented = statusCount('IMPLEMENTED');
+  const runtime = statusCount('NEEDS-RUNTIME');
+  const todo = statusCount('TODO');
+  const allGateStates = missions.flatMap(mission => Object.values(mission.gates || {}));
+  const passedGates = allGateStates.filter(status => status === 'PASS').length;
+
   progressSummary.innerHTML = `
     <strong>${pass} / ${missions.length} PASS</strong>
+    <span>GATES ${passedGates}/${allGateStates.length}</span>
+    <span>TODO ${todo}</span>
     <span>IMPLEMENTED ${implemented}</span>
     <span>TESTED ${tested}</span>
     <span>NEEDS-RUNTIME ${runtime}</span>
@@ -92,19 +115,22 @@ function renderMissions(missions) {
   missionGrid.innerHTML = missions.map(mission => {
     const progress = getGateProgress(mission);
     const progressLabel = `${progress.completed}/${progress.total} Gates · ${progress.percent}%`;
+    const promptUrl = `${WORKCELL_PROMPT_ROOT}/${escapeHtml(mission.id.toLowerCase())}.md`;
+    const officialLabel = getOfficialLabel(mission);
 
     return `
       <article class="card mission-card">
         <div class="card-topline">
-          <span class="badge">${escapeHtml(mission.status)}</span>
+          <span class="badge status-${escapeHtml(mission.status.toLowerCase())}">${escapeHtml(mission.status)}</span>
           <span class="gate">${escapeHtml(mission.current_gate_label)}</span>
         </div>
         <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
-        <p class="muted">${escapeHtml(mission.domain_name_en)} · Learning: ${escapeHtml(mission.learning)}</p>
-        <p class="muted">Build · Test · Runtime · Evidence · Learn</p>
+        <p class="muted">${escapeHtml(mission.domain_name_en)} · ${escapeHtml(officialLabel)}</p>
+        <p class="mission-title-ko">${escapeHtml(mission.title)}</p>
+        <p class="muted">Learning: ${escapeHtml(mission.learning)}</p>
         <div class="mission-progress">
           <div class="progress-meta">
-            <span>Gate Progress</span>
+            <span>Integrated Gate Progress</span>
             <strong>${progressLabel}</strong>
           </div>
           <div
@@ -118,7 +144,10 @@ function renderMissions(missions) {
             <span class="progress-fill" style="width:${progress.percent}%"></span>
           </div>
         </div>
-        <a class="card-link" href="${escapeHtml(mission.repo)}">Repository →</a>
+        <div class="card-actions">
+          <a class="card-link" href="${escapeHtml(mission.repo)}">Repository →</a>
+          <a class="card-link card-link-secondary" href="${promptUrl}">Workcell Prompt →</a>
+        </div>
       </article>
     `;
   }).join('');
@@ -129,7 +158,7 @@ async function loadProgress() {
     const response = await fetch('./data/missions.json', {cache: 'no-store'});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    renderDomains(data.domains);
+    renderDomains(data.domains, data.missions);
     renderSummary(data.missions);
     renderMissions(data.missions);
   } catch (error) {

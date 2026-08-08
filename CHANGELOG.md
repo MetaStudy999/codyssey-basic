@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.5.0] - 2026-08-09
+
+### Changed
+- GitHub Pages 홈을 현재 Control Tower 운영 모델에 맞게 갱신
+- Active Wave `20260808-01`, frozen baseline, 병렬 Workcell / 직렬 통합 구조를 첫 화면에 표시
+- 7개 Domain 카드에 Mission PASS 및 Gate 통합 진행률 표시
+- Mission 카드에 공식 구분, 한국어 제목, 통합 Gate 진행률, 개별 Workcell Prompt 링크 추가
+- Progress Summary에 전체 Gate PASS 수와 TODO 상태 추가
+- Workcell / Governance 섹션에서 one-line launcher, Starter Packet, Active Wave, Source Discovery, Multi-Agent, Parallel/Serial 규칙으로 바로 이동 가능
+
+### Policy
+- 웹의 Mission 진행 상태는 계속 `config/missions.yaml` → `site/data/missions.json` 경로를 Single Source of Truth로 사용
+- 개별 Workcell에서 작업 중인 상태는 대표 repo에 Serial Integration된 뒤에만 공식 Mission Progress로 표시
+
 ## [1.4.0] - 2026-08-08
 
 ### Added
