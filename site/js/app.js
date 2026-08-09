@@ -137,6 +137,19 @@ function getGateProgress(mission) {
   return {completed, total, percent};
 }
 
+function gateMatrixMarkup(gates = {}) {
+  return GATE_ORDER.map((gate, index) => {
+    const value = gates[gate] || 'TODO';
+    const label = gate.replace(/^G\d+_/, '').replaceAll('_', ' ');
+    return `
+      <div class="gate-cell gate-cell-${statusClass(value)}" title="${escapeHtml(gate)}: ${escapeHtml(value)}">
+        <span class="gate-name">G${index + 1} ${escapeHtml(label)}</span>
+        <strong class="gate-state">${escapeHtml(value)}</strong>
+      </div>
+    `;
+  }).join('');
+}
+
 function renderMissions(missions) {
   missionGrid.innerHTML = missions.map(mission => {
     const progress = getGateProgress(mission);
@@ -168,6 +181,9 @@ function renderMissions(missions) {
             aria-valuenow="${progress.percent}"
           >
             <span class="progress-fill" style="width:${progress.percent}%"></span>
+          </div>
+          <div class="gate-matrix official-gates" aria-label="${escapeHtml(mission.id)} official G1 to G8 status">
+            ${gateMatrixMarkup(mission.gates || {})}
           </div>
         </div>
         <div class="card-actions">
@@ -242,13 +258,6 @@ function renderWorkcellSummary(data) {
   }
 }
 
-function gateBadgeMarkup(gates = {}) {
-  return GATE_ORDER.map((gate, index) => {
-    const value = gates[gate] || 'TODO';
-    return `<span class="live-gate live-gate-${statusClass(value)}" title="${escapeHtml(gate)}: ${escapeHtml(value)}">G${index + 1} ${escapeHtml(value)}</span>`;
-  }).join('');
-}
-
 function renderWorkcells(data) {
   const cells = data.workcells || [];
   workcellGrid.innerHTML = cells.map(cell => {
@@ -285,7 +294,9 @@ function renderWorkcells(data) {
           >
             <span class="progress-fill" style="width:${progress.percent}%"></span>
           </div>
-          <div class="live-gates">${gateBadgeMarkup(telemetry.gates || {})}</div>
+          <div class="gate-matrix live-gates" aria-label="${escapeHtml(cell.mission)} live G1 to G8 status">
+            ${gateMatrixMarkup(telemetry.gates || {})}
+          </div>
           <p class="live-updated">Mission telemetry: ${escapeHtml(formatTimestamp(telemetry.updated_at))}</p>
         </div>
       `;
