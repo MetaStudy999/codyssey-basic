@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/workcells.css">
   <link rel="stylesheet" href="./css/recommended-progress.css">
   <link rel="stylesheet" href="./css/card-layout.css">
+  <link rel="stylesheet" href="./css/mission-control.css">
   <link rel="stylesheet" href="./css/dependency-simulator.css">
 </head>
 <body>
@@ -29,8 +30,7 @@
         <div id="primary-menu" class="nav-links">
           <a href="#control-tower">Control Tower</a>
           <a href="#domains">Domains</a>
-          <a href="#missions">Missions</a>
-          <a href="#workcells">Workcells</a>
+          <a href="#mission-control">Mission Control</a>
           <a href="#dependencies">Dependencies</a>
           <a href="#governance">Governance</a>
           <a href="#path">Expert Path</a>
@@ -44,8 +44,8 @@
       <h1>Parallel Workcells.<br>Serial Integration.</h1>
       <p>7 Domains · 15 Execution Units · G1→G8 Evidence-driven Delivery</p>
       <div class="hero-actions">
-        <a class="button" href="#missions">Official Progress</a>
-        <a class="button button-secondary" href="#workcells">Live Workcells</a>
+        <a class="button" href="#mission-control">Mission Control</a>
+        <a class="button button-secondary" href="#dependencies">Dependency Flow</a>
       </div>
     </div>
   </header>
@@ -73,10 +73,10 @@
         <article class="control-card">
           <span class="control-label">Integration</span>
           <strong>Serial Only</strong>
-          <p>B1-1 → B1-2 → … → B7-2 순서로 대표 repo에 하나씩 반영합니다.</p>
+          <p>검증된 Mission 결과만 대표 repo의 공식 상태로 직렬 반영합니다.</p>
         </article>
       </div>
-      <p class="notice">아래에는 두 상태를 분리해 표시합니다. <strong>Mission Progress</strong>는 <code>config/missions.yaml</code>에 직렬 통합된 공식 상태이고, <strong>Workcell Live Status</strong>는 각 Mission Repository의 <code>.live/mission-status.json</code>을 사용자가 수동 조회한 실행 상태입니다.</p>
+      <p class="notice"><strong>Mission Control</strong>은 Live 실행 현황과 Official 통합 현황을 미션별 한 카드에서 함께 보여줍니다. 단, 데이터 의미는 합치지 않습니다. Live는 Mission Repository의 <code>.live/mission-status.json</code>, Official은 <code>config/missions.yaml</code>을 각각 기준으로 유지합니다.</p>
     </section>
 
     <section id="domains">
@@ -89,39 +89,41 @@
       <div id="domain-grid" class="grid"></div>
     </section>
 
-    <section id="missions">
+    <section id="mission-control">
+      <span id="missions" class="anchor-alias" aria-hidden="true"></span>
+      <span id="workcells" class="anchor-alias" aria-hidden="true"></span>
       <div class="section-heading">
         <div>
-          <p class="section-kicker">OFFICIAL · SERIAL INTEGRATION</p>
-          <h2>Mission Progress</h2>
-        </div>
-      </div>
-      <p class="muted"><code>config/missions.yaml</code>이 공식 진행 상태의 Single Source of Truth이며, 이 화면은 자동 생성된 <code>site/data/missions.json</code>을 읽어 표시합니다.</p>
-      <div id="progress-summary" class="progress-summary" aria-live="polite"></div>
-      <div id="mission-grid" class="grid"></div>
-    </section>
-
-    <section id="workcells">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">LIVE · MANUAL POLLING</p>
-          <h2>Workcell Live Status</h2>
+          <p class="section-kicker">LIVE EXECUTION + OFFICIAL INTEGRATION</p>
+          <h2>Mission Control Status</h2>
         </div>
         <span id="workcell-wave-chip" class="status-chip status-ready">LOADING WAVE</span>
       </div>
-      <p class="muted">자동 polling은 사용하지 않습니다. 아래 버튼을 누를 때만 15개 Mission Repository의 <code>.live/mission-status.json</code>을 직접 조회합니다. 한 번 조회하면 5분 동안 재조회 버튼이 비활성화됩니다. 공식 Mission Progress는 별도의 Serial Integration이 완료되어야 변경됩니다.</p>
+      <p class="muted mission-control-intro">기존 <strong>Mission Progress</strong>와 <strong>Workcell Live Status</strong>를 미션별 하나의 카드로 통합했습니다. 위쪽은 현재 권장 진행 흐름, 각 카드 안에서는 <strong>Live Execution</strong>과 <strong>Official Integration</strong>을 나란히 비교합니다. 자동 polling은 사용하지 않으며 Live 상태는 사용자가 수동으로 갱신합니다.</p>
 
       <div id="recommended-progress" class="recommended-progress" aria-live="polite">
         <span class="recommended-empty">현재 Workcell 상태와 권장 진행 흐름을 계산하고 있습니다.</span>
       </div>
 
-      <div class="live-poll-controls" aria-label="Workcell live status manual refresh">
-        <button id="poll-live-status" class="poll-button" type="button">Mission 상태 수동 갱신</button>
-        <span id="live-poll-meta" class="poll-meta" aria-live="polite">아직 수동 갱신하지 않았습니다.</span>
+      <div class="mission-control-toolbar">
+        <div class="live-poll-controls" aria-label="Mission live status manual refresh">
+          <button id="poll-live-status" class="poll-button" type="button">Mission 상태 수동 갱신</button>
+          <span id="live-poll-meta" class="poll-meta" aria-live="polite">아직 수동 갱신하지 않았습니다.</span>
+        </div>
+        <label class="mission-control-sort" for="mission-control-sort">
+          <span>카드 정렬</span>
+          <select id="mission-control-sort">
+            <option value="recommended" selected>권장 행동순</option>
+            <option value="mission">미션순 B1→B7</option>
+            <option value="domain">도메인순</option>
+          </select>
+        </label>
       </div>
 
-      <div id="workcell-summary" class="progress-summary" aria-live="polite"></div>
-      <div id="workcell-grid" class="grid workcell-grid"></div>
+      <div id="mission-control-summary" class="progress-summary" aria-live="polite"></div>
+      <div id="mission-control-grid"></div>
+
+      <p class="mission-control-note"><strong>판정 원칙:</strong> 카드의 대표 아이콘은 사용자가 다음 행동을 빠르게 판단하기 위한 UI 상태입니다. ✅ COMPLETE, 🛠 IN PROGRESS, 🧪 NEEDS RUNTIME, 📦 READY TO INTEGRATE, 🎯 READY, ⏳ WAITING, ⛔ BLOCKED로 표시하지만 Official PASS와 prerequisite의 진실값은 기존 SSOT와 G1 SOURCE 검증을 그대로 따릅니다.</p>
 
       <div class="execution-flow" aria-label="Mission execution flow">
         <span>Source Discovery</span><b>→</b><span>Work Packet</span><b>→</b><span>G1–G8</span><b>→</b><span>HANDOFF</span><b>→</b><span>Serial Integration</span>
@@ -216,7 +218,7 @@
     </section>
   </main>
 
-  <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Official Progress + Manual Live Workcells</footer>
+  <footer>Codyssey AI/SW Basic · Mission Control · Live Execution + Official Integration</footer>
   <script src="./js/app.js"></script>
   <script src="./js/recommended-progress.js"></script>
   <script src="./js/dependency-simulator.js"></script>
