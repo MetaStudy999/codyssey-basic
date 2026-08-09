@@ -1,11 +1,10 @@
 const domainGrid = document.querySelector('#domain-grid');
-const missionGrid = document.querySelector('#mission-grid');
-const progressSummary = document.querySelector('#progress-summary');
-const workcellGrid = document.querySelector('#workcell-grid');
-const workcellSummary = document.querySelector('#workcell-summary');
+const missionControlGrid = document.querySelector('#mission-control-grid');
+const missionControlSummary = document.querySelector('#mission-control-summary');
 const workcellWaveChip = document.querySelector('#workcell-wave-chip');
 const livePollButton = document.querySelector('#poll-live-status');
 const livePollMeta = document.querySelector('#live-poll-meta');
+const missionSort = document.querySelector('#mission-control-sort');
 const siteNav = document.querySelector('.site-nav');
 const menuToggle = document.querySelector('#menu-toggle');
 const primaryMenu = document.querySelector('#primary-menu');
@@ -27,53 +26,87 @@ const GATE_ORDER = [
   'G8_MERGE',
 ];
 
+const DEPENDENCIES = {
+  'B1-1': [],
+  'B1-2': [],
+  'B2-1': [],
+  'B2-2': [],
+  'B3-1': [],
+  'B3-2': [],
+  'B4-1': [],
+  'B4-2': ['B4-1'],
+  'B5-1': [],
+  'B5-2': ['B5-1'],
+  'B5-3': ['B5-2'],
+  'B6-1': [],
+  'B6-2': [],
+  'B7-1': ['B5-3', 'B6-1', 'B6-2'],
+  'B7-2': ['B7-1'],
+};
+
+const ACTIVE_STATUSES = new Set(['PARTIAL', 'WORKING', 'IMPLEMENTED', 'TESTED']);
+const ACTION_PRIORITY = {
+  blocked: 0,
+  runtime: 1,
+  active: 2,
+  integrate: 3,
+  ready: 4,
+  waiting: 5,
+  complete: 6,
+};
+
+let currentMissionData = null;
 let currentWorkcellData = null;
 let liveTelemetry = {};
 let lastPollStats = null;
+let currentSort = 'recommended';
 
 function escapeHtml(value) {
-  return String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  return String(value ?? '').replace(/[&<>'"]/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;',
+  }[char]));
 }
 
 function statusClass(value) {
   return String(value || 'unknown').toLowerCase().replace(/[^a-z0-9]+/g, '-');
 }
 
+function missionNumber(id) {
+  const match = String(id || '').match(/^B(\d+)-(\d+)$/i);
+  return match ? (Number(match[1]) * 100 + Number(match[2])) : 99999;
+}
+
 function setMenuOpen(isOpen, {returnFocus = false} = {}) {
   if (!menuToggle || !primaryMenu) return;
-
   primaryMenu.classList.toggle('is-open', isOpen);
   menuToggle.setAttribute('aria-expanded', String(isOpen));
   menuToggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
-
   const icon = menuToggle.querySelector('.menu-icon');
   if (icon) icon.textContent = isOpen ? '✕' : '☰';
-
   if (!isOpen && returnFocus) menuToggle.focus();
 }
 
 function initMobileMenu() {
   if (!siteNav || !menuToggle || !primaryMenu) return;
-
   menuToggle.addEventListener('click', () => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
     setMenuOpen(!isOpen);
   });
-
   primaryMenu.addEventListener('click', event => {
     if (mobileMenuMedia.matches && event.target.closest('a')) setMenuOpen(false);
   });
-
   document.addEventListener('click', event => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
     if (mobileMenuMedia.matches && isOpen && !siteNav.contains(event.target)) setMenuOpen(false);
   });
-
   document.addEventListener('keydown', event => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
     if (event.key === 'Escape' && isOpen) setMenuOpen(false, {returnFocus: true});
   });
-
   mobileMenuMedia.addEventListener('change', event => {
     if (!event.matches) setMenuOpen(false);
   });
@@ -87,6 +120,7 @@ function getOfficialLabel(mission) {
 }
 
 function renderDomains(domains, missions) {
+  if (!domainGrid) return;
   domainGrid.innerHTML = domains.map(domain => {
     const units = missions.filter(mission => mission.domain_id === domain.id);
     const passed = units.filter(mission => mission.status === 'PASS').length;
@@ -94,7 +128,6 @@ function renderDomains(domains, missions) {
       sum + Object.values(mission.gates || {}).filter(status => status === 'PASS').length
     ), 0);
     const gateTotal = units.reduce((sum, mission) => sum + Object.keys(mission.gates || {}).length, 0);
-
     return `
       <article class="card domain-card">
         <div class="card-topline">
@@ -109,32 +142,28 @@ function renderDomains(domains, missions) {
   }).join('');
 }
 
-function renderSummary(missions) {
-  const statusCount = status => missions.filter(m => m.status === status).length;
-  const pass = statusCount('PASS');
-  const tested = statusCount('TESTED');
-  const implemented = statusCount('IMPLEMENTED');
-  const runtime = statusCount('NEEDS-RUNTIME');
-  const todo = statusCount('TODO');
-  const allGateStates = missions.flatMap(mission => Object.values(mission.gates || {}));
-  const passedGates = allGateStates.filter(status => status === 'PASS').length;
-
-  progressSummary.innerHTML = `
-    <strong>${pass} / ${missions.length} PASS</strong>
-    <span>GATES ${passedGates}/${allGateStates.length}</span>
-    <span>TODO ${todo}</span>
-    <span>IMPLEMENTED ${implemented}</span>
-    <span>TESTED ${tested}</span>
-    <span>NEEDS-RUNTIME ${runtime}</span>
-  `;
+function getGateProgress(gates = {}) {
+  const states = GATE_ORDER.map(gate => gates[gate] || 'TODO');
+  const completed = states.filter(status => status === 'PASS').length;
+  const percent = Math.round((completed / GATE_ORDER.length) * 100);
+  return {completed, total: GATE_ORDER.length, percent};
 }
 
-function getGateProgress(mission) {
-  const gateStates = Object.values(mission.gates || {});
-  const total = gateStates.length;
-  const completed = gateStates.filter(status => status === 'PASS').length;
-  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
-  return {completed, total, percent};
+function gateScore(value) {
+  const status = String(value || 'TODO').toUpperCase();
+  if (status === 'PASS' || status === 'COMPLETE') return 1;
+  if (['PARTIAL', 'IMPLEMENTED', 'TESTED', 'NEEDS-RUNTIME', 'WORKING'].includes(status)) return 0.5;
+  return 0;
+}
+
+function getLiveGateProgress(gates = {}) {
+  const scores = GATE_ORDER.map(gate => gateScore(gates[gate]));
+  const score = scores.reduce((sum, value) => sum + value, 0);
+  return {
+    score,
+    percent: Math.round((score / GATE_ORDER.length) * 100),
+    total: GATE_ORDER.length,
+  };
 }
 
 function gateMatrixMarkup(gates = {}) {
@@ -150,69 +179,9 @@ function gateMatrixMarkup(gates = {}) {
   }).join('');
 }
 
-function renderMissions(missions) {
-  missionGrid.innerHTML = missions.map(mission => {
-    const progress = getGateProgress(mission);
-    const progressLabel = `${progress.completed}/${progress.total} Gates · ${progress.percent}%`;
-    const promptUrl = `${WORKCELL_PROMPT_ROOT}/${escapeHtml(mission.id.toLowerCase())}.md`;
-    const officialLabel = getOfficialLabel(mission);
-
-    return `
-      <article class="card mission-card">
-        <div class="card-topline">
-          <span class="badge status-${statusClass(mission.status)}">${escapeHtml(mission.status)}</span>
-          <span class="gate">${escapeHtml(mission.current_gate_label)}</span>
-        </div>
-        <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
-        <p class="muted">${escapeHtml(mission.domain_name_en)} · ${escapeHtml(officialLabel)}</p>
-        <p class="mission-title-ko">${escapeHtml(mission.title)}</p>
-        <p class="muted">Learning: ${escapeHtml(mission.learning)}</p>
-        <div class="mission-progress">
-          <div class="progress-meta">
-            <span>Integrated Gate Progress</span>
-            <strong>${progressLabel}</strong>
-          </div>
-          <div
-            class="progress-track"
-            role="progressbar"
-            aria-label="${escapeHtml(mission.id)} gate progress"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="${progress.percent}"
-          >
-            <span class="progress-fill" style="width:${progress.percent}%"></span>
-          </div>
-          <div class="gate-matrix official-gates" aria-label="${escapeHtml(mission.id)} official G1 to G8 status">
-            ${gateMatrixMarkup(mission.gates || {})}
-          </div>
-        </div>
-        <div class="card-actions">
-          <a class="card-link" href="${escapeHtml(mission.repo)}">Repository →</a>
-          <a class="card-link card-link-secondary" href="${promptUrl}">Workcell Prompt →</a>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-function gateScore(value) {
-  const status = String(value || 'TODO').toUpperCase();
-  if (status === 'PASS' || status === 'COMPLETE') return 1;
-  if (['PARTIAL', 'IMPLEMENTED', 'TESTED', 'NEEDS-RUNTIME', 'WORKING'].includes(status)) return 0.5;
-  return 0;
-}
-
-function getLiveGateProgress(gates = {}) {
-  const scores = GATE_ORDER.map(gate => gateScore(gates[gate]));
-  const score = scores.reduce((sum, value) => sum + value, 0);
-  const percent = Math.round((score / GATE_ORDER.length) * 100);
-  const passed = GATE_ORDER.filter(gate => String(gates[gate] || '').toUpperCase() === 'PASS').length;
-  return {score, percent, passed, total: GATE_ORDER.length};
-}
-
 function formatTimestamp(value) {
   if (!value) return '기록 없음';
-  const date = new Date(value);
+  const date = new Date(Number(value) || value);
   if (Number.isNaN(date.getTime())) return String(value);
   return new Intl.DateTimeFormat('ko-KR', {
     month: '2-digit',
@@ -222,108 +191,6 @@ function formatTimestamp(value) {
     second: '2-digit',
     hour12: false,
   }).format(date);
-}
-
-function effectiveWorkcellStatus(cell) {
-  return liveTelemetry[cell.mission]?.workcell_status || cell.workcell_status || 'UNKNOWN';
-}
-
-function renderWorkcellSummary(data) {
-  const cells = data.workcells || [];
-  const count = status => cells.filter(cell => effectiveWorkcellStatus(cell) === status).length;
-  const integrated = cells.filter(cell => cell.integration_status === 'INTEGRATED').length;
-  const complete = count('COMPLETE');
-  const partial = count('PARTIAL');
-  const ready = count('READY');
-  const working = count('WORKING');
-  const waiting = count('WAITING-UPSTREAM');
-  const runtime = count('NEEDS-RUNTIME');
-  const telemetryCount = cells.filter(cell => liveTelemetry[cell.mission]).length;
-
-  workcellSummary.innerHTML = `
-    <strong>${complete} COMPLETE</strong>
-    <span>PARTIAL ${partial}</span>
-    <span>WORKING ${working}</span>
-    <span>NEEDS-RUNTIME ${runtime}</span>
-    <span>WAITING ${waiting}</span>
-    <span>READY ${ready}</span>
-    <span>LIVE DATA ${telemetryCount}/${cells.length}</span>
-    <span>INTEGRATED ${integrated}/${cells.length}</span>
-  `;
-
-  if (workcellWaveChip) {
-    const waveId = data.wave?.id || 'UNKNOWN';
-    const waveStatus = data.wave?.status || 'UNKNOWN';
-    workcellWaveChip.textContent = `WAVE ${waveId} · ${waveStatus}`;
-  }
-}
-
-function renderWorkcells(data) {
-  const cells = data.workcells || [];
-  workcellGrid.innerHTML = cells.map(cell => {
-    const telemetry = liveTelemetry[cell.mission] || null;
-    const status = telemetry?.workcell_status || cell.workcell_status || 'UNKNOWN';
-    const integration = cell.integration_status || 'PENDING';
-    const statusDoc = cell.status_doc_url
-      ? `<a class="card-link card-link-secondary" href="${escapeHtml(cell.status_doc_url)}">Checkpoint →</a>`
-      : '';
-
-    let liveProgressMarkup = `
-      <div class="live-progress-unavailable">
-        <strong>Live Gate Progress</strong>
-        <span>수동 갱신 버튼을 눌러 Mission Repository 상태를 조회하세요.</span>
-      </div>
-    `;
-
-    if (telemetry) {
-      const progress = getLiveGateProgress(telemetry.gates || {});
-      const currentGate = telemetry.current_gate || 'UNKNOWN';
-      liveProgressMarkup = `
-        <div class="mission-progress live-mission-progress">
-          <div class="progress-meta">
-            <span>Live Gate Progress · ${escapeHtml(currentGate)}</span>
-            <strong>${progress.percent}%</strong>
-          </div>
-          <div
-            class="progress-track"
-            role="progressbar"
-            aria-label="${escapeHtml(cell.mission)} live gate progress"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="${progress.percent}"
-          >
-            <span class="progress-fill" style="width:${progress.percent}%"></span>
-          </div>
-          <div class="gate-matrix live-gates" aria-label="${escapeHtml(cell.mission)} live G1 to G8 status">
-            ${gateMatrixMarkup(telemetry.gates || {})}
-          </div>
-          <p class="live-updated">Mission telemetry: ${escapeHtml(formatTimestamp(telemetry.updated_at))}</p>
-        </div>
-      `;
-    }
-
-    return `
-      <article class="card workcell-card">
-        <div class="card-topline">
-          <span class="badge status-${statusClass(status)}">${escapeHtml(status)}</span>
-          <span class="integration-chip integration-${statusClass(integration)}">${escapeHtml(integration)}</span>
-        </div>
-        <h3>${escapeHtml(cell.mission)} · ${escapeHtml(cell.title_en)}</h3>
-        <p class="muted">Chat ${String(cell.chat || '').padStart(2, '0')} · ${escapeHtml(cell.domain_name_en)}</p>
-        <p class="mission-title-ko">${escapeHtml(cell.title)}</p>
-        ${liveProgressMarkup}
-        <div class="workcell-state-row">
-          <span>Workcell</span><strong>${escapeHtml(status)}</strong>
-          <span>Official integration</span><strong>${escapeHtml(integration)}</strong>
-        </div>
-        <div class="card-actions">
-          ${cell.repo_url ? `<a class="card-link" href="${escapeHtml(cell.repo_url)}">Mission Repo →</a>` : ''}
-          ${cell.prompt_url ? `<a class="card-link card-link-secondary" href="${escapeHtml(cell.prompt_url)}">Prompt →</a>` : ''}
-          ${statusDoc}
-        </div>
-      </article>
-    `;
-  }).join('');
 }
 
 function loadCachedTelemetry() {
@@ -340,6 +207,248 @@ function loadCachedTelemetry() {
   }
 }
 
+function effectiveWorkcellStatus(cell) {
+  return String(liveTelemetry[cell?.mission]?.workcell_status || cell?.workcell_status || 'UNKNOWN').toUpperCase();
+}
+
+function missionMaps() {
+  const missions = currentMissionData?.missions || [];
+  const cells = currentWorkcellData?.workcells || [];
+  return {
+    missionMap: Object.fromEntries(missions.map(mission => [mission.id, mission])),
+    cellMap: Object.fromEntries(cells.map(cell => [cell.mission, cell])),
+  };
+}
+
+function missionIsComplete(id, missionMap, cellMap) {
+  const mission = missionMap[id];
+  const cell = cellMap[id];
+  const officialComplete = mission?.status === 'PASS' && cell?.integration_status === 'INTEGRATED';
+  return officialComplete || effectiveWorkcellStatus(cell) === 'COMPLETE';
+}
+
+function unmetDependencies(id, missionMap, cellMap) {
+  return (DEPENDENCIES[id] || []).filter(dep => !missionIsComplete(dep, missionMap, cellMap));
+}
+
+function downstreamMissions(id) {
+  return Object.entries(DEPENDENCIES)
+    .filter(([, deps]) => deps.includes(id))
+    .map(([mission]) => mission);
+}
+
+function deriveActionState(mission, cell, missionMap, cellMap) {
+  const liveStatus = effectiveWorkcellStatus(cell);
+  const officialStatus = String(mission?.status || 'TODO').toUpperCase();
+  const integration = String(cell?.integration_status || 'PENDING').toUpperCase();
+  const unmet = unmetDependencies(mission.id, missionMap, cellMap);
+
+  if (officialStatus === 'PASS' && integration === 'INTEGRATED') {
+    return {key: 'complete', icon: '✅', label: 'COMPLETE'};
+  }
+  if (liveStatus === 'BLOCKED') {
+    return {key: 'blocked', icon: '⛔', label: 'BLOCKED'};
+  }
+  if (liveStatus === 'NEEDS-RUNTIME') {
+    return {key: 'runtime', icon: '🧪', label: 'NEEDS RUNTIME'};
+  }
+  if (liveStatus === 'COMPLETE' && integration !== 'INTEGRATED') {
+    return {key: 'integrate', icon: '📦', label: 'READY TO INTEGRATE'};
+  }
+  if (ACTIVE_STATUSES.has(liveStatus)) {
+    return {key: 'active', icon: '🛠', label: 'IN PROGRESS'};
+  }
+  if (liveStatus === 'WAITING-UPSTREAM' || unmet.length) {
+    return {key: 'waiting', icon: '⏳', label: 'WAITING'};
+  }
+  return {key: 'ready', icon: '🎯', label: 'READY'};
+}
+
+function deriveNextAction(mission, cell, telemetry, action, missionMap, cellMap) {
+  const currentGate = telemetry?.current_gate || mission.current_gate_label || mission.current_gate || 'G1 SOURCE';
+  const unmet = unmetDependencies(mission.id, missionMap, cellMap);
+
+  if (action.key === 'complete') return '공식 통합 완료 · 학습 설명력과 포트폴리오 고도화를 진행할 수 있습니다.';
+  if (action.key === 'blocked') return '현재 blocker를 먼저 해결하고 해당 Gate를 다시 검증하세요.';
+  if (action.key === 'runtime') return `${currentGate} Runtime/브라우저/클라우드 증거를 확보한 뒤 다음 Gate로 진행하세요.`;
+  if (action.key === 'integrate') return 'HANDOFF와 증거 정합성을 확인한 뒤 Control Tower 직렬 통합을 진행하세요.';
+  if (action.key === 'active') return `${currentGate} 작업을 우선 마무리하고 다음 Gate 또는 HANDOFF로 진행하세요.`;
+  if (action.key === 'waiting') return `선행 ${unmet.join(' + ') || 'Workcell'} COMPLETE 확인 후 후행 BUILD를 진행하세요.`;
+  return '현재 병렬 진행 가능 · G1 SOURCE 또는 현재 Gate부터 진행하세요.';
+}
+
+function sortRows(rows) {
+  return [...rows].sort((a, b) => {
+    if (currentSort === 'mission') return missionNumber(a.mission.id) - missionNumber(b.mission.id);
+    if (currentSort === 'domain') {
+      const domainCompare = String(a.mission.domain_id).localeCompare(String(b.mission.domain_id), 'en', {numeric: true});
+      return domainCompare || missionNumber(a.mission.id) - missionNumber(b.mission.id);
+    }
+    const actionCompare = ACTION_PRIORITY[a.action.key] - ACTION_PRIORITY[b.action.key];
+    return actionCompare || missionNumber(a.mission.id) - missionNumber(b.mission.id);
+  });
+}
+
+function liveLaneMarkup(mission, cell, telemetry) {
+  const liveStatus = effectiveWorkcellStatus(cell);
+  if (!telemetry?.gates) {
+    return `
+      <div class="mission-control-lane mission-control-lane-live">
+        <div class="mission-lane-head">
+          <div>
+            <span class="mission-lane-label">Live Execution</span>
+            <strong>${escapeHtml(liveStatus)} · 수동 조회 전</strong>
+          </div>
+          <span class="mission-lane-percent">—</span>
+        </div>
+        <div class="mission-live-empty">
+          <strong>Live G1~G8 telemetry 없음</strong>
+          <span>Mission 상태 수동 갱신을 누르면 해당 Repository의 현재 Gate 상태를 표시합니다.</span>
+        </div>
+      </div>
+    `;
+  }
+
+  const progress = getLiveGateProgress(telemetry.gates);
+  const currentGate = telemetry.current_gate || 'UNKNOWN';
+  return `
+    <div class="mission-control-lane mission-control-lane-live">
+      <div class="mission-lane-head">
+        <div>
+          <span class="mission-lane-label">Live Execution</span>
+          <strong>${escapeHtml(liveStatus)} · ${escapeHtml(currentGate)}</strong>
+        </div>
+        <span class="mission-lane-percent">${progress.percent}%</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="${escapeHtml(mission.id)} live progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}">
+        <span class="progress-fill" style="width:${progress.percent}%"></span>
+      </div>
+      <div class="gate-matrix live-gates" aria-label="${escapeHtml(mission.id)} live G1 to G8 status">
+        ${gateMatrixMarkup(telemetry.gates)}
+      </div>
+      <p class="live-updated">Mission telemetry: ${escapeHtml(formatTimestamp(telemetry.updated_at))}</p>
+    </div>
+  `;
+}
+
+function officialLaneMarkup(mission, cell) {
+  const progress = getGateProgress(mission.gates || {});
+  const integration = cell?.integration_status || 'PENDING';
+  return `
+    <div class="mission-control-lane mission-control-lane-official">
+      <div class="mission-lane-head">
+        <div>
+          <span class="mission-lane-label">Official Integration</span>
+          <strong>${escapeHtml(mission.status)} · ${escapeHtml(integration)} · ${escapeHtml(mission.current_gate_label || mission.current_gate)}</strong>
+        </div>
+        <span class="mission-lane-percent">${progress.percent}%</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="${escapeHtml(mission.id)} official progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}">
+        <span class="progress-fill" style="width:${progress.percent}%"></span>
+      </div>
+      <div class="gate-matrix official-gates" aria-label="${escapeHtml(mission.id)} official G1 to G8 status">
+        ${gateMatrixMarkup(mission.gates || {})}
+      </div>
+      <p class="live-updated">SSOT: config/missions.yaml · ${progress.completed}/${progress.total} Gates PASS</p>
+    </div>
+  `;
+}
+
+function renderMissionControlSummary(rows) {
+  if (!missionControlSummary) return;
+  const count = key => rows.filter(row => row.action.key === key).length;
+  const officialPass = rows.filter(row => row.mission.status === 'PASS').length;
+  const integrated = rows.filter(row => row.cell?.integration_status === 'INTEGRATED').length;
+  const telemetryCount = rows.filter(row => liveTelemetry[row.mission.id]).length;
+  missionControlSummary.innerHTML = `
+    <strong>${officialPass}/${rows.length} OFFICIAL PASS</strong>
+    <span>📦 INTEGRATED ${integrated}/${rows.length}</span>
+    <span>🛠 ACTIVE ${count('active')}</span>
+    <span>🧪 RUNTIME ${count('runtime')}</span>
+    <span>📦 TO INTEGRATE ${count('integrate')}</span>
+    <span>🎯 READY ${count('ready')}</span>
+    <span>⏳ WAITING ${count('waiting')}</span>
+    <span>✅ COMPLETE ${count('complete')}</span>
+    <span>LIVE DATA ${telemetryCount}/${rows.length}</span>
+  `;
+}
+
+function renderMissionControl() {
+  if (!currentMissionData || !currentWorkcellData || !missionControlGrid) return;
+  const {missionMap, cellMap} = missionMaps();
+  const rows = (currentMissionData.missions || []).map(mission => {
+    const cell = cellMap[mission.id] || null;
+    const telemetry = liveTelemetry[mission.id] || null;
+    const action = deriveActionState(mission, cell, missionMap, cellMap);
+    return {mission, cell, telemetry, action};
+  });
+
+  renderMissionControlSummary(rows);
+
+  missionControlGrid.innerHTML = sortRows(rows).map(({mission, cell, telemetry, action}) => {
+    const integration = cell?.integration_status || 'PENDING';
+    const officialLabel = getOfficialLabel(mission);
+    const promptUrl = cell?.prompt_url || `${WORKCELL_PROMPT_ROOT}/${mission.id.toLowerCase()}.md`;
+    const repoUrl = cell?.repo_url || mission.repo;
+    const statusDoc = cell?.status_doc_url
+      ? `<a class="card-link card-link-secondary" href="${escapeHtml(cell.status_doc_url)}">Checkpoint →</a>`
+      : '';
+    const nextAction = deriveNextAction(mission, cell, telemetry, action, missionMap, cellMap);
+    const unlocks = downstreamMissions(mission.id);
+    const unmet = unmetDependencies(mission.id, missionMap, cellMap);
+    const dependencyText = unmet.length ? `선행 대기: ${unmet.join(' + ')}` : (DEPENDENCIES[mission.id]?.length ? '선행 충족' : '독립 진행');
+
+    return `
+      <article class="card mission-control-card" data-action="${escapeHtml(action.key)}" data-mission="${escapeHtml(mission.id)}">
+        <div class="card-topline">
+          <span class="mission-action-badge action-${escapeHtml(action.key)}"><span aria-hidden="true">${action.icon}</span>${escapeHtml(action.label)}</span>
+          <div class="mission-official-badges">
+            <span class="badge status-${statusClass(mission.status)}">OFFICIAL ${escapeHtml(mission.status)}</span>
+            <span class="integration-chip integration-${statusClass(integration)}">${escapeHtml(integration)}</span>
+          </div>
+        </div>
+
+        <h3>${escapeHtml(mission.id)} · ${escapeHtml(mission.title_en || mission.title)}</h3>
+        <p class="mission-title-ko">${escapeHtml(mission.title)}</p>
+        <div class="mission-control-meta">
+          <span>${escapeHtml(mission.domain_name_en)}</span>
+          <span>${escapeHtml(officialLabel)}</span>
+          <span>Learning ${escapeHtml(mission.learning)}</span>
+          <span>${escapeHtml(dependencyText)}</span>
+        </div>
+
+        <div class="mission-control-lanes">
+          ${liveLaneMarkup(mission, cell, telemetry)}
+          ${officialLaneMarkup(mission, cell)}
+        </div>
+
+        <div class="mission-control-decision">
+          <div class="mission-next-action">
+            <span>NEXT ACTION</span>
+            <strong>${escapeHtml(action.icon)} ${escapeHtml(nextAction)}</strong>
+          </div>
+          <div class="mission-unlocks">${unlocks.length ? `🔓 완료 시 다음 권장: ${escapeHtml(unlocks.join(', '))}` : '최종 후행 또는 독립 미션'}</div>
+        </div>
+
+        <div class="card-actions">
+          ${repoUrl ? `<a class="card-link" href="${escapeHtml(repoUrl)}">Mission Repo →</a>` : ''}
+          <a class="card-link card-link-secondary" href="${escapeHtml(promptUrl)}">Workcell Prompt →</a>
+          ${statusDoc}
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  window.dispatchEvent(new CustomEvent('codyssey:mission-control-updated'));
+}
+
+function renderWaveChip() {
+  if (!workcellWaveChip || !currentWorkcellData) return;
+  const waveId = currentWorkcellData.wave?.id || 'UNKNOWN';
+  const waveStatus = currentWorkcellData.wave?.status || 'UNKNOWN';
+  workcellWaveChip.textContent = `WAVE ${waveId} · ${waveStatus}`;
+}
+
 function getLastPollAt() {
   const value = Number(localStorage.getItem(LIVE_LAST_POLL_KEY) || 0);
   return Number.isFinite(value) ? value : 0;
@@ -354,7 +463,6 @@ function formatRemaining(milliseconds) {
 
 function updatePollControls() {
   if (!livePollButton || !livePollMeta) return;
-
   const lastPollAt = getLastPollAt();
   const elapsed = Date.now() - lastPollAt;
   const remaining = Math.max(0, LIVE_POLL_COOLDOWN_MS - elapsed);
@@ -377,9 +485,7 @@ function updatePollControls() {
 
 function missionRawStatusUrl(repository) {
   const repo = String(repository || '').trim();
-  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo)) {
-    throw new Error(`Invalid repository: ${repo}`);
-  }
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo)) throw new Error(`Invalid repository: ${repo}`);
   return `https://raw.githubusercontent.com/${repo}/main/.live/mission-status.json?ts=${Date.now()}`;
 }
 
@@ -393,7 +499,6 @@ async function fetchMissionTelemetry(cell) {
 
 async function pollLiveStatuses() {
   if (!currentWorkcellData || !livePollButton || livePollButton.disabled) return;
-
   const cells = currentWorkcellData.workcells || [];
   const polledAt = Date.now();
   localStorage.setItem(LIVE_LAST_POLL_KEY, String(polledAt));
@@ -407,8 +512,7 @@ async function pollLiveStatuses() {
 
   results.forEach((result, index) => {
     if (result.status === 'fulfilled') {
-      const mission = cells[index].mission;
-      nextTelemetry[mission] = result.value;
+      nextTelemetry[cells[index].mission] = result.value;
       success += 1;
     } else {
       console.warn('Live telemetry fetch failed', result.reason);
@@ -423,45 +527,44 @@ async function pollLiveStatuses() {
     stats: lastPollStats,
   }));
 
-  renderWorkcellSummary(currentWorkcellData);
-  renderWorkcells(currentWorkcellData);
+  renderMissionControl();
   updatePollControls();
 }
 
-async function loadProgress() {
+async function loadControlTowerData() {
+  if (missionControlSummary) missionControlSummary.textContent = 'Mission Control 데이터를 불러오고 있습니다.';
   try {
-    const response = await fetch('./data/missions.json', {cache: 'no-store'});
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    renderDomains(data.domains, data.missions);
-    renderSummary(data.missions);
-    renderMissions(data.missions);
-  } catch (error) {
-    progressSummary.textContent = '공식 진행 데이터를 불러오지 못했습니다.';
-    missionGrid.innerHTML = `<article class="card"><h3>Mission data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
-  }
-}
+    const [missionResponse, workcellResponse] = await Promise.all([
+      fetch('./data/missions.json', {cache: 'no-store'}),
+      fetch('./data/workcells.json', {cache: 'no-store'}),
+    ]);
+    if (!missionResponse.ok) throw new Error(`missions.json HTTP ${missionResponse.status}`);
+    if (!workcellResponse.ok) throw new Error(`workcells.json HTTP ${workcellResponse.status}`);
 
-async function loadWorkcells() {
-  try {
-    const response = await fetch('./data/workcells.json', {cache: 'no-store'});
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    currentWorkcellData = data;
+    currentMissionData = await missionResponse.json();
+    currentWorkcellData = await workcellResponse.json();
     loadCachedTelemetry();
-    renderWorkcellSummary(data);
-    renderWorkcells(data);
+    renderDomains(currentMissionData.domains || [], currentMissionData.missions || []);
+    renderWaveChip();
+    renderMissionControl();
     updatePollControls();
   } catch (error) {
-    workcellSummary.textContent = 'Workcell 데이터를 불러오지 못했습니다.';
-    workcellGrid.innerHTML = `<article class="card"><h3>Workcell data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
+    if (missionControlSummary) missionControlSummary.textContent = 'Mission Control 데이터를 불러오지 못했습니다.';
+    if (missionControlGrid) {
+      missionControlGrid.innerHTML = `<article class="card"><h3>Mission Control data load error</h3><p class="muted">${escapeHtml(error.message)}</p></article>`;
+    }
     if (workcellWaveChip) workcellWaveChip.textContent = 'WAVE DATA ERROR';
   }
 }
 
 initMobileMenu();
 if (livePollButton) livePollButton.addEventListener('click', pollLiveStatuses);
-loadProgress();
-loadWorkcells();
+if (missionSort) {
+  missionSort.addEventListener('change', () => {
+    currentSort = missionSort.value || 'recommended';
+    renderMissionControl();
+  });
+}
+loadControlTowerData();
 updatePollControls();
 setInterval(updatePollControls, 1000);
