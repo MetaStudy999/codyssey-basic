@@ -7,6 +7,7 @@
   <title>Codyssey AI/SW Basic</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/workcells.css">
+  <link rel="stylesheet" href="./css/recommended-progress.css">
   <link rel="stylesheet" href="./css/card-layout.css">
   <link rel="stylesheet" href="./css/dependency-simulator.css">
 </head>
@@ -109,6 +110,10 @@
         <span id="workcell-wave-chip" class="status-chip status-ready">LOADING WAVE</span>
       </div>
       <p class="muted">자동 polling은 사용하지 않습니다. 아래 버튼을 누를 때만 15개 Mission Repository의 <code>.live/mission-status.json</code>을 직접 조회합니다. 한 번 조회하면 5분 동안 재조회 버튼이 비활성화됩니다. 공식 Mission Progress는 별도의 Serial Integration이 완료되어야 변경됩니다.</p>
+
+      <div id="recommended-progress" class="recommended-progress" aria-live="polite">
+        <span class="recommended-empty">현재 Workcell 상태와 권장 진행 흐름을 계산하고 있습니다.</span>
+      </div>
 
       <div class="live-poll-controls" aria-label="Workcell live status manual refresh">
         <button id="poll-live-status" class="poll-button" type="button">Mission 상태 수동 갱신</button>
@@ -213,6 +218,7 @@
 
   <footer>Codyssey AI/SW Basic · Control Tower & Portfolio · Official Progress + Manual Live Workcells</footer>
   <script src="./js/app.js"></script>
+  <script src="./js/recommended-progress.js"></script>
   <script src="./js/dependency-simulator.js"></script>
 </body>
 </html>
