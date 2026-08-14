@@ -6,6 +6,15 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 ## LEARNING TRACK
 완성 결과물 → 개념 이해 → 구조 이해 → 명령/코드 읽기 → 직접 실행 → 일부 수정 → 오류 해결 → 자기 설명 → 복습.
 
+## 학습 설계 문서
+- [Codyssey Basic 미션 용어 학습 체계 기획](./vocabulary-learning-plan.md)
+  - B1-1~B7-2 전체 미션의 한글+영어 용어 표기 규칙
+  - Level 0~5 + Advanced 분류
+  - CORE / REQUIRED / REFERENCE 중요도
+  - Top Core, K1~K4 이해 수준, 20:60:20 학습 원칙
+  - NEW → REVIEW → APPLY → DEEPEN → INTEGRATE 누적 학습
+  - Dependency Map 및 Vocabulary Gate 설계
+
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
 - 1분 설명
