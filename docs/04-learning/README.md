@@ -17,6 +17,10 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - Top Core, K1~K4 이해 수준, 20:60:20 학습 원칙
   - NEW → REVIEW → APPLY → DEEPEN → INTEGRATE 누적 학습
   - Dependency Map 및 Vocabulary Gate 설계
+- [Codyssey Basic 전체 용어 품질 감사](./vocabulary-quality-audit.md)
+  - 15개 Mission Vocabulary의 원본 주요 요구 영역 대조
+  - 구조 일관성, 중요도, K1~K4, Lifecycle, Dependency Map, Vocabulary Gate 감사
+  - Basic Master Vocabulary로 이어지는 보완 우선순위와 다음 작업 순서
 
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
