@@ -45,7 +45,8 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록을 순차�
 - First Seen / Reuse / Lifecycle: **핵심 반복 용어에 적용**
 - 상위 Dependency Map: **완료**
 - Vocabulary Gate V1~V5 공통 체크리스트: **완료**
-- 다음 단계: **B1-1 Top Core 쉬운 설명 → 비유 → 관계 도식 → 초미니 실습**
+- [B1-1 Top Core 입문자 학습 가이드](./b1-1-top-core-learning-guide.md): **1차 학습 확장 완료**
+- 다음 단계: **B1-1 Level 2 구현 명령·파일·설정을 실제 수행 순서에 맞춘 입문자 무오류 따라하기**
 
 ## 누적 학습 원칙
 
