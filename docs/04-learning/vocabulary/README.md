@@ -7,6 +7,7 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록을 순차�
 - 각 미션은 Level 0~5 + Advanced, Top Core 구조를 사용한다.
 - 상세 작성 규칙은 [미션 용어 학습 체계 기획](../vocabulary-learning-plan.md)을 따른다.
 - 15개 미션 작성 완료 후의 품질 판정은 [전체 용어 품질 감사](../vocabulary-quality-audit.md)를 따른다.
+- 중복 제거·최초 등장·재사용·Priority·K 수준·Lifecycle의 통합 기준은 [Basic Master Vocabulary](../basic-master-vocabulary.md)에서 관리한다.
 
 ## 진행 현황
 
@@ -30,18 +31,21 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록을 순차�
 
 **현재 진행률: 15 / 15 — 전체 미션 1차 용어 목록 작성 완료**
 
-## 품질 감사 상태
+## 통합 자산 상태
 
-- 원본 주요 요구 영역 대조: PASS
-- Level 0~5 + Advanced + Top Core: PASS
-- 20:60:20: PASS
-- 한글+영어 표기: PASS
-- CORE / REQUIRED / REFERENCE 통합 관리: 보완 필요
-- K1~K4 실제 적용: 보완 필요
-- Lifecycle 통합 추적: 보완 필요
-- Dependency Map: 후속 통합 자산 필요
-- Vocabulary Gate V1~V5: 후속 체크리스트 필요
-- 다음 통합 자산: **Basic Master Vocabulary**
+- Mission Vocabulary B1-1~B7-2: **완료**
+- 원본 주요 요구 영역 대조: **PASS**
+- Level 0~5 + Advanced + Top Core: **PASS**
+- 20:60:20: **PASS**
+- 한글+영어 표기: **PASS**
+- 전체 용어 품질 감사: **완료**
+- [Basic Master Vocabulary](../basic-master-vocabulary.md): **v1 완료**
+- CORE / REQUIRED / REFERENCE 통합 기준: **적용**
+- K1~K4 통합 기준: **적용**
+- First Seen / Reuse / Lifecycle: **핵심 반복 용어에 적용**
+- 상위 Dependency Map: **완료**
+- Vocabulary Gate V1~V5 공통 체크리스트: **완료**
+- 다음 단계: **B1-1 Top Core 쉬운 설명 → 비유 → 관계 도식 → 초미니 실습**
 
 ## 누적 학습 원칙
 
