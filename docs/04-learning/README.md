@@ -7,6 +7,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 완성 결과물 → 개념 이해 → 구조 이해 → 명령/코드 읽기 → 직접 실행 → 일부 수정 → 오류 해결 → 자기 설명 → 복습.
 
 ## 학습 설계 문서
+- [Codyssey Basic 전체 용어 인덱스](./vocabulary/README.md)
+  - B1-1~B7-2 미션별 용어 페이지와 작성 진행 현황
+  - 각 미션의 Level 0~5 + Advanced 및 Top Core 목록
 - [Codyssey Basic 미션 용어 학습 체계 기획](./vocabulary-learning-plan.md)
   - B1-1~B7-2 전체 미션의 한글+영어 용어 표기 규칙
   - Level 0~5 + Advanced 분류
