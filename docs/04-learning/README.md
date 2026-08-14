@@ -21,6 +21,11 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - 15개 Mission Vocabulary의 원본 주요 요구 영역 대조
   - 구조 일관성, 중요도, K1~K4, Lifecycle, Dependency Map, Vocabulary Gate 감사
   - Basic Master Vocabulary로 이어지는 보완 우선순위와 다음 작업 순서
+- [Codyssey Basic Master Vocabulary](./basic-master-vocabulary.md)
+  - 15개 미션의 반복·핵심 용어 정규화
+  - First Seen / Reuse / CORE·REQUIRED·REFERENCE / K1~K4 / Lifecycle 통합 관리
+  - 전체 Dependency Backbone 및 Vocabulary Gate V1~V5 공통 체크리스트
+  - B1-1부터 쉬운 설명·비유·도식·실습으로 이어지는 다음 학습 단계 기준
 
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
