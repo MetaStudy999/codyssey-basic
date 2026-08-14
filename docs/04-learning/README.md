@@ -26,6 +26,11 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - First Seen / Reuse / CORE·REQUIRED·REFERENCE / K1~K4 / Lifecycle 통합 관리
   - 전체 Dependency Backbone 및 Vocabulary Gate V1~V5 공통 체크리스트
   - B1-1부터 쉬운 설명·비유·도식·실습으로 이어지는 다음 학습 단계 기준
+- [B1-1 Top Core 입문자 학습 가이드](./vocabulary/b1-1-top-core-learning-guide.md)
+  - B1-1 Top Core 28개 쉬운 한 줄 설명과 생활 비유
+  - 사용자·권한 → SSH·방화벽 → 프로세스·포트 → 관제·로그·cron의 Dependency Map
+  - 초미니 실습 8개, 고의 오류·복구 8개, 평가 예상 질문 10개
+  - B1-1 전용 Vocabulary Gate V1~V5 체크리스트
 
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
