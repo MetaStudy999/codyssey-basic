@@ -58,14 +58,20 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 - [x] `02-missions` B1~B7 Target 구조 생성 및 Mission Summary 이관
 - [x] `03-learning`~`12-impact` Target Index 생성
+- [x] Learning Macro Growth / Micro Level 모델 분리
+- [x] 기존 `90-advanced`와 V3 `ADVANCED` 용어 충돌 규칙 정리
+- [x] Architecture Curriculum/Dependency를 Master Map에 흡수
+- [x] Evaluation Traceability를 Governance에 흡수
+- [x] Portfolio Model을 `11-portfolio`에 이관
+- [x] Resources Model을 `03-learning/resources`에 이관
+- [x] Professional Growth/Advanced Routing Map 작성
 - [x] `config/skills.yaml` Skill Matrix 모델 추가
 - [x] `config/activities.yaml` Activity Registry 모델 추가
 - [x] `config/projects.yaml` Project Lineage 모델 추가
 - [x] `config/opportunities.yaml` V3 Availability/Fit Schema로 전환
-- [ ] 기존 Learning 자산 V3 Macro/Micro 용어 정렬
-- [ ] Architecture/Evaluation 내용 재배치
-- [ ] Portfolio/Resources 새 경로 Migration
-- [ ] Professional Growth/Advanced 내용 Domain별 분해
+- [ ] 기존 대규모 Vocabulary 파일의 실제 경로 Migration
+- [ ] 기존 Opportunity 개별 콘텐츠 이관
+- [ ] Professional Growth/Advanced 개별 콘텐츠 Domain별 이동
 - [ ] Sync script V3 확장
 - [ ] Dashboard Growth/Mission/Skill/Activity 4층 구조 구현
 - [ ] GitHub Pages 검증
@@ -89,9 +95,10 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 다음 작업
 
-1. 기존 `docs/04-learning`의 대규모 Vocabulary 자산을 **이동보다 먼저** V3 Macro/Micro 용어와 연결
-2. Architecture/Evaluation을 Governance/Mission/Project로 흡수
-3. Portfolio/Resources/Opportunity를 새 Domain으로 이관
-4. Professional Growth/Advanced를 Domain별로 분해
-5. Config/Sync/Dashboard를 V3 Source of Truth에 연결
-6. 회귀 검증 후 Old Path 제거
+이제 **System Refactor의 중심부**로 이동한다.
+
+1. `scripts/sync_progress.py`가 Growth/Skill/Activity/Project 데이터를 함께 생성하도록 확장 설계
+2. Dashboard를 `Growth → Mission → Skill → Activity/Project` 계층으로 확장
+3. 기존 수동 Refresh + 5분 Cooldown과 G1~G8 기능은 회귀 없이 보존
+4. 새 JSON 생성물과 GitHub Actions 경로를 추가
+5. 이후 대규모 Vocabulary/Legacy Path는 링크 검증 후 이동
