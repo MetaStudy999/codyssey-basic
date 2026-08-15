@@ -1,6 +1,16 @@
 name: Validate Growth OS V3
 
 on:
+  push:
+    branches: [rebuild/growth-os-v3]
+    paths:
+      - 'README.md'
+      - 'AGENTS.md'
+      - 'config/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'site/**'
+      - '.github/workflows/v3-validate.yml'
   pull_request:
     branches: [main]
     paths:
