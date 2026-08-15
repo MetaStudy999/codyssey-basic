@@ -42,8 +42,8 @@ cross-cutting error boundary: @cli_guard
 | 00 | 현재 Index / Source Lock | Source·선택지·구현 경계 고정 | ✅ |
 | 10 | [Level 0 — Prerequisite](./b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) | 선수 용어 45개, V1 | ✅ |
 | 20 | [Level 1 — Top Core](./b2-1-20-level-1-core/b2-1-20-000-index.md) | 핵심 개념 40개, V2~V3 | ✅ |
-| 30 | Level 2 — Execution | CLI·저장·CRUD·검색·요약·입출력 실행 | NEXT |
-| 40 | Level 3 — Principles | Generator·Layer·Atomicity WHY/HOW | 이후 |
+| 30 | [Level 2 — Execution](./b2-1-30-level-2-execution/b2-1-30-000-index.md) | CLI·저장·CRUD·검색·요약·입출력 12개 실행 단위, V4 | ✅ |
+| 40 | Level 3 — Principles | Generator·Layer·Atomicity WHY/HOW | NEXT |
 | 50 | Level 4 — Troubleshooting | 입력·파일·CSV·무결성 장애 진단 | 이후 |
 | 60 | Level 5 — Evaluation | 평가 자기설명 | 이후 |
 | 70 | Review | 통합 회상 | 이후 |
@@ -78,12 +78,31 @@ Transaction
 → Data Integrity / File Atomicity / Exception Handling
 ```
 
+## Level 2 실행 연결
+
+```text
+--help / --data-dir
+→ 3-file initialization
+→ add + validation + persistence
+→ list/search + generator
+→ update/delete + atomic rewrite
+→ category integrity
+→ budget/summary
+→ CSV export/import rollback
+→ error non-zero exit
+→ full tests + evidence
+→ V4 Gate
+```
+
+현재 구현 저장소에는 `evidence/test-results.txt`에 **18 tests / 18 passed / 18.176s**가 기록되어 있고 CLI transcript 및 sample CSV도 존재한다. 이는 구현 저장소의 기존 Evidence이며 개인 학습자의 V4 실행을 대신하지 않는다.
+
 ## 상태 경계
 
 ```text
-LEARNING STRUCTURE READY
+LEVEL 2 STRUCTURE READY
+≠ PERSONAL V4 PASSED
 ≠ PERSONAL MASTERED
-≠ RUNTIME VERIFIED
+≠ RUNTIME REVERIFIED BY LEARNER
 ≠ MISSION PASS
 ```
 
@@ -93,6 +112,6 @@ Visual Learning은 **DEFERRED**다.
 
 ## 다음 작업
 
-`Level 2 — 실제 구현 저장소를 기준으로 CLI 실행, 저장 초기화, add/list/search/update/delete, summary/budget/category, import/export, generator/atomic rewrite, 오류 exit 검증을 독립 실행 단위로 구조화`
+`Level 3 — Generator/Lazy Evaluation, Layer Responsibility, Persistence, Atomicity, Referential Integrity, Decorator/Type Contract, Import Transaction Safety를 WHY/HOW 원리 단위로 구조화`
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 1 →](./b2-1-20-level-1-core/b2-1-20-000-index.md)
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 2 →](./b2-1-30-level-2-execution/b2-1-30-000-index.md)
