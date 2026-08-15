@@ -18,7 +18,10 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - Top Core, K1~K4, 20:60:20
   - NEW → REVIEW → APPLY → DEEPEN → INTEGRATE
   - Dependency Map 및 Vocabulary Gate V1~V5
-  - `{mission-number}-{english-slug}` 디렉터리와 순서 번호 파일 규칙
+- [Codyssey Basic 개별 용어 파일 표준](./term-file-standard.md)
+  - `Mission → Level → Term` 디렉터리 구조
+  - `{mission}-{level}-{term-order}-{english-term-slug}.md` 파일 규칙
+  - `000-index`, 010 단위 정렬, 링크·Lifecycle·중복 용어 정책
 - [Codyssey Basic 전체 용어 품질 감사](./vocabulary-quality-audit.md)
   - 15개 Mission Vocabulary의 원본 주요 요구 영역 대조
   - 구조 일관성·중요도·K1~K4·Lifecycle·Dependency·Gate 감사
@@ -29,14 +32,16 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 
 ## B1-1 — System Monitoring Automation
 
-B1-1부터 **미션별 영어 디렉터리 + 미션 번호가 포함된 Level별 파일** 구조를 적용한다.
+B1-1은 **미션별 영어 디렉터리 + 미션 번호가 포함된 Level 구조**를 사용한다. Level 1 Top Core 28개는 개별 용어 파일 Pilot까지 적용했다.
 
 - [00 — B1-1 Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-00-index.md)
   - 전체 학습 지도, Source of Truth, 고정값, Vocabulary Gate
 - [10 — Level 0 Prerequisite](./vocabulary/b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite.md)
   - Linux/CLI/File/User/Process/Network 선수 용어와 V1
-- [20 — Level 1 Core](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
-  - Top Core 28, 쉬운 설명, 핵심 관계, V2~V3
+- [20 — Level 1 Top Core Term Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md)
+  - Top Core 28개를 `010 ~ 280` 개별 용어 파일로 학습, V2~V3
+- [20 — Level 1 Summary](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
+  - 전체 Level 1 용어와 관계를 한 페이지에서 보는 요약
 - [30 — Level 2 Execution](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
   - Preflight → User/Group → ACL → SSH → Firewall → Agent → monitor → cron → logrotate → Evidence
 - [40 — Level 3 Principles](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
@@ -53,11 +58,11 @@ B1-1부터 **미션별 영어 디렉터리 + 미션 번호가 포함된 Level별
 ## B1-1 학습 확장 상태
 
 ```text
-00 Index
+00 Mission Index
   ↓
 10 Level 0
   ↓
-20 Level 1
+20 Level 1 Index → 28 individual Top Core term files
   ↓
 30 Level 2
   ↓
@@ -72,9 +77,9 @@ B1-1부터 **미션별 영어 디렉터리 + 미션 번호가 포함된 Level별
 90 Advanced (Optional)
 ```
 
-**B1-1 Level별 학습 콘텐츠 패키지 작성 완료.**
+**B1-1 Level별 학습 콘텐츠 + Level 1 개별 용어 Pilot 완료.**
 
-다음 학습 확장 대상은 **B1-2**이며, B1-2부터 같은 디렉터리·파일명 표준을 적용한다.
+Pilot 검증 후 같은 개별 용어 규칙을 다른 Level과 B1-2 이후 미션에 순차 적용한다.
 
 ## 자기 설명 기준
 
