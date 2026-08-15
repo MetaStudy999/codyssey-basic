@@ -1,6 +1,6 @@
 # Repository Map
 
-V3의 미래 Repo 구조는 **논리적으로는 지금 설계**하되 **물리 폴더는 현재 필요한 만큼만 생성**한다.
+V3의 미래 Repo 구조는 **논리적으로 먼저 설계**하고 **물리 폴더는 현재 필요한 만큼만 생성**한다.
 
 ## Root
 
@@ -16,83 +16,126 @@ codyssey-basic/
 └── templates/
 ```
 
-## docs/ 미래 논리 구조
+## V3 Primary docs 구조
 
 ```text
 docs/
 ├── 00-governance/
 ├── 01-master-map/
 ├── 02-missions/
-├── 03-progress/
-├── 04-learning/
-├── 05-community/
-├── 06-projects/
-├── 07-opportunities/
-├── 08-research/
-├── 09-open-source/
-├── 10-career/
-├── 11-venture/
-├── 12-portfolio/
-├── 13-impact/
-└── 14-resources/
+├── 03-learning/
+├── 04-community/
+├── 05-projects/
+├── 06-opportunities/
+├── 07-research/
+├── 08-open-source/
+├── 09-career/
+├── 10-venture/
+├── 11-portfolio/
+└── 12-impact/
 ```
 
 각 영역의 목적:
 
-- `00-governance`: 공통 규칙, 상태, 우선순위, Workcell 기준
-- `01-master-map`: 성장 지도, Mission Map, Skill Map, Project Lineage
+- `00-governance`: Source, Growth/Status/Priority, Traceability, Workcell 운영 규칙
+- `01-master-map`: Growth Map, Mission Dependency, Current State, Migration, Project/Growth Routing
 - `02-missions`: B1~B7 공식 Mission 통합 정보
-- `03-progress`: Mission Gate, Growth, Skill, Activity의 현재 진행 상태
-- `04-learning`: 용어, 개념, 실습, Troubleshooting, Explain
-- `05-community`: Study, Code Review, Debugging Clinic, Architecture, Mentoring
-- `06-projects`: Mission을 넘어 장기 성장시키는 Project Lineage
-- `07-opportunities`: 공모전, Hackathon, Challenge, Seminar, Conference, Program
-- `08-research`: Research Question, Literature, Experiment, Result, Publication
-- `09-open-source`: 탐색, Contribution, Maintainer 활동
-- `10-career`: Role Research, Portfolio, Interview, Career Evidence
-- `11-venture`: Problem Discovery, User Research, Prototype, MVP, PoC, Business
-- `12-portfolio`: Evidence, Case Study, Developer Growth Record
-- `13-impact`: Engineering, Research, Community, Venture의 실제 영향 기록
-- `14-resources`: 서적, 논문, 공식문서, 사이트, 영상 등 재사용 가능한 참고자료
+- `03-learning`: 용어, 개념, 실습, Troubleshooting, Evaluation, Resources
+- `04-community`: Study, Code Review, Debugging Clinic, Architecture Cafe, Mentoring
+- `05-projects`: Mission을 장기 Project Lineage로 성장시키는 영역
+- `06-opportunities`: 공모전, Hackathon, Challenge, Seminar, Conference, Program 등 외부 기회
+- `07-research`: Research Question, Literature, Experiment, Result, Publication
+- `08-open-source`: 탐색, Contribution, Maintainer 활동
+- `09-career`: Role Research, Case Study, Interview, Career Evidence
+- `10-venture`: Problem Discovery, User Research, Prototype, MVP, PoC, Business
+- `11-portfolio`: Evidence, Case Study, Developer Growth Record
+- `12-impact`: Engineering, Research, Community, Venture의 실제 영향 기록
 
-기존 `Architecture`, `Evaluation`, `Professional Growth`, `Advanced`는 V3에서 독립 단계 폴더로 고정하지 않는다. 내용의 성격에 따라 Governance, Mission, Learning, Project, Research 등으로 재배치하고 성장 수준은 메타데이터로 표현한다.
+## Progress와 Resources의 위치
+
+V3에서 `Progress`와 `Resources`는 독립 성장 Domain이 아니다.
+
+### Progress
+
+- 전체 현재 위치: `docs/01-master-map/current-state.md`
+- Dashboard Presentation: `site/`
+- Mission G1~G8 Source of Truth: `config/missions.yaml`
+- Growth/Skill/Activity/Project Source: 각 `config/*.yaml`
+
+기존 `docs/03-progress/progress.md`는 현재 `sync_progress.py`와 연결된 **Legacy Compatibility Output**이므로 V3 Cutover 전까지 유지한다. V3 자동화가 완전히 대체한 뒤 새 위치로 전환하거나 제거한다.
+
+### Resources
+
+- 학습/연구용 문서: `docs/03-learning/resources/`
+- 기계 판독 Registry: `config/resources.yaml`
+
+따라서 별도의 최상위 `resources` Domain을 만들지 않는다.
+
+## 기존 대분류 처리
+
+기존 `Architecture`, `Evaluation`, `Professional Growth`, `Advanced`는 V3에서 독립 단계 폴더로 고정하지 않는다.
+
+- Architecture Dependency → `01-master-map`
+- Evidence/Evaluation Traceability → `00-governance`
+- Mission별 Architecture/Evaluation → `02-missions` 또는 개별 Mission Repository
+- Professional Growth → Learning/Community/Project/Research/OSS/Career/Venture 등 실제 Domain
+- Advanced Backlog → 해당 Domain + `growth_stage: ADVANCED`
 
 ## config/ 데이터 구조
 
 ```text
 config/
-├── missions.yaml        # 공식 Mission Source of Truth
-├── growth.yaml          # Growth/Status/Priority 정의
-├── skills.yaml          # 향후 Skill Matrix
-├── activities.yaml      # 향후 Community/External 활동
-├── projects.yaml        # 향후 Project Lineage
-├── opportunities.yaml   # 외부 기회
-└── resources.yaml       # 참고자료 Registry
+├── missions.yaml        # 공식 Mission/G1~G8 Source of Truth
+├── growth.yaml          # Growth Stage / Status / Priority
+├── skills.yaml          # 12 Competency Axis와 Evidence Level
+├── activities.yaml      # Community/External 실제 활동
+├── projects.yaml        # Project Lineage
+├── opportunities.yaml   # 외부 Opportunity Availability/Fit
+├── resources.yaml       # 학습/연구 참고자료 Registry
+└── waves/               # Mission Workcell coordination
 ```
 
-`missions.yaml`에 모든 데이터를 몰아넣지 않는다.
+한 Config에 모든 개념을 몰아넣지 않는다.
+
+## Generated / Presentation Layer
+
+```text
+scripts/
+├── sync_progress.py     # 기존 Mission G1~G8 동기화
+└── sync_growth.py       # V3 Growth/Skill/Activity/Project/Opportunity 동기화
+
+site/data/
+├── missions.json
+├── workcells.json
+├── growth.json
+├── skills.json
+├── activities.json
+├── projects.json
+└── opportunities.json
+```
+
+`site/`는 Source of Truth가 아니라 Presentation Layer다.
 
 ## 물리 생성 원칙
 
-### 지금 생성
-- 현재 운영에 필요한 Governance
-- Master Map
-- Mission/Progress와 직접 연결되는 Config
+### PLANNED
+- Map/Registry에만 등록
+- 세부 폴더 생성 보류
 
-### READY 상태
-- 논리 Map과 Config에는 등록 가능
-- 물리 폴더는 기본적으로 보류
+### READY
+- 시작 조건은 충족
+- 독립 결과물이 없으면 세부 폴더를 만들지 않음
 
-### ACTIVE 상태
-- 실제 결과물과 Evidence가 발생하면 폴더 생성
+### ACTIVE
+- 여러 파일, Evidence, 실험, 팀 활동 등 독립 결과물이 생기면 Just-in-Time으로 세부 폴더 생성
 
-### DONE/ARCHIVED
+### DONE / ARCHIVED
 - 재사용 가치가 있으면 유지
-- 단순 역사 보존은 Git branch/history를 우선 사용
+- 단순 역사 보존은 Git history/branch 우선
 
 ## 단계별 폴더 금지
 
-다음 구조는 사용하지 않는다.
+다음 구조는 만들지 않는다.
 
 ```text
 core/
@@ -102,15 +145,13 @@ pro/
 expert/
 ```
 
-성장 단계는 `growth_stage` 메타데이터로 관리한다.
+폴더는 **무엇인가(Domain)** 를 나타내고 Growth Stage는 Metadata로 관리한다.
 
-## 예시
+예:
 
 ```text
-docs/06-projects/ai-chatbot/
+docs/05-projects/ai-chatbot/
 ```
-
-프로젝트 경로는 그대로 유지하면서:
 
 ```yaml
 growth_stage: ADVANCED
@@ -121,4 +162,4 @@ origin:
   - B7-2
 ```
 
-처럼 성숙도만 갱신한다.
+Project가 PRO로 성장해도 폴더를 옮기지 않고 Metadata와 Evidence를 갱신한다.
