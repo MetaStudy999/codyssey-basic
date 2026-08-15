@@ -23,16 +23,18 @@ docs/
 ├── 00-governance/
 ├── 01-master-map/
 ├── 02-missions/
-├── 03-learning/
-├── 04-community/
-├── 05-projects/
-├── 06-opportunities/
-├── 07-research/
-├── 08-open-source/
-├── 09-career/
-├── 10-venture/
-├── 11-portfolio/
-└── 12-impact/
+├── 03-progress/
+├── 04-learning/
+├── 05-community/
+├── 06-projects/
+├── 07-opportunities/
+├── 08-research/
+├── 09-open-source/
+├── 10-career/
+├── 11-venture/
+├── 12-portfolio/
+├── 13-impact/
+└── 14-resources/
 ```
 
 각 영역의 목적:
@@ -40,16 +42,20 @@ docs/
 - `00-governance`: 공통 규칙, 상태, 우선순위, Workcell 기준
 - `01-master-map`: 성장 지도, Mission Map, Skill Map, Project Lineage
 - `02-missions`: B1~B7 공식 Mission 통합 정보
-- `03-learning`: 용어, 개념, 실습, Troubleshooting, Explain
-- `04-community`: Study, Code Review, Debugging Clinic, Architecture, Mentoring
-- `05-projects`: Mission을 넘어 장기 성장시키는 Project Lineage
-- `06-opportunities`: 공모전, Hackathon, Challenge, Seminar, Conference, Program
-- `07-research`: Research Question, Literature, Experiment, Result, Publication
-- `08-open-source`: 탐색, Contribution, Maintainer 활동
-- `09-career`: Role Research, Portfolio, Interview, Career Evidence
-- `10-venture`: Problem Discovery, User Research, Prototype, MVP, PoC, Business
-- `11-portfolio`: Evidence, Case Study, Developer Growth Record
-- `12-impact`: Engineering, Research, Community, Venture의 실제 영향 기록
+- `03-progress`: Mission Gate, Growth, Skill, Activity의 현재 진행 상태
+- `04-learning`: 용어, 개념, 실습, Troubleshooting, Explain
+- `05-community`: Study, Code Review, Debugging Clinic, Architecture, Mentoring
+- `06-projects`: Mission을 넘어 장기 성장시키는 Project Lineage
+- `07-opportunities`: 공모전, Hackathon, Challenge, Seminar, Conference, Program
+- `08-research`: Research Question, Literature, Experiment, Result, Publication
+- `09-open-source`: 탐색, Contribution, Maintainer 활동
+- `10-career`: Role Research, Portfolio, Interview, Career Evidence
+- `11-venture`: Problem Discovery, User Research, Prototype, MVP, PoC, Business
+- `12-portfolio`: Evidence, Case Study, Developer Growth Record
+- `13-impact`: Engineering, Research, Community, Venture의 실제 영향 기록
+- `14-resources`: 서적, 논문, 공식문서, 사이트, 영상 등 재사용 가능한 참고자료
+
+기존 `Architecture`, `Evaluation`, `Professional Growth`, `Advanced`는 V3에서 독립 단계 폴더로 고정하지 않는다. 내용의 성격에 따라 Governance, Mission, Learning, Project, Research 등으로 재배치하고 성장 수준은 메타데이터로 표현한다.
 
 ## config/ 데이터 구조
 
@@ -60,7 +66,8 @@ config/
 ├── skills.yaml          # 향후 Skill Matrix
 ├── activities.yaml      # 향후 Community/External 활동
 ├── projects.yaml        # 향후 Project Lineage
-└── opportunities.yaml   # 향후 외부 기회
+├── opportunities.yaml   # 외부 기회
+└── resources.yaml       # 참고자료 Registry
 ```
 
 `missions.yaml`에 모든 데이터를 몰아넣지 않는다.
@@ -100,7 +107,7 @@ expert/
 ## 예시
 
 ```text
-docs/05-projects/ai-chatbot/
+docs/06-projects/ai-chatbot/
 ```
 
 프로젝트 경로는 그대로 유지하면서:
