@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Codyssey AI/SW Basic 학습·검증·포트폴리오 Control Tower">
-  <title>Codyssey AI/SW Basic</title>
+  <meta name="description" content="Codyssey Developer Growth OS · Mission 학습·검증·성장 Control Tower">
+  <title>Codyssey Developer Growth OS</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/workcells.css">
   <link rel="stylesheet" href="./css/recommended-progress.css">
@@ -17,7 +17,7 @@
   <header class="hero">
     <nav class="site-nav" aria-label="Primary navigation">
       <div class="nav-inner">
-        <a class="nav-brand" href="#">CODYSSEY BASIC</a>
+        <a class="nav-brand" href="#">CODYSSEY GROWTH OS</a>
         <button
           id="menu-toggle"
           class="menu-toggle"
@@ -30,6 +30,7 @@
         </button>
         <div id="primary-menu" class="nav-links">
           <a href="#control-tower">Control Tower</a>
+          <a href="#growth-os">Growth OS</a>
           <a href="#domains">Domains</a>
           <a href="#mission-control">Mission Control</a>
           <a href="#dependencies">Dependencies</a>
@@ -41,12 +42,12 @@
     </nav>
 
     <div class="hero-inner">
-      <p class="eyebrow">CODYSSEY AI/SW BASIC · CONTROL TOWER</p>
-      <h1>Parallel Workcells.<br>Serial Integration.</h1>
-      <p>7 Domains · 15 Execution Units · G1→G8 Evidence-driven Delivery</p>
+      <p class="eyebrow">CODYSSEY DEVELOPER GROWTH OS · V3</p>
+      <h1>Mission to Growth.<br>Evidence to Impact.</h1>
+      <p>CORE → EXPLORE → ADVANCED → PRO → EXPERT · 7 Domains · 15 Execution Units</p>
       <div class="hero-actions">
-        <a class="button" href="#mission-control">Mission Control</a>
-        <a class="button button-secondary" href="#dependencies">Dependency Flow</a>
+        <a class="button" href="#growth-os">Growth Map</a>
+        <a class="button button-secondary" href="#mission-control">Mission Control</a>
       </div>
     </div>
   </header>
@@ -58,26 +59,55 @@
           <p class="section-kicker">CURRENT OPERATING MODEL</p>
           <h2>Control Tower Snapshot</h2>
         </div>
-        <span class="status-chip status-ready">ACTIVE WAVE READY</span>
+        <span class="status-chip status-ready">V3 REBUILD ACTIVE</span>
       </div>
       <div class="control-grid">
         <article class="control-card">
-          <span class="control-label">Active Wave</span>
-          <strong>20260808-01</strong>
-          <p>15개 Mission Workcell을 독립 채팅에서 병렬 실행합니다.</p>
+          <span class="control-label">Mission Core</span>
+          <strong>15 Execution Units</strong>
+          <p>B1-1~B7-2의 공식 Mission은 독립 Repository에서 수행하고 Control Tower에서 통합합니다.</p>
         </article>
         <article class="control-card">
-          <span class="control-label">Frozen Baseline</span>
-          <strong><code>0d1581b3…</code></strong>
-          <p>Governance와 15개 Starter Packet이 포함된 공통 기준입니다.</p>
+          <span class="control-label">Growth Model</span>
+          <strong>5 Stages</strong>
+          <p>CORE → EXPLORE → ADVANCED → PRO → EXPERT를 Mission 상태와 분리해 관리합니다.</p>
         </article>
         <article class="control-card">
           <span class="control-label">Integration</span>
-          <strong>Serial Only</strong>
-          <p>검증된 Mission 결과만 대표 repo의 공식 상태로 직렬 반영합니다.</p>
+          <strong>Evidence First</strong>
+          <p>Mission PASS, Skill, Activity, Project, Opportunity를 서로 다른 Source of Truth로 연결합니다.</p>
         </article>
       </div>
       <p class="notice"><strong>Mission Control</strong>은 Live 실행 현황과 Official 통합 현황을 미션별 한 카드에서 함께 보여줍니다. 단, 데이터 의미는 합치지 않습니다. Live는 Mission Repository의 <code>.live/mission-status.json</code>, Official은 <code>config/missions.yaml</code>을 각각 기준으로 유지합니다.</p>
+    </section>
+
+    <section id="growth-os">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">MASTER MAP · MACRO GROWTH</p>
+          <h2>Developer Growth Map</h2>
+        </div>
+        <span class="status-chip status-ready">CORE ACTIVE</span>
+      </div>
+      <p class="muted">Growth Stage, Mission Gate, Skill Level, Activity/Project Status를 서로 섞지 않고 각각 표시합니다. EXPERT 이후에는 단일 서열 대신 전문 경로로 분기하고 최종적으로 IMPACT를 지향합니다.</p>
+      <div id="growth-stage-grid" class="control-grid" aria-live="polite"></div>
+
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">REGISTRY STATUS</p>
+          <h3>Activity · Project · Opportunity</h3>
+        </div>
+      </div>
+      <div id="growth-registry-summary" class="control-grid" aria-live="polite"></div>
+
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">12 COMPETENCY AXES</p>
+          <h3>Skill Evidence Map</h3>
+        </div>
+      </div>
+      <p class="muted">Skill Level은 Evidence가 연결되기 전에는 임의로 점수를 부여하지 않습니다.</p>
+      <div id="growth-skill-grid" class="grid" aria-live="polite"></div>
     </section>
 
     <section id="domains">
@@ -195,10 +225,10 @@
           <strong>Source Discovery</strong>
           <small>PDF/MD/빈 파일/누락/충돌을 상태 기반으로 판정</small>
         </a>
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/multi-agent-mission-engineering.md">
-          <span>AGENTS</span>
-          <strong>Multi-Agent Engineering</strong>
-          <small>Prompt · Context · Harness · Loop · Fusion</small>
+        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/evidence-traceability.md">
+          <span>PROOF</span>
+          <strong>Evidence Traceability</strong>
+          <small>Source → Requirement → Test → Runtime → Evidence → PASS</small>
         </a>
         <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/parallel-mission-execution.md">
           <span>FLOW</span>
@@ -211,15 +241,16 @@
     <section id="path">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">PROFESSIONAL GROWTH</p>
-          <h2>Expert Path</h2>
+          <p class="section-kicker">EXPERT → SPECIALIZATION → IMPACT</p>
+          <h2>Professional Paths</h2>
         </div>
       </div>
-      <div class="path">LEARN <span>→</span> BUILD <span>→</span> BREAK <span>→</span> MEASURE <span>→</span> EXPLAIN <span>→</span> CONTRIBUTE <span>→</span> CHALLENGE <span>→</span> CREATE</div>
+      <div class="path">CORE <span>→</span> EXPLORE <span>→</span> ADVANCED <span>→</span> PRO <span>→</span> EXPERT <span>→</span> SPECIALIZATION <span>→</span> IMPACT</div>
     </section>
   </main>
 
-  <footer>Codyssey AI/SW Basic · Mission Control · Live Execution + Official Integration</footer>
+  <footer>Codyssey Developer Growth OS · Mission → Growth → Impact</footer>
+  <script src="./js/growth-os.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/mission-pages.js"></script>
   <script src="./js/recommended-progress.js"></script>
