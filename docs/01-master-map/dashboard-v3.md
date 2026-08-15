@@ -199,28 +199,28 @@ Progress Dashboard는 자동 30초 Polling을 사용하지 않는다.
 
 ## 8. Data Sources
 
-### 현재
+### Mission Pipeline
 
 ```text
 config/missions.yaml
+config/waves/*.yaml
         ↓
 scripts/sync_progress.py
         ├─ README Mission Table
-        ├─ docs/03-progress/progress.md
+        ├─ docs/01-master-map/mission-progress.md
         ├─ site/data/missions.json
         └─ site/data/workcells.json
 ```
 
-### V3 목표
+### Growth Pipeline
 
 ```text
-config/missions.yaml ───────┐
-config/growth.yaml ─────────┤
-future skills.yaml ─────────┤
-future activities.yaml ─────┼─> sync/build layer ─> site/data/*.json ─> Dashboard
-future projects.yaml ───────┤
-config/opportunities.yaml ──┤
-config/resources.yaml ──────┘
+config/growth.yaml ─────────────┐
+config/skills.yaml ─────────────┤
+config/activities.yaml ─────────┤
+config/projects.yaml ───────────┼─> sync/build layer ─> site/data/*.json ─> Dashboard
+config/opportunities.yaml ──────┤
+config/resources.yaml ──────────┘
 ```
 
 각 Config의 역할을 유지하고 UI용 JSON에서 결합한다.
