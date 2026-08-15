@@ -69,28 +69,41 @@ Status = Progress
 Priority = Importance
 ```
 
-## 4. Legacy Cleanup
+## 4. Post-Cutover Cleanup #1
 
-Cutover 성공과 Legacy 삭제는 별도 Gate로 관리한다.
-
-현재 Cleanup 우선 대상:
-
-- `docs/09-opportunities`
-- `docs/10-professional-growth`
-- `docs/11-advanced`
-
-Post-Cutover Cleanup Branch:
+Cleanup Branch:
 
 ```text
 cleanup/growth-os-v3-post-cutover
 ```
 
-현재 수행 중인 Cleanup:
+완료된 작업:
 
 1. `multi-agent-mission-engineering.md`의 Old Routing을 V3 Domain/Registry Routing으로 교정
-2. `scan_legacy_refs.py`를 역사/마이그레이션 문서와 실제 운영 참조를 구분하도록 강화
-3. PR Validation에서 `--fail-on-active`를 사용하여 실제 Old Routing 재발을 차단
-4. Active Reference 0 확인 후 Legacy Directory 삭제 여부를 별도 판정
+2. `scan_legacy_refs.py`가 역사/마이그레이션 문서와 실제 운영 참조를 구분하도록 강화
+3. PR Validation에 `scan_legacy_refs.py --fail-on-active` 강제 Gate 추가
+4. Active Legacy Reference Gate PASS 확인
+5. 이미 V3에 흡수된 Legacy README 3개 삭제
+
+삭제 대상:
+
+```text
+docs/09-opportunities/README.md
+docs/10-professional-growth/README.md
+docs/11-advanced/README.md
+```
+
+해당 세 Directory에는 위 README 한 개만 존재했으며, V3 Target으로 내용이 이미 이관되어 있었다. 빈 Directory는 Git에 남지 않는다.
+
+### 1차 Cleanup 상태
+
+```text
+Old Operational Routing        ✅ FIXED
+Active Legacy Ref Gate         ✅ PASS
+Legacy Content Migration       ✅ PASS
+09/10/11 File Removal          ✅ STAGED IN PR #74
+Final PR Regression            🟡 RUNNING / WAIT
+```
 
 ## 5. Compatibility HOLD
 
@@ -109,9 +122,9 @@ cleanup/growth-os-v3-post-cutover
 V3 main Cutover             ✅ COMPLETE
 Control Tower Sync          ✅ PASS
 GitHub Pages Deployment     ✅ PASS
-Post-Cutover Cleanup        🟡 ACTIVE
-Legacy 09/10/11 Deletion    🟡 GATE CHECK
+Post-Cutover Cleanup #1     🟡 PR #74 VALIDATION
+Legacy 09/10/11             ✅ MIGRATED / DELETE STAGED
 Progress/Learning Cleanup   ⏸ HOLD
 ```
 
-현재 기준본은 `main`의 Growth OS V3다. 이후 작업은 새 V3 구조를 되돌리는 것이 아니라 **Compatibility Layer를 단계적으로 제거하고 구조를 단순화하는 Post-Cutover Cleanup**이다.
+현재 기준본은 `main`의 Growth OS V3다. 이후 작업은 새 V3 구조를 되돌리는 것이 아니라 **기능 대체와 Evidence가 완료된 Compatibility Layer만 단계적으로 제거하는 작업**이다.
