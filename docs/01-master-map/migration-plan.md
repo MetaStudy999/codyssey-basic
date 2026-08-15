@@ -60,22 +60,33 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] 기존 구조 고수준 Inventory
 - [x] 1차 Migration Matrix
 - [x] Dashboard V3 상세 설계
-- [ ] 파일 단위 Detailed Audit 전체 완료
+- [x] 구조 단위 Detailed Audit 완료
+
+> 주의: 여기서 `Detailed Audit 완료`는 기존 주요 디렉터리와 기능의 **구조·역할 판정**이 끝났다는 뜻이다. 15개 Mission 문서와 대규모 Vocabulary 파일의 실제 내용 검증은 각 Migration/Workcell에서 Source 기준으로 계속 수행한다.
 
 ### Phase B — Migration 준비
 
 - [x] `docs/00-governance` 상세 Audit
-- [ ] `docs/02-domains` → `02-missions` Migration 설계
+- [x] `docs/01-overview` → `01-master-map` Merge 설계
+- [x] `docs/02-domains` → `02-missions` Migration 설계
 - [x] `docs/03-progress` + `scripts/sync_progress.py` + Dashboard 자동화 Audit
-- [ ] `docs/04-learning` 재분류 설계
-- [ ] `05-architecture` / `06-evaluation` 재배치 설계
-- [ ] `07-portfolio` / `08-resources` 이동 설계
-- [ ] `09-opportunities` 상태 모델 정렬
-- [ ] `10-professional-growth` 분해 설계
-- [ ] `11-advanced` 분해 설계
+- [x] `docs/04-learning` 보존/재분류 설계
+- [x] `05-architecture` / `06-evaluation` 재배치 설계
+- [x] `07-portfolio` / `08-resources` 이동 설계
+- [x] `09-opportunities` 상태/가용성 모델 정렬 설계
+- [x] `10-professional-growth` 분해 설계
+- [x] `11-advanced` 분해 설계
+- [x] `templates/` 보존/확장 정책 Audit
 
-### Phase C — System Refactor
+### Phase C — Physical Migration / System Refactor
 
+- [ ] 새 Target Domain Index 생성
+- [ ] `02-missions` 실제 Migration 시작
+- [ ] 기존 Learning 자산 V3 용어 정렬
+- [ ] Architecture/Evaluation 내용 재배치
+- [ ] Portfolio/Resources 새 경로 Migration
+- [ ] Opportunities V3 Schema Migration
+- [ ] Professional Growth/Advanced 내용 Domain별 분해
 - [ ] Config 역할 분리
 - [ ] Sync script V3 확장
 - [ ] Dashboard Growth/Mission/Skill/Activity 4층 구조 구현
@@ -92,21 +103,24 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 안전 규칙
 
-- Foundation 검증 전 기존 파일을 삭제하지 않는다.
 - `config/missions.yaml`과 기존 G1~G8 Mission Gate는 우선 보존 대상으로 본다.
 - 공식 Mission 요구사항과 기존 Evidence를 구조 개편 과정에서 잃지 않는다.
 - 자동 생성 파일과 수동 편집 파일의 Source of Truth를 반드시 구분한다.
 - 새 구조가 기존 기능을 대체할 때만 과거 구조를 제거한다.
 - 기존 자료의 단순 삭제보다 `KEEP / MERGE / REWRITE / ARCHIVE / DROP` 판정을 먼저 수행한다.
+- 새 Target이 검증되기 전 Old Path를 삭제하지 않는다.
 
 ## 다음 작업
 
-다음 Detailed Audit 순서:
+이제 **Physical Migration Phase**로 진입한다.
 
-1. `docs/02-domains` → `02-missions`
-2. `docs/04-learning`
-3. `05-architecture` / `06-evaluation`
-4. `07-portfolio` / `08-resources`
-5. `09-opportunities` / `10-professional-growth` / `11-advanced`
+권장 순서:
 
-Detailed Audit이 끝나기 전에는 기존 주요 폴더를 실제로 삭제하거나 이름을 바꾸지 않는다.
+1. 새 V3 Domain Index를 먼저 생성
+2. `02-missions`를 Mission별 Source 재확인과 함께 이관
+3. `04-learning`은 기존 경로를 보존하면서 V3 Macro/Micro 용어만 정렬
+4. Architecture/Evaluation을 새 목적지에 흡수
+5. Opportunities/Portfolio/Resources를 새 번호 체계로 이관
+6. Professional Growth/Advanced를 Domain별로 분해
+7. Config와 Dashboard를 새 구조에 연결
+8. 회귀 검증 후 Old Path 제거
