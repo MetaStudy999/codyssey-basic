@@ -28,8 +28,8 @@ OOM Crash / CPU Latency / Deadlock
 | 30 | [Level 2 — Execution Unit Index](./b1-2-30-level-2-execution/b1-2-30-000-index.md) | 12개 장애 재현·관제·Evidence 실행 단위 | ✅ |
 | 40 | [Level 3 — Principle Unit Index](./b1-2-40-level-3-principles/b1-2-40-000-index.md) | 12개 Memory/CPU/Thread/Deadlock/RCA WHY-HOW 원리 단위 | ✅ |
 | 50 | [Level 4 — Troubleshooting Unit Index](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) | 12개 증상·진단·최소수정·재검증 단위 | ✅ |
-| 60 | Level 5 — Evaluation | 평가 답변·기술 보고 | NEXT |
-| 70 | Review | 통합 복습·후행 연결 | 이후 |
+| 60 | [Level 5 — Evaluation Unit Index](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md) | 12개 Evidence 기반 평가 설명 단위 | ✅ |
+| 70 | Review | 통합 복습·후행 연결 | NEXT |
 | 90 | Advanced | 스케줄링 알고리즘 추론 | 선택 |
 
 기존 [`b1-2.md`](../b1-2.md)는 전체 Vocabulary Summary와 기존 URL 호환용으로 유지한다.
@@ -40,7 +40,7 @@ OOM Crash / CPU Latency / Deadlock
 2. 실제 제공 `agent-app-leak.zip`과 실제 Runtime Evidence
 3. 현재 B1-2 구현 저장소의 코드·스크립트·보고서·검증 기록
 4. `b1-2-mission.md` — 구현 저장소 Work Packet에서 사전조건 표 변환 충돌이 기록되어 있으므로 충돌 시 PDF 우선
-5. `b1-2-evaluation.md` — 현재 구현 저장소 기준 공식 provenance가 확인되지 않은 `UNVERIFIED` provisional rubric
+5. `b1-2-evaluation.md` — 현재 구현 저장소 기준 official provenance가 확인되지 않은 `UNVERIFIED` provisional rubric
 6. 현재 학습 디렉터리와 보조 설명
 
 구현 저장소: <https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting>
@@ -69,30 +69,32 @@ B1-1 정상 관제
 → Level 3 WHY/HOW
 → Level 4 장애 진단
 → Level 5 평가 설명
+→ Review 통합 복원
 ```
 
-## Level 4 진단 흐름
+## Level 5 평가 흐름
 
 ```text
-Symptom
-→ Observe
-→ Layer
-→ Hypothesis
-→ Smallest Fix
-→ Reverify
-→ Recovery
-→ Evidence
+WHAT
+→ WHY
+→ HOW
+→ PROOF
+→ LIMIT / ENVIRONMENT
+→ FOLLOW-UP
 ```
 
-Level 4에서는 OOM, CPU, Deadlock뿐 아니라 Runtime 사전조건 오설정, Evidence 부족, 모호한 Before/After, signal/exit 해석, Issue 보고서 연결까지 각각 독립적으로 진단한다.
+Level 5에서는 OOM/CPU/Deadlock 각각을 실제 Runtime Evidence와 연결하고, 관제 명령어, OS 원리, RCA, Workaround와 Root Fix, 운영 개선, 복합 장애 우선순위, 1분/3~5분 구두 답변까지 확장한다.
+
+`b1-2-evaluation.md`의 20개 문항은 official provenance가 확인되지 않았으므로 공식 PASS 기준으로 승격하지 않고 평가 연습용 provisional checklist로만 사용한다.
 
 ## 상태 경계
 
 ```text
-TROUBLESHOOTING READY
+EVALUATION STRUCTURE READY
+≠ EVALUATION READY
+≠ PERSONAL MASTERED
 ≠ RUNTIME VERIFIED
 ≠ MISSION PASS
-≠ PERSONAL MASTERED
 ```
 
 ## Visual Learning
@@ -101,6 +103,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Level 5 — OOM / CPU / Deadlock 평가 답변, Evidence 기반 기술 보고, 예상 꼬리질문 구조화`
+`Review — Level 0~5를 백지 복원하고 OOM/CPU/Deadlock Evidence와 평가 설명을 한 흐름으로 통합`
 
-[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 4 →](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md)
+[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 5 →](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md)
