@@ -33,7 +33,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0 35개 + Level 1 30개 + Level 2 12개 + Level 3 12개 완료 / Level 4 NEXT** |
+| 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~4 구조화 완료 / Level 5 NEXT** |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
@@ -64,7 +64,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 - [90 — Advanced Structured Index](./b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) — 10개 Optional
 - [90 — Advanced Full Summary](./b1-1-system-monitoring-automation/b1-1-90-advanced.md)
 
-Advanced에서는 `SOURCE_LINKED_BONUS`와 `SUPPLEMENTAL_ADVANCED`를 구분한다. 원본 Bonus인 `report.sh`, 통계, 로그 압축/Archive/보존과 systemd·journald·cgroups·SELinux/AppArmor·Metric·Prometheus/Grafana 같은 추가 심화를 같은 필수 요구로 취급하지 않는다.
+Advanced에서는 `SOURCE_LINKED_BONUS`와 `SUPPLEMENTAL_ADVANCED`를 구분한다.
 
 ## B1-2 학습 구조
 
@@ -73,10 +73,11 @@ Advanced에서는 `SOURCE_LINKED_BONUS`와 `SUPPLEMENTAL_ADVANCED`를 구분한�
 - [20 — Level 1 Top Core Index](./b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개 ✅
 - [30 — Level 2 Execution Index](./b1-2-linux-process-resource-troubleshooting/b1-2-30-level-2-execution/b1-2-30-000-index.md) — 12개 ✅
 - [40 — Level 3 Principles Index](./b1-2-linux-process-resource-troubleshooting/b1-2-40-level-3-principles/b1-2-40-000-index.md) — 12개 ✅
+- [50 — Level 4 Troubleshooting Index](./b1-2-linux-process-resource-troubleshooting/b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) — 12개 ✅
 - [기존 Vocabulary Summary](./b1-2.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Level 4 Troubleshooting
+- 다음: Level 5 Evaluation
 
-B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. Level 2에서 실제 실행·Evidence를 연결했고, Level 3에서는 Memory/CPU/Thread/Lock/Deadlock과 Evidence→RCA를 WHY/HOW 원리로 확장했다.
+B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. Level 4에서는 `Symptom → Observe → Layer → Hypothesis → Smallest Fix → Reverify → Recovery → Evidence` 흐름으로 OOM/CPU/Deadlock 및 Evidence/Report 문제를 진단한다.
 
 ## 통합 자산 상태
 
@@ -87,11 +88,12 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - B1-2 Level 1 Top Core 30개: **완료**
 - B1-2 Level 2 실행 단위 12개: **완료**
 - B1-2 Level 3 원리 단위 12개: **완료**
+- B1-2 Level 4 장애 진단 단위 12개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B1-2 Level 4 장애 진단 구조화**
+- 다음: **B1-2 Level 5 평가 설명 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`, `ADVANCED STRUCTURE READY`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEARNING READY`, `TROUBLESHOOTING READY`, `RUNTIME VERIFIED`, `MISSION PASS`, `ADVANCED STRUCTURE READY`를 분리해 관리한다.
