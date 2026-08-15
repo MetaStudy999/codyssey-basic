@@ -65,25 +65,31 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] Portfolio Model을 `11-portfolio`에 이관
 - [x] Resources Model을 `03-learning/resources`에 이관
 - [x] Professional Growth/Advanced Routing Map 작성
+- [x] Opportunity Domain 핵심 카테고리·Mission 연결 원칙을 `06-opportunities`와 Config에 흡수
 - [x] `config/skills.yaml` Skill Matrix 모델 추가
 - [x] `config/activities.yaml` Activity Registry 모델 추가
 - [x] `config/projects.yaml` Project Lineage 모델 추가
 - [x] `config/opportunities.yaml` V3 Availability/Fit Schema로 전환
 - [x] `scripts/sync_growth.py` 추가 — 기존 Mission Sync와 분리된 V3 Registry Generator
-- [x] Growth/Skill/Activity/Project/Opportunity JSON 초기 Snapshot 생성
+- [x] Growth/Skill/Activity/Project/Opportunity Generated JSON을 Generator 형식과 정렬
+- [x] `current-state.md`를 Growth Registry Generator 형식과 정렬
 - [x] Dashboard에 Growth Stage / Registry Summary / 12 Skill Axis Layer 추가
 - [x] 기존 Mission 수동 Refresh + 5분 Cooldown UI 보존
-- [ ] GitHub Actions에서 `sync_growth.py` 자동 실행 연결
+- [x] `scripts/validate_v3.py` 구조/링크/자동생성/Dashboard Wiring 검증기 추가
+- [x] Legacy Path → V3 Target Map 작성
+- [ ] GitHub Actions에서 `sync_growth.py` / `validate_v3.py` 자동 실행 연결
 - [ ] 기존 대규모 Vocabulary 파일의 실제 경로 Migration
-- [ ] 기존 Opportunity 개별 콘텐츠 이관
-- [ ] Professional Growth/Advanced 개별 콘텐츠 Domain별 이동
+- [ ] Professional Growth/Advanced 개별 콘텐츠 Domain별 이동 또는 Legacy 제거
 - [ ] GitHub Pages 실제 배포 검증
-- [ ] 자동 생성 파일 회귀 검증
+- [ ] 자동 생성 파일 실제 실행 회귀 검증
 
 ### Phase D — Cutover
 
-- [ ] 링크/경로 전체 검증
-- [ ] Mission Gate 회귀 검증
+- [ ] 자동 Validator 실제 실행 PASS
+- [ ] 링크/경로 전체 검증 PASS
+- [ ] Mission Gate 회귀 검증 PASS
+- [ ] Dashboard 브라우저 검증 PASS
+- [ ] GitHub Pages 검증 PASS
 - [ ] Draft PR Review
 - [ ] main Cutover
 - [ ] Post-cutover Cleanup
@@ -100,7 +106,7 @@ scripts/sync_progress.py
 README / legacy progress / missions.json / workcells.json
 ```
 
-V3 Growth 자동화는 새 Generator와 JSON 구조까지 구현했다.
+V3 Growth 자동화는 Generator와 생성 결과물까지 구현했다.
 
 ```text
 config/growth.yaml
@@ -114,7 +120,30 @@ scripts/sync_growth.py
 current-state.md + growth/skills/activities/projects/opportunities JSON
 ```
 
-다만 GitHub Actions Workflow 파일 변경은 현재 연결 도구의 보안 제한으로 자동 반영하지 못했다. 따라서 Workflow 연결은 **PENDING**이며 main Cutover 전에 반드시 검증해야 한다.
+Cutover Validator:
+
+```text
+sync_progress.py --check
+        +
+sync_growth.py --check
+        +
+validate_v3.py
+        ↓
+V3 STRUCTURE / DATA / LINK / DASHBOARD WIRING GATE
+```
+
+GitHub Actions Workflow 파일 변경은 현재 연결 도구의 보안 제한으로 자동 반영하지 못한 상태다. 따라서 Workflow 연결은 **PENDING**이며 main Cutover 전에 반드시 해결·검증한다.
+
+## Legacy 제거 전략
+
+Old Path 제거는 `docs/01-master-map/legacy-path-map.md`를 따른다.
+
+특히 다음은 마지막까지 보존한다.
+
+- `docs/03-progress` — Mission Sync Legacy Compatibility
+- `docs/04-learning` — 대규모 Vocabulary와 학습 링크
+
+`docs/09-opportunities`, `10-professional-growth`, `11-advanced`는 새 Target에 핵심 개념을 이미 흡수했지만 링크 검증 전에는 제거하지 않는다.
 
 ## 안전 규칙
 
@@ -123,12 +152,14 @@ current-state.md + growth/skills/activities/projects/opportunities JSON
 - 자동 생성 파일과 수동 편집 파일의 Source of Truth를 구분한다.
 - 새 구조가 기존 기능을 대체할 때만 과거 구조를 제거한다.
 - 새 Target이 검증되기 전 Old Path를 삭제하지 않는다.
+- Validator가 존재한다는 것과 Validator를 실제 실행해 PASS했다는 것은 구분한다.
 
-## 다음 작업
+## 다음 Critical Path
 
-1. Growth Dashboard 정적 데이터/브라우저 렌더링 검토
-2. GitHub Actions `sync_growth.py` 연결 방법 확정
-3. 기존 Vocabulary/Legacy Path의 링크 영향도 검사
-4. Opportunity / Professional Growth / Advanced의 실제 개별 파일 이관
-5. GitHub Pages와 G1~G8 회귀 검증
-6. Draft PR Review 후 Cutover 여부 판단
+1. `sync_progress.py --check`, `sync_growth.py --check`, `validate_v3.py` 실제 실행 환경 확보
+2. Growth Dashboard 브라우저 렌더링 검증
+3. GitHub Actions에 Growth Sync/Validation 연결
+4. Legacy Vocabulary 링크 영향도 검사
+5. Professional Growth/Advanced Legacy Path 최종 정리
+6. GitHub Pages + Mission G1~G8 회귀 검증
+7. Draft PR Review 후 Cutover 여부 판단
