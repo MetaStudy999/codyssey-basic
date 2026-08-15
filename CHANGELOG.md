@@ -1,5 +1,41 @@
 # Changelog
 
+## [3.0.0] - 2026-08-16
+
+### Growth OS V3
+- 성장 모델을 `CORE → EXPLORE → ADVANCED → PRO → EXPERT`로 확정
+- Growth Stage / Status / Priority / Domain을 독립 축으로 분리
+- `Master Map + Progressive Repository`, `Folder = Domain, Stage = Metadata` 원칙 확정
+- 12개 Competency Axis와 Growth/Skill/Activity/Project/Opportunity Registry 도입
+
+### Canonical Repository
+- `docs/00-governance`부터 `docs/12-impact`까지 13개 V3 Domain을 Canonical 구조로 확정
+- B1-1~B7-2 15개 Mission Summary를 `docs/02-missions`로 통합
+- Learning/Vocabulary 전체 자산을 `docs/03-learning`으로 이관
+- Mission Progress를 `docs/01-master-map/mission-progress.md`로 이관
+- Completion Gate와 Workcell Status를 Governance로 이관
+- Portfolio / Resources / Evaluation Traceability / Mission Dependency를 V3 Domain에 통합
+
+### Dashboard / Automation
+- Growth Stage, 12개 Skill Axis, Activity/Project/Opportunity를 Dashboard Layer에 추가
+- 기존 Mission G1~G8, 수동 Refresh, 5분 Cooldown 정책 유지
+- `sync_progress.py`와 `sync_growth.py`를 분리된 Source of Truth에 연결
+- Chromium Browser Smoke와 Live Mission Telemetry 검증 추가
+- 삭제된 V1/V2 Legacy Path가 다시 운영 참조로 들어오지 않도록 CI Gate 추가
+
+### Migration / Cleanup
+- PR #73: Growth OS V3 Foundation 및 main Cutover
+- PR #74: Opportunities / Professional Growth / Advanced Legacy Cleanup
+- PR #75: Learning Canonical Migration
+- PR #76: Progress Canonical Migration
+- PR #77: 남은 Overview / Domains / Architecture / Evaluation / Portfolio / Resources V2 구조 제거
+- V3 이전 기준본은 `archive/pre-growth-os-v3`, Git history, PR history에서 추적
+
+### Stable Operation
+- active Master Map과 Governance에서는 Migration 과정 대신 현재 Canonical 운영 규칙만 유지
+- 단순 과거 감사·이관 자료는 active docs에서 제거하고 Git history를 역사 보존 수단으로 사용
+- `scripts/validate_v3.py`를 Cutover 검증기가 아니라 Stable V3 Contract 검증기로 전환
+
 ## [1.6.0] - 2026-08-09
 
 ### Added
