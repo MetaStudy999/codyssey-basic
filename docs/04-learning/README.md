@@ -52,18 +52,19 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [10 — Level 0 Prerequisite Term Index](./vocabulary/b2-1-budget-tracker/b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) — 45개, V1 ✅
 - [20 — Level 1 Top Core Term Index](./vocabulary/b2-1-budget-tracker/b2-1-20-level-1-core/b2-1-20-000-index.md) — 40개, V2~V3 ✅
 - [30 — Level 2 Execution Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-30-level-2-execution/b2-1-30-000-index.md) — 12개, V4 ✅
+- [40 — Level 3 Principle Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-40-level-3-principles/b2-1-40-000-index.md) — 12개, WHY/HOW ✅
 - [기존 B2-1 Vocabulary Summary](./vocabulary/b2-1.md) — 전체 용어 지도/기존 URL 호환
 
-B2-1 Level 2는 현재 구현 저장소를 기준으로 `--help/초기화 → add/persistence → list/search generator → update/delete atomic rewrite → category integrity → budget/summary → CSV export/import rollback → error exit → tests/evidence → V4 Gate`를 독립 실행 단위로 구조화한다. 기존 구현 Evidence에는 18개 테스트 전체 통과 기록이 있지만, 이는 학습자의 직접 실행을 대신하지 않는다.
+B2-1 Level 3는 `Model Invariant → Persistence/Data Lifecycle → JSONL/CSV 역할 분리 → Generator/yield/Lazy Evaluation → Streaming/Materialization → Layered Responsibility → File Atomicity → Referential Integrity → Decorator/Cross-cutting Concern → Type Contract → Import All-or-Nothing Safety → WHY/HOW Gate`로 원리를 연결한다. 현재 구현 선택과 원본 요구는 계속 분리한다.
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
 B1-2 Level 0~5 + Review + Advanced ✅
         ↓
-B2-1 Source Lock + Level 0 + Level 1 + Level 2 ✅
+B2-1 Source Lock + Level 0~3 ✅
         ↓
-B2-1 Level 3 Principles → NEXT
+B2-1 Level 4 Troubleshooting → NEXT
 ```
 
 ## 자기 설명 기준
