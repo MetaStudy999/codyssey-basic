@@ -24,8 +24,8 @@ OOM Crash / CPU Latency / Deadlock
 |---:|---|---|---|
 | 00 | 현재 Index | 전체 지도·Source of Truth | ✅ |
 | 10 | [Level 0 — Prerequisite Term Index](./b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) | 선수 용어 35개, V1 | ✅ |
-| 20 | Level 1 — Top Core | 핵심 용어 30개, V2~V3 | NEXT |
-| 30 | Level 2 — Execution | 세 장애 재현·관제·Evidence 수집 | 이후 |
+| 20 | [Level 1 — Top Core Term Index](./b1-2-20-level-1-core/b1-2-20-000-index.md) | 핵심 용어 30개, V2~V3 | ✅ |
+| 30 | Level 2 — Execution | 세 장애 재현·관제·Evidence 수집 | NEXT |
 | 40 | Level 3 — Principles | Memory/CPU/Deadlock 원리 | 이후 |
 | 50 | Level 4 — Troubleshooting | 장애 진단·비교 검증 | 이후 |
 | 60 | Level 5 — Evaluation | 평가 답변·기술 보고 | 이후 |
@@ -76,6 +76,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Level 1 — Top Core 30개 개별 용어 구조화`
+`Level 2 — OOM / CPU / Deadlock 재현과 Evidence 수집 실행 단위 구조화`
 
 [← B1-1 Review](../b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 0 →](./b1-2-10-level-0-prerequisite/b1-2-10-000-index.md)
