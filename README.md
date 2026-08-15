@@ -209,32 +209,35 @@ Growth Stage는 **얼마나 성장했는가**, 이 12개 축은 **무엇을 성�
 
 - [Master Map Index](docs/01-master-map/README.md)
 - [Growth Map](docs/01-master-map/growth-map.md)
+- [Current State](docs/01-master-map/current-state.md)
+- [Mission Dependency Map](docs/01-master-map/mission-dependency-map.md)
+- [Growth Routing](docs/01-master-map/growth-routing.md)
 - [Repository Map](docs/01-master-map/repository-map.md)
 - [Migration Plan](docs/01-master-map/migration-plan.md)
 - [Migration Matrix](docs/01-master-map/migration-matrix.md)
 
-### 미래 논리 문서 구조
+### V3 Primary 문서 구조
 
 ```text
 docs/
 ├── 00-governance
 ├── 01-master-map
 ├── 02-missions
-├── 03-progress
-├── 04-learning
-├── 05-community
-├── 06-projects
-├── 07-opportunities
-├── 08-research
-├── 09-open-source
-├── 10-career
-├── 11-venture
-├── 12-portfolio
-├── 13-impact
-└── 14-resources
+├── 03-learning
+├── 04-community
+├── 05-projects
+├── 06-opportunities
+├── 07-research
+├── 08-open-source
+├── 09-career
+├── 10-venture
+├── 11-portfolio
+└── 12-impact
 ```
 
-이 구조는 **미래 설계도**다. 모든 세부 폴더를 미리 만들지 않는다.
+Progress는 `01-master-map/current-state.md`와 Dashboard에서 표시하고, Resources는 `03-learning/resources`와 `config/resources.yaml`로 관리한다.
+
+기존 `docs/03-progress`는 Mission 자동화 호환을 위해 Cutover 전까지 유지하는 Legacy Compatibility Output이다.
 
 ---
 
@@ -273,24 +276,25 @@ Priority = 반드시 해야 하는가
 
 ```text
 config/missions.yaml
-    └─ 공식 Mission 수행/Gate/Learning 상태
+    └─ 공식 Mission 수행 / G1~G8 / Learning 상태
 
 config/growth.yaml
-    └─ Growth Stage / Status / Priority / Competency 정의
+    └─ Growth Stage / Status / Priority
+
+config/skills.yaml
+    └─ 12 Competency Axis / Evidence Level
+
+config/activities.yaml
+    └─ Community / External 실제 활동 상태
+
+config/projects.yaml
+    └─ Project Lineage
 
 config/opportunities.yaml
-    └─ 외부 기회 Registry
+    └─ 외부 Opportunity Availability / Fit
 
 config/resources.yaml
-    └─ 학습/참고자료 Registry
-```
-
-향후 필요할 때만 다음 Registry를 추가한다.
-
-```text
-skills.yaml
-activities.yaml
-projects.yaml
+    └─ 학습 / 연구 참고자료 Registry
 ```
 
 한 파일에 모든 개념을 몰아넣지 않는다.
@@ -299,7 +303,7 @@ projects.yaml
 
 ## 10. Progress & Dashboard
 
-Dashboard는 최종적으로 네 층을 분리한다.
+Dashboard는 네 층을 분리한다.
 
 ```text
 1. Growth
@@ -311,21 +315,41 @@ Dashboard는 최종적으로 네 층을 분리한다.
 3. Skill
    12개 역량 축
 
-4. Activity
-   PLANNED / READY / ACTIVE / BLOCKED / DONE
+4. Activity / Project / Opportunity
+   실제 수행 상태와 외부 가용성을 분리
 ```
 
-현재 Mission Progress 자동 생성 흐름은 보존한다.
+Mission 자동화는 기존 흐름을 보존한다.
 
 ```text
 config/missions.yaml
         ↓
 scripts/sync_progress.py
         ├─ README 자동 영역
-        ├─ docs/03-progress/progress.md
+        ├─ docs/03-progress/progress.md  # Legacy compatibility
         ├─ site/data/missions.json
         └─ site/data/workcells.json
 ```
+
+Growth OS V3는 별도 Generator로 추가한다.
+
+```text
+config/growth.yaml
+config/skills.yaml
+config/activities.yaml
+config/projects.yaml
+config/opportunities.yaml
+        ↓
+scripts/sync_growth.py
+        ├─ docs/01-master-map/current-state.md
+        ├─ site/data/growth.json
+        ├─ site/data/skills.json
+        ├─ site/data/activities.json
+        ├─ site/data/projects.json
+        └─ site/data/opportunities.json
+```
+
+Dashboard는 기존 수동 Mission Refresh + 5분 Cooldown 정책을 유지하면서 Growth Layer를 별도로 렌더링한다.
 
 ---
 
@@ -358,7 +382,7 @@ V3는 기존 main을 즉시 삭제하지 않고 **Greenfield Rebuild + Safe Cuto
 - 기존 기준본 보존: `archive/pre-growth-os-v3`
 - 재구축 브랜치: `rebuild/growth-os-v3`
 - 기존 자료 판정: `KEEP / MERGE / REWRITE / ARCHIVE / DROP`
-- Foundation 검증 전 기존 파일 삭제 금지
+- 새 Target 검증 전 Old Path 삭제 금지
 - Config/자동화/Dashboard 검증 후 PR을 통해 main 전환
 
 ---
