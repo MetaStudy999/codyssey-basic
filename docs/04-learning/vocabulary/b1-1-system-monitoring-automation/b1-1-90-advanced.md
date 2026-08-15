@@ -1,11 +1,52 @@
 # B1-1 Advanced — Optional Deepening
 
-**역할:** B1-1 필수 통과 범위를 넘는 선택 심화  
+**역할:** B1-1 필수 통과 범위를 넘는 선택 심화와 원본 Bonus 용어 보존  
 **원칙:** 필수 요구사항과 혼동하지 않는다. 현재 미션 수행·평가를 지연시키면서까지 먼저 학습하지 않는다.
 
 ---
 
-## 1. Advanced 용어
+## 1. 원본 Vocabulary의 Bonus 구현 용어
+
+기존 B1-1 용어 지도에서 **보너스 수행 관련**으로 관리하던 용어를 이 파일에 보존한다. 이 항목은 일반 심화 기술과 달리 B1-1 원본의 선택 과제 흐름에 직접 연결된다.
+
+- report.sh (Reporting Shell Script)
+- 평균값 (Average)
+- 최댓값 (Maximum)
+- 최솟값 (Minimum)
+- 표본 수 (Sample Count)
+- 시간 구간 (Time Range)
+- 로그 압축 (Log Compression)
+- 아카이브 (Archive)
+- gzip 압축 형식 (GNU Zip, gzip)
+- 보존 기간 (Retention Period)
+- 7일 보존 조건 (7-Day Retention Condition)
+- 30일 삭제 조건 (30-Day Deletion Condition)
+
+### Bonus 흐름
+
+```text
+monitor.log
+   ↓
+report.sh
+   ├─ Average
+   ├─ Maximum
+   ├─ Minimum
+   └─ Sample Count
+
+오래된 로그
+   ↓ 7일 조건
+Compression / gzip
+   ↓
+Archive
+   ↓ 30일 조건
+Deletion
+```
+
+Bonus는 필수 미션 PASS와 분리한다.
+
+---
+
+## 2. Advanced 기술 용어
 
 - systemd (System and Service Manager)
 - systemd 서비스 유닛 (systemd Service Unit)
@@ -22,7 +63,7 @@
 
 ---
 
-## 2. systemd
+## 3. systemd
 
 systemd는 Linux에서 서비스·socket·timer·runtime directory 등 여러 운영 객체를 관리하는 대표적인 service manager다.
 
@@ -43,7 +84,7 @@ cron과 비슷하게 정기 작업을 실행할 수 있지만 B1-1 원본은 cro
 
 ---
 
-## 3. journald / Syslog
+## 4. journald / Syslog
 
 B1-1은 `/var/log/agent-app/monitor.log` 누적을 핵심으로 다룬다.
 
@@ -60,7 +101,7 @@ Central log collector
 
 ---
 
-## 4. cgroups
+## 5. cgroups
 
 Control Groups는 process 그룹의 CPU·Memory 등 resource 사용을 제한·관찰하는 Linux 기능이다.
 
@@ -74,7 +115,7 @@ B1-1에서는 CPU/MEM/DISK를 직접 수집하고 warning을 발생시키는 수
 
 ---
 
-## 5. SELinux / AppArmor
+## 6. SELinux / AppArmor
 
 기본 Unix permission과 ACL 외에 Mandatory Access Control 계층을 추가할 수 있는 보안 기술이다.
 
@@ -84,7 +125,7 @@ B1-1에서 `Permission denied`가 발생했을 때 chmod/ACL만으로 설명되�
 
 ---
 
-## 6. Metric / Time-Series Data
+## 7. Metric / Time-Series Data
 
 B1-1의 CPU·MEM·DISK 로그는 장기적으로 metric/time-series 관점으로 확장할 수 있다.
 
@@ -104,7 +145,7 @@ B1-1의 고정 로그 형식은 원본 요구에 맞추고, 별도 심화 프로
 
 ---
 
-## 7. Prometheus / Grafana
+## 8. Prometheus / Grafana
 
 ### Prometheus
 
@@ -118,10 +159,12 @@ B1-1에서는 Bash + file log + cron + logrotate 흐름을 먼저 이해한다. 
 
 ---
 
-## 8. Advanced 학습 순서
+## 9. Advanced 학습 순서
 
 ```text
 B1-1 필수 Runtime Verified
+        ↓
+원본 Bonus (선택)
         ↓
 systemd service/socket 이해
         ↓
@@ -136,22 +179,25 @@ Prometheus / Grafana
 
 ---
 
-## 9. 선택 미니 프로젝트
+## 10. 선택 미니 프로젝트
 
 필수 미션과 별도 branch에서 다음을 확장할 수 있다.
 
-1. `monitor.sh` 결과를 구조화된 metric 파일로 추가 저장
-2. systemd service로 Agent 실행 관리 실험
-3. systemd timer와 cron 차이 비교
-4. journald에서 SSH/Agent 관련 로그 추적
-5. Prometheus textfile exporter 형식으로 resource metric 변환
-6. Grafana에서 CPU/MEM/DISK graph 설계
+1. `report.sh`로 CPU/MEM/DISK 평균·최대·최소·표본 수 계산
+2. 7일 경과 로그 압축 및 archive 이동
+3. 30일 경과 archive 삭제
+4. `monitor.sh` 결과를 구조화된 metric 파일로 추가 저장
+5. systemd service로 Agent 실행 관리 실험
+6. systemd timer와 cron 차이 비교
+7. journald에서 SSH/Agent 관련 로그 추적
+8. Prometheus textfile exporter 형식으로 resource metric 변환
+9. Grafana에서 CPU/MEM/DISK graph 설계
 
 이 작업들은 **B1-1 필수 PASS와 분리**한다.
 
 ---
 
-## 10. STOP RULE
+## 11. STOP RULE
 
 다음 조건이면 Advanced를 중단하고 필수 학습으로 돌아간다.
 
@@ -164,9 +210,9 @@ Prometheus / Grafana
 
 ---
 
-## 11. 기억 문장
+## 12. 기억 문장
 
-> **Advanced는 필수 미션을 대신하는 기술이 아니라, 필수 구조를 이해한 뒤 같은 운영 문제를 더 큰 규모에서 푸는 확장 단계다.**
+> **Bonus와 Advanced는 필수 미션을 대신하지 않는다. 필수 구조를 이해하고 검증한 뒤 같은 운영 문제를 더 깊고 큰 규모로 확장하는 단계다.**
 
 ---
 
