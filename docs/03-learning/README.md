@@ -10,61 +10,56 @@ V3 Learning은 **Macro Growth Stage**와 **Micro Learning Level**을 분리한�
 
 ## Micro Learning
 
-기존 학습 자산의 `Level 0~5 + Review + Optional Deepening` 구조를 보존하고 Mission별 용어·개념·실습·Troubleshooting·Evaluation과 연결한다.
+`Prerequisite → Core → Execution → Principles → Troubleshooting → Evaluation → Review → Optional Deepening`
+
+하나의 Mission 또는 지식 단위를 어떻게 배우고 검증할지 나타낸다.
 
 - [Macro Growth vs Micro Learning](./macro-micro-model.md)
-- [V3 Vocabulary Bridge Index](./vocabulary-index.md)
+- [Vocabulary Index](./vocabulary-index.md)
+- [Micro Learning Package 상세](./micro-learning-packages.md)
+- [Master Vocabulary](./basic-master-vocabulary.md)
+- [Vocabulary Learning Plan](./vocabulary-learning-plan.md)
+- [Term File Standard](./term-file-standard.md)
+- [Vocabulary Quality Audit](./vocabulary-quality-audit.md)
+- [Visual Learning Backlog](./visual-learning-backlog.md)
 - [Learning / Research Resources](./resources/README.md)
 
 ## 중요한 구분
 
 - Mission `PASS` ≠ Learning `MASTERED`
 - Learning `MASTERED` ≠ Growth Stage `ADVANCED`
-- 기존 `90-advanced`는 V3 전체 성장 단계의 `ADVANCED`가 아니라 **Micro Optional Deepening**이다.
+- 기존 `90-advanced`는 V3 Macro `ADVANCED`가 아니라 **Micro Optional Deepening**이다.
 - 학습 문서의 구조화 완료와 개인 Runtime Evidence 완료를 같은 상태로 보지 않는다.
 
-## 현재 Vocabulary 전략
+## Vocabulary Canonical Path
 
-기존 `docs/04-learning/vocabulary`에는 B1-1~B7-2 15개 Mission의 Vocabulary가 존재한다.
-
-특히 B1-1, B1-2, B2-1은 다음 Micro 구조가 상당 부분 완성되어 있다.
+V3의 학습 자산 Canonical Path는 다음과 같다.
 
 ```text
-Prerequisite
-  ↓
-Core
-  ↓
-Execution
-  ↓
-Principles
-  ↓
-Troubleshooting
-  ↓
-Evaluation
-  ↓
-Review
-  ↓
-Optional Deepening
+docs/03-learning/
+├── vocabulary/
+├── basic-master-vocabulary.md
+├── vocabulary-learning-plan.md
+├── term-file-standard.md
+├── vocabulary-quality-audit.md
+├── visual-learning-backlog.md
+└── micro-learning-packages.md
 ```
 
-이 자산은 V3에서 다시 작성하지 않고 Reference Pack으로 재사용한다.
+기존 Learning Compatibility 자산은 동일 Git 객체를 재사용하여 이 경로에 배치했다. 따라서 콘텐츠를 다시 작성하거나 기존 학습 이력을 초기화하지 않는다.
 
-## Migration 원칙
+## Compatibility Migration
 
-기존 `docs/04-learning`의 대규모 Vocabulary 자산은 즉시 이동하지 않는다.
+현재는 **Canonical Copy 완료 / Legacy Compatibility 유지** 단계다.
 
 ```text
-V3 Bridge
-  ↓
-기존 Link 검증
-  ↓
-Mission별 Source Lock
-  ↓
-필요한 단위만 단계적으로 Migration
-  ↓
-Compatibility 검증
-  ↓
-Old Path 제거
+Legacy Learning Path
+        ↓ 동일 자산을 V3 경로에 배치
+새 docs/03-learning Canonical Path
+        ↓ 링크·Mission 문서·자동 검증 전환
+Active Reference 0
+        ↓
+Legacy Learning Path 제거
 ```
 
-현재 단계에서 기존 Vocabulary Path는 **KEEP**이다. 대량 Rename/Move보다 학습 연속성과 링크 안정성을 우선한다.
+기존 경로는 Cleanup Gate가 통과할 때까지만 유지한다. 새 문서와 신규 링크는 `docs/03-learning`을 사용한다.

@@ -2,7 +2,7 @@
 
 **대상:** B1-1 ~ B7-2 전체 15개 미션  
 **목적:** 미션별 용어 목록의 중복을 줄이고, 핵심 용어의 최초 도입·재사용·중요도·학습 깊이·누적 학습 흐름을 하나의 통합 기준으로 관리한다.  
-**근거:** `docs/04-learning/vocabulary/*.md`, `vocabulary-learning-plan.md`, `vocabulary-quality-audit.md`  
+**근거:** `docs/03-learning/vocabulary/*.md`, `vocabulary-learning-plan.md`, `vocabulary-quality-audit.md`  
 **상태:** Basic Master Vocabulary v1
 
 > 이 문서는 15개 Mission Vocabulary를 대체하지 않는다. 각 미션에만 등장하는 세부 명령·파일·오류·보너스 항목은 미션별 문서에 유지하고, 여기서는 여러 미션을 연결하는 **정규화된 핵심·반복 용어**를 중심으로 관리한다.
@@ -584,7 +584,7 @@ Basic Master Vocabulary가 만들어졌으므로 이후 학습 콘텐츠는 다�
 - 현재 미션에서 필요한 CORE와 REQUIRED만 노출한다.
 - REFERENCE는 필요할 때 찾는다.
 - 동일 용어는 매번 새로 정의하지 않고 `REVIEW / APPLY / DEEPEN / INTEGRATE`로 이어간다.
-- 미션별 세부 용어는 기존 `docs/04-learning/vocabulary/b?-?.md`를 Source of Truth로 유지한다.
+- 미션별 세부 용어는 `docs/03-learning/vocabulary/b?-?.md`를 Source of Truth로 유지한다.
 
 ---
 

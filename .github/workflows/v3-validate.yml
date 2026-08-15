@@ -36,8 +36,10 @@ jobs:
         run: python scripts/sync_growth.py --check
       - name: Validate V3 structure, links and dashboard wiring
         run: python scripts/validate_v3.py
-      - name: Enforce cleanup gate for active legacy references
+      - name: Enforce removed legacy path gate
         run: python scripts/scan_legacy_refs.py --fail-on-active
+      - name: Enforce learning canonical-path gate
+        run: python scripts/scan_legacy_refs.py --targets docs/04-learning --fail-on-active
       - name: Install browser smoke dependencies
         run: |
           python -m pip install --disable-pip-version-check playwright
