@@ -42,9 +42,9 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 11. **Cutover** — 승인 후 main에 병합
 12. **Post-cutover Cleanup** — 불필요한 과거 구조 제거 및 문서 링크 정리
 
-## Foundation 완료 기준
+## 현재 진행 상황
 
-아래가 먼저 완성되어야 대규모 이동/삭제를 시작한다.
+### Phase A — Foundation
 
 - [x] archive branch 생성
 - [x] rebuild branch 생성
@@ -55,10 +55,40 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] Repository Policy
 - [x] Master Growth Map
 - [x] Repository Map
-- [ ] 기존 구조 Inventory
-- [ ] Migration Matrix
-- [ ] 새 README 정보 구조
-- [ ] Dashboard V3 설계
+- [x] V3 README 정보구조 초안
+- [x] AGENTS.md V3 운영원칙 반영
+- [x] 기존 구조 고수준 Inventory
+- [x] 1차 Migration Matrix
+- [ ] 파일 단위 Detailed Audit
+- [ ] Dashboard V3 상세 설계
+
+### Phase B — Migration 준비
+
+- [ ] `docs/00-governance` 상세 Audit
+- [ ] `docs/02-domains` → `02-missions` Migration 설계
+- [ ] `docs/03-progress` 보존/확장 설계
+- [ ] `docs/04-learning` 재분류 설계
+- [ ] `05-architecture` / `06-evaluation` 재배치 설계
+- [ ] `07-portfolio` / `08-resources` 이동 설계
+- [ ] `09-opportunities` 상태 모델 정렬
+- [ ] `10-professional-growth` 분해 설계
+- [ ] `11-advanced` 분해 설계
+
+### Phase C — System Refactor
+
+- [ ] Config 역할 분리
+- [ ] Sync script V3 확장
+- [ ] Dashboard Growth/Mission/Skill/Activity 4층 구조 구현
+- [ ] GitHub Pages 검증
+- [ ] 자동 생성 파일 검증
+
+### Phase D — Cutover
+
+- [ ] 링크/경로 전체 검증
+- [ ] Mission Gate 회귀 검증
+- [ ] Draft PR Review
+- [ ] main Cutover
+- [ ] Post-cutover Cleanup
 
 ## 안전 규칙
 
@@ -67,7 +97,17 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - 공식 Mission 요구사항과 기존 Evidence를 구조 개편 과정에서 잃지 않는다.
 - 자동 생성 파일과 수동 편집 파일의 Source of Truth를 반드시 구분한다.
 - 새 구조가 기존 기능을 대체할 때만 과거 구조를 제거한다.
+- 기존 자료의 단순 삭제보다 `KEEP / MERGE / REWRITE / ARCHIVE / DROP` 판정을 먼저 수행한다.
 
 ## 다음 작업
 
-다음 단계는 **Existing Repository Inventory**다. 현재 `docs/00~11`, `config`, `scripts`, `site`, `templates`, root 문서를 전수 분류하여 Migration Matrix를 작성한다.
+다음 단계는 **파일 단위 Detailed Audit + Dashboard V3 설계**다.
+
+우선순위:
+1. `docs/00-governance`
+2. `docs/03-progress` + `scripts/sync_progress.py`
+3. `site/` + `.github/workflows`
+4. `docs/04-learning`
+5. 나머지 Domain Migration
+
+이 단계가 끝나기 전에는 기존 주요 폴더를 실제로 삭제하거나 이름을 바꾸지 않는다.
