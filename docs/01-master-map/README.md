@@ -12,7 +12,9 @@ EXPERT 이후에는 단일 서열이 아니라 전문 경로로 분기하고 최
 
 - `growth-map.md`: 전체 성장 단계와 전문 경로
 - `repository-map.md`: 미래 논리 Repo 구조와 점진 확장 원칙
+- `dashboard-v3.md`: 현재/다음/준비/미래를 보여주는 Dashboard V3 설계
 - `migration-plan.md`: 기존 구조에서 V3로 안전하게 전환하는 계획
+- `migration-matrix.md`: 기존 자료의 KEEP/MERGE/REWRITE/ARCHIVE/DROP 1차 판정
 
 ## 읽는 법
 
