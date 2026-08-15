@@ -34,7 +34,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
 | 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~5 완료 / Review NEXT** |
+| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~5 + Review 완료 / Advanced NEXT** |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
 | 6 | B3-2 | [파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기](./b3-2.md) | 1차 용어 작성 완료 |
@@ -92,10 +92,12 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - [40 — Level 3 Principles Index](./b2-1-budget-tracker/b2-1-40-level-3-principles/b2-1-40-000-index.md) — 12개 ✅
 - [50 — Level 4 Troubleshooting Index](./b2-1-budget-tracker/b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md) — 12개 ✅
 - [60 — Level 5 Evaluation Index](./b2-1-budget-tracker/b2-1-60-level-5-evaluation/b2-1-60-000-index.md) — 12개 ✅
+- [70 — Integrated Review Index](./b2-1-budget-tracker/b2-1-70-review/b2-1-70-000-index.md) — 12개 ✅
+- [70 — Review Full Pack](./b2-1-budget-tracker/b2-1-70-review-pack.md) — 전체 요약 ✅
 - [기존 Vocabulary Summary](./b2-1.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Review — Mission Map, V1~V5 혼합 회수, Troubleshooting Scenario, Evidence Mapping, 1분/3~5분 설명
+- 다음: Advanced — 원본 Mission의 Bonus/선택 심화 범위를 Source에서 다시 확인 후 구조화
 
-B2-1 Level 5는 공식 평가 4개 영역을 `Functions/Persistence`, `Exception/Exit`, `Module/Class Responsibility`, `Safe Rewrite/Integrity`, `Generator`, `Decorator`, `Type Hint`, `Storage Format`, `100k Scalability`, `CSV Import Trust Policy`로 나누고 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP` 답변 구조로 연결한다. 기존 18-test Evidence는 구현 근거이며 개인 평가 완료를 대신하지 않는다.
+B2-1 Review는 `Mission Map`, `Source Boundary`, `Transaction Data Flow`, `CRUD/Persistence`, `Generator/Layer Responsibility`, `Integrity/Atomicity`, `CSV Import/Export`, `Troubleshooting`, `Evidence/Evaluation Mapping`, `Oral Explanation`, `Five-minute Blank Reconstruction`, `LEARNING READY`를 통합 복습 단위로 구조화한다. Review는 새 지식을 추가하기보다 Level 0~5를 보지 않고 꺼내 쓰는 단계다.
 
 ## 통합 자산 상태
 
@@ -110,8 +112,9 @@ B2-1 Level 5는 공식 평가 4개 영역을 `Functions/Persistence`, `Exception
 - B2-1 Level 3 원리 단위 12개: **완료**
 - B2-1 Level 4 장애 진단 단위 12개: **완료**
 - B2-1 Level 5 평가 설명 단위 12개: **완료**
+- B2-1 Review 통합 단위 12개 + Full Pack: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B2-1 Review 통합 구조화**
+- 다음: **B2-1 Advanced 구조화**
 
 ## 누적 학습 원칙
 
