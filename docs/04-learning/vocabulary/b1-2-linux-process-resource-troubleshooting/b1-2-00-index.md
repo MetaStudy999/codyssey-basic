@@ -27,8 +27,8 @@ OOM Crash / CPU Latency / Deadlock
 | 20 | [Level 1 — Top Core Term Index](./b1-2-20-level-1-core/b1-2-20-000-index.md) | 핵심 용어 30개, V2~V3 | ✅ |
 | 30 | [Level 2 — Execution Unit Index](./b1-2-30-level-2-execution/b1-2-30-000-index.md) | 12개 장애 재현·관제·Evidence 실행 단위 | ✅ |
 | 40 | [Level 3 — Principle Unit Index](./b1-2-40-level-3-principles/b1-2-40-000-index.md) | 12개 Memory/CPU/Thread/Deadlock/RCA WHY-HOW 원리 단위 | ✅ |
-| 50 | Level 4 — Troubleshooting | 장애 진단·비교 검증 | NEXT |
-| 60 | Level 5 — Evaluation | 평가 답변·기술 보고 | 이후 |
+| 50 | [Level 4 — Troubleshooting Unit Index](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) | 12개 증상·진단·최소수정·재검증 단위 | ✅ |
+| 60 | Level 5 — Evaluation | 평가 답변·기술 보고 | NEXT |
 | 70 | Review | 통합 복습·후행 연결 | 이후 |
 | 90 | Advanced | 스케줄링 알고리즘 추론 | 선택 |
 
@@ -60,56 +60,40 @@ OOM Crash / CPU Latency / Deadlock
 - OOM은 `MEMORY_LIMIT`, CPU는 `CPU_MAX_OCCUPY`, Deadlock은 `MULTI_THREAD_ENABLE` 변경 전후 비교
 - 바이너리 디컴파일·리버스 엔지니어링 금지
 
-## B1-1 → B1-2 누적 학습
+## 누적 학습 흐름
 
 ```text
-B1-1: Process / PID / CPU / Memory / Log / Monitoring / Evidence
-                       ↓
-                 REVIEW / DEEPEN
-                       ↓
-B1-2: Memory Leak / OOM / CPU Spike / Thread / Lock / Deadlock / RCA
+B1-1 정상 관제
+→ B1-2 Level 0/1 개념
+→ Level 2 실제 실행/Evidence
+→ Level 3 WHY/HOW
+→ Level 4 장애 진단
+→ Level 5 평가 설명
 ```
 
-B1-1이 정상 상태의 관제와 운영 기반을 만들었다면, B1-2는 비정상 상태를 증거로 진단하는 능력으로 확장한다.
-
-## Level 2 실행 흐름
+## Level 4 진단 흐름
 
 ```text
-Source / Safety
-→ Runtime Environment
-→ Observability Baseline
-→ OOM Before/After
-→ CPU Before/After
-→ Deadlock Before/After
-→ Evidence Curation
-→ Issue Report Validation
-→ V4 Gate
+Symptom
+→ Observe
+→ Layer
+→ Hypothesis
+→ Smallest Fix
+→ Reverify
+→ Recovery
+→ Evidence
 ```
 
-## Level 3 원리 흐름
+Level 4에서는 OOM, CPU, Deadlock뿐 아니라 Runtime 사전조건 오설정, Evidence 부족, 모호한 Before/After, signal/exit 해석, Issue 보고서 연결까지 각각 독립적으로 진단한다.
+
+## 상태 경계
 
 ```text
-Memory Growth / Release
-→ Memory Limit / Protection
-
-CPU Utilization
-→ Per-process Load / Latency
-
-Process
-→ Thread
-→ Lock / Resource Contention
-→ Deadlock Four Conditions
-→ Alive-but-Stalled
-
-Signal / Protection Termination
-
-Evidence
-→ Causality
-→ RCA
-→ Reproducibility / Before & After
+TROUBLESHOOTING READY
+≠ RUNTIME VERIFIED
+≠ MISSION PASS
+≠ PERSONAL MASTERED
 ```
-
-Level 3는 실제 Runtime Evidence가 지지하는 범위까지만 원인을 설명하고, 디컴파일하지 않은 내부 구현을 추측해 단정하지 않는다.
 
 ## Visual Learning
 
@@ -117,6 +101,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Level 4 — OOM / CPU / Deadlock 증상별 진단, 가설, 최소 수정, 재검증, Evidence 구조화`
+`Level 5 — OOM / CPU / Deadlock 평가 답변, Evidence 기반 기술 보고, 예상 꼬리질문 구조화`
 
-[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 3 →](./b1-2-40-level-3-principles/b1-2-40-000-index.md)
+[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 4 →](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md)
