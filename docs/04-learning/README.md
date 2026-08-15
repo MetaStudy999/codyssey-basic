@@ -37,17 +37,18 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [10 — Level 0 Prerequisite Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) — 35개, V1 ✅
 - [20 — Level 1 Top Core Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개, V2~V3 ✅
 - [30 — Level 2 Execution Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-30-level-2-execution/b1-2-30-000-index.md) — 12개, V4 ✅
+- [40 — Level 3 Principle Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-40-level-3-principles/b1-2-40-000-index.md) — 12개, WHY/HOW ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Level 0·1·2 ✅
+B1-2 Level 0·1·2·3 ✅
         ↓
-B1-2 Level 3 Principles → NEXT
+B1-2 Level 4 Troubleshooting → NEXT
 ```
 
-B1-2 Level 2는 `Source/Safety → Runtime Environment → Observability Baseline → OOM/CPU/Deadlock Before & After → Evidence → Issue Report → V4` 흐름으로 구조화했다. Mission PDF 예시를 실제 Evidence로 사용하지 않고, 실제 build 차이와 Runtime Evidence를 구분한다.
+B1-2 Level 3는 Memory Growth/Protection, CPU/Latency, Process/Thread, Lock/Contention, Deadlock 4대 조건, Alive-but-Stalled, Signal/Protection, Evidence→Causality→RCA, Reproducibility/Before&After를 WHY/HOW 원리 단위로 구조화했다.
 
 ## 자기 설명 기준
 
