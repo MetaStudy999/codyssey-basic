@@ -153,12 +153,10 @@ Cover
 
 ## 11. 적용 상태와 다음 순서
 
-첫 적용은 **B1-1 Level 1 Top Core 28개**이며 `한 파일 = 한 용어` 구조가 적용되어 있다.
-
 ```text
-B1-1 Level 1 개별 용어 구조화  ✅
-Visual Learning Pilot          DEFERRED
-B1-1 Level 0 개별 용어 구조화  NEXT
+B1-1 Level 0 개별 용어 구조화  ✅ 29 terms + 000-index
+B1-1 Level 1 개별 용어 구조화  ✅ 28 Top Core terms + 000-index
+Visual Learning                 DEFERRED
 B1-1 Level 2 개별 용어 구조화  NEXT
 B1-1 Level 3~5 관계 정교화     이후
 B1-2 동일 구조 적용            이후
