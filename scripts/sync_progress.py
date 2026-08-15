@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Generate Control Tower progress views from repository state.
+"""Generate Control Tower progress and beginner Mission Clear Cycle views.
 
 Human-edited sources:
 - config/missions.yaml: official serially integrated mission progress
+- config/cycles/current.yaml: current beginner-facing Mission Clear Cycle
+- config/history/pre-v3-mission-history.yaml: preserved results from before the new cycle
 - config/waves/*.yaml: parallel Workcell coordination/live status
 
 Generated outputs:
 - README.md (AUTO:MISSION_PROGRESS block only)
 - docs/01-master-map/mission-progress.md
+- docs/01-master-map/mission-clear-cycle.md
 - site/data/missions.json
 - site/data/workcells.json
+- site/data/cycle.json
 """
 from __future__ import annotations
 
@@ -22,11 +26,15 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "missions.yaml"
+CYCLE_CONFIG = ROOT / "config" / "cycles" / "current.yaml"
+HISTORY_CONFIG = ROOT / "config" / "history" / "pre-v3-mission-history.yaml"
 WAVES_DIR = ROOT / "config" / "waves"
 README = ROOT / "README.md"
 PROGRESS = ROOT / "docs" / "01-master-map" / "mission-progress.md"
+CLEAR_CYCLE = ROOT / "docs" / "01-master-map" / "mission-clear-cycle.md"
 SITE_JSON = ROOT / "site" / "data" / "missions.json"
 WORKCELLS_JSON = ROOT / "site" / "data" / "workcells.json"
+CYCLE_JSON = ROOT / "site" / "data" / "cycle.json"
 START = "<!-- AUTO:MISSION_PROGRESS:START -->"
 END = "<!-- AUTO:MISSION_PROGRESS:END -->"
 CONTROL_TOWER_REPO_URL = "https://github.com/MetaStudy999/codyssey-basic"
@@ -54,13 +62,41 @@ GATE_SHORT = {
 GATE_ICON = {"PASS": "✅", "TODO": "⬜", "NEEDS-RUNTIME": "🟡", "BLOCKED": "⛔"}
 
 
+def load_yaml(path: Path) -> dict:
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if not isinstance(data, dict):
+        raise ValueError(f"{path.relative_to(ROOT)} must contain a mapping")
+    return data
+
+
 def load_config() -> dict:
-    data = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+    data = load_yaml(CONFIG)
     required = {"status_values", "learning_values", "gate_status_values", "gate_order", "domains"}
     missing = required - data.keys()
     if missing:
         raise ValueError(f"missions.yaml missing keys: {sorted(missing)}")
     return data
+
+
+def load_cycle() -> dict:
+    data = load_yaml(CYCLE_CONFIG)
+    required = {"cycle", "cycle_state_values", "state_labels", "gate_display", "missions"}
+    missing = required - data.keys()
+    if missing:
+        raise ValueError(f"current cycle missing keys: {sorted(missing)}")
+    return data
+
+
+def load_history() -> dict[str, dict]:
+    if not HISTORY_CONFIG.exists():
+        return {}
+    data = load_yaml(HISTORY_CONFIG)
+    result: dict[str, dict] = {}
+    for entry in data.get("mission_results", []):
+        mission_id = entry.get("mission")
+        if mission_id:
+            result[mission_id] = dict(entry)
+    return result
 
 
 def load_active_wave() -> tuple[Path, dict]:
@@ -115,6 +151,33 @@ def flatten(data: dict) -> tuple[list[dict], list[dict]]:
     return domains, units
 
 
+def validate_cycle(cycle: dict, units: list[dict]) -> None:
+    mission_ids = [unit["id"] for unit in units]
+    cycle_missions = cycle.get("missions", {})
+    if set(cycle_missions) != set(mission_ids):
+        missing = sorted(set(mission_ids) - set(cycle_missions))
+        extra = sorted(set(cycle_missions) - set(mission_ids))
+        raise ValueError(f"current cycle mission set mismatch; missing={missing}, extra={extra}")
+
+    allowed = set(cycle["cycle_state_values"])
+    current = cycle["cycle"].get("current_mission")
+    if current not in mission_ids:
+        raise ValueError(f"current cycle current_mission not found: {current}")
+
+    active: list[str] = []
+    for mission_id, entry in cycle_missions.items():
+        state = entry.get("state")
+        if state not in allowed:
+            raise ValueError(f"{mission_id}: invalid cycle state {state}")
+        if state == "ACTIVE":
+            active.append(mission_id)
+    if active != [current]:
+        raise ValueError(f"current cycle requires exactly one ACTIVE mission; current={current}, active={active}")
+
+    if list(cycle["gate_display"].keys()) != [unit for unit in GATE_LABELS]:
+        raise ValueError("current cycle gate_display must follow G1~G8 order")
+
+
 def official_label(unit: dict) -> str:
     if unit["kind"] == "term-project":
         return "Term Project"
@@ -162,6 +225,57 @@ def render_progress(units: list[dict], gate_order: list[str]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def render_clear_cycle(cycle: dict, units: list[dict], history: dict[str, dict]) -> str:
+    by_id = {unit["id"]: unit for unit in units}
+    current_id = cycle["cycle"]["current_mission"]
+    current = by_id[current_id]
+    gate = cycle["gate_display"][current["current_gate"]]
+    clear_count = sum(1 for entry in cycle["missions"].values() if entry.get("state") == "CLEAR")
+
+    lines = [
+        "# 새 Mission Clear Cycle",
+        "",
+        "> 진도가 0인 학습자도 B1-1부터 한 단계씩 시작할 수 있도록 만든 현재 도전 상태입니다.",
+        "",
+        f"- Cycle: **{cycle['cycle']['title']}**",
+        f"- 시작일: **{cycle['cycle']['started_at']}**",
+        f"- 현재 Mission: **{current_id} · {current['title']}**",
+        f"- 현재 단계: **{gate['step']}단계 · {gate['title']}**",
+        f"- 전체 Clear: **{clear_count} / {len(units)}**",
+        "",
+        "## 지금 할 일",
+        "",
+        f"> {cycle['missions'][current_id].get('next_action') or gate['action']}",
+        "",
+        f"- 왜 하나요? {gate['why']}",
+        f"- 완료 기준: {gate['completion']}",
+        "",
+        "## 8단계 따라하기",
+        "",
+    ]
+    for gate_id, meta in cycle["gate_display"].items():
+        marker = "👉" if gate_id == current["current_gate"] else "○"
+        lines.append(f"- {marker} {meta['step']}. **{meta['title']}** — {meta['action']}")
+
+    lines += ["", "## 전체 Mission", "", "| Mission | 새 도전 상태 | 이전 기록 |", "|---|---|---|"]
+    for unit in units:
+        entry = cycle["missions"][unit["id"]]
+        label = cycle["state_labels"].get(entry["state"], entry["state"])
+        previous = history.get(unit["id"], {}).get("result", "-")
+        lines.append(f"| {unit['id']} | {label} | {previous} |")
+
+    lines += [
+        "",
+        "## 원칙",
+        "",
+        "- 현재 Cycle과 이전 수행 기록을 섞지 않는다.",
+        "- 화면에는 쉬운 한국어를 우선 표시하고 G1~G8은 내부 검증 용어로 유지한다.",
+        "- 현재 단계에서는 다음 행동을 하나만 우선 제시한다.",
+        "- 공식 Mission PASS/증빙은 `config/missions.yaml`의 검증 규칙을 계속 따른다.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def render_site_json(data: dict, domains: list[dict], units: list[dict]) -> str:
     payload = {
         "version": data["version"],
@@ -188,6 +302,36 @@ def render_site_json(data: dict, domains: list[dict], units: list[dict]) -> str:
             }
             for u in units
         ],
+    }
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+
+
+def render_cycle_json(cycle: dict, units: list[dict], history: dict[str, dict]) -> str:
+    payload_missions: dict[str, dict] = {}
+    clear_count = 0
+    for unit in units:
+        entry = dict(cycle["missions"][unit["id"]])
+        if entry.get("state") == "CLEAR":
+            clear_count += 1
+        entry["state_label"] = cycle["state_labels"].get(entry.get("state"), entry.get("state"))
+        previous = history.get(unit["id"])
+        entry["previous_result"] = previous.get("result") if previous else None
+        entry["previous_learning"] = previous.get("learning") if previous else None
+        payload_missions[unit["id"]] = entry
+
+    payload = {
+        "version": cycle.get("version", 1),
+        "generated_from": "config/cycles/current.yaml",
+        "history_source": "config/history/pre-v3-mission-history.yaml",
+        "cycle": cycle["cycle"],
+        "state_labels": cycle["state_labels"],
+        "gate_display": cycle["gate_display"],
+        "summary": {
+            "total_missions": len(units),
+            "clear_count": clear_count,
+            "current_mission": cycle["cycle"]["current_mission"],
+        },
+        "missions": payload_missions,
     }
     return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
@@ -257,13 +401,18 @@ def render_readme(existing: str, table: str) -> str:
 
 def sync(check: bool) -> int:
     data = load_config()
+    cycle = load_cycle()
+    history = load_history()
     domains, units = flatten(data)
+    validate_cycle(cycle, units)
     wave_path, wave_data = load_active_wave()
     outputs = {
         README: render_readme(README.read_text(encoding="utf-8"), render_readme_table(units)),
         PROGRESS: render_progress(units, data["gate_order"]),
+        CLEAR_CYCLE: render_clear_cycle(cycle, units, history),
         SITE_JSON: render_site_json(data, domains, units),
         WORKCELLS_JSON: render_workcells_json(wave_path, wave_data, units),
+        CYCLE_JSON: render_cycle_json(cycle, units, history),
     }
 
     stale: list[str] = []

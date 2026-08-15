@@ -1,0 +1,12 @@
+version: 1
+history_id: pre-v3-mission-history
+captured_before_cycle: growth-os-v3-20260816
+purpose: "새 Mission Clear Cycle을 시작하기 전에 확인된 기존 결과를 보존한다. 현재 Cycle 상태와 섞지 않는다."
+
+mission_results:
+  - mission: B2-1
+    result: PASS
+    learning: EXPLAINABLE
+    gate: G8_MERGE
+    evidence_state: preserved-in-git-history-and-mission-repository
+    note: "Growth OS V3 새 Cycle 시작 전 config/missions.yaml에 기록되어 있던 기존 PASS 결과."

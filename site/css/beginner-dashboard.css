@@ -1,0 +1,336 @@
+.beginner-dashboard {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 20px 16px;
+}
+
+.beginner-dashboard * {
+  box-sizing: border-box;
+}
+
+.beginner-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 22px;
+}
+
+.beginner-panel {
+  border: 1px solid rgba(127, 127, 127, 0.24);
+  border-radius: 20px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.beginner-kicker {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.beginner-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.25;
+}
+
+.beginner-subtitle {
+  margin: 12px 0 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.82;
+}
+
+.beginner-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 12px;
+}
+
+.beginner-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.beginner-chip-current::before {
+  content: "●";
+  font-size: 0.75em;
+}
+
+.beginner-next-action {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+.beginner-next-action strong,
+.beginner-help-box strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.beginner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.beginner-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  color: inherit;
+}
+
+.beginner-button-primary {
+  border-width: 2px;
+}
+
+.beginner-help-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px dashed rgba(127, 127, 127, 0.35);
+  line-height: 1.65;
+}
+
+.beginner-help-box[hidden] {
+  display: none;
+}
+
+.beginner-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  height: 100%;
+}
+
+.beginner-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 112px;
+  border: 1px solid rgba(127, 127, 127, 0.22);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+}
+
+.beginner-metric span {
+  font-size: 0.85rem;
+  opacity: 0.72;
+}
+
+.beginner-metric strong {
+  margin-top: 7px;
+  font-size: 1.45rem;
+}
+
+.beginner-section {
+  margin: 26px 0;
+}
+
+.beginner-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.beginner-section-heading h2,
+.beginner-section-heading h3 {
+  margin: 0;
+}
+
+.beginner-section-heading p {
+  margin: 4px 0 0;
+  opacity: 0.72;
+}
+
+.beginner-step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.beginner-step {
+  min-height: 118px;
+  border: 1px solid rgba(127, 127, 127, 0.23);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.beginner-step-current {
+  border-width: 2px;
+}
+
+.beginner-step-done {
+  opacity: 0.76;
+}
+
+.beginner-step-number {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.78rem;
+  opacity: 0.68;
+}
+
+.beginner-step strong {
+  display: block;
+  line-height: 1.4;
+}
+
+.beginner-step small {
+  display: block;
+  margin-top: 7px;
+  line-height: 1.45;
+  opacity: 0.72;
+}
+
+.beginner-journey {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.beginner-journey-card {
+  min-height: 96px;
+  border: 1px solid rgba(127, 127, 127, 0.23);
+  border-radius: 14px;
+  padding: 13px;
+}
+
+.beginner-journey-card strong {
+  display: block;
+}
+
+.beginner-journey-card span {
+  display: block;
+  margin-top: 7px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.72;
+}
+
+.beginner-mission-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.beginner-mission-card {
+  border: 1px solid rgba(127, 127, 127, 0.23);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.beginner-mission-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.beginner-mission-card p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+.beginner-mission-card small {
+  display: block;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.beginner-progress-track {
+  height: 9px;
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 999px;
+}
+
+.beginner-progress-fill {
+  height: 100%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.beginner-advanced-link {
+  margin: 28px 0 8px;
+  padding: 18px;
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+  text-align: center;
+}
+
+.beginner-advanced-link p {
+  margin: 0 0 10px;
+  opacity: 0.72;
+}
+
+@media (max-width: 900px) {
+  .beginner-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .beginner-step-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .beginner-journey {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .beginner-mission-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .beginner-dashboard {
+    padding: 22px 14px 8px;
+  }
+
+  .beginner-panel {
+    padding: 18px;
+  }
+
+  .beginner-metrics,
+  .beginner-step-grid,
+  .beginner-mission-list {
+    grid-template-columns: 1fr;
+  }
+
+  .beginner-journey {
+    grid-template-columns: 1fr;
+  }
+
+  .beginner-actions,
+  .beginner-actions .beginner-button,
+  .beginner-actions a.beginner-button {
+    width: 100%;
+  }
+}

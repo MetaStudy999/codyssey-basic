@@ -1,63 +1,72 @@
-# Codyssey Developer Growth OS
+# Codyssey Basic — Beginner First Growth OS
 
-> Codyssey AI/SW Basic B1-1~B7-2를 중심으로 **Mission 수행 → 학습 → 문제해결 → 협업 → 심화 → 실전 → 전문가 성장**을 하나의 Control Tower에서 관리한다.
+> **진도가 아직 0이어도 B1-1부터 한 단계씩 시작하면 됩니다.**  
+> 이 저장소는 B1-1~B7-2 Mission 수행, 학습, 검증, 성장 기록을 연결하는 Control Tower입니다.
 
-이 저장소는 개별 Mission 소스코드를 모으는 monorepo가 아니다. 실제 구현은 각 Mission Repository에서 수행하고, 이 저장소는 **Master Map + Mission Progress + Learning + Community + Project + Opportunity + Research + Open Source + Career + Venture + Portfolio + Impact**를 연결한다.
-
-- GitHub Pages: https://metastudy999.github.io/codyssey-basic/
-- Repository: https://github.com/MetaStudy999/codyssey-basic
-- 실행 범위: B1-1 ~ B7-2, 총 15개 Mission/Term Project 단위
-- Mission Source of Truth: `config/missions.yaml`
-- Growth Source of Truth: `config/growth.yaml`
+- **처음 시작:** [GitHub Pages Dashboard](https://metastudy999.github.io/codyssey-basic/)
+- **현재 새 도전:** B1-1 · 컴퓨터가 알아서 자기 상태를 점검하게 만들기
+- **현재 단계:** 1/8 · 미션 이해하기
+- **새 Mission Clear:** 0/15
+- **현재 Cycle 문서:** [새 Mission Clear Cycle](docs/01-master-map/mission-clear-cycle.md)
 
 ---
 
-## 1. Growth Model
+## 1. 처음이라면 이것만 보면 됩니다
 
 ```text
-CORE
-  ↓
-EXPLORE
-  ↓
-ADVANCED
-  ↓
-PRO
-  ↓
-EXPERT
-  ↓
-전문 경로 분기
-  ↓
-IMPACT
+B1-1부터 시작
+      ↓
+1. 미션 이해하기
+      ↓
+2. 직접 만들기
+      ↓
+3. 테스트하기
+      ↓
+4. 검토하기
+      ↓
+5. 실제로 실행하기
+      ↓
+6. 증빙 남기기
+      ↓
+7. 이해하고 설명하기
+      ↓
+8. 완료 반영하기
+      ↓
+다음 Mission
 ```
 
-| Stage | 의미 | 핵심 질문 |
-|---|---|---|
-| **CORE** | 기본을 이해하고 직접 완성 | 무엇이며, 내가 직접 할 수 있는가? |
-| **EXPLORE** | 넓게 경험하고 방향 탐색 | 무엇이 가능하고 무엇을 더 깊게 볼 것인가? |
-| **ADVANCED** | 선택 영역을 깊게 심화 | 어떻게 더 잘 만들고 왜 이 방법을 선택하는가? |
-| **PRO** | 실제 환경에서 전문적으로 결과 창출 | 실제 사용자와 환경에서 결과를 책임질 수 있는가? |
-| **EXPERT** | 고난도 판단과 Trade-off | 무엇을 선택해야 하며 왜 그런가? |
+Dashboard는 항상 다음 세 가지를 먼저 보여줍니다.
 
-EXPERT 이후에는 Tech Lead/Principal, Architect/SRE, AI/Researcher, Open Source, Educator/Mentor, Founder 등으로 분기한다. 최종 목표는 칭호보다 **IMPACT**다.
+1. **나는 지금 어디에 있는가?**
+2. **지금 무엇을 해야 하는가?**
+3. **전체 중 얼마나 진행했는가?**
 
-상세: [Growth Model](docs/00-governance/growth-model.md)
+한꺼번에 모든 기술을 알 필요는 없습니다. 현재 단계에서 필요한 한 가지 행동부터 진행합니다.
 
 ---
 
-## 2. 서로 섞지 않는 4개 축
+## 2. 새 Mission Clear Cycle
 
-| 축 | 값 | 질문 |
-|---|---|---|
-| **Growth Stage** | CORE → EXPLORE → ADVANCED → PRO → EXPERT | 얼마나 성장했는가? |
-| **Status** | PLANNED → READY → ACTIVE → DONE | 지금 어디까지 진행됐는가? |
-| **Priority** | REQUIRED / RECOMMENDED / OPTIONAL | 반드시 해야 하는가? |
-| **Domain** | Mission / Learning / Community / Project / Research / Career / Venture 등 | 무엇에 관한 활동인가? |
+현재 도전의 Source of Truth는 `config/cycles/current.yaml`입니다.
 
-예외 Status는 `BLOCKED`, `ARCHIVED`를 사용한다.
+```text
+Cycle        새 미션 클리어 도전
+Current      B1-1
+Step         1 / 8
+Clear        0 / 15
+```
+
+과거에 수행했던 결과는 삭제하지 않습니다. `config/history/`와 기존 Official Integration 기록에 보존합니다.
+
+예를 들어 B2-1의 이전 `PASS`는 **현재 새 도전의 완료로 계산하지 않고 `Previous PASS`로만 표시**합니다.
+
+```text
+Current Cycle  ≠  Previous History
+```
 
 ---
 
-## 3. Codyssey Basic — CORE 중심 줄기
+## 3. B1 → B7 전체 여행
 
 ```text
 B1 Linux & OS
@@ -85,13 +94,11 @@ B7 Term Project
 | B6 Cloud & AI API | B6-1, B6-2 |
 | B7 Term Project | B7-1, B7-2 |
 
-공식 필수/선택과 실제 진행 상태는 폴더가 아니라 `config/missions.yaml` Metadata로 관리한다.
-
 ---
 
-## 4. Mission Progress
+## 4. Official Integration 기록
 
-아래 표는 `config/missions.yaml`에서 자동 생성한다. 표 자체를 직접 수정하지 않는다.
+아래 표는 `config/missions.yaml`에서 자동 생성되는 **기존 공식 통합 상태**입니다. 새 Mission Clear Cycle과 동일한 의미가 아닙니다.
 
 <!-- AUTO:MISSION_PROGRESS:START -->
 
@@ -115,66 +122,102 @@ B7 Term Project
 
 <!-- AUTO:MISSION_PROGRESS:END -->
 
-Mission 진행 상세: [Mission Progress](docs/01-master-map/mission-progress.md)
-
-Completion Gate:
-
-`G1 SOURCE → G2 BUILD → G3 TEST → G4 REVIEW → G5 RUNTIME → G6 EVIDENCE → G7 LEARN → G8 MERGE`
-
-`PASS`와 Learning `MASTERED`는 같은 의미가 아니다.
+상세: [Official Mission Progress](docs/01-master-map/mission-progress.md)
 
 ---
 
-## 5. Mission Lifecycle
+## 5. Beginner 화면과 전문 화면
+
+### 처음 시작하는 사람
+
+Dashboard 상단의 다음 요소만 사용하면 됩니다.
+
+- 현재 Mission
+- 지금 할 일 하나
+- 8단계 따라하기
+- 쉬운 설명
+- 막혔어요
+- B1~B7 전체 여행
+
+### 자세한 정보가 필요한 사람
+
+아래 전문 영역에서 확인합니다.
+
+- Growth Stage
+- Official G1~G8
+- Workcell Live Status
+- Dependency
+- Skill Evidence
+- Governance
+
+전문 정보는 삭제하지 않고 **Progressive Disclosure(점진적 정보 공개)** 방식으로 뒤에 배치합니다.
+
+---
+
+## 6. Growth Model
 
 ```text
-COMPLETE
-→ UNDERSTAND
-→ BREAK
-→ DEBUG
-→ COLLABORATE
-→ EXPLORE
-→ ADVANCE
-→ PRO
+CORE → EXPLORE → ADVANCED → PRO → EXPERT → SPECIALIZATION → IMPACT
 ```
 
-먼저 공식 Mission을 정확히 완료하고, 완성 결과물로 이해·오류실험·협업·심화·실전을 이어간다.
+Mission을 먼저 정확히 완료하고, 이후 학습·문제해결·협업·심화·실전으로 확장합니다.
 
-> **먼저 빠르게 완성하고, 최소 검증으로 정확성을 확보한 뒤, 완성 결과물로 깊게 학습한다.**
-
----
-
-## 6. 12개 성장 역량
-
-1. **Learn** — 용어·개념·이론
-2. **Build** — 구현
-3. **Test** — 검증·품질
-4. **Debug** — 문제 해결
-5. **Collaborate** — Git·PR·Review·Team
-6. **Design** — Architecture·ADR
-7. **Operate** — Cloud·Security·SRE
-8. **Compete** — 공모전·해커톤·경진대회
-9. **Research** — 실험·학회·논문
-10. **Communicate** — 문서·발표·교육
-11. **Career** — Open Source·Portfolio·취업
-12. **Venture** — 사용자·Product·창업
-
-Growth Stage는 **얼마나 성장했는가**, 12개 축은 **무엇을 성장시키는가**를 나타낸다.
+> **먼저 빠르게 완성하고, 최소 검증으로 정확성을 확보한 뒤, 완성 결과물로 깊게 학습합니다.**
 
 ---
 
-## 7. Master Map
+## 7. Source of Truth
+
+```text
+config/cycles/current.yaml
+    └─ 현재 새 Mission Clear Cycle / 현재 Mission / Beginner 상태
+
+config/history/
+    └─ 이전 수행 기록
+
+config/missions.yaml
+    └─ Official Mission / G1~G8 / Learning 상태
+
+config/growth.yaml
+    └─ Growth Stage / Status / Priority
+
+config/skills.yaml
+    └─ 12 Competency Axis / Evidence Level
+
+config/activities.yaml
+    └─ 실제 Activity
+
+config/projects.yaml
+    └─ Project Lineage
+
+config/opportunities.yaml
+    └─ 외부 Opportunity
+```
+
+생성 흐름:
+
+```text
+Mission + Cycle + History + Wave Config
+        ↓
+scripts/sync_progress.py
+        ├─ Official Mission Progress
+        ├─ Mission Clear Cycle
+        ├─ site/data/missions.json
+        ├─ site/data/cycle.json
+        └─ site/data/workcells.json
+```
+
+---
+
+## 8. 문서 지도
 
 - [Master Map](docs/01-master-map/README.md)
-- [Growth Map](docs/01-master-map/growth-map.md)
-- [Current State](docs/01-master-map/current-state.md)
-- [Mission Progress](docs/01-master-map/mission-progress.md)
+- [새 Mission Clear Cycle](docs/01-master-map/mission-clear-cycle.md)
 - [Mission Dependency Map](docs/01-master-map/mission-dependency-map.md)
-- [Growth Routing](docs/01-master-map/growth-routing.md)
-- [Repository Map](docs/01-master-map/repository-map.md)
-- [Dashboard Design](docs/01-master-map/dashboard-v3.md)
-
-Canonical docs 구조:
+- [Dashboard V3.1 Design](docs/01-master-map/dashboard-v3.md)
+- [Mission 정보](docs/02-missions/README.md)
+- [Learning](docs/03-learning/README.md)
+- [Governance](docs/00-governance/README.md)
 
 ```text
 docs/
@@ -195,134 +238,13 @@ docs/
 
 ---
 
-## 8. Master Map + Progressive Repository
+## 9. 운영 원칙
 
-> **미래 전체 지도는 먼저 설계하고, 실제 폴더는 현재 필요한 만큼만 만든다.**
+1. **Beginner First** — 처음 보는 사람도 B1-1의 첫 행동을 바로 찾을 수 있어야 합니다.
+2. **One Next Action** — 현재 단계에서 가장 먼저 할 행동 하나를 우선 보여줍니다.
+3. **History ≠ Current Cycle** — 과거 PASS와 현재 새 도전 진행률을 섞지 않습니다.
+4. **Evidence First** — 실제 검증되지 않은 결과를 PASS로 표시하지 않습니다.
+5. **Mission PASS before Overengineering** — 비필수 고도화가 현재 미션 완료를 지연시키지 않습니다.
+6. **Manual Refresh** — Mission Live 상태는 자동 polling하지 않고 사용자가 갱신하며 5분 Cooldown을 유지합니다.
 
-```text
-Logical Map
-    ↓
-PLANNED
-    ↓
-READY
-    ↓
-ACTIVE
-    ↓
-필요한 Physical Folder 생성
-```
-
-`core/`, `advanced/`, `pro/` 같은 단계별 폴더를 만들지 않는다.
-
-```text
-Folder = Domain
-Stage = Metadata
-Status = Progress
-Priority = Importance
-```
-
-상세: [Repository Policy](docs/00-governance/repository-policy.md)
-
----
-
-## 9. Source of Truth
-
-```text
-config/missions.yaml
-    └─ Mission 수행 / G1~G8 / Learning
-
-config/growth.yaml
-    └─ Growth Stage / Status / Priority
-
-config/skills.yaml
-    └─ 12 Competency Axis / Evidence Level
-
-config/activities.yaml
-    └─ 실제 Activity
-
-config/projects.yaml
-    └─ Project Lineage
-
-config/opportunities.yaml
-    └─ 외부 Opportunity Availability / Fit
-
-config/resources.yaml
-    └─ Learning / Research Resource Registry
-```
-
----
-
-## 10. Dashboard
-
-Dashboard는 다음을 분리해 보여준다.
-
-```text
-Growth
-  CORE / EXPLORE / ADVANCED / PRO / EXPERT
-
-Mission
-  B1~B7 / G1~G8
-
-Skill
-  12 Competency Axis
-
-Activity / Project / Opportunity
-  실제 수행 상태 / 외부 기회 상태
-```
-
-Mission 자동화:
-
-```text
-config/missions.yaml + config/waves/*.yaml
-        ↓
-scripts/sync_progress.py
-        ├─ README Mission Table
-        ├─ docs/01-master-map/mission-progress.md
-        ├─ site/data/missions.json
-        └─ site/data/workcells.json
-```
-
-Growth 자동화:
-
-```text
-Growth/Skill/Activity/Project/Opportunity Config
-        ↓
-scripts/sync_growth.py
-        ├─ docs/01-master-map/current-state.md
-        └─ site/data/*.json
-```
-
-수동 Mission Refresh + 5분 Cooldown 정책을 유지한다.
-
----
-
-## 11. One Project → Many Outcomes
-
-```text
-Mission
-  ↓
-Project
-  ├─ Study / Seminar
-  ├─ Hackathon / Competition
-  ├─ Open Source
-  ├─ Research / Paper
-  ├─ Portfolio / Career
-  └─ MVP / PoC / Venture
-```
-
-프로젝트를 계속 새로 버리기보다 하나의 문제와 결과물을 Project Lineage로 발전시킨다.
-
----
-
-## 12. Stable Operation
-
-현재 `main`은 Growth OS V3 Canonical 구조를 사용한다.
-
-- active 운영 문서는 현재 규칙과 현재 상태를 중심으로 유지한다.
-- 과거 재구축·Migration 상세는 Git history와 PR #73~#77에서 추적한다.
-- V3 이전 기준본은 `archive/pre-growth-os-v3`에 보존한다.
-- 새 변경은 현재 Canonical Domain을 기준으로 설계한다.
-- 비필수 개선은 CORE Mission PASS를 지연시키지 않는다.
-
-변경 판단:
-
-> **현재 목표를 직접 앞당기면 DO, 가치 있지만 지금 필요 없으면 DEFER, 복리 효과가 낮으면 DROP.**
+현재 `main`은 Growth OS V3 Canonical 구조를 기반으로 운영하며, Beginner First Mission Clear Cycle을 그 위에 추가합니다.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Browser smoke test for the static Growth OS V3 dashboard.
+"""Browser smoke test for the Growth OS V3.1 Beginner First dashboard.
 
 The test serves the repository root locally, loads site/index.html in Chromium,
-verifies Growth/Mission rendering, checks the 5-minute manual refresh cooldown,
-and optionally exercises the real Mission telemetry network path.
+verifies the beginner start experience plus Growth/Mission rendering, checks
+the 5-minute manual refresh cooldown, optionally exercises the real Mission
+telemetry network path, and performs a compact mobile overflow check.
 """
 from __future__ import annotations
 
@@ -47,6 +48,65 @@ def assert_count(page, selector: str, expected: int) -> None:
     actual = page.locator(selector).count()
     if actual != expected:
         raise AssertionError(f"{selector}: expected {expected}, got {actual}")
+
+
+def verify_beginner_dashboard(page) -> None:
+    page.locator("#beginner-current-title").wait_for()
+    page.wait_for_function("document.documentElement.dataset.beginnerDashboard === 'ready'")
+
+    if "B1-1" not in page.locator("#beginner-current-id").inner_text():
+        raise AssertionError("Beginner dashboard must start from B1-1")
+    if "컴퓨터가 알아서 자기 상태를 점검하게 만들기" not in page.locator("#beginner-current-title").inner_text():
+        raise AssertionError("Beginner dashboard current mission title mismatch")
+    if page.locator("#beginner-clear-count").inner_text().strip() != "0 / 15":
+        raise AssertionError("New Mission Clear Cycle must start at 0 / 15")
+    if "1 / 8" not in page.locator("#beginner-current-step-metric").inner_text():
+        raise AssertionError("Beginner dashboard must start at step 1 / 8")
+
+    assert_count(page, "#beginner-step-grid .beginner-step", 8)
+    assert_count(page, "#beginner-journey .beginner-journey-card", 7)
+    assert_count(page, "#beginner-mission-list .beginner-mission-card", 15)
+
+    b2_1 = page.locator("#beginner-mission-list .beginner-mission-card").filter(has_text="B2-1")
+    if "이전 수행 기록: PASS" not in b2_1.inner_text():
+        raise AssertionError("B2-1 previous PASS must be shown as history, not current clear")
+    if "새 도전 0/8 단계" not in b2_1.inner_text():
+        raise AssertionError("B2-1 new cycle must remain at 0/8")
+
+    help_button = page.locator("#beginner-help-button")
+    help_button.click()
+    if not page.locator("#beginner-help-box").is_visible():
+        raise AssertionError("beginner easy-help panel did not open")
+    help_button.click()
+
+    stuck_button = page.locator("#beginner-stuck-button")
+    stuck_button.click()
+    if not page.locator("#beginner-stuck-box").is_visible():
+        raise AssertionError("beginner stuck-help panel did not open")
+    stuck_button.click()
+
+
+def verify_mobile_readability(browser, url: str) -> None:
+    context = browser.new_context(viewport={"width": 390, "height": 844})
+    page = context.new_page()
+    errors: list[str] = []
+    page.on("pageerror", lambda exc: errors.append(str(exc)))
+    page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
+    page.goto(url, wait_until="networkidle")
+    page.wait_for_function("document.documentElement.dataset.beginnerDashboard === 'ready'")
+
+    if not page.locator("#beginner-current-title").is_visible():
+        raise AssertionError("current mission must be visible on mobile")
+    overflow = page.locator("#beginner-dashboard").evaluate("el => el.scrollWidth - el.clientWidth")
+    if overflow > 2:
+        raise AssertionError(f"beginner mobile dashboard has horizontal overflow: {overflow}px")
+    if not page.locator("#beginner-continue").is_visible():
+        raise AssertionError("primary beginner action must be visible on mobile")
+    if errors:
+        raise AssertionError("mobile browser console/page errors: " + " | ".join(errors))
+
+    page.screenshot(path=str(ROOT / "browser-smoke-mobile.png"), full_page=True)
+    context.close()
 
 
 def verify_live_telemetry(page, minimum_success: int) -> tuple[int, int]:
@@ -102,6 +162,7 @@ def main() -> int:
         url = f"http://127.0.0.1:{port}/site/"
         page.goto(url, wait_until="networkidle")
 
+        verify_beginner_dashboard(page)
         page.locator("#growth-stage-grid .growth-stage-card").first.wait_for()
         page.locator("#mission-control-grid .mission-control-card").first.wait_for()
 
@@ -121,10 +182,10 @@ def main() -> int:
         if not refresh.is_enabled():
             raise AssertionError("manual refresh button must be enabled with a clean localStorage")
 
-        # Verify the 5-minute cooldown UI without making live network requests.
         page.evaluate("([key, value]) => localStorage.setItem(key, value)", [COOLDOWN_KEY, str(int(time.time() * 1000))])
         page.reload(wait_until="networkidle")
         page.locator("#mission-control-grid .mission-control-card").first.wait_for()
+        page.wait_for_function("document.documentElement.dataset.beginnerDashboard === 'ready'")
         refresh = page.locator("#poll-live-status")
         if refresh.is_enabled():
             raise AssertionError("manual refresh button must be disabled during the 5-minute cooldown")
@@ -137,14 +198,17 @@ def main() -> int:
         if errors:
             raise AssertionError("browser console/page errors: " + " | ".join(errors))
 
-        screenshot = ROOT / "browser-smoke.png"
-        page.screenshot(path=str(screenshot), full_page=True)
+        page.screenshot(path=str(ROOT / "browser-smoke.png"), full_page=True)
+        context.close()
+
+        verify_mobile_readability(browser, url)
         browser.close()
 
-    print("V3 browser smoke test passed.")
+    print("V3.1 Beginner First browser smoke test passed.")
     if live_result:
         print(f"Live telemetry: {live_result[0]}/{live_result[1]} repositories succeeded.")
     print("Screenshot: browser-smoke.png")
+    print("Mobile screenshot: browser-smoke-mobile.png")
     return 0
 
 

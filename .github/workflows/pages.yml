@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'config/missions.yaml'
+      - 'config/cycles/**'
+      - 'config/history/**'
       - 'config/waves/**'
       - 'config/growth.yaml'
       - 'config/skills.yaml'
@@ -14,6 +16,7 @@ on:
       - 'scripts/sync_progress.py'
       - 'scripts/sync_growth.py'
       - 'scripts/validate_v3.py'
+      - 'scripts/browser_smoke.py'
       - 'site/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
