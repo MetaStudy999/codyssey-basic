@@ -1,9 +1,53 @@
 {
   "schema_version": 3,
   "generated_from": "config/activities.yaml",
+  "version": 3,
   "model": "codyssey-developer-growth-os-activities",
-  "activity_types": ["study","code-review-dojo","debugging-clinic","architecture-cafe","failure-lab","mentoring","seminar","meetup","hackathon","competition","challenge","conference","open-source","research","career","venture"],
-  "status_values": ["PLANNED","READY","ACTIVE","BLOCKED","DONE","ARCHIVED"],
-  "priority_values": ["REQUIRED","RECOMMENDED","OPTIONAL"],
+  "activity_types": [
+    "study",
+    "code-review-dojo",
+    "debugging-clinic",
+    "architecture-cafe",
+    "failure-lab",
+    "mentoring",
+    "seminar",
+    "meetup",
+    "hackathon",
+    "competition",
+    "challenge",
+    "conference",
+    "open-source",
+    "research",
+    "career",
+    "venture"
+  ],
+  "status_values": [
+    "PLANNED",
+    "READY",
+    "ACTIVE",
+    "BLOCKED",
+    "DONE",
+    "ARCHIVED"
+  ],
+  "priority_values": [
+    "REQUIRED",
+    "RECOMMENDED",
+    "OPTIONAL"
+  ],
+  "record_fields": [
+    "id",
+    "title",
+    "type",
+    "growth_stage",
+    "status",
+    "priority",
+    "related_missions",
+    "related_skills",
+    "owner_or_team",
+    "start_date",
+    "end_date",
+    "evidence",
+    "retrospective"
+  ],
   "activities": []
 }
