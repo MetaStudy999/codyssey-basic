@@ -26,11 +26,11 @@ Process / PID
 
 ## B1-2 Advanced로 넘어갈 질문
 
-원본 Mission PDF의 Bonus는 스케줄링 알고리즘 추론과 연결된다. 다음 질문은 Advanced에서 다룬다.
+원본 Mission PDF의 Bonus는 스케줄링 알고리즘 추론과 연결된다.
 
 - 실행 순서와 교체 주기에서 어떤 scheduling pattern을 읽을 수 있는가?
 - Worker thread의 progress를 어떻게 관찰할 것인가?
-- Time Quantum이 있는 패턴과 FCFS-like 패턴은 어떻게 다르게 보이는가?
+- Time Quantum처럼 보이는 반복 간격과 단순 로그 간격은 어떻게 구분할 것인가?
 - Round-Robin / FCFS / Priority Scheduling을 어떤 Evidence로 비교할 것인가?
 - 알고리즘을 단정하기 전에 어떤 관측 한계를 적어야 하는가?
 
@@ -48,10 +48,10 @@ Advanced는 필수 미션 PASS를 대체하지 않으며, 실제 관측 없이 �
 
 ## 후행 연결
 
-B1-2 Advanced까지 정리한 뒤 다음 미션의 Level 0/1 구조화로 넘어간다. 공통 개념은 다시 NEW로 복제하지 않고 `REVIEW / APPLY / DEEPEN` 원칙을 유지한다.
+Advanced에서는 `로그 → 실행 순서/교체 주기 → 후보 비교 → 역추론 → 장단점/아키텍처 적합성 → 리포트`를 수행한다. 완료 후 B2-1로 넘어간다.
 
 ## Gate
 
 `필수`와 `Bonus/Advanced`의 경계를 설명하고 다음 학습 질문 세 개 이상을 스스로 만들면 Review를 종료한다.
 
-[← 110](./b1-2-70-110-learning-ready-decision.md) · [Review Index](./b1-2-70-000-index.md) · [Review Full Pack](../b1-2-70-review-pack.md)
+[← 110](./b1-2-70-110-learning-ready-decision.md) · [Review Index](./b1-2-70-000-index.md) · [Advanced →](../b1-2-90-advanced/b1-2-90-000-index.md)
