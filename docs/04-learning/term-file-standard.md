@@ -18,10 +18,13 @@ Codyssey Basic 학습 자료를 `Mission → Level → Term` 단위로 탐색할
 vocabulary/
 └── {mission-number}-{english-mission-slug}/
     ├── {mission-number}-00-index.md
+    ├── {mission-number}-10-level-0-prerequisite/
+    │   ├── {mission-number}-10-000-index.md
+    │   ├── {mission-number}-10-010-{term-slug}.md
+    │   └── ...
     ├── {mission-number}-20-level-1-core/
     │   ├── {mission-number}-20-000-index.md
     │   ├── {mission-number}-20-010-{term-slug}.md
-    │   ├── {mission-number}-20-020-{term-slug}.md
     │   └── ...
     └── ...
 ```
@@ -37,7 +40,7 @@ Level 디렉터리의 `000-index`는 그 Level의 학습 지도다. 개별 용�
 예:
 
 ```text
-b1-1-20-010-linux.md
+b1-1-10-010-linux.md
 b1-1-20-070-acl.md
 b1-1-20-090-ssh.md
 b1-1-20-220-health-check.md
@@ -71,10 +74,13 @@ H1: 한글 용어 (English Term, ABBR)
 ---
 mission: B1-1
 stage: top-core
+level: 1
 order: 70
 term: Access Control List
 abbreviation: ACL
 lifecycle: NEW
+gate: V2-V3
+visual_learning: DEFERRED
 ---
 ```
 
@@ -82,9 +88,7 @@ lifecycle: NEW
 
 ## 6. 중복 용어 정책
 
-같은 용어가 여러 미션에 등장해도 파일 내용을 복사하지 않는다.
-
-예:
+같은 용어가 여러 미션에 등장해도 내용을 그대로 복사하지 않는다.
 
 ```text
 B1-1 Process → NEW: 프로세스의 의미와 기본 관계
@@ -93,6 +97,8 @@ B6-1 Process → APPLY: 배포 서버에서 서비스 상태 검증
 ```
 
 각 미션 파일은 **그 미션에서 새로 배우는 관점**만 추가한다. 통합 정의와 First Seen/Reuse는 `basic-master-vocabulary.md`가 관리한다.
+
+같은 미션 안에서 Level 0과 Level 1에 같은 용어가 다시 등장할 수 있다. 이 경우 Level 0은 `V1 인지`, Level 1은 `V2 의미 + V3 관계`처럼 학습 깊이를 명확히 분리한다.
 
 ## 7. 링크 규칙
 
@@ -106,8 +112,6 @@ Level Index는 상위 Mission Index와 이전/다음 Level도 연결한다. 외�
 
 ## 8. Source of Truth
 
-우선순위는 기존 학습 체계와 같다.
-
 1. 원본 Mission PDF / Mission Markdown
 2. 공식 Evaluation
 3. 실제 구현에 필요한 코드·설정·명령·파일 구조
@@ -116,7 +120,27 @@ Level Index는 상위 Mission Index와 이전/다음 Level도 연결한다. 외�
 
 Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 않는다.
 
-## 9. 검증 체크리스트
+## 9. 시각 학습(Visual Learning) 정책
+
+각 용어에 대한 만화·도식은 최종적으로 다음 구성을 목표로 한다.
+
+```text
+Cover
+→ One-line
+→ Where
+→ Key Relation
+→ Mini Check
+→ Gate
+→ One-page Summary
+```
+
+하지만 **현재 이미지 생성 및 GitHub 반영 작업은 DEFERRED**다. 시각 자료가 없어도 개별 용어 텍스트, Level 구조, 실습, 트러블슈팅, 평가, Gate 작업을 계속 진행한다.
+
+상세 형식·파일명·Source Lock·QA·재개 조건은 [Visual Learning Backlog](./visual-learning-backlog.md)를 따른다.
+
+기존 Pilot 이미지가 존재하더라도 자동으로 시각 학습 완료로 간주하지 않는다.
+
+## 10. 검증 체크리스트
 
 - [ ] 디렉터리와 파일이 번호순으로 정렬되는가?
 - [ ] `000-index`에서 모든 개별 용어 파일로 이동할 수 있는가?
@@ -125,14 +149,19 @@ Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 �
 - [ ] 원본의 고정값·제약이 변형되지 않았는가?
 - [ ] 학습 보조 설명과 원본 요구가 구분되는가?
 - [ ] 같은 용어의 미션 간 역할이 복사본이 아니라 Lifecycle로 구분되는가?
+- [ ] Visual Learning이 미완료라는 이유로 비시각 학습 작업을 막고 있지 않은가?
 
-## 10. Pilot
+## 11. 적용 상태와 다음 순서
 
-첫 적용은 **B1-1 Level 1 Top Core 28개**다.
+첫 적용은 **B1-1 Level 1 Top Core 28개**이며 `한 파일 = 한 용어` 구조가 적용되어 있다.
 
-- Mission: `b1-1-system-monitoring-automation`
-- Level Directory: `b1-1-20-level-1-core/`
-- Entry: `b1-1-20-000-index.md`
-- Term files: `010` ~ `280`
+```text
+B1-1 Level 1 개별 용어 구조화  ✅
+Visual Learning Pilot          DEFERRED
+B1-1 Level 0 개별 용어 구조화  NEXT
+B1-1 Level 2 개별 용어 구조화  NEXT
+B1-1 Level 3~5 관계 정교화     이후
+B1-2 동일 구조 적용            이후
+```
 
-Pilot 검증 후 같은 규칙을 Level 0/2/3/4/5 및 B1-2 이후 미션으로 확대한다.
+만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
