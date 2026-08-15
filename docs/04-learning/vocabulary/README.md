@@ -33,7 +33,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 구조화 완료 / Review NEXT** |
+| 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review 구조화 완료 / Advanced NEXT** |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
@@ -75,10 +75,12 @@ Advanced에서는 `SOURCE_LINKED_BONUS`와 `SUPPLEMENTAL_ADVANCED`를 구분한�
 - [40 — Level 3 Principles Index](./b1-2-linux-process-resource-troubleshooting/b1-2-40-level-3-principles/b1-2-40-000-index.md) — 12개 ✅
 - [50 — Level 4 Troubleshooting Index](./b1-2-linux-process-resource-troubleshooting/b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) — 12개 ✅
 - [60 — Level 5 Evaluation Index](./b1-2-linux-process-resource-troubleshooting/b1-2-60-level-5-evaluation/b1-2-60-000-index.md) — 12개 ✅
+- [70 — Integrated Review Index](./b1-2-linux-process-resource-troubleshooting/b1-2-70-review/b1-2-70-000-index.md) — 12개 ✅
+- [70 — Review Full Pack](./b1-2-linux-process-resource-troubleshooting/b1-2-70-review-pack.md) — 전체 요약 ✅
 - [기존 Vocabulary Summary](./b1-2.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Review
+- 다음: Advanced — Scheduling Algorithm inference
 
-B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. Level 5에서는 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP`으로 실제 장애 Evidence를 평가 설명과 연결한다. `b1-2-evaluation.md`는 official provenance 미확인 상태이므로 provisional 평가 연습 자료로만 사용한다.
+B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. Review에서는 OOM/CPU/Deadlock의 핵심 관계, Source-locked 제약, Evidence, Troubleshooting, V5 자기 설명을 백지 복원하고 `LEARNING READY`를 별도로 판정한다.
 
 ## 통합 자산 상태
 
@@ -91,11 +93,12 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - B1-2 Level 3 원리 단위 12개: **완료**
 - B1-2 Level 4 장애 진단 단위 12개: **완료**
 - B1-2 Level 5 평가 설명 단위 12개: **완료**
+- B1-2 Review 통합 단위 12개 + Full Pack: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B1-2 Review 통합 구조화**
+- 다음: **B1-2 Advanced 선택 심화 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEARNING READY`, `TROUBLESHOOTING READY`, `EVALUATION READY`, `RUNTIME VERIFIED`, `MISSION PASS`, `ADVANCED STRUCTURE READY`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `REVIEW STRUCTURE READY`, `LEARNING READY`, `TROUBLESHOOTING READY`, `EVALUATION READY`, `RUNTIME VERIFIED`, `MISSION PASS`, `ADVANCED STRUCTURE READY`를 분리해 관리한다.

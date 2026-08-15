@@ -40,17 +40,19 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [40 — Level 3 Principle Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-40-level-3-principles/b1-2-40-000-index.md) — 12개, WHY/HOW ✅
 - [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) — 12개 ✅
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-60-level-5-evaluation/b1-2-60-000-index.md) — 12개, V5 ✅
+- [70 — Integrated Review Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-70-review/b1-2-70-000-index.md) — 12개 ✅
+- [70 — Review Full Pack](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-70-review-pack.md) — 전체 요약 ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Level 0·1·2·3·4·5 ✅
+B1-2 Level 0~5 + Review ✅
         ↓
-B1-2 Review → NEXT
+B1-2 Advanced → NEXT
 ```
 
-B1-2 Level 5는 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP` 구조로 OOM/CPU/Deadlock, 관제 명령어, OS 원리, Evidence/RCA, Workaround/Root Fix, 운영 개선, 복합 장애 우선순위, 구두 답변을 연결한다. `b1-2-evaluation.md`는 official provenance 미확인 상태를 유지하고 연습용 provisional rubric으로만 사용한다.
+B1-2 Review는 `RECALL → RELATE → DIAGNOSE → EVIDENCE → EXPLAIN → RETRIEVE AGAIN → LEARNING READY` 흐름으로 Level 0~5를 다시 꺼내 쓰게 한다. OOM/CPU/Deadlock의 핵심 변수·Evidence·Before&After·Troubleshooting·V5 자기 설명을 통합하고, `b1-2-evaluation.md`는 official provenance 미확인 provisional practice rubric으로만 유지한다.
 
 ## 자기 설명 기준
 

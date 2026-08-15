@@ -146,18 +146,20 @@ Review는 새 지식을 추가하는 단계가 아니라 Level 0~5를 다시 꺼
 
 ```text
 Mission Map
-→ Fixed Values
-→ Role/Permission Map
+→ Fixed Constraints / Values
+→ Domain Relation Reconstruction
 → V1/V2 Recall
 → V3 Relation
 → V4 Locate/Apply
 → Troubleshooting
 → V5 Oral Explanation
 → Blank Recall
-→ Evidence Checklist
+→ Evidence Mapping
 → LEARNING READY Decision
-→ Next Mission Bridge
+→ Advanced / Next Mission Bridge
 ```
+
+미션 특성에 따라 `Role/Permission Map`, `OOM/CPU/Deadlock Chain`, `CRUD Flow`, `Data Model` 등 Domain Relation 단위를 바꿀 수 있다.
 
 분리 기준:
 
@@ -165,7 +167,7 @@ Mission Map
 - V1~V5와 Troubleshooting을 한 방향으로 통합하는가?
 - 백지 복원·구두 설명·Evidence 점검 중 하나의 명확한 목적이 있는가?
 - `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 혼동하지 않는가?
-- 다음 미션의 REVIEW/DEEPEN으로 연결되는가?
+- Advanced 또는 다음 미션의 REVIEW/APPLY/DEEPEN으로 연결되는가?
 
 ### Advanced — Optional Deepening
 
@@ -411,10 +413,15 @@ B1-1 Review 통합 구조화         ✅ 12 review units + 000-index
 B1-1 Advanced 선택 심화 구조화  ✅ 10 advanced units + 000-index
 B1-2 Level 0 선수 용어 구조화   ✅ 35 terms + 000-index
 B1-2 Level 1 Top Core 구조화     ✅ 30 terms + 000-index
+B1-2 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
+B1-2 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
+B1-2 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
+B1-2 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
+B1-2 Review 통합 구조화         ✅ 12 review units + Full Pack
 Visual Learning                  DEFERRED
-B1-2 Level 2 실행 단위 구조화   NEXT
+B1-2 Advanced 선택 심화 구조화  NEXT
 ```
 
-B1-2에서는 B1-1에서 학습한 공통 개념을 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. 다음 단계는 OOM / CPU / Deadlock 각각을 `재현 → 관찰 → Evidence → 환경 변수 변경 → Before & After` 실행 단위로 구성한다.
+B1-2 Review는 OOM/CPU/Deadlock을 `RECALL → RELATE → DIAGNOSE → EVIDENCE → EXPLAIN → RETRIEVE AGAIN → LEARNING READY`로 통합한다. 다음 단계는 원본 Mission Bonus인 스케줄링 알고리즘 추론을 `SOURCE_LINKED_BONUS` 중심의 Advanced 단위로 분리하는 것이다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
