@@ -1,205 +1,248 @@
-# Dashboard V3 Design
+# Dashboard V3.1 — Beginner First Design
 
-Dashboard V3의 목적은 한 화면에 모든 정보를 쌓는 것이 아니라 다음 다섯 질문에 빠르게 답하는 것이다.
+Dashboard V3.1의 첫 번째 사용자는 **진도가 아직 0이고, 어디서부터 시작해야 할지 모르는 입문자**다.
 
-1. 나는 지금 어느 Growth Stage에 있는가?
-2. 현재 ACTIVE인 것은 무엇인가?
-3. 다음 READY 항목은 무엇인가?
-4. 어떤 Mission/Gate가 막혀 있는가?
-5. 장기적으로 어디까지 연결되는가?
+Dashboard의 최우선 성공 기준은 다음 세 질문에 5초 안에 답하는 것이다.
 
-## 1. Information Architecture
+1. 나는 지금 어디에 있는가?
+2. 지금 무엇을 해야 하는가?
+3. 전체 중 얼마나 진행했는가?
 
-Dashboard는 4개 핵심 층과 2개 확장 뷰로 구성한다.
+전문 관리 정보는 보존하지만 첫 화면의 우선순위를 차지하지 않는다.
 
-### Layer A — Growth
+## 1. Beginner First Principle
 
-`CORE → EXPLORE → ADVANCED → PRO → EXPERT`
+첫 화면에서는 다음을 크게 보여준다.
 
-각 Stage에 다음을 표시한다.
+```text
+현재 Mission
+현재 단계
+다음 행동 1개
+전체 새 도전 진행률
+쉬운 설명
+막혔을 때 도움
+```
 
-- Stage 의미
-- Stage 자체 운영 상태: ACTIVE / READY / PLANNED
-- 관련 Activity 수
-- 대표 Evidence
-- 다음 승급/진입 조건
+처음 시작하는 학습자에게 Growth Stage, Workcell, Telemetry, Governance, Dependency를 먼저 읽도록 요구하지 않는다.
 
-### Layer B — Mission
+## 2. Current Mission Clear Cycle
 
-- B1~B7 Domain 카드
-- B1-1~B7-2 Mission 상태
-- G1~G8 Completion Gate
-- 수행 상태와 학습 상태 분리
-- 필수/선택은 Metadata Badge로만 표시
+새 도전 상태의 Source of Truth:
 
-G1~G8은 가독성을 위해 카드 내부에서 **2열 고정**을 기본으로 한다.
+`config/cycles/current.yaml`
 
-### Layer C — Skill
+현재 기준:
 
-12개 역량 축:
+```text
+Cycle: 새 미션 클리어 도전
+Current Mission: B1-1
+Current Step: 1 / 8
+Mission Clear: 0 / 15
+```
 
-- Learn
-- Build
-- Test
-- Debug
-- Collaborate
-- Design
-- Operate
-- Compete
-- Research
-- Communicate
-- Career
-- Venture
+기존 검증 결과는 삭제하지 않고 `config/history/`와 기존 Official Integration 상태로 보존한다.
 
-초기에는 복잡한 Radar Chart보다 Level/Heatmap/Progress Bar 중심으로 구현한다. Evidence가 충분히 축적된 뒤 Radar를 선택적으로 추가한다.
+따라서 다음 두 개념을 섞지 않는다.
 
-### Layer D — Activity
+```text
+Current Mission Clear Cycle
+≠
+Previous Official Integration / History
+```
 
-Activity 상태:
+## 3. Easy Gate Labels
 
-- ACTIVE
-- READY
-- PLANNED
-- BLOCKED
-- DONE
+내부 G1~G8 이름은 정확한 검증 계약으로 유지한다.
 
-Activity 예:
-- Study
-- Code Review
-- Debugging Clinic
-- Hackathon
-- Competition
-- Research
-- Open Source
-- Career
-- Venture
+화면에서는 다음과 같이 쉬운 한국어를 우선 표시한다.
 
-## 2. Extension Views
+| Internal | Beginner Label |
+|---|---|
+| G1 SOURCE | 1. 미션 이해하기 |
+| G2 BUILD | 2. 직접 만들기 |
+| G3 TEST | 3. 테스트하기 |
+| G4 REVIEW | 4. 검토하기 |
+| G5 RUNTIME | 5. 실제로 실행하기 |
+| G6 EVIDENCE | 6. 증빙 남기기 |
+| G7 LEARN | 7. 이해하고 설명하기 |
+| G8 MERGE | 8. 완료 반영하기 |
 
-### Project Lineage
+각 단계에는 반드시 다음 네 가지가 있다.
+
+- 무엇을 하는가
+- 왜 하는가
+- 지금 해야 할 행동
+- 완료 기준
+
+## 4. One Next Action
+
+한 화면에서 여러 작업을 동시에 지시하지 않는다.
 
 예:
 
-`B5 → B6 → B7 → Hackathon → Competition → Research → Production → Venture`
+```text
+지금 할 일은 이것 하나입니다.
 
-프로젝트가 성장하면서 폴더를 옮기지 않고 동일 Project ID의 `growth_stage`, `status`, `evidence`만 갱신한다.
+B1-1 미션 PDF와 평가 기준을 대조하여
+통과 조건부터 확인합니다.
+```
 
-### Opportunities
+다른 활동은 현재 행동이 끝난 뒤 다음 단계로 노출한다.
 
-공모전/해커톤/세미나/학회/지원사업 등을 Mission과 Skill에 연결한다.
+## 5. Beginner Help Path
 
-기본 카드 필드:
-- 이름
-- Type
-- Growth Stage
-- Status
-- Priority
-- 관련 Mission
-- 관련 Skill
-- Deadline
-- 공식 URL
-- Last Checked
+첫 화면에는 항상 다음 두 도움 경로를 제공한다.
 
-## 3. Home Layout
+### 쉬운 설명
+- 왜 이 단계를 하는지
+- 무엇을 확인해야 하는지
+- 완료 기준이 무엇인지
+
+### 막혔어요
+
+```text
+현재 단계 확인
+→ 정상 결과 확인
+→ 가장 흔한 원인 확인
+→ 다시 시도
+```
+
+오류를 학습 흐름 이탈로 취급하지 않고 정상적인 Debugging 진입점으로 사용한다.
+
+## 6. Home Information Architecture
 
 권장 상단 순서:
 
 ```text
-[Header / Manual Refresh]
+[간단한 시작 문장]
 
-[Current Position]
-CORE ACTIVE | EXPLORE READY | ADVANCED PLANNED | PRO PLANNED | EXPERT PLANNED
+[현재 Mission / 현재 단계]
+[다음 행동 1개]
+[시작하기 / 쉬운 설명 / 막혔어요]
 
-[Now / Next / Blocked]
-ACTIVE  | READY | BLOCKED
+[새 도전 요약]
+0/15 | B1-1 | 1/8
 
-[Mission Progress]
-B1 B2
-B3 B4
-B5 B6
-B7
+[현재 Mission 8단계]
 
-[Current Mission Detail]
-Mission Status / Learning / G1~G8
+[B1~B7 전체 여행 지도]
 
-[Skill Snapshot]
-12 Competency Axes
+[15개 Mission 새 도전 상태]
 
-[Activities]
-ACTIVE / READY / PLANNED
+────────────
+여기부터 개발자용 상세 정보
+────────────
 
-[Project Lineage]
-
-[Opportunities]
+[Growth]
+[Official Mission Control]
+[Dependency]
+[Governance]
 ```
 
-## 4. Current Position Card
+## 7. Mission State Labels
 
-가장 위에서 사용자가 현재 위치를 즉시 인식하도록 한다.
+Beginner UI:
+
+```text
+NOT_STARTED → 시작 전
+READY       → 시작 가능
+ACTIVE      → 진행 중
+CLEAR       → 미션 완료
+BLOCKED     → 문제 해결 필요
+```
+
+내부 Mission 상태:
+
+```text
+TODO / IMPLEMENTED / TESTED / PASS / NEEDS-RUNTIME / BLOCKED
+```
+
+두 상태 모델은 목적이 다르므로 서로 대체하지 않는다.
+
+## 8. Previous History
+
+과거 PASS를 현재 새 도전 진행률에 포함하지 않는다.
 
 예:
 
 ```text
-Growth Journey
-
-CORE       ● ACTIVE
-EXPLORE    ○ READY
-ADVANCED   △ PLANNED
-PRO        △ PLANNED
-EXPERT     ◇ PLANNED
+B2-1
+새 도전: 시작 전 · 0/8
+이전 수행 기록: PASS
 ```
 
-이 카드는 Progress Percent보다 **상태와 다음 행동**을 우선한다.
+이전 결과를 숨기거나 삭제하지 않으면서도 현재 학습 Cycle을 명확히 유지한다.
 
-## 5. Now / Next / Future
+## 9. 전체 여행 지도
 
-Growth Stage와 Activity Status를 별도로 보여준다.
+입문자 화면에서는 먼저 큰 흐름만 보여준다.
 
-### NOW
-현재 실제 시간과 자원이 투입되는 `ACTIVE` 항목.
+```text
+B1 Linux & OS
+↓
+B2 Python & Git
+↓
+B3 Data Structures & Algorithms
+↓
+B4 Web & Front-end
+↓
+B5 Database & Back-end
+↓
+B6 Cloud & AI API
+↓
+B7 Term Project
+```
 
-### NEXT
-조건이 충족되어 바로 시작 가능한 `READY` 항목.
+세부 기술과 전문 용어는 해당 단계에 도착했을 때 학습한다.
 
-### FUTURE
-`PLANNED` 항목. 미래 지도에는 보이지만 현재 작업 목록에는 과도하게 노출하지 않는다.
+## 10. Professional Detail Layer
 
-### BLOCKED
-별도 경고 영역에서 차단 원인과 해제 조건을 표시한다.
+Beginner First 화면 아래에 기존 전문 정보를 유지한다.
 
-## 6. Mission Card
+### Growth
+`CORE → EXPLORE → ADVANCED → PRO → EXPERT`
 
-Mission 카드 최소 정보:
-
-- ID / Title
-- Required/Optional
-- Execution Status
-- Learning Status
-- Current Gate
+### Mission Control
+- Official Mission Status
 - G1~G8
-- Repository Link
-- Evidence Link
-- Next Action
+- Workcell Live Status
+- Repository Telemetry
+- Evidence
 
-`PASS`와 `MASTERED`를 시각적으로 동일하게 표시하지 않는다.
+### Skill
+12개 Competency Axis
 
-## 7. Refresh Policy
+### Dependency
+운영상 권장 선후관계
 
-Progress Dashboard는 자동 30초 Polling을 사용하지 않는다.
+### Governance
+Source / Evidence / Parallel-Serial 규칙
 
-기본 정책:
+초보자는 이 영역을 읽지 않아도 현재 Mission을 진행할 수 있어야 한다.
 
-- 사용자가 `새로고침` 버튼으로 직접 요청
-- 마지막 Refresh 후 **5분이 지나지 않았으면 버튼 비활성화**
-- 남은 대기시간을 사용자에게 표시
-- 페이지 최초 로드는 현재 배포된 JSON을 읽음
-- Refresh는 GitHub 원본/생성 데이터 갱신 정책과 분리하여 설계
+## 11. Refresh Policy
 
-목표는 과도한 GitHub API 호출과 UI 흔들림을 줄이는 것이다.
+기존 정책을 유지한다.
 
-## 8. Data Sources
+- 자동 30초 Polling 사용 안 함
+- 사용자가 수동 갱신
+- 마지막 Refresh 후 5분 동안 버튼 비활성화
+- Live Telemetry와 현재 Mission Clear Cycle은 서로 다른 데이터 흐름
 
-### Mission Pipeline
+## 12. Data Sources
+
+### Mission Clear Cycle
+
+```text
+config/cycles/current.yaml
+config/history/pre-v3-mission-history.yaml
+        ↓
+scripts/sync_progress.py
+        ├─ docs/01-master-map/mission-clear-cycle.md
+        └─ site/data/cycle.json
+```
+
+### Official Mission Pipeline
 
 ```text
 config/missions.yaml
@@ -218,73 +261,54 @@ scripts/sync_progress.py
 config/growth.yaml ─────────────┐
 config/skills.yaml ─────────────┤
 config/activities.yaml ─────────┤
-config/projects.yaml ───────────┼─> sync/build layer ─> site/data/*.json ─> Dashboard
+config/projects.yaml ───────────┼─> sync/build layer ─> site/data/*.json
 config/opportunities.yaml ──────┤
 config/resources.yaml ──────────┘
 ```
 
-각 Config의 역할을 유지하고 UI용 JSON에서 결합한다.
-
-## 9. Progressive Dashboard
-
-미래 기능을 처음부터 모두 구현하지 않는다.
-
-### V3.1 — Foundation
-- Growth Stage 카드
-- Mission Progress 보존
-- Now / Next / Blocked
-- 기존 Refresh 정책 보존
-
-### V3.2 — Skill / Activity
-- 12개 Skill Matrix
-- Activity Registry
-- Community / Opportunity 연결
-
-### V3.3 — Project / External
-- Project Lineage
-- Competition / Research / Open Source
-- Evidence Count
-
-### V3.4 — PRO / EXPERT
-- Production Evidence
-- Trade-off / ADR
-- Leadership / Research / Venture
-- Impact Map
-
-## 10. Responsive UI
+## 13. Responsive UI
 
 ### Desktop
-- 핵심 카드 2열 또는 3열
-- Mission Domain은 충분한 글자 폭을 확보
-- G1~G8은 2열 고정
+- 현재 Mission과 진행 요약을 상단 2영역으로 표시
+- 8단계는 최대 4열
+- 전체 Mission은 최대 3열
 
 ### Mobile
-- Header는 Hamburger Navigation
-- Stage Rail은 세로 Stack
-- Mission Card는 1열
-- Gate는 2열 유지 가능 여부를 폭 기준으로 결정하되 텍스트가 잘리지 않도록 최소 너비 확보
+- 현재 Mission과 `시작하기` 버튼이 첫 화면에서 확인 가능해야 한다.
+- 모든 주요 카드 1열 전환
+- 버튼은 충분한 터치 영역 확보
+- Beginner First 영역에는 수평 스크롤이 없어야 한다.
 
-## 11. Visual Priority
+## 14. Validation
 
-시각적 강조 순서:
+자동 검증 항목:
 
-1. ACTIVE
-2. BLOCKED
-3. READY
-4. DONE
-5. PLANNED
+- Current Mission = B1-1
+- New Clear = 0/15
+- Step = 1/8
+- Beginner Step Card = 8
+- Journey Card = 7
+- Mission Card = 15
+- B2-1 Previous PASS는 History로 표시
+- B2-1 New Cycle은 0/8
+- 쉬운 설명 버튼 동작
+- 막혔어요 버튼 동작
+- 모바일 Beginner 영역 Overflow 없음
+- 기존 Growth/Mission Control 회귀 없음
+- 수동 Refresh + 5분 Cooldown 유지
+- Live Telemetry 회귀 없음
 
-PLANNED 미래 항목은 화면을 압도하지 않도록 낮은 시각적 비중으로 표현한다.
+## 15. Implementation Rule
 
-## 12. Implementation Rule
+새 Dashboard 값은 UI에서 임의 생성하지 않는다.
 
-Dashboard는 Repository 상태를 추정해서 임의로 만들지 않는다. Config/Generated JSON이 Source of Truth다.
+```text
+데이터 정의
+→ Source of Truth
+→ Sync/Generation
+→ Beginner UI
+→ Professional Detail UI
+→ Validation
+```
 
-UI에 새로운 값을 추가하려면 먼저:
-1. 데이터 정의
-2. Source of Truth
-3. Sync/Generation
-4. UI Rendering
-5. Validation
-
-순으로 진행한다.
+이 순서를 유지한다.
