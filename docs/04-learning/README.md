@@ -22,6 +22,10 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - `Mission → Level → Term` 디렉터리 구조
   - `{mission}-{level}-{term-order}-{english-term-slug}.md` 파일 규칙
   - `000-index`, 010 단위 정렬, 링크·Lifecycle·중복 용어 정책
+- [Visual Learning Backlog](./visual-learning-backlog.md)
+  - 용어별 `Cover → One-line → Where → Relation → Mini Check → Gate → Summary` 시각 학습 형식
+  - Source Lock, 이미지 QA, GitHub 반영 검증 기준
+  - 현재 상태: **DEFERRED** — 비시각 학습 진행을 막지 않음
 - [Codyssey Basic 전체 용어 품질 감사](./vocabulary-quality-audit.md)
   - 15개 Mission Vocabulary의 원본 주요 요구 영역 대조
   - 구조 일관성·중요도·K1~K4·Lifecycle·Dependency·Gate 감사
@@ -77,9 +81,16 @@ B1-1은 **미션별 영어 디렉터리 + 미션 번호가 포함된 Level 구�
 90 Advanced (Optional)
 ```
 
-**B1-1 Level별 학습 콘텐츠 + Level 1 개별 용어 Pilot 완료.**
+현재 우선순위:
 
-Pilot 검증 후 같은 개별 용어 규칙을 다른 Level과 B1-2 이후 미션에 순차 적용한다.
+```text
+B1-1 Level 0 개별 용어 구조화
+→ B1-1 Level 2 개별 실행 용어 구조화
+→ Level 3~5 관계/진단/평가 정교화
+→ B1-2 동일 구조 확장
+```
+
+**Visual Learning은 별도 Backlog로 이동했으며, 이미지가 없어도 위 작업을 계속 진행한다.**
 
 ## 자기 설명 기준
 
