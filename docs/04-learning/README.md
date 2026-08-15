@@ -22,37 +22,31 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [20 — Level 1 Top Core Term Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md) — 28개, V2~V3
 - [30 — Level 2 Execution Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution/b1-1-30-000-index.md) — 12개, V4
 - [40 — Level 3 Principle Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles/b1-1-40-000-index.md) — 12개, WHY/HOW
-- [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) — 12개, Evidence 기반 진단
-- [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개, V5
-- [70 — Integrated Review Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개, LEARNING READY
-- [70 — Review Full Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md) — 전체 한 페이지 복습/호환
+- [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) — 12개
+- [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개
+- [70 — Integrated Review Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개
+- [70 — Review Full Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
 - [90 — Advanced](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced.md)
 
-기존 Level 0~5 단일 파일과 Review Pack은 전체 흐름 복습 및 기존 URL 호환용으로 유지한다.
+B1-1 비시각 학습 패키지의 Level 0~5 + Review 구조화는 완료되었다.
 
-## B1-1 학습 확장 상태
+## B1-2 — Linux Process & Resource Troubleshooting
+
+- [00 — B1-2 Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md)
+- [10 — Level 0 Prerequisite Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) — 35개, V1 ✅
+- [20 — Level 1 Top Core Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개, V2~V3 ✅
+- [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
-00 Mission Index
-  ↓
-10 Level 0 → 29 prerequisite term files ✅
-  ↓
-20 Level 1 → 28 Top Core term files ✅
-  ↓
-30 Level 2 → 12 execution units ✅
-  ↓
-40 Level 3 → 12 principle units ✅
-  ↓
-50 Level 4 → 12 troubleshooting units ✅
-  ↓
-60 Level 5 → 12 evaluation units ✅
-  ↓
-70 Review → 12 integrated review units ✅
-  ↓
-90 Advanced (Optional)
+B1-1 REVIEW/DEEPEN
+Process / PID / CPU / Memory / Log / Monitoring / Evidence
+        ↓
+B1-2 Level 0·1 ✅
+        ↓
+Level 2 Execution → NEXT
 ```
 
-Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다. B1-1 비시각 학습 패키지의 Level 0~5 + Review 구조화가 완료되었으므로 다음 확장 대상은 B1-2다.
+B1-2의 다음 작업은 OOM / CPU / Deadlock을 각각 `재현 → 관찰 → Evidence → 환경 변수 변경 → Before & After` 흐름으로 나누는 Level 2 실행 단위 구조화다.
 
 ## 자기 설명 기준
 
@@ -66,4 +60,4 @@ Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다. B1-1 
 
 ## 원칙
 
-완벽하게 공부한 뒤 만드는 것이 아니라, 먼저 작동하는 결과를 확보하고 그 결과를 이용해 깊게 학습한다.
+완벽하게 공부한 뒤 만드는 것이 아니라, 먼저 작동하는 결과를 확보하고 그 결과를 이용해 깊게 학습한다. Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다.
