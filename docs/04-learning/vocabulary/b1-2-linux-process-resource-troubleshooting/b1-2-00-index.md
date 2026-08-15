@@ -30,7 +30,7 @@ OOM Crash / CPU Latency / Deadlock
 | 50 | [Level 4 — Troubleshooting Unit Index](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) | 12개 증상·진단·최소수정·재검증 단위 | ✅ |
 | 60 | [Level 5 — Evaluation Unit Index](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md) | 12개 Evidence 기반 평가 설명 단위 | ✅ |
 | 70 | [Integrated Review Index](./b1-2-70-review/b1-2-70-000-index.md) | 12개 회상·통합·LEARNING READY 판정 단위 | ✅ |
-| 70S | [Review Full Pack](./b1-2-70-review-pack.md) | 한 페이지 전체 복습 | ✅ |
+| 70 | [Review Full Pack](./b1-2-70-review-pack.md) | 한 페이지 전체 복습 | ✅ |
 | 90 | Advanced | 원본 Bonus 스케줄링 알고리즘 추론 | NEXT / 선택 |
 
 기존 [`b1-2.md`](../b1-2.md)는 전체 Vocabulary Summary와 기존 URL 호환용으로 유지한다.
