@@ -39,9 +39,9 @@ TEXT_SUFFIXES = {
     ".md", ".txt", ".yaml", ".yml", ".json", ".py", ".js", ".html", ".css", ".toml"
 }
 
-# These files intentionally document historical paths. They are not navigation,
-# runtime, generator, or operational routing dependencies and therefore do not
-# block deletion of the legacy target itself.
+# These files intentionally document historical paths or invoke this scanner
+# with a legacy target as data. They are not navigation, runtime, generator,
+# or operational routing dependencies and therefore do not block deletion.
 EXCLUDED_FILES = {
     "docs/01-master-map/migration-plan.md",
     "docs/01-master-map/migration-matrix.md",
@@ -52,6 +52,7 @@ EXCLUDED_FILES = {
     "docs/01-master-map/growth-routing.md",
     "docs/01-master-map/cutover-readiness.md",
     "docs/06-opportunities/README.md",
+    ".github/workflows/v3-validate.yml",
     "scripts/scan_legacy_refs.py",
 }
 
