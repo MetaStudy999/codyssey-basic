@@ -42,17 +42,19 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-60-level-5-evaluation/b1-2-60-000-index.md) — 12개, V5 ✅
 - [70 — Integrated Review Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-70-review/b1-2-70-000-index.md) — 12개 ✅
 - [70 — Review Full Pack](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-70-review-pack.md) — 전체 요약 ✅
+- [90 — Advanced Scheduling Inference Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) — 원본 Bonus 10개 단위 ✅
+- [90 — Advanced Full Summary](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced.md) — 선택 Bonus 요약 ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Level 0~5 + Review ✅
+B1-2 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Advanced → NEXT
+B2-1 구조화 → NEXT
 ```
 
-B1-2 Review는 `RECALL → RELATE → DIAGNOSE → EVIDENCE → EXPLAIN → RETRIEVE AGAIN → LEARNING READY` 흐름으로 Level 0~5를 다시 꺼내 쓰게 한다. OOM/CPU/Deadlock의 핵심 변수·Evidence·Before&After·Troubleshooting·V5 자기 설명을 통합하고, `b1-2-evaluation.md`는 official provenance 미확인 provisional practice rubric으로만 유지한다.
+B1-2 Advanced는 원본 Mission의 선택 Bonus를 `SOURCE_LINKED_BONUS`로 고정하고, `로그 Timestamp → 실행 순서/교체 주기 → Round-Robin/FCFS/Priority 후보 비교 → Evidence 기반 역추론 → 장단점/서비스 적합성 → 리포트`로 구조화한다. 원본 PDF의 Round-Robin 예시는 참고 예시이며 실제 수행에서는 본인이 수집한 로그를 우선한다.
 
 ## 자기 설명 기준
 
