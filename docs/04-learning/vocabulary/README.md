@@ -3,9 +3,9 @@
 B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 확장 자료를 관리한다.
 
 - 표기: `한글 용어 (English Term, 약어)`
-- 각 미션은 Level 0~5 + Advanced, Top Core 구조를 사용한다.
+- 각 미션은 Level 0~5 + Review + Advanced 구조를 사용한다.
 - 상세 작성 규칙은 [미션 용어 학습 체계 기획](../vocabulary-learning-plan.md)을 따른다.
-- 개별 용어/실행/원리/장애 진단/평가 설명 단위 규칙은 [개별 용어 파일 표준](../term-file-standard.md)을 따른다.
+- 개별 용어/실행/원리/장애 진단/평가 설명/통합 복습 단위 규칙은 [개별 용어 파일 표준](../term-file-standard.md)을 따른다.
 - 시각 학습은 [Visual Learning Backlog](../visual-learning-backlog.md)에서 관리하며 현재 **DEFERRED**다.
 - 중복·최초 등장·재사용·Priority·K 수준·Lifecycle은 [Basic Master Vocabulary](../basic-master-vocabulary.md)에서 관리한다.
 
@@ -18,20 +18,13 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 │   ├── {mission-number}-10-000-index.md
 │   └── {mission-number}-10-010-{term-slug}.md ...
 ├── {mission-number}-20-level-1-core/
-│   ├── {mission-number}-20-000-index.md
-│   └── {mission-number}-20-010-{term-slug}.md ...
 ├── {mission-number}-30-level-2-execution/
-│   ├── {mission-number}-30-000-index.md
-│   └── {mission-number}-30-010-{execution-unit}.md ...
 ├── {mission-number}-40-level-3-principles/
-│   ├── {mission-number}-40-000-index.md
-│   └── {mission-number}-40-010-{principle-unit}.md ...
 ├── {mission-number}-50-level-4-troubleshooting/
-│   ├── {mission-number}-50-000-index.md
-│   └── {mission-number}-50-010-{troubleshooting-unit}.md ...
 ├── {mission-number}-60-level-5-evaluation/
-│   ├── {mission-number}-60-000-index.md
-│   └── {mission-number}-60-010-{evaluation-unit}.md ...
+├── {mission-number}-70-review/
+│   ├── {mission-number}-70-000-index.md
+│   └── {mission-number}-70-010-{review-unit}.md ...
 ├── {mission-number}-70-review-pack.md
 └── {mission-number}-90-advanced.md
 ```
@@ -40,15 +33,16 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 
 - 파일명은 항상 해당 미션 번호로 시작한다.
 - Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입점으로 둔다.
-- Level 0·1은 한 용어, Level 2는 실행·검증 단위, Level 3는 WHY/HOW 원리, Level 4는 장애 진단 흐름, Level 5는 평가 설명 단위로 묶는다.
+- Level 0·1은 한 용어, Level 2는 실행·검증 단위, Level 3는 WHY/HOW 원리, Level 4는 장애 진단 흐름, Level 5는 평가 설명 단위, Review는 통합 복습·최종 판정 단위로 묶는다.
+- 기존 단일 Review Pack은 전체 복습과 기존 URL 호환용으로 유지한다.
 - `80`은 실전 모의평가·추가 Lab용으로 예약한다.
 
 ## 진행 현황
 
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
-| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 구조화 완료, Review NEXT** |
-| 2 | B1-2 | [리눅스 프로세스 및 시스템 리소스 트러블슈팅](./b1-2.md) | 1차 용어 작성 완료 |
+| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review 구조화 완료** |
+| 2 | B1-2 | [리눅스 프로세스 및 시스템 리소스 트러블슈팅](./b1-2.md) | 1차 용어 작성 완료 / 다음 확장 대상 |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
@@ -74,10 +68,9 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - [40 — Level 3 Index](./b1-1-system-monitoring-automation/b1-1-40-level-3-principles/b1-1-40-000-index.md) — 12개
 - [50 — Level 4 Index](./b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) — 12개
 - [60 — Level 5 Index](./b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개
-- [70 — Review Pack](./b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
+- [70 — Integrated Review Index](./b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개
+- [70 — Review Full Pack](./b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
 - [90 — Advanced](./b1-1-system-monitoring-automation/b1-1-90-advanced.md)
-
-기존 Level별 단일 파일은 전체 복습·기존 URL 호환용으로 유지한다.
 
 ## 통합 자산 상태
 
@@ -90,9 +83,12 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - B1-1 Level 3 원리 단위 12개: **완료**
 - B1-1 Level 4 장애 진단 단위 12개: **완료**
 - B1-1 Level 5 평가 설명 단위 12개: **완료**
+- B1-1 Review 통합 복습 단위 12개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B1-1 Review 통합 점검 → B1-2 동일 구조 확장**
+- 다음: **B1-2에 동일 구조 적용**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
+
+B1-1 Review는 학습 구조를 닫지만 실제 Runtime PASS를 대신하지 않는다. `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
