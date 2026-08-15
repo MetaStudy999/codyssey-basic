@@ -6,7 +6,7 @@
 **학습시간:** 40시간  
 **학습 구조:** Level 0 → Level 1 → Level 2 → Level 3 → Level 4 → Level 5 → Review → Advanced
 
-> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고 순서 번호를 사용한다. Level 0·1은 `한 파일 = 한 용어`, Level 2는 `한 파일 = 독립 실행 학습 단위`, Level 3는 `한 파일 = 독립 원리 학습 단위`를 적용한다.
+> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고 순서 번호를 사용한다. Level 0·1은 `한 파일 = 한 용어`, Level 2는 `한 파일 = 독립 실행 학습 단위`, Level 3는 `한 파일 = 독립 원리 학습 단위`, Level 4는 `한 파일 = 독립 장애 진단 단위`를 적용한다.
 
 ## 1. 현재 작업 정책
 
@@ -35,12 +35,12 @@
 | 20 | [Level 1 — Core Terms](./b1-1-20-level-1-core/b1-1-20-000-index.md) | Top Core 28개 개별 용어 | V2 + V3 | ✅ |
 | 30 | [Level 2 — Execution Unit Index](./b1-1-30-level-2-execution/b1-1-30-000-index.md) | 12개 실행 학습 단위 | V4 | ✅ |
 | 40 | [Level 3 — Principle Unit Index](./b1-1-40-level-3-principles/b1-1-40-000-index.md) | 12개 구조·원리 학습 단위 | WHY/HOW | ✅ |
-| 50 | [Level 4 — Troubleshooting](./b1-1-50-level-4-troubleshooting.md) | 검증·장애 진단·복구 | Evidence 기반 진단 | NEXT |
-| 60 | [Level 5 — Evaluation](./b1-1-60-level-5-evaluation.md) | 평가 답변·자기 설명 | V5 | 문서 존재 |
+| 50 | [Level 4 — Troubleshooting Unit Index](./b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) | 12개 장애 진단·복구 학습 단위 | Evidence 기반 진단 | ✅ |
+| 60 | [Level 5 — Evaluation](./b1-1-60-level-5-evaluation.md) | 평가 답변·자기 설명 | V5 | NEXT |
 | 70 | [Review Pack](./b1-1-70-review-pack.md) | 통합 복습·최종 Gate | LEARNING READY | 문서 존재 |
 | 90 | [Advanced](./b1-1-90-advanced.md) | 선택 심화 | 필요 시 | 문서 존재 |
 
-기존 [Level 0 요약](./b1-1-10-level-0-prerequisite.md), [Level 1 요약](./b1-1-20-level-1-core.md), [Level 2 전체 실행 가이드](./b1-1-30-level-2-execution.md), [Level 3 전체 원리 가이드](./b1-1-40-level-3-principles.md)는 기존 URL 호환과 한 페이지 요약용으로 유지한다. `80`은 향후 실전 모의평가·추가 Lab 삽입을 위한 예약 구간이다.
+기존 [Level 0 요약](./b1-1-10-level-0-prerequisite.md), [Level 1 요약](./b1-1-20-level-1-core.md), [Level 2 전체 실행 가이드](./b1-1-30-level-2-execution.md), [Level 3 전체 원리 가이드](./b1-1-40-level-3-principles.md), [Level 4 전체 트러블슈팅 가이드](./b1-1-50-level-4-troubleshooting.md)는 기존 URL 호환과 한 페이지 요약용으로 유지한다. `80`은 향후 실전 모의평가·추가 Lab 삽입을 위한 예약 구간이다.
 
 ## 3. Source of Truth
 
@@ -132,6 +132,7 @@ Evaluation Explanation
 | V3 — Relation | 다른 개념과의 관계를 설명할 수 있는가? |
 | V4 — Locate / Apply | 실제 파일·설정·명령에서 찾고 적용할 수 있는가? |
 | WHY/HOW | 구조가 왜 필요한지와 어떻게 연결되는지 설명할 수 있는가? |
+| Troubleshooting | 실패 층을 분리하고 최소 수정·재검증·Evidence로 복구를 증명할 수 있는가? |
 | V5 — Explain | 평가자에게 원리·선택 이유·검증 근거까지 설명할 수 있는가? |
 
 ## 7. 관련 문서
@@ -150,9 +151,10 @@ B1-1 Level 0 개별 용어 구조화    ✅
 B1-1 Level 1 개별 용어 구조화    ✅
 B1-1 Level 2 실행 단위 구조화    ✅
 B1-1 Level 3 원리 단위 구조화    ✅
-→ Level 4 장애 진단 구조 세분화
+B1-1 Level 4 장애 진단 구조화    ✅
 → Level 5 평가 설명 구조 세분화
+→ Review 통합 점검
 → B1-2 동일 구조 확장
 ```
 
-➡️ [B1-1 Level 3 — Principle Unit Index](./b1-1-40-level-3-principles/b1-1-40-000-index.md)
+➡️ [B1-1 Level 4 — Troubleshooting Unit Index](./b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md)
