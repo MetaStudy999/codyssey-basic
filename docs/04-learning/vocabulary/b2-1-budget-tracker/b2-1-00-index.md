@@ -43,8 +43,8 @@ cross-cutting error boundary: @cli_guard
 | 10 | [Level 0 — Prerequisite](./b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) | 선수 용어 45개, V1 | ✅ |
 | 20 | [Level 1 — Top Core](./b2-1-20-level-1-core/b2-1-20-000-index.md) | 핵심 개념 40개, V2~V3 | ✅ |
 | 30 | [Level 2 — Execution](./b2-1-30-level-2-execution/b2-1-30-000-index.md) | CLI·저장·CRUD·검색·요약·입출력 12개 실행 단위, V4 | ✅ |
-| 40 | Level 3 — Principles | Generator·Layer·Atomicity WHY/HOW | NEXT |
-| 50 | Level 4 — Troubleshooting | 입력·파일·CSV·무결성 장애 진단 | 이후 |
+| 40 | [Level 3 — Principles](./b2-1-40-level-3-principles/b2-1-40-000-index.md) | Persistence·Generator·Layer·Atomicity·Integrity 등 12개 WHY/HOW 단위 | ✅ |
+| 50 | Level 4 — Troubleshooting | 입력·파일·CSV·무결성 장애 진단 | NEXT |
 | 60 | Level 5 — Evaluation | 평가 자기설명 | 이후 |
 | 70 | Review | 통합 회상 | 이후 |
 | 90 | Advanced | 원본 Bonus 선택 심화 | 이후 |
@@ -94,13 +94,30 @@ Transaction
 → V4 Gate
 ```
 
-현재 구현 저장소에는 `evidence/test-results.txt`에 **18 tests / 18 passed / 18.176s**가 기록되어 있고 CLI transcript 및 sample CSV도 존재한다. 이는 구현 저장소의 기존 Evidence이며 개인 학습자의 V4 실행을 대신하지 않는다.
+## Level 3 원리 연결
+
+```text
+Model Invariant
+→ Persistence / Data Lifecycle
+→ JSONL vs CSV Role Separation
+→ Generator / yield / Lazy Evaluation
+→ Streaming vs Materialization
+→ Layered Responsibility
+→ File Atomicity
+→ Referential Integrity
+→ Decorator / Cross-cutting Concern
+→ Type Contract
+→ Import All-or-Nothing Safety
+→ WHY/HOW Gate
+```
+
+현재 구현의 generator는 조회 메모리 사용을 줄이지만 id 생성·update/delete·summary 등 전체 파일 비용을 제거하지 않는다. 따라서 `generator = 전체 확장성 해결`로 과장하지 않는다.
 
 ## 상태 경계
 
 ```text
-LEVEL 2 STRUCTURE READY
-≠ PERSONAL V4 PASSED
+LEVEL 3 STRUCTURE READY
+≠ PERSONAL WHY/HOW READY
 ≠ PERSONAL MASTERED
 ≠ RUNTIME REVERIFIED BY LEARNER
 ≠ MISSION PASS
@@ -112,6 +129,6 @@ Visual Learning은 **DEFERRED**다.
 
 ## 다음 작업
 
-`Level 3 — Generator/Lazy Evaluation, Layer Responsibility, Persistence, Atomicity, Referential Integrity, Decorator/Type Contract, Import Transaction Safety를 WHY/HOW 원리 단위로 구조화`
+`Level 4 — 잘못된 입력, 파일 손상/권한, 없는 ID, category 참조, CSV schema/encoding/import 실패, atomic rewrite, error exit 등 장애를 Symptom → Observe → Layer → Hypothesis → Smallest Fix → Reverify → Evidence로 구조화`
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 2 →](./b2-1-30-level-2-execution/b2-1-30-000-index.md)
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 3 →](./b2-1-40-level-3-principles/b2-1-40-000-index.md)
