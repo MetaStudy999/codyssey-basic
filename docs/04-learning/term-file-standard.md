@@ -348,8 +348,12 @@ B1-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
 B1-1 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 B1-1 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
 B1-1 Review 통합 구조화         ✅ 12 review units + 000-index
+B1-2 Level 0 선수 용어 구조화   ✅ 35 terms + 000-index
+B1-2 Level 1 Top Core 구조화     ✅ 30 terms + 000-index
 Visual Learning                  DEFERRED
-B1-2 동일 구조 적용             NEXT
+B1-2 Level 2 실행 단위 구조화   NEXT
 ```
+
+B1-2에서는 B1-1에서 학습한 공통 개념을 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. 다음 단계는 OOM / CPU / Deadlock 각각을 `재현 → 관찰 → Evidence → 환경 변수 변경 → Before & After` 실행 단위로 구성한다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
