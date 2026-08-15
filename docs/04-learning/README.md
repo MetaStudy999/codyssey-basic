@@ -38,17 +38,18 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [20 — Level 1 Top Core Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개, V2~V3 ✅
 - [30 — Level 2 Execution Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-30-level-2-execution/b1-2-30-000-index.md) — 12개, V4 ✅
 - [40 — Level 3 Principle Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-40-level-3-principles/b1-2-40-000-index.md) — 12개, WHY/HOW ✅
+- [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) — 12개 ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Level 0·1·2·3 ✅
+B1-2 Level 0·1·2·3·4 ✅
         ↓
-B1-2 Level 4 Troubleshooting → NEXT
+B1-2 Level 5 Evaluation → NEXT
 ```
 
-B1-2 Level 3는 Memory Growth/Protection, CPU/Latency, Process/Thread, Lock/Contention, Deadlock 4대 조건, Alive-but-Stalled, Signal/Protection, Evidence→Causality→RCA, Reproducibility/Before&After를 WHY/HOW 원리 단위로 구조화했다.
+B1-2 Level 4는 `Symptom → Observe → Layer → Hypothesis → Smallest Fix → Reverify → Recovery → Evidence`를 공통 알고리즘으로 사용한다. OOM/CPU/Deadlock뿐 아니라 Runtime 오설정, Evidence 부족, 모호한 Before/After, Signal/Exit 해석, Issue 보고서까지 장애 진단 단위로 분리했다.
 
 ## 자기 설명 기준
 
@@ -58,7 +59,7 @@ B1-2 Level 3는 Memory Growth/Protection, CPU/Latency, Process/Thread, Lock/Cont
 - 백지에서 흐름도 그리기
 - 오류 상황에서 확인 순서 말하기
 - `WHAT → WHY → HOW → PROOF → LIMIT`로 평가 답변하기
-- `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 구분하기
+- `LEARNING READY`, `TROUBLESHOOTING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 구분하기
 - Advanced에서는 `필수 / 원본 Bonus / 추가 심화`를 구분하기
 
 ## 원칙
