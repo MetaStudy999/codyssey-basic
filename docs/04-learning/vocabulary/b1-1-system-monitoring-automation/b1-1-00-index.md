@@ -6,7 +6,7 @@
 **학습시간:** 40시간  
 **학습 구조:** Level 0 → Level 1 → Level 2 → Level 3 → Level 4 → Level 5 → Review → Advanced
 
-> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. Level 0·1은 `한 파일 = 한 용어`, Level 2는 `독립 실행 단위`, Level 3는 `독립 원리 단위`, Level 4는 `독립 장애 진단 단위`, Level 5는 `독립 평가 설명 단위`를 적용한다.
+> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. Level 0·1은 `한 파일 = 한 용어`, Level 2는 `독립 실행 단위`, Level 3는 `독립 원리 단위`, Level 4는 `독립 장애 진단 단위`, Level 5는 `독립 평가 설명 단위`, Review는 `독립 통합 복습 단위`를 적용한다.
 
 ## 1. 현재 작업 정책
 
@@ -38,10 +38,10 @@
 | 40 | [Level 3 — Principle Unit Index](./b1-1-40-level-3-principles/b1-1-40-000-index.md) | 12개 구조·원리 단위 | WHY/HOW | ✅ |
 | 50 | [Level 4 — Troubleshooting Unit Index](./b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) | 12개 장애 진단·복구 단위 | Evidence 기반 진단 | ✅ |
 | 60 | [Level 5 — Evaluation Unit Index](./b1-1-60-level-5-evaluation/b1-1-60-000-index.md) | 12개 평가 설명·구두 답변 단위 | V5 | ✅ |
-| 70 | [Review Pack](./b1-1-70-review-pack.md) | 통합 복습·최종 Gate | LEARNING READY | NEXT |
+| 70 | [Review — Integrated Review Index](./b1-1-70-review/b1-1-70-000-index.md) | 12개 통합 복습·백지복원·최종 판정 단위 | LEARNING READY | ✅ |
 | 90 | [Advanced](./b1-1-90-advanced.md) | 선택 심화 | 필요 시 | 문서 존재 |
 
-기존 Level 0~5의 한 페이지 요약 문서는 기존 URL 호환과 전체 흐름 복습용으로 유지한다. `80`은 향후 실전 모의평가·추가 Lab 구간으로 예약한다.
+기존 Level 0~5와 [Review Full Pack](./b1-1-70-review-pack.md)의 한 페이지 문서는 기존 URL 호환과 전체 흐름 복습용으로 유지한다. `80`은 향후 실전 모의평가·추가 Lab 구간으로 예약한다.
 
 ## 3. Source of Truth
 
@@ -113,6 +113,8 @@ Log Rotation
 Verification / Troubleshooting / Evidence
         ↓
 Evaluation Explanation
+        ↓
+Integrated Review / LEARNING READY
 ```
 
 중요한 구분:
@@ -122,6 +124,7 @@ Evaluation Explanation
 프로세스 존재 ≠ 서비스 정상
 명령 성공 메시지 ≠ 최종 상태 검증
 문서 작성 ≠ Runtime PASS
+LEARNING READY ≠ RUNTIME VERIFIED ≠ MISSION PASS
 ```
 
 ## 6. Vocabulary Gate
@@ -135,6 +138,7 @@ Evaluation Explanation
 | WHY/HOW | 구조가 왜 필요한지와 어떻게 연결되는지 설명할 수 있는가? |
 | Troubleshooting | 실패 층을 분리하고 최소 수정·재검증·Evidence로 복구를 증명할 수 있는가? |
 | V5 — Explain | `WHAT → WHY → HOW → PROOF → LIMIT`로 평가자에게 설명할 수 있는가? |
+| Review | V1~V5를 백지 복원·장애·Evidence·구두 설명으로 통합할 수 있는가? |
 
 ## 7. 관련 문서
 
@@ -154,8 +158,8 @@ B1-1 Level 2 실행 단위 구조화    ✅
 B1-1 Level 3 원리 단위 구조화    ✅
 B1-1 Level 4 장애 진단 구조화    ✅
 B1-1 Level 5 평가 설명 구조화    ✅
-→ Review 통합 점검
+B1-1 Review 통합 구조화          ✅
 → B1-2 동일 구조 확장
 ```
 
-➡️ [B1-1 Level 5 — Evaluation Unit Index](./b1-1-60-level-5-evaluation/b1-1-60-000-index.md)
+➡️ [B1-1 Review — Integrated Review Index](./b1-1-70-review/b1-1-70-000-index.md)

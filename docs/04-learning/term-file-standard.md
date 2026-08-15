@@ -2,7 +2,7 @@
 
 ## 1. 목적
 
-Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit / Troubleshooting Unit / Evaluation Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
+Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit / Troubleshooting Unit / Evaluation Unit / Review Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
 
 이 표준의 목적은 파일 수를 늘리는 것이 아니라 다음을 가능하게 하는 것이다.
 
@@ -24,11 +24,12 @@ vocabulary/
     ├── {mission-number}-40-level-3-principles/
     ├── {mission-number}-50-level-4-troubleshooting/
     ├── {mission-number}-60-level-5-evaluation/
+    ├── {mission-number}-70-review/
     ├── {mission-number}-70-review-pack.md
     └── {mission-number}-90-advanced.md
 ```
 
-각 Level 디렉터리의 `000-index`가 학습 진입점이다. 내부 항목은 `010, 020, 030 ...`처럼 10 단위로 배치하고, 중간 삽입이 필요하면 `015`, `025`처럼 기존 파일명을 바꾸지 않고 추가한다.
+각 Level/Review 디렉터리의 `000-index`가 학습 진입점이다. 내부 항목은 `010, 020, 030 ...`처럼 10 단위로 배치하고, 중간 삽입이 필요하면 `015`, `025`처럼 기존 파일명을 바꾸지 않고 추가한다.
 
 ## 3. 파일명 규칙
 
@@ -38,6 +39,7 @@ Level 2:   {mission}-30-{order}-{execution-unit-slug}.md
 Level 3:   {mission}-40-{order}-{principle-unit-slug}.md
 Level 4:   {mission}-50-{order}-{troubleshooting-unit-slug}.md
 Level 5:   {mission}-60-{order}-{evaluation-unit-slug}.md
+Review:    {mission}-70-{order}-{review-unit-slug}.md
 ```
 
 예:
@@ -49,6 +51,7 @@ b1-1-30-030-permissions-acl.md
 b1-1-40-050-ssh-listen-firewall.md
 b1-1-50-020-permission-denied.md
 b1-1-60-020-ssh-firewall-evaluation.md
+b1-1-70-090-five-minute-blank-recall.md
 ```
 
 원칙:
@@ -113,8 +116,6 @@ Symptom
 
 **한 파일 = 하나의 독립 평가 설명 단위**를 기본으로 한다.
 
-기본 답변 구조:
-
 ```text
 WHAT
 → WHY
@@ -128,9 +129,39 @@ WHAT
 
 - 하나의 평가 주제나 예상 질문군을 독립적으로 설명할 수 있는가?
 - 구현 사실, 선택 이유, 구현 위치, 실제 검증을 연결하는가?
-- 원본 필수 요구와 현재 구현 선택을 구분하는가?
 - 실제 Runtime Evidence가 없는 항목을 PASS로 과장하지 않는가?
-- 1분 답변과 3~5분 확장 설명으로 이어질 수 있는가?
+- 1분 답변과 3~5분 확장 설명으로 이어지는가?
+
+### Review — Integrated Review
+
+**한 파일 = 하나의 독립 통합 복습·판정 단위**를 기본으로 한다.
+
+Review는 새 지식을 추가하는 단계가 아니라 Level 0~5를 다시 꺼내 쓰는 Retrieval/Integration 단계다.
+
+권장 흐름:
+
+```text
+Mission Map
+→ Fixed Values
+→ Role/Permission Map
+→ V1/V2 Recall
+→ V3 Relation
+→ V4 Locate/Apply
+→ Troubleshooting
+→ V5 Oral Explanation
+→ Blank Recall
+→ Evidence Checklist
+→ LEARNING READY Decision
+→ Next Mission Bridge
+```
+
+분리 기준:
+
+- 새 설명보다 기존 학습을 꺼내 쓰게 하는가?
+- V1~V5와 Troubleshooting을 한 방향으로 통합하는가?
+- 백지 복원·구두 설명·Evidence 점검 중 하나의 명확한 목적이 있는가?
+- `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 혼동하지 않는가?
+- 다음 미션의 REVIEW/DEEPEN으로 연결되는가?
 
 ## 5. 최소 구조
 
@@ -204,18 +235,29 @@ V5 Gate
 이전 / Index / 다음
 ```
 
-설명·비유·연습은 학습 보조 자료이며 Mission 요구사항으로 승격하지 않는다. 원본이 고정한 숫자·경로·조건은 그대로 보존한다.
+### Review 통합 복습 단위
+
+```text
+Front Matter
+H1
+복습 목표
+회상/복원 과제
+자기 확인
+통합 Gate
+이전 / Review Index / 다음
+```
+
+Review에서는 답을 먼저 보여 주기보다 가능한 경우 먼저 회상하게 하고, 정답·기준은 검증 단계에서 사용한다.
 
 ## 6. Front Matter 예
 
 ```yaml
 ---
 mission: B1-1
-level: 5
-order: 20
-unit: SSH and Firewall Evaluation
-lifecycle: INTEGRATE
-gate: V5
+stage: review
+order: 90
+unit: Five-minute Blank Recall
+gate: RETRIEVAL-PRACTICE
 visual_learning: DEFERRED
 ---
 ```
@@ -242,6 +284,7 @@ V1 인지
 → WHY/HOW 구조·원리
 → Troubleshooting 장애 진단
 → V5 평가 설명
+→ Review 통합 복원
 ```
 
 ## 8. 링크 규칙
@@ -249,10 +292,10 @@ V1 인지
 각 파일 하단에는 최소 다음 링크를 둔다.
 
 ```text
-← 이전 · Level Index · 다음 →
+← 이전 · Level/Review Index · 다음 →
 ```
 
-과거 URL을 참조할 수 있는 기존 요약 파일은 즉시 삭제하지 않고 호환 진입점 또는 전체 요약으로 유지할 수 있다.
+과거 URL을 참조할 수 있는 기존 요약/Review Pack 파일은 즉시 삭제하지 않고 호환 진입점 또는 전체 요약으로 유지할 수 있다.
 
 ## 9. Source of Truth
 
@@ -260,7 +303,7 @@ V1 인지
 2. 공식 Evaluation
 3. 실제 구현 코드·설정·명령·파일 구조
 4. 검증·트러블슈팅·평가 자료
-5. 학습용 설명·비유·연습
+5. 학습용 설명·복습·비유·연습
 
 Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 않는다.
 
@@ -278,7 +321,7 @@ Cover
 → One-page Summary
 ```
 
-현재 이미지 생성 및 GitHub 반영 작업은 **DEFERRED**다. 시각 자료가 없어도 텍스트, 실습, 원리, 트러블슈팅, 평가, Gate 작업을 계속 진행한다. 상세 기준은 [Visual Learning Backlog](./visual-learning-backlog.md)를 따른다.
+현재 이미지 생성 및 GitHub 반영 작업은 **DEFERRED**다. 시각 자료가 없어도 텍스트, 실습, 원리, 트러블슈팅, 평가, Review, Gate 작업을 계속 진행한다. 상세 기준은 [Visual Learning Backlog](./visual-learning-backlog.md)를 따른다.
 
 ## 11. 검증 체크리스트
 
@@ -291,6 +334,7 @@ Cover
 - [ ] Level 3는 WHY/HOW 원리 단위인가?
 - [ ] Level 4는 장애 진단·재검증·Evidence 흐름인가?
 - [ ] Level 5는 WHAT/WHY/HOW/PROOF/LIMIT 구조인가?
+- [ ] Review는 새 지식 추가보다 회상·복원·통합 판정 중심인가?
 - [ ] Runtime Evidence 없이 PASS를 주장하지 않는가?
 - [ ] Visual Learning이 비시각 학습 작업을 막지 않는가?
 
@@ -303,9 +347,9 @@ B1-1 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
 B1-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
 B1-1 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 B1-1 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
+B1-1 Review 통합 구조화         ✅ 12 review units + 000-index
 Visual Learning                  DEFERRED
-B1-1 Review 통합 점검           NEXT
-B1-2 동일 구조 적용             이후
+B1-2 동일 구조 적용             NEXT
 ```
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.

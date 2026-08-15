@@ -24,10 +24,11 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [40 — Level 3 Principle Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles/b1-1-40-000-index.md) — 12개, WHY/HOW
 - [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) — 12개, Evidence 기반 진단
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개, V5
-- [70 — Review Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
+- [70 — Integrated Review Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개, LEARNING READY
+- [70 — Review Full Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md) — 전체 한 페이지 복습/호환
 - [90 — Advanced](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced.md)
 
-기존 Level 0~5 단일 파일은 전체 흐름 복습과 기존 URL 호환용으로 유지한다.
+기존 Level 0~5 단일 파일과 Review Pack은 전체 흐름 복습 및 기존 URL 호환용으로 유지한다.
 
 ## B1-1 학습 확장 상태
 
@@ -46,12 +47,12 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   ↓
 60 Level 5 → 12 evaluation units ✅
   ↓
-70 Review → NEXT
+70 Review → 12 integrated review units ✅
   ↓
 90 Advanced (Optional)
 ```
 
-Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다.
+Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다. B1-1 비시각 학습 패키지의 Level 0~5 + Review 구조화가 완료되었으므로 다음 확장 대상은 B1-2다.
 
 ## 자기 설명 기준
 
@@ -61,6 +62,7 @@ Visual Learning은 별도 Backlog이며 현재 Critical Path가 아니다.
 - 백지에서 흐름도 그리기
 - 오류 상황에서 확인 순서 말하기
 - `WHAT → WHY → HOW → PROOF → LIMIT`로 평가 답변하기
+- `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 구분하기
 
 ## 원칙
 
