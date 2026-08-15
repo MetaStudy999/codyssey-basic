@@ -2,7 +2,7 @@
 
 ## 1. 목적
 
-Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit / Troubleshooting Unit / Evaluation Unit / Review Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
+Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit / Troubleshooting Unit / Evaluation Unit / Review Unit / Advanced Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
 
 이 표준의 목적은 파일 수를 늘리는 것이 아니라 다음을 가능하게 하는 것이다.
 
@@ -10,6 +10,7 @@ Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / P
 - GitHub/CLI 정렬만으로 학습 순서 파악
 - 선수·후행 관계 연결
 - `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE` 추적
+- 원본 필수 / 원본 Bonus / 추가 심화를 구분
 - 향후 Knowledge Graph, 자동 퀴즈, 학습 대시보드로 확장
 
 ## 2. 구조
@@ -26,10 +27,11 @@ vocabulary/
     ├── {mission-number}-60-level-5-evaluation/
     ├── {mission-number}-70-review/
     ├── {mission-number}-70-review-pack.md
+    ├── {mission-number}-90-advanced/
     └── {mission-number}-90-advanced.md
 ```
 
-각 Level/Review 디렉터리의 `000-index`가 학습 진입점이다. 내부 항목은 `010, 020, 030 ...`처럼 10 단위로 배치하고, 중간 삽입이 필요하면 `015`, `025`처럼 기존 파일명을 바꾸지 않고 추가한다.
+각 Level/Review/Advanced 디렉터리의 `000-index`가 학습 진입점이다. 내부 항목은 `010, 020, 030 ...`처럼 10 단위로 배치하고, 중간 삽입이 필요하면 `015`, `025`처럼 기존 파일명을 바꾸지 않고 추가한다.
 
 ## 3. 파일명 규칙
 
@@ -40,6 +42,7 @@ Level 3:   {mission}-40-{order}-{principle-unit-slug}.md
 Level 4:   {mission}-50-{order}-{troubleshooting-unit-slug}.md
 Level 5:   {mission}-60-{order}-{evaluation-unit-slug}.md
 Review:    {mission}-70-{order}-{review-unit-slug}.md
+Advanced:  {mission}-90-{order}-{advanced-unit-slug}.md
 ```
 
 예:
@@ -52,6 +55,7 @@ b1-1-40-050-ssh-listen-firewall.md
 b1-1-50-020-permission-denied.md
 b1-1-60-020-ssh-firewall-evaluation.md
 b1-1-70-090-five-minute-blank-recall.md
+b1-1-90-030-systemd-service-timer.md
 ```
 
 원칙:
@@ -163,6 +167,30 @@ Mission Map
 - `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 혼동하지 않는가?
 - 다음 미션의 REVIEW/DEEPEN으로 연결되는가?
 
+### Advanced — Optional Deepening
+
+**한 파일 = 하나의 선택 심화 주제 또는 Bonus 수행 단위**를 기본으로 한다.
+
+Advanced에서는 반드시 `source_scope`를 구분한다.
+
+```text
+SOURCE_LINKED_BONUS
+→ 원본 Mission이 선택 과제로 직접 언급한 내용
+
+SUPPLEMENTAL_ADVANCED
+→ 학습 확장을 위해 추가한 일반 심화 기술
+
+MIXED_OPTIONAL
+→ 둘을 연결하는 선택 프로젝트/통합 단위
+```
+
+분리 기준:
+
+- 원본 Bonus와 추가 심화를 같은 필수 요구로 취급하지 않는가?
+- 필수 미션의 Runtime/Evidence를 가리거나 대체하지 않는가?
+- 하나의 심화 주제로 독립 설명 또는 선택 실습이 가능한가?
+- 실제 수행하지 않은 선택 프로젝트를 완료로 표시하지 않는가?
+
 ## 5. 최소 구조
 
 ### Level 0·1 용어 파일
@@ -249,7 +277,24 @@ H1
 
 Review에서는 답을 먼저 보여 주기보다 가능한 경우 먼저 회상하게 하고, 정답·기준은 검증 단계에서 사용한다.
 
+### Advanced 선택 심화 단위
+
+```text
+Front Matter + source_scope
+H1
+한 줄 설명 / 목적
+Source 연결 또는 B1-x 연결
+핵심 관계 / 선택 실습
+필수와의 경계
+Advanced Gate
+이전 / Advanced Index / 다음
+```
+
+Advanced는 `ADVANCED STRUCTURE READY`를 `MISSION PASS`와 동일하게 취급하지 않는다.
+
 ## 6. Front Matter 예
+
+Review:
 
 ```yaml
 ---
@@ -258,6 +303,19 @@ stage: review
 order: 90
 unit: Five-minute Blank Recall
 gate: RETRIEVAL-PRACTICE
+visual_learning: DEFERRED
+---
+```
+
+Advanced:
+
+```yaml
+---
+mission: B1-1
+stage: advanced
+order: 30
+unit: systemd Service and Timer
+source_scope: SUPPLEMENTAL_ADVANCED
 visual_learning: DEFERRED
 ---
 ```
@@ -285,6 +343,7 @@ V1 인지
 → Troubleshooting 장애 진단
 → V5 평가 설명
 → Review 통합 복원
+→ Advanced 선택 심화
 ```
 
 ## 8. 링크 규칙
@@ -292,10 +351,10 @@ V1 인지
 각 파일 하단에는 최소 다음 링크를 둔다.
 
 ```text
-← 이전 · Level/Review Index · 다음 →
+← 이전 · Level/Review/Advanced Index · 다음 →
 ```
 
-과거 URL을 참조할 수 있는 기존 요약/Review Pack 파일은 즉시 삭제하지 않고 호환 진입점 또는 전체 요약으로 유지할 수 있다.
+과거 URL을 참조할 수 있는 기존 요약/Review Pack/Advanced Summary 파일은 즉시 삭제하지 않고 호환 진입점 또는 전체 요약으로 유지할 수 있다.
 
 ## 9. Source of Truth
 
@@ -303,9 +362,9 @@ V1 인지
 2. 공식 Evaluation
 3. 실제 구현 코드·설정·명령·파일 구조
 4. 검증·트러블슈팅·평가 자료
-5. 학습용 설명·복습·비유·연습
+5. 학습용 설명·복습·비유·연습·추가 심화
 
-Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 않는다.
+Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 않는다. Advanced의 추가 기술은 반드시 `SUPPLEMENTAL_ADVANCED` 등으로 분리한다.
 
 ## 10. 시각 학습 정책
 
@@ -321,7 +380,7 @@ Cover
 → One-page Summary
 ```
 
-현재 이미지 생성 및 GitHub 반영 작업은 **DEFERRED**다. 시각 자료가 없어도 텍스트, 실습, 원리, 트러블슈팅, 평가, Review, Gate 작업을 계속 진행한다. 상세 기준은 [Visual Learning Backlog](./visual-learning-backlog.md)를 따른다.
+현재 이미지 생성 및 GitHub 반영 작업은 **DEFERRED**다. 시각 자료가 없어도 텍스트, 실습, 원리, 트러블슈팅, 평가, Review, Advanced, Gate 작업을 계속 진행한다. 상세 기준은 [Visual Learning Backlog](./visual-learning-backlog.md)를 따른다.
 
 ## 11. 검증 체크리스트
 
@@ -335,6 +394,7 @@ Cover
 - [ ] Level 4는 장애 진단·재검증·Evidence 흐름인가?
 - [ ] Level 5는 WHAT/WHY/HOW/PROOF/LIMIT 구조인가?
 - [ ] Review는 새 지식 추가보다 회상·복원·통합 판정 중심인가?
+- [ ] Advanced는 원본 Bonus와 추가 심화를 구분하는가?
 - [ ] Runtime Evidence 없이 PASS를 주장하지 않는가?
 - [ ] Visual Learning이 비시각 학습 작업을 막지 않는가?
 
@@ -348,6 +408,7 @@ B1-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
 B1-1 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 B1-1 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
 B1-1 Review 통합 구조화         ✅ 12 review units + 000-index
+B1-1 Advanced 선택 심화 구조화  ✅ 10 advanced units + 000-index
 B1-2 Level 0 선수 용어 구조화   ✅ 35 terms + 000-index
 B1-2 Level 1 Top Core 구조화     ✅ 30 terms + 000-index
 Visual Learning                  DEFERRED
