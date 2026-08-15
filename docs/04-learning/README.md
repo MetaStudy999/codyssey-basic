@@ -55,18 +55,20 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [40 — Level 3 Principle Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-40-level-3-principles/b2-1-40-000-index.md) — 12개, WHY/HOW ✅
 - [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md) — 12개 ✅
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-60-level-5-evaluation/b2-1-60-000-index.md) — 12개, V5 ✅
+- [70 — Integrated Review Index](./vocabulary/b2-1-budget-tracker/b2-1-70-review/b2-1-70-000-index.md) — 12개 ✅
+- [70 — Review Full Pack](./vocabulary/b2-1-budget-tracker/b2-1-70-review-pack.md) — 전체 요약 ✅
 - [기존 B2-1 Vocabulary Summary](./vocabulary/b2-1.md) — 전체 용어 지도/기존 URL 호환
 
-B2-1 Level 5는 공식 평가 범위를 `Functions/Persistence → Error Contract → Module/Class Responsibility → Safe Rewrite/Integrity → Generator → Decorator → Type Hint → Storage Trade-off → 100k Scalability → Import Trust Policy → V5 Gate`로 묶고, 각 답변을 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP` 구조로 설명한다. 기존 구현 Evidence는 개인 평가 준비 완료를 대신하지 않는다.
+B2-1 Review는 `Mission Map → Source Boundary → Transaction Data Flow → CRUD/Persistence → Generator/Layer Responsibility → Integrity/Atomicity → CSV Import/Export → Troubleshooting → Evidence/Evaluation Mapping → Oral Explanation → Five-minute Blank Reconstruction → LEARNING READY`로 Level 0~5를 회상·통합한다. 기존 18/18 테스트 Evidence는 개인 복습·평가 완료를 대신하지 않는다.
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
 B1-2 Level 0~5 + Review + Advanced ✅
         ↓
-B2-1 Source Lock + Level 0~5 ✅
+B2-1 Source Lock + Level 0~5 + Review ✅
         ↓
-B2-1 Review → NEXT
+B2-1 Advanced → NEXT
 ```
 
 ## 자기 설명 기준

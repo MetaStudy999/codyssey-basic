@@ -431,10 +431,13 @@ B2-1 Level 0 선수 용어 구조화   ✅ 45 terms + 000-index
 B2-1 Level 1 Top Core 구조화     ✅ 40 terms + 000-index
 B2-1 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
 B2-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
+B2-1 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
+B2-1 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
+B2-1 Review 통합 구조화         ✅ 12 review units + Full Pack
 Visual Learning                  DEFERRED
-B2-1 Level 4 장애 진단 구조화   NEXT
+B2-1 Advanced 선택 심화 구조화  NEXT
 ```
 
-B2-1 Level 3는 `Persistence/Data Lifecycle → Model Invariant → JSONL/CSV 역할 → Generator/Lazy Evaluation → Streaming/Materialization → Layer Responsibility → File Atomicity → Referential Integrity → Decorator/Cross-cutting → Type Contract → Import All-or-Nothing → WHY/HOW Gate`로 구조화한다. 다음은 입력·파일·ID·category·CSV·atomic rewrite·error exit 실패를 장애 진단 흐름으로 연결한다.
+B2-1 Review는 `Mission Map → Source Boundary → Transaction Data Flow → CRUD/Persistence → Generator/Layer Responsibility → Integrity/Atomicity → CSV Import/Export → Troubleshooting → Evidence/Evaluation Mapping → Oral Explanation → Five-minute Blank Reconstruction → LEARNING READY`로 Level 0~5를 통합 회상한다. 다음 단계에서는 원본 Mission의 Bonus/선택 심화 범위를 다시 확인해 Advanced를 구조화한다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.

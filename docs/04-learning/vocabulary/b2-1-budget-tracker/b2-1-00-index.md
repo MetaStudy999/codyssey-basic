@@ -46,8 +46,9 @@ cross-cutting error boundary: @cli_guard
 | 40 | [Level 3 — Principles](./b2-1-40-level-3-principles/b2-1-40-000-index.md) | Persistence·Generator·Layer·Atomicity·Integrity 등 12개 WHY/HOW 단위 | ✅ |
 | 50 | [Level 4 — Troubleshooting](./b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md) | 입력·파일·ID·category·CSV·atomic rewrite·error exit 12개 장애 진단 단위 | ✅ |
 | 60 | [Level 5 — Evaluation](./b2-1-60-level-5-evaluation/b2-1-60-000-index.md) | 공식 평가 4개 영역을 12개 자기설명 단위로 구조화, V5 | ✅ |
-| 70 | Review | 통합 회상 | NEXT |
-| 90 | Advanced | 원본 Bonus 선택 심화 | 이후 |
+| 70 | [Review](./b2-1-70-review/b2-1-70-000-index.md) | Mission Map·V1~V5·Troubleshooting·Evidence 통합 회상 12개 단위 | ✅ |
+| 70 | [Review Full Pack](./b2-1-70-review-pack.md) | 한 번에 수행하는 통합 복습 | ✅ |
+| 90 | Advanced | 원본 Bonus/선택 심화 Source 재확인 후 구조화 | NEXT |
 
 ## Mission 핵심
 
@@ -144,13 +145,33 @@ Functions + Persistence
 
 공식 평가 문항의 4개 영역을 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP`으로 설명한다. 기존 18/18 테스트 Evidence는 구현 근거로 사용하되 개인 평가 준비 완료나 Mission PASS와 동일하게 취급하지 않는다.
 
+## Review 통합 연결
+
+```text
+Mission Map Recall
+→ Source / Constraint Boundary
+→ Transaction Data Flow
+→ CRUD / Persistence
+→ Generator / Layer Responsibility
+→ Integrity / Atomicity
+→ CSV Import / Export
+→ Troubleshooting Scenarios
+→ Evidence / Evaluation Mapping
+→ Oral Explanation
+→ Five-minute Blank Reconstruction
+→ LEARNING READY Decision
+```
+
+Review는 새 지식을 추가하는 단계가 아니라 Level 0~5를 **보지 않고 꺼내 쓰는 Retrieval/Integration 단계**다.
+
 ## 상태 경계
 
 ```text
-EVALUATION STRUCTURE READY
-≠ PERSONAL EVALUATION READY
+REVIEW STRUCTURE READY
+≠ LEARNING READY
 ≠ PERSONAL MASTERED
 ≠ RUNTIME REVERIFIED BY LEARNER
+≠ EVALUATION PASS
 ≠ MISSION PASS
 ```
 
@@ -160,6 +181,6 @@ Visual Learning은 **DEFERRED**다.
 
 ## 다음 작업
 
-`Review — Mission Map → 핵심 기능/구조 회상 → V1~V5 혼합 회수 → Troubleshooting Scenario → Evidence Mapping → 1분/3~5분 설명 → LEARNING READY 판정으로 통합`
+`Advanced — 원본 Mission PDF의 Bonus/선택 심화 범위를 다시 Source Lock한 뒤 SOURCE_LINKED_BONUS와 SUPPLEMENTAL_ADVANCED를 구분해 구조화`
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 5 →](./b2-1-60-level-5-evaluation/b2-1-60-000-index.md)
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Review →](./b2-1-70-review/b2-1-70-000-index.md)
