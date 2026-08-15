@@ -43,10 +43,10 @@ domains:
         title: 나만의 용돈 기입장 프로그램 만들기
         title_en: Budget CLI
         repo: https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker
-        status: PASS
-        learning: EXPLAINABLE
-        current_gate: G8_MERGE
-        gates: {G1_SOURCE: PASS, G2_BUILD: PASS, G3_TEST: PASS, G4_REVIEW: PASS, G5_RUNTIME: PASS, G6_EVIDENCE: PASS, G7_LEARN: PASS, G8_MERGE: PASS}
+        status: TODO
+        learning: NOT-STUDIED
+        current_gate: G1_SOURCE
+        gates: {G1_SOURCE: TODO, G2_BUILD: TODO, G3_TEST: TODO, G4_REVIEW: TODO, G5_RUNTIME: TODO, G6_EVIDENCE: TODO, G7_LEARN: TODO, G8_MERGE: TODO}
       - id: B2-2
         kind: mission
         official_requirement: required
