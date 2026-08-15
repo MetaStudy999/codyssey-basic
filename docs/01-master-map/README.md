@@ -27,6 +27,7 @@ EXPERT 이후에는 단일 서열이 아니라 전문 경로로 분기하고 최
 
 - `dashboard-v3.md` — Growth/Mission/Skill/Activity 계층 Dashboard 설계
 - `validation-plan.md` — Pre-Cutover / Post-Cutover 검증 Gate
+- `cutover-readiness.md` — 현재 PASS/HOLD/WAIT 상태와 Cutover 가능 여부
 - `scripts/validate_v3.py` — V3 구조/링크/자동생성/Dashboard Wiring 검증기
 - `scripts/browser_smoke.py` — Chromium Dashboard / Live Telemetry Smoke Test
 - `scripts/scan_legacy_refs.py` — Legacy Cleanup 전 Reference Scanner
