@@ -34,7 +34,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
 | 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | **1차 용어 작성 완료 / 구조화 NEXT** |
+| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0 + Level 1 완료 / Level 2 NEXT** |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
 | 6 | B3-2 | [파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기](./b3-2.md) | 1차 용어 작성 완료 |
@@ -83,21 +83,27 @@ Advanced에서는 `SOURCE_LINKED_BONUS`와 `SUPPLEMENTAL_ADVANCED`를 구분한�
 
 B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. Advanced에서는 원본 Bonus가 지정한 `로그 Timestamp → 실행 순서/교체 주기 → Round-Robin/FCFS/Priority 비교 → 알고리즘 역추론 → 장단점/아키텍처 적합성`만 `SOURCE_LINKED_BONUS`로 구조화한다.
 
+## B2-1 학습 구조
+
+- [00 — Index / Source Lock](./b2-1-budget-tracker/b2-1-00-index.md) — PDF 9쪽 시각 검토, Source/implementation choice 경계 ✅
+- [10 — Level 0 Prerequisite Index](./b2-1-budget-tracker/b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) — 45개 ✅
+- [20 — Level 1 Top Core Index](./b2-1-budget-tracker/b2-1-20-level-1-core/b2-1-20-000-index.md) — 40개 ✅
+- [기존 Vocabulary Summary](./b2-1.md) — 전체 용어 지도/기존 URL 호환
+- 다음: Level 2 — CLI/저장/CRUD/Search/Summary/Budget/Category/CSV/Streaming 실행 단위
+
+B2-1은 Mission이 선택 가능한 부분과 현재 구현 결정을 구분한다. 현재 구현의 JSONL 저장, 기본 category 자동 생성, option-based update, `os.replace()` atomic rewrite, malformed import rollback, `@cli_guard`는 실제 구현 사실이지만 원본이 여러 방식을 허용하는 항목에서는 유일한 정답으로 승격하지 않는다.
+
 ## 통합 자산 상태
 
 - Mission Vocabulary B1-1~B7-2: **완료**
 - Basic Master Vocabulary: **v1 완료**
 - B1-1 Level 0~5 + Review + Advanced: **구조화 완료**
-- B1-2 Level 0 선수 용어 35개: **완료**
-- B1-2 Level 1 Top Core 30개: **완료**
-- B1-2 Level 2 실행 단위 12개: **완료**
-- B1-2 Level 3 원리 단위 12개: **완료**
-- B1-2 Level 4 장애 진단 단위 12개: **완료**
-- B1-2 Level 5 평가 설명 단위 12개: **완료**
-- B1-2 Review 통합 단위 12개 + Full Pack: **완료**
-- B1-2 Advanced 선택 Bonus 단위 10개 + Full Summary: **완료**
+- B1-2 Level 0~5 + Review + Advanced: **구조화 완료**
+- B2-1 Source Lock: **완료**
+- B2-1 Level 0 선수 용어 45개: **완료**
+- B2-1 Level 1 Top Core 40개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B2-1 구조화 시작**
+- 다음: **B2-1 Level 2 실행 단위 구조화**
 
 ## 누적 학습 원칙
 

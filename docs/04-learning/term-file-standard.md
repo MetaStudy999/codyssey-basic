@@ -368,6 +368,8 @@ V1 인지
 
 Source가 지원하지 않는 내용을 원본 요구사항처럼 작성하지 않는다. Advanced의 추가 기술은 반드시 `SUPPLEMENTAL_ADVANCED` 등으로 분리한다.
 
+Source 내부에 상충하는 표기나 선택지가 있으면 숨기지 않고 Mission Index의 Source Lock에서 기록한다. 실제 구현이 하나의 선택지를 채택했다고 해서 원본이 허용한 다른 선택지를 삭제하거나 유일한 정답으로 승격하지 않는다.
+
 ## 10. 시각 학습 정책
 
 최종적으로 다음 구성을 목표로 한다.
@@ -391,6 +393,7 @@ Cover
 - [ ] 모든 파일에 이전/Index/다음 링크가 있는가?
 - [ ] 원본 고정값·제약이 변형되지 않았는가?
 - [ ] 학습 보조 설명과 원본 요구가 구분되는가?
+- [ ] Source 내부 표기 충돌이나 선택지가 숨겨지지 않았는가?
 - [ ] Level 2는 실행·검증 단위인가?
 - [ ] Level 3는 WHY/HOW 원리 단위인가?
 - [ ] Level 4는 장애 진단·재검증·Evidence 흐름인가?
@@ -419,10 +422,13 @@ B1-2 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 B1-2 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
 B1-2 Review 통합 구조화         ✅ 12 review units + Full Pack
 B1-2 Advanced 선택 심화 구조화  ✅ 10 advanced units + Full Summary
+B2-1 Source Lock                 ✅ PDF 9 pages visually verified
+B2-1 Level 0 선수 용어 구조화   ✅ 45 terms + 000-index
+B2-1 Level 1 Top Core 구조화     ✅ 40 terms + 000-index
 Visual Learning                  DEFERRED
-B2-1 구조화                      NEXT
+B2-1 Level 2 실행 단위 구조화   NEXT
 ```
 
-B1-2 Advanced는 원본 Mission Bonus의 스케줄링 알고리즘 추론을 `SOURCE_LINKED_BONUS`로 분리하여 `로그 → 패턴 → 후보 비교 → 역추론 → 장단점/아키텍처 적합성 → 리포트` 흐름으로 구조화한다. 다음 단계는 B2-1의 기존 1차 Vocabulary Summary를 Source Lock한 뒤 동일 표준으로 확장하는 것이다.
+B2-1 Level 2에서는 현재 구현 저장소를 기준으로 `CLI/초기화 → add/list → search → update/delete → summary/budget/category → import/export → generator streaming → atomic rewrite → error exit/evidence`를 독립 실행·검증 단위로 구조화한다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
