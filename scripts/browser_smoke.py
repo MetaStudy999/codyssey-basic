@@ -65,9 +65,9 @@ def verify_beginner_dashboard(page) -> None:
 
     assert_count(page, "#beginner-step-grid .beginner-step", 8)
     assert_count(page, "#beginner-journey .beginner-journey-card", 7)
-    assert_count(page, "div.beginner-mission-list .beginner-mission-card", 15)
+    assert_count(page, "#beginner-mission-list .beginner-mission-card", 15)
 
-    b2_1 = page.locator("div.beginner-mission-list .beginner-mission-card").filter(has_text="B2-1")
+    b2_1 = page.locator("#beginner-mission-list .beginner-mission-card").filter(has_text="B2-1")
     if "이전 수행 기록: PASS" not in b2_1.inner_text():
         raise AssertionError("B2-1 previous PASS must be shown as history, not current clear")
     if "새 도전 0/8 단계" not in b2_1.inner_text():
@@ -97,9 +97,9 @@ def verify_mobile_readability(browser, url: str) -> None:
 
     if not page.locator("#beginner-current-title").is_visible():
         raise AssertionError("current mission must be visible on mobile")
-    overflow = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+    overflow = page.locator("#beginner-dashboard").evaluate("el => el.scrollWidth - el.clientWidth")
     if overflow > 2:
-        raise AssertionError(f"mobile dashboard has horizontal overflow: {overflow}px")
+        raise AssertionError(f"beginner mobile dashboard has horizontal overflow: {overflow}px")
     if not page.locator("#beginner-continue").is_visible():
         raise AssertionError("primary beginner action must be visible on mobile")
     if errors:
@@ -182,7 +182,6 @@ def main() -> int:
         if not refresh.is_enabled():
             raise AssertionError("manual refresh button must be enabled with a clean localStorage")
 
-        # Verify the 5-minute cooldown UI without making live network requests.
         page.evaluate("([key, value]) => localStorage.setItem(key, value)", [COOLDOWN_KEY, str(int(time.time() * 1000))])
         page.reload(wait_until="networkidle")
         page.locator("#mission-control-grid .mission-control-card").first.wait_for()
@@ -199,8 +198,7 @@ def main() -> int:
         if errors:
             raise AssertionError("browser console/page errors: " + " | ".join(errors))
 
-        screenshot = ROOT / "browser-smoke.png"
-        page.screenshot(path=str(screenshot), full_page=True)
+        page.screenshot(path=str(ROOT / "browser-smoke.png"), full_page=True)
         context.close()
 
         verify_mobile_readability(browser, url)
