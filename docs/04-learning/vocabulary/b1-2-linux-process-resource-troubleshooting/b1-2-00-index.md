@@ -31,7 +31,8 @@ OOM Crash / CPU Latency / Deadlock
 | 60 | [Level 5 — Evaluation Unit Index](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md) | 12개 Evidence 기반 평가 설명 단위 | ✅ |
 | 70 | [Integrated Review Index](./b1-2-70-review/b1-2-70-000-index.md) | 12개 회상·통합·LEARNING READY 판정 단위 | ✅ |
 | 70 | [Review Full Pack](./b1-2-70-review-pack.md) | 한 페이지 전체 복습 | ✅ |
-| 90 | Advanced | 원본 Bonus 스케줄링 알고리즘 추론 | NEXT / 선택 |
+| 90 | [Advanced — Scheduling Inference Index](./b1-2-90-advanced/b1-2-90-000-index.md) | 원본 Bonus 스케줄링 알고리즘 역추론 10개 단위 | ✅ / 선택 |
+| 90 | [Advanced Full Summary](./b1-2-90-advanced.md) | 선택 Bonus 한 페이지 요약 | ✅ / 선택 |
 
 기존 [`b1-2.md`](../b1-2.md)는 전체 Vocabulary Summary와 기존 URL 호환용으로 유지한다.
 
@@ -61,6 +62,22 @@ OOM Crash / CPU Latency / Deadlock
 - OOM은 `MEMORY_LIMIT`, CPU는 `CPU_MAX_OCCUPY`, Deadlock은 `MULTI_THREAD_ENABLE` 변경 전후 비교
 - 바이너리 디컴파일·리버스 엔지니어링 금지
 
+## 원본 Bonus — Scheduling Algorithm Inference
+
+원본 Mission PDF의 선택 Bonus는 다음 흐름을 요구한다.
+
+```text
+Log Timestamp
+→ 실행 순서·교체 주기 패턴화
+→ Round-Robin / FCFS / Priority 비교
+→ 논리적 알고리즘 역추론
+→ 기술적 장단점
+→ 서비스 아키텍처 적합성
+→ Scheduling Inference Report
+```
+
+원본 PDF의 Round-Robin 예시는 정답이 아니라 참고 예시다. 실제 Advanced 수행에서는 본인이 수집한 로그 Evidence를 우선한다.
+
 ## 누적 학습 흐름
 
 ```text
@@ -71,35 +88,21 @@ B1-1 정상 관제
 → Level 4 장애 진단
 → Level 5 평가 설명
 → Review 통합 복원
-→ Advanced 선택 심화
+→ Advanced 선택 Bonus
+→ B2-1
 ```
-
-## Review 흐름
-
-```text
-RECALL
-→ RELATE
-→ DIAGNOSE
-→ EVIDENCE
-→ EXPLAIN
-→ RETRIEVE AGAIN
-→ LEARNING READY
-→ ADVANCED / NEXT BRIDGE
-```
-
-Review는 새 지식을 추가하지 않는다. OOM/CPU/Deadlock의 관계, Source-locked 조건, Evidence, Before/After, Troubleshooting, V5 자기 설명을 백지에서 다시 꺼내 쓰는 단계다.
-
-`b1-2-evaluation.md`의 20개 문항은 official provenance가 확인되지 않았으므로 공식 PASS 기준으로 승격하지 않고 평가 연습용 provisional checklist로만 사용한다.
 
 ## 상태 경계
 
 ```text
-REVIEW STRUCTURE READY
-≠ LEARNING READY
+B1-2 NON-VISUAL LEARNING STRUCTURE READY
 ≠ PERSONAL MASTERED
+≠ ADVANCED TASK EXECUTED
 ≠ RUNTIME VERIFIED
 ≠ MISSION PASS
 ```
+
+학습 문서 구조가 완성되었다는 사실은 실제 Runtime Evidence나 평가 PASS를 의미하지 않는다.
 
 ## Visual Learning
 
@@ -107,6 +110,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Advanced — 원본 Mission Bonus인 Process Scheduling / Scheduling Algorithm inference를 필수 요구와 분리해 선택 심화로 구조화`
+`B2-1 — 기존 1차 Vocabulary Summary를 Source Lock한 뒤 Level 0~5 + Review + Advanced 구조로 확장`
 
-[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Review →](./b1-2-70-review/b1-2-70-000-index.md)
+[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Advanced →](./b1-2-90-advanced/b1-2-90-000-index.md)
