@@ -46,15 +46,24 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [90 — Advanced Full Summary](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced.md) — 선택 Bonus 요약 ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
+## B2-1 — Budget Tracker
+
+- [00 — B2-1 Index / Source Lock](./vocabulary/b2-1-budget-tracker/b2-1-00-index.md) — 원본 PDF 9쪽 시각 검토 및 Source 경계 ✅
+- [10 — Level 0 Prerequisite Term Index](./vocabulary/b2-1-budget-tracker/b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) — 45개, V1 ✅
+- [20 — Level 1 Top Core Term Index](./vocabulary/b2-1-budget-tracker/b2-1-20-level-1-core/b2-1-20-000-index.md) — 40개, V2~V3 ✅
+- [기존 B2-1 Vocabulary Summary](./vocabulary/b2-1.md) — 전체 용어 지도/기존 URL 호환
+
+B2-1은 `Transaction → Data Model/dataclass → Validation → Persistent File Storage → CRUD/Search/Summary → Generator/yield/Streaming → Decorator/Type Contract → Model/Repository/Service/CLI → Integrity/Atomicity/Exception Handling`로 핵심 관계를 연결한다. 원본 PDF 내부의 CLI 하이픈 표기 불일치는 숨기지 않고 Source Lock에 기록했으며, 실제 long option 학습은 구체 요구 예시와 현재 구현의 `--` 계약을 따른다.
+
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
 B1-2 Level 0~5 + Review + Advanced ✅
         ↓
-B2-1 구조화 → NEXT
+B2-1 Source Lock + Level 0 + Level 1 ✅
+        ↓
+B2-1 Level 2 Execution → NEXT
 ```
-
-B1-2 Advanced는 원본 Mission의 선택 Bonus를 `SOURCE_LINKED_BONUS`로 고정하고, `로그 Timestamp → 실행 순서/교체 주기 → Round-Robin/FCFS/Priority 후보 비교 → Evidence 기반 역추론 → 장단점/서비스 적합성 → 리포트`로 구조화한다. 원본 PDF의 Round-Robin 예시는 참고 예시이며 실제 수행에서는 본인이 수집한 로그를 우선한다.
 
 ## 자기 설명 기준
 
