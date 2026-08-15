@@ -33,7 +33,7 @@ V3 Learning은 **Macro Growth Stage**와 **Micro Learning Level**을 분리한�
 
 ## Vocabulary Canonical Path
 
-V3의 학습 자산 Canonical Path는 다음으로 전환한다.
+V3의 학습 자산 Canonical Path는 다음과 같다.
 
 ```text
 docs/03-learning/
@@ -46,20 +46,20 @@ docs/03-learning/
 └── micro-learning-packages.md
 ```
 
-기존 `docs/04-learning`의 파일과 `vocabulary/` 트리는 동일 Git 객체를 재사용하여 이 경로에 먼저 배치했다. 따라서 현재 단계에서는 콘텐츠를 다시 작성하거나 학습 이력을 초기화하지 않는다.
+기존 Learning Compatibility 자산은 동일 Git 객체를 재사용하여 이 경로에 배치했다. 따라서 콘텐츠를 다시 작성하거나 기존 학습 이력을 초기화하지 않는다.
 
 ## Compatibility Migration
 
-현재는 **Canonical Copy 완료 / Old Path Compatibility 유지** 단계다.
+현재는 **Canonical Copy 완료 / Legacy Compatibility 유지** 단계다.
 
 ```text
-기존 docs/04-learning
+Legacy Learning Path
         ↓ 동일 자산을 V3 경로에 배치
 새 docs/03-learning Canonical Path
         ↓ 링크·Mission 문서·자동 검증 전환
 Active Reference 0
         ↓
-Old docs/04-learning 제거
+Legacy Learning Path 제거
 ```
 
-기존 경로는 다음 Cleanup Gate가 통과할 때까지 잠시 유지한다. 새 문서와 신규 링크는 `docs/03-learning`을 사용한다.
+기존 경로는 Cleanup Gate가 통과할 때까지만 유지한다. 새 문서와 신규 링크는 `docs/03-learning`을 사용한다.
