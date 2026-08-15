@@ -4,7 +4,7 @@
 Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 실제 실행 → Evidence → PASS.
 
 ## LEARNING TRACK
-완성 결과물 → 개념 이해 → 구조 이해 → 명령/코드 읽기 → 직접 실행 → 일부 수정 → 오류 해결 → 자기 설명 → 복습.
+완성 결과물 → 개념 이해 → 구조 이해 → 명령/코드 읽기 → 직접 실행 → 일부 수정 → 오류 해결 → 자기 설명 → 복습 → 선택 심화.
 
 ## 학습 설계 문서
 
@@ -26,9 +26,10 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개
 - [70 — Integrated Review Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개
 - [70 — Review Full Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
-- [90 — Advanced](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced.md)
+- [90 — Advanced Structured Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) — 10개 Optional
+- [90 — Advanced Full Summary](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced.md) — 전체 요약/호환
 
-B1-1 비시각 학습 패키지의 Level 0~5 + Review 구조화는 완료되었다.
+B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완료** 상태다. Advanced는 원본 Bonus와 추가 심화를 분리하며 필수 PASS를 대체하지 않는다.
 
 ## B1-2 — Linux Process & Resource Troubleshooting
 
@@ -38,12 +39,11 @@ B1-1 비시각 학습 패키지의 Level 0~5 + Review 구조화는 완료되었�
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
-B1-1 REVIEW/DEEPEN
-Process / PID / CPU / Memory / Log / Monitoring / Evidence
+B1-1 Level 0~5 + Review + Advanced ✅
         ↓
 B1-2 Level 0·1 ✅
         ↓
-Level 2 Execution → NEXT
+B1-2 Level 2 Execution → NEXT
 ```
 
 B1-2의 다음 작업은 OOM / CPU / Deadlock을 각각 `재현 → 관찰 → Evidence → 환경 변수 변경 → Before & After` 흐름으로 나누는 Level 2 실행 단위 구조화다.
@@ -57,6 +57,7 @@ B1-2의 다음 작업은 OOM / CPU / Deadlock을 각각 `재현 → 관찰 → E
 - 오류 상황에서 확인 순서 말하기
 - `WHAT → WHY → HOW → PROOF → LIMIT`로 평가 답변하기
 - `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 구분하기
+- Advanced에서는 `필수 / 원본 Bonus / 추가 심화`를 구분하기
 
 ## 원칙
 
