@@ -26,8 +26,8 @@ OOM Crash / CPU Latency / Deadlock
 | 10 | [Level 0 — Prerequisite Term Index](./b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) | 선수 용어 35개, V1 | ✅ |
 | 20 | [Level 1 — Top Core Term Index](./b1-2-20-level-1-core/b1-2-20-000-index.md) | 핵심 용어 30개, V2~V3 | ✅ |
 | 30 | [Level 2 — Execution Unit Index](./b1-2-30-level-2-execution/b1-2-30-000-index.md) | 12개 장애 재현·관제·Evidence 실행 단위 | ✅ |
-| 40 | Level 3 — Principles | Memory/CPU/Deadlock 원리 | NEXT |
-| 50 | Level 4 — Troubleshooting | 장애 진단·비교 검증 | 이후 |
+| 40 | [Level 3 — Principle Unit Index](./b1-2-40-level-3-principles/b1-2-40-000-index.md) | 12개 Memory/CPU/Thread/Deadlock/RCA WHY-HOW 원리 단위 | ✅ |
+| 50 | Level 4 — Troubleshooting | 장애 진단·비교 검증 | NEXT |
 | 60 | Level 5 — Evaluation | 평가 답변·기술 보고 | 이후 |
 | 70 | Review | 통합 복습·후행 연결 | 이후 |
 | 90 | Advanced | 스케줄링 알고리즘 추론 | 선택 |
@@ -86,7 +86,30 @@ Source / Safety
 → V4 Gate
 ```
 
-현재 구현 저장소에는 실제 Linux 실행으로 확보한 OOM/CPU/Deadlock Evidence가 존재한다. 이 값은 참고 가능한 실제 관측값이지 복사할 정답값은 아니다.
+## Level 3 원리 흐름
+
+```text
+Memory Growth / Release
+→ Memory Limit / Protection
+
+CPU Utilization
+→ Per-process Load / Latency
+
+Process
+→ Thread
+→ Lock / Resource Contention
+→ Deadlock Four Conditions
+→ Alive-but-Stalled
+
+Signal / Protection Termination
+
+Evidence
+→ Causality
+→ RCA
+→ Reproducibility / Before & After
+```
+
+Level 3는 실제 Runtime Evidence가 지지하는 범위까지만 원인을 설명하고, 디컴파일하지 않은 내부 구현을 추측해 단정하지 않는다.
 
 ## Visual Learning
 
@@ -94,6 +117,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Level 3 — Memory Leak/OOM, CPU 과점유, Thread/Lock/Deadlock, Evidence→RCA의 WHY/HOW 원리 구조화`
+`Level 4 — OOM / CPU / Deadlock 증상별 진단, 가설, 최소 수정, 재검증, Evidence 구조화`
 
-[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 2 →](./b1-2-30-level-2-execution/b1-2-30-000-index.md)
+[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 3 →](./b1-2-40-level-3-principles/b1-2-40-000-index.md)
