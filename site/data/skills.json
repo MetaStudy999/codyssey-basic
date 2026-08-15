@@ -1,0 +1,28 @@
+{
+  "schema_version": 3,
+  "generated_from": "config/skills.yaml",
+  "model": "codyssey-developer-growth-os-skills",
+  "skill_levels": [
+    {"level":0,"id":"NOT_STARTED","meaning":"아직 학습/수행 Evidence가 없다."},
+    {"level":1,"id":"GUIDED","meaning":"도움을 받아 수행할 수 있다."},
+    {"level":2,"id":"INDEPENDENT","meaning":"기본 과제를 혼자 수행할 수 있다."},
+    {"level":3,"id":"EXPLAINABLE","meaning":"원리와 선택 이유를 설명하고 다른 사람에게 전달할 수 있다."},
+    {"level":4,"id":"TROUBLESHOOTING","meaning":"실패를 재현·진단·복구하고 Evidence를 남길 수 있다."},
+    {"level":5,"id":"DESIGN_JUDGMENT","meaning":"대안을 비교하고 설계·개선·Trade-off 판단을 할 수 있다."}
+  ],
+  "axes": [
+    {"id":"Learn","name_ko":"학습"},
+    {"id":"Build","name_ko":"구현"},
+    {"id":"Test","name_ko":"테스트"},
+    {"id":"Debug","name_ko":"문제해결"},
+    {"id":"Collaborate","name_ko":"협업"},
+    {"id":"Design","name_ko":"설계"},
+    {"id":"Operate","name_ko":"운영"},
+    {"id":"Compete","name_ko":"도전"},
+    {"id":"Research","name_ko":"연구"},
+    {"id":"Communicate","name_ko":"소통"},
+    {"id":"Career","name_ko":"커리어"},
+    {"id":"Venture","name_ko":"창업"}
+  ],
+  "current_assessment": {}
+}
