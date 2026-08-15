@@ -1,6 +1,6 @@
 # Mission Dependency Map
 
-기존 `docs/05-architecture`의 Curriculum/Dependency 개념을 V3 Master Map에 흡수한다.
+Curriculum 흐름, Mission 간 기술 의존, 통합 프로젝트 연결을 V3 Master Map에서 관리한다.
 
 ## Curriculum Flow
 
@@ -52,6 +52,22 @@ V3 Dashboard에서는 의존성을 다음처럼 구분한다.
 
 단순한 화살표를 공식 필수 조건처럼 과장하지 않는다.
 
+## Technology Progression
+
+```text
+사용
+→ 구현
+→ 연결
+→ 운영
+→ 측정
+→ 고도화
+→ 판단
+```
+
+기술을 독립 목록으로 외우기보다, 각 Mission이 다음 Mission에서 어떤 능력으로 재사용·심화되는지를 설명한다.
+
 ## Growth 연결
 
 Mission Dependency는 `CORE` 수행 순서를 돕고, Project Lineage는 그 결과를 `EXPLORE → ADVANCED → PRO`로 확장할 때 사용한다.
+
+실제 System Architecture와 ADR은 Master Map의 추상 화살표가 아니라 해당 Mission/Project 문맥에 둔다.
