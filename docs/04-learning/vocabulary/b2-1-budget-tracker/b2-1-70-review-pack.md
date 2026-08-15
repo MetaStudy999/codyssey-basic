@@ -96,4 +96,17 @@ Mission Map
 
 `LEARNING READY`는 개인 학습 준비도일 뿐 `RUNTIME VERIFIED`, `EVALUATION PASS`, `MISSION PASS`와 동일하지 않다.
 
-[Review Index](./b2-1-70-review/b2-1-70-000-index.md) · [Mission Index](./b2-1-00-index.md)
+## 9. Advanced Bridge
+
+Review가 끝나면 원본의 4개 선택 Bonus를 별도 학습한다.
+
+```text
+Backup
+Recurring Transactions
+Console Table Formatting
+Stronger Atomic Rewrite
+```
+
+Bonus는 필수 PASS를 대체하지 않으며 추가 심화는 `SUPPLEMENTAL_ADVANCED`로 분리한다.
+
+[Review Index](./b2-1-70-review/b2-1-70-000-index.md) · [Advanced](./b2-1-90-advanced/b2-1-90-000-index.md) · [Mission Index](./b2-1-00-index.md)
