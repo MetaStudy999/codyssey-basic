@@ -57,11 +57,11 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 ### Phase C — Physical Migration / System Refactor
 
 - [x] `02-missions` B1~B7 Target 구조 생성 및 Mission Summary 이관
+- [x] `03-learning`~`12-impact` Target Index 생성
 - [x] `config/skills.yaml` Skill Matrix 모델 추가
 - [x] `config/activities.yaml` Activity Registry 모델 추가
 - [x] `config/projects.yaml` Project Lineage 모델 추가
 - [x] `config/opportunities.yaml` V3 Availability/Fit Schema로 전환
-- [ ] 새 Target Domain Index 전체 생성
 - [ ] 기존 Learning 자산 V3 Macro/Micro 용어 정렬
 - [ ] Architecture/Evaluation 내용 재배치
 - [ ] Portfolio/Resources 새 경로 Migration
@@ -89,10 +89,9 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 다음 작업
 
-1. `03-learning`~`12-impact` Target Index를 README 수준으로 생성
-2. 기존 `04-learning`의 대규모 Vocabulary 자산을 **이동보다 먼저** V3 Macro/Micro 용어와 연결
-3. Architecture/Evaluation을 Governance/Mission/Project로 흡수
-4. Portfolio/Resources/Opportunity를 새 Domain으로 이관
-5. Professional Growth/Advanced를 Domain별로 분해
-6. Config/Sync/Dashboard를 V3 Source of Truth에 연결
-7. 회귀 검증 후 Old Path 제거
+1. 기존 `docs/04-learning`의 대규모 Vocabulary 자산을 **이동보다 먼저** V3 Macro/Micro 용어와 연결
+2. Architecture/Evaluation을 Governance/Mission/Project로 흡수
+3. Portfolio/Resources/Opportunity를 새 Domain으로 이관
+4. Professional Growth/Advanced를 Domain별로 분해
+5. Config/Sync/Dashboard를 V3 Source of Truth에 연결
+6. 회귀 검증 후 Old Path 제거
