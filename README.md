@@ -1,18 +1,18 @@
 # Codyssey Developer Growth OS
 
-> Codyssey AI/SW Basic의 B1-1~B7-2를 중심 줄기로 삼아 **Mission 수행 → 학습 → 문제해결 → 협업 → 심화 → 실전 → 전문가 성장**을 하나의 Control Tower에서 관리한다.
+> Codyssey AI/SW Basic B1-1~B7-2를 중심으로 **Mission 수행 → 학습 → 문제해결 → 협업 → 심화 → 실전 → 전문가 성장**을 하나의 Control Tower에서 관리한다.
 
-이 저장소는 개별 Mission의 소스코드를 모으는 monorepo가 아니다. 실제 구현은 각 Mission Repository에서 수행하고, 이 저장소는 **Master Map + Progress + Learning + Community + Project + Opportunity + Research + Career + Venture + Portfolio**를 연결한다.
+이 저장소는 개별 Mission 소스코드를 모으는 monorepo가 아니다. 실제 구현은 각 Mission Repository에서 수행하고, 이 저장소는 **Master Map + Mission Progress + Learning + Community + Project + Opportunity + Research + Open Source + Career + Venture + Portfolio + Impact**를 연결한다.
 
 - GitHub Pages: https://metastudy999.github.io/codyssey-basic/
 - Repository: https://github.com/MetaStudy999/codyssey-basic
-- Mission 실행 범위: B1-1 ~ B7-2, 총 15개 실행 단위
-- Mission 상태 Source of Truth: `config/missions.yaml`
-- Growth Model Source of Truth: `config/growth.yaml`
+- 실행 범위: B1-1 ~ B7-2, 총 15개 Mission/Term Project 단위
+- Mission Source of Truth: `config/missions.yaml`
+- Growth Source of Truth: `config/growth.yaml`
 
 ---
 
-## 1. 전체 성장 모델
+## 1. Growth Model
 
 ```text
 CORE
@@ -38,26 +38,22 @@ IMPACT
 | **PRO** | 실제 환경에서 전문적으로 결과 창출 | 실제 사용자와 환경에서 결과를 책임질 수 있는가? |
 | **EXPERT** | 고난도 판단과 Trade-off | 무엇을 선택해야 하며 왜 그런가? |
 
-EXPERT 이후에는 단일 서열이 아니라 Tech Lead/Principal, Architect/SRE, AI/Researcher, Open Source, Educator/Mentor, Founder 등의 전문 경로로 분기한다. 최종 목표는 칭호보다 **IMPACT**다.
+EXPERT 이후에는 Tech Lead/Principal, Architect/SRE, AI/Researcher, Open Source, Educator/Mentor, Founder 등으로 분기한다. 최종 목표는 칭호보다 **IMPACT**다.
 
-상세 기준: [`docs/00-governance/growth-model.md`](docs/00-governance/growth-model.md)
+상세: [Growth Model](docs/00-governance/growth-model.md)
 
 ---
 
 ## 2. 서로 섞지 않는 4개 축
-
-V3는 다음 네 가지를 독립적으로 관리한다.
 
 | 축 | 값 | 질문 |
 |---|---|---|
 | **Growth Stage** | CORE → EXPLORE → ADVANCED → PRO → EXPERT | 얼마나 성장했는가? |
 | **Status** | PLANNED → READY → ACTIVE → DONE | 지금 어디까지 진행됐는가? |
 | **Priority** | REQUIRED / RECOMMENDED / OPTIONAL | 반드시 해야 하는가? |
-| **Domain** | Mission / Learning / Community / Research / Career / Venture 등 | 무엇에 관한 활동인가? |
+| **Domain** | Mission / Learning / Community / Project / Research / Career / Venture 등 | 무엇에 관한 활동인가? |
 
-예: `AI Hackathon = EXPLORE + ACTIVE + OPTIONAL + Opportunity`
-
-예외 상태는 `BLOCKED`, `ARCHIVED`를 사용한다.
+예외 Status는 `BLOCKED`, `ARCHIVED`를 사용한다.
 
 ---
 
@@ -89,7 +85,7 @@ B7 Term Project
 | B6 Cloud & AI API | B6-1, B6-2 |
 | B7 Term Project | B7-1, B7-2 |
 
-공식 필수/선택 여부와 실제 실행 상태는 폴더명이 아니라 `config/missions.yaml`의 메타데이터로 관리한다.
+공식 필수/선택과 실제 진행 상태는 폴더가 아니라 `config/missions.yaml` Metadata로 관리한다.
 
 ---
 
@@ -119,70 +115,32 @@ B7 Term Project
 
 <!-- AUTO:MISSION_PROGRESS:END -->
 
-### Mission 실행 상태
+Mission 진행 상세: [Mission Progress](docs/01-master-map/mission-progress.md)
 
-`TODO → IMPLEMENTED → TESTED → PASS`
+Completion Gate:
 
-예외: `NEEDS-RUNTIME`, `BLOCKED`
+`G1 SOURCE → G2 BUILD → G3 TEST → G4 REVIEW → G5 RUNTIME → G6 EVIDENCE → G7 LEARN → G8 MERGE`
 
-### Completion Gate
-
-```text
-G1 SOURCE
-  ↓
-G2 BUILD
-  ↓
-G3 TEST
-  ↓
-G4 REVIEW
-  ↓
-G5 RUNTIME
-  ↓
-G6 EVIDENCE
-  ↓
-G7 LEARN
-  ↓
-G8 MERGE
-```
-
-`PASS`와 `MASTERED`는 같은 의미가 아니다. Mission 통과와 학습 숙련도는 분리한다.
+`PASS`와 Learning `MASTERED`는 같은 의미가 아니다.
 
 ---
 
-## 5. 한 Mission을 여러 번 활용하는 방법
+## 5. Mission Lifecycle
 
 ```text
 COMPLETE
-   ↓
-UNDERSTAND
-   ↓
-BREAK
-   ↓
-DEBUG
-   ↓
-COLLABORATE
-   ↓
-EXPLORE
-   ↓
-ADVANCE
-   ↓
-PRO
+→ UNDERSTAND
+→ BREAK
+→ DEBUG
+→ COLLABORATE
+→ EXPLORE
+→ ADVANCE
+→ PRO
 ```
 
-- **COMPLETE**: 공식 요구사항을 빠르게 완성
-- **UNDERSTAND**: 용어·개념·코드·흐름을 자기 말로 설명
-- **BREAK**: 일부러 오류와 장애를 만든다
-- **DEBUG**: 증거 기반으로 원인을 찾고 복구
-- **COLLABORATE**: Issue / Branch / PR / Review / Conflict 경험
-- **EXPLORE**: 인접 기술·스터디·세미나·대외활동 탐색
-- **ADVANCE**: 선택한 영역을 Architecture/Testing/Security/Performance 등으로 심화
-- **PRO**: 실제 사용자, Production, OSS, 연구, 기업/고객 환경으로 확장
-
-핵심 운영 철학은 기존 FAST TRACK과 LEARNING TRACK을 유지한다.
+먼저 공식 Mission을 정확히 완료하고, 완성 결과물로 이해·오류실험·협업·심화·실전을 이어간다.
 
 > **먼저 빠르게 완성하고, 최소 검증으로 정확성을 확보한 뒤, 완성 결과물로 깊게 학습한다.**
-
-비필수 고도화가 CORE Mission PASS를 지연시키면 다음 단계 Backlog로 보낸다.
 
 ---
 
@@ -201,23 +159,22 @@ PRO
 11. **Career** — Open Source·Portfolio·취업
 12. **Venture** — 사용자·Product·창업
 
-Growth Stage는 **얼마나 성장했는가**, 이 12개 축은 **무엇을 성장시키는가**를 나타낸다.
+Growth Stage는 **얼마나 성장했는가**, 12개 축은 **무엇을 성장시키는가**를 나타낸다.
 
 ---
 
-## 7. V3 Master Map
+## 7. Master Map
 
-- [Master Map Index](docs/01-master-map/README.md)
+- [Master Map](docs/01-master-map/README.md)
 - [Growth Map](docs/01-master-map/growth-map.md)
 - [Current State](docs/01-master-map/current-state.md)
 - [Mission Progress](docs/01-master-map/mission-progress.md)
 - [Mission Dependency Map](docs/01-master-map/mission-dependency-map.md)
 - [Growth Routing](docs/01-master-map/growth-routing.md)
 - [Repository Map](docs/01-master-map/repository-map.md)
-- [Migration Plan](docs/01-master-map/migration-plan.md)
-- [Migration Matrix](docs/01-master-map/migration-matrix.md)
+- [Dashboard Design](docs/01-master-map/dashboard-v3.md)
 
-### V3 Primary 문서 구조
+Canonical docs 구조:
 
 ```text
 docs/
@@ -236,13 +193,9 @@ docs/
 └── 12-impact
 ```
 
-Mission Progress는 `01-master-map/mission-progress.md`와 Dashboard에서 표시하고, Growth 현재 상태는 `01-master-map/current-state.md`에서 표시한다. Resources는 `03-learning/resources`와 `config/resources.yaml`로 관리한다.
-
 ---
 
 ## 8. Master Map + Progressive Repository
-
-V3의 핵심 Repository 정책:
 
 > **미래 전체 지도는 먼저 설계하고, 실제 폴더는 현재 필요한 만큼만 만든다.**
 
@@ -258,16 +211,16 @@ ACTIVE
 필요한 Physical Folder 생성
 ```
 
-따라서 `core/`, `advanced/`, `pro/`처럼 단계별 폴더를 만들지 않는다.
+`core/`, `advanced/`, `pro/` 같은 단계별 폴더를 만들지 않는다.
 
 ```text
-폴더 = 무엇인가(Domain)
-Stage = 얼마나 성장했는가(Metadata)
-Status = 지금 어디까지 진행됐는가
-Priority = 반드시 해야 하는가
+Folder = Domain
+Stage = Metadata
+Status = Progress
+Priority = Importance
 ```
 
-상세 정책: [`docs/00-governance/repository-policy.md`](docs/00-governance/repository-policy.md)
+상세: [Repository Policy](docs/00-governance/repository-policy.md)
 
 ---
 
@@ -275,7 +228,7 @@ Priority = 반드시 해야 하는가
 
 ```text
 config/missions.yaml
-    └─ 공식 Mission 수행 / G1~G8 / Learning 상태
+    └─ Mission 수행 / G1~G8 / Learning
 
 config/growth.yaml
     └─ Growth Stage / Status / Priority
@@ -284,7 +237,7 @@ config/skills.yaml
     └─ 12 Competency Axis / Evidence Level
 
 config/activities.yaml
-    └─ Community / External 실제 활동 상태
+    └─ 실제 Activity
 
 config/projects.yaml
     └─ Project Lineage
@@ -293,68 +246,56 @@ config/opportunities.yaml
     └─ 외부 Opportunity Availability / Fit
 
 config/resources.yaml
-    └─ 학습 / 연구 참고자료 Registry
+    └─ Learning / Research Resource Registry
 ```
-
-한 파일에 모든 개념을 몰아넣지 않는다.
 
 ---
 
-## 10. Progress & Dashboard
+## 10. Dashboard
 
-Dashboard는 네 층을 분리한다.
+Dashboard는 다음을 분리해 보여준다.
 
 ```text
-1. Growth
-   CORE / EXPLORE / ADVANCED / PRO / EXPERT
+Growth
+  CORE / EXPLORE / ADVANCED / PRO / EXPERT
 
-2. Mission
-   B1~B7 + G1~G8
+Mission
+  B1~B7 / G1~G8
 
-3. Skill
-   12개 역량 축
+Skill
+  12 Competency Axis
 
-4. Activity / Project / Opportunity
-   실제 수행 상태와 외부 가용성을 분리
+Activity / Project / Opportunity
+  실제 수행 상태 / 외부 기회 상태
 ```
 
-Mission 자동화는 다음 Canonical 흐름을 사용한다.
+Mission 자동화:
 
 ```text
-config/missions.yaml
+config/missions.yaml + config/waves/*.yaml
         ↓
 scripts/sync_progress.py
-        ├─ README 자동 영역
+        ├─ README Mission Table
         ├─ docs/01-master-map/mission-progress.md
         ├─ site/data/missions.json
         └─ site/data/workcells.json
 ```
 
-Growth OS V3는 별도 Generator로 관리한다.
+Growth 자동화:
 
 ```text
-config/growth.yaml
-config/skills.yaml
-config/activities.yaml
-config/projects.yaml
-config/opportunities.yaml
+Growth/Skill/Activity/Project/Opportunity Config
         ↓
 scripts/sync_growth.py
         ├─ docs/01-master-map/current-state.md
-        ├─ site/data/growth.json
-        ├─ site/data/skills.json
-        ├─ site/data/activities.json
-        ├─ site/data/projects.json
-        └─ site/data/opportunities.json
+        └─ site/data/*.json
 ```
 
-Dashboard는 기존 수동 Mission Refresh + 5분 Cooldown 정책을 유지하면서 Growth Layer를 별도로 렌더링한다.
+수동 Mission Refresh + 5분 Cooldown 정책을 유지한다.
 
 ---
 
-## 11. 외부 확장
-
-Mission 결과는 한 번 제출하고 버리지 않는다.
+## 11. One Project → Many Outcomes
 
 ```text
 Mission
@@ -368,33 +309,20 @@ Project
   └─ MVP / PoC / Venture
 ```
 
-핵심 전략은 **One Project → Many Outcomes**다.
-
-B7 같은 통합 프로젝트는 Mission 제출 → Portfolio → Hackathon → Competition → Research → OSS → Production → Startup MVP로 계보를 확장할 수 있다.
+프로젝트를 계속 새로 버리기보다 하나의 문제와 결과물을 Project Lineage로 발전시킨다.
 
 ---
 
-## 12. V3 재구축 원칙
+## 12. Stable Operation
 
-V3는 기존 main을 즉시 삭제하지 않고 **Greenfield Rebuild + Safe Cutover** 방식으로 전환한다.
+현재 `main`은 Growth OS V3 Canonical 구조를 사용한다.
 
-- 기존 기준본 보존: `archive/pre-growth-os-v3`
-- 재구축 브랜치: `rebuild/growth-os-v3`
-- 기존 자료 판정: `KEEP / MERGE / REWRITE / ARCHIVE / DROP`
-- 새 Target 검증 전 Old Path 삭제 금지
-- Config/자동화/Dashboard 검증 후 PR을 통해 main 전환
+- active 운영 문서는 현재 규칙과 현재 상태를 중심으로 유지한다.
+- 과거 재구축·Migration 상세는 Git history와 PR #73~#77에서 추적한다.
+- V3 이전 기준본은 `archive/pre-growth-os-v3`에 보존한다.
+- 새 변경은 현재 Canonical Domain을 기준으로 설계한다.
+- 비필수 개선은 CORE Mission PASS를 지연시키지 않는다.
 
----
+변경 판단:
 
-## 13. 변경 판단 규칙
-
-새로운 아이디어가 생기면 먼저 다음을 묻는다.
-
-1. 현재 Mission PASS를 직접 앞당기는가?
-2. CORE에서 반드시 필요한가?
-3. EXPLORE 후보인가?
-4. ADVANCED에서 선택·심화할 가치가 있는가?
-5. 실제 PRO Evidence로 이어지는가?
-6. 지금 만들 필요가 있는가, Map/Backlog에만 두어도 되는가?
-
-> **현재 성장 목표에 직접 기여하면 DO, 좋지만 지금 필요 없으면 DEFER, 복리 효과가 낮으면 DROP.**
+> **현재 목표를 직접 앞당기면 DO, 가치 있지만 지금 필요 없으면 DEFER, 복리 효과가 낮으면 DROP.**

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Validate Codyssey Developer Growth OS V3 structure before cutover.
+"""Validate the stable Codyssey Developer Growth OS V3 contract.
 
-This validator is intentionally conservative. It does not replace Mission runtime
-verification. It checks repository structure, generated-data consistency entry
-points, V3 Markdown links, and Dashboard wiring.
+This validator does not replace Mission runtime verification. It checks the
+canonical repository structure, generated-data consistency, Markdown links,
+Growth contracts, and Dashboard wiring used by the Control Tower.
 """
 from __future__ import annotations
 
@@ -39,16 +39,21 @@ REQUIRED_FILES = [
     "site/data/activities.json",
     "site/data/projects.json",
     "site/data/opportunities.json",
+    "docs/00-governance/README.md",
     "docs/00-governance/growth-model.md",
     "docs/00-governance/status-model.md",
     "docs/00-governance/priority-model.md",
     "docs/00-governance/repository-policy.md",
     "docs/00-governance/evidence-traceability.md",
+    "docs/00-governance/mission-gates.md",
     "docs/01-master-map/README.md",
     "docs/01-master-map/growth-map.md",
     "docs/01-master-map/current-state.md",
+    "docs/01-master-map/mission-progress.md",
+    "docs/01-master-map/mission-dependency-map.md",
+    "docs/01-master-map/growth-routing.md",
     "docs/01-master-map/repository-map.md",
-    "docs/01-master-map/migration-plan.md",
+    "docs/01-master-map/dashboard-v3.md",
     "docs/02-missions/README.md",
     "docs/03-learning/README.md",
     "docs/04-community/README.md",
@@ -259,12 +264,12 @@ def main() -> int:
         errors.append(str(exc))
 
     if errors:
-        print("V3 validation failed:", file=sys.stderr)
+        print("Growth OS V3 validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print("V3 structural validation passed.")
+    print("Growth OS V3 stable contract validation passed.")
     return 0
 
 

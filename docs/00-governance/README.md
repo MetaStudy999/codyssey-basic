@@ -9,15 +9,13 @@ Codyssey Developer Growth OS 전체의 기준, Source of Truth, Workcell, 상태
 3. 필수/선택은 폴더 구조가 아니라 Metadata로 관리한다.
 4. 실제 검증되지 않은 결과를 PASS로 표시하지 않는다.
 5. Mission/Evaluation Source는 파일 존재 여부가 아니라 실제 내용 유효성을 확인한다.
-6. 개별 Mission 실행은 병렬화할 수 있지만 대표 Repository의 상태 통합은 직렬로 수행한다.
+6. 개별 Mission 실행은 병렬화할 수 있지만 대표 Repository 상태 통합은 직렬로 수행한다.
 7. Growth Stage, Status, Priority, Domain을 서로 섞지 않는다.
 8. 미래 전체 Map은 먼저 설계하되 실제 폴더는 필요한 시점에만 만든다.
 9. 비필수 고도화가 CORE Mission PASS를 지연시키지 않는다.
-10. 구조 변경은 `KEEP / MERGE / REWRITE / ARCHIVE / DROP` Audit 후 수행한다.
+10. 단순 역사 보존은 active docs보다 Git history/보존 branch를 우선한다.
 
----
-
-## 2. V3 Growth Governance
+## 2. Growth Governance
 
 ### Growth Stage
 
@@ -49,8 +47,6 @@ Codyssey Developer Growth OS 전체의 기준, Source of Truth, Workcell, 상태
 
 - [Repository Policy](./repository-policy.md)
 
----
-
 ## 3. 공식 Source 우선순위
 
 ```text
@@ -79,11 +75,10 @@ Evidence
 
 상위 Source가 없거나 비어 있거나 읽을 수 없을 때 하위 Source나 AI 일반지식으로 공식 요구사항을 임의 복원하지 않는다. 확인 가능한 범위만 사용하고 Source Gap을 기록한다.
 
----
-
 ## 4. Source Discovery & Fallback
 
 - [Source Discovery & Fallback Protocol](./source-discovery-fallback-protocol.md)
+- [Source Registry](./source-registry.md)
 
 주요 상태:
 
@@ -93,13 +88,24 @@ Evidence
 
 `FULL SOURCE / MISSION-LED / EVALUATION-LED / PARTIAL SOURCE / SOURCE GAP / SOURCE CONFLICT`
 
-자료가 부족해도 Repository Inventory, 환경 확인, 기존 코드·테스트 분석 등 안전한 작업은 계속할 수 있다. 근거가 없는 요구사항 생성은 금지한다.
+## 5. Evidence & Traceability
 
-- [Source Registry](./source-registry.md)
+- [Evidence & Traceability Model](./evidence-traceability.md)
 
----
+```text
+Official Source
+→ Requirement
+→ Implementation
+→ Test
+→ Review
+→ Runtime
+→ Evidence
+→ PASS
+```
 
-## 5. Multi-Agent Mission Engineering
+`PASS`, Learning `MASTERED`, Growth Stage 승격은 서로 다른 판정이다.
+
+## 6. Multi-Agent Mission Engineering
 
 - [Multi-Agent Mission Engineering Playbook](./multi-agent-mission-engineering.md)
 
@@ -110,19 +116,17 @@ Evidence
 - Harness Engineering
 - Loop Engineering
 - Fusion Engineering
-- Primary Builder / Independent Reviewer / Human Runtime Verification 역할 분리
+- Primary Builder / Independent Reviewer / Human Runtime 역할 분리
 
 특정 AI 제품명보다 **역할, 검증 책임, Evidence**를 우선한다.
 
----
-
-## 6. Parallel Mission Execution
+## 7. Parallel Mission Execution
 
 - [Parallel Mission Execution & Serial Integration](./parallel-mission-execution.md)
 
 기본 원칙:
 
-- B1-1~B7-2 Mission Workcell은 병렬 실행 가능
+- B1-1~B7-2 Workcell은 병렬 실행 가능
 - 공통 Control Tower Baseline SHA 사용
 - Mission Workcell에서는 대표 Repository READ ONLY
 - G1 SOURCE와 Mission Work Packet 우선
@@ -136,14 +140,16 @@ Evidence
 - [Starter Packet Index](./work-packets/README.md)
 - `work-packets/b1-1.md ~ b7-2.md`
 
-Starter Packet은 사전 구조다. 각 Workcell의 G1 SOURCE에서 실제 Mission/Evaluation Source와 재대조한 뒤 확정한다.
-
 ### Mission Workcell Prompts
 
 - [Workcell Prompt Index](./workcell-prompts/README.md)
 - `workcell-prompts/b1-1.md ~ b7-2.md`
 
-### 병렬 실행 Templates
+### Workcell Status
+
+- [Workcell Status Index](./workcell-status/README.md)
+
+### Templates
 
 - `templates/mission-chat-start.md`
 - `templates/mission-work-packet.md`
@@ -151,15 +157,12 @@ Starter Packet은 사전 구조다. 각 Workcell의 G1 SOURCE에서 실제 Missi
 - `templates/mission-result.yaml`
 - `templates/parallel-wave.yaml`
 
----
-
-## 7. Source of Truth 분리
+## 8. Source of Truth 분리
 
 ### Mission
 
 `config/missions.yaml`
 
-관리 항목:
 - Mission 메타데이터
 - 공식 필수/선택
 - 수행 상태
@@ -170,22 +173,23 @@ Starter Packet은 사전 구조다. 각 Workcell의 G1 SOURCE에서 실제 Missi
 
 `config/growth.yaml`
 
-관리 항목:
 - Growth Stage
 - Activity Status
 - Priority
-- 12개 Competency Axis
+- 12개 Competency Axis 정의
 
-### External / Resource
+### Registries
 
+- `config/skills.yaml`
+- `config/activities.yaml`
+- `config/projects.yaml`
 - `config/opportunities.yaml`
 - `config/resources.yaml`
+- `config/waves/*.yaml`
 
-향후 실제 필요가 생길 때만 `skills.yaml`, `activities.yaml`, `projects.yaml`을 추가한다.
+한 Config에 모든 개념을 몰아넣지 않는다.
 
----
-
-## 8. Mission Completion Gate
+## 9. Mission Completion Gate
 
 ```text
 G1 SOURCE
@@ -205,39 +209,24 @@ G7 LEARN
 G8 MERGE
 ```
 
-Mission PASS와 Learning MASTERED는 별도 상태다.
+상세 정의: [Mission Gates](./mission-gates.md)
 
----
-
-## 9. Mission Lifecycle
-
-한 Mission을 제출 후 폐기하지 않는다.
+## 10. Mission Lifecycle
 
 ```text
 COMPLETE
-  ↓
-UNDERSTAND
-  ↓
-BREAK
-  ↓
-DEBUG
-  ↓
-COLLABORATE
-  ↓
-EXPLORE
-  ↓
-ADVANCE
-  ↓
-PRO
+→ UNDERSTAND
+→ BREAK
+→ DEBUG
+→ COLLABORATE
+→ EXPLORE
+→ ADVANCE
+→ PRO
 ```
 
-이 Lifecycle은 공식 Mission 완료와 이후 학습/성장 확장을 연결한다.
+한 Mission을 제출 후 폐기하지 않고 학습·문제해결·협업·외부성과로 확장한다.
 
----
-
-## 10. 변경 분류 규칙
-
-V3에서는 다음과 같이 판단한다.
+## 11. 변경 분류 규칙
 
 ```text
 무엇에 관한가?        → Domain
@@ -246,31 +235,35 @@ V3에서는 다음과 같이 판단한다.
 반드시 해야 하는가?    → Priority
 ```
 
-예:
-
-```text
-AI Hackathon
-Domain: Opportunity
-growth_stage: EXPLORE
-status: ACTIVE
-priority: OPTIONAL
-```
-
 전문가 역량이나 고도화 기술을 `professional-growth/`, `advanced/` 같은 단계 폴더로 고정하지 않는다. 실제 내용의 Domain에 배치하고 Stage Metadata로 관리한다.
 
----
+세부 Routing: [Growth Routing Guide](../01-master-map/growth-routing.md)
 
-## 11. V3 Rebuild Safety
+## 12. Stable Validation
 
-- 이전 기준본: `archive/pre-growth-os-v3`
-- 재구축: `rebuild/growth-os-v3`
-- 기존 자료는 Audit 후 이동/삭제
-- Mission/Gate/Evidence 자산은 우선 보존
-- 자동화 검증 전 기존 경로를 파괴하지 않음
-- Draft PR을 통해 Cutover 검토
+Repository 변경은 최소 다음 계약을 지켜야 한다.
 
-참조:
+```bash
+python scripts/sync_progress.py --check
+python scripts/sync_growth.py --check
+python scripts/validate_v3.py
+```
 
-- [`../01-master-map/migration-plan.md`](../01-master-map/migration-plan.md)
-- [`../01-master-map/migration-matrix.md`](../01-master-map/migration-matrix.md)
-- [`../01-master-map/audit-00-governance.md`](../01-master-map/audit-00-governance.md)
+PR Validation은 추가로 다음을 확인한다.
+
+- Canonical docs 구조
+- B1-1~B7-2 Mission Summary
+- Markdown 내부 링크
+- Dashboard DOM/JS/Data 연결
+- 삭제된 Legacy Path 재도입 여부
+- Chromium Browser Smoke
+- Live Mission Telemetry
+- 수동 Mission Refresh + 5분 Cooldown
+
+실제 환경에서만 확인 가능한 결과는 자동 검증이 성공해도 별도 Runtime Evidence가 필요하다.
+
+## 13. 역사 보존
+
+V3 재구축 과정의 이전 기준본은 `archive/pre-growth-os-v3`와 Git history, PR #73~#77에서 추적한다.
+
+현재 운영 문서는 과거 Migration 과정을 반복 설명하지 않고 **현재 Canonical 규칙**만 유지한다.

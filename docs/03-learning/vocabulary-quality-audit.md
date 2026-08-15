@@ -4,7 +4,7 @@
 **감사 기준:** 원본 Mission PDF + `vocabulary-learning-plan.md` + 현재 `docs/03-learning/vocabulary/*.md`  
 **상태:** V3 Canonical Learning Path 전환 후 품질 기준
 
-> V3 전환 이전의 상세 1차 감사 기록은 `docs/01-master-map/audit-vocabulary-quality-v2.md`에 보존한다. 이 문서는 현재 Canonical Path와 앞으로의 품질 Gate를 정의한다.
+> V3 전환 이전의 상세 1차 감사 과정은 Git history와 Learning Migration PR #75에서 추적한다. 이 문서는 현재 Canonical Path와 앞으로의 품질 Gate를 정의한다.
 
 ## 1. 핵심 판정
 
@@ -163,6 +163,6 @@ Lifecycle 갱신
 
 ## 9. Migration Integrity
 
-V3 Canonical Path 전환에서 학습 자산의 내용과 이력을 보존한다. 물리 경로 변경은 학습 완료 상태를 초기화하지 않으며, `PASS`, `MASTERED`, Growth Stage도 자동 승격하지 않는다.
+V3 Canonical Path 전환에서 학습 자산의 내용과 이력을 보존했다. 물리 경로 변경은 학습 완료 상태를 초기화하지 않았으며, `PASS`, `MASTERED`, Growth Stage도 자동 승격하지 않았다.
 
-Old 상세 감사는 Git history와 보존된 Audit 문서에서 추적할 수 있다.
+이전 경로와 변경 이력은 Git history 및 관련 PR에서 추적할 수 있다.
