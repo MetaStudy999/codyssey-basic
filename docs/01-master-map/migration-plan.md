@@ -59,8 +59,8 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] AGENTS.md V3 운영원칙 반영
 - [x] 기존 구조 고수준 Inventory
 - [x] 1차 Migration Matrix
+- [x] Dashboard V3 상세 설계
 - [ ] 파일 단위 Detailed Audit
-- [ ] Dashboard V3 상세 설계
 
 ### Phase B — Migration 준비
 
@@ -101,7 +101,7 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 다음 작업
 
-다음 단계는 **파일 단위 Detailed Audit + Dashboard V3 설계**다.
+다음 단계는 **파일 단위 Detailed Audit**이다.
 
 우선순위:
 1. `docs/00-governance`
@@ -110,4 +110,4 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 4. `docs/04-learning`
 5. 나머지 Domain Migration
 
-이 단계가 끝나기 전에는 기존 주요 폴더를 실제로 삭제하거나 이름을 바꾸지 않는다.
+Detailed Audit이 끝나기 전에는 기존 주요 폴더를 실제로 삭제하거나 이름을 바꾸지 않는다.
