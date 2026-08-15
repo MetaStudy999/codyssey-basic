@@ -34,8 +34,8 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
 | 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~5 + Review 완료 / Advanced NEXT** |
-| 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
+| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
+| 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | **1차 용어 완료 / 구조화 NEXT** |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
 | 6 | B3-2 | [파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기](./b3-2.md) | 1차 용어 작성 완료 |
 | 7 | B4-1 | [나를 소개하는 웹페이지 처음부터 만들기](./b4-1.md) | 1차 용어 작성 완료 |
@@ -94,10 +94,11 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - [60 — Level 5 Evaluation Index](./b2-1-budget-tracker/b2-1-60-level-5-evaluation/b2-1-60-000-index.md) — 12개 ✅
 - [70 — Integrated Review Index](./b2-1-budget-tracker/b2-1-70-review/b2-1-70-000-index.md) — 12개 ✅
 - [70 — Review Full Pack](./b2-1-budget-tracker/b2-1-70-review-pack.md) — 전체 요약 ✅
+- [90 — Advanced Bonus & Deepening Index](./b2-1-budget-tracker/b2-1-90-advanced/b2-1-90-000-index.md) — 10개 Optional ✅
+- [90 — Advanced Full Summary](./b2-1-budget-tracker/b2-1-90-advanced.md) — 원본 Bonus 4개 + 보조 심화 ✅
 - [기존 Vocabulary Summary](./b2-1.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Advanced — 원본 Mission의 Bonus/선택 심화 범위를 Source에서 다시 확인 후 구조화
 
-B2-1 Review는 `Mission Map`, `Source Boundary`, `Transaction Data Flow`, `CRUD/Persistence`, `Generator/Layer Responsibility`, `Integrity/Atomicity`, `CSV Import/Export`, `Troubleshooting`, `Evidence/Evaluation Mapping`, `Oral Explanation`, `Five-minute Blank Reconstruction`, `LEARNING READY`를 통합 복습 단위로 구조화한다. Review는 새 지식을 추가하기보다 Level 0~5를 보지 않고 꺼내 쓰는 단계다.
+B2-1 Advanced는 원본 Bonus 4개인 `Backup`, `Recurring Transactions`, `Console Table Formatting`, `Stronger Atomic Rewrite`를 Source Lock한다. `Backup Recovery Verification`, `Recurring Duplicate Safety`는 Bonus의 배움 포인트를 검증하기 위한 학습 단위이며 원본의 추가 필수 요구로 승격하지 않는다. `Unicode Display Width`, `Durability Boundary`는 `SUPPLEMENTAL_ADVANCED`다.
 
 ## 통합 자산 상태
 
@@ -105,19 +106,12 @@ B2-1 Review는 `Mission Map`, `Source Boundary`, `Transaction Data Flow`, `CRUD/
 - Basic Master Vocabulary: **v1 완료**
 - B1-1 Level 0~5 + Review + Advanced: **구조화 완료**
 - B1-2 Level 0~5 + Review + Advanced: **구조화 완료**
-- B2-1 Source Lock: **완료**
-- B2-1 Level 0 선수 용어 45개: **완료**
-- B2-1 Level 1 Top Core 40개: **완료**
-- B2-1 Level 2 실행 단위 12개: **완료**
-- B2-1 Level 3 원리 단위 12개: **완료**
-- B2-1 Level 4 장애 진단 단위 12개: **완료**
-- B2-1 Level 5 평가 설명 단위 12개: **완료**
-- B2-1 Review 통합 단위 12개 + Full Pack: **완료**
+- B2-1 Level 0~5 + Review + Advanced: **구조화 완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B2-1 Advanced 구조화**
+- 다음: **B2-2 Source Lock + Level 0/1 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEVEL 2 STRUCTURE READY`, `PERSONAL V4 PASSED`, `PRINCIPLE STRUCTURE READY`, `PERSONAL WHY/HOW READY`, `TROUBLESHOOTING STRUCTURE READY`, `PERSONAL TROUBLESHOOTING READY`, `EVALUATION STRUCTURE READY`, `PERSONAL EVALUATION READY`, `REVIEW STRUCTURE READY`, `LEARNING READY`, `ADVANCED STRUCTURE READY`, `ADVANCED TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEVEL 2 STRUCTURE READY`, `PERSONAL V4 PASSED`, `PRINCIPLE STRUCTURE READY`, `PERSONAL WHY/HOW READY`, `TROUBLESHOOTING STRUCTURE READY`, `PERSONAL TROUBLESHOOTING READY`, `EVALUATION STRUCTURE READY`, `PERSONAL EVALUATION READY`, `REVIEW STRUCTURE READY`, `LEARNING READY`, `ADVANCED STRUCTURE READY`, `BONUS TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
