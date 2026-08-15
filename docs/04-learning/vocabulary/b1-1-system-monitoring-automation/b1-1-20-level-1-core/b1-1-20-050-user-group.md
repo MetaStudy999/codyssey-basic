@@ -4,8 +4,15 @@ stage: top-core
 order: 50
 term: User / Group
 lifecycle: NEW
+visual_learning: pilot
 ---
 # B1-1 — 사용자·그룹 (User / Group)
+
+## 학습 만화
+
+![B1-1 User Group 한 장 학습 만화](./assets/b1-1-20-050-user-group-comic.webp)
+
+> 이 만화는 입문자의 개념 이해를 돕는 시각 학습 자료다. 미션의 고정 요구사항은 원본 Mission/Evaluation과 본문의 Source of Truth를 우선한다.
 
 ## 한 줄 설명
 사용자를 역할별로 묶어 여러 파일·디렉터리 권한을 함께 관리하는 기본 단위다.
