@@ -6,18 +6,23 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - 최초 목록 단계에서는 용어 설명을 넣지 않는다.
 - 각 미션은 Level 0~5 + Advanced, Top Core 구조를 사용한다.
 - 상세 작성 규칙은 [미션 용어 학습 체계 기획](../vocabulary-learning-plan.md)을 따른다.
+- 개별 용어 파일의 구조·파일명·링크 규칙은 [개별 용어 파일 표준](../term-file-standard.md)을 따른다.
 - 15개 미션 작성 완료 후의 품질 판정은 [전체 용어 품질 감사](../vocabulary-quality-audit.md)를 따른다.
 - 중복 제거·최초 등장·재사용·Priority·K 수준·Lifecycle의 통합 기준은 [Basic Master Vocabulary](../basic-master-vocabulary.md)에서 관리한다.
 
 ## 디렉터리·파일명 표준
 
-B1-1부터 다음 표준 구조를 적용한다. 후속 미션도 학습 확장 단계에서 같은 규칙으로 순차 전환한다.
+미션 기본 구조:
 
 ```text
 {mission-number}-{english-mission-slug}/
 ├── {mission-number}-00-index.md
 ├── {mission-number}-10-level-0-prerequisite.md
-├── {mission-number}-20-level-1-core.md
+├── {mission-number}-20-level-1-core/
+│   ├── {mission-number}-20-000-index.md
+│   ├── {mission-number}-20-010-{term-slug}.md
+│   ├── {mission-number}-20-020-{term-slug}.md
+│   └── ...
 ├── {mission-number}-30-level-2-execution.md
 ├── {mission-number}-40-level-3-principles.md
 ├── {mission-number}-50-level-4-troubleshooting.md
@@ -30,7 +35,8 @@ B1-1부터 다음 표준 구조를 적용한다. 후속 미션도 학습 확장 
 
 - 디렉터리명은 `미션 번호 + 짧은 영어 slug`를 사용한다.
 - 파일명은 항상 해당 미션 번호로 시작한다.
-- `00 / 10 / 20 / ... / 90` 순서 번호로 GitHub·CLI 정렬과 학습 선후관계를 일치시킨다.
+- Level은 `00 / 10 / 20 / ... / 90`, 개별 용어는 `010 / 020 / ...` 순서로 정렬한다.
+- Level의 `000-index`가 개별 용어 학습 진입점이다.
 - `80` 구간은 향후 실전 모의평가·추가 랩 등 확장 자료용으로 예약한다.
 - 문서 제목과 설명은 한국어를 중심으로 하되 핵심 전문 용어는 영어 원문을 함께 표기한다.
 
@@ -38,7 +44,7 @@ B1-1부터 다음 표준 구조를 적용한다. 후속 미션도 학습 확장 
 
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
-| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level별 구조 전환 + 학습 확장 완료** |
+| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level별 구조 + Level 1 개별 용어 Pilot 완료** |
 | 2 | B1-2 | [리눅스 프로세스 및 시스템 리소스 트러블슈팅](./b1-2.md) | 1차 용어 작성 완료 |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
@@ -60,7 +66,8 @@ B1-1부터 다음 표준 구조를 적용한다. 후속 미션도 학습 확장 
 
 - [00 — Index](./b1-1-system-monitoring-automation/b1-1-00-index.md)
 - [10 — Level 0 Prerequisite](./b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite.md)
-- [20 — Level 1 Core](./b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
+- [20 — Level 1 Top Core Term Index](./b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md)
+- [20 — Level 1 Summary](./b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
 - [30 — Level 2 Execution](./b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
 - [40 — Level 3 Principles](./b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
 - [50 — Level 4 Troubleshooting](./b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting.md)
@@ -82,8 +89,8 @@ B1-1부터 다음 표준 구조를 적용한다. 후속 미션도 학습 확장 
 - First Seen / Reuse / Lifecycle: **핵심 반복 용어에 적용**
 - 상위 Dependency Map: **완료**
 - Vocabulary Gate V1~V5 공통 체크리스트: **완료**
-- **B1-1 Level별 학습 콘텐츠 패키지: 완료**
-- 다음 학습 확장 대상: **B1-2**
+- **B1-1 Level 1 Top Core 28개 개별 용어 파일: Pilot 완료**
+- 다음: **Pilot 검증 → B1-1 다른 Level 또는 B1-2로 확대**
 
 ## 누적 학습 원칙
 

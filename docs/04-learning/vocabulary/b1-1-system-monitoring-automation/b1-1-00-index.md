@@ -6,7 +6,7 @@
 **학습시간:** 40시간  
 **학습 구조:** Level 0 → Level 1 → Level 2 → Level 3 → Level 4 → Level 5 → Review → Advanced
 
-> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고, 두 자리 순서 번호를 사용해 GitHub·Linux·WSL·macOS에서 동일한 정렬 순서를 유지한다.
+> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고, 순서 번호를 사용해 GitHub·Linux·WSL·macOS에서 동일한 정렬 순서를 유지한다. Level 1부터 `한 파일 = 한 용어` Pilot을 적용한다.
 
 ---
 
@@ -19,7 +19,7 @@ B1-1 자료를 한 파일에 계속 누적하면 선수지식, 핵심 개념, �
    ↓
 10 Level 0 — 선수지식
    ↓
-20 Level 1 — 핵심 개념 / Top Core
+20 Level 1 — 핵심 개념 / Top Core / 개별 용어 파일
    ↓
 30 Level 2 — 실제 구현·실행
    ↓
@@ -44,13 +44,15 @@ B1-1 자료를 한 파일에 계속 누적하면 선수지식, 핵심 개념, �
 |---:|---|---|---|
 | 00 | [b1-1-00-index.md](./b1-1-00-index.md) | 전체 지도와 Source of Truth 확인 | 다음 파일을 스스로 선택할 수 있음 |
 | 10 | [b1-1-10-level-0-prerequisite.md](./b1-1-10-level-0-prerequisite.md) | Linux/CLI/File/Process/Network 선수지식 | V1 인지 |
-| 20 | [b1-1-20-level-1-core.md](./b1-1-20-level-1-core.md) | 핵심 개념과 Top Core 이해 | V2 이해 + V3 관계 |
+| 20 | [b1-1-20-level-1-core/](./b1-1-20-level-1-core/b1-1-20-000-index.md) | Top Core 28개를 개별 용어 파일로 학습 | V2 이해 + V3 관계 |
 | 30 | [b1-1-30-level-2-execution.md](./b1-1-30-level-2-execution.md) | 실제 명령·파일·설정 수행 | V4 실제 위치·적용 |
 | 40 | [b1-1-40-level-3-principles.md](./b1-1-40-level-3-principles.md) | 권한·SSH·소켓·관제·cron·로그 원리 | WHY/HOW 설명 |
 | 50 | [b1-1-50-level-4-troubleshooting.md](./b1-1-50-level-4-troubleshooting.md) | 장애 분리·검증·복구·Evidence | 오류 상황에서 확인 순서 설명 |
 | 60 | [b1-1-60-level-5-evaluation.md](./b1-1-60-level-5-evaluation.md) | 평가 답변과 자기 설명 | V5 설명 |
 | 70 | [b1-1-70-review-pack.md](./b1-1-70-review-pack.md) | 복습 카드·구두 퀴즈·최종 Gate | LEARNING READY |
 | 90 | [b1-1-90-advanced.md](./b1-1-90-advanced.md) | 현재 미션 범위를 넘는 선택 심화 | 필요 시 선택 학습 |
+
+기존 [`b1-1-20-level-1-core.md`](./b1-1-20-level-1-core.md)는 전체 Level 1 용어와 관계를 한 번에 보는 요약 문서로 유지한다. Top Core를 한 용어씩 학습할 때는 새 Level 1 디렉터리의 `000-index`를 사용한다.
 
 ---
 
@@ -190,6 +192,7 @@ MISSION PASS
 
 - [Codyssey Basic 전체 용어 인덱스](../README.md)
 - [미션 용어 학습 체계 기획](../../vocabulary-learning-plan.md)
+- [개별 용어 파일 표준](../../term-file-standard.md)
 - [Basic Master Vocabulary](../../basic-master-vocabulary.md)
 - [전체 용어 품질 감사](../../vocabulary-quality-audit.md)
 - [04. Learning](../../README.md)
