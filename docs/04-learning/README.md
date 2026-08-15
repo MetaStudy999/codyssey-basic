@@ -31,6 +31,11 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - 사용자·권한 → SSH·방화벽 → 프로세스·포트 → 관제·로그·cron의 Dependency Map
   - 초미니 실습 8개, 고의 오류·복구 8개, 평가 예상 질문 10개
   - B1-1 전용 Vocabulary Gate V1~V5 체크리스트
+- [B1-1 Level 2 입문자 무오류 실행 가이드](./vocabulary/b1-1-level2-execution-guide.md)
+  - 사전점검 → 사용자/그룹 → ACL → SSH → UFW → Agent → monitor.sh → cron → logrotate → Evidence의 안전 순서
+  - 각 단계의 `[GO] / [STOP] / 복구 / 재검증` 기준
+  - 원본 Mission 요구사항과 현재 B1-1 저장소 구현 예시를 분리
+  - 실제 제공 앱 파일명과 `AGENT_PROCESS_PATTERN`을 맞추는 절차 포함
 
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
