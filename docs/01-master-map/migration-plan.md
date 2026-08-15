@@ -69,13 +69,16 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] `config/activities.yaml` Activity Registry 모델 추가
 - [x] `config/projects.yaml` Project Lineage 모델 추가
 - [x] `config/opportunities.yaml` V3 Availability/Fit Schema로 전환
+- [x] `scripts/sync_growth.py` 추가 — 기존 Mission Sync와 분리된 V3 Registry Generator
+- [x] Growth/Skill/Activity/Project/Opportunity JSON 초기 Snapshot 생성
+- [x] Dashboard에 Growth Stage / Registry Summary / 12 Skill Axis Layer 추가
+- [x] 기존 Mission 수동 Refresh + 5분 Cooldown UI 보존
+- [ ] GitHub Actions에서 `sync_growth.py` 자동 실행 연결
 - [ ] 기존 대규모 Vocabulary 파일의 실제 경로 Migration
 - [ ] 기존 Opportunity 개별 콘텐츠 이관
 - [ ] Professional Growth/Advanced 개별 콘텐츠 Domain별 이동
-- [ ] Sync script V3 확장
-- [ ] Dashboard Growth/Mission/Skill/Activity 4층 구조 구현
-- [ ] GitHub Pages 검증
-- [ ] 자동 생성 파일 검증
+- [ ] GitHub Pages 실제 배포 검증
+- [ ] 자동 생성 파일 회귀 검증
 
 ### Phase D — Cutover
 
@@ -84,6 +87,34 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [ ] Draft PR Review
 - [ ] main Cutover
 - [ ] Post-cutover Cleanup
+
+## 자동화 현재 상태
+
+기존 Mission 자동화는 그대로 유지한다.
+
+```text
+config/missions.yaml + config/waves/*
+        ↓
+scripts/sync_progress.py
+        ↓
+README / legacy progress / missions.json / workcells.json
+```
+
+V3 Growth 자동화는 새 Generator와 JSON 구조까지 구현했다.
+
+```text
+config/growth.yaml
+config/skills.yaml
+config/activities.yaml
+config/projects.yaml
+config/opportunities.yaml
+        ↓
+scripts/sync_growth.py
+        ↓
+current-state.md + growth/skills/activities/projects/opportunities JSON
+```
+
+다만 GitHub Actions Workflow 파일 변경은 현재 연결 도구의 보안 제한으로 자동 반영하지 못했다. 따라서 Workflow 연결은 **PENDING**이며 main Cutover 전에 반드시 검증해야 한다.
 
 ## 안전 규칙
 
@@ -95,10 +126,9 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 다음 작업
 
-이제 **System Refactor의 중심부**로 이동한다.
-
-1. `scripts/sync_progress.py`가 Growth/Skill/Activity/Project 데이터를 함께 생성하도록 확장 설계
-2. Dashboard를 `Growth → Mission → Skill → Activity/Project` 계층으로 확장
-3. 기존 수동 Refresh + 5분 Cooldown과 G1~G8 기능은 회귀 없이 보존
-4. 새 JSON 생성물과 GitHub Actions 경로를 추가
-5. 이후 대규모 Vocabulary/Legacy Path는 링크 검증 후 이동
+1. Growth Dashboard 정적 데이터/브라우저 렌더링 검토
+2. GitHub Actions `sync_growth.py` 연결 방법 확정
+3. 기존 Vocabulary/Legacy Path의 링크 영향도 검사
+4. Opportunity / Professional Growth / Advanced의 실제 개별 파일 이관
+5. GitHub Pages와 G1~G8 회귀 검증
+6. Draft PR Review 후 Cutover 여부 판단
