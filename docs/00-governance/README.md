@@ -1,86 +1,276 @@
 # 00. Governance
 
-과정 전체의 기준과 변경을 관리한다.
+Codyssey Developer Growth OS 전체의 기준, Source of Truth, Workcell, 상태, 성장 단계, Repository 확장 규칙을 관리한다.
 
-## 핵심 원칙
+## 1. 핵심 원칙
 
-1. Mission PDF와 공식 Evaluation이 최우선이다.
+1. Mission PDF와 공식 Evaluation을 최우선 Source로 사용한다.
 2. 외부 참고자료는 공식 요구사항을 변경하지 않는다.
-3. 필수/선택은 폴더 구조가 아니라 메타데이터다.
+3. 필수/선택은 폴더 구조가 아니라 Metadata로 관리한다.
 4. 실제 검증되지 않은 결과를 PASS로 표시하지 않는다.
-5. v1.0 구조 변경은 실제 필요가 확인된 경우에만 수행한다.
-6. Mission/Evaluation Source는 파일 존재 여부뿐 아니라 실제 내용 유효성을 확인한 뒤 사용한다.
-7. 개별 Mission 실행은 병렬화할 수 있지만 대표 Repository의 상태 통합은 한 번에 하나씩 수행한다.
+5. Mission/Evaluation Source는 파일 존재 여부가 아니라 실제 내용 유효성을 확인한다.
+6. 개별 Mission 실행은 병렬화할 수 있지만 대표 Repository의 상태 통합은 직렬로 수행한다.
+7. Growth Stage, Status, Priority, Domain을 서로 섞지 않는다.
+8. 미래 전체 Map은 먼저 설계하되 실제 폴더는 필요한 시점에만 만든다.
+9. 비필수 고도화가 CORE Mission PASS를 지연시키지 않는다.
+10. 구조 변경은 `KEEP / MERGE / REWRITE / ARCHIVE / DROP` Audit 후 수행한다.
 
-## Source of Truth
+---
 
-Mission PDF → Mission Markdown → Evaluation → 공식 운영자료 → 요구사항/증빙 매핑 → README → 학습문서 → 코드 → 테스트 → 보고서 → Evidence
+## 2. V3 Growth Governance
 
-상위 Source가 없거나 비어 있거나 읽을 수 없을 때는 하위 Source로 내용을 추정 복원하지 않는다. 확인 가능한 범위만 사용하고 Source Gap을 기록한다.
+### Growth Stage
 
-## Source Discovery & Fallback
+`CORE → EXPLORE → ADVANCED → PRO → EXPERT`
+
+- [Growth Model](./growth-model.md)
+
+### Activity Status
+
+`PLANNED → READY → ACTIVE → DONE`
+
+예외: `BLOCKED`, `ARCHIVED`
+
+- [Status Model](./status-model.md)
+
+### Priority
+
+`REQUIRED / RECOMMENDED / OPTIONAL`
+
+- [Priority Model](./priority-model.md)
+
+### Repository Policy
+
+- Master Map First
+- Progressive Repository
+- Logical First, Physical Later
+- Folder = Domain, Stage = Metadata
+- Just-in-Time Folder Creation
+
+- [Repository Policy](./repository-policy.md)
+
+---
+
+## 3. 공식 Source 우선순위
+
+```text
+Mission PDF
+  ↓
+Mission Markdown
+  ↓
+Official Evaluation
+  ↓
+공식 운영자료
+  ↓
+요구사항/증빙 매핑
+  ↓
+README
+  ↓
+학습문서
+  ↓
+코드
+  ↓
+테스트
+  ↓
+보고서
+  ↓
+Evidence
+```
+
+상위 Source가 없거나 비어 있거나 읽을 수 없을 때 하위 Source나 AI 일반지식으로 공식 요구사항을 임의 복원하지 않는다. 확인 가능한 범위만 사용하고 Source Gap을 기록한다.
+
+---
+
+## 4. Source Discovery & Fallback
 
 - [Source Discovery & Fallback Protocol](./source-discovery-fallback-protocol.md)
-  - PDF / Markdown / 기타 Source 탐색
-  - `VALID / PARTIAL / EMPTY / MISSING / UNREADABLE / DUPLICATE / CONFLICT / HISTORICAL / UNVERIFIED` 상태 분류
-  - `FULL SOURCE / MISSION-LED / EVALUATION-LED / PARTIAL SOURCE / SOURCE GAP / SOURCE CONFLICT` 적응형 수행 모드
-  - Source Confidence와 Requirement Provenance
-  - 자료가 부족해도 안전하게 계속할 수 있는 작업과 금지되는 추정 작업 구분
 
-## Multi-Agent Mission Engineering
+주요 상태:
+
+`VALID / PARTIAL / EMPTY / MISSING / UNREADABLE / DUPLICATE / CONFLICT / HISTORICAL / UNVERIFIED`
+
+수행 모드:
+
+`FULL SOURCE / MISSION-LED / EVALUATION-LED / PARTIAL SOURCE / SOURCE GAP / SOURCE CONFLICT`
+
+자료가 부족해도 Repository Inventory, 환경 확인, 기존 코드·테스트 분석 등 안전한 작업은 계속할 수 있다. 근거가 없는 요구사항 생성은 금지한다.
+
+- [Source Registry](./source-registry.md)
+
+---
+
+## 5. Multi-Agent Mission Engineering
 
 - [Multi-Agent Mission Engineering Playbook](./multi-agent-mission-engineering.md)
-  - Prompt Engineering
-  - Context Engineering
-  - Harness Engineering
-  - Loop Engineering
-  - Fusion Engineering
-  - ChatGPT / Codex / GitHub Copilot / Claude / Gemini / Grok 역할 분리와 선택적 Agent Routing
 
-## Parallel Mission Execution
+핵심 관심사:
+
+- Prompt Engineering
+- Context Engineering
+- Harness Engineering
+- Loop Engineering
+- Fusion Engineering
+- Primary Builder / Independent Reviewer / Human Runtime Verification 역할 분리
+
+특정 AI 제품명보다 **역할, 검증 책임, Evidence**를 우선한다.
+
+---
+
+## 6. Parallel Mission Execution
 
 - [Parallel Mission Execution & Serial Integration](./parallel-mission-execution.md)
-  - B1-1~B7-2를 15개 독립 Chat Workcell에서 병렬 실행
-  - 모든 Workcell이 동일 Control Tower baseline SHA 사용
-  - 병렬 실행 중 대표 Repository는 READ ONLY
-  - Source Discovery와 Mission Work Packet 우선 작성
-  - Dependency-Gated Build
-  - `HANDOFF.md` + `mission-result.yaml` 표준 결과 전달
-  - 대표 Repository는 B1-1 → B7-2 순으로 직렬 통합
-  - 진행 상태는 `config/missions.yaml`만 수정
+
+기본 원칙:
+
+- B1-1~B7-2 Mission Workcell은 병렬 실행 가능
+- 공통 Control Tower Baseline SHA 사용
+- Mission Workcell에서는 대표 Repository READ ONLY
+- G1 SOURCE와 Mission Work Packet 우선
+- Dependency-Gated Build
+- `HANDOFF.md` + `mission-result.yaml` 표준 전달
+- 대표 상태는 B1-1 → B7-2 순으로 직렬 통합
+- Mission 상태 수정 원본은 `config/missions.yaml`
 
 ### Mission Work Packets
 
-- [B1-1~B7-2 Starter Packet Index](./work-packets/README.md)
-  - 15개 Mission별 사전 수행내역
-  - Mission-specific TOC
-  - G1~G8 실행 체크포인트
-  - Runtime/Evidence 계획
-  - 각 Workcell이 G1에서 실제 Source와 재대조 후 `MISSION-WORK-PACKET.md`로 확정
-- Active Wave: `config/waves/20260808-01.yaml`
-  - Mission → Repository → Starter Packet → Workcell Prompt 매핑
-  - 공통 Control Tower baseline SHA
-  - Workcell 상태와 Serial Integration 순서
+- [Starter Packet Index](./work-packets/README.md)
+- `work-packets/b1-1.md ~ b7-2.md`
 
-### Mission Workcell Chat Prompts
+Starter Packet은 사전 구조다. 각 Workcell의 G1 SOURCE에서 실제 Mission/Evaluation Source와 재대조한 뒤 확정한다.
 
-- [B1-1~B7-2 One-line Launcher & Prompt Index](./workcell-prompts/README.md)
-  - 15개 Mission별 전용 실행 프롬프트
-  - 새 채팅창에 넣는 한 줄 launcher 제공
-  - launcher는 현재 `main`에서 읽고, 실제 Governance는 Active Wave의 frozen baseline을 적용
+### Mission Workcell Prompts
 
-### 병렬 실행 템플릿
+- [Workcell Prompt Index](./workcell-prompts/README.md)
+- `workcell-prompts/b1-1.md ~ b7-2.md`
 
-- `templates/mission-chat-start.md` — 새 Mission 채팅 시작 프롬프트 템플릿
-- `templates/mission-work-packet.md` — Workcell 실행 계약
-- `templates/mission-handoff.md` — 사람용 Handoff
-- `templates/mission-result.yaml` — 기계 판독용 결과 계약
-- `templates/parallel-wave.yaml` — 15개 Workcell Wave 운영 Ledger
+### 병렬 실행 Templates
 
-## 변경 분류
+- `templates/mission-chat-start.md`
+- `templates/mission-work-packet.md`
+- `templates/mission-handoff.md`
+- `templates/mission-result.yaml`
+- `templates/parallel-wave.yaml`
 
-- 현재 미션에 필수: 해당 미션 Repository
-- 학습자료: `08-resources`
-- 대외활동: `09-opportunities`
-- 전문가 역량: `10-professional-growth`
-- 고도화 기술: `11-advanced`
+---
+
+## 7. Source of Truth 분리
+
+### Mission
+
+`config/missions.yaml`
+
+관리 항목:
+- Mission 메타데이터
+- 공식 필수/선택
+- 수행 상태
+- 학습 상태
+- G1~G8
+
+### Growth
+
+`config/growth.yaml`
+
+관리 항목:
+- Growth Stage
+- Activity Status
+- Priority
+- 12개 Competency Axis
+
+### External / Resource
+
+- `config/opportunities.yaml`
+- `config/resources.yaml`
+
+향후 실제 필요가 생길 때만 `skills.yaml`, `activities.yaml`, `projects.yaml`을 추가한다.
+
+---
+
+## 8. Mission Completion Gate
+
+```text
+G1 SOURCE
+  ↓
+G2 BUILD
+  ↓
+G3 TEST
+  ↓
+G4 REVIEW
+  ↓
+G5 RUNTIME
+  ↓
+G6 EVIDENCE
+  ↓
+G7 LEARN
+  ↓
+G8 MERGE
+```
+
+Mission PASS와 Learning MASTERED는 별도 상태다.
+
+---
+
+## 9. Mission Lifecycle
+
+한 Mission을 제출 후 폐기하지 않는다.
+
+```text
+COMPLETE
+  ↓
+UNDERSTAND
+  ↓
+BREAK
+  ↓
+DEBUG
+  ↓
+COLLABORATE
+  ↓
+EXPLORE
+  ↓
+ADVANCE
+  ↓
+PRO
+```
+
+이 Lifecycle은 공식 Mission 완료와 이후 학습/성장 확장을 연결한다.
+
+---
+
+## 10. 변경 분류 규칙
+
+V3에서는 다음과 같이 판단한다.
+
+```text
+무엇에 관한가?        → Domain
+얼마나 성장했는가?     → Growth Stage
+지금 어디까지 왔는가?  → Status
+반드시 해야 하는가?    → Priority
+```
+
+예:
+
+```text
+AI Hackathon
+Domain: Opportunity
+growth_stage: EXPLORE
+status: ACTIVE
+priority: OPTIONAL
+```
+
+전문가 역량이나 고도화 기술을 `professional-growth/`, `advanced/` 같은 단계 폴더로 고정하지 않는다. 실제 내용의 Domain에 배치하고 Stage Metadata로 관리한다.
+
+---
+
+## 11. V3 Rebuild Safety
+
+- 이전 기준본: `archive/pre-growth-os-v3`
+- 재구축: `rebuild/growth-os-v3`
+- 기존 자료는 Audit 후 이동/삭제
+- Mission/Gate/Evidence 자산은 우선 보존
+- 자동화 검증 전 기존 경로를 파괴하지 않음
+- Draft PR을 통해 Cutover 검토
+
+참조:
+
+- [`../01-master-map/migration-plan.md`](../01-master-map/migration-plan.md)
+- [`../01-master-map/migration-matrix.md`](../01-master-map/migration-matrix.md)
+- [`../01-master-map/audit-00-governance.md`](../01-master-map/audit-00-governance.md)
