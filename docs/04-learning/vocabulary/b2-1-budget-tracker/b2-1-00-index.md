@@ -44,8 +44,8 @@ cross-cutting error boundary: @cli_guard
 | 20 | [Level 1 — Top Core](./b2-1-20-level-1-core/b2-1-20-000-index.md) | 핵심 개념 40개, V2~V3 | ✅ |
 | 30 | [Level 2 — Execution](./b2-1-30-level-2-execution/b2-1-30-000-index.md) | CLI·저장·CRUD·검색·요약·입출력 12개 실행 단위, V4 | ✅ |
 | 40 | [Level 3 — Principles](./b2-1-40-level-3-principles/b2-1-40-000-index.md) | Persistence·Generator·Layer·Atomicity·Integrity 등 12개 WHY/HOW 단위 | ✅ |
-| 50 | Level 4 — Troubleshooting | 입력·파일·CSV·무결성 장애 진단 | NEXT |
-| 60 | Level 5 — Evaluation | 평가 자기설명 | 이후 |
+| 50 | [Level 4 — Troubleshooting](./b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md) | 입력·파일·ID·category·CSV·atomic rewrite·error exit 12개 장애 진단 단위 | ✅ |
+| 60 | Level 5 — Evaluation | 평가 자기설명 | NEXT |
 | 70 | Review | 통합 회상 | 이후 |
 | 90 | Advanced | 원본 Bonus 선택 심화 | 이후 |
 
@@ -111,13 +111,26 @@ Model Invariant
 → WHY/HOW Gate
 ```
 
-현재 구현의 generator는 조회 메모리 사용을 줄이지만 id 생성·update/delete·summary 등 전체 파일 비용을 제거하지 않는다. 따라서 `generator = 전체 확장성 해결`로 과장하지 않는다.
+## Level 4 장애 진단 연결
+
+```text
+Invalid Input
+→ Persistent File Corruption / Path-Permission
+→ Missing ID / Category Integrity
+→ Search Empty
+→ CSV Export / Import-Rollback
+→ Atomic Rewrite
+→ Error Exit / Evidence
+→ Troubleshooting Gate
+```
+
+공통 진단은 `Symptom → Observe → Layer → Hypothesis → Smallest Fix → Reverify → Recovery → Evidence`를 따른다. 현재 구현의 generator·atomic rewrite·rollback·error code 동작은 실제 코드와 테스트를 근거로 하되, 구조 문서가 개인 실습 완료를 대신하지 않는다.
 
 ## 상태 경계
 
 ```text
-LEVEL 3 STRUCTURE READY
-≠ PERSONAL WHY/HOW READY
+TROUBLESHOOTING STRUCTURE READY
+≠ PERSONAL TROUBLESHOOTING READY
 ≠ PERSONAL MASTERED
 ≠ RUNTIME REVERIFIED BY LEARNER
 ≠ MISSION PASS
@@ -129,6 +142,6 @@ Visual Learning은 **DEFERRED**다.
 
 ## 다음 작업
 
-`Level 4 — 잘못된 입력, 파일 손상/권한, 없는 ID, category 참조, CSV schema/encoding/import 실패, atomic rewrite, error exit 등 장애를 Symptom → Observe → Layer → Hypothesis → Smallest Fix → Reverify → Evidence로 구조화`
+`Level 5 — 기능/예외, 모듈·클래스 책임, generator/decorator/type hint, 저장 포맷/확장성 질문을 WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP 평가 설명 단위로 구조화`
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 3 →](./b2-1-40-level-3-principles/b2-1-40-000-index.md)
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 4 →](./b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md)
