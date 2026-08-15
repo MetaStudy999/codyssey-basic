@@ -29,8 +29,9 @@ OOM Crash / CPU Latency / Deadlock
 | 40 | [Level 3 — Principle Unit Index](./b1-2-40-level-3-principles/b1-2-40-000-index.md) | 12개 Memory/CPU/Thread/Deadlock/RCA WHY-HOW 원리 단위 | ✅ |
 | 50 | [Level 4 — Troubleshooting Unit Index](./b1-2-50-level-4-troubleshooting/b1-2-50-000-index.md) | 12개 증상·진단·최소수정·재검증 단위 | ✅ |
 | 60 | [Level 5 — Evaluation Unit Index](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md) | 12개 Evidence 기반 평가 설명 단위 | ✅ |
-| 70 | Review | 통합 복습·후행 연결 | NEXT |
-| 90 | Advanced | 스케줄링 알고리즘 추론 | 선택 |
+| 70 | [Integrated Review Index](./b1-2-70-review/b1-2-70-000-index.md) | 12개 회상·통합·LEARNING READY 판정 단위 | ✅ |
+| 70S | [Review Full Pack](./b1-2-70-review-pack.md) | 한 페이지 전체 복습 | ✅ |
+| 90 | Advanced | 원본 Bonus 스케줄링 알고리즘 추론 | NEXT / 선택 |
 
 기존 [`b1-2.md`](../b1-2.md)는 전체 Vocabulary Summary와 기존 URL 호환용으로 유지한다.
 
@@ -70,28 +71,31 @@ B1-1 정상 관제
 → Level 4 장애 진단
 → Level 5 평가 설명
 → Review 통합 복원
+→ Advanced 선택 심화
 ```
 
-## Level 5 평가 흐름
+## Review 흐름
 
 ```text
-WHAT
-→ WHY
-→ HOW
-→ PROOF
-→ LIMIT / ENVIRONMENT
-→ FOLLOW-UP
+RECALL
+→ RELATE
+→ DIAGNOSE
+→ EVIDENCE
+→ EXPLAIN
+→ RETRIEVE AGAIN
+→ LEARNING READY
+→ ADVANCED / NEXT BRIDGE
 ```
 
-Level 5에서는 OOM/CPU/Deadlock 각각을 실제 Runtime Evidence와 연결하고, 관제 명령어, OS 원리, RCA, Workaround와 Root Fix, 운영 개선, 복합 장애 우선순위, 1분/3~5분 구두 답변까지 확장한다.
+Review는 새 지식을 추가하지 않는다. OOM/CPU/Deadlock의 관계, Source-locked 조건, Evidence, Before/After, Troubleshooting, V5 자기 설명을 백지에서 다시 꺼내 쓰는 단계다.
 
 `b1-2-evaluation.md`의 20개 문항은 official provenance가 확인되지 않았으므로 공식 PASS 기준으로 승격하지 않고 평가 연습용 provisional checklist로만 사용한다.
 
 ## 상태 경계
 
 ```text
-EVALUATION STRUCTURE READY
-≠ EVALUATION READY
+REVIEW STRUCTURE READY
+≠ LEARNING READY
 ≠ PERSONAL MASTERED
 ≠ RUNTIME VERIFIED
 ≠ MISSION PASS
@@ -103,6 +107,6 @@ Visual Learning은 **DEFERRED**다. 만화·도식 작업은 별도 Backlog에 �
 
 ## 다음 작업
 
-`Review — Level 0~5를 백지 복원하고 OOM/CPU/Deadlock Evidence와 평가 설명을 한 흐름으로 통합`
+`Advanced — 원본 Mission Bonus인 Process Scheduling / Scheduling Algorithm inference를 필수 요구와 분리해 선택 심화로 구조화`
 
-[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Level 5 →](./b1-2-60-level-5-evaluation/b1-2-60-000-index.md)
+[← B1-1 Advanced](../b1-1-system-monitoring-automation/b1-1-90-advanced/b1-1-90-000-index.md) · [전체 Vocabulary Index](../README.md) · [Review →](./b1-2-70-review/b1-2-70-000-index.md)
