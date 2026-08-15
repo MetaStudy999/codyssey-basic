@@ -1,0 +1,76 @@
+{
+  "schema_version": 3,
+  "generated_from": "config/opportunities.yaml",
+  "version": 3,
+  "model": "codyssey-developer-growth-os-opportunities",
+  "availability_status_values": [
+    "OPEN",
+    "UPCOMING",
+    "WATCH",
+    "CLOSED",
+    "ARCHIVED"
+  ],
+  "fit_status_values": [
+    "UNREVIEWED",
+    "REVIEW",
+    "CANDIDATE",
+    "SELECTED",
+    "SKIP"
+  ],
+  "priority_values": [
+    "REQUIRED",
+    "RECOMMENDED",
+    "OPTIONAL"
+  ],
+  "types": [
+    "competition",
+    "contest",
+    "hackathon",
+    "seminar",
+    "conference",
+    "meetup",
+    "call-for-papers",
+    "call-for-projects",
+    "call-for-participants",
+    "research-opportunity",
+    "open-source-opportunity",
+    "grant-support",
+    "startup-opportunity",
+    "job-opportunity"
+  ],
+  "record_fields": [
+    "id",
+    "title",
+    "type",
+    "availability_status",
+    "fit_status",
+    "recommended_growth_stage",
+    "priority",
+    "official_url",
+    "application_deadline",
+    "event_start",
+    "event_end",
+    "checked_at",
+    "related_missions",
+    "related_skills",
+    "reuse_assets",
+    "expected_evidence",
+    "opportunity_score",
+    "notes"
+  ],
+  "opportunity_score_dimensions": {
+    "mission_alignment": 25,
+    "portfolio_value": 20,
+    "learning_value": 20,
+    "collaboration_value": 15,
+    "result_probability": 10,
+    "career_or_venture_link": 10
+  },
+  "selection_guideline": {
+    "active": ">= 80",
+    "review": "65-79",
+    "optional_if_capacity": "50-64",
+    "skip": "< 50"
+  },
+  "opportunities": []
+}

@@ -6,7 +6,14 @@ on:
     paths:
       - 'config/missions.yaml'
       - 'config/waves/**'
+      - 'config/growth.yaml'
+      - 'config/skills.yaml'
+      - 'config/activities.yaml'
+      - 'config/projects.yaml'
+      - 'config/opportunities.yaml'
       - 'scripts/sync_progress.py'
+      - 'scripts/sync_growth.py'
+      - 'scripts/validate_v3.py'
       - 'site/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
@@ -35,6 +42,10 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check pyyaml
           python scripts/sync_progress.py
+          python scripts/sync_growth.py
+      - name: Validate V3 structure and generated data
+        run: |
+          python scripts/validate_v3.py
       - uses: actions/configure-pages@v5
         with:
           enablement: true

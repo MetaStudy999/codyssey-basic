@@ -1,4 +1,4 @@
-name: Sync Mission Progress
+name: Sync Control Tower Data
 
 on:
   push:
@@ -6,14 +6,21 @@ on:
     paths:
       - 'config/missions.yaml'
       - 'config/waves/**'
+      - 'config/growth.yaml'
+      - 'config/skills.yaml'
+      - 'config/activities.yaml'
+      - 'config/projects.yaml'
+      - 'config/opportunities.yaml'
       - 'scripts/sync_progress.py'
+      - 'scripts/sync_growth.py'
+      - 'scripts/validate_v3.py'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: sync-mission-progress
+  group: sync-control-tower-data
   cancel-in-progress: true
 
 jobs:
@@ -24,18 +31,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate Control Tower progress and live-status data
+      - name: Generate Mission and Growth OS data
         run: |
           python -m pip install --disable-pip-version-check pyyaml
           python scripts/sync_progress.py
+          python scripts/sync_growth.py
+      - name: Validate V3 structure and generated data
+        run: |
+          python scripts/validate_v3.py
       - name: Commit generated files when changed
         run: |
-          if [ -z "$(git status --porcelain -- README.md docs/03-progress/progress.md site/data/missions.json site/data/workcells.json)" ]; then
+          if [ -z "$(git status --porcelain -- README.md docs/03-progress/progress.md docs/01-master-map/current-state.md site/data/missions.json site/data/workcells.json site/data/growth.json site/data/skills.json site/data/activities.json site/data/projects.json site/data/opportunities.json)" ]; then
             echo "Generated Control Tower files are already synchronized."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md docs/03-progress/progress.md site/data/missions.json site/data/workcells.json
+          git add README.md docs/03-progress/progress.md docs/01-master-map/current-state.md site/data/missions.json site/data/workcells.json site/data/growth.json site/data/skills.json site/data/activities.json site/data/projects.json site/data/opportunities.json
           git commit -m "chore: sync Control Tower views"
           git push

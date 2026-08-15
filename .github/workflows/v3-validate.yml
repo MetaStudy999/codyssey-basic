@@ -1,0 +1,61 @@
+name: Validate Growth OS V3
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'AGENTS.md'
+      - 'config/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'site/**'
+      - '.github/workflows/v3-validate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-growth-os-v3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependency
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Verify Mission generated outputs
+        run: python scripts/sync_progress.py --check
+      - name: Verify Growth OS generated outputs
+        run: python scripts/sync_growth.py --check
+      - name: Validate V3 structure, links and dashboard wiring
+        run: python scripts/validate_v3.py
+      - name: Report active references to cleanup-candidate legacy paths
+        run: python scripts/scan_legacy_refs.py
+      - name: Install browser smoke dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Run browser smoke and live telemetry test
+        run: python scripts/browser_smoke.py --live --minimum-live-success 4
+      - name: Upload browser smoke screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-os-v3-browser-smoke
+          path: browser-smoke.png
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload static site preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-os-v3-site-preview
+          path: site
+          if-no-files-found: error
+          retention-days: 7

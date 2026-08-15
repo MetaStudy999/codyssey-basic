@@ -1,0 +1,69 @@
+version: 3
+model: codyssey-developer-growth-os-skills
+
+# Growth Stage와 Skill Level은 다른 축이다.
+# Growth Stage: 전체 성장 위치
+# Skill Level: 특정 역량을 어느 수준으로 수행하는가
+
+skill_levels:
+  - level: 0
+    id: NOT_STARTED
+    meaning: "아직 학습/수행 Evidence가 없다."
+  - level: 1
+    id: GUIDED
+    meaning: "도움을 받아 수행할 수 있다."
+  - level: 2
+    id: INDEPENDENT
+    meaning: "기본 과제를 혼자 수행할 수 있다."
+  - level: 3
+    id: EXPLAINABLE
+    meaning: "원리와 선택 이유를 설명하고 다른 사람에게 전달할 수 있다."
+  - level: 4
+    id: TROUBLESHOOTING
+    meaning: "실패를 재현·진단·복구하고 Evidence를 남길 수 있다."
+  - level: 5
+    id: DESIGN_JUDGMENT
+    meaning: "대안을 비교하고 설계·개선·Trade-off 판단을 할 수 있다."
+
+axes:
+  - id: Learn
+    name_ko: 학습
+    description: "용어·개념·원리를 이해하고 새로운 지식을 습득한다."
+  - id: Build
+    name_ko: 구현
+    description: "요구사항을 동작하는 결과물로 구현한다."
+  - id: Test
+    name_ko: 테스트
+    description: "정상/실패 경로와 품질을 검증한다."
+  - id: Debug
+    name_ko: 문제해결
+    description: "증상에서 Root Cause를 찾아 최소 수정 후 재검증한다."
+  - id: Collaborate
+    name_ko: 협업
+    description: "Git/PR/Review/Issue와 팀 의사소통으로 함께 결과를 만든다."
+  - id: Design
+    name_ko: 설계
+    description: "구조, 인터페이스, 데이터, Architecture Decision을 설계한다."
+  - id: Operate
+    name_ko: 운영
+    description: "배포, 보안, 관측성, 장애, 비용과 변경 위험을 관리한다."
+  - id: Compete
+    name_ko: 도전
+    description: "공모전·해커톤·경진대회에서 외부 문제와 평가 기준을 경험한다."
+  - id: Research
+    name_ko: 연구
+    description: "질문·가설·실험·분석·재현·발표로 지식을 검증한다."
+  - id: Communicate
+    name_ko: 소통
+    description: "문서, 발표, 설명, 교육으로 기술 판단과 Evidence를 전달한다."
+  - id: Career
+    name_ko: 커리어
+    description: "Portfolio, Open Source, Interview, 실무 Evidence로 역할 수행 가능성을 증명한다."
+  - id: Venture
+    name_ko: 창업
+    description: "문제·사용자·MVP·PoC·사업 검증으로 기술을 제품/시장 가치로 연결한다."
+
+current_assessment:
+  # 실제 판정은 Evidence가 연결될 때 갱신한다.
+  # 예: Learn: {level: 2, evidence: ["..."]}
+  {}
