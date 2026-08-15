@@ -34,7 +34,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
 | 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~4 완료 / Level 5 NEXT** |
+| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~5 완료 / Review NEXT** |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
 | 6 | B3-2 | [파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기](./b3-2.md) | 1차 용어 작성 완료 |
@@ -91,10 +91,11 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - [30 — Level 2 Execution Index](./b2-1-budget-tracker/b2-1-30-level-2-execution/b2-1-30-000-index.md) — 12개 ✅
 - [40 — Level 3 Principles Index](./b2-1-budget-tracker/b2-1-40-level-3-principles/b2-1-40-000-index.md) — 12개 ✅
 - [50 — Level 4 Troubleshooting Index](./b2-1-budget-tracker/b2-1-50-level-4-troubleshooting/b2-1-50-000-index.md) — 12개 ✅
+- [60 — Level 5 Evaluation Index](./b2-1-budget-tracker/b2-1-60-level-5-evaluation/b2-1-60-000-index.md) — 12개 ✅
 - [기존 Vocabulary Summary](./b2-1.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Level 5 — 기능/예외·책임 경계·generator/decorator/type hint·저장 포맷/확장성 평가 설명
+- 다음: Review — Mission Map, V1~V5 혼합 회수, Troubleshooting Scenario, Evidence Mapping, 1분/3~5분 설명
 
-B2-1 Level 4는 현재 구현과 평가 요구를 연결해 `Invalid Input`, `Persistent File Corruption`, `Path/Permission`, `Missing ID`, `Category Integrity`, `Search/List Empty`, `CSV Export`, `CSV Import/Rollback`, `Atomic Rewrite`, `Error Exit/Evidence`를 장애 진단 단위로 구조화한다. 기존 18-test Evidence는 참고 근거이며 개인 장애 진단 완료를 대신하지 않는다.
+B2-1 Level 5는 공식 평가 4개 영역을 `Functions/Persistence`, `Exception/Exit`, `Module/Class Responsibility`, `Safe Rewrite/Integrity`, `Generator`, `Decorator`, `Type Hint`, `Storage Format`, `100k Scalability`, `CSV Import Trust Policy`로 나누고 `WHAT → WHY → HOW → PROOF → LIMIT / ENVIRONMENT → FOLLOW-UP` 답변 구조로 연결한다. 기존 18-test Evidence는 구현 근거이며 개인 평가 완료를 대신하지 않는다.
 
 ## 통합 자산 상태
 
@@ -108,11 +109,12 @@ B2-1 Level 4는 현재 구현과 평가 요구를 연결해 `Invalid Input`, `Pe
 - B2-1 Level 2 실행 단위 12개: **완료**
 - B2-1 Level 3 원리 단위 12개: **완료**
 - B2-1 Level 4 장애 진단 단위 12개: **완료**
+- B2-1 Level 5 평가 설명 단위 12개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B2-1 Level 5 평가 설명 구조화**
+- 다음: **B2-1 Review 통합 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEVEL 2 STRUCTURE READY`, `PERSONAL V4 PASSED`, `PRINCIPLE STRUCTURE READY`, `PERSONAL WHY/HOW READY`, `TROUBLESHOOTING STRUCTURE READY`, `PERSONAL TROUBLESHOOTING READY`, `REVIEW STRUCTURE READY`, `LEARNING READY`, `EVALUATION READY`, `ADVANCED STRUCTURE READY`, `ADVANCED TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEVEL 2 STRUCTURE READY`, `PERSONAL V4 PASSED`, `PRINCIPLE STRUCTURE READY`, `PERSONAL WHY/HOW READY`, `TROUBLESHOOTING STRUCTURE READY`, `PERSONAL TROUBLESHOOTING READY`, `EVALUATION STRUCTURE READY`, `PERSONAL EVALUATION READY`, `REVIEW STRUCTURE READY`, `LEARNING READY`, `ADVANCED STRUCTURE READY`, `ADVANCED TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
