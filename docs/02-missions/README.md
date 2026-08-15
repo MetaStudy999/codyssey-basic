@@ -91,6 +91,6 @@ EXPERT
 
 모든 Mission이 PRO/EXPERT까지 승격되어야 하는 것은 아니다. 장기 Project Lineage에 중요한 Mission만 선택적으로 성장시킨다.
 
-## Migration Status
+## Canonical Status
 
-이 디렉터리는 V3 Physical Migration 중 생성되었다. 기존 `docs/02-domains`는 새 경로의 내용과 링크 검증이 끝날 때까지 삭제하지 않는다.
+`docs/02-missions`가 Control Tower의 Mission 문서 Canonical Path다. 신규 Work Packet, Navigation, Learning/Evaluation 연결은 이 경로를 사용한다. 이전 Mission 분류 경로의 유효한 내용은 V3 Mission Summary와 Git History에서 추적한다.
