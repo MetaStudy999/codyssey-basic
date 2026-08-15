@@ -110,8 +110,8 @@
       "packet_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/work-packets/b3-1.md",
       "prompt": "docs/00-governance/workcell-prompts/b3-1.md",
       "prompt_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-prompts/b3-1.md",
-      "status_doc": "docs/03-progress/b3-1-workcell-status.md",
-      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/03-progress/b3-1-workcell-status.md",
+      "status_doc": "docs/00-governance/workcell-status/b3-1.md",
+      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-status/b3-1.md",
       "workcell_status": "COMPLETE",
       "integration_status": "PENDING"
     },
@@ -144,8 +144,8 @@
       "packet_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/work-packets/b4-1.md",
       "prompt": "docs/00-governance/workcell-prompts/b4-1.md",
       "prompt_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-prompts/b4-1.md",
-      "status_doc": "docs/03-progress/b4-1-workcell-status.md",
-      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/03-progress/b4-1-workcell-status.md",
+      "status_doc": "docs/00-governance/workcell-status/b4-1.md",
+      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-status/b4-1.md",
       "workcell_status": "PARTIAL",
       "integration_status": "PENDING"
     },
@@ -195,8 +195,8 @@
       "packet_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/work-packets/b5-2.md",
       "prompt": "docs/00-governance/workcell-prompts/b5-2.md",
       "prompt_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-prompts/b5-2.md",
-      "status_doc": "docs/03-progress/b5-2-workcell-status.md",
-      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/03-progress/b5-2-workcell-status.md",
+      "status_doc": "docs/00-governance/workcell-status/b5-2.md",
+      "status_doc_url": "https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-status/b5-2.md",
       "workcell_status": "COMPLETE",
       "integration_status": "PENDING"
     },
