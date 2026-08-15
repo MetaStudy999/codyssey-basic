@@ -26,7 +26,34 @@ python scripts/validate_v3.py
 - `sync_progress.py --check`
 - `sync_growth.py --check`
 
-## 2. Dashboard 정적 검증
+## 2. Chromium Browser Smoke
+
+`python scripts/browser_smoke.py`는 로컬 정적 서버를 띄운 뒤 실제 Chromium으로 `site/`를 렌더링한다.
+
+검증 항목:
+
+- Growth Stage 카드 5개
+- Skill Axis 카드 12개
+- Domain 카드 7개
+- Mission 카드 15개
+- Official G1~G8 Gate Cell 120개
+- CORE/EXPLORE/ADVANCED/PRO/EXPERT 텍스트 렌더링
+- 초기 수동 갱신 버튼 활성 상태
+- 5분 Cooldown localStorage 적용 시 버튼 비활성 상태
+- Browser Console / Page JavaScript Error 0
+
+Smoke Test는 Live Mission API를 호출하지 않는다. Cooldown은 localStorage 값을 주입하여 네트워크 독립적으로 검증한다.
+
+### 현재 Evidence
+
+Workflow Run `31906025614`: **PASS**
+
+Screenshot Artifact:
+
+- `growth-os-v3-browser-smoke`
+- Artifact ID `9252363546`
+
+## 3. Dashboard 정적 검증
 
 `site/index.html`에서 다음 요소가 존재해야 한다.
 
@@ -44,32 +71,24 @@ python scripts/validate_v3.py
 - `projects.json`
 - `opportunities.json`
 
-## 3. 브라우저 검증
+## 4. Mission Layer 브라우저 회귀
 
-GitHub Pages 또는 로컬 정적 서버에서 다음을 확인한다.
-
-### Growth Layer
-
-- CORE = ACTIVE
-- EXPLORE = READY
-- ADVANCED / PRO / EXPERT = PLANNED
-- 12개 Skill Axis가 표시됨
-- Evidence가 없으면 임의 Skill 점수를 표시하지 않음
-- Activity / Project / Opportunity Summary가 Config와 일치함
-
-### Mission Layer 회귀
+현재 Chromium Smoke에서 다음 정적 회귀는 검증한다.
 
 - B1~B7 Domain 카드 로드
 - 15개 Mission 카드 로드
-- G1~G8 Official 상태 표시
-- Workcell Live 상태와 Official 상태가 의미상 분리됨
-- Mission 상태 수동 갱신 버튼 동작
-- 수동 갱신 후 5분 동안 버튼 비활성화
-- 자동 polling 없음
-- Mission 정렬 옵션 동작
-- Dependency Simulator 동작
+- 각 Mission의 G1~G8 Official 상태 렌더링
+- Growth Layer와 Mission Layer가 동시에 JavaScript 오류 없이 로드
+- 5분 Cooldown UI
 
-## 4. Source of Truth 검증
+추가 운영 검증이 필요한 항목:
+
+- Mission 상태 수동 갱신 시 실제 Mission Repository Telemetry 응답
+- 실제 네트워크 실패/부분 성공 시 UI 동작
+- GitHub Pages 운영 URL에서 동일한 렌더링
+- 모바일 실기기 UX
+
+## 5. Source of Truth 검증
 
 다음 규칙을 깨뜨리면 Cutover하지 않는다.
 
@@ -85,7 +104,7 @@ Resource            -> config/resources.yaml
 
 `site/data/*.json`, `README` 자동 영역, `current-state.md`는 생성 결과물이다.
 
-## 5. Legacy Compatibility 검증
+## 6. Legacy Compatibility 검증
 
 V3 Target이 완전히 대체하기 전에는 다음 Legacy 자산을 삭제하지 않는다.
 
@@ -95,24 +114,31 @@ V3 Target이 완전히 대체하기 전에는 다음 Legacy 자산을 삭제하�
 - 기존 `docs/10-professional-growth`
 - 기존 `docs/11-advanced`
 
+Vocabulary는 현재 `docs/03-learning/vocabulary-index.md`에서 Bridge하여 V3 진입점을 제공한다.
+
 Old Path 제거는 다음 조건을 모두 만족한 뒤 수행한다.
 
-1. 새 Target에 내용 Migration 완료
+1. 새 Target에 핵심 내용 Migration 완료
 2. Markdown/HTML/JS 링크 검사 PASS
 3. 자동 생성 검사 PASS
-4. GitHub Pages 브라우저 검사 PASS
-5. PR Review 완료
+4. Chromium Browser Smoke PASS
+5. GitHub Pages 운영 검증 PASS
+6. PR Review 완료
 
-## 6. Cutover Gate
+## 7. Cutover Gate
 
 ```text
 V3 STRUCTURE PASS
       +
-MISSION REGRESSION PASS
+MISSION STATIC REGRESSION PASS
       +
 GROWTH SYNC PASS
       +
 LINK PASS
+      +
+BROWSER SMOKE PASS
+      +
+LIVE TELEMETRY PASS
       +
 PAGES PASS
       +
