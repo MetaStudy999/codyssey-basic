@@ -57,18 +57,20 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [60 — Level 5 Evaluation Unit Index](./vocabulary/b2-1-budget-tracker/b2-1-60-level-5-evaluation/b2-1-60-000-index.md) — 12개, V5 ✅
 - [70 — Integrated Review Index](./vocabulary/b2-1-budget-tracker/b2-1-70-review/b2-1-70-000-index.md) — 12개 ✅
 - [70 — Review Full Pack](./vocabulary/b2-1-budget-tracker/b2-1-70-review-pack.md) — 전체 요약 ✅
+- [90 — Advanced Bonus & Deepening Index](./vocabulary/b2-1-budget-tracker/b2-1-90-advanced/b2-1-90-000-index.md) — 10개 Optional ✅
+- [90 — Advanced Full Summary](./vocabulary/b2-1-budget-tracker/b2-1-90-advanced.md) — 원본 Bonus 4개 + 보조 심화 ✅
 - [기존 B2-1 Vocabulary Summary](./vocabulary/b2-1.md) — 전체 용어 지도/기존 URL 호환
 
-B2-1 Review는 `Mission Map → Source Boundary → Transaction Data Flow → CRUD/Persistence → Generator/Layer Responsibility → Integrity/Atomicity → CSV Import/Export → Troubleshooting → Evidence/Evaluation Mapping → Oral Explanation → Five-minute Blank Reconstruction → LEARNING READY`로 Level 0~5를 회상·통합한다. 기존 18/18 테스트 Evidence는 개인 복습·평가 완료를 대신하지 않는다.
+B2-1 Advanced는 원본 Bonus의 `Backup → Recurring Transactions → Console Table Formatting → Stronger Atomic Rewrite`를 `SOURCE_LINKED_BONUS`로 잠그고, `Unicode Display Width`, `Durability Boundary`를 `SUPPLEMENTAL_ADVANCED`로 분리한다. 현재 구현의 `tempfile → flush → fsync(file) → os.replace()`는 Atomic Rewrite Bonus와 직접 연결되는 구현 Evidence지만 다른 Bonus의 개인 수행 완료를 대신하지 않는다.
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
 B1-2 Level 0~5 + Review + Advanced ✅
         ↓
-B2-1 Source Lock + Level 0~5 + Review ✅
+B2-1 Level 0~5 + Review + Advanced ✅
         ↓
-B2-1 Advanced → NEXT
+B2-2 Source Lock + Level 0~1 → NEXT
 ```
 
 ## 자기 설명 기준

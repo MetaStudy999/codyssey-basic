@@ -48,7 +48,8 @@ cross-cutting error boundary: @cli_guard
 | 60 | [Level 5 — Evaluation](./b2-1-60-level-5-evaluation/b2-1-60-000-index.md) | 공식 평가 4개 영역을 12개 자기설명 단위로 구조화, V5 | ✅ |
 | 70 | [Review](./b2-1-70-review/b2-1-70-000-index.md) | Mission Map·V1~V5·Troubleshooting·Evidence 통합 회상 12개 단위 | ✅ |
 | 70 | [Review Full Pack](./b2-1-70-review-pack.md) | 한 번에 수행하는 통합 복습 | ✅ |
-| 90 | Advanced | 원본 Bonus/선택 심화 Source 재확인 후 구조화 | NEXT |
+| 90 | [Advanced](./b2-1-90-advanced/b2-1-90-000-index.md) | 원본 Bonus 4개 + 보조 심화 10개 단위 | ✅ |
+| 90 | [Advanced Full Summary](./b2-1-90-advanced.md) | 선택 Bonus 전체 요약 | ✅ |
 
 ## Mission 핵심
 
@@ -164,12 +165,33 @@ Mission Map Recall
 
 Review는 새 지식을 추가하는 단계가 아니라 Level 0~5를 **보지 않고 꺼내 쓰는 Retrieval/Integration 단계**다.
 
+## Advanced 선택 심화 연결
+
+원본 Bonus는 정확히 다음 4개다.
+
+```text
+Backup
+→ timestamped backup file
+
+Recurring Transactions
+→ 반복 규칙 등록 + 특정 월 자동 생성
+
+Console Table Formatting
+→ 외부 라이브러리 없는 문자열 정렬
+
+Stronger Atomic Rewrite
+→ temp file + rename/replace
+```
+
+현재 구현의 `storage.py`는 `tempfile → write → flush → fsync(file) → os.replace()` 흐름을 실제 사용하므로 Atomic Rewrite Bonus와 직접 연결되는 구현 Evidence가 있다. `Unicode display width`, `atomicity vs durability`는 원본 Bonus가 아니라 `SUPPLEMENTAL_ADVANCED`로 분리한다.
+
 ## 상태 경계
 
 ```text
-REVIEW STRUCTURE READY
+B2-1 NON-VISUAL STRUCTURE COMPLETE
 ≠ LEARNING READY
 ≠ PERSONAL MASTERED
+≠ BONUS TASK EXECUTED
 ≠ RUNTIME REVERIFIED BY LEARNER
 ≠ EVALUATION PASS
 ≠ MISSION PASS
@@ -181,6 +203,6 @@ Visual Learning은 **DEFERRED**다.
 
 ## 다음 작업
 
-`Advanced — 원본 Mission PDF의 Bonus/선택 심화 범위를 다시 Source Lock한 뒤 SOURCE_LINKED_BONUS와 SUPPLEMENTAL_ADVANCED를 구분해 구조화`
+`B2-2 — Source Lock → Level 0 선수 용어 → Level 1 Top Core 구조화`
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Review →](./b2-1-70-review/b2-1-70-000-index.md)
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Advanced →](./b2-1-90-advanced/b2-1-90-000-index.md)
