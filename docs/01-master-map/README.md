@@ -21,12 +21,15 @@ EXPERT 이후에는 단일 서열이 아니라 전문 경로로 분기하고 최
 - `migration-plan.md` — 기존 구조에서 V3로 안전하게 전환하는 계획
 - `migration-matrix.md` — 기존 자료의 KEEP/MERGE/REWRITE/ARCHIVE/DROP 판정
 - `legacy-path-map.md` — Old Path → V3 Target 대응표와 제거 순서
+- `legacy-reference-report.md` — Cleanup 후보 Old Path의 실제 참조 Scan과 차단/비차단 판정
 
 ## Dashboard / Validation
 
 - `dashboard-v3.md` — Growth/Mission/Skill/Activity 계층 Dashboard 설계
-- `validation-plan.md` — 자동검증·브라우저검증·Cutover Gate
+- `validation-plan.md` — Pre-Cutover / Post-Cutover 검증 Gate
 - `scripts/validate_v3.py` — V3 구조/링크/자동생성/Dashboard Wiring 검증기
+- `scripts/browser_smoke.py` — Chromium Dashboard / Live Telemetry Smoke Test
+- `scripts/scan_legacy_refs.py` — Legacy Cleanup 전 Reference Scanner
 
 ## Audit 기록
 
@@ -51,5 +54,6 @@ Audit는 과거 구조를 그대로 유지하기 위한 문서가 아니라 **�
 5. Opportunity Availability는 외부 기회 자체의 상태를 의미한다.
 6. Priority는 수행 중요도를 의미한다.
 7. Domain은 Mission, Learning, Community, Research 등 활동의 성격을 의미한다.
+8. Cutover Readiness와 Legacy Deletion Readiness는 별도 Gate로 판단한다.
 
 이 축들을 분리하여 README, Config, Dashboard, 자동화가 동일한 의미를 사용하도록 한다.
