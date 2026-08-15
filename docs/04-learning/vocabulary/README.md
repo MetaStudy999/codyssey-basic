@@ -34,7 +34,7 @@ Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입�
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
 | 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0~5 + Review + Advanced 구조화 완료** |
-| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0 + Level 1 완료 / Level 2 NEXT** |
+| 3 | B2-1 | [Budget Tracker](./b2-1-budget-tracker/b2-1-00-index.md) | **Source Lock + Level 0~2 완료 / Level 3 NEXT** |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
 | 6 | B3-2 | [파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기](./b3-2.md) | 1차 용어 작성 완료 |
@@ -88,10 +88,11 @@ B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidenc
 - [00 — Index / Source Lock](./b2-1-budget-tracker/b2-1-00-index.md) — PDF 9쪽 시각 검토, Source/implementation choice 경계 ✅
 - [10 — Level 0 Prerequisite Index](./b2-1-budget-tracker/b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) — 45개 ✅
 - [20 — Level 1 Top Core Index](./b2-1-budget-tracker/b2-1-20-level-1-core/b2-1-20-000-index.md) — 40개 ✅
+- [30 — Level 2 Execution Index](./b2-1-budget-tracker/b2-1-30-level-2-execution/b2-1-30-000-index.md) — 12개 ✅
 - [기존 Vocabulary Summary](./b2-1.md) — 전체 용어 지도/기존 URL 호환
-- 다음: Level 2 — CLI/저장/CRUD/Search/Summary/Budget/Category/CSV/Streaming 실행 단위
+- 다음: Level 3 — Generator/Lazy Evaluation, Layer Responsibility, Persistence/Atomicity/Integrity WHY-HOW
 
-B2-1은 Mission이 선택 가능한 부분과 현재 구현 결정을 구분한다. 현재 구현의 JSONL 저장, 기본 category 자동 생성, option-based update, `os.replace()` atomic rewrite, malformed import rollback, `@cli_guard`는 실제 구현 사실이지만 원본이 여러 방식을 허용하는 항목에서는 유일한 정답으로 승격하지 않는다.
+B2-1은 Mission이 선택 가능한 부분과 현재 구현 결정을 구분한다. Level 2에서는 실제 구현의 JSONL 3-file storage, generator 조회, option-based update, temp file + `os.replace()` atomic rewrite, category in-use guard, malformed import rollback, `@cli_guard`, 18-test Evidence를 실행·검증 흐름에 연결한다. 기존 구현 Evidence는 학습자의 개인 V4 실행을 대신하지 않는다.
 
 ## 통합 자산 상태
 
@@ -102,11 +103,12 @@ B2-1은 Mission이 선택 가능한 부분과 현재 구현 결정을 구분한�
 - B2-1 Source Lock: **완료**
 - B2-1 Level 0 선수 용어 45개: **완료**
 - B2-1 Level 1 Top Core 40개: **완료**
+- B2-1 Level 2 실행 단위 12개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B2-1 Level 2 실행 단위 구조화**
+- 다음: **B2-1 Level 3 원리 단위 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `REVIEW STRUCTURE READY`, `LEARNING READY`, `TROUBLESHOOTING READY`, `EVALUATION READY`, `ADVANCED STRUCTURE READY`, `ADVANCED TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEVEL 2 STRUCTURE READY`, `PERSONAL V4 PASSED`, `REVIEW STRUCTURE READY`, `LEARNING READY`, `TROUBLESHOOTING READY`, `EVALUATION READY`, `ADVANCED STRUCTURE READY`, `ADVANCED TASK EXECUTED`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
