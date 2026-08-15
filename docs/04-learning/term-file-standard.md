@@ -418,10 +418,11 @@ B1-2 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
 B1-2 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 B1-2 Level 5 평가 설명 구조화   ✅ 12 evaluation units + 000-index
 B1-2 Review 통합 구조화         ✅ 12 review units + Full Pack
+B1-2 Advanced 선택 심화 구조화  ✅ 10 advanced units + Full Summary
 Visual Learning                  DEFERRED
-B1-2 Advanced 선택 심화 구조화  NEXT
+B2-1 구조화                      NEXT
 ```
 
-B1-2 Review는 OOM/CPU/Deadlock을 `RECALL → RELATE → DIAGNOSE → EVIDENCE → EXPLAIN → RETRIEVE AGAIN → LEARNING READY`로 통합한다. 다음 단계는 원본 Mission Bonus인 스케줄링 알고리즘 추론을 `SOURCE_LINKED_BONUS` 중심의 Advanced 단위로 분리하는 것이다.
+B1-2 Advanced는 원본 Mission Bonus의 스케줄링 알고리즘 추론을 `SOURCE_LINKED_BONUS`로 분리하여 `로그 → 패턴 → 후보 비교 → 역추론 → 장단점/아키텍처 적합성 → 리포트` 흐름으로 구조화한다. 다음 단계는 B2-1의 기존 1차 Vocabulary Summary를 Source Lock한 뒤 동일 표준으로 확장하는 것이다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
