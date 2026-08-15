@@ -60,13 +60,13 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] 기존 구조 고수준 Inventory
 - [x] 1차 Migration Matrix
 - [x] Dashboard V3 상세 설계
-- [ ] 파일 단위 Detailed Audit
+- [ ] 파일 단위 Detailed Audit 전체 완료
 
 ### Phase B — Migration 준비
 
-- [ ] `docs/00-governance` 상세 Audit
+- [x] `docs/00-governance` 상세 Audit
 - [ ] `docs/02-domains` → `02-missions` Migration 설계
-- [ ] `docs/03-progress` 보존/확장 설계
+- [x] `docs/03-progress` + `scripts/sync_progress.py` + Dashboard 자동화 Audit
 - [ ] `docs/04-learning` 재분류 설계
 - [ ] `05-architecture` / `06-evaluation` 재배치 설계
 - [ ] `07-portfolio` / `08-resources` 이동 설계
@@ -101,13 +101,12 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 
 ## 다음 작업
 
-다음 단계는 **파일 단위 Detailed Audit**이다.
+다음 Detailed Audit 순서:
 
-우선순위:
-1. `docs/00-governance`
-2. `docs/03-progress` + `scripts/sync_progress.py`
-3. `site/` + `.github/workflows`
-4. `docs/04-learning`
-5. 나머지 Domain Migration
+1. `docs/02-domains` → `02-missions`
+2. `docs/04-learning`
+3. `05-architecture` / `06-evaluation`
+4. `07-portfolio` / `08-resources`
+5. `09-opportunities` / `10-professional-growth` / `11-advanced`
 
 Detailed Audit이 끝나기 전에는 기존 주요 폴더를 실제로 삭제하거나 이름을 바꾸지 않는다.
