@@ -2,7 +2,7 @@
 
 ## 1. 목적
 
-Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
+Codyssey Basic 학습 자료를 `Mission → Level → Term / Execution Unit / Principle Unit / Troubleshooting Unit` 단위로 탐색할 수 있도록 디렉터리·파일명·메타데이터·링크 규칙을 정의한다.
 
 이 표준의 목적은 파일 수를 늘리는 것이 아니라 다음을 가능하게 하는 것이다.
 
@@ -30,6 +30,9 @@ vocabulary/
     ├── {mission-number}-40-level-3-principles/
     │   ├── {mission-number}-40-000-index.md
     │   └── {mission-number}-40-010-{principle-unit}.md ...
+    ├── {mission-number}-50-level-4-troubleshooting/
+    │   ├── {mission-number}-50-000-index.md
+    │   └── {mission-number}-50-010-{troubleshooting-unit}.md ...
     └── ...
 ```
 
@@ -41,6 +44,7 @@ Level 디렉터리의 `000-index`는 그 Level의 학습 지도다. 내부 항�
 Level 0·1: {mission}-{level}-{order}-{term-slug}.md
 Level 2:   {mission}-30-{order}-{execution-unit-slug}.md
 Level 3:   {mission}-40-{order}-{principle-unit-slug}.md
+Level 4:   {mission}-50-{order}-{troubleshooting-unit-slug}.md
 ```
 
 예:
@@ -50,6 +54,7 @@ b1-1-10-010-linux.md
 b1-1-20-070-acl.md
 b1-1-30-030-permissions-acl.md
 b1-1-40-050-ssh-listen-firewall.md
+b1-1-50-020-permission-denied.md
 ```
 
 원칙:
@@ -104,6 +109,44 @@ Log Lifecycle
 - 원본 요구와 현재 구현 관찰을 구분하는가?
 - 장애 진단(Level 4)과 평가 답변(Level 5)의 선수 이해가 되는가?
 
+### Level 4 — Troubleshooting
+
+**한 파일 = 하나의 독립적인 장애 진단 흐름**을 기본으로 한다.
+
+기본 구조:
+
+```text
+Symptom
+→ Observe
+→ Layer
+→ Hypothesis
+→ Smallest Fix
+→ Reverify
+→ Recovery
+→ Evidence
+```
+
+예:
+
+```text
+Permission Denied
+SSH Configuration Failure
+SSH LISTEN / Firewall
+Agent Startup Failure
+Process / Port Conflict
+monitor.sh Failure
+cron Failure
+logrotate Failure
+```
+
+분리 기준:
+
+- 하나의 명확한 실패 증상 또는 장애 축으로 시작하는가?
+- 수정 전에 상태 조회와 실패 층 분리가 가능한가?
+- 가능한 원인 후보를 좁힌 뒤 최소 수정으로 연결되는가?
+- 같은 검증을 재실행하여 정상 복귀를 증명할 수 있는가?
+- Before/After Evidence를 남길 수 있는가?
+
 ## 5. 최소 구조
 
 ### Level 0·1 용어 파일
@@ -147,6 +190,22 @@ H1: 원리 단위 이름
 7. 이전 / Level Index / 다음 링크
 ```
 
+### Level 4 장애 진단 단위
+
+```text
+Front Matter
+H1: 장애 진단 단위 이름
+1. 한 줄 설명
+2. 증상과 B1-1에서의 위치
+3. 관찰 명령 / 현재 상태 보존
+4. 실패 층과 가설
+5. 최소 수정 원칙
+6. 동일 검증 재실행
+7. Before/After Evidence
+8. Troubleshooting Gate
+9. 이전 / Level Index / 다음 링크
+```
+
 설명·비유·연습은 학습 보조 자료이며 Mission 요구사항으로 승격하지 않는다. 원본이 고정한 숫자·경로·조건은 그대로 보존한다.
 
 ## 6. Front Matter 예
@@ -154,11 +213,11 @@ H1: 원리 단위 이름
 ```yaml
 ---
 mission: B1-1
-level: 3
-order: 50
-unit: SSH LISTEN Firewall
+level: 4
+order: 40
+unit: SSH LISTEN and Firewall
 lifecycle: DEEPEN
-gate: WHY-HOW
+gate: TROUBLESHOOTING
 visual_learning: DEFERRED
 ---
 ```
@@ -183,6 +242,7 @@ V1 인지
 → V3 관계
 → V4 실제 적용
 → WHY/HOW 구조·원리
+→ Troubleshooting 장애 진단
 → V5 평가 설명
 ```
 
@@ -234,6 +294,7 @@ Cover
 - [ ] 학습 보조 설명과 원본 요구가 구분되는가?
 - [ ] Level 2 단위가 실제 실행·검증 기준으로 묶였는가?
 - [ ] Level 3 단위가 명령 재나열이 아니라 WHY/HOW 구조로 작성되었는가?
+- [ ] Level 4 단위가 `증상 → 관찰 → 최소 수정 → 재검증 → Evidence` 흐름을 갖는가?
 - [ ] Visual Learning이 미완료라는 이유로 비시각 학습 작업을 막고 있지 않은가?
 
 ## 12. 적용 상태와 다음 순서
@@ -243,9 +304,9 @@ B1-1 Level 0 개별 용어 구조화   ✅ 29 terms + 000-index
 B1-1 Level 1 개별 용어 구조화   ✅ 28 Top Core terms + 000-index
 B1-1 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
 B1-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
+B1-1 Level 4 장애 진단 구조화   ✅ 12 troubleshooting units + 000-index
 Visual Learning                  DEFERRED
-B1-1 Level 4 장애 진단 구조화   NEXT
-B1-1 Level 5 평가 설명 구조화   이후
+B1-1 Level 5 평가 설명 구조화   NEXT
 B1-2 동일 구조 적용             이후
 ```
 
