@@ -5,7 +5,7 @@
 ## 판정 범례
 
 - ✅ **PASS** — 검증 완료
-- 🟡 **READY / WAIT** — 구현은 준비되었지만 승인 또는 다음 Gate 대기
+- 🟡 **WAIT** — 다음 승인/운영 Gate 대기
 - ⏸ **HOLD** — 현재 단계에서는 의도적으로 보류
 - ⛔ **BLOCKED** — 해결 전 다음 단계 진행 금지
 
@@ -58,7 +58,9 @@
 | Live Mission Telemetry | ✅ PASS | **15/15 Repository** |
 | JS Console/Page Error | ✅ PASS | 0 |
 
-대표 Evidence: Workflow Run `31906314961`.
+대표 Runtime Evidence: Workflow Run `31906314961`.
+
+최신 강화된 Registry Contract Validation까지 포함한 PR Validation Run `31906665777`도 **SUCCESS**다.
 
 ## 5. Legacy Compatibility
 
@@ -66,8 +68,8 @@
 |---|---|---|
 | Legacy Reference Scan | ✅ PASS for analysis | 5건 분류 완료 |
 | `docs/09-opportunities` 삭제 | ⏸ HOLD | Cutover 전 유지 |
-| `docs/10-professional-growth` 삭제 | ⏸ HOLD | Old Routing 1개 교정 전 유지 |
-| `docs/11-advanced` 삭제 | ⏸ HOLD | Old Routing 1개 교정 전 유지 |
+| `docs/10-professional-growth` 삭제 | ⏸ HOLD | Old Routing 교정 전 유지 |
+| `docs/11-advanced` 삭제 | ⏸ HOLD | Old Routing 교정 전 유지 |
 | `docs/03-progress` 제거 | ⏸ HOLD | Mission 자동화 Compatibility |
 | `docs/04-learning` 대량 이동 | ⏸ HOLD | Vocabulary 링크 안정성 우선 |
 
@@ -84,18 +86,18 @@
 | Live Telemetry | ✅ PASS |
 | Static Preview | ✅ PASS |
 | Legacy Risk Classification | ✅ PASS |
-| PR 종합 Review | 🟡 READY / WAIT |
+| PR 종합 Technical Review | ✅ PASS — BLOCKER 0 / MAJOR 0 |
 | 사용자 승인 | 🟡 WAIT |
 
 ### 현재 판정
 
-> **PRE-CUTOVER TECHNICALLY READY CANDIDATE**
+> **PRE-CUTOVER TECHNICALLY READY — USER APPROVAL WAIT**
 
-기술 검증은 거의 완료되었다. 남은 핵심은 **Draft PR 종합 Review와 사용자 Cutover 승인**이다.
+기술적인 Pre-Cutover Gate와 Draft PR 종합 Technical Review까지 완료했다. 다음 단계인 `main` Cutover는 **사용자의 명시적 승인 후에만** 수행한다.
 
 ## 7. Post-Cutover
 
-`main` 병합 후에만 가능한 검증이다.
+`main` 병합 후에만 가능한 운영 검증이다.
 
 | Gate | Status |
 |---|---|
@@ -109,12 +111,10 @@
 ## 8. 의사결정
 
 ```text
-Pre-Cutover 기술 검증
-        ✅
+Pre-Cutover 기술 검증        ✅
+Draft PR Technical Review   ✅
         ↓
-Draft PR 종합 Review
-        ↓
-사용자 승인
+사용자 승인                 WAIT
         ↓
 main Cutover
         ↓
