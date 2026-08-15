@@ -107,7 +107,8 @@
   }
 
   function renderMissionList(missionData, cycle) {
-    const grid = $('#beginner-mission-list');
+    const grid = document.querySelector('div.beginner-mission-list');
+    if (!grid) throw new Error('beginner mission list grid not found');
     grid.innerHTML = '';
 
     missionData.missions.forEach((mission) => {
