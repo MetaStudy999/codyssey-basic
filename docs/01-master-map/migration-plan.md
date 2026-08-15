@@ -59,6 +59,7 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] `02-missions` B1~B7 Target 구조 생성 및 Mission Summary 이관
 - [x] `03-learning`~`12-impact` Target Index 생성
 - [x] Learning Macro Growth / Micro Level 모델 분리
+- [x] V3 Vocabulary Bridge Index 추가 — 기존 대규모 Vocabulary를 이동 전 안정적으로 연결
 - [x] 기존 `90-advanced`와 V3 `ADVANCED` 용어 충돌 규칙 정리
 - [x] Architecture Curriculum/Dependency를 Master Map에 흡수
 - [x] Evaluation Traceability를 Governance에 흡수
@@ -76,15 +77,17 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] Dashboard에 Growth Stage / Registry Summary / 12 Skill Axis Layer 추가
 - [x] 기존 Mission 수동 Refresh + 5분 Cooldown UI 보존
 - [x] `scripts/validate_v3.py` 구조/링크/자동생성/Dashboard Wiring 검증기 추가
+- [x] `scripts/browser_smoke.py` Chromium 기반 Dashboard Smoke Test 추가
 - [x] Legacy Path → V3 Target Map 작성
 - [x] GitHub Actions에서 Mission + Growth Sync 연결
 - [x] GitHub Pages Workflow에 Growth Generator / V3 Validator 연결
-- [x] Pull Request / rebuild branch용 `Validate Growth OS V3` Workflow 추가
+- [x] Pull Request용 `Validate Growth OS V3` Workflow 추가
 - [x] CI에서 `sync_progress.py --check` PASS
 - [x] CI에서 `sync_growth.py --check` PASS
 - [x] CI에서 `validate_v3.py` PASS
-- [ ] 기존 대규모 Vocabulary 파일의 실제 경로 Migration
-- [ ] Professional Growth/Advanced 개별 콘텐츠 Domain별 이동 또는 Legacy 제거
+- [x] Chromium Browser Smoke PASS
+- [ ] 기존 Vocabulary의 실제 대량 경로 Migration — 현재는 KEEP + Bridge 전략
+- [ ] Professional Growth/Advanced Legacy Path 최종 정리
 - [ ] GitHub Pages 실제 배포 검증
 
 ### Phase D — Cutover
@@ -92,33 +95,47 @@ Codyssey Developer Growth OS V3는 기존 main을 직접 파괴하지 않고 **G
 - [x] 자동 Validator 실제 실행 PASS
 - [x] V3 Markdown 상대 링크 / 구조 검증 PASS
 - [x] Mission/Growth Generated Output 동기화 검증 PASS
-- [ ] Mission Gate 브라우저 회귀 검증 PASS
-- [ ] Dashboard 브라우저 검증 PASS
+- [x] Growth Dashboard 로컬 Chromium 렌더링 PASS
+- [x] 7 Domain / 15 Mission / G1~G8 Official Gate 브라우저 렌더링 PASS
+- [x] 5분 Cooldown UI 브라우저 회귀 PASS
+- [ ] Live Mission Telemetry 실제 네트워크 갱신 검증 PASS
 - [ ] GitHub Pages 실제 배포 검증 PASS
 - [ ] Draft PR Review
 - [ ] main Cutover
 - [ ] Post-cutover Cleanup
 
-## CI Validation Evidence
+## CI / Browser Validation Evidence
 
-`Validate Growth OS V3` Workflow가 `rebuild/growth-os-v3`에서 실제 실행되었고 다음 단계가 모두 성공했다.
+### Structural Validation
+
+다음이 GitHub Actions에서 실제 PASS했다.
 
 ```text
-Install validation dependency          PASS
-Verify Mission generated outputs      PASS
-Verify Growth OS generated outputs    PASS
-Validate V3 structure/links/wiring    PASS
+sync_progress.py --check          PASS
+sync_growth.py --check            PASS
+validate_v3.py                    PASS
 ```
 
-검증된 commit:
+### Browser Smoke
 
-`19f90806e6ce68d30c4801901ad77ca1bed341b1`
+Workflow Run `31906025614`에서 Chromium을 사용하여 실제 정적 페이지를 렌더링했고 다음을 확인했다.
 
-Workflow Run:
+```text
+Growth Stage Cards          5
+Skill Axis Cards           12
+Domain Cards                7
+Mission Cards              15
+Official Gate Cells       120  # 15 x G1~G8
+5-minute Cooldown UI      PASS
+Browser Console Errors       0
+```
 
-`31905851028`
+Browser Screenshot Artifact:
 
-이 검증은 구조·데이터·링크·Dashboard Wiring 수준의 자동 검증이다. 실제 브라우저 렌더링과 GitHub Pages 배포 검증을 대신하지 않는다.
+- Artifact ID: `9252363546`
+- Name: `growth-os-v3-browser-smoke`
+
+이 검증은 **로컬 정적 서버 + Chromium** 수준이다. 실제 GitHub Pages URL과 Live Mission Repository 네트워크 조회는 별도 운영 Gate로 남긴다.
 
 ## 자동화 현재 상태
 
@@ -154,11 +171,13 @@ sync_progress.py --check
 sync_growth.py --check
         +
 validate_v3.py
+        +
+browser_smoke.py
         ↓
-V3 STRUCTURE / DATA / LINK / DASHBOARD WIRING GATE
+V3 STRUCTURE / DATA / LINK / BROWSER GATE
 ```
 
-`sync-progress.yml`은 main에서 Mission/Growth generated output을 동기화하고, `pages.yml`은 배포 전에 두 Generator와 Validator를 실행한다. `v3-validate.yml`은 rebuild branch와 PR에서 read-only 검증을 수행한다.
+`sync-progress.yml`은 main에서 Mission/Growth generated output을 동기화하고, `pages.yml`은 배포 전에 두 Generator와 Validator를 실행한다. `v3-validate.yml`은 PR에서 read-only 검증과 Browser Smoke를 수행한다.
 
 ## Legacy 제거 전략
 
@@ -169,7 +188,9 @@ Old Path 제거는 `docs/01-master-map/legacy-path-map.md`를 따른다.
 - `docs/03-progress` — Mission Sync Legacy Compatibility
 - `docs/04-learning` — 대규모 Vocabulary와 학습 링크
 
-`docs/09-opportunities`, `10-professional-growth`, `11-advanced`는 새 Target에 핵심 개념을 이미 흡수했지만 실제 Pages/브라우저 회귀 검증 전에는 제거하지 않는다.
+기존 Vocabulary는 현재 `docs/03-learning/vocabulary-index.md`를 통해 V3에서 접근 가능하다. 대량 Rename/Move보다 학습 연속성과 링크 안정성을 우선한다.
+
+`docs/09-opportunities`, `10-professional-growth`, `11-advanced`는 새 Target에 핵심 개념을 이미 흡수했지만 실제 Pages 검증 전에는 제거하지 않는다.
 
 ## 안전 규칙
 
@@ -178,14 +199,13 @@ Old Path 제거는 `docs/01-master-map/legacy-path-map.md`를 따른다.
 - 자동 생성 파일과 수동 편집 파일의 Source of Truth를 구분한다.
 - 새 구조가 기존 기능을 대체할 때만 과거 구조를 제거한다.
 - 새 Target이 검증되기 전 Old Path를 삭제하지 않는다.
-- 자동 Validator PASS와 브라우저/운영환경 PASS는 서로 다른 Gate다.
+- 자동 Validator PASS, 로컬 Browser PASS, GitHub Pages PASS, Live Telemetry PASS를 서로 다른 Gate로 관리한다.
 
 ## 다음 Critical Path
 
-1. Growth Dashboard 실제 브라우저 렌더링 검증
-2. Mission 수동 Refresh + 5분 Cooldown + G1~G8 브라우저 회귀 검증
-3. Legacy Vocabulary 링크 영향도 검사 및 단계적 Migration
+1. Live Mission Telemetry 실제 네트워크 갱신 검증
+2. GitHub Pages 실제 배포 검증 방법 확정
+3. Legacy Vocabulary는 Bridge를 유지하며 Mission별 실제 필요 시 점진 Migration
 4. Professional Growth/Advanced Legacy Path 최종 정리
-5. GitHub Pages 실제 배포 검증
-6. Draft PR 종합 Review
-7. main Cutover 여부 판단
+5. Draft PR 종합 Review
+6. main Cutover 여부 판단
