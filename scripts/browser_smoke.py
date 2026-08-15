@@ -61,7 +61,7 @@ def verify_live_telemetry(page, minimum_success: int) -> tuple[int, int]:
     refresh.click()
     page.wait_for_function(
         "key => { const raw = localStorage.getItem(key); if (!raw) return false; try { const value = JSON.parse(raw); return Boolean(value.stats && Number.isFinite(value.stats.total)); } catch { return false; } }",
-        LIVE_CACHE_KEY,
+        arg=LIVE_CACHE_KEY,
         timeout=45_000,
     )
     stats = page.evaluate("key => JSON.parse(localStorage.getItem(key)).stats", LIVE_CACHE_KEY)
