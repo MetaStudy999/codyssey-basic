@@ -1,0 +1,24 @@
+{
+  "schema_version": 3,
+  "generated_from": "config/growth.yaml",
+  "model": "codyssey-developer-growth-os",
+  "growth_stages": [
+    {"id":"CORE","order":1,"name_ko":"코어","purpose":"기본을 이해하고 직접 완성한다.","key_question":"무엇이며, 내가 직접 할 수 있는가?"},
+    {"id":"EXPLORE","order":2,"name_ko":"탐색","purpose":"넓게 경험하고 다음 심화 방향을 찾는다.","key_question":"무엇이 가능하며, 무엇을 더 깊게 볼 것인가?"},
+    {"id":"ADVANCED","order":3,"name_ko":"심화","purpose":"선택한 영역을 깊게 파고들고 개선한다.","key_question":"어떻게 더 잘 만들고 왜 이 방법을 선택하는가?"},
+    {"id":"PRO","order":4,"name_ko":"프로","purpose":"실제 환경에서 전문적으로 결과를 만든다.","key_question":"실제 사용자와 환경에서 결과를 책임질 수 있는가?"},
+    {"id":"EXPERT","order":5,"name_ko":"전문가","purpose":"고난도 문제에서 판단하고 트레이드오프를 설명한다.","key_question":"무엇을 선택해야 하며 왜 그런가?"}
+  ],
+  "progress_statuses": ["PLANNED","READY","ACTIVE","BLOCKED","DONE","ARCHIVED"],
+  "priority_values": ["REQUIRED","RECOMMENDED","OPTIONAL"],
+  "competency_axes": ["Learn","Build","Test","Debug","Collaborate","Design","Operate","Compete","Research","Communicate","Career","Venture"],
+  "stage_activation": {
+    "CORE":{"status":"ACTIVE"},
+    "EXPLORE":{"status":"READY"},
+    "ADVANCED":{"status":"PLANNED"},
+    "PRO":{"status":"PLANNED"},
+    "EXPERT":{"status":"PLANNED"}
+  },
+  "specialization_after_expert": ["Tech-Lead-Principal","Architect-SRE","AI-Researcher","Open-Source","Educator-Mentor","Founder"],
+  "ultimate_outcome": "IMPACT"
+}
