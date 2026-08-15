@@ -83,6 +83,7 @@ b1-1-90-030-systemd-service-timer.md
 - 하나의 명확한 실행 목표가 있는가?
 - 입력/명령/설정과 검증 결과가 한 흐름으로 이어지는가?
 - 독립적으로 V4를 판정할 수 있는가?
+- 기존 Runtime Evidence가 있더라도 학습자의 직접 실행과 구분하는가?
 
 ### Level 3 — Principles
 
@@ -395,6 +396,7 @@ Cover
 - [ ] 학습 보조 설명과 원본 요구가 구분되는가?
 - [ ] Source 내부 표기 충돌이나 선택지가 숨겨지지 않았는가?
 - [ ] Level 2는 실행·검증 단위인가?
+- [ ] 기존 구현 Evidence와 학습자 직접 실행을 구분하는가?
 - [ ] Level 3는 WHY/HOW 원리 단위인가?
 - [ ] Level 4는 장애 진단·재검증·Evidence 흐름인가?
 - [ ] Level 5는 WHAT/WHY/HOW/PROOF/LIMIT 구조인가?
@@ -425,10 +427,11 @@ B1-2 Advanced 선택 심화 구조화  ✅ 10 advanced units + Full Summary
 B2-1 Source Lock                 ✅ PDF 9 pages visually verified
 B2-1 Level 0 선수 용어 구조화   ✅ 45 terms + 000-index
 B2-1 Level 1 Top Core 구조화     ✅ 40 terms + 000-index
+B2-1 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
 Visual Learning                  DEFERRED
-B2-1 Level 2 실행 단위 구조화   NEXT
+B2-1 Level 3 원리 단위 구조화   NEXT
 ```
 
-B2-1 Level 2에서는 현재 구현 저장소를 기준으로 `CLI/초기화 → add/list → search → update/delete → summary/budget/category → import/export → generator streaming → atomic rewrite → error exit/evidence`를 독립 실행·검증 단위로 구조화한다.
+B2-1 Level 2는 현재 구현 저장소를 기준으로 `CLI/초기화 → add/persistence → list/search generator → update/delete atomic rewrite → category integrity → budget/summary → CSV export/import rollback → error exit → full tests/evidence → V4 Gate`를 독립 실행·검증 단위로 구조화한다. 다음 단계는 이 실행 흐름을 Generator/Lazy Evaluation, Layer Responsibility, Persistence/Atomicity/Integrity, Decorator/Type Contract 등의 WHY/HOW 원리로 설명하는 것이다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
