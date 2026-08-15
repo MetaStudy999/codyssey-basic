@@ -7,7 +7,7 @@ Human-edited sources:
 
 Generated outputs:
 - README.md (AUTO:MISSION_PROGRESS block only)
-- docs/03-progress/progress.md
+- docs/01-master-map/mission-progress.md
 - site/data/missions.json
 - site/data/workcells.json
 """
@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "missions.yaml"
 WAVES_DIR = ROOT / "config" / "waves"
 README = ROOT / "README.md"
-PROGRESS = ROOT / "docs" / "03-progress" / "progress.md"
+PROGRESS = ROOT / "docs" / "01-master-map" / "mission-progress.md"
 SITE_JSON = ROOT / "site" / "data" / "missions.json"
 WORKCELLS_JSON = ROOT / "site" / "data" / "workcells.json"
 START = "<!-- AUTO:MISSION_PROGRESS:START -->"

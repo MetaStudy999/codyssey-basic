@@ -121,7 +121,7 @@ Growth Stage와 Activity Status, Priority, Domain을 서로 대체하거나 혼�
 생성 결과물:
 
 - `README.md`의 `AUTO:MISSION_PROGRESS` 영역
-- `docs/03-progress/progress.md` — V3 Cutover 전 Legacy Compatibility Output
+- `docs/01-master-map/mission-progress.md` — Canonical Mission Progress View
 - `site/data/missions.json`
 - `site/data/workcells.json`
 

@@ -210,6 +210,7 @@ Growth Stage는 **얼마나 성장했는가**, 이 12개 축은 **무엇을 성�
 - [Master Map Index](docs/01-master-map/README.md)
 - [Growth Map](docs/01-master-map/growth-map.md)
 - [Current State](docs/01-master-map/current-state.md)
+- [Mission Progress](docs/01-master-map/mission-progress.md)
 - [Mission Dependency Map](docs/01-master-map/mission-dependency-map.md)
 - [Growth Routing](docs/01-master-map/growth-routing.md)
 - [Repository Map](docs/01-master-map/repository-map.md)
@@ -235,9 +236,7 @@ docs/
 └── 12-impact
 ```
 
-Progress는 `01-master-map/current-state.md`와 Dashboard에서 표시하고, Resources는 `03-learning/resources`와 `config/resources.yaml`로 관리한다.
-
-기존 `docs/03-progress`는 Mission 자동화 호환을 위해 Cutover 전까지 유지하는 Legacy Compatibility Output이다.
+Mission Progress는 `01-master-map/mission-progress.md`와 Dashboard에서 표시하고, Growth 현재 상태는 `01-master-map/current-state.md`에서 표시한다. Resources는 `03-learning/resources`와 `config/resources.yaml`로 관리한다.
 
 ---
 
@@ -319,19 +318,19 @@ Dashboard는 네 층을 분리한다.
    실제 수행 상태와 외부 가용성을 분리
 ```
 
-Mission 자동화는 기존 흐름을 보존한다.
+Mission 자동화는 다음 Canonical 흐름을 사용한다.
 
 ```text
 config/missions.yaml
         ↓
 scripts/sync_progress.py
         ├─ README 자동 영역
-        ├─ docs/03-progress/progress.md  # Legacy compatibility
+        ├─ docs/01-master-map/mission-progress.md
         ├─ site/data/missions.json
         └─ site/data/workcells.json
 ```
 
-Growth OS V3는 별도 Generator로 추가한다.
+Growth OS V3는 별도 Generator로 관리한다.
 
 ```text
 config/growth.yaml

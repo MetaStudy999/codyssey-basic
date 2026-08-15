@@ -18,8 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LEGACY_TARGETS = {
     "docs/01-overview": "docs/01-master-map",
     "docs/02-domains": "docs/02-missions",
-    "docs/03-progress": "Master Map/Dashboard compatibility output",
-    "docs/04-learning": "docs/03-learning (bridge first)",
+    "docs/03-progress": "docs/01-master-map/mission-progress.md + docs/00-governance/workcell-status + site/data",
+    "docs/04-learning": "docs/03-learning",
     "docs/05-architecture": "docs/01-master-map / docs/02-missions / docs/05-projects",
     "docs/06-evaluation": "docs/00-governance / docs/02-missions",
     "docs/07-portfolio": "docs/11-portfolio",
