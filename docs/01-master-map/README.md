@@ -1,60 +1,83 @@
 # Codyssey Developer Growth OS — Master Map
 
-이 디렉터리는 V3의 전체 성장 지도, 현재 위치, Migration, Validation을 관리한다.
+이 디렉터리는 Growth OS의 **현재 위치, 장기 성장 방향, Mission 연결, Project/Activity Routing**을 관리한다.
 
-## 성장 단계
+## 1. 성장 단계
 
 `CORE → EXPLORE → ADVANCED → PRO → EXPERT`
 
-EXPERT 이후에는 단일 서열이 아니라 전문 경로로 분기하고 최종적으로 IMPACT를 지향한다.
+EXPERT 이후에는 단일 서열이 아니라 Tech Lead/Principal, Architect/SRE, AI/Researcher, Open Source, Educator/Mentor, Founder 등의 전문 경로로 분기하고 최종적으로 IMPACT를 지향한다.
 
-## 핵심 지도
+## 2. 핵심 지도
 
-- `growth-map.md` — 전체 성장 단계와 전문 경로
-- `current-state.md` — Config에서 생성되는 현재 Growth/Registry 상태
-- `mission-dependency-map.md` — Mission 선후관계와 운영상 권장 Dependency
-- `growth-routing.md` — 기존 Professional Growth/Advanced 내용을 V3 Domain으로 보내는 기준
-- `repository-map.md` — 미래 논리 Repo 구조와 점진 확장 원칙
+- [Growth Map](./growth-map.md) — 전체 성장 단계와 전문 경로
+- [Current State](./current-state.md) — Config에서 생성되는 현재 Growth/Registry 상태
+- [Mission Progress](./mission-progress.md) — `config/missions.yaml`에서 생성되는 B1-1~B7-2 진행표
+- [Mission Dependency Map](./mission-dependency-map.md) — Curriculum 흐름과 의존성 분류
+- [Growth Routing](./growth-routing.md) — 새로운 활동·기술·성과를 Domain/Stage/Status/Priority로 분류하는 기준
+- [Repository Map](./repository-map.md) — 현재 Canonical 구조와 점진 확장 원칙
+- [Dashboard Design](./dashboard-v3.md) — Growth/Mission/Skill/Activity Dashboard 정보구조
 
-## Migration
+## 3. 읽는 법
 
-- `migration-plan.md` — 기존 구조에서 V3로 안전하게 전환하는 계획
-- `migration-matrix.md` — 기존 자료의 KEEP/MERGE/REWRITE/ARCHIVE/DROP 판정
-- `legacy-path-map.md` — Old Path → V3 Target 대응표와 제거 순서
-- `legacy-reference-report.md` — Cleanup 후보 Old Path의 실제 참조 Scan과 차단/비차단 판정
+```text
+무엇에 관한가?        → Domain
+얼마나 성장했는가?     → Growth Stage
+지금 어디까지 왔는가?  → Status
+반드시 해야 하는가?    → Priority
+무엇으로 증명하는가?    → Evidence
+```
 
-## Dashboard / Validation
+- Growth Stage는 장기 성장 수준이다.
+- Mission Gate는 공식 Mission 수행 위치다.
+- Skill Level은 특정 역량의 Evidence 수준이다.
+- Activity/Project Status는 실제 작업의 진행 상태다.
+- Opportunity Availability는 외부 기회 자체의 상태다.
+- Priority는 수행 중요도다.
+- Domain은 Mission, Learning, Community, Research 등 활동의 성격이다.
 
-- `dashboard-v3.md` — Growth/Mission/Skill/Activity 계층 Dashboard 설계
-- `validation-plan.md` — Pre-Cutover / Post-Cutover 검증 Gate
-- `cutover-readiness.md` — 현재 PASS/HOLD/WAIT 상태와 Cutover 가능 여부
-- `scripts/validate_v3.py` — V3 구조/링크/자동생성/Dashboard Wiring 검증기
-- `scripts/browser_smoke.py` — Chromium Dashboard / Live Telemetry Smoke Test
-- `scripts/scan_legacy_refs.py` — Legacy Cleanup 전 Reference Scanner
+이 축들을 서로 섞지 않는다.
 
-## Audit 기록
+## 4. 현재 Canonical 구조
 
-구조 재설계 과정에서 기존 영역을 즉시 삭제하지 않고 역할을 분석한 Audit 문서를 보존한다.
+```text
+docs/
+├── 00-governance
+├── 01-master-map
+├── 02-missions
+├── 03-learning
+├── 04-community
+├── 05-projects
+├── 06-opportunities
+├── 07-research
+├── 08-open-source
+├── 09-career
+├── 10-venture
+├── 11-portfolio
+└── 12-impact
+```
 
-- Governance
-- Overview / Templates
-- Domains / Missions
-- Progress / Automation
-- Learning
-- Architecture / Evaluation / Portfolio / Resources
-- Opportunities / Professional Growth / Advanced
+Mission 상태는 `config/missions.yaml`, Growth/Skill/Activity/Project/Opportunity 상태는 각 V3 Registry를 Source of Truth로 사용한다.
 
-Audit는 과거 구조를 그대로 유지하기 위한 문서가 아니라 **왜 V3 Target으로 이동·통합·분해했는지 설명하는 Migration Evidence**다.
+## 5. 운영 원칙
 
-## 읽는 법
+### Master Map First
+미래 전체 방향은 먼저 설계한다.
 
-1. Growth Stage는 장기 성장 수준을 의미한다.
-2. Mission Gate는 공식 Mission 수행 위치를 의미한다.
-3. Skill Level은 특정 역량의 Evidence 수준을 의미한다.
-4. Activity/Project Status는 실제 작업의 진행 상태를 의미한다.
-5. Opportunity Availability는 외부 기회 자체의 상태를 의미한다.
-6. Priority는 수행 중요도를 의미한다.
-7. Domain은 Mission, Learning, Community, Research 등 활동의 성격을 의미한다.
-8. Cutover Readiness와 Legacy Deletion Readiness는 별도 Gate로 판단한다.
+### Progressive Repository
+실제 폴더는 현재 필요한 만큼만 만든다.
 
-이 축들을 분리하여 README, Config, Dashboard, 자동화가 동일한 의미를 사용하도록 한다.
+### Folder = Domain, Stage = Metadata
+`core/`, `advanced/`, `pro/` 같은 성장 단계 폴더를 만들지 않는다.
+
+### Evidence-based Growth
+상태와 숙련도는 가능한 한 실제 Test, Runtime, PR, Review, Experiment, Deployment, User Result 등으로 뒷받침한다.
+
+### Mission PASS before Overengineering
+비필수 고도화가 현재 CORE Mission 완료를 지연시키지 않는다.
+
+## 6. 과거 V3 전환 기록
+
+V3 재구축·이관·Legacy Cleanup의 상세 과정은 active Master Map에 중복 보관하지 않는다. 이전 기준본은 `archive/pre-growth-os-v3`와 Git history, PR #73~#77에서 추적한다.
+
+현재 `main`은 V3 Canonical 구조를 운영 기준으로 사용한다.
