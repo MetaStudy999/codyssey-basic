@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Scan active repository text for references to legacy V1/V2 document paths.
 
-The scanner is used before deleting legacy directories. It deliberately ignores
-migration/audit documents whose job is to discuss old paths and ignores each
-legacy target's own subtree. Any remaining reference is an active compatibility
-edge that must be migrated, redirected, or intentionally allow-listed.
+The scanner is used before deleting legacy directories. It ignores migration,
+audit, readiness, and history documents whose job is to discuss old paths and
+ignores each legacy target's own subtree. Any remaining reference is treated as
+an active compatibility edge that must be migrated, redirected, or explicitly
+classified before deletion.
 """
 from __future__ import annotations
 
@@ -38,14 +39,19 @@ TEXT_SUFFIXES = {
     ".md", ".txt", ".yaml", ".yml", ".json", ".py", ".js", ".html", ".css", ".toml"
 }
 
-# These files intentionally document old paths and do not represent runtime or
-# navigation dependencies that block cleanup.
+# These files intentionally document historical paths. They are not navigation,
+# runtime, generator, or operational routing dependencies and therefore do not
+# block deletion of the legacy target itself.
 EXCLUDED_FILES = {
     "docs/01-master-map/migration-plan.md",
     "docs/01-master-map/migration-matrix.md",
     "docs/01-master-map/legacy-path-map.md",
+    "docs/01-master-map/legacy-reference-report.md",
     "docs/01-master-map/validation-plan.md",
     "docs/01-master-map/repository-map.md",
+    "docs/01-master-map/growth-routing.md",
+    "docs/01-master-map/cutover-readiness.md",
+    "docs/06-opportunities/README.md",
     "scripts/scan_legacy_refs.py",
 }
 
@@ -69,8 +75,6 @@ def should_scan(path: Path) -> bool:
 
 
 def fragments_for(target: str) -> tuple[str, ...]:
-    # Match both repository-root references and relative links that only carry
-    # the legacy directory basename.
     basename = target.rsplit("/", 1)[-1]
     return (target, basename)
 
@@ -84,8 +88,8 @@ def scan_target(target: str) -> list[tuple[str, int, str]]:
         if not should_scan(path):
             continue
         rel = relative(path)
-        # References inside the directory being removed are irrelevant; that
-        # subtree disappears as one cleanup unit.
+        # References inside the directory being removed disappear with the
+        # cleanup unit and are not external compatibility edges.
         if rel == target or rel.startswith(target_prefix):
             continue
         try:
