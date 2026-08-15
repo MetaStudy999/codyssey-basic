@@ -1,0 +1,19 @@
+{
+  "schema_version": 3,
+  "generated_from": "config/projects.yaml",
+  "model": "codyssey-developer-growth-os-projects",
+  "projects": [
+    {
+      "id": "b7-ai-chatbot-lineage",
+      "title": "B7 AI Chatbot Project Lineage",
+      "origin": ["B7-1", "B7-2"],
+      "growth_stage": "CORE",
+      "status": "PLANNED",
+      "priority": "REQUIRED",
+      "lineage": ["B5-1", "B5-2", "B5-3", "B6-1", "B6-2", "B7-1", "B7-2"],
+      "related_skills": ["Build", "Test", "Debug", "Collaborate", "Design", "Operate", "Communicate"],
+      "evidence": [],
+      "next_options": ["hackathon", "competition", "open-source", "research", "production-service", "career-case-study", "startup-mvp"]
+    }
+  ]
+}
