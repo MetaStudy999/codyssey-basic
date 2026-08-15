@@ -36,17 +36,18 @@ B1-1 비시각 학습 패키지는 **Level 0~5 + Review + Advanced 구조화 완
 - [00 — B1-2 Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md)
 - [10 — Level 0 Prerequisite Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) — 35개, V1 ✅
 - [20 — Level 1 Top Core Term Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개, V2~V3 ✅
+- [30 — Level 2 Execution Unit Index](./vocabulary/b1-2-linux-process-resource-troubleshooting/b1-2-30-level-2-execution/b1-2-30-000-index.md) — 12개, V4 ✅
 - [기존 B1-2 Vocabulary Summary](./vocabulary/b1-2.md) — 기존 URL 호환·전체 용어 지도
 
 ```text
 B1-1 Level 0~5 + Review + Advanced ✅
         ↓
-B1-2 Level 0·1 ✅
+B1-2 Level 0·1·2 ✅
         ↓
-B1-2 Level 2 Execution → NEXT
+B1-2 Level 3 Principles → NEXT
 ```
 
-B1-2의 다음 작업은 OOM / CPU / Deadlock을 각각 `재현 → 관찰 → Evidence → 환경 변수 변경 → Before & After` 흐름으로 나누는 Level 2 실행 단위 구조화다.
+B1-2 Level 2는 `Source/Safety → Runtime Environment → Observability Baseline → OOM/CPU/Deadlock Before & After → Evidence → Issue Report → V4` 흐름으로 구조화했다. Mission PDF 예시를 실제 Evidence로 사용하지 않고, 실제 build 차이와 Runtime Evidence를 구분한다.
 
 ## 자기 설명 기준
 
