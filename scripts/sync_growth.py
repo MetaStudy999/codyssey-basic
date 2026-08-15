@@ -42,17 +42,34 @@ SOURCES = {
     "opportunities": CONFIG_DIR / "opportunities.yaml",
 }
 
-OUTPUT_JSON = {
-    key: SITE_DATA / f"{key}.json"
-    for key in SOURCES
-}
+OUTPUT_JSON = {key: SITE_DATA / f"{key}.json" for key in SOURCES}
 
 REQUIRED_KEYS = {
-    "growth": {"version", "growth_stages", "progress_statuses", "priority_values", "stage_activation"},
+    "growth": {
+        "version",
+        "growth_stages",
+        "progress_statuses",
+        "priority_values",
+        "competency_axes",
+        "stage_activation",
+    },
     "skills": {"version", "skill_levels", "axes", "current_assessment"},
-    "activities": {"version", "activity_types", "status_values", "activities"},
-    "projects": {"version", "status_values", "projects"},
-    "opportunities": {"version", "availability_status_values", "fit_status_values", "opportunities"},
+    "activities": {
+        "version",
+        "activity_types",
+        "status_values",
+        "priority_values",
+        "activities",
+    },
+    "projects": {"version", "status_values", "project_fields", "projects"},
+    "opportunities": {
+        "version",
+        "availability_status_values",
+        "fit_status_values",
+        "priority_values",
+        "types",
+        "opportunities",
+    },
 }
 
 
@@ -68,68 +85,160 @@ def load_yaml(name: str, path: Path) -> dict:
     return data
 
 
+def ensure_unique(values: list, label: str) -> None:
+    if len(values) != len(set(values)):
+        raise ValueError(f"{label} contains duplicate values")
+
+
+def ensure_unique_records(items: list[dict], label: str) -> None:
+    ids: list[str] = []
+    for index, item in enumerate(items):
+        if not isinstance(item, dict):
+            raise ValueError(f"{label}[{index}] must be a mapping")
+        item_id = str(item.get("id") or "").strip()
+        if not item_id:
+            raise ValueError(f"{label}[{index}] missing non-empty id")
+        ids.append(item_id)
+    ensure_unique(ids, f"{label} ids")
+
+
 def validate_growth(data: dict) -> None:
-    stage_ids = [stage["id"] for stage in data["growth_stages"]]
-    if len(stage_ids) != len(set(stage_ids)):
-        raise ValueError("growth.yaml contains duplicate growth stage ids")
+    stages = data["growth_stages"]
+    if not isinstance(stages, list) or not stages:
+        raise ValueError("growth.yaml growth_stages must be a non-empty list")
+
+    stage_ids = [stage["id"] for stage in stages]
+    ensure_unique(stage_ids, "growth stage ids")
+
+    orders = [stage.get("order") for stage in stages]
+    ensure_unique(orders, "growth stage order")
+
+    statuses = list(data["progress_statuses"])
+    priorities = list(data["priority_values"])
+    axes = list(data["competency_axes"])
+    ensure_unique(statuses, "growth progress_statuses")
+    ensure_unique(priorities, "growth priority_values")
+    ensure_unique(axes, "growth competency_axes")
+
     activation = data["stage_activation"]
     if set(activation) != set(stage_ids):
         raise ValueError("growth.yaml stage_activation must cover every growth stage exactly")
-    valid_statuses = set(data["progress_statuses"])
+    valid_statuses = set(statuses)
     for stage_id, record in activation.items():
+        if not isinstance(record, dict):
+            raise ValueError(f"{stage_id}: stage_activation record must be a mapping")
         if record.get("status") not in valid_statuses:
             raise ValueError(f"{stage_id}: invalid activation status {record.get('status')}")
 
 
 def validate_skills(data: dict, growth: dict) -> None:
-    level_ids = {item["level"] for item in data["skill_levels"]}
-    axis_ids = {item["id"] for item in data["axes"]}
+    levels = data["skill_levels"]
+    axes = data["axes"]
+    if not isinstance(levels, list) or not isinstance(axes, list):
+        raise ValueError("skills.yaml skill_levels and axes must be lists")
+
+    level_ids = [item["level"] for item in levels]
+    ensure_unique(level_ids, "skills level numbers")
+
+    axis_ids = [item["id"] for item in axes]
+    ensure_unique(axis_ids, "skills axis ids")
+    if axis_ids != list(growth["competency_axes"]):
+        raise ValueError("skills.yaml axes must match growth.yaml competency_axes in order")
+
     assessment = data.get("current_assessment") or {}
     if not isinstance(assessment, dict):
         raise ValueError("skills.yaml current_assessment must be a mapping")
+
+    valid_levels = set(level_ids)
+    valid_axes = set(axis_ids)
     for skill_id, record in assessment.items():
-        if skill_id not in axis_ids:
+        if skill_id not in valid_axes:
             raise ValueError(f"skills.yaml unknown axis in current_assessment: {skill_id}")
-        if record.get("level") not in level_ids:
+        if not isinstance(record, dict):
+            raise ValueError(f"skills.yaml assessment for {skill_id} must be a mapping")
+        if record.get("level") not in valid_levels:
             raise ValueError(f"skills.yaml invalid level for {skill_id}: {record.get('level')}")
+        evidence = record.get("evidence", [])
+        if evidence is not None and not isinstance(evidence, list):
+            raise ValueError(f"skills.yaml evidence for {skill_id} must be a list")
 
 
-def validate_registry(name: str, data: dict, growth: dict) -> None:
+def validate_related_skills(item: dict, valid_skills: set[str], label: str) -> None:
+    related = item.get("related_skills", []) or []
+    if not isinstance(related, list):
+        raise ValueError(f"{label}: related_skills must be a list")
+    unknown = [skill for skill in related if skill not in valid_skills]
+    if unknown:
+        raise ValueError(f"{label}: unknown related_skills {unknown}")
+
+
+def validate_registry(name: str, data: dict, growth: dict, skills: dict) -> None:
     stage_ids = {item["id"] for item in growth["growth_stages"]}
     progress_statuses = set(growth["progress_statuses"])
     priorities = set(growth["priority_values"])
+    skill_ids = {item["id"] for item in skills["axes"]}
 
     if name == "activities":
-        for item in data.get("activities", []):
+        if set(data["status_values"]) != progress_statuses:
+            raise ValueError("activities.yaml status_values must match growth.yaml progress_statuses")
+        if set(data["priority_values"]) != priorities:
+            raise ValueError("activities.yaml priority_values must match growth.yaml priority_values")
+        valid_types = set(data["activity_types"])
+        ensure_unique(list(data["activity_types"]), "activities activity_types")
+        items = data.get("activities", [])
+        ensure_unique_records(items, "activities")
+        for item in items:
+            label = f"activities.yaml {item.get('id')}"
+            if item.get("type") not in valid_types:
+                raise ValueError(f"{label}: invalid type {item.get('type')}")
             if item.get("growth_stage") not in stage_ids:
-                raise ValueError(f"activities.yaml {item.get('id')}: invalid growth_stage")
+                raise ValueError(f"{label}: invalid growth_stage")
             if item.get("status") not in progress_statuses:
-                raise ValueError(f"activities.yaml {item.get('id')}: invalid status")
+                raise ValueError(f"{label}: invalid status")
             if item.get("priority") not in priorities:
-                raise ValueError(f"activities.yaml {item.get('id')}: invalid priority")
+                raise ValueError(f"{label}: invalid priority")
+            validate_related_skills(item, skill_ids, label)
 
-    if name == "projects":
-        for item in data.get("projects", []):
+    elif name == "projects":
+        if set(data["status_values"]) != progress_statuses:
+            raise ValueError("projects.yaml status_values must match growth.yaml progress_statuses")
+        items = data.get("projects", [])
+        ensure_unique_records(items, "projects")
+        for item in items:
+            label = f"projects.yaml {item.get('id')}"
             if item.get("growth_stage") not in stage_ids:
-                raise ValueError(f"projects.yaml {item.get('id')}: invalid growth_stage")
+                raise ValueError(f"{label}: invalid growth_stage")
             if item.get("status") not in progress_statuses:
-                raise ValueError(f"projects.yaml {item.get('id')}: invalid status")
+                raise ValueError(f"{label}: invalid status")
             if item.get("priority") not in priorities:
-                raise ValueError(f"projects.yaml {item.get('id')}: invalid priority")
+                raise ValueError(f"{label}: invalid priority")
+            validate_related_skills(item, skill_ids, label)
 
-    if name == "opportunities":
+    elif name == "opportunities":
+        if set(data["priority_values"]) != priorities:
+            raise ValueError("opportunities.yaml priority_values must match growth.yaml priority_values")
         valid_availability = set(data["availability_status_values"])
         valid_fit = set(data["fit_status_values"])
-        for item in data.get("opportunities", []):
+        valid_types = set(data["types"])
+        ensure_unique(list(data["availability_status_values"]), "opportunity availability statuses")
+        ensure_unique(list(data["fit_status_values"]), "opportunity fit statuses")
+        ensure_unique(list(data["types"]), "opportunity types")
+        items = data.get("opportunities", [])
+        ensure_unique_records(items, "opportunities")
+        for item in items:
+            label = f"opportunities.yaml {item.get('id')}"
             stage = item.get("recommended_growth_stage")
             if stage and stage not in stage_ids:
-                raise ValueError(f"opportunities.yaml {item.get('id')}: invalid recommended_growth_stage")
+                raise ValueError(f"{label}: invalid recommended_growth_stage")
+            if item.get("type") not in valid_types:
+                raise ValueError(f"{label}: invalid type {item.get('type')}")
             if item.get("availability_status") not in valid_availability:
-                raise ValueError(f"opportunities.yaml {item.get('id')}: invalid availability_status")
+                raise ValueError(f"{label}: invalid availability_status")
             if item.get("fit_status") not in valid_fit:
-                raise ValueError(f"opportunities.yaml {item.get('id')}: invalid fit_status")
+                raise ValueError(f"{label}: invalid fit_status")
             if item.get("priority") not in priorities:
-                raise ValueError(f"opportunities.yaml {item.get('id')}: invalid priority")
+                raise ValueError(f"{label}: invalid priority")
+            validate_related_skills(item, skill_ids, label)
 
 
 def render_registry_json(name: str, data: dict) -> str:
@@ -214,7 +323,7 @@ def sync(check: bool) -> int:
     validate_growth(data["growth"])
     validate_skills(data["skills"], data["growth"])
     for name in ("activities", "projects", "opportunities"):
-        validate_registry(name, data[name], data["growth"])
+        validate_registry(name, data[name], data["growth"], data["skills"])
 
     outputs = {
         **{OUTPUT_JSON[name]: render_registry_json(name, payload) for name, payload in data.items()},
