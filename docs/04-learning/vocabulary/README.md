@@ -46,7 +46,8 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록을 순차�
 - 상위 Dependency Map: **완료**
 - Vocabulary Gate V1~V5 공통 체크리스트: **완료**
 - [B1-1 Top Core 입문자 학습 가이드](./b1-1-top-core-learning-guide.md): **1차 학습 확장 완료**
-- 다음 단계: **B1-1 Level 2 구현 명령·파일·설정을 실제 수행 순서에 맞춘 입문자 무오류 따라하기**
+- [B1-1 Level 2 입문자 무오류 실행 가이드](./b1-1-level2-execution-guide.md): **실행 순서·GO/STOP·복구·Evidence 가이드 완료**
+- 다음 단계: **B1-1 Level 3~5 구조·원리·트러블슈팅·평가 설명 통합 학습**
 
 ## 누적 학습 원칙
 
