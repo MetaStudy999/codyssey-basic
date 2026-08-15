@@ -1,6 +1,6 @@
 # V3 Vocabulary Index
 
-V3 Learning의 Canonical Vocabulary Path는 `docs/03-learning/vocabulary`다. 기존 `docs/04-learning/vocabulary` 자산은 콘텐츠를 다시 작성하지 않고 동일 Git 객체를 재사용하여 새 경로에 배치했다.
+V3 Learning의 Canonical Vocabulary Path는 `docs/03-learning/vocabulary`다. 기존 학습 자산은 콘텐츠를 다시 작성하지 않고 동일 Git 객체를 재사용하여 새 경로에 배치했다.
 
 ## 원칙
 
@@ -55,7 +55,7 @@ Optional Deepening
 
 ## Compatibility Cleanup Gate
 
-현재는 새 경로가 Canonical이며 기존 `docs/04-learning`은 임시 Compatibility Layer다.
+현재 `docs/03-learning`이 Canonical이며 과거 학습 경로는 임시 Compatibility Layer다.
 
 ```text
 새 Canonical Path 사용
@@ -66,7 +66,7 @@ Legacy Reference Scan
    ↓
 Active Reference 0
    ↓
-기존 docs/04-learning 제거
+과거 Compatibility Path 제거
 ```
 
 신규 문서는 반드시 `docs/03-learning` 경로를 사용한다.
