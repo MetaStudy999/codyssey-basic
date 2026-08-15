@@ -94,6 +94,7 @@ b1-1-90-030-systemd-service-timer.md
 - 하나의 WHY/HOW 질문으로 설명 가능한가?
 - Level 2의 명령을 재나열하지 않고 구조·메커니즘을 설명하는가?
 - 원본 요구와 현재 구현 관찰을 구분하는가?
+- 구현 선택의 장단점과 적용 한계를 원본 고정 요구로 과장하지 않는가?
 
 ### Level 4 — Troubleshooting
 
@@ -398,6 +399,7 @@ Cover
 - [ ] Level 2는 실행·검증 단위인가?
 - [ ] 기존 구현 Evidence와 학습자 직접 실행을 구분하는가?
 - [ ] Level 3는 WHY/HOW 원리 단위인가?
+- [ ] 구현 선택과 원본 요구, 장점과 한계를 구분하는가?
 - [ ] Level 4는 장애 진단·재검증·Evidence 흐름인가?
 - [ ] Level 5는 WHAT/WHY/HOW/PROOF/LIMIT 구조인가?
 - [ ] Review는 새 지식 추가보다 회상·복원·통합 판정 중심인가?
@@ -428,10 +430,11 @@ B2-1 Source Lock                 ✅ PDF 9 pages visually verified
 B2-1 Level 0 선수 용어 구조화   ✅ 45 terms + 000-index
 B2-1 Level 1 Top Core 구조화     ✅ 40 terms + 000-index
 B2-1 Level 2 실행 단위 구조화   ✅ 12 execution units + 000-index
+B2-1 Level 3 원리 단위 구조화   ✅ 12 principle units + 000-index
 Visual Learning                  DEFERRED
-B2-1 Level 3 원리 단위 구조화   NEXT
+B2-1 Level 4 장애 진단 구조화   NEXT
 ```
 
-B2-1 Level 2는 현재 구현 저장소를 기준으로 `CLI/초기화 → add/persistence → list/search generator → update/delete atomic rewrite → category integrity → budget/summary → CSV export/import rollback → error exit → full tests/evidence → V4 Gate`를 독립 실행·검증 단위로 구조화한다. 다음 단계는 이 실행 흐름을 Generator/Lazy Evaluation, Layer Responsibility, Persistence/Atomicity/Integrity, Decorator/Type Contract 등의 WHY/HOW 원리로 설명하는 것이다.
+B2-1 Level 3는 `Persistence/Data Lifecycle → Model Invariant → JSONL/CSV 역할 → Generator/Lazy Evaluation → Streaming/Materialization → Layer Responsibility → File Atomicity → Referential Integrity → Decorator/Cross-cutting → Type Contract → Import All-or-Nothing → WHY/HOW Gate`로 구조화한다. 다음은 입력·파일·ID·category·CSV·atomic rewrite·error exit 실패를 장애 진단 흐름으로 연결한다.
 
 만화 작업은 별도 재개 결정 전까지 현재 Critical Path에서 제외한다.
