@@ -6,7 +6,7 @@
 **학습시간:** 40시간  
 **학습 구조:** Level 0 → Level 1 → Level 2 → Level 3 → Level 4 → Level 5 → Review → Advanced
 
-> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고 순서 번호를 사용한다. 개별 용어는 `한 파일 = 한 용어` 구조로 단계적으로 확장한다.
+> 이 디렉터리는 B1-1 학습 자료의 공식 진입점이다. 파일명은 항상 `b1-1-`로 시작하고 순서 번호를 사용한다. 개별 용어는 `한 파일 = 한 용어` 구조로 확장한다.
 
 ## 1. 현재 작업 정책
 
@@ -29,19 +29,19 @@
 
 ## 2. 학습 순서
 
-| 순서 | 단계 | 목적 | Gate |
-|---:|---|---|---|
-| 00 | 현재 Index | 전체 지도·Source of Truth | 다음 학습을 선택 |
-| 10 | [Level 0 — Prerequisite](./b1-1-10-level-0-prerequisite.md) | 최소 선수지식 | V1 |
-| 20 | [Level 1 — Core Terms](./b1-1-20-level-1-core/b1-1-20-000-index.md) | Top Core 28개 개별 용어 | V2 + V3 |
-| 30 | [Level 2 — Execution](./b1-1-30-level-2-execution.md) | 실제 명령·파일·설정 | V4 |
-| 40 | [Level 3 — Principles](./b1-1-40-level-3-principles.md) | 구조·동작 원리 | WHY/HOW |
-| 50 | [Level 4 — Troubleshooting](./b1-1-50-level-4-troubleshooting.md) | 검증·장애 진단·복구 | Evidence 기반 진단 |
-| 60 | [Level 5 — Evaluation](./b1-1-60-level-5-evaluation.md) | 평가 답변·자기 설명 | V5 |
-| 70 | [Review Pack](./b1-1-70-review-pack.md) | 통합 복습·최종 Gate | LEARNING READY |
-| 90 | [Advanced](./b1-1-90-advanced.md) | 선택 심화 | 필요 시 |
+| 순서 | 단계 | 목적 | Gate | 상태 |
+|---:|---|---|---|---|
+| 00 | 현재 Index | 전체 지도·Source of Truth | 다음 학습 선택 | ✅ |
+| 10 | [Level 0 — Prerequisite Term Index](./b1-1-10-level-0-prerequisite/b1-1-10-000-index.md) | 선수 용어 29개 개별 파일 | V1 | ✅ |
+| 20 | [Level 1 — Core Terms](./b1-1-20-level-1-core/b1-1-20-000-index.md) | Top Core 28개 개별 용어 | V2 + V3 | ✅ |
+| 30 | [Level 2 — Execution](./b1-1-30-level-2-execution.md) | 실제 명령·파일·설정 | V4 | 다음 구조화 |
+| 40 | [Level 3 — Principles](./b1-1-40-level-3-principles.md) | 구조·동작 원리 | WHY/HOW | 문서 존재 |
+| 50 | [Level 4 — Troubleshooting](./b1-1-50-level-4-troubleshooting.md) | 검증·장애 진단·복구 | Evidence 기반 진단 | 문서 존재 |
+| 60 | [Level 5 — Evaluation](./b1-1-60-level-5-evaluation.md) | 평가 답변·자기 설명 | V5 | 문서 존재 |
+| 70 | [Review Pack](./b1-1-70-review-pack.md) | 통합 복습·최종 Gate | LEARNING READY | 문서 존재 |
+| 90 | [Advanced](./b1-1-90-advanced.md) | 선택 심화 | 필요 시 | 문서 존재 |
 
-`80`은 향후 실전 모의평가·추가 Lab 등 삽입을 위한 예약 구간이다.
+기존 [Level 0 요약 문서](./b1-1-10-level-0-prerequisite.md)는 호환용 요약으로 유지한다. `80`은 향후 실전 모의평가·추가 Lab 삽입을 위한 예약 구간이다.
 
 ## 3. Source of Truth
 
@@ -51,9 +51,7 @@
 4. 이 디렉터리의 Level별 학습 문서
 5. Advanced / Visual Learning 보조 자료
 
-현재 구현 저장소:
-
-- <https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor>
+현재 구현 저장소: <https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor>
 
 학습 자료가 원본 요구사항을 임의로 변경하지 않는다.
 
@@ -126,20 +124,7 @@ Evaluation Explanation
 문서 작성 ≠ Runtime PASS
 ```
 
-## 6. 학습 상태와 실제 미션 상태
-
-```text
-LEARNING READY
-= Level 0~5 + Review에서 용어·관계·적용·설명 통과
-
-RUNTIME VERIFIED
-= 실제 SSH / Firewall / Agent / monitor / cron / logrotate 검증
-
-MISSION PASS
-= 원본 평가 기준 + 제출 Evidence 충족
-```
-
-## 7. Vocabulary Gate
+## 6. Vocabulary Gate
 
 | Gate | 질문 |
 |---|---|
@@ -149,7 +134,7 @@ MISSION PASS
 | V4 — Locate / Apply | 실제 파일·설정·명령에서 찾고 적용할 수 있는가? |
 | V5 — Explain | 평가자에게 원리·선택 이유·검증 근거까지 설명할 수 있는가? |
 
-## 8. 관련 문서
+## 7. 관련 문서
 
 - [전체 용어 인덱스](../README.md)
 - [미션 용어 학습 체계](../../vocabulary-learning-plan.md)
@@ -158,15 +143,14 @@ MISSION PASS
 - [Basic Master Vocabulary](../../basic-master-vocabulary.md)
 - [전체 용어 품질 감사](../../vocabulary-quality-audit.md)
 
-## 9. 다음 비시각 작업
-
-현재 다음 순서는 다음과 같다.
+## 8. 다음 비시각 작업
 
 ```text
-B1-1 Level 0 개별 용어 구조화
-→ B1-1 Level 2 개별 실행 용어 구조화
+B1-1 Level 0 개별 용어 구조화  ✅
+B1-1 Level 1 개별 용어 구조화  ✅
+B1-1 Level 2 개별 실행 용어 구조화  NEXT
 → Level 3~5 관계/진단/평가 정교화
 → B1-2 동일 구조 확장
 ```
 
-➡️ [B1-1 Level 0 — Prerequisite](./b1-1-10-level-0-prerequisite.md)
+➡️ [B1-1 Level 2 — Execution](./b1-1-30-level-2-execution.md)
