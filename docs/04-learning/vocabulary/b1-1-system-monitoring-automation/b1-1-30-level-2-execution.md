@@ -4,11 +4,117 @@
 **목표:** `사전 확인 → 안전한 변경 → 즉시 검증 → 오류 시 복구 → Evidence` 순서를 지킨다.  
 **Gate:** V4 — 실제 위치와 적용
 
-> 이 문서는 원본 Mission 요구사항과 현재 구현 저장소의 재현용 구현 방식을 구분한다. `20022`, `15034`, 사용자·그룹, `AGENT_*`, `monitor.sh`, 임계값, cron 매분, `10MB / 10개`는 미션 핵심 요구다. `/etc/agent-app/agent.env`, `scripts/preflight.sh`, 저장소의 config 파일은 현재 구현 저장소가 선택한 재현 방식이다.
+> 이 문서는 원본 Mission 요구사항과 현재 구현 저장소의 재현용 구현 방식을 구분한다. `20022`, `15034`, 사용자·그룹, 원본 `AGENT_*` 5개, `monitor.sh`, 임계값, cron 매분, `10MB / 10개`는 미션 핵심 요구다. `/etc/agent-app/agent.env`, `scripts/preflight.sh`, `AGENT_PROCESS_PATTERN` 같은 항목은 현재 구현 저장소가 재현성과 호환성을 위해 선택한 구현 방식이다.
 
 현재 구현 저장소:
 
 - <https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor>
+
+---
+
+## Level 2 구현 용어 지도
+
+기존 B1-1 1차 Vocabulary의 Level 2 용어를 이 파일에 보존한다.
+
+### 계정·권한
+
+- 일반 사용자 (Regular User / Non-root User)
+- 서비스 계정 (Service Account)
+- 사용자 추가 (User Creation)
+- 그룹 추가 (Group Creation)
+- 그룹 멤버십 (Group Membership)
+- 소유권 변경 (Change Ownership)
+- 권한 변경 (Change Mode)
+- chmod (Change Mode)
+- chown (Change Owner)
+- chgrp (Change Group)
+- setfacl (Set File Access Control List)
+- getfacl (Get File Access Control List)
+- id 명령어 (id Command)
+- ls -l 명령어 (Long Listing, ls -l)
+- 숫자 권한 표기 (Numeric Permission Mode)
+- 750 권한 (Permission Mode 750)
+- rwxr-x--- 권한 (Symbolic Permission rwxr-x---)
+
+### SSH·네트워크·방화벽
+
+- SSH 설정 파일 (SSH Configuration File)
+- sshd_config (SSH Daemon Configuration File)
+- 포트 지시자 (Port Directive)
+- PermitRootLogin 지시자 (PermitRootLogin Directive)
+- 포트 20022 (TCP Port 20022)
+- 포트 15034 (TCP Port 15034)
+- ss 명령어 (Socket Statistics, ss)
+- ss -tulnp (Socket Listening Inspection, ss -tulnp)
+- UFW (Uncomplicated Firewall)
+- ufw status (UFW Status Command)
+- firewalld (Dynamic Firewall Manager)
+- firewall-cmd (Firewall Command)
+- firewall-cmd --list-all (Firewall Rule Listing)
+- 바인드 주소 (Bind Address)
+- 와일드카드 주소 (Wildcard Address, 0.0.0.0)
+- 소켓 (Socket)
+
+### 실행 환경·애플리케이션
+
+- AGENT_HOME (Agent Home Environment Variable)
+- AGENT_PORT (Agent Port Environment Variable)
+- AGENT_UPLOAD_DIR (Agent Upload Directory Environment Variable)
+- AGENT_KEY_PATH (Agent Key Path Environment Variable)
+- AGENT_LOG_DIR (Agent Log Directory Environment Variable)
+- API 키 (Application Programming Interface Key, API Key)
+- 비밀 키 파일 (Secret Key File)
+- t_secret.key (Agent Secret Key File)
+- 부트 시퀀스 (Boot Sequence)
+- 시작 검증 (Startup Validation)
+- 쓰기 가능 상태 (Writable State)
+- Agent READY (Application Ready State)
+- Ctrl+C (Interrupt Key Sequence)
+
+### Bash·monitor.sh
+
+- monitor.sh (Monitoring Shell Script)
+- 스크립트 실행 권한 (Script Execute Permission)
+- 셔뱅 (Shebang)
+- 셸 변수 (Shell Variable)
+- 조건문 (Conditional Statement)
+- 비교 연산자 (Comparison Operator)
+- 명령 치환 (Command Substitution)
+- 파이프 (Pipe)
+- 표준 출력 (Standard Output, stdout)
+- 표준 오류 (Standard Error, stderr)
+- 출력 리다이렉션 (Output Redirection)
+- 추가 리다이렉션 (Append Redirection)
+- 종료 상태 (Exit Status)
+- 종료 코드 (Exit Code)
+- exit 1 (Failure Exit Code)
+- 프로세스 상태 확인 (Process Status Check)
+- 포트 상태 확인 (Port Status Check)
+- 방화벽 상태 확인 (Firewall Status Check)
+- CPU 사용률 수집 (CPU Usage Collection)
+- 메모리 사용률 수집 (Memory Usage Collection)
+- 디스크 사용률 수집 (Disk Usage Collection)
+
+### 로그·스케줄링
+
+- /var/log (System Log Directory)
+- /var/log/agent-app (Agent Application Log Directory)
+- monitor.log (Monitoring Log File)
+- 타임스탬프 (Timestamp)
+- 로그 라인 (Log Line)
+- 로그 추가 기록 (Log Append)
+- 로그 파일 크기 (Log File Size)
+- 10MB 로그 제한 (10 MB Log Size Limit)
+- 로그 파일 보관 개수 (Log File Retention Count)
+- logrotate (Log Rotation Utility)
+- 크론 표현식 (Cron Expression)
+- 크론 스케줄 (Cron Schedule)
+- 매분 실행 (Every-Minute Schedule)
+- crontab 등록 (Crontab Registration)
+- crontab 편집 (Crontab Editing)
+- tail 명령어 (Tail Command)
+
+원본 Vocabulary의 선택 Bonus 용어는 [B1-1 Advanced](./b1-1-90-advanced.md)에 별도 보존한다.
 
 ---
 
@@ -419,7 +525,7 @@ Default: deny (incoming)
 config/agent.env.example
 ```
 
-현재 구현 값:
+원본 미션의 필수 환경 변수 5개:
 
 ```text
 AGENT_HOME=/home/agent-admin/agent-app
@@ -459,7 +565,27 @@ find /tmp/b1-1-agent-extract -maxdepth 4 -type f -print | sort
 
 ```bash
 uname -m
-file /tmp/b1-1-agent-extract/* 2>/dev/null || true
+find /tmp/b1-1-agent-extract -maxdepth 2 -type f -exec file {} \;
+```
+
+### `AGENT_PROCESS_PATTERN` — 현재 구현 보완값
+
+현재 저장소의 `scripts/monitor.sh`는 process 검색 기본값으로 `agent_app.py`를 사용할 수 있다. 실제 제공 앱 파일명이 다르면 **원본 5개 환경 변수를 바꾸는 것이 아니라**, 현재 구현용 추가 값인 `AGENT_PROCESS_PATTERN`을 실제 실행 파일명에 맞춘다.
+
+예:
+
+```bash
+printf '%s\n' 'AGENT_PROCESS_PATTERN=agent-app-linux-x86' | \
+  sudo tee -a /etc/agent-app/agent.env >/dev/null
+```
+
+실제 이름은 `unzip -l`, `find`, `file`, `pgrep -af`로 확인한 값을 사용한다. 위 파일명은 예시이므로 실제 제공 파일명과 다르면 그대로 쓰지 않는다.
+
+확인:
+
+```bash
+sudo -u agent-admin bash -c \
+  'set -a; source /etc/agent-app/agent.env; set +a; printf "AGENT_PROCESS_PATTERN=%s\n" "${AGENT_PROCESS_PATTERN:-agent_app.py}"'
 ```
 
 ### test key
@@ -493,7 +619,7 @@ Process owner != root
 0.0.0.0:15034 = LISTEN
 ```
 
-실제 파일명이 `agent_app.py`가 아니라면 그 파일명을 기준으로 프로세스를 확인한다.
+실제 제공 파일명을 기준으로 process를 확인한다.
 
 ```bash
 pgrep -af '<실제 제공 앱 파일명>'
@@ -684,11 +810,12 @@ sudo cat /etc/logrotate.d/agent-monitor
 
 ## 13. V4 Gate
 
+- [ ] Level 2 용어를 실제 명령·설정에서 찾을 수 있다.
 - [ ] 사용자와 그룹을 실제 명령에서 찾을 수 있다.
 - [ ] 권한과 ACL을 `ls -l`, `getfacl`, 실제 허용/차단 시험으로 확인할 수 있다.
 - [ ] SSH 설정값과 실제 LISTEN을 따로 검증할 수 있다.
 - [ ] UFW의 활성 상태와 허용 포트를 확인할 수 있다.
-- [ ] `AGENT_*` 환경변수 파일과 key 경로를 찾을 수 있다.
+- [ ] 원본 `AGENT_*` 5개와 현재 구현의 선택값 `AGENT_PROCESS_PATTERN`을 구분할 수 있다.
 - [ ] Agent process와 `15034 LISTEN`을 확인할 수 있다.
 - [ ] `monitor.sh`의 경로·소유자·그룹·권한을 찾을 수 있다.
 - [ ] 정상/Health 실패 종료 코드를 확인할 수 있다.
