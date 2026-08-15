@@ -4,7 +4,7 @@ model: codyssey-mission-clear-cycle
 cycle:
   id: growth-os-v3-20260816
   title: "새 미션 클리어 도전"
-  started_at: 2026-08-16
+  started_at: "2026-08-16"
   baseline: growth-os-v3-stable
   mode: START
   current_mission: B1-1
