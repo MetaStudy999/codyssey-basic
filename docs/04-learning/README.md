@@ -41,6 +41,18 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   - `증상 → 조회 → 계층 분리 → 최소 수정 → 재검증 → Evidence` 트러블슈팅 알고리즘
   - 평가 항목을 `WHAT → WHY → HOW → PROOF` 4문장 답변 구조로 연결
   - V3~V5 관계·실제 위치·자기 설명 Gate 및 20분 압축 복습 포함
+- [B1-1 통합 복습 패키지](./vocabulary/b1-1-review-pack.md)
+  - 한 장 핵심 복습 카드와 핵심 관계 카드 12장
+  - 5분 백지 복습, Stage A~D 실전 구두 퀴즈
+  - 평가 항목별 `WHAT → WHY → HOW → PROOF` 답변 훈련
+  - 공식 평가 영역 기반 최종 체크시트와 Vocabulary Gate V1~V5 최종 판정
+  - `LEARNING READY ≠ RUNTIME VERIFIED` 원칙과 B1-2 연결
+
+## B1-1 학습 확장 상태
+
+`Mission Vocabulary → Top Core → Level 2 실행 → Level 3~5 → 통합 복습`까지 **학습 콘텐츠 패키지 작성 완료**.
+
+다음 학습 확장 대상은 **B1-2**다.
 
 ## 자기 설명 기준
 - 핵심 용어를 한 문장으로 정의
