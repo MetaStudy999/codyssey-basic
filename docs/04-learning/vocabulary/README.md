@@ -3,25 +3,24 @@
 B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 확장 자료를 관리한다.
 
 - 표기: `한글 용어 (English Term, 약어)`
-- 최초 목록 단계에서는 용어 설명을 넣지 않는다.
 - 각 미션은 Level 0~5 + Advanced, Top Core 구조를 사용한다.
 - 상세 작성 규칙은 [미션 용어 학습 체계 기획](../vocabulary-learning-plan.md)을 따른다.
 - 개별 용어 파일의 구조·파일명·링크 규칙은 [개별 용어 파일 표준](../term-file-standard.md)을 따른다.
-- 15개 미션 작성 완료 후의 품질 판정은 [전체 용어 품질 감사](../vocabulary-quality-audit.md)를 따른다.
+- 시각 학습 형식과 재개 조건은 [Visual Learning Backlog](../visual-learning-backlog.md)에서 관리하며 현재 **DEFERRED** 상태다.
 - 중복 제거·최초 등장·재사용·Priority·K 수준·Lifecycle의 통합 기준은 [Basic Master Vocabulary](../basic-master-vocabulary.md)에서 관리한다.
 
 ## 디렉터리·파일명 표준
 
-미션 기본 구조:
-
 ```text
 {mission-number}-{english-mission-slug}/
 ├── {mission-number}-00-index.md
-├── {mission-number}-10-level-0-prerequisite.md
+├── {mission-number}-10-level-0-prerequisite/
+│   ├── {mission-number}-10-000-index.md
+│   ├── {mission-number}-10-010-{term-slug}.md
+│   └── ...
 ├── {mission-number}-20-level-1-core/
 │   ├── {mission-number}-20-000-index.md
 │   ├── {mission-number}-20-010-{term-slug}.md
-│   ├── {mission-number}-20-020-{term-slug}.md
 │   └── ...
 ├── {mission-number}-30-level-2-execution.md
 ├── {mission-number}-40-level-3-principles.md
@@ -37,14 +36,14 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - 파일명은 항상 해당 미션 번호로 시작한다.
 - Level은 `00 / 10 / 20 / ... / 90`, 개별 용어는 `010 / 020 / ...` 순서로 정렬한다.
 - Level의 `000-index`가 개별 용어 학습 진입점이다.
-- `80` 구간은 향후 실전 모의평가·추가 랩 등 확장 자료용으로 예약한다.
-- 문서 제목과 설명은 한국어를 중심으로 하되 핵심 전문 용어는 영어 원문을 함께 표기한다.
+- `80`은 향후 실전 모의평가·추가 Lab용으로 예약한다.
+- 문서 설명은 한국어 중심, 핵심 전문 용어는 영어 원문을 함께 표기한다.
 
 ## 진행 현황
 
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
-| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level별 구조 + Level 1 개별 용어 Pilot 완료** |
+| 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0·1 개별 용어 구조 완료 / Level 2 NEXT** |
 | 2 | B1-2 | [리눅스 프로세스 및 시스템 리소스 트러블슈팅](./b1-2.md) | 1차 용어 작성 완료 |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
@@ -65,8 +64,9 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 ## B1-1 학습 구조
 
 - [00 — Index](./b1-1-system-monitoring-automation/b1-1-00-index.md)
-- [10 — Level 0 Prerequisite](./b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite.md)
-- [20 — Level 1 Top Core Term Index](./b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md)
+- [10 — Level 0 Prerequisite Term Index](./b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite/b1-1-10-000-index.md) — 29개 개별 용어
+- [10 — Level 0 Summary](./b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite.md)
+- [20 — Level 1 Top Core Term Index](./b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md) — 28개 개별 용어
 - [20 — Level 1 Summary](./b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
 - [30 — Level 2 Execution](./b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
 - [40 — Level 3 Principles](./b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
@@ -80,17 +80,12 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - Mission Vocabulary B1-1~B7-2: **완료**
 - 원본 주요 요구 영역 대조: **PASS**
 - Level 0~5 + Advanced + Top Core: **PASS**
-- 20:60:20: **PASS**
-- 한글+영어 표기: **PASS**
-- 전체 용어 품질 감사: **완료**
-- [Basic Master Vocabulary](../basic-master-vocabulary.md): **v1 완료**
-- CORE / REQUIRED / REFERENCE 통합 기준: **적용**
-- K1~K4 통합 기준: **적용**
-- First Seen / Reuse / Lifecycle: **핵심 반복 용어에 적용**
-- 상위 Dependency Map: **완료**
-- Vocabulary Gate V1~V5 공통 체크리스트: **완료**
-- **B1-1 Level 1 Top Core 28개 개별 용어 파일: Pilot 완료**
-- 다음: **Pilot 검증 → B1-1 다른 Level 또는 B1-2로 확대**
+- Basic Master Vocabulary: **v1 완료**
+- Vocabulary Gate V1~V5: **공통 기준 완료**
+- B1-1 Level 0 선수 용어 29개 개별 파일: **완료**
+- B1-1 Level 1 Top Core 28개 개별 파일: **완료**
+- Visual Learning: **DEFERRED / Backlog 관리**
+- 다음: **B1-1 Level 2 개별 실행 용어 구조화**
 
 ## 누적 학습 원칙
 
