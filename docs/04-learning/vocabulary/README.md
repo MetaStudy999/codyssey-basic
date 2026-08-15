@@ -15,34 +15,24 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 {mission-number}-{english-mission-slug}/
 ├── {mission-number}-00-index.md
 ├── {mission-number}-10-level-0-prerequisite/
-│   ├── {mission-number}-10-000-index.md
-│   └── {mission-number}-10-010-{term-slug}.md ...
 ├── {mission-number}-20-level-1-core/
 ├── {mission-number}-30-level-2-execution/
 ├── {mission-number}-40-level-3-principles/
 ├── {mission-number}-50-level-4-troubleshooting/
 ├── {mission-number}-60-level-5-evaluation/
 ├── {mission-number}-70-review/
-│   ├── {mission-number}-70-000-index.md
-│   └── {mission-number}-70-010-{review-unit}.md ...
 ├── {mission-number}-70-review-pack.md
 └── {mission-number}-90-advanced.md
 ```
 
-원칙:
-
-- 파일명은 항상 해당 미션 번호로 시작한다.
-- Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입점으로 둔다.
-- Level 0·1은 한 용어, Level 2는 실행·검증 단위, Level 3는 WHY/HOW 원리, Level 4는 장애 진단 흐름, Level 5는 평가 설명 단위, Review는 통합 복습·최종 판정 단위로 묶는다.
-- 기존 단일 Review Pack은 전체 복습과 기존 URL 호환용으로 유지한다.
-- `80`은 실전 모의평가·추가 Lab용으로 예약한다.
+Level 내부는 `010 / 020 / ...` 순서로 정렬하고 `000-index`를 진입점으로 둔다. Level 0·1은 한 용어, Level 2는 실행·검증 단위, Level 3는 WHY/HOW 원리, Level 4는 장애 진단 흐름, Level 5는 평가 설명 단위, Review는 통합 복습·최종 판정 단위로 묶는다.
 
 ## 진행 현황
 
 | 순서 | 미션 | 용어/학습 진입점 | 상태 |
 |---:|---|---|---|
 | 1 | B1-1 | [System Monitoring Automation](./b1-1-system-monitoring-automation/b1-1-00-index.md) | **Level 0~5 + Review 구조화 완료** |
-| 2 | B1-2 | [리눅스 프로세스 및 시스템 리소스 트러블슈팅](./b1-2.md) | 1차 용어 작성 완료 / 다음 확장 대상 |
+| 2 | B1-2 | [Linux Process & Resource Troubleshooting](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md) | **Level 0 35개 + Level 1 Top Core 30개 완료 / Level 2 NEXT** |
 | 3 | B2-1 | [나만의 용돈 기입장 프로그램 만들기](./b2-1.md) | 1차 용어 작성 완료 |
 | 4 | B2-2 | [친구 3~5명과 함께 프로그램 만드는 법 연습하기](./b2-2.md) | 1차 용어 작성 완료 |
 | 5 | B3-1 | [정보를 엄청 빠르게 찾아주는 작은 저장소 만들기](./b3-1.md) | 1차 용어 작성 완료 |
@@ -69,26 +59,29 @@ B1-1부터 B7-2까지 15개 수행 단위의 미션별 용어 목록과 학습 �
 - [50 — Level 4 Index](./b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md) — 12개
 - [60 — Level 5 Index](./b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation/b1-1-60-000-index.md) — 12개
 - [70 — Integrated Review Index](./b1-1-system-monitoring-automation/b1-1-70-review/b1-1-70-000-index.md) — 12개
-- [70 — Review Full Pack](./b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
-- [90 — Advanced](./b1-1-system-monitoring-automation/b1-1-90-advanced.md)
+
+## B1-2 학습 구조
+
+- [00 — Index](./b1-2-linux-process-resource-troubleshooting/b1-2-00-index.md)
+- [10 — Level 0 Prerequisite Index](./b1-2-linux-process-resource-troubleshooting/b1-2-10-level-0-prerequisite/b1-2-10-000-index.md) — 35개 ✅
+- [20 — Level 1 Top Core Index](./b1-2-linux-process-resource-troubleshooting/b1-2-20-level-1-core/b1-2-20-000-index.md) — 30개 ✅
+- [기존 Vocabulary Summary](./b1-2.md) — 전체 용어 지도/기존 URL 호환
+- 다음: Level 2 Execution
+
+B1-2에서는 B1-1의 `Process / PID / CPU / Memory / Log / Monitoring / Evidence`를 NEW로 복제하지 않고 `REVIEW / DEEPEN`으로 이어 간다. 새 핵심은 `Memory Leak / OOM / CPU Spike / Thread / Lock / Deadlock / RCA / Before & After`다.
 
 ## 통합 자산 상태
 
 - Mission Vocabulary B1-1~B7-2: **완료**
 - Basic Master Vocabulary: **v1 완료**
-- Vocabulary Gate V1~V5: **공통 기준 완료**
-- B1-1 Level 0 선수 용어 29개: **완료**
-- B1-1 Level 1 Top Core 28개: **완료**
-- B1-1 Level 2 실행 단위 12개: **완료**
-- B1-1 Level 3 원리 단위 12개: **완료**
-- B1-1 Level 4 장애 진단 단위 12개: **완료**
-- B1-1 Level 5 평가 설명 단위 12개: **완료**
-- B1-1 Review 통합 복습 단위 12개: **완료**
+- B1-1 Level 0~5 + Review: **구조화 완료**
+- B1-2 Level 0 선수 용어 35개: **완료**
+- B1-2 Level 1 Top Core 30개: **완료**
 - Visual Learning: **DEFERRED / Backlog 관리**
-- 다음: **B1-2에 동일 구조 적용**
+- 다음: **B1-2 Level 2 실행 단위 구조화**
 
 ## 누적 학습 원칙
 
 `NEW → REVIEW → APPLY → DEEPEN → INTEGRATE`
 
-B1-1 Review는 학습 구조를 닫지만 실제 Runtime PASS를 대신하지 않는다. `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
+학습 자료 완료와 실제 Runtime PASS를 혼동하지 않는다. `LEARNING READY`, `RUNTIME VERIFIED`, `MISSION PASS`를 분리해 관리한다.
