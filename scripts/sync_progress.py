@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Generate Control Tower progress views from repository state.
+"""Generate Control Tower mission and beginner-first cycle views.
 
 Human-edited sources:
-- config/missions.yaml: official serially integrated mission progress
+- config/missions.yaml: official mission/G1~G8 state for the current run
+- config/cycles/current.yaml: beginner-facing Mission Clear Cycle navigation
+- config/history/pre-v3-mission-history.yaml: preserved results from before the new cycle
 - config/waves/*.yaml: parallel Workcell coordination/live status
 
 Generated outputs:
@@ -10,6 +12,7 @@ Generated outputs:
 - docs/01-master-map/mission-progress.md
 - site/data/missions.json
 - site/data/workcells.json
+- site/data/cycle.json
 """
 from __future__ import annotations
 
@@ -22,11 +25,14 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "missions.yaml"
+CYCLE_CONFIG = ROOT / "config" / "cycles" / "current.yaml"
+HISTORY_CONFIG = ROOT / "config" / "history" / "pre-v3-mission-history.yaml"
 WAVES_DIR = ROOT / "config" / "waves"
 README = ROOT / "README.md"
 PROGRESS = ROOT / "docs" / "01-master-map" / "mission-progress.md"
 SITE_JSON = ROOT / "site" / "data" / "missions.json"
 WORKCELLS_JSON = ROOT / "site" / "data" / "workcells.json"
+CYCLE_JSON = ROOT / "site" / "data" / "cycle.json"
 START = "<!-- AUTO:MISSION_PROGRESS:START -->"
 END = "<!-- AUTO:MISSION_PROGRESS:END -->"
 CONTROL_TOWER_REPO_URL = "https://github.com/MetaStudy999/codyssey-basic"
@@ -54,13 +60,41 @@ GATE_SHORT = {
 GATE_ICON = {"PASS": "✅", "TODO": "⬜", "NEEDS-RUNTIME": "🟡", "BLOCKED": "⛔"}
 
 
+def load_yaml(path: Path) -> dict:
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if not isinstance(data, dict):
+        raise ValueError(f"{path.relative_to(ROOT)} must contain a mapping")
+    return data
+
+
 def load_config() -> dict:
-    data = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+    data = load_yaml(CONFIG)
     required = {"status_values", "learning_values", "gate_status_values", "gate_order", "domains"}
     missing = required - data.keys()
     if missing:
         raise ValueError(f"missions.yaml missing keys: {sorted(missing)}")
     return data
+
+
+def load_cycle() -> dict:
+    data = load_yaml(CYCLE_CONFIG)
+    required = {"cycle", "cycle_state_values", "state_labels", "gate_display", "missions"}
+    missing = required - data.keys()
+    if missing:
+        raise ValueError(f"current cycle missing keys: {sorted(missing)}")
+    return data
+
+
+def load_history() -> dict[str, dict]:
+    if not HISTORY_CONFIG.exists():
+        return {}
+    data = load_yaml(HISTORY_CONFIG)
+    results: dict[str, dict] = {}
+    for entry in data.get("mission_results", []):
+        mission_id = entry.get("mission")
+        if mission_id:
+            results[mission_id] = dict(entry)
+    return results
 
 
 def load_active_wave() -> tuple[Path, dict]:
@@ -115,6 +149,39 @@ def flatten(data: dict) -> tuple[list[dict], list[dict]]:
     return domains, units
 
 
+def apply_cycle(units: list[dict], cycle: dict, history: dict[str, dict]) -> None:
+    ids = [unit["id"] for unit in units]
+    cycle_missions = cycle.get("missions", {})
+    if set(cycle_missions) != set(ids):
+        missing = sorted(set(ids) - set(cycle_missions))
+        extra = sorted(set(cycle_missions) - set(ids))
+        raise ValueError(f"current cycle mission set mismatch; missing={missing}, extra={extra}")
+
+    allowed = set(cycle["cycle_state_values"])
+    current_id = cycle["cycle"].get("current_mission")
+    if current_id not in ids:
+        raise ValueError(f"current cycle current_mission not found: {current_id}")
+
+    for unit in units:
+        entry = cycle_missions[unit["id"]]
+        configured = entry.get("state")
+        if configured not in allowed:
+            raise ValueError(f"{unit['id']}: invalid cycle state {configured}")
+        effective = "CLEAR" if unit["status"] == "PASS" else configured
+        unit["cycle_state"] = effective
+        unit["cycle_state_label"] = cycle["state_labels"].get(effective, effective)
+        unit["next_action"] = entry.get("next_action")
+        unit["help"] = entry.get("help")
+        unit["unlock_after"] = entry.get("unlock_after")
+        previous = history.get(unit["id"])
+        unit["previous_result"] = previous.get("result") if previous else None
+        unit["previous_learning"] = previous.get("learning") if previous else None
+
+    active = [unit["id"] for unit in units if unit["cycle_state"] == "ACTIVE"]
+    if active != [current_id]:
+        raise ValueError(f"current cycle requires exactly one ACTIVE current mission; current={current_id}, active={active}")
+
+
 def official_label(unit: dict) -> str:
     if unit["kind"] == "term-project":
         return "Term Project"
@@ -123,40 +190,46 @@ def official_label(unit: dict) -> str:
 
 def render_readme_table(units: list[dict]) -> str:
     lines = [
-        "| 순서 | ID | 제목 | 공식 구분 | 수행 상태 | 현재 Gate | 학습 | Repository |",
+        "| 순서 | ID | 제목 | 공식 구분 | 새 도전 | 현재 단계 | 이전 기록 | Repository |",
         "|---:|---|---|---|---|---|---|---|",
     ]
     for i, unit in enumerate(units, 1):
+        previous = unit["previous_result"] or "-"
         lines.append(
             f"| {i:02d} | {unit['id']} | {unit['title']} | {official_label(unit)} | "
-            f"{unit['status']} | {unit['current_gate_label']} | {unit['learning']} | [repo]({unit['repo']}) |"
+            f"{unit['cycle_state_label']} | {unit['current_gate_label']} | {previous} | [repo]({unit['repo']}) |"
         )
     return "\n".join(lines)
 
 
-def render_progress(units: list[dict], gate_order: list[str]) -> str:
+def render_progress(units: list[dict], gate_order: list[str], cycle: dict) -> str:
     headers = " | ".join(GATE_SHORT[g] for g in gate_order)
     lines = [
-        "# Progress Dashboard",
+        "# Mission Clear Cycle",
         "",
-        "> 이 문서는 `config/missions.yaml`에서 자동 생성됩니다. 직접 수정하지 않습니다.",
+        "> 이 문서는 `config/missions.yaml` + `config/cycles/current.yaml`에서 자동 생성됩니다. 직접 수정하지 않습니다.",
         "",
-        f"| ID | Domain | 수행 | 현재 Gate | 학습 | {headers} |",
-        "|---|---|---|---|---|" + "---|" * len(gate_order),
+        f"- Cycle: **{cycle['cycle']['title']}**",
+        f"- Current Mission: **{cycle['cycle']['current_mission']}**",
+        f"- Started: **{cycle['cycle']['started_at']}**",
+        "",
+        f"| ID | Domain | 새 도전 | 현재 Gate | 학습 | 이전 기록 | {headers} |",
+        "|---|---|---|---|---|---|" + "---|" * len(gate_order),
     ]
     for unit in units:
         gate_cells = " | ".join(GATE_ICON[unit["gates"][g]] for g in gate_order)
         lines.append(
-            f"| {unit['id']} | {unit['domain_name_en']} | {unit['status']} | "
-            f"{unit['current_gate_label']} | {unit['learning']} | {gate_cells} |"
+            f"| {unit['id']} | {unit['domain_name_en']} | {unit['cycle_state_label']} | "
+            f"{unit['current_gate_label']} | {unit['learning']} | {unit['previous_result'] or '-'} | {gate_cells} |"
         )
     lines += [
         "",
-        "## 상태 원칙",
+        "## 읽는 법",
         "",
-        "- 수행: `TODO → IMPLEMENTED → TESTED → PASS`",
-        "- 예외: `NEEDS-RUNTIME`, `BLOCKED`",
-        "- 학습: `NOT-STUDIED → PRACTICED → EXPLAINABLE → MASTERED`",
+        "- 새 도전 상태: `시작 전 → 시작 가능 → 진행 중 → 미션 완료`",
+        "- 문제 발생 시 `문제 해결 필요`로 표시한다.",
+        "- 내부 Mission 상태와 G1~G8은 정확한 검증을 위해 계속 유지한다.",
+        "- 이전 PASS는 현재 Cycle과 섞지 않고 History로만 보존한다.",
         "- `PASS`와 `MASTERED`는 서로 다른 상태다.",
     ]
     return "\n".join(lines) + "\n"
@@ -167,6 +240,7 @@ def render_site_json(data: dict, domains: list[dict], units: list[dict]) -> str:
         "version": data["version"],
         "course": data["course"],
         "generated_from": "config/missions.yaml",
+        "gate_order": data["gate_order"],
         "domains": domains,
         "missions": [
             {
@@ -185,9 +259,43 @@ def render_site_json(data: dict, domains: list[dict], units: list[dict]) -> str:
                 "current_gate": u["current_gate"],
                 "current_gate_label": u["current_gate_label"],
                 "gates": u["gates"],
+                "cycle_state": u["cycle_state"],
+                "cycle_state_label": u["cycle_state_label"],
+                "previous_result": u["previous_result"],
             }
             for u in units
         ],
+    }
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+
+
+def render_cycle_json(cycle: dict, units: list[dict]) -> str:
+    clear_count = sum(1 for unit in units if unit["cycle_state"] == "CLEAR")
+    payload_missions: dict[str, dict] = {}
+    for unit in units:
+        payload_missions[unit["id"]] = {
+            "state": unit["cycle_state"],
+            "state_label": unit["cycle_state_label"],
+            "next_action": unit["next_action"],
+            "help": unit["help"],
+            "unlock_after": unit["unlock_after"],
+            "previous_result": unit["previous_result"],
+            "previous_learning": unit["previous_learning"],
+        }
+
+    payload = {
+        "version": cycle.get("version", 1),
+        "generated_from": "config/cycles/current.yaml",
+        "history_source": "config/history/pre-v3-mission-history.yaml",
+        "cycle": cycle["cycle"],
+        "state_labels": cycle["state_labels"],
+        "gate_display": cycle["gate_display"],
+        "summary": {
+            "total_missions": len(units),
+            "clear_count": clear_count,
+            "current_mission": cycle["cycle"]["current_mission"],
+        },
+        "missions": payload_missions,
     }
     return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
@@ -257,13 +365,17 @@ def render_readme(existing: str, table: str) -> str:
 
 def sync(check: bool) -> int:
     data = load_config()
+    cycle = load_cycle()
+    history = load_history()
     domains, units = flatten(data)
+    apply_cycle(units, cycle, history)
     wave_path, wave_data = load_active_wave()
     outputs = {
         README: render_readme(README.read_text(encoding="utf-8"), render_readme_table(units)),
-        PROGRESS: render_progress(units, data["gate_order"]),
+        PROGRESS: render_progress(units, data["gate_order"], cycle),
         SITE_JSON: render_site_json(data, domains, units),
         WORKCELLS_JSON: render_workcells_json(wave_path, wave_data, units),
+        CYCLE_JSON: render_cycle_json(cycle, units),
     }
 
     stale: list[str] = []
