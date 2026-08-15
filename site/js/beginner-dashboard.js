@@ -1,5 +1,6 @@
 (() => {
   const $ = (selector) => document.querySelector(selector);
+  const GATE_ORDER = ['G1_SOURCE', 'G2_BUILD', 'G3_TEST', 'G4_REVIEW', 'G5_RUNTIME', 'G6_EVIDENCE', 'G7_LEARN', 'G8_MERGE'];
 
   const stateClass = (state) => `beginner-state-${String(state || '').toLowerCase().replaceAll('_', '-')}`;
 
@@ -57,7 +58,7 @@
 
   function renderSteps(cycle, missionData, mission) {
     const grid = $('#beginner-step-grid');
-    const order = missionData.gate_order || Object.keys(cycle.gate_display);
+    const order = missionData.gate_order || GATE_ORDER;
     const completed = gateProgress(mission, order);
     grid.innerHTML = '';
 
@@ -112,7 +113,10 @@
     missionData.missions.forEach((mission) => {
       const state = cycle.missions[mission.id] || { state: 'NOT_STARTED' };
       const label = cycle.state_labels[state.state] || state.state;
-      const completed = gateProgress(mission, missionData.gate_order || []);
+      const isCurrent = mission.id === cycle.cycle.current_mission;
+      let completed = 0;
+      if (state.state === 'CLEAR') completed = 8;
+      else if (isCurrent) completed = gateProgress(mission, GATE_ORDER);
       const percent = Math.round((completed / 8) * 100);
       const previous = state.previous_result ? `이전 수행 기록: ${state.previous_result}` : '';
       const card = document.createElement('article');
@@ -122,10 +126,10 @@
           <div><strong>${mission.id}</strong><p>${mission.title}</p></div>
           <span class="beginner-chip">${label}</span>
         </header>
-        <div class="beginner-progress-track" aria-label="${mission.id} 단계 진행률">
+        <div class="beginner-progress-track" aria-label="${mission.id} 새 도전 단계 진행률">
           <div class="beginner-progress-fill" style="width:${percent}%"></div>
         </div>
-        <small>${mission.status === 'PASS' ? '8/8 단계 완료' : `${completed}/8 단계`} ${previous ? `· ${previous}` : ''}</small>
+        <small>새 도전 ${completed}/8 단계${previous ? ` · ${previous}` : ''}</small>
       `;
       grid.appendChild(card);
     });
