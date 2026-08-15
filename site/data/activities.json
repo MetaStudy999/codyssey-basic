@@ -1,0 +1,9 @@
+{
+  "schema_version": 3,
+  "generated_from": "config/activities.yaml",
+  "model": "codyssey-developer-growth-os-activities",
+  "activity_types": ["study","code-review-dojo","debugging-clinic","architecture-cafe","failure-lab","mentoring","seminar","meetup","hackathon","competition","challenge","conference","open-source","research","career","venture"],
+  "status_values": ["PLANNED","READY","ACTIVE","BLOCKED","DONE","ARCHIVED"],
+  "priority_values": ["REQUIRED","RECOMMENDED","OPTIONAL"],
+  "activities": []
+}
