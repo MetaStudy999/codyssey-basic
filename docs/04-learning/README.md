@@ -33,7 +33,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [40 — Level 3 Principle Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles/b1-1-40-000-index.md)
   - 권한 모델부터 로그 수명주기까지 12개 구조·원리 학습 단위, WHY/HOW
 - [40 — Level 3 Full Guide](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
-- [50 — Level 4 Troubleshooting](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting.md)
+- [50 — Level 4 Troubleshooting Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting/b1-1-50-000-index.md)
+  - Permission denied부터 Before/After Evidence까지 12개 장애 진단 단위
+- [50 — Level 4 Full Guide](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting.md)
 - [60 — Level 5 Evaluation](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation.md)
 - [70 — Review Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
 - [90 — Advanced](./vocabulary/b1-1-system-monitoring-automation/b1-1-90-advanced.md)
@@ -51,9 +53,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   ↓
 40 Level 3 → 12 principle learning units ✅
   ↓
-50 Level 4 Troubleshooting → NEXT
+50 Level 4 → 12 troubleshooting units ✅
   ↓
-60 Level 5
+60 Level 5 Evaluation → NEXT
   ↓
 70 Review
   ↓
