@@ -23,7 +23,7 @@ Mission Handoff
 Serial Control-Tower Integration
         │
         ▼
-config/missions.yaml → sync → README / Progress / Pages
+config/missions.yaml → sync → README / Master Map / Pages
 ```
 
 핵심 원칙은 **실행은 병렬화하고, 대표 상태 통합은 직렬화한다**이다.
@@ -109,7 +109,7 @@ DO NOT WRITE:
 ### 금지
 
 - Mission Workcell이 `config/missions.yaml`을 직접 수정
-- Mission Workcell이 대표 README/Progress/Site 상태 직접 변경
+- Mission Workcell이 대표 README/Master Map/Site 상태 직접 변경
 - 다른 Workcell의 파일 수정
 - 같은 Mission 파일을 여러 AI가 동시에 수정
 
@@ -346,8 +346,9 @@ REJECT
 직접 수정 금지:
 
 - README 자동 영역
-- `docs/03-progress/progress.md`
+- `docs/01-master-map/mission-progress.md`
 - `site/data/missions.json`
+- `site/data/workcells.json`
 
 ### Step 4 — Sync
 
