@@ -24,11 +24,13 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [10 — Level 0 Prerequisite Term Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite/b1-1-10-000-index.md)
   - 선수 용어 29개를 `010 ~ 290` 개별 파일로 학습, V1
 - [10 — Level 0 Summary](./vocabulary/b1-1-system-monitoring-automation/b1-1-10-level-0-prerequisite.md)
-  - 기존 URL 호환 및 한 페이지 요약
 - [20 — Level 1 Top Core Term Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core/b1-1-20-000-index.md)
   - Top Core 28개를 `010 ~ 280` 개별 파일로 학습, V2~V3
 - [20 — Level 1 Summary](./vocabulary/b1-1-system-monitoring-automation/b1-1-20-level-1-core.md)
-- [30 — Level 2 Execution](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
+- [30 — Level 2 Execution Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution/b1-1-30-000-index.md)
+  - Preflight부터 Evidence까지 12개 독립 실행 학습 단위, V4
+- [30 — Level 2 Full Guide](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
+  - 기존 URL 호환 및 전체 실행 순서 한 페이지 요약
 - [40 — Level 3 Principles](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
 - [50 — Level 4 Troubleshooting](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting.md)
 - [60 — Level 5 Evaluation](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation.md)
@@ -44,9 +46,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   ↓
 20 Level 1 → 28 individual Top Core term files ✅
   ↓
-30 Level 2 Execution → individual term split NEXT
+30 Level 2 → 12 execution learning units ✅
   ↓
-40 Level 3
+40 Level 3 Principles → NEXT
   ↓
 50 Level 4
   ↓
