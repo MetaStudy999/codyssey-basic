@@ -46,3 +46,17 @@ jobs:
         run: python scripts/sync_growth.py --check
       - name: Validate V3 structure, links and dashboard wiring
         run: python scripts/validate_v3.py
+      - name: Install browser smoke dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Run browser smoke test
+        run: python scripts/browser_smoke.py
+      - name: Upload browser smoke screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-os-v3-browser-smoke
+          path: browser-smoke.png
+          if-no-files-found: ignore
+          retention-days: 7
