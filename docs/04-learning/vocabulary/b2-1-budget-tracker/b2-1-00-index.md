@@ -41,8 +41,8 @@ cross-cutting error boundary: @cli_guard
 |---:|---|---|---|
 | 00 | 현재 Index / Source Lock | Source·선택지·구현 경계 고정 | ✅ |
 | 10 | [Level 0 — Prerequisite](./b2-1-10-level-0-prerequisite/b2-1-10-000-index.md) | 선수 용어 45개, V1 | ✅ |
-| 20 | Level 1 — Top Core | 핵심 개념 V2~V3 | NEXT |
-| 30 | Level 2 — Execution | CLI·저장·CRUD·검색·요약·입출력 실행 | 이후 |
+| 20 | [Level 1 — Top Core](./b2-1-20-level-1-core/b2-1-20-000-index.md) | 핵심 개념 40개, V2~V3 | ✅ |
+| 30 | Level 2 — Execution | CLI·저장·CRUD·검색·요약·입출력 실행 | NEXT |
 | 40 | Level 3 — Principles | Generator·Layer·Atomicity WHY/HOW | 이후 |
 | 50 | Level 4 — Troubleshooting | 입력·파일·CSV·무결성 장애 진단 | 이후 |
 | 60 | Level 5 — Evaluation | 평가 자기설명 | 이후 |
@@ -64,6 +64,20 @@ CLI 입력
 → Evidence + Explanation
 ```
 
+## Level 1 핵심 연결
+
+```text
+Transaction
+→ Data Model / dataclass
+→ Validation
+→ Persistent File Storage
+→ CRUD / Search / Summary
+→ Generator / yield / Streaming
+→ Decorator / Type Contract
+→ Model / Repository / Service / CLI
+→ Data Integrity / File Atomicity / Exception Handling
+```
+
 ## 상태 경계
 
 ```text
@@ -77,4 +91,8 @@ LEARNING STRUCTURE READY
 
 Visual Learning은 **DEFERRED**다.
 
-[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 0 →](./b2-1-10-level-0-prerequisite/b2-1-10-000-index.md)
+## 다음 작업
+
+`Level 2 — 실제 구현 저장소를 기준으로 CLI 실행, 저장 초기화, add/list/search/update/delete, summary/budget/category, import/export, generator/atomic rewrite, 오류 exit 검증을 독립 실행 단위로 구조화`
+
+[← B1-2 Advanced](../b1-2-linux-process-resource-troubleshooting/b1-2-90-advanced/b1-2-90-000-index.md) · [전체 Vocabulary](../README.md) · [Level 1 →](./b2-1-20-level-1-core/b2-1-20-000-index.md)
