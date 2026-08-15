@@ -30,8 +30,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
 - [30 — Level 2 Execution Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution/b1-1-30-000-index.md)
   - Preflight부터 Evidence까지 12개 독립 실행 학습 단위, V4
 - [30 — Level 2 Full Guide](./vocabulary/b1-1-system-monitoring-automation/b1-1-30-level-2-execution.md)
-  - 기존 URL 호환 및 전체 실행 순서 한 페이지 요약
-- [40 — Level 3 Principles](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
+- [40 — Level 3 Principle Unit Index](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles/b1-1-40-000-index.md)
+  - 권한 모델부터 로그 수명주기까지 12개 구조·원리 학습 단위, WHY/HOW
+- [40 — Level 3 Full Guide](./vocabulary/b1-1-system-monitoring-automation/b1-1-40-level-3-principles.md)
 - [50 — Level 4 Troubleshooting](./vocabulary/b1-1-system-monitoring-automation/b1-1-50-level-4-troubleshooting.md)
 - [60 — Level 5 Evaluation](./vocabulary/b1-1-system-monitoring-automation/b1-1-60-level-5-evaluation.md)
 - [70 — Review Pack](./vocabulary/b1-1-system-monitoring-automation/b1-1-70-review-pack.md)
@@ -48,9 +49,9 @@ Mission 분석 → 최소 충분 설계 → 구현 → 테스트 → 리뷰 → 
   ↓
 30 Level 2 → 12 execution learning units ✅
   ↓
-40 Level 3 Principles → NEXT
+40 Level 3 → 12 principle learning units ✅
   ↓
-50 Level 4
+50 Level 4 Troubleshooting → NEXT
   ↓
 60 Level 5
   ↓
