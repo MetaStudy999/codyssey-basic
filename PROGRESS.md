@@ -8,7 +8,7 @@
 
 ## 2026-08-16 Full Repository Audit
 
-15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 전수 확인했습니다. 상세 근거는 `training/round-01-clear/REFERENCE-AUDIT.md`에 기록합니다.
+15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 기준으로 진행 상태를 추적합니다. 상세 근거는 `training/round-01-clear/REFERENCE-AUDIT.md`에 기록합니다.
 
 ### Phase A Reference Build 준비도
 
@@ -28,14 +28,14 @@
 | B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 있으나 React 기준본 마감 필요 |
 | B5-2 | **CORE READY** | Memo FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/Checklist/verify/mapping/evidence 기준본 준비 |
 | B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence 기준본 준비 |
-| B7-2 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
+| B7-2 | **CORE READY** | Full-stack REST, auth/token, user-scoped AI Chat, Post ownership, ERD/API/Architecture, deployment/collaboration/evidence 기준본 준비 |
 
 ### 집계
 
-- CORE READY: **4 / 15**
+- CORE READY: **5 / 15**
 - ADVANCED: **9 / 15**
 - PARTIAL: **1 / 15**
-- SCAFFOLD: **1 / 15**
+- SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
 
 > 위 집계는 Phase A Reference 준비도입니다. 공식 미션 통과율이 아닙니다.
@@ -62,34 +62,38 @@
 
 ## Phase A 작업 큐
 
-실행 검증은 뒤로 미루고, 미완성도가 높은 Reference부터 닫습니다.
+모든 SCAFFOLD는 실제 Reference로 전환했습니다. 이제 PARTIAL과 ADVANCED를 닫습니다.
 
-1. **B7-2** — Project B Reference Complete
-2. **B4-2** — React SPA CRUD Reference 마감
-3. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
-4. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
-5. **B5-2 / B5-3 / B6-2 / B7-1** — CORE READY canonical 최종검토
-6. **Phase B — Cross-Mission Audit**
-7. **Phase C — B1-1부터 Runtime CLEAR**
+1. **B4-2** — React SPA CRUD Reference 마감
+2. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
+3. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
+4. **B5-2 / B5-3 / B6-2 / B7-1 / B7-2** — CORE READY canonical 최종검토
+5. **Phase B — Cross-Mission Audit**
+6. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
-### B5-2
-- **SCAFFOLD → CORE READY**
-- Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD 기준본
-- `303` PRG, 역할 분리, verify/mapping/evidence/Beginner Guide 준비
+### B5-2 — SCAFFOLD → CORE READY
+- Memo FastAPI/Jinja2/SQLAlchemy/SQLite CRUD
+- `303` PRG, 역할 분리, verify/mapping/evidence/Beginner Guide
 
-### B5-3
-- **SCAFFOLD → CORE READY**
-- 세션 기반 로그인/로그아웃
-- `Depends(require_username)` 보호 URL
-- User 1:N Project 1:N Task + `back_populates`
-- cascade 정책과 관계 데이터 화면
-- Task 진행중↔완료 상태 변경 Service
-- setup/verify/reset/DB inspection
-- Requirements Mapping / Evaluation Q&A / Evidence Guide / Beginner Guide / Checklist
+### B5-3 — SCAFFOLD → CORE READY
+- 세션 로그인/로그아웃, `Depends` 보호
+- User 1:N Project 1:N Task, `back_populates`, cascade
+- Task 상태 변경 Service
+- verify/mapping/evidence/Beginner Guide
 
-두 미션 모두 실제 Runtime은 수행하지 않았으므로 Mission 상태는 `⬜ NOT STARTED`를 유지합니다.
+### B7-2 — SCAFFOLD → CORE READY
+- 회원가입 + PBKDF2 password hash
+- Bearer access token + logout revoke
+- User-scoped ChatSession/Message + 다른 사용자 404
+- 게시판 REST CRUD + 작성자 수정/삭제 403
+- 분리 Frontend REST client
+- ERD / API Specification / Architecture
+- Collaboration / Cloud Deployment / Cleanup Runtime plan
+- setup / verify / reset / DB inspection / Evidence Guide
+
+B5-2, B5-3, B7-2 모두 실제 Runtime은 수행하지 않았으므로 Mission 상태는 `⬜ NOT STARTED`를 유지합니다.
 
 ## R01 작업 흐름
 
