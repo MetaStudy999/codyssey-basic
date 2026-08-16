@@ -2,11 +2,13 @@
 
 현재 Active Round: **R01 — CLEAR**
 
-현재 작업 모드: **Phase C — RUNTIME CLEAR**
+현재 작업 모드: **Phase C — RUNTIME CLEAR / FAST EXECUTE**
+
+현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
 현재 Runtime 대상: **B1-1 🟡 ACTIVE**
 
-> Phase A Reference Build, Canonical Final Consistency Audit, Phase B Cross-Mission Audit와 Runtime Runbook Freeze를 완료했습니다. 이제 B1-1부터 실제 실행·검증·Evidence를 기준으로 순차 CLEAR합니다.
+> Phase A Reference Build, Canonical Final Consistency Audit, Phase B Cross-Mission Audit와 Runtime Runbook Freeze를 완료했습니다. 이제 FAST TRACK에 따라 **필수 미션을 먼저 모두 CLEAR한 뒤 선택 미션을 수행**합니다.
 
 ## 완료 현황
 
@@ -15,9 +17,12 @@
 - Phase B Cross-Mission Audit: **COMPLETE / BLOCKER 0**
 - Phase C Runtime Runbook: **FROZEN**
 - Runtime `✅ CLEAR`: **0 / 15**
+- FAST TRACK Stage 1 — Required: **0 / 11 CLEAR**
+- FAST TRACK Stage 2 — Optional: **0 / 4 CLEAR**
 
 핵심 문서:
 
+- `MISSION-INDEX.md`
 - `training/round-01-clear/REFERENCE-AUDIT.md`
 - `training/round-01-clear/CANONICAL-AUDIT.md`
 - `training/round-01-clear/CROSS-MISSION-AUDIT.md`
@@ -26,25 +31,40 @@
 - `training/round-01-clear/MISSION-DEPENDENCY-MAP.md`
 - `standards/CANONICAL-REFERENCE-STANDARD.md`
 
+## FAST TRACK
+
+```text
+Stage 1 — REQUIRED CLEAR
+B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
+→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+
+Stage 2 — OPTIONAL CLEAR
+B4-2 → B5-2 → B5-3 → B7-2
+```
+
+FAST TRACK은 선택 미션을 생략하는 경로가 아닙니다. **필수 11개를 먼저 완료하여 핵심 과정을 빠르게 닫고, 이후 선택 4개를 연속 수행해 R01 전체 15개를 CLEAR**합니다.
+
+Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FAST TRACK은 실제 R01 Runtime의 운영 순서를 설명합니다.
+
 ## Runtime Mission 상태
 
-| 순서 | 미션 | 구분 | 상태 |
-|---:|---|---|---|
-| 1 | B1-1 | 필수 | 🟡 ACTIVE |
-| 2 | B1-2 | 필수 | ⬜ NOT STARTED |
-| 3 | B2-1 | 필수 | ⬜ NOT STARTED |
-| 4 | B2-2 | 필수 | ⬜ NOT STARTED |
-| 5 | B3-1 | 필수 | ⬜ NOT STARTED |
-| 6 | B3-2 | 필수 | ⬜ NOT STARTED |
-| 7 | B4-1 | 필수 | ⬜ NOT STARTED |
-| 8 | B5-1 | 필수 | ⬜ NOT STARTED |
-| 9 | B6-1 | 필수 | ⬜ NOT STARTED |
-| 10 | B6-2 | 필수 | ⬜ NOT STARTED |
-| 11 | B7-1 | 필수 Term Project | ⬜ NOT STARTED |
-| 12 | B4-2 | 선택 | ⬜ NOT STARTED |
-| 13 | B5-2 | 선택 | ⬜ NOT STARTED |
-| 14 | B5-3 | 선택 | ⬜ NOT STARTED |
-| 15 | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
+| 순서 | Stage | 미션 | 구분 | 상태 |
+|---:|---|---|---|---|
+| 1 | Required | B1-1 | 필수 | 🟡 ACTIVE |
+| 2 | Required | B1-2 | 필수 | ⬜ NOT STARTED |
+| 3 | Required | B2-1 | 필수 | ⬜ NOT STARTED |
+| 4 | Required | B2-2 | 필수 | ⬜ NOT STARTED |
+| 5 | Required | B3-1 | 필수 | ⬜ NOT STARTED |
+| 6 | Required | B3-2 | 필수 | ⬜ NOT STARTED |
+| 7 | Required | B4-1 | 필수 | ⬜ NOT STARTED |
+| 8 | Required | B5-1 | 필수 | ⬜ NOT STARTED |
+| 9 | Required | B6-1 | 필수 | ⬜ NOT STARTED |
+| 10 | Required | B6-2 | 필수 | ⬜ NOT STARTED |
+| 11 | Required | B7-1 | 필수 Term Project | ⬜ NOT STARTED |
+| 12 | Optional | B4-2 | 선택 | ⬜ NOT STARTED |
+| 13 | Optional | B5-2 | 선택 | ⬜ NOT STARTED |
+| 14 | Optional | B5-3 | 선택 | ⬜ NOT STARTED |
+| 15 | Optional | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
 ## Phase B에서 확정한 공통 정책
 
@@ -95,22 +115,26 @@ B1-1/B1-2  AGENT_* + local-only key file
 
 ```text
 PHASE-C-PREFLIGHT
-→ B1-1 BEGINNER-GUIDE STEP 01
+→ 현재 미션 START-CHECK(있는 경우)
+→ BEGINNER-GUIDE
 → 실제 Runtime
-→ sudo verify
+→ Verify
 → Evidence
 → Evaluation 설명
 → Secret 확인
-→ ✅ B1-1 CLEAR 판정
-→ B1-2 시작
+→ ✅ CLEAR 판정
+→ FAST TRACK의 다음 미션
 ```
 
 ## 전체 실행 순서
 
 ```text
+[Stage 1 — Required]
 B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 → B4-1 → B5-1 → B6-1 → B6-2 → B7-1
-→ B4-2 → B5-2 → B5-3 → B7-2
+
+[Stage 2 — Optional]
+B4-2 → B5-2 → B5-3 → B7-2
 ```
 
 ## R01 전체 흐름
@@ -119,7 +143,9 @@ B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 Phase A Reference Build          ✅ 15/15 CORE READY
 → Canonical Consistency Audit    ✅ PASS 15/15
 → Phase B Cross-Mission Audit    ✅ COMPLETE / BLOCKER 0
-→ Phase C Runtime CLEAR          🟡 B1-1 ACTIVE
+→ Phase C FAST TRACK
+   ├─ Stage 1 Required           🟡 B1-1 ACTIVE / 0 of 11 CLEAR
+   └─ Stage 2 Optional           ⬜ 0 of 4 CLEAR
 ```
 
 ## 상태 정의
