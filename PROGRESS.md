@@ -26,16 +26,16 @@
 | B6-2 | **CORE READY** | Reference 구현/테스트/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
 | B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 있으나 React 기준본 마감 필요 |
-| B5-2 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
+| B5-2 | **CORE READY** | Memo FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/Checklist/verify/mapping/evidence 기준본 준비 |
 | B5-3 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
 | B7-2 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
 
 ### 집계
 
-- CORE READY: **2 / 15**
+- CORE READY: **3 / 15**
 - ADVANCED: **9 / 15**
 - PARTIAL: **1 / 15**
-- SCAFFOLD: **3 / 15**
+- SCAFFOLD: **2 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
 
 > 위 집계는 Phase A Reference 준비도입니다. 공식 미션 통과율이 아닙니다.
@@ -64,15 +64,25 @@
 
 실행 검증은 뒤로 미루고, 미완성도가 높은 Reference부터 닫습니다.
 
-1. **B5-2** — FastAPI CRUD Reference Complete
-2. **B5-3** — 인증/인가/연관관계 Reference Complete
-3. **B7-2** — Project B Reference Complete
-4. **B4-2** — React SPA CRUD Reference 마감
-5. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
-6. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
-7. **B6-2 / B7-1** — CORE READY canonical 최종검토
-8. **Phase B — Cross-Mission Audit**
-9. **Phase C — B1-1부터 Runtime CLEAR**
+1. **B5-3** — 인증/인가/연관관계 Reference Complete
+2. **B7-2** — Project B Reference Complete
+3. **B4-2** — React SPA CRUD Reference 마감
+4. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
+5. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
+6. **B5-2 / B6-2 / B7-1** — CORE READY canonical 최종검토
+7. **Phase B — Cross-Mission Audit**
+8. **Phase C — B1-1부터 Runtime CLEAR**
+
+## 최근 Phase A 변경
+
+- **B5-2 SCAFFOLD → CORE READY**
+- Memo 단일 도메인 Reference 앱 구현
+- Jinja2 SSR CRUD + `303` PRG
+- Router/Service/Repository/Model 분리
+- SQLite + SQLAlchemy + `Depends(get_db)` 구성
+- setup/verify/reset/DB inspection 도구 준비
+- Requirements Mapping / Evaluation Q&A / Evidence Guide / Beginner Guide / Checklist 준비
+- 실제 Runtime은 수행하지 않았으므로 Mission 상태는 `⬜ NOT STARTED` 유지
 
 ## R01 작업 흐름
 
