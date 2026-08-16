@@ -1,0 +1,20 @@
+version: 1
+history_id: pre-restart-20260816
+captured_before_cycle: restart-20260816
+snapshot_branch: archive/pre-restart-20260816-main
+purpose: "2026-08-16 새 기준 시작 전에 존재하던 급행 수행 상태와 성취를 현재 진도와 분리해 보존한다. 과거 기록은 새 Cycle의 PASS로 자동 승계하지 않는다."
+
+principles:
+  - "과거 작업은 참고자료이지 현재 진행상태가 아니다."
+  - "새 기준 이후 실제로 다시 검증한 것만 현재 PASS/CLEAR로 인정한다."
+  - "기존 코드와 문서는 KEEP/REUSE/REWRITE/ARCHIVE로 판정해 재사용할 수 있다."
+
+mission_results:
+  - mission: B2-1
+    result: PASS
+    learning: EXPLAINABLE
+    gate: G8_MERGE
+    evidence_state: preserved-in-git-history-and-mission-repository
+    note: "새 기준 시작 전에 Control Tower에 공식 통합되어 있던 확인된 결과. 현재 Cycle에서는 다시 TODO부터 검증한다."
+
+legacy_runtime_note: "각 Mission Repository의 기존 .live/mission-status.json은 과거 Workcell telemetry이며 새 기준 상태로 간주하지 않는다. 각 Mission을 새롭게 시작할 때 archive branch를 만든 뒤 schema v2로 reset한다."
