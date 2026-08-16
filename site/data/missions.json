@@ -39,6 +39,16 @@
       "name_en": "Term Project"
     }
   ],
+  "gate_order": [
+    "G1_SOURCE",
+    "G2_BUILD",
+    "G3_TEST",
+    "G4_REVIEW",
+    "G5_RUNTIME",
+    "G6_EVIDENCE",
+    "G7_LEARN",
+    "G8_MERGE"
+  ],
   "missions": [
     {
       "id": "B1-1",
@@ -48,13 +58,9 @@
       "title": "컴퓨터가 알아서 자기 상태를 점검하게 만들기",
       "title_en": "System Monitor",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor",
-      "domain_id": "B1",
-      "domain_name": "Linux와 OS",
-      "domain_name_en": "Linux & OS",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -64,7 +70,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B1",
+      "domain_name": "Linux와 OS",
+      "domain_name_en": "Linux & OS",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B1-2",
@@ -74,13 +84,9 @@
       "title": "컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기",
       "title_en": "Linux Troubleshooting",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting",
-      "domain_id": "B1",
-      "domain_name": "Linux와 OS",
-      "domain_name_en": "Linux & OS",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -90,7 +96,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B1",
+      "domain_name": "Linux와 OS",
+      "domain_name_en": "Linux & OS",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B2-1",
@@ -100,23 +110,23 @@
       "title": "나만의 용돈 기입장 프로그램 만들기",
       "title_en": "Budget CLI",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker",
+      "status": "TODO",
+      "learning": "NOT-STUDIED",
+      "current_gate": "G1_SOURCE",
+      "gates": {
+        "G1_SOURCE": "TODO",
+        "G2_BUILD": "TODO",
+        "G3_TEST": "TODO",
+        "G4_REVIEW": "TODO",
+        "G5_RUNTIME": "TODO",
+        "G6_EVIDENCE": "TODO",
+        "G7_LEARN": "TODO",
+        "G8_MERGE": "TODO"
+      },
       "domain_id": "B2",
       "domain_name": "Python과 Git 심화",
       "domain_name_en": "Python & Git",
-      "status": "PASS",
-      "learning": "EXPLAINABLE",
-      "current_gate": "G8_MERGE",
-      "current_gate_label": "G8 MERGE",
-      "gates": {
-        "G1_SOURCE": "PASS",
-        "G2_BUILD": "PASS",
-        "G3_TEST": "PASS",
-        "G4_REVIEW": "PASS",
-        "G5_RUNTIME": "PASS",
-        "G6_EVIDENCE": "PASS",
-        "G7_LEARN": "PASS",
-        "G8_MERGE": "PASS"
-      }
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B2-2",
@@ -126,13 +136,9 @@
       "title": "친구 3~5명과 함께 프로그램 만드는 법 연습하기",
       "title_en": "Git Collaboration",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration",
-      "domain_id": "B2",
-      "domain_name": "Python과 Git 심화",
-      "domain_name_en": "Python & Git",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -142,7 +148,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B2",
+      "domain_name": "Python과 Git 심화",
+      "domain_name_en": "Python & Git",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B3-1",
@@ -152,13 +162,9 @@
       "title": "정보를 엄청 빠르게 찾아주는 작은 저장소 만들기",
       "title_en": "Mini Redis",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store",
-      "domain_id": "B3",
-      "domain_name": "자료구조와 알고리즘",
-      "domain_name_en": "Data Structures & Algorithms",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -168,7 +174,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B3",
+      "domain_name": "자료구조와 알고리즘",
+      "domain_name_en": "Data Structures & Algorithms",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B3-2",
@@ -178,13 +188,9 @@
       "title": "파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기",
       "title_en": "Mini Git",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker",
-      "domain_id": "B3",
-      "domain_name": "자료구조와 알고리즘",
-      "domain_name_en": "Data Structures & Algorithms",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -194,7 +200,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B3",
+      "domain_name": "자료구조와 알고리즘",
+      "domain_name_en": "Data Structures & Algorithms",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B4-1",
@@ -204,13 +214,9 @@
       "title": "나를 소개하는 웹페이지 처음부터 만들기",
       "title_en": "Portfolio",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio",
-      "domain_id": "B4",
-      "domain_name": "웹 핵심과 프론트엔드",
-      "domain_name_en": "Web & Front-end",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -220,7 +226,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B4",
+      "domain_name": "웹 핵심과 프론트엔드",
+      "domain_name_en": "Web & Front-end",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B4-2",
@@ -230,13 +240,9 @@
       "title": "버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기",
       "title_en": "React SPA",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app",
-      "domain_id": "B4",
-      "domain_name": "웹 핵심과 프론트엔드",
-      "domain_name_en": "Web & Front-end",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -246,7 +252,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B4",
+      "domain_name": "웹 핵심과 프론트엔드",
+      "domain_name_en": "Web & Front-end",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B5-1",
@@ -256,13 +266,9 @@
       "title": "정보를 깔끔하게 정리하는 디지털 서랍장 만들기",
       "title_en": "SQL Database",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design",
-      "domain_id": "B5",
-      "domain_name": "데이터베이스와 백엔드",
-      "domain_name_en": "Database & Back-end",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -272,7 +278,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B5",
+      "domain_name": "데이터베이스와 백엔드",
+      "domain_name_en": "Database & Back-end",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B5-2",
@@ -282,13 +292,9 @@
       "title": "글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기",
       "title_en": "FastAPI CRUD",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app",
-      "domain_id": "B5",
-      "domain_name": "데이터베이스와 백엔드",
-      "domain_name_en": "Database & Back-end",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -298,7 +304,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B5",
+      "domain_name": "데이터베이스와 백엔드",
+      "domain_name_en": "Database & Back-end",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B5-3",
@@ -308,13 +318,9 @@
       "title": "로그인이 되고 회원끼리 연결되는 웹 서비스 만들기",
       "title_en": "Auth & Relations",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service",
-      "domain_id": "B5",
-      "domain_name": "데이터베이스와 백엔드",
-      "domain_name_en": "Database & Back-end",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -324,7 +330,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B5",
+      "domain_name": "데이터베이스와 백엔드",
+      "domain_name_en": "Database & Back-end",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B6-1",
@@ -334,13 +344,9 @@
       "title": "내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기",
       "title_en": "Cloud Deployment",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment",
-      "domain_id": "B6",
-      "domain_name": "클라우드와 AI API",
-      "domain_name_en": "Cloud & AI API",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -350,7 +356,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B6",
+      "domain_name": "클라우드와 AI API",
+      "domain_name_en": "Cloud & AI API",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B6-2",
@@ -360,13 +370,9 @@
       "title": "내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기",
       "title_en": "AI Git Assistant",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer",
-      "domain_id": "B6",
-      "domain_name": "클라우드와 AI API",
-      "domain_name_en": "Cloud & AI API",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -376,7 +382,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B6",
+      "domain_name": "클라우드와 AI API",
+      "domain_name_en": "Cloud & AI API",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B7-1",
@@ -386,13 +396,9 @@
       "title": "웹 기반 AI 챗봇 서비스 개발 프로젝트",
       "title_en": "Web AI Chatbot",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot",
-      "domain_id": "B7",
-      "domain_name": "Term Project",
-      "domain_name_en": "Term Project",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -402,7 +408,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B7",
+      "domain_name": "Term Project",
+      "domain_name_en": "Term Project",
+      "current_gate_label": "G1 SOURCE"
     },
     {
       "id": "B7-2",
@@ -412,13 +422,9 @@
       "title": "웹 기반 AI 챗봇 서비스 고도화 프로젝트",
       "title_en": "Advanced AI Chatbot",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot",
-      "domain_id": "B7",
-      "domain_name": "Term Project",
-      "domain_name_en": "Term Project",
       "status": "TODO",
       "learning": "NOT-STUDIED",
       "current_gate": "G1_SOURCE",
-      "current_gate_label": "G1 SOURCE",
       "gates": {
         "G1_SOURCE": "TODO",
         "G2_BUILD": "TODO",
@@ -428,7 +434,11 @@
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
-      }
+      },
+      "domain_id": "B7",
+      "domain_name": "Term Project",
+      "domain_name_en": "Term Project",
+      "current_gate_label": "G1 SOURCE"
     }
   ]
 }

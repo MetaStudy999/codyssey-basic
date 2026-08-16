@@ -102,23 +102,23 @@ B7 Term Project
 
 <!-- AUTO:MISSION_PROGRESS:START -->
 
-| 순서 | ID | 제목 | 공식 구분 | 수행 상태 | 현재 Gate | 학습 | Repository |
-|---:|---|---|---|---|---|---|---|
-| 01 | B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
-| 02 | B1-2 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
-| 03 | B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수 | PASS | G8 MERGE | EXPLAINABLE | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
-| 04 | B2-2 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
-| 05 | B3-1 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
-| 06 | B3-2 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
-| 07 | B4-1 | 나를 소개하는 웹페이지 처음부터 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
-| 08 | B4-2 | 버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
-| 09 | B5-1 | 정보를 깔끔하게 정리하는 디지털 서랍장 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
-| 10 | B5-2 | 글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
-| 11 | B5-3 | 로그인이 되고 회원끼리 연결되는 웹 서비스 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
-| 12 | B6-1 | 내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
-| 13 | B6-2 | 내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
-| 14 | B7-1 | 웹 기반 AI 챗봇 서비스 개발 프로젝트 | Term Project | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
-| 15 | B7-2 | 웹 기반 AI 챗봇 서비스 고도화 프로젝트 | Term Project | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
+| ID | 제목 | 공식 구분 | 현재 상태 | 현재 Gate | 학습 | Repository |
+|---|---|---|---|---|---|---|
+| B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
+| B1-2 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
+| B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
+| B2-2 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
+| B3-1 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
+| B3-2 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
+| B4-1 | 나를 소개하는 웹페이지 처음부터 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
+| B4-2 | 버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
+| B5-1 | 정보를 깔끔하게 정리하는 디지털 서랍장 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
+| B5-2 | 글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
+| B5-3 | 로그인이 되고 회원끼리 연결되는 웹 서비스 만들기 | 선택 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
+| B6-1 | 내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
+| B6-2 | 내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
+| B7-1 | 웹 기반 AI 챗봇 서비스 개발 프로젝트 | 필수 · Term Project | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
+| B7-2 | 웹 기반 AI 챗봇 서비스 고도화 프로젝트 | 구분 미지정 · Term Project | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
 
 <!-- AUTO:MISSION_PROGRESS:END -->
 
