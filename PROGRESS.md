@@ -2,43 +2,22 @@
 
 현재 Active Round: **R01 — CLEAR**
 
-현재 작업 모드: **Phase A — REFERENCE BUILD**
+현재 작업 모드: **Phase B — CROSS-MISSION AUDIT**
 
-> Phase A에서는 B1-1~B7-2의 기준 구현·학습자료·검증계획을 먼저 준비할 수 있습니다. 실제 Runtime/Evidence가 완료되지 않은 미션은 `✅ CLEAR`로 변경하지 않습니다.
+> Phase A Reference Build와 Canonical Final Consistency Audit를 완료했습니다. Phase B는 실제 Runtime을 시작하기 전에 15개 미션의 환경·버전·포트·Secret·의존성·선후관계를 횡단 점검하는 단계입니다.
 
-## 2026-08-17 Full Repository Audit
+## Phase A / Canonical 결과
 
-15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 기준으로 추적합니다.
-
-### Phase A Reference Build 준비도
-
-| 미션 | Reference 판정 | 현재 핵심 상태 |
-|---|---|---|
-| B1-1 | **CORE READY** | safe SSH/UFW, permission verify, hardened monitor, Guide/Mapping/Evidence |
-| B1-2 | **CORE READY** | isolated fault lab, controlled Before/After, diagnostic monitor, runtime gate |
-| B2-1 | **CORE READY** | CLI/persistence/streaming/atomic rewrite, boundary tests, verifier/status |
-| B2-2 | **CORE READY** | team skeleton, collaboration policy, GitHub runtime audit/status |
-| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, verifier/status |
-| B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, edge tests, runtime gate/status |
-| B4-1 | **CORE READY** | Vanilla portfolio, explicit STATE flows, API states/map-filter, responsive/static/runtime gates |
-| B5-1 | **CORE READY** | SQLite 4-table schema, constraints, Q01~Q16, exact coverage verify, runtime evidence runner/status |
-| B6-1 | **CORE READY** | AWS network/EC2/Nginx/SG/IAM/cleanup reference, read-only runtime verify, Guide/Checklist/Status |
-| B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
-| B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **CORE READY** | React SPA, Supabase CRUD, routes/components/hooks/form/state/deploy/evidence |
-| B5-2 | **CORE READY** | FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence |
-| B5-3 | **CORE READY** | Session auth, Depends, relations/state transition, Guide/verify/mapping/evidence |
-| B7-2 | **CORE READY** | Full-stack REST/auth/user-scoped AI Chat/ownership/docs/deploy/evidence |
-
-### 집계
-
-- CORE READY: **15 / 15**
-- ADVANCED: **0 / 15**
-- PARTIAL: **0 / 15**
-- SCAFFOLD: **0 / 15**
+- Reference Build: **CORE READY 15 / 15**
+- Canonical Final Consistency Audit: **PASS 15 / 15**
+- ADVANCED/PARTIAL/SCAFFOLD: **0**
 - Runtime `✅ CLEAR`: **0 / 15**
 
-> 위 집계는 Phase A Reference 준비도이며 공식 미션 통과율이 아닙니다.
+세부 감사 기록:
+
+- `training/round-01-clear/REFERENCE-AUDIT.md`
+- `training/round-01-clear/CANONICAL-AUDIT.md`
+- `standards/CANONICAL-REFERENCE-STANDARD.md`
 
 ## Runtime Mission 상태
 
@@ -60,59 +39,58 @@
 | 14 | B5-3 | 선택 | ⬜ NOT STARTED |
 | 15 | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
-## Phase A 작업 큐
+Runtime 상태는 Reference 준비도와 별개입니다. 실제 실행·검증·필요 Evidence 없이 상태를 `✅ CLEAR`로 변경하지 않습니다.
 
-1. **15개 CORE READY canonical 최종 정합성 검사**
-2. **Phase B — Cross-Mission Audit**
-3. **Phase C — B1-1부터 Runtime CLEAR**
+## Phase B 감사 축
 
-## 최근 Phase A 변경
+1. OS / WSL / systemd / Shell
+2. Python / Node / package manager / virtual environment
+3. SQLite / remote DB / persistence path
+4. Port / Service / local server 충돌
+5. Secret / `.env` / API environment variable naming
+6. Git / GitHub collaboration dependencies
+7. Cloud / Region / IAM / deploy / cleanup
+8. Evidence path / Runtime Gate
+9. 필수·선택 미션 선후관계
+10. 공통 환경 재사용과 Mission isolation
+11. Phase C 실제 실행 순서와 Runtime Runbook
 
-### B6-1 — ADVANCED → CORE READY
+## 현재 작업 큐
 
-- 공식 Mission/Evaluation과 AWS Reference 구조 재대조
-- Region을 공식 필수 `ap-northeast-2`로 고정
-- VPC / Public Subnet / IGW / Public Route / SG / EC2 / Nginx traffic path 정리
-- SG HTTP 80 public, SSH 22 learner CIDR-only, all-traffic public 금지 원칙 강화
-- read-only Runtime verifier에 Route Table↔Subnet association, EC2↔Subnet/SG, Public IPv4 검증 추가
-- external `/health` actual check와 Runtime Evidence 6종 gate 추가
-- architecture PNG/PDF, Troubleshooting, Cleanup 실제 완료 gate 추가
-- detailed Beginner Guide / Checklist / Reference Status 동기화
-- 실제 AWS 생성/접속/과금 정리는 PASS로 기록하지 않음
+1. **Cross-Mission Environment Matrix 작성**
+2. **Port / Secret / Dependency 충돌 감사**
+3. **Mission Dependency Map 및 재사용 환경 확정**
+4. **Phase C Runtime Runbook Freeze**
+5. **B1-1부터 실제 Runtime CLEAR**
 
-### B5-1 — ADVANCED → CORE READY
+## 최근 Canonical 보완
 
-- 4-table SQLite schema, PK/FK/constraints, 10+ rows, Q01~Q16 exact query coverage를 정리
-- `INNER JOIN`, LEFT JOIN, aggregate, subquery, UPDATE/DELETE, INDEX를 verifier에서 범주별 검사
-- `run-reference.sh` Runtime Evidence runner와 ERD/Evaluation/Guide/Checklist/Status를 추가
+### B6-2
 
-### B4-1 / B3-2 / B3-1 / B2-2 / B2-1 / B1-2 / B1-1
+- canonical Beginner Guide / Checklist를 상세 Reference와 동기화
+- 실제 저장소에 없는 `b6-2-evaluation.md` 참조 제거
+- Mission PDF/MD만 공식 Source로 고정
+- root README / Reference Build / Status 동기화
 
-- 각 미션의 구조/실패 경계/검증/Evidence Gate를 CORE READY 수준으로 보완했습니다.
+### B7-1
 
-실제 Runtime은 수행하지 않았으므로 Runtime 상태표는 변경하지 않습니다.
+- canonical Term Project Beginner Guide / Checklist 상세화
+- 실제 저장소에 없는 `b7-1-evaluation.md` 참조 제거
+- Mission PDF/MD만 공식 Source로 고정
+- root README / Reference Build / Status 동기화
 
-## Phase A 종료 판단
-
-15개 미션이 모두 **CORE READY**에 도달했습니다. 다만 Phase B로 이동하기 전에 다음 1회성 작업을 수행합니다.
+## R01 전체 흐름
 
 ```text
-15개 canonical 최종 정합성 검사
-→ Cross-Mission Audit
-→ Runtime 실행 순서/공통환경/포트/Secret/의존성 확정
+Phase A Reference Build          ✅ 15/15 CORE READY
+→ Canonical Consistency Audit    ✅ PASS 15/15
+→ Phase B Cross-Mission Audit    🟡 CURRENT
+→ Phase C Runtime CLEAR          대기
 ```
-
-## R01 작업 흐름
-
-1. **Phase A — Reference Build**: 15개 기준본 선제 준비
-2. **Phase B — Cross-Mission Audit**: 환경·포트·버전·Secret·의존성·선후관계 전체 검토
-3. **Phase C — Runtime CLEAR**: B1-1부터 실제 실행·검증·Evidence 후 순차 CLEAR
 
 ## 상태 정의
 
-- ⬜ `NOT STARTED`: 아직 해당 미션 Runtime 수행을 시작하지 않음
-- 🟡 `ACTIVE`: 현재 실제 수행/검증 중인 미션
+- ⬜ `NOT STARTED`: 해당 미션 Runtime 미시작
+- 🟡 `ACTIVE`: 현재 실제 수행/검증 대상
 - ⛔ `BLOCKED`: 실제 의존성 때문에 진행 불가
-- ✅ `CLEAR`: 구현·실제 검증·필요 Evidence 완료
-
-문서, Reference 구현 또는 폴더가 존재한다는 이유만으로 CLEAR로 변경하지 않습니다.
+- ✅ `CLEAR`: 구현 + 실제 검증 + 필요한 Evidence 완료
