@@ -6,6 +6,8 @@
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
+현재 B1-1 실제 Runtime 환경: **macOS Host + OrbStack Ubuntu 24.04**
+
 > Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다.
 
 ## FAST TRACK 실행 순서
@@ -33,6 +35,7 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] Phase C Preflight 동결
 - [x] Phase C Runtime Runbook Freeze
 - [x] B5-1 Q01~Q16 문서 drift 교정
+- [x] B1-1 현재 Runtime 환경을 macOS + OrbStack Ubuntu 24.04로 명시
 
 ## Phase C 실행 우선 원칙
 
@@ -62,6 +65,17 @@ NO
 
 Mission 상태: **🟡 ACTIVE**
 
+실제 실행 환경:
+
+```text
+macOS Host
+└─ OrbStack
+   └─ Ubuntu 24.04
+      └─ B1-1 Runtime
+```
+
+B1-1의 Linux 명령, SSH/UFW, 사용자·그룹/ACL, Agent, `monitor.sh`, cron, `verify.sh`는 **OrbStack Ubuntu 24.04 내부**에서 실행합니다.
+
 FAST TRACK 상태:
 
 - Stage 1 Required: **B1-1 진행 중 / 0 of 11 CLEAR**
@@ -70,20 +84,30 @@ FAST TRACK 상태:
 ## B1-1 즉시 실행 순서
 
 1. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
-2. B1-1 repository root / branch / local changes 확인
-3. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
-4. SSH 20022 safe migration
-5. UFW final policy
-6. users/groups/effective permission
-7. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
-8. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
-9. `monitor.sh` 정상/실패/Warning/rotation
-10. `agent-admin` cron 매분 + 실제 log growth
-11. `sudo bash training/round-01-clear/environment/verify.sh`
-12. `training/round-01-clear/evidence/` 실제 Evidence 연결
-13. Evaluation 설명 + Secret 최종 확인
-14. 조건 충족 시에만 `✅ B1-1 CLEAR`
-15. B1-2를 `🟡 ACTIVE`로 전환
+2. OrbStack Ubuntu 24.04 내부에서 B1-1 repository root / branch / local changes 확인
+3. B1-1 `training/round-01-clear/environment/ORBSTACK-UBUNTU-24.04.md` 확인
+4. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
+5. Ubuntu Guest의 실제 OS / `uname -m` / systemd 확인
+6. SSH 20022 safe migration
+7. Ubuntu 내부 UFW final policy
+8. users/groups/effective permission
+9. 제공 `agent-app.zip`의 실제 Guest CPU architecture/파일 확인
+10. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
+11. `monitor.sh` 정상/실패/Warning/rotation
+12. `agent-admin` cron 매분 + 실제 log growth
+13. `sudo bash training/round-01-clear/environment/verify.sh`
+14. `training/round-01-clear/evidence/` 실제 Evidence 연결
+15. Evaluation 설명 + Secret 최종 확인
+16. 조건 충족 시에만 `✅ B1-1 CLEAR`
+17. B1-2를 `🟡 ACTIVE`로 전환
+
+## OrbStack 환경 판정 규칙
+
+- macOS Host의 CPU만 보고 Agent binary architecture를 추측하지 않습니다. Ubuntu 내부 `uname -m` 결과를 사용합니다.
+- STEP 01에서 `WSL marker not detected`가 나와도 OrbStack에서는 이상이 아닐 수 있습니다.
+- OrbStack 자체 machine 접속 기능과 B1-1의 Ubuntu OpenSSH Server `20022/tcp`를 동일하게 간주하지 않습니다.
+- macOS/OrbStack networking과 Ubuntu 내부 UFW는 서로 다른 계층입니다.
+- Mission PASS는 OrbStack/Ubuntu 제품명으로 판단하지 않고 Ubuntu 내부 실제 Runtime 결과로 판정합니다.
 
 ## B1-1 안전 제한
 
