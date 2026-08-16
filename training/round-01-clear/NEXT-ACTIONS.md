@@ -2,6 +2,10 @@
 
 현재 목표는 **B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
 
+현재 운영 모드: **FAST EXECUTE**
+
+> Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다.
+
 ## Phase A/B 완료
 
 - [x] Phase A Reference Build — 15/15 CORE READY
@@ -12,6 +16,28 @@
 - [x] Phase C Preflight 동결
 - [x] Phase C Runtime Runbook Freeze
 - [x] B5-1 Q01~Q16 문서 drift 교정
+
+## Phase C 실행 우선 원칙
+
+실행 중 새 문제나 개선 아이디어가 생기면 먼저 다음을 판단합니다.
+
+```text
+현재 B1-1 CLEAR를 막는가?
+
+YES
+→ 원인 확인
+→ 최소 수정
+→ 재검증
+→ 계속 실행
+
+NO
+→ Runtime을 멈추지 않음
+→ 후속 개선 후보로 미룸
+```
+
+즉시 수정 대상은 공식 요구사항 누락, Runtime BLOCKER, Secret/보안, SSH/Data/Cloud 안전 문제, Verify/Evidence 오판정입니다. 현재 CLEAR와 무관한 리팩터링·문서 미세개선·UI 고도화·미래 Round 확장은 뒤로 미룹니다.
+
+운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다.
 
 ## 현재 Runtime 대상
 
