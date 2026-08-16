@@ -15,23 +15,25 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 
 ## 미션 저장소 바로가기
 
-| 순서 | 미션 | 구분 | 저장소 |
-|---:|---|---|---|
-| 1 | B1-1 | 필수 | [codyssey-basic-b1-1-system-monitor](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
-| 2 | B1-2 | 필수 | [codyssey-basic-b1-2-linux-troubleshooting](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
-| 3 | B2-1 | 필수 | [codyssey-basic-b2-1-budget-tracker](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
-| 4 | B2-2 | 필수 | [codyssey-basic-b2-2-git-team-collaboration](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
-| 5 | B3-1 | 필수 | [codyssey-basic-b3-1-fast-data-store](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
-| 6 | B3-2 | 필수 | [codyssey-basic-b3-2-file-change-tracker](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
-| 7 | B4-1 | 필수 | [codyssey-basic-b4-1-portfolio](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
-| 8 | B4-2 | 선택 | [codyssey-basic-b4-2-interactive-web-app](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
-| 9 | B5-1 | 필수 | [codyssey-basic-b5-1-database-design](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
-| 10 | B5-2 | 선택 | [codyssey-basic-b5-2-fastapi-crud-app](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
-| 11 | B5-3 | 선택 | [codyssey-basic-b5-3-fastapi-auth-service](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
-| 12 | B6-1 | 필수 | [codyssey-basic-b6-1-cloud-deployment](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
-| 13 | B6-2 | 필수 | [codyssey-basic-b6-2-ai-code-summarizer](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
-| 14 | B7-1 | 필수 Term Project | [codyssey-basic-b7-1-web-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
-| 15 | B7-2 | 선택 Term Project / 고도화 | [codyssey-basic-b7-2-advanced-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
+> `선행 미션`은 `training/round-01-clear/MISSION-DEPENDENCY-MAP.md`의 **Hard Dependency 기준**입니다. 단순한 기술 유사성이나 권장 학습 전이는 선행 미션으로 표시하지 않습니다.
+
+| 순서 | 미션 | 구분 | 선행 미션 | 저장소 |
+|---:|---|---|---|---|
+| 1 | B1-1 | 필수 | - | [codyssey-basic-b1-1-system-monitor](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
+| 2 | B1-2 | 필수 | **B1-1** | [codyssey-basic-b1-2-linux-troubleshooting](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
+| 3 | B2-1 | 필수 | - | [codyssey-basic-b2-1-budget-tracker](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
+| 4 | B2-2 | 필수 | - | [codyssey-basic-b2-2-git-team-collaboration](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
+| 5 | B3-1 | 필수 | - | [codyssey-basic-b3-1-fast-data-store](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
+| 6 | B3-2 | 필수 | - | [codyssey-basic-b3-2-file-change-tracker](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
+| 7 | B4-1 | 필수 | - | [codyssey-basic-b4-1-portfolio](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
+| 8 | B4-2 | 선택 | - | [codyssey-basic-b4-2-interactive-web-app](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
+| 9 | B5-1 | 필수 | - | [codyssey-basic-b5-1-database-design](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
+| 10 | B5-2 | 선택 | - | [codyssey-basic-b5-2-fastapi-crud-app](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
+| 11 | B5-3 | 선택 | - | [codyssey-basic-b5-3-fastapi-auth-service](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
+| 12 | B6-1 | 필수 | - | [codyssey-basic-b6-1-cloud-deployment](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
+| 13 | B6-2 | 필수 | - | [codyssey-basic-b6-2-ai-code-summarizer](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
+| 14 | B7-1 | 필수 Term Project | - | [codyssey-basic-b7-1-web-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
+| 15 | B7-2 | 선택 Term Project / 고도화 | **B7-1** | [codyssey-basic-b7-2-advanced-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
 
 통합 Control Tower 저장소: [MetaStudy999/codyssey-basic](https://github.com/MetaStudy999/codyssey-basic)
 
