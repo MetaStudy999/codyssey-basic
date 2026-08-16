@@ -1,6 +1,6 @@
 # R01 — Reference Build Audit
 
-감사일: 2026-08-16
+감사일: 2026-08-17
 
 ## 목적
 
@@ -23,10 +23,10 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 | B1-2 | **CORE READY** | Runtime Safety, controlled experiment matrix, hardened diagnostic monitor, report/runtime verify/status. 실제 장애 Runtime만 잔여 |
 | B2-1 | **CORE READY** | full CLI/JSONL 3-file persistence/generator/atomic rewrite, boundary tests, side-effect-light verify/status. 실제 CLI/Evidence만 잔여 |
 | B2-2 | **CORE READY** | team skeleton, collaboration policies/templates, strict local verify, GitHub server runtime audit, contribution/evidence matrix/status. 실제 팀 Runtime만 잔여 |
-| B3-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 자료구조 테스트/가이드 자체감사 |
-| B3-2 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Mini Git 완성도 감사 |
-| B4-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Portfolio/API/Pages 자체감사 |
-| B5-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. SQL 산출물 자체감사 |
+| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, collision/resize/LRU/TTL/OOM edge tests, hardened verify/mapping/Q&A/status. 실제 REPL/Evidence만 잔여 |
+| B3-2 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Mini Git 완성도 감사 필요 |
+| B4-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Portfolio/API/Pages 자체감사 필요 |
+| B5-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. SQL 산출물 자체감사 필요 |
 | B6-1 | **ADVANCED** | AWS Reference 구조 존재. canonical Guide/Checklist 동기화 필요 |
 | B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
@@ -37,23 +37,38 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 ## 집계
 
-- **CORE READY:** 10개 — B1-1, B1-2, B2-1, B2-2, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
-- **ADVANCED:** 5개 — B3-1, B3-2, B4-1, B5-1, B6-1
+- **CORE READY:** 11개 — B1-1, B1-2, B2-1, B2-2, B3-1, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
+- **ADVANCED:** 4개 — B3-2, B4-1, B5-1, B6-1
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
 ## 최근 자체감사 핵심
 
+### B3-1 ADVANCED → CORE READY
+
+공식 Mission/Evaluation과 현재 Reference 구현을 다시 대조해 다음을 보완했습니다.
+
+- Doubly Linked List 필수 6개 연산을 모두 unit test에 포함
+- HashMap same-bucket collision을 실제로 만들고 chaining 보존 검증
+- load factor `0.75`와 `>0.75`의 정확한 resize 경계 검증
+- MinHeap push/pop/peek/size와 minimum order 검증
+- `maxmemory=0` unlimited, UTF-8 overwrite memory accounting 강화
+- GET뿐 아니라 SET overwrite의 LRU refresh 검증
+- single-entry OOM 시 기존 데이터와 `evicted_keys` 보존 확인
+- 제한 이하가 될 때까지 반복 eviction 확인
+- EXPIRE 재설정의 stale heap item, DEL 후 same-key reinsert, overwrite TTL reset의 lazy deletion 안전성 확인
+- expired key를 GET/EXISTS/DEL/TTL/DBSIZE/KEYS에서 일관되게 처리하는 test 추가
+- verifier에 `heapq` 금지, AST syntax parse, tracked Secret-pattern scan, Runtime Evidence Gate 추가
+- Evaluation의 LFU 전환, 10만 건 병목, overhead 포함 memory model, 공정한 채점 보정 항목 보완
+- `REFERENCE-STATUS.md`, Mapping, Checklist, Evidence, root README 동기화
+
 ### B2-2 ADVANCED → CORE READY
 
 - Reference template과 실제 GitHub activity를 엄격히 분리
 - `TODO_RUNTIME`을 actual Issue/PR/Review/Conflict/Commit links로만 교체
 - local Git으로 완전히 증명할 수 없는 Branch Protection/Ruleset/PR/Review/Issue linkage를 위한 GitHub Runtime Audit 추가
-- 팀 전체 합계가 아니라 팀원별 PR/Review/feedback/contribution/troubleshooting 기준 검증
-- Review quality/author interaction은 실제 thread 내용 검토
-- conflict 2+/non-trivial 1+를 실제 PR/commit과 연결
-- local verify가 template/policy/TODO/history/commit-message 구조를 확인
+- 팀원별 PR/Review/feedback/contribution/troubleshooting 기준 검증
 
 ### B2-1 ADVANCED → CORE READY
 
@@ -79,9 +94,9 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 ## 우선순위
 
-1. **B3-1** — ADVANCED 자체감사/정합성 마감
-2. B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
-3. 현재 CORE READY 10개 — canonical 최종 정합성 검사
+1. **B3-2** — ADVANCED 자체감사/정합성 마감
+2. B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
+3. 현재 CORE READY 11개 — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
