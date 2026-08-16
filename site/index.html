@@ -3,348 +3,163 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="코디세이 기초과정을 B1-1부터 한 단계씩 진행하는 Beginner First 학습 대시보드">
-  <title>코디세이 기초과정 · Beginner First Dashboard</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/workcells.css">
-  <link rel="stylesheet" href="./css/recommended-progress.css">
-  <link rel="stylesheet" href="./css/card-layout.css">
-  <link rel="stylesheet" href="./css/mission-control.css">
-  <link rel="stylesheet" href="./css/mission-pages.css">
-  <link rel="stylesheet" href="./css/dependency-simulator.css">
+  <meta name="description" content="코디세이 기초과정을 필수 미션부터 B1-1 순서로 빠르고 정확하게 진행하는 새 기준 대시보드">
+  <title>코디세이 기초과정 · 새 기준 미션 대시보드</title>
   <link rel="stylesheet" href="./css/beginner-dashboard.css">
 </head>
 <body>
-  <header class="hero">
-    <nav class="site-nav" aria-label="주요 메뉴">
-      <div class="nav-inner">
-        <a class="nav-brand" href="#beginner-dashboard">CODYSSEY BASIC</a>
-        <button
-          id="menu-toggle"
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="primary-menu"
-          aria-label="메뉴 열기"
-        >
-          <span class="menu-icon" aria-hidden="true">☰</span>
-        </button>
-        <div id="primary-menu" class="nav-links">
-          <a href="#beginner-dashboard">지금 할 일</a>
-          <a href="#beginner-missions">전체 미션</a>
-          <a href="#mission-control">상세 진행</a>
-          <a href="#growth-os">성장 정보</a>
-          <a href="https://github.com/MetaStudy999/codyssey-basic">GitHub</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="hero-inner">
-      <p class="eyebrow">코디세이 AI/SW 기초과정 · 새 미션 클리어 도전</p>
-      <h1>B1-1부터<br>한 단계씩 시작합니다.</h1>
-      <p>진도가 아직 없어도 괜찮습니다. 지금 해야 할 한 가지부터 화면이 안내합니다.</p>
-      <div class="hero-actions">
-        <a class="button" href="#beginner-dashboard">처음 시작하기</a>
-        <a class="button button-secondary" href="#beginner-missions">전체 미션 보기</a>
-      </div>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#start">CODYSSEY BASIC</a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#start">지금 시작</a>
+        <a href="#required">필수 미션</a>
+        <a href="#steps">8단계</a>
+        <a href="#optional">선택 미션</a>
+        <a href="https://github.com/MetaStudy999/codyssey-basic">GitHub</a>
+      </nav>
     </div>
   </header>
 
   <main>
-    <section id="beginner-dashboard" class="beginner-dashboard" aria-labelledby="beginner-dashboard-title">
-      <div class="beginner-hero">
-        <article class="beginner-panel">
-          <p class="beginner-kicker" id="beginner-cycle-title">새 미션 클리어 도전</p>
-          <h2 class="beginner-title" id="beginner-dashboard-title">처음이어도 B1-1부터 시작하면 됩니다.</h2>
-          <p class="beginner-subtitle" id="beginner-message">B1-1부터 하나씩 진행하면 됩니다. 한꺼번에 모두 알 필요는 없습니다.</p>
-
-          <div class="beginner-status-row">
-            <span class="beginner-chip beginner-chip-current" id="beginner-current-state">진행 중</span>
-            <span class="beginner-chip"><strong id="beginner-current-id">B1-1</strong></span>
-            <span class="beginner-chip" id="beginner-current-step">1단계 · 미션 이해하기</span>
+    <section class="hero" id="start">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">2026-08-16 NEW BASELINE</p>
+          <h1>필수 미션부터<br>하나씩 클리어합니다.</h1>
+          <p class="hero-copy">기존 급행 수행 기록은 과거 기록으로 보존했습니다. 지금부터는 B1-1에서 새롭게 시작하며, 실제로 다시 확인한 결과만 현재 진도로 반영합니다.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" id="current-repo-link" href="https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor">B1-1 시작하기</a>
+            <a class="button" href="#steps">진행 방법 보기</a>
           </div>
-
-          <h3 id="beginner-current-title">컴퓨터가 알아서 자기 상태를 점검하게 만들기</h3>
-
-          <div class="beginner-next-action">
-            <strong>지금 할 일은 이것 하나입니다.</strong>
-            <span id="beginner-next-action">미션 PDF와 평가 기준을 대조하여 통과 조건부터 확인합니다.</span>
-          </div>
-
-          <div class="beginner-actions">
-            <a id="beginner-continue" class="beginner-button beginner-button-primary" href="https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor">B1-1 시작하기</a>
-            <button id="beginner-help-button" class="beginner-button" type="button" aria-expanded="false">쉬운 설명</button>
-            <button id="beginner-stuck-button" class="beginner-button" type="button" aria-expanded="false">막혔어요</button>
-          </div>
-
-          <div id="beginner-help-box" class="beginner-help-box" hidden>
-            <strong>왜 이 단계부터 하나요?</strong>
-            <p id="beginner-why">무엇을 만들어야 통과하는지 먼저 알기 위해서입니다.</p>
-            <strong>완료 기준</strong>
-            <p id="beginner-completion">요구사항과 평가 기준을 체크리스트로 정리하고 설명할 수 있습니다.</p>
-          </div>
-
-          <div id="beginner-stuck-box" class="beginner-help-box" hidden>
-            <strong>막혔을 때는 이렇게 하세요.</strong>
-            <p id="beginner-help">처음에는 명령어를 실행하지 않아도 됩니다. 무엇을 만들어야 하는지부터 확인합니다.</p>
-            <p>① 현재 단계 확인 → ② 정상 결과 확인 → ③ 가장 흔한 원인 확인 → ④ 다시 시도 순서로 진행합니다.</p>
-          </div>
-          <p id="beginner-load-error" class="beginner-help-box" hidden></p>
-        </article>
-
-        <aside class="beginner-panel" aria-label="현재 진행 요약">
-          <p class="beginner-kicker">나의 진행</p>
-          <div class="beginner-metrics">
-            <div class="beginner-metric"><span>새 미션 완료</span><strong id="beginner-clear-count">0 / 15</strong></div>
-            <div class="beginner-metric"><span>현재 미션</span><strong id="beginner-current-mission-metric">B1-1</strong></div>
-            <div class="beginner-metric"><span>현재 단계</span><strong id="beginner-current-step-metric">1 / 8</strong></div>
-            <div class="beginner-metric"><span>현재 위치</span><strong id="beginner-growth-stage">기초 미션 진행</strong></div>
-          </div>
+        </div>
+        <aside class="promise-card" aria-label="새 기준 원칙">
+          <strong>처음 화면에서 기억할 것은 3가지입니다.</strong>
+          <ol>
+            <li><span>1</span><div><b>지금은 B1-1</b><small>다른 미션을 동시에 고민하지 않습니다.</small></div></li>
+            <li><span>2</span><div><b>현재 할 일은 한 단계</b><small>통과 조건부터 확인합니다.</small></div></li>
+            <li><span>3</span><div><b>필수부터 완료</b><small>선택과 고도화는 그 다음입니다.</small></div></li>
+          </ol>
         </aside>
       </div>
+    </section>
 
-      <section class="beginner-section" aria-labelledby="beginner-steps-title">
-        <div class="beginner-section-heading">
-          <div>
-            <h2 id="beginner-steps-title">B1-1 완료까지 8단계</h2>
-            <p>내부 G1~G8은 그대로 유지하지만 화면에서는 쉬운 말로 안내합니다.</p>
+    <section class="shell section current-section" aria-labelledby="current-title-heading">
+      <div class="current-card">
+        <div class="current-main">
+          <div class="row-wrap">
+            <span class="status status-active" id="current-state">진행 중</span>
+            <span class="soft-chip" id="current-phase">필수 미션</span>
+            <span class="soft-chip" id="current-step-chip">1 / 8</span>
           </div>
-          <strong id="beginner-step-progress-label">0 / 8 단계 완료</strong>
-        </div>
-        <div class="beginner-progress-track" aria-label="현재 미션 전체 단계 진행률">
-          <div id="beginner-step-progress-fill" class="beginner-progress-fill" style="width:0%"></div>
-        </div>
-        <div id="beginner-step-grid" class="beginner-step-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="beginner-section" aria-labelledby="beginner-journey-title">
-        <div class="beginner-section-heading">
-          <div>
-            <h2 id="beginner-journey-title">전체 여행 지도</h2>
-            <p>B1부터 B7까지 큰 흐름만 먼저 봅니다. 세부 기술은 필요할 때 배웁니다.</p>
+          <p class="section-label">지금 할 미션</p>
+          <h2 id="current-title-heading"><span id="current-id">B1-1</span> · <span id="current-title">컴퓨터가 알아서 자기 상태를 점검하게 만들기</span></h2>
+          <div class="next-action">
+            <span>지금 할 일은 이것 하나입니다.</span>
+            <strong id="current-action">Mission PDF와 평가 기준을 대조해 통과 체크리스트를 확정합니다.</strong>
+          </div>
+          <div class="current-actions">
+            <a class="button button-primary" id="continue-button" href="https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor">현재 미션 열기</a>
+            <button class="button" id="easy-help-button" type="button" aria-expanded="false">쉬운 설명</button>
+            <button class="button" id="stuck-button" type="button" aria-expanded="false">막혔어요</button>
+          </div>
+          <div class="help-panel" id="easy-help" hidden>
+            <b>왜 먼저 확인하나요?</b>
+            <p id="current-why">통과 조건을 먼저 고정하면 불필요한 구현과 재작업을 줄일 수 있습니다.</p>
+            <b>이 단계가 끝났다는 기준</b>
+            <p id="current-completion">필수 요구사항과 평가 항목을 체크리스트로 설명할 수 있습니다.</p>
+          </div>
+          <div class="help-panel" id="stuck-help" hidden>
+            <b>막혔을 때</b>
+            <p id="current-help">지금은 명령어를 실행하지 않습니다. 무엇을 해야 통과하는지부터 확인합니다.</p>
+            <p>현재 단계 확인 → 정상 기준 확인 → 원인 하나씩 제거 → 다시 검증 순서로 진행합니다.</p>
           </div>
         </div>
-        <div id="beginner-journey" class="beginner-journey" aria-live="polite"></div>
-      </section>
-
-      <section id="beginner-missions" class="beginner-section" aria-labelledby="beginner-missions-title">
-        <div class="beginner-section-heading">
-          <div>
-            <h2 id="beginner-missions-title">전체 미션</h2>
-            <p>현재 새 도전 상태와 이전 수행 기록을 분리해서 보여줍니다.</p>
-          </div>
+        <div class="metrics" aria-label="현재 진행 요약">
+          <article><span>필수 미션</span><strong id="required-count">0 / 11</strong><small>먼저 완료</small></article>
+          <article><span>현재 미션</span><strong id="current-metric">B1-1</strong><small>한 번에 1개</small></article>
+          <article><span>현재 단계</span><strong id="step-metric">1 / 8</strong><small>작게 진행</small></article>
+          <article><span>선택 미션</span><strong id="optional-count">0 / 3</strong><small>필수 후 진행</small></article>
         </div>
-        <div id="beginner-mission-list" class="beginner-mission-list" aria-live="polite"></div>
-      </section>
-
-      <div class="beginner-advanced-link">
-        <p>아래부터는 개발자용 상세 운영 정보입니다. 처음 시작할 때는 읽지 않아도 됩니다.</p>
-        <a class="beginner-button" href="#mission-control">자세한 진행 정보 보기</a>
       </div>
     </section>
 
-    <section id="control-tower">
+    <section class="shell section" aria-labelledby="route-title">
       <div class="section-heading">
-        <div>
-          <p class="section-kicker">상세 운영 정보</p>
-          <h2>Control Tower Snapshot</h2>
-        </div>
-        <span class="status-chip status-ready">STABLE V3</span>
+        <div><p class="section-label">진행 순서</p><h2 id="route-title">지금은 1단계에만 집중합니다.</h2></div>
       </div>
-      <div class="control-grid">
-        <article class="control-card">
-          <span class="control-label">Mission Core</span>
-          <strong>15 Execution Units</strong>
-          <p>B1-1~B7-2의 공식 Mission은 독립 Repository에서 수행하고 Control Tower에서 통합합니다.</p>
+      <div class="phase-grid">
+        <article class="phase-card phase-current">
+          <span>PHASE 1</span><h3>필수 미션 클리어</h3><strong id="required-phase-count">0 / 11</strong><p>B1-1부터 B7-1까지 새 기준으로 다시 검증합니다.</p>
         </article>
-        <article class="control-card">
-          <span class="control-label">Growth Model</span>
-          <strong>5 Stages</strong>
-          <p>CORE → EXPLORE → ADVANCED → PRO → EXPERT를 Mission 상태와 분리해 관리합니다.</p>
+        <article class="phase-card">
+          <span>PHASE 2</span><h3>선택 미션 클리어</h3><strong id="optional-phase-count">0 / 3</strong><p>B4-2, B5-2, B5-3은 필수 완료 뒤 진행합니다.</p>
         </article>
-        <article class="control-card">
-          <span class="control-label">Integration</span>
-          <strong>Evidence First</strong>
-          <p>Mission PASS, Skill, Activity, Project, Opportunity를 서로 다른 Source of Truth로 연결합니다.</p>
+        <article class="phase-card">
+          <span>PHASE 3</span><h3>고도화와 확장</h3><strong id="extension-phase-count">0 / 1</strong><p>B7-2 및 전문 성장 활동은 기본 완료 뒤 확장합니다.</p>
         </article>
       </div>
-      <p class="notice"><strong>새 Mission Clear Cycle</strong>은 현재 도전을 B1-1부터 새롭게 안내합니다. 아래 Official Integration에는 이전에 검증·통합된 기록이 함께 보일 수 있으며, 새 도전 상태와는 별도로 관리합니다.</p>
     </section>
 
-    <section id="growth-os">
+    <section class="shell section" id="steps" aria-labelledby="steps-title">
       <div class="section-heading">
-        <div>
-          <p class="section-kicker">MASTER MAP · MACRO GROWTH</p>
-          <h2>Developer Growth Map</h2>
-        </div>
-        <span class="status-chip status-ready">CORE ACTIVE</span>
+        <div><p class="section-label">현재 미션</p><h2 id="steps-title">미션은 항상 같은 8단계로 진행합니다.</h2><p>내부 G1~G8 용어는 유지하지만 화면에서는 쉬운 말부터 보여줍니다.</p></div>
+        <strong class="progress-label" id="step-progress-label">0 / 8 완료</strong>
       </div>
-      <p class="muted">Growth Stage, Mission Gate, Skill Level, Activity/Project Status를 서로 섞지 않고 각각 표시합니다. 처음 시작하는 학습자는 위 Beginner Dashboard만 따라가도 됩니다.</p>
-      <div id="growth-stage-grid" class="control-grid" aria-live="polite"></div>
-
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">REGISTRY STATUS</p>
-          <h3>Activity · Project · Opportunity</h3>
-        </div>
-      </div>
-      <div id="growth-registry-summary" class="control-grid" aria-live="polite"></div>
-
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">12 COMPETENCY AXES</p>
-          <h3>Skill Evidence Map</h3>
-        </div>
-      </div>
-      <p class="muted">Skill Level은 Evidence가 연결되기 전에는 임의로 점수를 부여하지 않습니다.</p>
-      <div id="growth-skill-grid" class="grid" aria-live="polite"></div>
+      <div class="progress-track" aria-label="현재 미션 진행률"><span id="step-progress-fill" style="width:0%"></span></div>
+      <div class="step-grid" id="step-grid" aria-live="polite"></div>
     </section>
 
-    <section id="domains">
+    <section class="shell section" id="required" aria-labelledby="required-title">
       <div class="section-heading">
-        <div>
-          <p class="section-kicker">CURRICULUM MAP</p>
-          <h2>7 Domains</h2>
-        </div>
+        <div><p class="section-label">PHASE 1</p><h2 id="required-title">필수 미션 먼저</h2><p>완료한 미션만 현재 진도로 인정합니다. 지금은 B1-1 하나만 활성화합니다.</p></div>
       </div>
-      <div id="domain-grid" class="grid"></div>
+      <div class="mission-grid" id="required-list" aria-live="polite"></div>
     </section>
 
-    <section id="mission-control">
-      <span id="missions" class="anchor-alias" aria-hidden="true"></span>
-      <span id="workcells" class="anchor-alias" aria-hidden="true"></span>
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">LIVE EXECUTION + OFFICIAL INTEGRATION</p>
-          <h2>상세 Mission Control</h2>
-        </div>
-        <span id="workcell-wave-chip" class="status-chip status-ready">LOADING WAVE</span>
-      </div>
-      <p class="muted mission-control-intro">이 영역은 개발자용 상세 정보입니다. 새 도전의 쉬운 상태는 페이지 상단 Beginner Dashboard에서 확인합니다. 여기서는 Mission Repository의 Live 실행 상태와 공식 통합 상태를 나란히 비교합니다. 자동 polling은 사용하지 않으며 Live 상태는 사용자가 수동으로 갱신합니다.</p>
-
-      <div id="recommended-progress" class="recommended-progress" aria-live="polite">
-        <span class="recommended-empty">현재 Workcell 상태와 권장 진행 흐름을 계산하고 있습니다.</span>
-      </div>
-
-      <div class="mission-control-toolbar">
-        <div class="live-poll-controls" aria-label="Mission live status manual refresh">
-          <button id="poll-live-status" class="poll-button" type="button">Mission 상태 수동 갱신</button>
-          <span id="live-poll-meta" class="poll-meta" aria-live="polite">아직 수동 갱신하지 않았습니다.</span>
-        </div>
-        <label class="mission-control-sort" for="mission-control-sort">
-          <span>카드 정렬</span>
-          <select id="mission-control-sort">
-            <option value="recommended" selected>권장 행동순</option>
-            <option value="mission">미션순 B1→B7</option>
-            <option value="domain">도메인순</option>
-          </select>
-        </label>
-      </div>
-
-      <div id="mission-control-summary" class="progress-summary" aria-live="polite"></div>
-      <div id="mission-control-grid"></div>
-
-      <p class="mission-control-note"><strong>판정 원칙:</strong> 카드의 대표 아이콘은 사용자가 다음 행동을 빠르게 판단하기 위한 UI 상태입니다. ✅ COMPLETE, 🛠 IN PROGRESS, 🧪 NEEDS RUNTIME, 📦 READY TO INTEGRATE, 🎯 READY, ⏳ WAITING, ⛔ BLOCKED로 표시하지만 Official PASS와 prerequisite의 진실값은 기존 SSOT와 G1 SOURCE 검증을 그대로 따릅니다. 🌐 Live Page는 실제 배포가 확인된 미션만 표시합니다.</p>
-
-      <div class="execution-flow" aria-label="Mission execution flow">
-        <span>Source Discovery</span><b>→</b><span>Work Packet</span><b>→</b><span>G1–G8</span><b>→</b><span>HANDOFF</span><b>→</b><span>Serial Integration</span>
-      </div>
-      <div class="resource-grid">
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/workcell-prompts/README.md">
-          <span>01</span>
-          <strong>One-line Launchers</strong>
-          <small>B1-1~B7-2 새 채팅 시작 문장</small>
-        </a>
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/tree/main/docs/00-governance/work-packets">
-          <span>02</span>
-          <strong>Starter Work Packets</strong>
-          <small>Mission별 사전 수행내역과 G1~G8 계획</small>
-        </a>
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/config/waves/20260808-01.yaml">
-          <span>03</span>
-          <strong>Active Wave Ledger</strong>
-          <small>Mission → Repository → Packet → Prompt → Integration Status</small>
-        </a>
-      </div>
+    <section class="shell section" id="optional" aria-labelledby="optional-title">
+      <details class="fold">
+        <summary><div><p class="section-label">PHASE 2</p><h2 id="optional-title">선택 미션 · 필수 완료 후</h2></div><span>펼쳐보기</span></summary>
+        <div class="mission-grid fold-body" id="optional-list" aria-live="polite"></div>
+      </details>
     </section>
 
-    <section id="dependencies">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">INTERACTIVE · JAVASCRIPT SIMULATION</p>
-          <h2>Mission Dependency Simulator</h2>
-        </div>
-        <span class="status-chip status-ready">15 MISSIONS</span>
-      </div>
-      <p class="muted dependency-intro">기초과정 전체 미션의 운영상 권장 선후관계를 JavaScript로 시뮬레이션합니다. 파란색 READY 미션을 개별 클릭하거나, <strong>현재 READY 전체 완료</strong> 버튼으로 한 Wave씩 진행하면 선행 미션 완료에 따라 후행 미션이 자동으로 잠금 해제됩니다.</p>
-
-      <div id="dependency-simulator">
-        <div class="dependency-toolbar">
-          <div class="dependency-actions">
-            <button id="dependency-step" class="dependency-button dependency-button-primary" type="button">현재 READY 전체 완료</button>
-            <button id="dependency-reset" class="dependency-button" type="button">시뮬레이션 초기화</button>
-          </div>
-          <div id="dependency-summary" class="dependency-summary" aria-live="polite"></div>
-        </div>
-
-        <div class="dependency-legend" aria-label="Dependency simulator legend">
-          <span><i class="dependency-dot dependency-dot-ready"></i> READY · 지금 진행 가능</span>
-          <span><i class="dependency-dot dependency-dot-done"></i> DONE · 완료</span>
-          <span><i class="dependency-dot dependency-dot-locked"></i> LOCKED · 선행 대기</span>
-        </div>
-
-        <div class="dependency-canvas">
-          <svg id="dependency-edges" class="dependency-edges" aria-hidden="true"></svg>
-          <div id="dependency-grid" class="dependency-grid"></div>
-        </div>
-
-        <p class="dependency-note"><strong>주의:</strong> 이 도식은 현재 Control Tower에서 사용하는 <strong>운영상·학습상 권장 dependency</strong>를 시뮬레이션합니다. G1 SOURCE에서 공식 미션 문서가 명시적으로 선행조건을 요구한다고 확인되기 전에는 이를 공식 prerequisite로 단정하지 않습니다. 모든 미션의 G1 SOURCE 자체는 병렬 시작 가능합니다.</p>
-      </div>
+    <section class="shell section">
+      <details class="fold">
+        <summary><div><p class="section-label">PHASE 3</p><h2>고도화·확장</h2></div><span>펼쳐보기</span></summary>
+        <div class="mission-grid fold-body" id="extension-list" aria-live="polite"></div>
+      </details>
     </section>
 
-    <section id="governance">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">QUALITY & TRACEABILITY</p>
-          <h2>Governance</h2>
+    <section class="shell section">
+      <details class="fold history-fold">
+        <summary><div><p class="section-label">HISTORY</p><h2>이전 수행 기록</h2><p>현재 진도에는 합산하지 않습니다.</p></div><span>펼쳐보기</span></summary>
+        <div class="history-body">
+          <p>기존 급행 수행 결과는 Git history와 보존 브랜치에 남겨 두었습니다. 재사용할 코드는 다시 검증한 뒤 현재 미션에 반영합니다.</p>
+          <div id="history-list"></div>
+          <a href="https://github.com/MetaStudy999/codyssey-basic/tree/archive/pre-restart-20260816-main">이전 메인 기준본 보기 →</a>
         </div>
-      </div>
-      <div class="resource-grid">
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/source-discovery-fallback-protocol.md">
-          <span>SOURCE</span>
-          <strong>Source Discovery</strong>
-          <small>PDF/MD/빈 파일/누락/충돌을 상태 기반으로 판정</small>
-        </a>
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/evidence-traceability.md">
-          <span>PROOF</span>
-          <strong>Evidence Traceability</strong>
-          <small>Source → Requirement → Test → Runtime → Evidence → PASS</small>
-        </a>
-        <a class="resource-card" href="https://github.com/MetaStudy999/codyssey-basic/blob/main/docs/00-governance/parallel-mission-execution.md">
-          <span>FLOW</span>
-          <strong>Parallel / Serial Protocol</strong>
-          <small>병렬 Mission 실행과 직렬 Control Tower 통합</small>
-        </a>
-      </div>
+      </details>
     </section>
 
-    <section id="path">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">EXPERT → SPECIALIZATION → IMPACT</p>
-          <h2>Professional Paths</h2>
-        </div>
+    <section class="shell section sync-section" aria-labelledby="sync-title">
+      <div>
+        <p class="section-label">현재 데이터</p>
+        <h2 id="sync-title">새 기준 상태만 다시 읽습니다.</h2>
+        <p id="refresh-meta">현재 배포된 데이터를 사용 중입니다.</p>
       </div>
-      <div class="path">CORE <span>→</span> EXPLORE <span>→</span> ADVANCED <span>→</span> PRO <span>→</span> EXPERT <span>→</span> SPECIALIZATION <span>→</span> IMPACT</div>
+      <button class="button" id="refresh-button" type="button">상태 새로고침</button>
     </section>
   </main>
 
-  <footer>Codyssey Basic · B1-1부터 한 단계씩 · Mission → Growth → Impact</footer>
+  <footer>
+    <div class="shell footer-inner">
+      <div><strong>Codyssey Basic · New Baseline</strong><p>과거 기록은 보존하고 현재 상태는 새 검증만 반영합니다.</p></div>
+      <a href="https://github.com/MetaStudy999/codyssey-basic">Control Tower Repository →</a>
+    </div>
+  </footer>
+
+  <p id="load-error" class="load-error" hidden>현재 진행 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>
   <script src="./js/beginner-dashboard.js"></script>
-  <script src="./js/growth-os.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/mission-pages.js"></script>
-  <script src="./js/recommended-progress.js"></script>
-  <script src="./js/dependency-simulator.js"></script>
 </body>
 </html>
