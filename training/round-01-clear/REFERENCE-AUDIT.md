@@ -6,114 +6,62 @@
 
 Phase A에서 B1-1~B7-2 기준 구현·학습자료·검증계획이 어디까지 준비되었는지 **15개 미션 저장소의 현재 `main`**과 `training/round-01-clear/` 실제 구조를 기준으로 점검합니다.
 
-이 문서의 `Reference Build` 판정은 Runtime Mission 상태와 다릅니다.
-
-- Reference 자료가 있어도 실제 실행·검증·Evidence가 없으면 `✅ CLEAR`가 아닙니다.
-- 과거 실행 결과는 현재 R01 Runtime PASS로 승계하지 않습니다.
-- 실제 Runtime 상태는 `PROGRESS.md`의 네 가지 상태만 사용합니다.
+Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행·검증·Evidence가 없으면 `✅ CLEAR`가 아닙니다.
 
 ## 판정 기준
 
-### CORE READY
-기준 구현, 검증 도구, 요구사항 매핑, 학습/증빙 자료가 핵심적으로 준비되어 있고 Phase C Runtime 항목이 명확히 분리된 상태.
-
-### ADVANCED
-`REFERENCE-BUILD.md`와 실제 reference/docs/environment/evidence 또는 상당한 Beginner Guide/Checklist가 존재하지만, canonical 문서 동기화·구현 내용 자체감사·최종 품질 Gate가 남은 상태.
-
-### PARTIAL
-Reference 설계 또는 일부 구현은 있으나 요구사항 전체 기준본이 닫히지 않은 상태.
-
-### SCAFFOLD
-R01 README/BEGINNER-GUIDE/CHECKLIST 골격 중심으로, 실제 기준 구현을 새로 채워야 하는 상태.
+- **CORE READY**: 기준 구현, 검증 도구, 요구사항 매핑, 학습/증빙 자료가 핵심적으로 준비되고 Runtime 항목이 명확히 분리됨
+- **ADVANCED**: 실제 Reference 구조가 있으나 canonical 문서 동기화·자체감사·품질 Gate가 남음
+- **PARTIAL**: 일부 구현/설계는 있으나 요구사항 전체 기준본이 닫히지 않음
+- **SCAFFOLD**: 기본 README/Guide/Checklist 골격 중심
 
 ## 15개 저장소 감사 결과
 
-| 미션 | 분류 | 판정 | 현재 `main`에서 확인한 근거 | Phase A 잔여 작업 |
-|---|---|---|---|---|
-| B1-1 | 필수 | **ADVANCED** | 상세 Beginner Guide/Checklist, `REFERENCE-BUILD.md`, `monitor.sh`, environment/docs/evidence | 전체 Runtime Step 구체화, agent archive 확인, 자체감사 |
-| B1-2 | 필수 | **ADVANCED** | 23KB Beginner Guide, 4.8KB Checklist, `REFERENCE-BUILD.md`, docs/environment/evidence, `monitor.sh` | 장애 3종 Reference 내용/증빙 템플릿 최종 자체감사 |
-| B2-1 | 필수 | **ADVANCED** | 23KB Beginner Guide, 4.3KB Checklist, `REFERENCE-BUILD.md`, reference/docs/environment/evidence | CLI/저장/검색/요약/import-export 기준 구현 자체감사 |
-| B2-2 | 필수 | **ADVANCED** | 19KB Beginner Guide, 5.1KB Checklist, `REFERENCE-BUILD.md`, reference/docs/environment/evidence | 실제 팀 협업·PR·리뷰 Runtime과 Reference 자료 분리 최종검토 |
-| B3-1 | 필수 | **ADVANCED** | 15KB Beginner Guide, 3.9KB Checklist, `REFERENCE-BUILD.md`, reference/docs/environment/evidence | 자료구조/명령/TTL/LRU 테스트 및 가이드 자체감사 |
-| B3-2 | 필수 | **ADVANCED** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | Mini Git 구현·알고리즘·가이드/체크리스트 완성도 감사 |
-| B4-1 | 필수 | **ADVANCED** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | 포트폴리오/GitHub API/Pages 기준본 자체감사 |
-| B5-1 | 필수 | **ADVANCED** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | SQL 스키마·샘플·15개 쿼리·검증 산출물 자체감사 |
-| B6-1 | 필수 | **ADVANCED** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재. Beginner Guide/Checklist는 아직 scaffold 크기 | AWS Reference 구현과 canonical 가이드/체크리스트 동기화 |
-| B6-2 | 필수 | **CORE READY** | `REFERENCE-STATUS.md`: collector/client/CLI/validator/tests/verify/secret scan 등 완료 표시 | canonical 문서 최종 동기화; 실제 Provider/API는 Phase C |
-| B7-1 | 필수 Term Project | **CORE READY** | `REFERENCE-STATUS.md`: auth/AI/DB/log/docs/verify 기준본 완료 표시 | 실제 AI/브라우저/팀 협업/외부 배포는 Phase C |
-| B4-2 | 선택 | **PARTIAL** | `REFERENCE-BUILD.md`, reference 존재. Beginner Guide/Checklist는 scaffold 크기 | React CRUD/remote backend/state/form/deploy 기준본 완성 |
-| B5-2 | 선택 | **CORE READY** | Memo FastAPI CRUD Reference, Jinja2 SSR, `303` PRG, SQLite/SQLAlchemy, `Depends`, Guide/Checklist/verify/mapping/evidence/status 준비 | 실제 localhost/CRUD/DB/PRG Evidence는 Phase C |
-| B5-3 | 선택 | **SCAFFOLD** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | 인증/인가/3모델 연관관계/상태변경 전체 Reference Build |
-| B7-2 | 선택 Term Project | **SCAFFOLD** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | Project B 풀스택/소유권/REST/배포/기술문서 전체 Reference Build |
+| 미션 | 판정 | 핵심 근거 / 잔여 |
+|---|---|---|
+| B1-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, monitor/environment/docs/evidence. Runtime Step/agent archive/자체감사 잔여 |
+| B1-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, docs/environment/evidence. 최종 자체감사 잔여 |
+| B2-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 기준 구현 자체감사 잔여 |
+| B2-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 팀 협업 Runtime 분리 최종검토 |
+| B3-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 자료구조 테스트/가이드 자체감사 |
+| B3-2 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Mini Git 완성도 감사 |
+| B4-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Portfolio/API/Pages 자체감사 |
+| B5-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. SQL 산출물 자체감사 |
+| B6-1 | **ADVANCED** | AWS Reference 구조 존재. canonical Guide/Checklist 동기화 필요 |
+| B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
+| B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
+| B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 존재. React CRUD/remote/deploy 마감 필요 |
+| B5-2 | **CORE READY** | Memo CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence/status 준비 |
+| B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence/status 준비 |
+| B7-2 | **SCAFFOLD** | 기본 R01 Guide/Checklist 중심. Project B 전체 Reference 필요 |
 
 ## 집계
 
-- **CORE READY:** 3개 — B5-2, B6-2, B7-1
-- **ADVANCED:** 9개 — B1-1, B1-2, B2-1, B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
+- **CORE READY:** 4개 — B5-2, B5-3, B6-2, B7-1
+- **ADVANCED:** 9개
 - **PARTIAL:** 1개 — B4-2
-- **SCAFFOLD:** 2개 — B5-3, B7-2
+- **SCAFFOLD:** 1개 — B7-2
 - **Runtime CLEAR:** 0개
 
-이 집계는 'Reference 준비도'이며, 공식 미션 통과율이 아닙니다.
+## 최근 변경
 
-## 최근 변경 — B5-2
+### B5-2 SCAFFOLD → CORE READY
+Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD, 303 PRG, 레이어 분리, verify/setup/reset/DB inspect, Requirements Mapping, Evaluation Q&A, Evidence/Beginner Guide/Checklist를 준비했습니다.
 
-B5-2는 SCAFFOLD에서 실제 Reference 기준본으로 전환했습니다.
+### B5-3 SCAFFOLD → CORE READY
+세션 기반 인증, `Depends(require_username)` 보호, 로그인 전/후 UI, User→Project→Task 두 1:N 관계, `back_populates`, cascade 정책, Task 상태 전환 Service, Jinja2 SSR/SQLite, verify/setup/reset/DB inspect, Mapping/Q&A/Evidence/Guide/Checklist를 준비했습니다.
 
-- 단일 `Memo` 모델
-- Home/List/Detail/Create/Update/Delete SSR
-- Router → Service → Repository → ORM 분리
-- HTML Form / `Form()`
-- `303` PRG
-- SQLite `database.db`
-- SQLAlchemy Session + `Depends(get_db)`
-- Not Found 화면
-- setup/verify/reset/DB inspect
-- Requirement Mapping
-- Evaluation Q&A
-- Evidence Guide
-- Beginner Guide / Checklist / Reference Status
-
-실제 브라우저와 DB Runtime은 아직 수행하지 않았으므로 CLEAR와 분리합니다.
+두 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
 
 ## 우선순위
 
-### Priority 1 — Scaffold → 실제 Reference
-1. B5-3
-2. B7-2
-
-### Priority 2 — Partial 마감
-3. B4-2
-
-### Priority 3 — Advanced 자체감사/동기화
-4. B1-1
-5. B1-2
-6. B2-1
-7. B2-2
-8. B3-1
-9. B3-2
-10. B4-1
-11. B5-1
-12. B6-1
-
-### Priority 4 — Core Ready 최종 정합성 검사
-13. B5-2
-14. B6-2
-15. B7-1
+1. **B7-2** — 마지막 SCAFFOLD를 실제 Reference로 전환
+2. **B4-2** — PARTIAL 마감
+3. B1-1 및 ADVANCED 9개 자체감사/동기화
+4. B5-2/B5-3/B6-2/B7-1 CORE READY 최종 정합성 검사
+5. **Phase B — Cross-Mission Audit**
+6. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## Phase A 종료 Gate
 
-15개 미션 모두에 대해 다음이 충족되어야 Phase B로 이동합니다.
-
-- Source of Truth 분석 완료
-- 필수/선택/실제환경 요구 분리
-- 최소 충분 Reference 구현 준비
-- 자동 검증 가능한 테스트/verify 준비
-- Secret 정책 확인
-- Requirement → Implementation → Verification → Evidence 매핑
-- 입문자 가이드가 실제 구현과 일치
-- 실제 실행하지 않은 항목에 허위 PASS 없음
-- Runtime 전용 항목을 명확히 분리
-- 자체검토에서 BLOCKER/MAJOR 없음
-
-그 다음 **Phase B — Cross-Mission Audit**에서 15개를 횡단하여 버전·포트·환경·DB·Secret·배포·선후관계 충돌을 점검합니다.
+15개 미션 모두에서 Source 분석, 필수/선택/Runtime 분리, 최소 충분 Reference 구현, 자동 검증 도구, Secret 정책, Requirement→Implementation→Verification→Evidence 매핑, Beginner Guide 정합성, 허위 PASS 없음, Runtime 항목 분리, BLOCKER/MAJOR 0을 확인한 뒤 Phase B로 이동합니다.
