@@ -14,31 +14,31 @@
 
 | 미션 | Reference 판정 | 현재 핵심 상태 |
 |---|---|---|
-| B1-1 | **CORE READY** | 15-Step Guide, strict UFW/permission verify, hardened monitor, mapping/Q&A/evidence/status 완료 |
-| B1-2 | **CORE READY** | isolated fault lab, controlled Before/After matrix, hardened diagnostic monitor, report/verify/mapping/status 완료 |
-| B2-1 | **CORE READY** | full CLI/persistence/streaming/atomic rewrite 구현, boundary tests, side-effect-light verify/status 완료 |
-| B2-2 | **CORE READY** | team skeleton, PR/Issue/review/conflict/troubleshooting policy, local verify + GitHub runtime audit/status 완료 |
-| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, collision/resize/LRU/TTL/OOM edge tests, hardened verify/mapping/Q&A/status 완료 |
-| B3-2 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, Mini Git 완성도 자체감사 필요 |
+| B1-1 | **CORE READY** | safe SSH/UFW, permission verify, hardened monitor, full Guide/Mapping/Evidence |
+| B1-2 | **CORE READY** | isolated fault lab, controlled Before/After, diagnostic monitor, runtime evidence gate |
+| B2-1 | **CORE READY** | CLI/persistence/streaming/atomic rewrite, boundary tests, verifier/status |
+| B2-2 | **CORE READY** | team skeleton, PR/Review/Conflict policies, GitHub runtime audit/status |
+| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, hardened verify/status |
+| B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, tie/no-path/multi-parent tests, runtime gate/status |
 | B4-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, Portfolio/API/Pages 자체감사 필요 |
 | B5-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, SQL 산출물 자체감사 필요 |
 | B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
-| B6-2 | **CORE READY** | Reference 구현/테스트/verify/secret scan 완료 기록 |
+| B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, routes/components/hooks/form/state/deploy/evidence 기준본 준비 |
-| B5-2 | **CORE READY** | Memo FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/Checklist/verify/mapping/evidence 기준본 준비 |
-| B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence 기준본 준비 |
-| B7-2 | **CORE READY** | Full-stack REST, auth/token, user-scoped AI Chat, Post ownership, docs/deploy/collaboration/evidence 기준본 준비 |
+| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, routes/components/hooks/form/state/deploy/evidence |
+| B5-2 | **CORE READY** | Memo FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence |
+| B5-3 | **CORE READY** | Session auth, Depends 보호, relations/state transition, Guide/verify/mapping/evidence |
+| B7-2 | **CORE READY** | Full-stack REST, auth/token, user-scoped AI Chat, ownership/docs/deploy/evidence |
 
 ### 집계
 
-- CORE READY: **11 / 15**
-- ADVANCED: **4 / 15**
+- CORE READY: **12 / 15**
+- ADVANCED: **3 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
 
-> 위 집계는 Phase A Reference 준비도입니다. 공식 미션 통과율이 아닙니다.
+> 위 집계는 Phase A Reference 준비도이며 공식 미션 통과율이 아닙니다.
 
 ## Runtime Mission 상태
 
@@ -62,47 +62,39 @@
 
 ## Phase A 작업 큐
 
-1. **B3-2** — ADVANCED 자체감사/정합성 마감
-2. **B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
-3. **현재 CORE READY 11개** — canonical 최종 정합성 검사
+1. **B4-1** — ADVANCED 자체감사/정합성 마감
+2. **B5-1 / B6-1** — ADVANCED → CORE READY
+3. **현재 CORE READY 12개** — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
+### B3-2 — ADVANCED → CORE READY
+
+- Mini Git 공식 Mission/Evaluation을 Reference 구현과 재대조
+- session unique hash, branch pointer, parent-first LOG의 boundary test 강화
+- disconnected root graph로 실제 `No path` 조건을 자동 테스트할 수 있도록 보강
+- multi-parent DAG에서 equal-length shortest path의 lexicographic tie-break test 추가
+- multi-parent ANCESTORS의 누락/중복 방지 test 추가
+- keyword lowercase/repeated-token index와 author case-insensitive search 강화
+- stable merge sort equal-key 상대 순서와 date/author sort 테스트 강화
+- malformed quote, invalid sort, unknown branch/commit/command 오류 경계 강화
+- verifier를 AST syntax parse 기반으로 변경하고 standard sort API/graph library/Secret filename scan 추가
+- `--runtime` Evidence Gate, `REFERENCE-STATUS.md`, 상세 Beginner Guide/Checklist/Mapping/Q&A/Evidence 동기화
+- Evaluation의 parent-only PATH, author+dependency ordering, counter vs random hash 변화 대응까지 보완
+
 ### B3-1 — ADVANCED → CORE READY
 
-- Doubly Linked List 필수 6개 연산을 모두 unit test 대상으로 보강
-- HashMap에서 실제 same-bucket collision을 만들어 chaining 정확성 검증
-- load factor `== 0.75` 유지 / `>0.75` 2배 resize 경계 테스트
-- MinHeap `push/pop/peek/size`와 정렬 순서 검증
-- `maxmemory=0`, UTF-8 overwrite accounting, GET/SET-overwrite LRU refresh 보강
-- oversized single-entry OOM 시 기존 데이터와 `evicted_keys` 보존 검증
-- 제한 이하까지 반복 eviction 확인
-- EXPIRE 재설정, DEL 후 같은 key 재삽입, SET overwrite의 stale TTL lazy-deletion 안전성 검증
-- verifier에 `heapq` 금지와 AST syntax parse, Secret-pattern scan, `--runtime` Evidence Gate 추가
-- Evaluation Q&A에 LFU 전환, 10만 건 병목, overhead 포함 memory model, 공정한 채점 보정 추가
-- `REFERENCE-STATUS.md`, Mapping, Checklist, Evidence, root README 동기화
+- custom data structure collision/resize/LRU/TTL/OOM edge tests와 verifier/Q&A/status 강화
 
-### B2-2 — ADVANCED → CORE READY
+### B2-2 / B2-1 / B1-2 / B1-1
 
-- 실제 GitHub 협업과 Reference template 엄격 분리
-- Branch Protection/PR/Review/Issue linkage용 GitHub Runtime Audit
-- 팀원별 PR/Review/feedback/conflict/troubleshooting Evidence Gate 강화
-
-### B2-1 — ADVANCED → CORE READY
-
-- 3-file persistence, generator contract, input/error boundaries, atomic rewrite, import/export tests 강화
-- side-effect-light verifier와 status/canonical docs 동기화
-
-### B1-2 / B1-1
-
-- B1-2: isolated fault lab + controlled experiments + runtime evidence gate
-- B1-1: safe SSH/UFW + effective permission + hardened monitor/log rotation
+- GitHub collaboration runtime audit, persistence/error boundaries, isolated fault lab, safe SSH/UFW 등 각 미션 핵심 Reference Gate를 완료했습니다.
 
 ### B4-2 / B5-2 / B5-3 / B7-2
 
-이전 Phase A에서 각각 React/Supabase, FastAPI CRUD, Auth/relationship, Full-stack AI Chat Reference를 CORE READY로 전환했습니다.
+- React/Supabase, FastAPI CRUD, Auth/relationship, Full-stack AI Chat Reference를 CORE READY로 준비했습니다.
 
 실제 Runtime은 수행하지 않았으므로 Runtime 상태표는 변경하지 않습니다.
 
