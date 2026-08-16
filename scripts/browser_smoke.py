@@ -62,7 +62,7 @@ def verify_dashboard(page) -> None:
     assert_count(page, "#optional-list .mission-card", 3)
     assert_count(page, "#extension-list .mission-card", 1)
 
-    b2_1 = page.locator("#required-list .mission-card").filter(has_text="B2-1")
+    b2_1 = page.locator('#required-list .mission-card[data-mission="B2-1"]')
     text = b2_1.inner_text()
     if "이전 기록 PASS" not in text:
         raise AssertionError("B2-1 previous PASS must remain history")
