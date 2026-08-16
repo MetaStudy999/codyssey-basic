@@ -19,10 +19,10 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 | 미션 | 판정 | 핵심 근거 / 잔여 |
 |---|---|---|
-| B1-1 | **CORE READY** | 15-Step Guide, `/opt/agent-app` 권한 모델, strict UFW/effective-permission verify, hardened monitor, mapping/Q&A/evidence/status. Runtime만 잔여 |
-| B1-2 | **CORE READY** | Runtime Safety, controlled experiment matrix, hardened diagnostic monitor, 3 report/verify/mapping/status. 실제 장애 Runtime만 잔여 |
-| B2-1 | **CORE READY** | full CLI/JSONL 3-file persistence/generator/atomic rewrite, boundary unit tests, side-effect-light verify/status. 실제 CLI/Evidence만 잔여 |
-| B2-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 팀 협업 Runtime 분리 최종검토 |
+| B1-1 | **CORE READY** | safe SSH/UFW, `/opt/agent-app` permission model, strict verify, hardened monitor, full guide/status. Runtime만 잔여 |
+| B1-2 | **CORE READY** | Runtime Safety, controlled experiment matrix, hardened diagnostic monitor, report/runtime verify/status. 실제 장애 Runtime만 잔여 |
+| B2-1 | **CORE READY** | full CLI/JSONL 3-file persistence/generator/atomic rewrite, boundary tests, side-effect-light verify/status. 실제 CLI/Evidence만 잔여 |
+| B2-2 | **CORE READY** | team skeleton, collaboration policies/templates, strict local verify, GitHub server runtime audit, contribution/evidence matrix/status. 실제 팀 Runtime만 잔여 |
 | B3-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 자료구조 테스트/가이드 자체감사 |
 | B3-2 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Mini Git 완성도 감사 |
 | B4-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Portfolio/API/Pages 자체감사 |
@@ -37,51 +37,51 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 ## 집계
 
-- **CORE READY:** 9개 — B1-1, B1-2, B2-1, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
-- **ADVANCED:** 6개 — B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
+- **CORE READY:** 10개 — B1-1, B1-2, B2-1, B2-2, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
+- **ADVANCED:** 5개 — B3-1, B3-2, B4-1, B5-1, B6-1
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
 ## 최근 자체감사 핵심
 
+### B2-2 ADVANCED → CORE READY
+
+- Reference template과 실제 GitHub activity를 엄격히 분리
+- `TODO_RUNTIME`을 actual Issue/PR/Review/Conflict/Commit links로만 교체
+- local Git으로 완전히 증명할 수 없는 Branch Protection/Ruleset/PR/Review/Issue linkage를 위한 GitHub Runtime Audit 추가
+- 팀 전체 합계가 아니라 팀원별 PR/Review/feedback/contribution/troubleshooting 기준 검증
+- Review quality/author interaction은 실제 thread 내용 검토
+- conflict 2+/non-trivial 1+를 실제 PR/commit과 연결
+- local verify가 template/policy/TODO/history/commit-message 구조를 확인
+
 ### B2-1 ADVANCED → CORE READY
 
-- transaction/category/budget 3종 재오픈 persistence 테스트
-- list/search 실제 generator 계약 테스트
-- invalid date/type/category/amount와 missing ID 오류 경계
-- atomic rewrite temp 잔존/재오픈 검증
-- import partial-success row reason, export date-range/조건 검사
-- AST parse + `PYTHONDONTWRITEBYTECODE`로 verify 부작용 최소화
-- root/subcommand help, `--` option, README/3-file store 자동 점검
+- 3종 persistence 재오픈
+- generator 계약 및 입력/오류 경계
+- atomic rewrite temp/reopen
+- import/export boundary tests
+- side-effect-light AST/unit/help verifier
 
 ### B1-2 ADVANCED → CORE READY
 
-- 전용 장애 실험 환경 Safety Gate
-- 동일 host/binary + 핵심 변수 1개 우선 변경하는 experiment matrix
-- monitor PID/interval validation + sample/exit markers
-- Runtime Evidence minimum, PID/time-series/Secret check
-- Deadlock은 PID만으로 단정하지 않고 resource/log/thread 근거 요구
+- isolated fault Runtime Safety
+- controlled Before/After
+- diagnostic monitor/runtime evidence gate
+- strict Deadlock inference
 
 ### B1-1 ADVANCED → CORE READY
 
-- `/opt/agent-app` 공유/민감 권한 모델
-- effective permission/UFW strict verify
-- canonical `agent-app` + `pgrep -x`
-- SSH 안전 전환 순서
-- safe failure/Warning/10MB rotation validation
-
-### B4-2 / B5-2 / B5-3 / B7-2
-
-이전 Phase A에서 각각 React/Supabase, FastAPI CRUD, Authentication/Relationship, Full-stack AI Chat 기준본을 CORE READY로 전환했습니다.
-
-위 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
+- safe SSH/UFW ordering
+- effective permission
+- canonical process identification
+- safe failure/Warning/rotation tests
 
 ## 우선순위
 
-1. **B2-2** — ADVANCED 자체감사/정합성 마감
-2. B3-1 / B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
-3. 현재 CORE READY 9개 — canonical 최종 정합성 검사
+1. **B3-1** — ADVANCED 자체감사/정합성 마감
+2. B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
+3. 현재 CORE READY 10개 — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
