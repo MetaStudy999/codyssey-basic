@@ -25,16 +25,16 @@
 | B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
 | B6-2 | **CORE READY** | Reference 구현/테스트/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 있으나 React 기준본 마감 필요 |
+| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, 6 routes + Not Found, 10 components, hooks, form/state UX, deploy/evidence 기준본 준비 |
 | B5-2 | **CORE READY** | Memo FastAPI CRUD, PRG, SQLite/SQLAlchemy, Guide/Checklist/verify/mapping/evidence 기준본 준비 |
 | B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence 기준본 준비 |
 | B7-2 | **CORE READY** | Full-stack REST, auth/token, user-scoped AI Chat, Post ownership, ERD/API/Architecture, deployment/collaboration/evidence 기준본 준비 |
 
 ### 집계
 
-- CORE READY: **5 / 15**
+- CORE READY: **6 / 15**
 - ADVANCED: **9 / 15**
-- PARTIAL: **1 / 15**
+- PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
 
@@ -62,16 +62,27 @@
 
 ## Phase A 작업 큐
 
-모든 SCAFFOLD는 실제 Reference로 전환했습니다. 이제 PARTIAL과 ADVANCED를 닫습니다.
+SCAFFOLD와 PARTIAL 단계는 모두 해소했습니다. 이제 기존 ADVANCED 기준본의 자체감사와 canonical 동기화에 집중합니다.
 
-1. **B4-2** — React SPA CRUD Reference 마감
-2. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
-3. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
-4. **B5-2 / B5-3 / B6-2 / B7-1 / B7-2** — CORE READY canonical 최종검토
-5. **Phase B — Cross-Mission Audit**
-6. **Phase C — B1-1부터 Runtime CLEAR**
+1. **B1-1** — Beginner Guide 전체 Runtime Step + agent archive 경로 + 자체감사
+2. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
+3. **B4-2 / B5-2 / B5-3 / B6-2 / B7-1 / B7-2** — CORE READY canonical 최종검토
+4. **Phase B — Cross-Mission Audit**
+5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
+
+### B4-2 — PARTIAL → CORE READY
+- React 18 + Vite + React Router
+- 6개 named route + Not Found
+- 10개 reusable component
+- `useItems` / `useItemDetail` custom hook
+- controlled form, validation, submit pending
+- common Loading/Error/Empty
+- Supabase remote CRUD + schema/env template
+- state→render 변화 3개 이상
+- SPA deployment rewrite
+- verify/mapping/Q&A/evidence/Beginner Guide/Checklist
 
 ### B5-2 — SCAFFOLD → CORE READY
 - Memo FastAPI/Jinja2/SQLAlchemy/SQLite CRUD
@@ -81,19 +92,15 @@
 - 세션 로그인/로그아웃, `Depends` 보호
 - User 1:N Project 1:N Task, `back_populates`, cascade
 - Task 상태 변경 Service
-- verify/mapping/evidence/Beginner Guide
 
 ### B7-2 — SCAFFOLD → CORE READY
 - 회원가입 + PBKDF2 password hash
 - Bearer access token + logout revoke
 - User-scoped ChatSession/Message + 다른 사용자 404
 - 게시판 REST CRUD + 작성자 수정/삭제 403
-- 분리 Frontend REST client
-- ERD / API Specification / Architecture
-- Collaboration / Cloud Deployment / Cleanup Runtime plan
-- setup / verify / reset / DB inspection / Evidence Guide
+- ERD / API / Architecture / Collaboration / Deployment / Evidence
 
-B5-2, B5-3, B7-2 모두 실제 Runtime은 수행하지 않았으므로 Mission 상태는 `⬜ NOT STARTED`를 유지합니다.
+실제 Runtime은 수행하지 않았으므로 Runtime 상태표는 변경하지 않습니다.
 
 ## R01 작업 흐름
 
