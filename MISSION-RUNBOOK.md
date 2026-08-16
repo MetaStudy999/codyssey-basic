@@ -40,11 +40,54 @@ Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이�
 
 ### Phase C — RUNTIME CLEAR
 
-B1-1부터 순서대로 사용자가 실제 환경에서 직접 실행합니다.
+Phase C는 **FAST EXECUTE** 모드입니다. 이미 준비된 Reference, Preflight, Runbook, Beginner Guide를 실제 환경에서 실행하여 Mission을 `✅ CLEAR`로 전환합니다.
 
 `이해 → 직접 실행 → 검증 → 오류 해결 → Evidence → 평가 확인 → CLEAR`
 
-한 미션이 실제 `CLEAR`된 뒤 다음 미션의 Runtime으로 이동합니다.
+현재 미션의 Runtime에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
+
+## Phase C — Design Freeze / Just-in-Time Design
+
+Phase A/B에서 전체 설계와 교차감사를 완료했으므로 Phase C에서는 새로운 설계를 계속 확장하지 않습니다.
+
+실행 중 문제가 발견되면 먼저 다음을 판단합니다.
+
+```text
+이 문제가 현재 Mission CLEAR를 막는가?
+
+YES
+→ 원인 확인
+→ 필요한 범위만 최소 수정
+→ 재검증
+→ Evidence
+→ Runtime 계속
+
+NO
+→ 현재 Runtime 유지
+→ 후속 개선 후보로 미룸
+```
+
+실행 80~90%, 설계 보정 10~20%를 지향합니다. 이는 엄격한 시간 배분이 아니라 **설계 루프로 되돌아가 실제 CLEAR가 지연되는 것을 방지하기 위한 운영 기준**입니다.
+
+### Phase C에서 즉시 수정해야 하는 경우
+
+- 공식 Mission/Evaluation 요구사항 충족을 막는 문제
+- Runtime 진행 자체가 불가능한 BLOCKER
+- Secret/Token/Password 노출 위험
+- SSH lockout, 데이터 손실, Cloud 과금/삭제 등 안전 문제
+- Verify가 실제 결과를 잘못 판정하는 문제
+- Evidence가 공식 평가 요구와 연결되지 않는 문제
+
+### Phase C에서 후속으로 미루는 경우
+
+- 현재 CLEAR와 무관한 리팩터링
+- UI/UX 고도화
+- 폴더/문서 구조의 미세한 개선
+- 선택 기능 확장
+- 다음 Round에서 다룰 심화 기술
+- 미래 프로젝트를 위한 선행 최적화
+
+즉, **실패하지 않도록 길을 만드는 일은 Phase A/B에서 하고, Phase C에서는 이미 만든 길을 실제로 끝까지 통과합니다.**
 
 ---
 
@@ -64,14 +107,16 @@ B1-1부터 순서대로 사용자가 실제 환경에서 직접 실행합니다.
 3. 환경설정 전 현재 상태 확인
 4. 시스템 파일 변경 시 백업
 5. Secret은 Repository에 저장하지 않음
+6. `START-CHECK.md`가 있는 미션은 필수 선행과 현재 보유 지식을 먼저 확인
 
 ## 3. BUILD
 
-1. ChatGPT가 먼저 최소 통과 경로를 끝까지 설계
+1. Phase A에서 준비된 최소 통과 경로를 기본값으로 사용
 2. Reference Build에서는 실제 환경 없이 만들 수 있는 기준 구현을 먼저 완성
 3. 입문자는 Runtime 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
 4. 이해하기 어려운 코드와 명령에는 목적을 설명하는 주석 제공
 5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
+6. Runtime 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
 
 ## 4. VERIFY
 
@@ -89,8 +134,9 @@ B1-1부터 순서대로 사용자가 실제 환경에서 직접 실행합니다.
 
 1. 실제 환경이 필요한 항목을 직접 실행
 2. `PASS / FAIL` 판정을 명확히 표시
-3. 실패 시 원인 → 확인 → 해결 → 재검증 순서 사용
+3. 실패 시 원인 → 확인 → 최소 해결 → 재검증 순서 사용
 4. 예상 출력과 실제 출력을 구분
+5. Runtime 결과가 정상이라면 불필요한 추가 리팩터링 없이 Evidence로 이동
 
 ## 5. EVIDENCE
 
@@ -112,6 +158,8 @@ Reference Build 단계에서는 Evidence **계획과 저장 위치**만 준비�
 - 필요한 실제 환경 검증 완료
 - 필요한 Evidence 확보
 - Round 01 입문자 재현 가이드 완성
+
+CLEAR 뒤에 발견한 비필수 개선은 다음 미션 Runtime을 막지 않고 후속 개선/심화 Round에서 처리합니다.
 
 ## 상태
 
