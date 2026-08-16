@@ -4,7 +4,24 @@
 
 현재 운영 모드: **FAST EXECUTE**
 
+현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
+
 > Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다.
+
+## FAST TRACK 실행 순서
+
+```text
+Stage 1 — REQUIRED CLEAR
+B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
+→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+
+Stage 2 — OPTIONAL CLEAR
+B4-2 → B5-2 → B5-3 → B7-2
+```
+
+FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11개를 먼저 모두 CLEAR한 뒤 선택 4개를 수행하여 R01 전체 15개를 완료**합니다.
+
+`FAST EXECUTE`는 한 미션 안에서 불필요한 재설계를 줄이는 운영 방식이고, `FAST TRACK`은 R01의 미션 실행 순서입니다.
 
 ## Phase A/B 완료
 
@@ -45,6 +62,11 @@ NO
 
 Mission 상태: **🟡 ACTIVE**
 
+FAST TRACK 상태:
+
+- Stage 1 Required: **B1-1 진행 중 / 0 of 11 CLEAR**
+- Stage 2 Optional: **대기 / 0 of 4 CLEAR**
+
 ## B1-1 즉시 실행 순서
 
 1. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
@@ -72,12 +94,11 @@ Mission 상태: **🟡 ACTIVE**
 - `verify.sh`는 실제 시스템 검증이므로 Runtime 구성 이후 `sudo`로 실행
 - Runtime 결과를 받기 전에 PASS/CLEAR로 표시하지 않음
 
-## 전체 Runtime 순서
+## Stage 전환 규칙
 
-```text
-B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
-→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
-→ B4-2 → B5-2 → B5-3 → B7-2
-```
+- B1-1부터 B7-1까지 필수 11개가 모두 `✅ CLEAR`되기 전에는 Stage 2를 정식 Runtime 대상으로 전환하지 않습니다.
+- 필수 미션 수행 중 선택 미션의 지식이 필요하면 `START-CHECK`와 관련 개념만 참고할 수 있지만, 선택 미션 Runtime 자체는 Stage 2에서 수행합니다.
+- B7-1 CLEAR 후 B4-2를 `🟡 ACTIVE`로 전환합니다.
+- B4-2 → B5-2 → B5-3 → B7-2 순서로 선택 미션을 완료합니다.
 
-상세 실행 계약은 `PHASE-C-RUNBOOK.md`, 공통 시작 Gate는 `PHASE-C-PREFLIGHT.md`, 선후관계는 `MISSION-DEPENDENCY-MAP.md`를 사용합니다.
+상세 실행 계약은 `PHASE-C-RUNBOOK.md`, 공통 시작 Gate는 `PHASE-C-PREFLIGHT.md`, 선후관계는 `MISSION-DEPENDENCY-MAP.md`, 전체 순서는 루트 `MISSION-INDEX.md`를 사용합니다.
