@@ -8,6 +8,7 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 - 현재 단계: **Phase C — RUNTIME CLEAR**
 - 운영 모드: **FAST EXECUTE**
 - 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
+- 지원 Runtime: **MAC-D / MAC-V / WIN-D / WIN-V**
 - Active Mission: **B1-1 🟡 ACTIVE**
 - Phase A Reference Build: **15 / 15 CORE READY**
 - Canonical Audit: **15 / 15 PASS**
@@ -26,7 +27,9 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 3. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
 4. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
 5. [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 순서
-6. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+6. [environments/RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md) — Mac/Windows Docker·VM/Linux 실행 프로필
+7. [environments/MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md) — 15개 미션별 Docker/VM 실습
+8. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
 
 ## FAST EXECUTE와 FAST TRACK
 
@@ -47,6 +50,47 @@ B4-2 → B5-2 → B5-3 → B7-2
 **FAST TRACK은 미션을 생략하거나 B7-2로 바로 건너가는 경로가 아닙니다.** 필수 11개를 먼저 완료해 핵심 과정을 빠르게 닫고, 이후 선택 4개를 연속 수행하여 R01 전체 15개를 CLEAR합니다.
 
 권장 선행 지식과 Dependency는 학습 관계를 설명하기 위한 기준이고, FAST TRACK의 Stage 순서를 바꾸는 기준으로 사용하지 않습니다.
+
+## R01 실행환경 — Docker + VM/Linux
+
+현재 R01의 실행환경은 다음 두 Host 계열로 제한합니다.
+
+```text
+macOS + OrbStack
+├─ MAC-D: Docker
+└─ MAC-V: Ubuntu 24.04 Linux Machine
+
+Windows 11 Pro + WSL2 Ubuntu 24.04
+├─ WIN-D: Docker
+└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+```
+
+현재는 Ubuntu Native Host, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes를 R01 표준 범위에 추가하지 않습니다. R01 전체 CLEAR 이후 Portability/Advanced 단계에서 확장합니다.
+
+### Mission별 Dual-Runtime 원칙
+
+각 미션에는 Docker 실습과 VM/Linux Machine 실습을 함께 설계합니다. 그러나 **같은 미션을 네 환경에서 처음부터 끝까지 반복하지 않습니다.**
+
+```text
+Primary Runtime
+→ 공식 Mission Runtime
+→ Verify
+→ Evidence
+→ ✅ CLEAR
+
+Twin Lab
+→ 다른 Host/실행 형태에서 핵심 기능 1~3개 재현
+→ 환경 차이 기록
+→ 종료
+```
+
+- OS/SSH/UFW/users/ACL/cron/troubleshooting 중심 미션은 `MAC-V`를 우선합니다.
+- Python/Web/DB/API/AI application 중심 미션은 `MAC-D`를 우선합니다.
+- Windows 쪽은 `WIN-V`/`WIN-D`로 Portability를 확인합니다.
+- GitHub/AWS/실제 배포/실제 AI Provider Evidence는 local Docker/VM 실습이 대체하지 않습니다.
+- Dual-Runtime Lab Coverage는 Mission 상태와 별도로 관리하며, Twin Lab 미완료만으로 Mission을 `⛔ BLOCKED` 처리하지 않습니다.
+
+상세 프로필은 [`environments/RUNTIME-PROFILES.md`](environments/RUNTIME-PROFILES.md), 15개 미션별 실습 설계는 [`environments/MISSION-LAB-MATRIX.md`](environments/MISSION-LAB-MATRIX.md)를 사용합니다.
 
 ## 설계 단계와 빠른 실행 단계
 
@@ -174,11 +218,13 @@ README
 → NEXT-ACTIONS
 → PHASE-C-PREFLIGHT
 → 현재 미션 START-CHECK(있는 경우)
+→ Primary Runtime 확인
 → BEGINNER-GUIDE
 → Runtime
 → Verify
 → Evidence
 → CLEAR
+→ 필요 범위 Twin Lab
 → FAST TRACK의 다음 미션
 ```
 
@@ -187,6 +233,7 @@ README
 - [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 미션 순서
 - [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01 이후 심화 Round
 - [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 전체 공통 수행 계약
+- [environments/README.md](environments/README.md) — R01 실행환경 운영 기준
 - [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명 기준
 - [standards/ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경·Secret·검증 기준
 
@@ -195,6 +242,8 @@ README
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
 - Phase A/B에서 준비한 Reference/Runbook을 기본 경로로 사용하며 Phase C에서 임의 재설계를 반복하지 않습니다.
 - FAST TRACK은 **Stage 1 필수 11개 → Stage 2 선택 4개** 순서를 유지합니다.
+- R01 Runtime 환경은 `MAC-D`, `MAC-V`, `WIN-D`, `WIN-V` 네 프로필로 제한합니다.
+- 각 Mission은 Primary Runtime에서 CLEAR를 우선하고 Twin Lab은 Portability 학습으로 분리합니다.
 - `START-CHECK.md`가 있는 미션은 먼저 선행 지식 상태를 확인합니다.
 - 권장 선행은 학습 보조 기준이며 FAST TRACK 실행 순서를 임의로 앞당기는 근거로 사용하지 않습니다.
 - 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 실제 Runtime을 수행합니다.
