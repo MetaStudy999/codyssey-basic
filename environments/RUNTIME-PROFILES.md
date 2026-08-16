@@ -4,9 +4,54 @@
 
 IDE, LLM, 새 채팅이 바뀌어도 동일한 실행환경을 해석하도록 R01의 Runtime Profile을 고정합니다.
 
+## R01 운영 범위
+
+```text
+macOS + OrbStack
+├─ MAC-V: Ubuntu 24.04 Linux Machine
+└─ MAC-D: Docker
+
+Windows 11 Pro + WSL2 Ubuntu 24.04
+├─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+└─ WIN-D: Docker
+```
+
+현재는 Ubuntu Native Host, 수동 Hyper-V VM, VMware, KVM/QEMU/libvirt, Proxmox, Kubernetes를 R01 표준 범위에 포함하지 않습니다.
+
 ## Profile 정의
 
-### MAC-D
+### MAC-V — Primary Linux Runtime
+
+```text
+macOS Host
+└─ OrbStack Linux Machine
+   └─ Ubuntu 24.04
+```
+
+R01의 기본 **Primary Runtime**입니다.
+
+용도:
+- Linux CLI
+- Python/Node 직접 실행
+- systemd/OpenSSH/UFW
+- users/groups/ACL/cron
+- filesystem/process/network
+- Web/API/DB/AI application 직접 실행
+- server-like integration
+
+### WIN-V — Secondary Linux Runtime
+
+```text
+Windows 11 Pro Host
+└─ WSL2
+   └─ Ubuntu 24.04 direct runtime
+```
+
+R01의 기본 **Secondary Platform / Portability Runtime**입니다.
+
+`WIN-V`는 프로젝트 내부 프로필 이름이며, 별도 Hyper-V Manager에서 만든 전통적 VM이라는 뜻이 아닙니다. Docker와 구분되는 Ubuntu 24.04 직접 Linux Runtime을 의미합니다.
+
+### MAC-D — Optional Docker Lab
 
 ```text
 macOS Host
@@ -15,36 +60,14 @@ macOS Host
 ```
 
 용도:
-- Python/CLI
-- Web/API
-- Database
-- AI application
-- 재현 가능한 package/runtime 실습
+- 격리된 Python/Node/Web/API/DB/AI 실습
+- 재현 가능한 package/runtime
+- container/image/volume/port/env 학습
+- containerization 연습
 
-주의:
-- Container 내부 결과만으로 Host/VM 수준의 SSH/UFW/systemd/users/ACL 요구를 대체하지 않습니다.
+Docker Lab은 공식 Mission/Evaluation이 명시적으로 요구하지 않는 한 Mission CLEAR의 기본 Gate가 아닙니다.
 
-### MAC-V
-
-```text
-macOS Host
-└─ OrbStack Linux Machine
-   └─ Ubuntu 24.04
-```
-
-용도:
-- systemd
-- OpenSSH
-- UFW
-- Linux users/groups
-- ACL
-- cron
-- process/network troubleshooting
-- server-like integration
-
-R01의 기본 **Linux Machine Primary Profile**입니다.
-
-### WIN-D
+### WIN-D — Optional Docker Portability Lab
 
 ```text
 Windows 11 Pro Host
@@ -54,44 +77,34 @@ Windows 11 Pro Host
 ```
 
 용도:
-- MAC-D에서 만든 application/container 경로의 Windows/WSL2 portability 확인
-- Python/Web/DB/API/AI container 실습
+- MAC-D에서 연습한 container 경로의 Windows/WSL2 portability 확인
+- Docker 환경 차이 학습
 
-### WIN-V
+역시 기본 CLEAR Gate가 아닙니다.
 
-```text
-Windows 11 Pro Host
-└─ WSL2
-   └─ Ubuntu 24.04 direct runtime
-```
-
-용도:
-- MAC-V Linux 절차의 WSL2 portability 확인
-- systemd/service/process/filesystem/network 실습
-
-`WIN-V`는 프로젝트의 프로필 이름이며 별도 Hyper-V Manager에서 수동 생성한 VM을 의미하지 않습니다. R01에서는 **Docker가 아닌 Ubuntu 24.04 직접 Linux Runtime**을 나타냅니다.
-
-## Primary / Twin 정책
-
-각 미션은 아래와 같이 운영합니다.
+## Runtime 우선순위
 
 ```text
-Primary Runtime
-= Mission CLEAR를 위한 주 실행환경
-
-Twin Runtime
-= 다른 실행 형태/Host에서 핵심 경로를 재현하는 학습·Portability 실습
+1. 공식 Mission/Evaluation
+2. Primary Mission Runtime
+3. Verify
+4. Evidence
+5. ✅ CLEAR
+6. Secondary Platform Check — 권장
+7. Docker Lab — 선택
 ```
 
-권장 기본값:
+따라서 R01의 기본값은 다음과 같습니다.
 
-- 시스템/운영 미션 → `MAC-V` Primary, `WIN-V` Twin
-- 애플리케이션 미션 → `MAC-D` Primary, `WIN-D` Twin
-- 외부 서비스 미션 → 적합한 local profile에서 rehearsal 후 실제 GitHub/AWS/배포/API Evidence 수행
+```text
+Primary Mission Runtime = MAC-V 또는 외부 공식 Runtime
+Secondary Platform Check = WIN-V
+Docker Lab = MAC-D / WIN-D 선택
+```
 
-## Dual-Lab Coverage
+GitHub/AWS/실제 배포/실제 AI Provider가 본 요구인 미션에서는 해당 외부 Runtime/Evidence가 Primary 기준입니다.
 
-Mission 상태와 Lab 상태를 섞지 않습니다.
+## Mission 상태와 Lab 상태 분리
 
 Mission 상태:
 - `⬜ NOT STARTED`
@@ -99,16 +112,29 @@ Mission 상태:
 - `⛔ BLOCKED`
 - `✅ CLEAR`
 
-Lab Coverage는 별도 체크로만 관리합니다.
+환경 학습 Coverage:
 
 ```text
-Docker Lab       [ ] / [x]
-VM/Linux Lab     [ ] / [x]
-Mac portability  [ ] / [x]
-Win portability  [ ] / [x]
+Primary Runtime          [ ] / [x]
+Secondary Platform Check [ ] / [x]
+MAC-D Docker Lab         [ ] / [x]
+WIN-D Docker Lab         [ ] / [x]
 ```
 
-Lab Coverage가 미완료여도 공식 Mission/Evaluation의 CLEAR 조건을 충족했다면 Mission 상태를 임의로 BLOCKED로 바꾸지 않습니다.
+Docker Lab 또는 Secondary Check가 미완료여도 공식 요구와 실제 Runtime/Verify/Evidence가 충족되었다면 Mission 상태를 임의로 BLOCKED로 바꾸지 않습니다.
+
+## Docker 정책
+
+상세 정책은 [`DOCKER-POLICY.md`](DOCKER-POLICY.md)를 사용합니다.
+
+핵심:
+
+```text
+Docker = 선택 Training Layer
+Docker 사용 여부 ≠ Mission PASS/CLEAR
+```
+
+단, 미래에 공식 Mission/Evaluation이 Docker를 필수로 요구한다면 공식 자료가 이 정책보다 우선합니다.
 
 ## Architecture 규칙
 
@@ -130,21 +156,8 @@ dpkg --print-architecture 2>/dev/null || true
 가능하면 IDE Workspace에는 동시에 아래 두 저장소만 엽니다.
 
 ```text
-codyssey-basic                # Control Tower
+codyssey-basic                 # Control Tower
 현재 Active Mission Repository # Workcell
 ```
 
-Docker/VM/Linux Runtime 자체와 Repository Source of Truth를 분리합니다. Container나 Linux Machine을 삭제해도 Git Repository의 공식 Mission/Guide/Evidence 계약은 남아 있어야 합니다.
-
-## R01에서 보류하는 환경
-
-다음은 현재 표준에 포함하지 않습니다.
-
-- Ubuntu 24.04 Native Host
-- 수동 Hyper-V Ubuntu VM
-- VMware
-- KVM/QEMU/libvirt
-- Proxmox
-- Kubernetes
-
-R01 전체 CLEAR 이후 Portability/Advanced 단계에서 확장합니다.
+Runtime 환경과 Repository Source of Truth를 분리합니다. Container/Linux Machine을 삭제해도 공식 Mission/Guide/Evidence 계약은 Git Repository에 남아 있어야 합니다.
