@@ -1,6 +1,52 @@
 # Mission Runbook
 
-모든 미션은 같은 흐름으로 진행합니다. 상세 내부 검증은 필요에 따라 수행하되, 입문자 화면은 아래 6단계로 단순화합니다.
+모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 Runtime CLEAR를 분리**합니다.
+
+## Round 01 — 3-Phase 운영
+
+### Phase A — REFERENCE BUILD
+
+B1-1부터 B7-2까지 공식 Mission/Evaluation을 기준으로 기준 구현과 학습 자료를 먼저 준비합니다.
+
+이 단계에서 수행합니다.
+
+1. 공식 Mission PDF/MD/Evaluation/제공 파일 확인
+2. 필수/선택 요구사항 분리
+3. Requirement → Implementation → Verification → Evidence 설계
+4. ChatGPT Reference Complete Path 설계
+5. 코드·설정·문서·검증 도구 중 실제 환경 없이 준비 가능한 항목 구현
+6. `BEGINNER-GUIDE.md`, `CHECKLIST.md` 구체화
+7. Secret 노출 점검
+8. 실제 Runtime이 필요한 항목을 명시적으로 남김
+
+**중요:** Reference Build가 완료되어도 실제 Runtime과 Evidence가 없으면 Mission을 `CLEAR`로 변경하지 않습니다.
+
+Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이며, 사용자가 해당 미션의 Runtime 수행을 시작했다는 의미가 아닙니다.
+
+### Phase B — CROSS-MISSION AUDIT
+
+15개 미션의 Reference Build가 준비된 뒤 전체 연결성을 한 번 검토합니다.
+
+- 공통 개발환경과 버전
+- 포트/서비스 충돌
+- Python/Node/DB/Cloud 구성
+- Secret 정책
+- Git/브랜치 운영
+- 미션 간 선후관계와 재사용 가능 환경
+- B5/B6/B7 연결 구조
+- 중복 설정과 불필요한 반복
+
+현재 미션 통과와 관계없는 고도화는 별도 후속 Round로 미룹니다.
+
+### Phase C — RUNTIME CLEAR
+
+B1-1부터 순서대로 사용자가 실제 환경에서 직접 실행합니다.
+
+`이해 → 직접 실행 → 검증 → 오류 해결 → Evidence → 평가 확인 → CLEAR`
+
+한 미션이 실제 `CLEAR`된 뒤 다음 미션의 Runtime으로 이동합니다.
+
+---
 
 ## 1. UNDERSTAND
 
@@ -22,16 +68,29 @@
 ## 3. BUILD
 
 1. ChatGPT가 먼저 최소 통과 경로를 끝까지 설계
-2. 입문자는 `BEGINNER-GUIDE.md` Step 순서대로 수행
-3. 이해하기 어려운 코드와 명령에는 목적을 설명하는 주석 제공
-4. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
+2. Reference Build에서는 실제 환경 없이 만들 수 있는 기준 구현을 먼저 완성
+3. 입문자는 Runtime 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
+4. 이해하기 어려운 코드와 명령에는 목적을 설명하는 주석 제공
+5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
 
 ## 4. VERIFY
 
-1. 가능한 자동 테스트 수행
-2. 실제 환경이 필요한 항목은 실제 실행으로 확인
-3. `PASS / FAIL` 판정을 명확히 표시
-4. 실패 시 원인 → 확인 → 해결 → 재검증 순서 사용
+검증은 둘로 분리합니다.
+
+### Reference Build 검증
+
+- 요구사항 누락 확인
+- 문법/정적 검사 가능한 항목
+- 코드·문서 일치성
+- Secret 노출
+- 실제 실행하지 않은 항목을 PASS로 표시하지 않았는지 확인
+
+### Runtime 검증
+
+1. 실제 환경이 필요한 항목을 직접 실행
+2. `PASS / FAIL` 판정을 명확히 표시
+3. 실패 시 원인 → 확인 → 해결 → 재검증 순서 사용
+4. 예상 출력과 실제 출력을 구분
 
 ## 5. EVIDENCE
 
@@ -40,6 +99,8 @@
 `Requirement → Implementation → Verification → Evidence`
 
 Secret, Token, Password, Private Key는 증빙에서도 노출하지 않습니다.
+
+Reference Build 단계에서는 Evidence **계획과 저장 위치**만 준비할 수 있으며, 실제 실행하지 않은 결과를 Evidence로 만들지 않습니다.
 
 ## 6. CLEAR
 
@@ -50,13 +111,15 @@ Secret, Token, Password, Private Key는 증빙에서도 노출하지 않습니�
 - 자동 검증 가능한 항목 PASS
 - 필요한 실제 환경 검증 완료
 - 필요한 Evidence 확보
-- Round 01에서는 입문자 재현 가이드 완성
+- Round 01 입문자 재현 가이드 완성
 
 ## 상태
 
-- `NOT STARTED`
-- `ACTIVE`
-- `BLOCKED`
-- `CLEAR`
+Mission 상태는 아래 네 가지만 사용합니다.
 
-한 미션을 CLEAR한 뒤 다음 미션으로 이동합니다.
+- `⬜ NOT STARTED`
+- `🟡 ACTIVE`
+- `⛔ BLOCKED`
+- `✅ CLEAR`
+
+Reference Build 진행 여부는 Mission 상태를 임의로 변경하는 근거가 아닙니다.
