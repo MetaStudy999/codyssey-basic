@@ -6,38 +6,39 @@
 
 > Phase A에서는 B1-1~B7-2의 기준 구현·학습자료·검증계획을 먼저 준비할 수 있습니다. 단, 실제 Runtime/Evidence가 완료되지 않은 미션은 `✅ CLEAR`로 변경하지 않습니다.
 
-## 2026-08-16 Repository Audit
+## 2026-08-16 Full Repository Audit
 
-이번 현황은 통합 저장소의 기존 표만 보지 않고 각 미션 저장소의 `training/round-01-clear/` 실제 내용을 기준으로 재점검했습니다.
+15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 전수 확인했습니다. 상세 근거는 `training/round-01-clear/REFERENCE-AUDIT.md`에 기록합니다.
 
-### Phase A Reference Build 현황
+### Phase A Reference Build 준비도
 
-| 미션 | Reference Build 판정 | 핵심 근거 | 다음 조치 |
-|---|---|---|---|
-| B1-1 | **상당 부분 완료** | 상세 Beginner Guide/Checklist, `REFERENCE-BUILD.md`, `monitor.sh`, environment/docs/evidence 존재 | Beginner Guide 전체 Runtime Step 마감 + 자체검토 |
-| B1-2 | **기준본 준비 완료 기록** | 기존 Phase A 기록 기준 | Phase B에서 canonical 문서 정합성 재검토 |
-| B2-1 | **기준본 준비 완료 기록** | 기존 Phase A 기록 기준 | Phase B에서 canonical 문서 정합성 재검토 |
-| B2-2 | **기준본 준비 완료 기록** | 기존 Phase A 기록 기준 | Phase B에서 실제 팀 협업/PR Evidence 요구 별도 확인 |
-| B3-1 | **기준본 준비 완료 기록** | 기존 Phase A 기록 기준 | Phase B에서 canonical 문서 정합성 재검토 |
-| B3-2 | **Reference 구조 진행** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | 구현/가이드/체크리스트 완성도 감사 |
-| B4-1 | **Reference 구조 진행** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | 포트폴리오 구현/배포 검증 계획 완성도 감사 |
-| B4-2 | **부분 완료** | `REFERENCE-BUILD.md`, reference 존재, Beginner Guide/Checklist는 scaffold 성격 | React/Supabase 또는 Firebase 기준 구현·가이드 완성 |
-| B5-1 | **Reference 구조 진행** | `REFERENCE-BUILD.md`, reference/docs/environment/evidence 존재 | SQL 15개/샘플/검증 산출물 완성도 감사 |
-| B5-2 | **초기 골격** | R01 README/BEGINNER-GUIDE/CHECKLIST 중심 | FastAPI CRUD 기준 구현 전체 작성 필요 |
-| B5-3 | **초기 골격** | R01 README/BEGINNER-GUIDE/CHECKLIST 중심 | 인증/인가/연관관계 기준 구현 전체 작성 필요 |
-| B6-1 | **Reference 자료 진행** | AWS Reference 설계·환경·문서·검증 자료가 작성된 상태 | canonical guide/checklist 동기화 및 전체 감사 |
-| B6-2 | **핵심 기준본 준비 완료** | `REFERENCE-STATUS.md`에서 collector/client/CLI/validator/tests/verify/secret scan 완료 표시 | 실제 Provider/API Runtime은 Phase C |
-| B7-1 | **핵심 기준본 준비 완료** | `REFERENCE-STATUS.md`에서 인증/AI/DB/log/docs/verify 기준본 완료 표시 | 실제 AI/브라우저/팀협업/배포는 Phase C |
-| B7-2 | **초기 골격** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | Project B 전체 Reference Build 필요 |
+| 미션 | Reference 판정 | 현재 핵심 상태 |
+|---|---|---|
+| B1-1 | **ADVANCED** | 상세 Guide/Checklist + monitor/environment/docs/evidence |
+| B1-2 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + docs/environment/evidence |
+| B2-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
+| B2-2 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
+| B3-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
+| B3-2 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
+| B4-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
+| B5-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
+| B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
+| B6-2 | **CORE READY** | Reference 구현/테스트/verify/secret scan 완료 기록 |
+| B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
+| B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 있으나 React 기준본 마감 필요 |
+| B5-2 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
+| B5-3 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
+| B7-2 | **SCAFFOLD** | R01 기본 Guide/Checklist 중심 |
 
-### Phase A 요약
+### 집계
 
-- **핵심 기준본 준비 완료 또는 완료 기록:** B1-2, B2-1, B2-2, B3-1, B6-2, B7-1
-- **상당 부분/Reference 구조 진행:** B1-1, B3-2, B4-1, B5-1, B6-1
-- **부분 완료:** B4-2
-- **초기 골격:** B5-2, B5-3, B7-2
+- CORE READY: **2 / 15**
+- ADVANCED: **9 / 15**
+- PARTIAL: **1 / 15**
+- SCAFFOLD: **3 / 15**
+- Runtime `✅ CLEAR`: **0 / 15**
 
-> 위 분류는 Mission Runtime 상태가 아닙니다. Reference 문서나 코드가 존재해도 실제 실행·검증·Evidence가 없으면 CLEAR가 아닙니다.
+> 위 집계는 Phase A Reference 준비도입니다. 공식 미션 통과율이 아닙니다.
 
 ## Runtime Mission 상태
 
@@ -59,19 +60,19 @@
 | 14 | B5-3 | 선택 | ⬜ NOT STARTED |
 | 15 | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
-## 지금부터의 Phase A 작업 순서
+## Phase A 작업 큐
 
-미완성도가 높은 항목부터 먼저 닫습니다.
+실행 검증은 뒤로 미루고, 미완성도가 높은 Reference부터 닫습니다.
 
 1. **B5-2** — FastAPI CRUD Reference Complete
 2. **B5-3** — 인증/인가/연관관계 Reference Complete
 3. **B7-2** — Project B Reference Complete
-4. **B4-2** — React CRUD/원격 데이터/배포 Reference 마감
-5. **B1-1** — Beginner Guide 전체 Runtime Step 및 자체검토 마감
-6. **B3-2 / B4-1 / B5-1 / B6-1** — 기존 Reference 구조 완성도 감사 및 누락 보완
-7. **B1-2 / B2-1 / B2-2 / B3-1 / B6-2 / B7-1** — canonical 문서/상태 정합성 최종 감사
-
-이 순서가 끝나면 **Phase B — Cross-Mission Audit**로 이동합니다.
+4. **B4-2** — React SPA CRUD Reference 마감
+5. **B1-1** — Beginner Guide 전체 Runtime Step + 자체감사
+6. **B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED 기준본 자체감사/정합성 마감
+7. **B6-2 / B7-1** — CORE READY canonical 최종검토
+8. **Phase B — Cross-Mission Audit**
+9. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## R01 작업 흐름
 
