@@ -7,11 +7,14 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 - Active Round: **R01 — CLEAR**
 - 현재 단계: **Phase C — RUNTIME CLEAR**
 - 운영 모드: **FAST EXECUTE**
+- 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 - Active Mission: **B1-1 🟡 ACTIVE**
 - Phase A Reference Build: **15 / 15 CORE READY**
 - Canonical Audit: **15 / 15 PASS**
 - Cross-Mission Audit: **COMPLETE / BLOCKER 0**
 - Runtime `✅ CLEAR`: **0 / 15**
+- FAST TRACK Stage 1 — Required: **0 / 11 CLEAR**
+- FAST TRACK Stage 2 — Optional: **0 / 4 CLEAR**
 - 핵심 원칙: **Mission First · Beginner First · One Runtime at a Time**
 
 > 현재는 설계를 계속 확장하는 단계가 아니라, 이미 준비된 기준 경로를 실제로 실행하여 `Runtime → Verify → Evidence → CLEAR`로 전환하는 단계입니다.
@@ -22,7 +25,28 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 지금 해야 할 일
 3. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
 4. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
-5. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+5. [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 순서
+6. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+
+## FAST EXECUTE와 FAST TRACK
+
+두 용어는 역할이 다릅니다.
+
+- **FAST EXECUTE:** 한 미션 안에서 불필요한 재설계를 줄이고 `Runtime → Verify → Evidence → CLEAR`에 집중하는 실행 방식
+- **FAST TRACK:** R01에서 **필수 미션 11개를 먼저 모두 CLEAR한 뒤 선택 미션 4개를 수행**하는 미션 순서
+
+```text
+Stage 1 — REQUIRED CLEAR
+B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
+→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+
+Stage 2 — OPTIONAL CLEAR
+B4-2 → B5-2 → B5-3 → B7-2
+```
+
+**FAST TRACK은 미션을 생략하거나 B7-2로 바로 건너가는 경로가 아닙니다.** 필수 11개를 먼저 완료해 핵심 과정을 빠르게 닫고, 이후 선택 4개를 연속 수행하여 R01 전체 15개를 CLEAR합니다.
+
+권장 선행 지식과 Dependency는 학습 관계를 설명하기 위한 기준이고, FAST TRACK의 Stage 순서를 바꾸는 기준으로 사용하지 않습니다.
 
 ## 설계 단계와 빠른 실행 단계
 
@@ -100,7 +124,8 @@ NO
 > **행 정렬은 미션 번호 기준**입니다. 실제 R01 수행 순서는 `R01 실행 순번` 열을 따릅니다.  
 > `미션 제목`은 각 미션의 공식 `*-mission.md` 첫 제목을 **원문 그대로** 사용합니다.  
 > `필수 선행`은 선행 결과물을 직접 사용하거나 공식 미션이 이전 프로젝트를 기반으로 요구하는 경우만 표시합니다.  
-> `권장 선행`은 완료하지 않아도 현재 미션을 시작할 수 있지만, 관련 개념을 미리 익혀 두면 이해와 수행이 쉬워지는 교육 설계상 권장 경로입니다. **공식 필수 조건이 아닙니다.**
+> `권장 선행`은 완료하지 않아도 현재 미션을 시작할 수 있지만, 관련 개념을 미리 익혀 두면 이해와 수행이 쉬워지는 교육 설계상 권장 경로입니다. **공식 필수 조건이 아닙니다.**  
+> `R01 실행 순번`은 FAST TRACK을 따르며 **필수 11개를 먼저 완료하고 선택 4개를 이후에 수행**합니다.
 
 | 미션 | 미션 제목 | 구분 | 필수 선행 | 권장 선행 | R01 실행 순번 | 저장소 |
 |---|---|---|---|---|---:|---|
@@ -122,9 +147,11 @@ NO
 
 ### 선행 관계를 읽는 방법
 
-`필수 선행`은 **Gate**입니다. 해당 미션의 결과물이 없으면 후속 미션의 공식 요구를 그대로 수행하기 어렵습니다. 현재 R01에서는 B7-2가 Project A의 AI 챗봇을 기반으로 고도화하도록 요구하므로 B7-1만 필수 선행으로 둡니다.
+`필수 선행`은 **Dependency Gate**입니다. 해당 미션의 결과물이 없으면 후속 미션의 공식 요구를 그대로 수행하기 어렵습니다. 현재 R01에서는 B7-2가 Project A의 AI 챗봇을 기반으로 고도화하도록 요구하므로 B7-1만 필수 선행으로 둡니다.
 
-`권장 선행`은 **학습 가속 경로**입니다. 미션 자체를 반드시 CLEAR할 필요는 없으며, 해당 미션에서 다루는 핵심 개념을 이미 알고 있다면 바로 현재 미션으로 들어가도 됩니다. 예를 들어 B1-2는 B1-1을 완료하지 않았더라도 수행할 수 있지만, 프로세스·포트·로그·관제 개념을 알고 있으면 훨씬 수월합니다.
+`권장 선행`은 **학습 가속 경로**입니다. 미션 자체를 반드시 CLEAR할 필요는 없으며, 해당 미션에서 다루는 핵심 개념을 이미 알고 있다면 학습상 준비가 된 것으로 볼 수 있습니다.
+
+다만 **FAST TRACK의 실제 Runtime 순서는 Dependency와 별도로 고정**합니다. 따라서 Stage 1에서는 필수 11개를 먼저 CLEAR하고, Stage 2에서 선택 4개를 진행합니다.
 
 선행 관계가 있는 미션 저장소에는 `training/round-01-clear/START-CHECK.md`를 두어 **미션 완료 여부가 아니라 실제 보유 지식**을 먼저 점검합니다. 이 문서는 공식 평가가 아니며, 부족한 항목만 권장 선행 미션이나 해당 개념 학습으로 보충한 뒤 `BEGINNER-GUIDE.md`로 진입하는 용도입니다.
 
@@ -152,12 +179,12 @@ README
 → Verify
 → Evidence
 → CLEAR
-→ 다음 미션
+→ FAST TRACK의 다음 미션
 ```
 
 설계·학습 체계 전체 문서는 필요할 때 참고합니다.
 
-- [MISSION-INDEX.md](MISSION-INDEX.md) — 전체 미션과 R01 수행 순서
+- [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 미션 순서
 - [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01 이후 심화 Round
 - [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 전체 공통 수행 계약
 - [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명 기준
@@ -167,8 +194,9 @@ README
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
 - Phase A/B에서 준비한 Reference/Runbook을 기본 경로로 사용하며 Phase C에서 임의 재설계를 반복하지 않습니다.
+- FAST TRACK은 **Stage 1 필수 11개 → Stage 2 선택 4개** 순서를 유지합니다.
 - `START-CHECK.md`가 있는 미션은 먼저 선행 지식 상태를 확인합니다.
-- 필수 선행이 없거나 충족되었고 필요한 지식이 준비되었다면 권장 선행 미션을 CLEAR하지 않았어도 현재 미션으로 진입할 수 있습니다.
+- 권장 선행은 학습 보조 기준이며 FAST TRACK 실행 순서를 임의로 앞당기는 근거로 사용하지 않습니다.
 - 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 실제 Runtime을 수행합니다.
 - 실행 중 BLOCKER가 생기면 **원인 → 최소 수정 → 재검증 → 계속 실행** 순서로 처리합니다.
 - CLEAR와 무관한 개선 아이디어는 현재 Runtime을 멈추지 않고 후속 개선 후보로 미룹니다.
@@ -178,4 +206,4 @@ README
 
 ## 보존 원칙
 
-기존 대시보드/Growth OS 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존되어 있습니다. 현재 `main`은 R01 미션을 빠르게 실제 CLEAR하기 위한 실행 기준으로 운영합니다.
+기존 대시보드/Growth OS 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존되어 있습니다. 현재 `main`은 R01 FAST TRACK에 따라 필수 미션을 먼저 실제 CLEAR하고 이후 선택 미션을 완료하기 위한 실행 기준으로 운영합니다.
