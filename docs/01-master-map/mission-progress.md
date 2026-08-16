@@ -4,7 +4,7 @@
 
 | ID | 구분 | 수행 | 현재 Gate | 학습 | G1 SOURCE | G2 BUILD | G3 TEST | G4 REVIEW | G5 RUNTIME | G6 EVIDENCE | G7 LEARN | G8 MERGE |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| B1-1 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1-1 | 필수 | TODO | G2 BUILD | NOT-STUDIED | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B1-2 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B2-1 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | B2-2 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |

@@ -60,9 +60,9 @@
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor",
       "status": "TODO",
       "learning": "NOT-STUDIED",
-      "current_gate": "G1_SOURCE",
+      "current_gate": "G2_BUILD",
       "gates": {
-        "G1_SOURCE": "TODO",
+        "G1_SOURCE": "PASS",
         "G2_BUILD": "TODO",
         "G3_TEST": "TODO",
         "G4_REVIEW": "TODO",
@@ -74,7 +74,7 @@
       "domain_id": "B1",
       "domain_name": "Linux와 OS",
       "domain_name_en": "Linux & OS",
-      "current_gate_label": "G1 SOURCE"
+      "current_gate_label": "G2 BUILD"
     },
     {
       "id": "B1-2",
