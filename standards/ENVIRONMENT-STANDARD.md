@@ -16,6 +16,34 @@ Docker → 선택 Training Layer
 
 세부 Runtime Profile은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
 
+## VS Code Remote Ubuntu Workspace 계약
+
+macOS에서 VS Code를 실행하더라도 `MAC-V`의 실제 개발 작업은 **OrbStack Ubuntu 24.04 내부의 Linux filesystem**을 기준으로 합니다.
+
+```text
+VS Code UI        = macOS
+Remote transport  = OrbStack SSH (`orb`)
+Repository        = Ubuntu `$HOME/codyssey/...`
+Terminal          = Ubuntu Bash
+Git               = Ubuntu Git
+Python            = Ubuntu Python
+Virtual Env       = Python Mission별 repo-local `.venv`
+```
+
+OrbStack이 제공하는 `/Users/...`, `/mnt/mac/Users/...` 경로는 macOS 공유 filesystem이므로 Primary Mission Workspace로 사용하지 않고 파일 교환/참조 용도로만 사용합니다.
+
+Repository의 VS Code Terminal은 다음 원칙을 사용합니다.
+
+```text
+Default shell = bash
+Terminal cwd  = ${workspaceFolder}
+Shell Integration = enabled
+```
+
+Python Mission의 `.venv` 자동 활성화는 특정 Project를 `~/.bashrc`에 하드코딩하지 않고 VS Code Python Environment 선택/Remote User Setting을 사용합니다.
+
+상세 기준은 [`VS-CODE-REMOTE-UBUNTU-STANDARD.md`](VS-CODE-REMOTE-UBUNTU-STANDARD.md)를 사용합니다.
+
 ## Cross-platform Git / File 계약
 
 macOS, Windows 11 Pro, WSL2, Ubuntu 24.04 사이에서 같은 Repository를 안전하게 사용하기 위해 모든 Codyssey Basic 저장소는 다음을 기본 계약으로 사용합니다.
