@@ -46,6 +46,32 @@ Docker Lab = 선택
 7. Architecture는 Host 이름으로 추측하지 않고 Runtime 내부 `uname -m`으로 확인합니다.
 8. Secret은 어떤 Runtime에서도 GitHub/채팅/로그/Evidence에 기록하지 않습니다.
 
+## VS Code Remote Ubuntu Workspace 정책
+
+`MAC-V`에서 VS Code는 macOS에 실행하되 실제 개발환경은 OrbStack Ubuntu 24.04로 고정합니다.
+
+```text
+macOS VS Code
+→ Remote-SSH `orb`
+→ OrbStack Ubuntu 24.04
+→ `$HOME/codyssey/<repo>` Open Folder
+→ Ubuntu Bash / Git / Python / `.venv`
+```
+
+Primary Repository는 Ubuntu `$HOME/codyssey/...`에 두고 `/Users/...` 또는 `/mnt/mac/Users/...` 같은 macOS shared path를 기본 개발경로로 사용하지 않습니다.
+
+새 VS Code Terminal은 다음을 목표로 합니다.
+
+```text
+Shell = bash
+PWD   = ${workspaceFolder}
+Python Mission = repo-local `.venv` 자동 활성화
+```
+
+특정 Project의 `.venv`를 Global `~/.bashrc`에서 강제 활성화하지 않습니다. Remote User Settings와 Repository `.vscode/settings.json`의 역할을 분리합니다.
+
+상세 기준은 [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md)를 사용합니다.
+
 ## Cross-platform Git / File 정책
 
 macOS, Windows 11 Pro, WSL2, Ubuntu 24.04 사이에서 GitHub Repository를 주고받을 때 OS 차이를 개인 설정에 맡기지 않고 **Repository 계약으로 고정**합니다.
@@ -98,7 +124,9 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - [`RUNTIME-PROFILES.md`](RUNTIME-PROFILES.md) — 4개 실행 프로필 상세 계약
 - [`DOCKER-POLICY.md`](DOCKER-POLICY.md) — Docker 선택 학습 정책
 - [`MISSION-LAB-MATRIX.md`](MISSION-LAB-MATRIX.md) — B1-1~B7-2 Primary/Secondary/Docker Lab 설계
+- [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — OrbStack Ubuntu + VS Code Remote Workspace/Terminal 표준
 - [`../standards/CROSS-PLATFORM-GIT-STANDARD.md`](../standards/CROSS-PLATFORM-GIT-STANDARD.md) — Mac/Windows/Ubuntu Git 파일 호환성 표준
+- [`../templates/vscode-remote-linux-settings.json`](../templates/vscode-remote-linux-settings.json) — Mission Repository용 VS Code Remote Linux 설정 템플릿
 - [`../templates/DUAL-RUNTIME-LAB-TEMPLATE.md`](../templates/DUAL-RUNTIME-LAB-TEMPLATE.md) — Mission별 상세 환경 실습 템플릿
 
 ## 운영 방식
@@ -106,6 +134,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 ```text
 Mission 시작
 → Primary Runtime
+→ VS Code Remote / Workspace 경로 확인
 → Cross-platform Git/File Preflight
 → 공식 Mission/Evaluation 수행
 → Verify
