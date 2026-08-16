@@ -19,9 +19,9 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 | 미션 | 판정 | 핵심 근거 / 잔여 |
 |---|---|---|
-| B1-1 | **CORE READY** | 15-Step Guide, `/opt/agent-app` 권한 모델, strict UFW/effective-permission verify, hardened monitor, mapping/Q&A/evidence/status 준비. Runtime만 잔여 |
-| B1-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, docs/environment/evidence. 최종 자체감사 잔여 |
-| B2-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 기준 구현 자체감사 잔여 |
+| B1-1 | **CORE READY** | 15-Step Guide, `/opt/agent-app` 권한 모델, strict UFW/effective-permission verify, hardened monitor, mapping/Q&A/evidence/status. Runtime만 잔여 |
+| B1-2 | **CORE READY** | Runtime Safety, controlled experiment matrix, hardened diagnostic monitor, 3 report/verify/mapping/status. 실제 장애 Runtime만 잔여 |
+| B2-1 | **CORE READY** | full CLI/JSONL 3-file persistence/generator/atomic rewrite, boundary unit tests, side-effect-light verify/status. 실제 CLI/Evidence만 잔여 |
 | B2-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 팀 협업 Runtime 분리 최종검토 |
 | B3-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 자료구조 테스트/가이드 자체감사 |
 | B3-2 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Mini Git 완성도 감사 |
@@ -37,46 +37,51 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 ## 집계
 
-- **CORE READY:** 7개 — B1-1, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
-- **ADVANCED:** 8개 — B1-2, B2-1, B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
+- **CORE READY:** 9개 — B1-1, B1-2, B2-1, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
+- **ADVANCED:** 6개 — B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
-## 최근 변경
+## 최근 자체감사 핵심
+
+### B2-1 ADVANCED → CORE READY
+
+- transaction/category/budget 3종 재오픈 persistence 테스트
+- list/search 실제 generator 계약 테스트
+- invalid date/type/category/amount와 missing ID 오류 경계
+- atomic rewrite temp 잔존/재오픈 검증
+- import partial-success row reason, export date-range/조건 검사
+- AST parse + `PYTHONDONTWRITEBYTECODE`로 verify 부작용 최소화
+- root/subcommand help, `--` option, README/3-file store 자동 점검
+
+### B1-2 ADVANCED → CORE READY
+
+- 전용 장애 실험 환경 Safety Gate
+- 동일 host/binary + 핵심 변수 1개 우선 변경하는 experiment matrix
+- monitor PID/interval validation + sample/exit markers
+- Runtime Evidence minimum, PID/time-series/Secret check
+- Deadlock은 PID만으로 단정하지 않고 resource/log/thread 근거 요구
 
 ### B1-1 ADVANCED → CORE READY
 
-자체감사에서 실제 Runtime 실패 가능성이 있던 설계를 보완했습니다.
+- `/opt/agent-app` 공유/민감 권한 모델
+- effective permission/UFW strict verify
+- canonical `agent-app` + `pgrep -x`
+- SSH 안전 전환 순서
+- safe failure/Warning/10MB rotation validation
 
-- `AGENT_HOME=/opt/agent-app` Golden Path로 상위 경로/공유 권한 모순 해소
-- upload는 `agent-common`, api_keys/log는 `agent-core`로 분리하고 `runuser`로 effective access 검증
-- 제공 실행 파일을 canonical `agent-app`으로 설치하고 `pgrep -x` 사용
-- UFW active 환경에서 `20022` 사전 허용 후 `sshd -t`/`sshd -T`/reload/새 접속/최종 Firewall 정리 순서 확정
-- UFW default deny incoming + 필수 두 포트 + extra ALLOW IN 없음까지 verify
-- Process/Port failure와 Warning을 안전한 environment override로 재현
-- `/tmp` 격리 경로에서 실제 10MB/10개 회전 검증
-- Beginner Guide STEP 01~15, Checklist, Reference Status, Mapping/Q&A 동기화
+### B4-2 / B5-2 / B5-3 / B7-2
 
-### B4-2 PARTIAL → CORE READY
-React/Vite/Router, routes, reusable components, custom hooks, form/state UX, Supabase remote CRUD/schema/env, deploy/evidence 기준본을 준비했습니다.
-
-### B5-2 SCAFFOLD → CORE READY
-Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD, 303 PRG, 레이어 분리, verify/setup/reset/DB inspect, Mapping/Q&A/Evidence/Guide/Checklist를 준비했습니다.
-
-### B5-3 SCAFFOLD → CORE READY
-세션 기반 인증, `Depends` 보호, User→Project→Task 관계, `back_populates`, cascade, Task 상태 전환 Service와 검증/학습 자료를 준비했습니다.
-
-### B7-2 SCAFFOLD → CORE READY
-회원가입/password hash, token auth/logout revoke, User-scoped ChatSession/Message, Post ownership REST, frontend, ERD/API/Architecture, collaboration/deployment/evidence 계획을 준비했습니다.
+이전 Phase A에서 각각 React/Supabase, FastAPI CRUD, Authentication/Relationship, Full-stack AI Chat 기준본을 CORE READY로 전환했습니다.
 
 위 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
 
 ## 우선순위
 
-1. **B1-2** — ADVANCED 자체감사/정합성 마감
-2. B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
-3. B1-1 / B4-2 / B5-2 / B5-3 / B6-2 / B7-1 / B7-2 — CORE READY canonical 최종 정합성 검사
+1. **B2-2** — ADVANCED 자체감사/정합성 마감
+2. B3-1 / B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
+3. 현재 CORE READY 9개 — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
