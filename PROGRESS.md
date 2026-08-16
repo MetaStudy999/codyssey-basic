@@ -6,7 +6,7 @@
 
 > Phase A에서는 B1-1~B7-2의 기준 구현·학습자료·검증계획을 먼저 준비할 수 있습니다. 단, 실제 Runtime/Evidence가 완료되지 않은 미션은 `✅ CLEAR`로 변경하지 않습니다.
 
-## 2026-08-16 Full Repository Audit
+## 2026-08-17 Full Repository Audit
 
 15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 기준으로 진행 상태를 추적합니다. 상세 근거는 `training/round-01-clear/REFERENCE-AUDIT.md`에 기록합니다.
 
@@ -18,10 +18,10 @@
 | B1-2 | **CORE READY** | isolated fault lab, controlled Before/After matrix, hardened diagnostic monitor, report/verify/mapping/status 완료 |
 | B2-1 | **CORE READY** | full CLI/persistence/streaming/atomic rewrite 구현, boundary tests, side-effect-light verify/status 완료 |
 | B2-2 | **CORE READY** | team skeleton, PR/Issue/review/conflict/troubleshooting policy, local verify + GitHub runtime audit/status 완료 |
-| B3-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
-| B3-2 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
-| B4-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
-| B5-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
+| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, collision/resize/LRU/TTL/OOM edge tests, hardened verify/mapping/Q&A/status 완료 |
+| B3-2 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, Mini Git 완성도 자체감사 필요 |
+| B4-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, Portfolio/API/Pages 자체감사 필요 |
+| B5-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, SQL 산출물 자체감사 필요 |
 | B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
 | B6-2 | **CORE READY** | Reference 구현/테스트/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
@@ -32,8 +32,8 @@
 
 ### 집계
 
-- CORE READY: **10 / 15**
-- ADVANCED: **5 / 15**
+- CORE READY: **11 / 15**
+- ADVANCED: **4 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
@@ -62,23 +62,33 @@
 
 ## Phase A 작업 큐
 
-1. **B3-1** — ADVANCED 자체감사/정합성 마감
-2. **B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
-3. **현재 CORE READY 10개** — canonical 최종 정합성 검사
+1. **B3-2** — ADVANCED 자체감사/정합성 마감
+2. **B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
+3. **현재 CORE READY 11개** — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
+### B3-1 — ADVANCED → CORE READY
+
+- Doubly Linked List 필수 6개 연산을 모두 unit test 대상으로 보강
+- HashMap에서 실제 same-bucket collision을 만들어 chaining 정확성 검증
+- load factor `== 0.75` 유지 / `>0.75` 2배 resize 경계 테스트
+- MinHeap `push/pop/peek/size`와 정렬 순서 검증
+- `maxmemory=0`, UTF-8 overwrite accounting, GET/SET-overwrite LRU refresh 보강
+- oversized single-entry OOM 시 기존 데이터와 `evicted_keys` 보존 검증
+- 제한 이하까지 반복 eviction 확인
+- EXPIRE 재설정, DEL 후 같은 key 재삽입, SET overwrite의 stale TTL lazy-deletion 안전성 검증
+- verifier에 `heapq` 금지와 AST syntax parse, Secret-pattern scan, `--runtime` Evidence Gate 추가
+- Evaluation Q&A에 LFU 전환, 10만 건 병목, overhead 포함 memory model, 공정한 채점 보정 추가
+- `REFERENCE-STATUS.md`, Mapping, Checklist, Evidence, root README 동기화
+
 ### B2-2 — ADVANCED → CORE READY
 
-- 실제 협업과 Reference template을 엄격히 분리하고 `TODO_RUNTIME`을 실제 링크로만 교체하도록 유지
-- 로컬 Git으로 증명할 수 없는 Branch Protection/Ruleset, PR, Review, Issue linkage를 위한 `github-runtime-audit.md` 추가
-- 팀원별 merged PR 2+, 타인 Review 2+, own-PR feedback 1+, contribution/troubleshooting 최소 기준을 실제 링크로 대조하도록 설계
-- Review는 수량뿐 아니라 실질 내용/author interaction을 사람이 확인
-- conflict 2+/non-trivial 1+는 문서 주장 대신 실제 PR/commit과 연결
-- `verify.sh`가 policy/template/TODO/local history/명백한 무의미 commit을 검사하도록 강화
-- `REFERENCE-STATUS.md`, Checklist/README 동기화
+- 실제 GitHub 협업과 Reference template 엄격 분리
+- Branch Protection/PR/Review/Issue linkage용 GitHub Runtime Audit
+- 팀원별 PR/Review/feedback/conflict/troubleshooting Evidence Gate 강화
 
 ### B2-1 — ADVANCED → CORE READY
 
