@@ -10,23 +10,34 @@
 
 ## R01 실행환경 범위
 
-현재 R01에서 사용하는 환경은 아래 네 프로필로 제한합니다.
+현재 R01에서 사용하는 환경은 아래 네 Profile로 제한합니다.
 
 ```text
 macOS + OrbStack
-├─ MAC-D: Docker
-└─ MAC-V: Ubuntu 24.04 Linux Machine
+├─ MAC-V: Ubuntu 24.04 Linux Machine     ← 기본 Primary
+└─ MAC-D: Docker                         ← 선택 Lab
 
 Windows 11 Pro + WSL2 Ubuntu 24.04
-├─ WIN-D: Docker
-└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+├─ WIN-V: Ubuntu 24.04 direct runtime   ← 권장 Secondary
+└─ WIN-D: Docker                         ← 선택 Lab
 ```
 
 Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 FAST TRACK 범위에서 제외하고 이후 Portability/Advanced 단계로 미룹니다.
 
-Mission별 Docker/VM 실습은 `environments/MISSION-LAB-MATRIX.md`, 프로필 정의는 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+환경 계약:
+- `environments/RUNTIME-PROFILES.md`
+- `environments/DOCKER-POLICY.md`
+- `environments/MISSION-LAB-MATRIX.md`
 
-**운영 원칙:** Primary Runtime에서 Mission CLEAR를 먼저 확보하고, Twin Runtime은 핵심 기능과 환경 차이만 짧게 재현합니다. 같은 Mission을 네 환경에서 처음부터 끝까지 반복하지 않습니다.
+## 환경 우선순위
+
+```text
+Primary Mission Runtime = 필수
+Secondary Platform Check = 권장
+Docker Lab = 선택
+```
+
+Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하거나 다음 Mission 진행을 늦추지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 공식 요구가 우선합니다.
 
 ## FAST TRACK 실행 순서
 
@@ -53,8 +64,9 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] Phase C Preflight 동결
 - [x] Phase C Runtime Runbook Freeze
 - [x] B5-1 Q01~Q16 문서 drift 교정
-- [x] R01 Dual-Runtime Profile — MAC-D/MAC-V/WIN-D/WIN-V 정의
-- [x] 15개 Mission Docker/VM Lab Matrix 정의
+- [x] R01 Runtime Profiles — MAC-V/WIN-V/MAC-D/WIN-D 정의
+- [x] Docker를 선택 Training Layer로 분리
+- [x] 15개 Mission Primary/Secondary/Docker Lab Matrix 정의
 
 ## Phase C 실행 우선 원칙
 
@@ -74,7 +86,7 @@ NO
 → 후속 개선 후보로 미룸
 ```
 
-즉시 수정 대상은 공식 요구사항 누락, Runtime BLOCKER, Secret/보안, SSH/Data/Cloud 안전 문제, Verify/Evidence 오판정입니다. 현재 CLEAR와 무관한 리팩터링·문서 미세개선·UI 고도화·미래 Round 확장은 뒤로 미룹니다.
+즉시 수정 대상은 공식 요구사항 누락, Runtime BLOCKER, Secret/보안, SSH/Data/Cloud 안전 문제, Verify/Evidence 오판정입니다. 현재 CLEAR와 무관한 리팩터링·문서 미세개선·UI 고도화·Docker 추가실습·미래 Round 확장은 뒤로 미룹니다.
 
 운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다.
 
@@ -92,8 +104,8 @@ FAST TRACK 상태:
 B1-1 Runtime Profile:
 
 - Primary CLEAR: **MAC-V — macOS → OrbStack → Ubuntu 24.04**
-- Twin: **WIN-V — Windows 11 Pro → WSL2 → Ubuntu 24.04**
-- Docker Practice: **MAC-D / WIN-D**
+- Secondary Check: **WIN-V — Windows 11 Pro → WSL2 → Ubuntu 24.04** — 권장
+- Docker Practice: **MAC-D / WIN-D** — 선택
 - 상세: B1-1 `training/round-01-clear/environment/DUAL-RUNTIME-LABS.md`
 
 ## B1-1 즉시 실행 순서
@@ -115,7 +127,7 @@ B1-1 Runtime Profile:
 15. 조건 충족 시에만 `✅ B1-1 CLEAR`
 16. B1-2를 `🟡 ACTIVE`로 전환
 
-Docker/Windows Twin Lab은 B1-1 CLEAR를 지연시키지 않고 필요한 범위의 Portability Coverage로 수행합니다.
+**B1-1 CLEAR 전에 Docker Lab을 수행할 필요는 없습니다.** WIN-V Secondary Check와 MAC-D/WIN-D Docker Lab은 필요하거나 별도 학습 시간이 있을 때 수행합니다.
 
 ## B1-1 안전 제한
 
@@ -130,7 +142,7 @@ Docker/Windows Twin Lab은 B1-1 CLEAR를 지연시키지 않고 필요한 범위
 ## Stage 전환 규칙
 
 - B1-1부터 B7-1까지 필수 11개가 모두 `✅ CLEAR`되기 전에는 Stage 2를 정식 Runtime 대상으로 전환하지 않습니다.
-- 필수 미션 수행 중 선택 미션의 지식이 필요하면 `START-CHECK`와 관련 개념만 참고할 수 있지만, 선택 미션 Runtime 자체는 Stage 2에서 수행합니다.
+- 필수 미션 수행 중 선택 미션의 지식이 필요하면 `START-CHECK`와 관련 개념만 참고할 수 있지만 선택 미션 Runtime 자체는 Stage 2에서 수행합니다.
 - B7-1 CLEAR 후 B4-2를 `🟡 ACTIVE`로 전환합니다.
 - B4-2 → B5-2 → B5-3 → B7-2 순서로 선택 미션을 완료합니다.
 
