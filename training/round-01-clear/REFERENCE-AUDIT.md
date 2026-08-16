@@ -33,14 +33,14 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 | B4-2 | **PARTIAL** | REFERENCE-BUILD/reference 존재. React CRUD/remote/deploy 마감 필요 |
 | B5-2 | **CORE READY** | Memo CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence/status 준비 |
 | B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence/status 준비 |
-| B7-2 | **SCAFFOLD** | 기본 R01 Guide/Checklist 중심. Project B 전체 Reference 필요 |
+| B7-2 | **CORE READY** | Full-stack REST, password hash/token auth, user-scoped Chat, Post ownership, frontend, ERD/API/Architecture, cloud/collaboration/evidence/runtime plans 준비 |
 
 ## 집계
 
-- **CORE READY:** 4개 — B5-2, B5-3, B6-2, B7-1
+- **CORE READY:** 5개 — B5-2, B5-3, B6-2, B7-1, B7-2
 - **ADVANCED:** 9개
 - **PARTIAL:** 1개 — B4-2
-- **SCAFFOLD:** 1개 — B7-2
+- **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
 ## 최근 변경
@@ -51,16 +51,18 @@ Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD, 303 PRG, 레이어 
 ### B5-3 SCAFFOLD → CORE READY
 세션 기반 인증, `Depends(require_username)` 보호, 로그인 전/후 UI, User→Project→Task 두 1:N 관계, `back_populates`, cascade 정책, Task 상태 전환 Service, Jinja2 SSR/SQLite, verify/setup/reset/DB inspect, Mapping/Q&A/Evidence/Guide/Checklist를 준비했습니다.
 
-두 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
+### B7-2 SCAFFOLD → CORE READY
+회원가입/PBKDF2 password hash, Bearer access token/logout revoke, User-scoped ChatSession/Message, 타 사용자 Chat 404, Post REST CRUD와 작성자 403, REST frontend client, env-only AI client, ERD/API/Architecture, collaboration/deployment/cleanup/evidence 계획과 검증 도구를 준비했습니다.
+
+세 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
 
 ## 우선순위
 
-1. **B7-2** — 마지막 SCAFFOLD를 실제 Reference로 전환
-2. **B4-2** — PARTIAL 마감
-3. B1-1 및 ADVANCED 9개 자체감사/동기화
-4. B5-2/B5-3/B6-2/B7-1 CORE READY 최종 정합성 검사
-5. **Phase B — Cross-Mission Audit**
-6. **Phase C — B1-1부터 Runtime CLEAR**
+1. **B4-2** — 마지막 PARTIAL을 Reference Complete 수준으로 마감
+2. B1-1 및 ADVANCED 9개 자체감사/동기화
+3. B5-2/B5-3/B6-2/B7-1/B7-2 CORE READY 최종 정합성 검사
+4. **Phase B — Cross-Mission Audit**
+5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## Phase A 종료 Gate
 
