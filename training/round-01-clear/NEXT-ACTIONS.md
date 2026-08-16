@@ -1,56 +1,57 @@
-# R01 Phase B — Next Actions
+# R01 Phase C — Next Actions
 
-현재 목표는 **15개 CORE READY 기준본을 실제 Runtime에서 충돌 없이 순차 실행할 수 있도록 전체 실행 계약을 고정하는 것**입니다.
+현재 목표는 **B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
 
-## 완료
+## Phase A/B 완료
 
 - [x] Phase A Reference Build — 15/15 CORE READY
 - [x] Canonical Final Consistency Audit — PASS 15/15
-- [x] Cross-Mission Environment Matrix
-- [x] Python/Node/DB isolation 1차 감사
-- [x] Port/Service 충돌 정책
-- [x] Secret/API variable naming 1차 감사
-- [x] B7-1 dependency bounded range 교정
-- [x] B7-1 `.env.example` 추가
-- [x] B1-2 isolated fault-lab 정책 유지
-- [x] B6-1 mission-only cloud cleanup 정책 유지
+- [x] Cross-Mission Audit — COMPLETE / BLOCKER 0
+- [x] 15개 Runtime command / working-directory / verify / Evidence root 통합
+- [x] Mission Dependency Map 동결
+- [x] Phase C Preflight 동결
+- [x] Phase C Runtime Runbook Freeze
+- [x] B5-1 Q01~Q16 문서 drift 교정
 
-## 즉시 진행 순서
+## 현재 Runtime 대상
 
-1. **15개 Runtime command / working-directory / verify 경로 통합**
-2. **Evidence 최종 경로/파일명 계약 통합**
-3. **Mission Dependency Map 최종 확정**
-4. **Phase C Preflight — Secret / Port / Process 사전점검 계약**
-5. **Phase C Runtime Runbook Freeze**
-6. B1-1부터 실제 Runtime CLEAR
+**B1-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**
 
-## Phase B 완료 Gate
+Mission 상태: **🟡 ACTIVE**
 
-- [x] 각 미션 Golden Path가 Cross-Mission Matrix에 정리됨
-- [x] 공통 OS/Shell 전제가 분리됨
-- [x] Python/Node/DB 격리 방안 명확
-- [x] Local Port 충돌 방지 정책 명확
-- [x] Secret 이름과 저장 금지 정책 명확
-- [x] GitHub 실제 협업이 필요한 미션 구분
-- [x] Cloud/외부 배포 미션 구분
-- [ ] Runtime command/verify 경로 한 장 통합
-- [ ] Runtime Evidence 위치/이름 규칙 통합
-- [ ] Mission dependency/reuse map 최종 확정
-- [ ] Phase C 실제 실행 순서 Runbook 확정
-- [ ] Runtime 이전 BLOCKER 0 / MAJOR 0 최종 확인
+## B1-1 즉시 실행 순서
 
-## Runtime으로 미루는 항목
+1. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
+2. B1-1 repository root / branch / local changes 확인
+3. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
+4. SSH 20022 safe migration
+5. UFW final policy
+6. users/groups/effective permission
+7. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
+8. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
+9. `monitor.sh` 정상/실패/Warning/rotation
+10. `agent-admin` cron 매분 + 실제 log growth
+11. `sudo bash training/round-01-clear/environment/verify.sh`
+12. `training/round-01-clear/evidence/` 실제 Evidence 연결
+13. Evaluation 설명 + Secret 최종 확인
+14. 조건 충족 시에만 `✅ B1-1 CLEAR`
+15. B1-2를 `🟡 ACTIVE`로 전환
 
-Phase B에서도 다음은 PASS 처리하지 않습니다.
+## B1-1 안전 제한
 
-- 실제 SSH/Firewall/ACL
-- 실제 CLI/REPL 결과
-- 실제 Browser UI
-- 실제 DB Runtime 결과
-- 실제 외부 배포 URL
-- 실제 AWS 리소스
-- 실제 AI API Key/Provider 호출
-- 실제 팀 PR/Review/Branch Protection/commit 수
-- 실제 Evidence
+- `t_secret.key` 실제 값은 GitHub/채팅/log/Evidence에 출력하지 않음
+- SSH 설정은 backup → syntax/effective check → reload → 새 세션 확인 순서
+- UFW active 환경에서는 20022를 먼저 허용하고 새 SSH 세션 성공 전 기존 접근 경로를 제거하지 않음
+- 제공 archive 실행 파일 이름/architecture를 추측하지 않음
+- `verify.sh`는 실제 시스템 검증이므로 Runtime 구성 이후 `sudo`로 실행
+- Runtime 결과를 받기 전에 PASS/CLEAR로 표시하지 않음
 
-이 항목은 Phase C에서 사용자가 직접 수행·확인한 결과만 CLEAR에 사용합니다.
+## 전체 Runtime 순서
+
+```text
+B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
+→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+→ B4-2 → B5-2 → B5-3 → B7-2
+```
+
+상세 실행 계약은 `PHASE-C-RUNBOOK.md`, 공통 시작 Gate는 `PHASE-C-PREFLIGHT.md`, 선후관계는 `MISSION-DEPENDENCY-MAP.md`를 사용합니다.
