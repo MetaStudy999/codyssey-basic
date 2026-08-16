@@ -114,26 +114,37 @@ AWS Region은 `ap-northeast-2`로 유지합니다. Mission 전용 이름/태그�
 
 ## 5. Dependency / Reuse
 
-Hard Dependency:
+### 필수 선행
 
 ```text
-B1-1 → B1-2
 B7-1 → B7-2
 ```
 
-권장 학습 전이:
+B7-2 공식 Mission은 Project A에서 만든 AI 챗봇 MVP와 챗봇 기능을 기반으로 고도화하도록 요구하므로 B7-1을 필수 선행으로 둡니다.
+
+### 권장 선행
 
 ```text
-B2-2 Git 협업 ─┐
-B4-1 Web ──────┤
-B5-1 DB ───────┼→ B7-1 → B7-2
-B6-1 Deploy ───┤
-B6-2 AI API ───┘
+B1-1 → B1-2
+B2-1 → B2-2
+B2-1 → B3-1
+B3-1 + B2-2 → B3-2
+B4-1 → B4-2
+B5-1 + B4-1 → B5-2
+B5-2 + B5-1 → B5-3
+B4-1 → B6-1
+B2-2 → B6-2
+B2-2 + B4-1 + B5-1 + B6-1 + B6-2 → B7-1
+B4-2 + B5-2 + B5-3 + B6-1 → B7-2
 ```
 
-B4-2/B5-2/B5-3는 선택적 보강 경로이며 B7-1의 새 Hard prerequisite로 만들지 않습니다.
+이 관계는 **학습 전이 기준**이며 공식 Hard prerequisite가 아닙니다. 이전 미션을 CLEAR하지 않았더라도 해당 핵심 지식을 이미 알고 있으면 후속 미션을 시작할 수 있습니다.
 
-상세 지도는 `MISSION-DEPENDENCY-MAP.md`로 동결했습니다.
+특히 기존의 `B1-1 → B1-2`는 Hard Dependency가 아니라 권장 선행으로 재분류했습니다. B1-2 공식 Mission은 `monitor.sh`, 프로세스, 포트, 로그, 자원 관제를 사용하지만 B1-1 미션 완료 자체를 필수 결과물로 요구하지 않습니다.
+
+B4-2/B5-2/B5-3는 선택적 보강 경로이며 필수 과정의 Hard prerequisite로 만들지 않습니다.
+
+상세 지도와 `있으면 좋은 선행 지식`은 `MISSION-DEPENDENCY-MAP.md`에서 관리합니다.
 
 ## 6. Cross-Mission 이슈 처리 결과
 
@@ -147,6 +158,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 B7-1의 새 Hard prerequisite로
 | CM-06 | B1-2 장애 실험 host 영향 | 전용 WSL2/VM/Linux Safety Gate |
 | CM-07 | AWS 과금/공유 resource 삭제 위험 | B6-1 전용 resource 식별 + Evidence-before-cleanup |
 | CM-08 | B5-1 Environment 문서가 Q01~Q16 구현을 `15개 Query`로 표기 | `16개 Query(Q01~Q16)`로 교정 + runtime helper/verify 명령 동기화 |
+| CM-09 | R01 실행 순서와 실제 Hard Dependency가 혼재 | 필수 선행 / 권장 선행 / 선행 지식으로 재분리 |
 
 **Phase B BLOCKER: 0**
 
@@ -155,7 +167,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 B7-1의 새 Hard prerequisite로
 다음 문서를 추가하고 동결했습니다.
 
 - `PHASE-C-RUNBOOK.md` — 15개 repository / working directory / runtime / verify / Evidence 통합표
-- `MISSION-DEPENDENCY-MAP.md` — Hard/권장/선택 dependency 분리
+- `MISSION-DEPENDENCY-MAP.md` — 필수 선행 / 권장 선행 / 선행 지식 분리
 - `PHASE-C-PREFLIGHT.md` — Repository/Process/Port/venv/Secret/DB/Cloud 시작 전 Gate
 
 ## 8. Phase B Exit Gate
@@ -182,5 +194,7 @@ B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 → B4-1 → B5-1 → B6-1 → B6-2 → B7-1
 → B4-2 → B5-2 → B5-3 → B7-2
 ```
+
+이 순서는 R01 운영 순서이며 모든 인접 미션 사이의 필수 의존성을 뜻하지 않습니다.
 
 이제 다음 단계는 **Phase C — B1-1 실제 Runtime CLEAR**입니다. Runtime 결과를 얻기 전에는 현재의 Reference PASS를 Mission PASS로 승격하지 않습니다.
