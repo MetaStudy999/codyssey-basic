@@ -6,6 +6,47 @@
 
 Round 01은 미션별 기준 환경 하나를 우선합니다. 여러 OS/VM/Container 조합을 동시에 지원하여 가이드를 복잡하게 만들지 않습니다.
 
+현재 R01의 공통 Host 계열은 다음을 기준으로 합니다.
+
+```text
+macOS + OrbStack → Ubuntu 24.04
+Windows 11 Pro + WSL2 → Ubuntu 24.04
+Docker → 선택 Training Layer
+```
+
+세부 Runtime Profile은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+
+## Cross-platform Git / File 계약
+
+macOS, Windows 11 Pro, WSL2, Ubuntu 24.04 사이에서 같은 Repository를 안전하게 사용하기 위해 모든 Codyssey Basic 저장소는 다음을 기본 계약으로 사용합니다.
+
+```text
+Text encoding = UTF-8
+Canonical line ending = LF
+Windows .bat / .cmd = CRLF 허용
+```
+
+각 Repository Root:
+
+```text
+.gitattributes = Git line-ending / binary 계약
+.editorconfig  = Editor 저장 형식 계약
+```
+
+주의 대상:
+
+- CRLF/LF drift와 `^M` shell 오류
+- executable bit (`100755` / `100644`)
+- 파일명 대소문자 충돌
+- symlink 차이
+- 개인 PC 절대경로
+- macOS/Linux Unicode filename normalization 차이
+- binary 파일의 잘못된 text conversion
+
+상세 기준과 안전한 renormalize 절차는 [`CROSS-PLATFORM-GIT-STANDARD.md`](CROSS-PLATFORM-GIT-STANDARD.md)를 사용합니다.
+
+대규모 line-ending 변경은 Active Mission 기능 변경과 섞지 않고, 실제 필요 시 별도 정규화 작업으로 검토합니다.
+
 ## 필요한 경우의 구조
 
 ```text
