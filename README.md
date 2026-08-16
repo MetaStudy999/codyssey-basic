@@ -44,6 +44,17 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 
 `권장 선행`은 **학습 가속 경로**입니다. 미션 자체를 반드시 CLEAR할 필요는 없으며, 해당 미션에서 다루는 핵심 개념을 이미 알고 있다면 바로 현재 미션으로 들어가도 됩니다. 예를 들어 B1-2는 B1-1을 완료하지 않았더라도 수행할 수 있지만, 프로세스·포트·로그·관제 개념을 알고 있으면 훨씬 수월합니다.
 
+선행 관계가 있는 미션 저장소에는 `training/round-01-clear/START-CHECK.md`를 두어 **미션 완료 여부가 아니라 실제 보유 지식**을 먼저 점검합니다. 이 문서는 공식 평가가 아니며, 부족한 항목만 권장 선행 미션이나 해당 개념 학습으로 보충한 뒤 `BEGINNER-GUIDE.md`로 진입하는 용도입니다.
+
+```text
+START-CHECK
+→ 필수 선행 확인
+→ 권장 선행/선행 지식 자가진단
+→ 부족한 개념만 보충
+→ BEGINNER-GUIDE
+→ Runtime / Verify / Evidence
+```
+
 상세한 `필수 선행 / 권장 선행 / 있으면 좋은 선행 지식`은 [`training/round-01-clear/MISSION-DEPENDENCY-MAP.md`](training/round-01-clear/MISSION-DEPENDENCY-MAP.md)에서 관리합니다.
 
 통합 Control Tower 저장소: [MetaStudy999/codyssey-basic](https://github.com/MetaStudy999/codyssey-basic)
@@ -61,6 +72,8 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일을 먼저 확인합니다.
 - ChatGPT가 먼저 최소 통과 경로(Reference Complete Path)를 설계·검증합니다.
+- `START-CHECK.md`가 있는 미션은 먼저 선행 지식 상태를 확인합니다.
+- 필수 선행이 없거나 충족되었고 필요한 지식이 준비되었다면 권장 선행 미션을 CLEAR하지 않았어도 현재 미션으로 진입할 수 있습니다.
 - 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 수행합니다.
 - 각 Step은 `왜 → 무엇 → 용어/개념 → 명령/코드 → 예상 결과 → 검증 → 오류 해결` 순서로 작성합니다.
 - Round 01에서는 입문자가 이해하기 어려운 코드와 명령에 충분한 주석을 붙입니다.
