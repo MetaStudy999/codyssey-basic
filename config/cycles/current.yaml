@@ -107,8 +107,8 @@ missions:
   B1-1:
     state: ACTIVE
     phase: REQUIRED
-    next_action: "기존 B1-1 구현을 필수 체크리스트와 대조해 재사용 가능한 부분을 살리고, 통과에 필요한 부족한 부분만 보완합니다."
-    help: "G1은 새 기준으로 확인했습니다. 이제 과거 코드가 있다는 이유로 PASS하지 않고, 공식 요구와 일치하는 구현만 재사용합니다."
+    next_action: "B1-1 저장소의 빠른 실행 가이드를 실제 Ubuntu에서 수행하고 runtime-acceptance.sh로 실패 항목만 확인합니다."
+    help: "G1~G4는 새 기준으로 완료했습니다. 지금은 Repository를 더 고치지 말고 실제 Ubuntu에서 SSH·UFW·권한·Agent·cron·logrotate를 확인하면 됩니다."
   B1-2:
     state: NOT_STARTED
     phase: REQUIRED
