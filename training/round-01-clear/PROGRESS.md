@@ -2,17 +2,20 @@
 
 ## 목표
 
-입문자가 상세한 `BEGINNER-GUIDE`를 따라 **필수 미션을 먼저 완료하고 선택 미션까지 전체 15개를 CLEAR**합니다.
+입문자가 상세한 `BEGINNER-GUIDE`를 따라 필수 미션을 먼저 완료하고 선택 미션까지 전체 15개를 실제 Runtime/Evidence로 CLEAR합니다.
 
 ## 현재 운영 모드
 
-- Phase: **A — REFERENCE BUILD**
+- Phase: **B — CROSS-MISSION AUDIT**
 - Active Mission(Runtime 기준): **B1-1**
-- 상태: **🟡 ACTIVE**
+- Runtime 상태: **🟡 ACTIVE**
+- Reference Build: **15 / 15 CORE READY**
+- Canonical Audit: **PASS 15 / 15**
+- Runtime CLEAR: **0 / 15**
 
-Reference Build는 15개 미션의 기준 구현·가이드·검증계획을 미리 준비하는 단계입니다. 다음 미션의 Reference Build를 준비하더라도 해당 미션의 Runtime을 시작한 것으로 보지 않으며, Mission 상태는 기존 네 가지 상태만 사용합니다.
+Phase B에서는 개별 미션 Runtime을 새로 시작하지 않고, Phase C에 들어가기 전에 전체 환경·의존성·포트·Secret·선후관계를 정리합니다.
 
-## 진행표
+## Runtime 진행표
 
 | 순서 | 미션 | 상태 |
 |---:|---|---|
@@ -32,9 +35,20 @@ Reference Build는 15개 미션의 기준 구현·가이드·검증계획을 미
 | 14 | B5-3 | ⬜ NOT STARTED |
 | 15 | B7-2 | ⬜ NOT STARTED |
 
+## Phase B 작업
+
+1. Environment Matrix
+2. Port/Service 충돌
+3. Python/Node/DB dependency
+4. Secret/API env naming
+5. Git/GitHub collaboration dependencies
+6. Cloud/Deploy/Cleanup
+7. Mission dependency/reuse map
+8. Phase C Runtime Runbook Freeze
+
 ## 전체 R01 흐름
 
-`Phase A Reference Build → Phase B Cross-Mission Audit → Phase C Runtime CLEAR`
+`Phase A Reference Build ✅ → Canonical Audit ✅ → Phase B Cross-Mission Audit 🟡 → Phase C Runtime CLEAR`
 
 ## CLEAR 원칙
 
