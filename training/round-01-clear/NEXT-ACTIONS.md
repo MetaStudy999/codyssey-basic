@@ -6,9 +6,27 @@
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
-현재 B1-1 실제 Runtime 환경: **macOS Host + OrbStack Ubuntu 24.04**
-
 > Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다.
+
+## R01 실행환경 범위
+
+현재 R01에서 사용하는 환경은 아래 네 프로필로 제한합니다.
+
+```text
+macOS + OrbStack
+├─ MAC-D: Docker
+└─ MAC-V: Ubuntu 24.04 Linux Machine
+
+Windows 11 Pro + WSL2 Ubuntu 24.04
+├─ WIN-D: Docker
+└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+```
+
+Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 FAST TRACK 범위에서 제외하고 이후 Portability/Advanced 단계로 미룹니다.
+
+Mission별 Docker/VM 실습은 `environments/MISSION-LAB-MATRIX.md`, 프로필 정의는 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+
+**운영 원칙:** Primary Runtime에서 Mission CLEAR를 먼저 확보하고, Twin Runtime은 핵심 기능과 환경 차이만 짧게 재현합니다. 같은 Mission을 네 환경에서 처음부터 끝까지 반복하지 않습니다.
 
 ## FAST TRACK 실행 순서
 
@@ -35,7 +53,8 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] Phase C Preflight 동결
 - [x] Phase C Runtime Runbook Freeze
 - [x] B5-1 Q01~Q16 문서 drift 교정
-- [x] B1-1 현재 Runtime 환경을 macOS + OrbStack Ubuntu 24.04로 명시
+- [x] R01 Dual-Runtime Profile — MAC-D/MAC-V/WIN-D/WIN-V 정의
+- [x] 15개 Mission Docker/VM Lab Matrix 정의
 
 ## Phase C 실행 우선 원칙
 
@@ -65,49 +84,38 @@ NO
 
 Mission 상태: **🟡 ACTIVE**
 
-실제 실행 환경:
-
-```text
-macOS Host
-└─ OrbStack
-   └─ Ubuntu 24.04
-      └─ B1-1 Runtime
-```
-
-B1-1의 Linux 명령, SSH/UFW, 사용자·그룹/ACL, Agent, `monitor.sh`, cron, `verify.sh`는 **OrbStack Ubuntu 24.04 내부**에서 실행합니다.
-
 FAST TRACK 상태:
 
 - Stage 1 Required: **B1-1 진행 중 / 0 of 11 CLEAR**
 - Stage 2 Optional: **대기 / 0 of 4 CLEAR**
 
+B1-1 Runtime Profile:
+
+- Primary CLEAR: **MAC-V — macOS → OrbStack → Ubuntu 24.04**
+- Twin: **WIN-V — Windows 11 Pro → WSL2 → Ubuntu 24.04**
+- Docker Practice: **MAC-D / WIN-D**
+- 상세: B1-1 `training/round-01-clear/environment/DUAL-RUNTIME-LABS.md`
+
 ## B1-1 즉시 실행 순서
 
 1. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
-2. OrbStack Ubuntu 24.04 내부에서 B1-1 repository root / branch / local changes 확인
-3. B1-1 `training/round-01-clear/environment/ORBSTACK-UBUNTU-24.04.md` 확인
+2. B1-1 repository root / branch / local changes 확인
+3. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
 4. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
-5. Ubuntu Guest의 실제 OS / `uname -m` / systemd 확인
-6. SSH 20022 safe migration
-7. Ubuntu 내부 UFW final policy
-8. users/groups/effective permission
-9. 제공 `agent-app.zip`의 실제 Guest CPU architecture/파일 확인
-10. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
-11. `monitor.sh` 정상/실패/Warning/rotation
-12. `agent-admin` cron 매분 + 실제 log growth
-13. `sudo bash training/round-01-clear/environment/verify.sh`
-14. `training/round-01-clear/evidence/` 실제 Evidence 연결
-15. Evaluation 설명 + Secret 최종 확인
-16. 조건 충족 시에만 `✅ B1-1 CLEAR`
-17. B1-2를 `🟡 ACTIVE`로 전환
+5. SSH 20022 safe migration
+6. UFW final policy
+7. users/groups/effective permission
+8. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
+9. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
+10. `monitor.sh` 정상/실패/Warning/rotation
+11. `agent-admin` cron 매분 + 실제 log growth
+12. `sudo bash training/round-01-clear/environment/verify.sh`
+13. `training/round-01-clear/evidence/` 실제 Evidence 연결
+14. Evaluation 설명 + Secret 최종 확인
+15. 조건 충족 시에만 `✅ B1-1 CLEAR`
+16. B1-2를 `🟡 ACTIVE`로 전환
 
-## OrbStack 환경 판정 규칙
-
-- macOS Host의 CPU만 보고 Agent binary architecture를 추측하지 않습니다. Ubuntu 내부 `uname -m` 결과를 사용합니다.
-- STEP 01에서 `WSL marker not detected`가 나와도 OrbStack에서는 이상이 아닐 수 있습니다.
-- OrbStack 자체 machine 접속 기능과 B1-1의 Ubuntu OpenSSH Server `20022/tcp`를 동일하게 간주하지 않습니다.
-- macOS/OrbStack networking과 Ubuntu 내부 UFW는 서로 다른 계층입니다.
-- Mission PASS는 OrbStack/Ubuntu 제품명으로 판단하지 않고 Ubuntu 내부 실제 Runtime 결과로 판정합니다.
+Docker/Windows Twin Lab은 B1-1 CLEAR를 지연시키지 않고 필요한 범위의 Portability Coverage로 수행합니다.
 
 ## B1-1 안전 제한
 
@@ -117,6 +125,7 @@ FAST TRACK 상태:
 - 제공 archive 실행 파일 이름/architecture를 추측하지 않음
 - `verify.sh`는 실제 시스템 검증이므로 Runtime 구성 이후 `sudo`로 실행
 - Runtime 결과를 받기 전에 PASS/CLEAR로 표시하지 않음
+- Docker Lab 결과만으로 B1-1 system-level 요구를 PASS 처리하지 않음
 
 ## Stage 전환 규칙
 
@@ -125,4 +134,4 @@ FAST TRACK 상태:
 - B7-1 CLEAR 후 B4-2를 `🟡 ACTIVE`로 전환합니다.
 - B4-2 → B5-2 → B5-3 → B7-2 순서로 선택 미션을 완료합니다.
 
-상세 실행 계약은 `PHASE-C-RUNBOOK.md`, 공통 시작 Gate는 `PHASE-C-PREFLIGHT.md`, 선후관계는 `MISSION-DEPENDENCY-MAP.md`, 전체 순서는 루트 `MISSION-INDEX.md`를 사용합니다.
+상세 실행 계약은 `PHASE-C-RUNBOOK.md`, 공통 시작 Gate는 `PHASE-C-PREFLIGHT.md`, 선후관계는 `MISSION-DEPENDENCY-MAP.md`, 전체 순서는 루트 `MISSION-INDEX.md`, 환경 계약은 `environments/`를 사용합니다.
