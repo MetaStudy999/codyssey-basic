@@ -104,7 +104,7 @@ B7 Term Project
 
 | ID | 제목 | 공식 구분 | 현재 상태 | 현재 Gate | 학습 | Repository |
 |---|---|---|---|---|---|---|
-| B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수 | TODO | G2 BUILD | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
+| B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수 | NEEDS-RUNTIME | G5 RUNTIME | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
 | B1-2 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
 | B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
 | B2-2 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 | 필수 | TODO | G1 SOURCE | NOT-STUDIED | [repo](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |

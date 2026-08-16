@@ -58,15 +58,15 @@
       "title": "컴퓨터가 알아서 자기 상태를 점검하게 만들기",
       "title_en": "System Monitor",
       "repo": "https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor",
-      "status": "TODO",
+      "status": "NEEDS-RUNTIME",
       "learning": "NOT-STUDIED",
-      "current_gate": "G2_BUILD",
+      "current_gate": "G5_RUNTIME",
       "gates": {
         "G1_SOURCE": "PASS",
-        "G2_BUILD": "TODO",
-        "G3_TEST": "TODO",
-        "G4_REVIEW": "TODO",
-        "G5_RUNTIME": "TODO",
+        "G2_BUILD": "PASS",
+        "G3_TEST": "PASS",
+        "G4_REVIEW": "PASS",
+        "G5_RUNTIME": "NEEDS-RUNTIME",
         "G6_EVIDENCE": "TODO",
         "G7_LEARN": "TODO",
         "G8_MERGE": "TODO"
@@ -74,7 +74,7 @@
       "domain_id": "B1",
       "domain_name": "Linux와 OS",
       "domain_name_en": "Linux & OS",
-      "current_gate_label": "G2 BUILD"
+      "current_gate_label": "G5 RUNTIME"
     },
     {
       "id": "B1-2",
