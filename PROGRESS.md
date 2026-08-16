@@ -21,7 +21,7 @@
 | B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, verifier/status |
 | B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, edge tests, runtime gate/status |
 | B4-1 | **CORE READY** | Vanilla portfolio, explicit STATE flows, API states/map-filter, responsive/static/runtime gates |
-| B5-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence, SQL 산출물 자체감사 필요 |
+| B5-1 | **CORE READY** | SQLite 4-table schema, constraints, Q01~Q16, exact coverage verify, runtime evidence runner/status |
 | B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
 | B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
@@ -32,8 +32,8 @@
 
 ### 집계
 
-- CORE READY: **13 / 15**
-- ADVANCED: **2 / 15**
+- CORE READY: **14 / 15**
+- ADVANCED: **1 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
@@ -62,33 +62,32 @@
 
 ## Phase A 작업 큐
 
-1. **B5-1** — ADVANCED 자체감사/정합성 마감
-2. **B6-1** — ADVANCED → CORE READY
-3. **CORE READY 15개 canonical 최종 정합성 검사**
-4. **Phase B — Cross-Mission Audit**
-5. **Phase C — B1-1부터 Runtime CLEAR**
+1. **B6-1** — 마지막 ADVANCED → CORE READY
+2. **CORE READY 15개 canonical 최종 정합성 검사**
+3. **Phase B — Cross-Mission Audit**
+4. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
+### B5-1 — ADVANCED → CORE READY
+
+- 공식 Mission/Evaluation과 schema/seed/query 산출물을 재대조
+- 4 tables, 각 PK, FK 3개, 1:N 3개, NOT NULL/UNIQUE/CHECK 구조 확인
+- 각 table 10행 이상 sample data 유지
+- 공식 Query 범위를 `queries.sql` Q01~Q16으로 명시: BASIC 4, JOIN 4, AGGREGATE 3, SUBQUERY 2, UPDATE, DELETE, INDEX
+- `INNER JOIN`을 명시적으로 사용하고 LEFT JOIN 요구와 분리
+- index 요구를 별도 파일에만 두지 않고 Q16 `CREATE INDEX` + 적용 이유 + Query Plan으로 포함
+- verifier가 PK/FK/NOT NULL/UNIQUE를 선언이 아니라 실제 SQLite 동작으로 검사하도록 강화
+- Query 범주 개수, INNER/LEFT JOIN, aggregate function 종류, rollback 상태를 검사
+- `run-reference.sh`로 Phase C actual query/constraint/index Evidence 생성 경로 추가
+- SQLite ISO date TEXT 선택 이유, ERD, Evaluation Q&A, detailed Beginner Guide/Checklist/Status 동기화
+- 실제 SQLite Runtime 결과는 PASS로 기록하지 않음
+
 ### B4-1 — ADVANCED → CORE READY
 
-- 공식 Mission/Evaluation과 HTML/CSS/JS Reference를 재대조
-- 평가 기준의 explicit `STATE` object 추가: menu/theme/projects/form
-- theme, GitHub API, form의 Event → State → Render 흐름을 코드에서 추적 가능하게 정리
-- GitHub API loading/success/error/empty state와 error `다시 시도` UX 통합
-- `filter()` fork 제외, `map()` repository→card 변환, `forEach()` DOM 반영을 실제 구현에 사용
-- IntersectionObserver threshold를 공식 권장 `0.2`로 맞춤
-- 60px nav / 300px top / 0.2 observer 기준을 문서화
-- static verifier에 semantic/anchors/form/CSS/JS/events/STATE/array methods/framework/Secret 검사를 추가
-- browser/API/GitHub Pages/evaluation을 위한 `--runtime` Evidence Gate 설계
-- Reference README, detailed Beginner Guide, Checklist, Mapping, Q&A, Evidence, Status를 동기화
-- 실제 브라우저/API/Pages 결과는 PASS로 기록하지 않음
+- explicit STATE, API states, map/filter, responsive/static/runtime gates를 보완했습니다.
 
-### B3-2 — ADVANCED → CORE READY
-
-- Mini Git no-path/tie/multi-parent/index/sort/error edge tests와 AST/runtime gates 보강
-
-### B3-1 / B2-2 / B2-1 / B1-2 / B1-1
+### B3-2 / B3-1 / B2-2 / B2-1 / B1-2 / B1-1
 
 - 각 미션의 구조/실패 경계/검증/Evidence Gate를 CORE READY 수준으로 보완했습니다.
 
