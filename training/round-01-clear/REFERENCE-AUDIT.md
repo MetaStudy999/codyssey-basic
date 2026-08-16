@@ -19,72 +19,58 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 | 미션 | 판정 | 핵심 근거 / 잔여 |
 |---|---|---|
-| B1-1 | **CORE READY** | safe SSH/UFW, `/opt/agent-app` permission model, strict verify, hardened monitor, full guide/status. Runtime만 잔여 |
-| B1-2 | **CORE READY** | Runtime Safety, controlled experiment matrix, diagnostic monitor, runtime verify/status. 실제 장애 Runtime만 잔여 |
-| B2-1 | **CORE READY** | CLI/JSONL persistence/generator/atomic rewrite, boundary tests, side-effect-light verify/status. Runtime만 잔여 |
-| B2-2 | **CORE READY** | team skeleton, collaboration policies/templates, local verify, GitHub runtime audit/status. 실제 팀 Runtime만 잔여 |
-| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edge tests, hardened verify/status. 실제 REPL만 잔여 |
-| B3-2 | **CORE READY** | Mini Git DAG/branches/indexes/custom merge sort/BFS, no-path/tie/multi-parent tests, detailed Guide/verify/status. 실제 REPL만 잔여 |
-| B4-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. Portfolio/API/Pages 자체감사 필요 |
+| B1-1 | **CORE READY** | safe SSH/UFW, permission model, strict verify, hardened monitor, full guide/status. Runtime만 잔여 |
+| B1-2 | **CORE READY** | Runtime Safety, controlled experiment, diagnostic monitor, runtime verify/status. 실제 장애 Runtime만 잔여 |
+| B2-1 | **CORE READY** | CLI/persistence/generator/atomic rewrite, boundaries, verify/status. Runtime만 잔여 |
+| B2-2 | **CORE READY** | team skeleton, collaboration policy, local verify, GitHub runtime audit/status. 팀 Runtime만 잔여 |
+| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, verify/status. REPL만 잔여 |
+| B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, no-path/tie/multi-parent tests, Guide/status. REPL만 잔여 |
+| B4-1 | **CORE READY** | Vanilla HTML/CSS/JS, explicit STATE, API state machine, responsive/static/runtime gates, Guide/status. Browser/API/Pages만 잔여 |
 | B5-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. SQL 산출물 자체감사 필요 |
 | B6-1 | **ADVANCED** | AWS Reference 구조 존재. canonical Guide/Checklist 동기화 필요 |
 | B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, routes/components/hooks/form/state/deploy/evidence 준비 |
-| B5-2 | **CORE READY** | Memo CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence 준비 |
-| B5-3 | **CORE READY** | Session auth, Depends 보호, relations/state transition, Guide/verify/mapping/evidence 준비 |
-| B7-2 | **CORE READY** | Full-stack REST, auth/token, user-scoped Chat, ownership/frontend/docs/deploy/evidence 준비 |
+| B4-2 | **CORE READY** | React SPA/Supabase CRUD/routes/components/hooks/form/state/deploy/evidence |
+| B5-2 | **CORE READY** | FastAPI CRUD/PRG/SQLite/SQLAlchemy/Guide/verify/mapping/evidence |
+| B5-3 | **CORE READY** | Session auth/Depends/relations/state transition/Guide/verify/mapping/evidence |
+| B7-2 | **CORE READY** | Full-stack REST/auth/user-scoped AI Chat/ownership/docs/deploy/evidence |
 
 ## 집계
 
-- **CORE READY:** 12개 — B1-1, B1-2, B2-1, B2-2, B3-1, B3-2, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
-- **ADVANCED:** 3개 — B4-1, B5-1, B6-1
+- **CORE READY:** 13개
+- **ADVANCED:** 2개 — B5-1, B6-1
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
 ## 최근 자체감사 핵심
 
+### B4-1 ADVANCED → CORE READY
+
+- semantic HTML, mobile-first CSS, required interactions와 official evaluation 재대조
+- 기존 Reference에서 부족했던 explicit `STATE` object를 menu/theme/projects/form으로 도입
+- theme/projects/form의 Event → State → Render를 코드에서 추적 가능하게 구조화
+- GitHub API loading/success/error/empty state와 error retry를 하나의 render flow로 통합
+- 공식 ES6 평가에 맞게 fork `filter`, repo→card `map`, DOM append `forEach`를 실제 사용
+- IntersectionObserver threshold를 0.2로 정렬하고 nav 60px/top 300px와 함께 문서화
+- verifier를 semantic/anchor/form/CSS/JS/event/state/array/framework/Secret 기준으로 강화
+- browser/API/deploy/evaluation Runtime Evidence Gate 추가
+- Reference README, BEGINNER-GUIDE, CHECKLIST, Mapping, Q&A, Evidence, Status 동기화
+- 실제 API/브라우저/GitHub Pages를 실행한 것으로 표시하지 않음
+
 ### B3-2 ADVANCED → CORE READY
 
-공식 Mission/Evaluation과 현재 Mini Git Reference를 대조해 다음을 보완했습니다.
+- Mini Git no-path, equal-shortest lexical tie, multi-parent ancestor, stable-sort/index/error 경계와 runtime gate 강화
 
-- INIT/main/HEAD/current user 및 branch pointer 구조 재검토
-- 50개 commit의 session unique hash test
-- diverged branch에서 parent-before-child LOG 검증
-- first commit 전 branch 분기로 disconnected roots를 만들고 `No path` 검증
-- multi-parent DAG에서 equal-distance PATH의 lexicographic tie-break 검증
-- multi-parent ANCESTORS의 모든 조상/중복 제거 검증
-- keyword lowercase + repeated-token duplicate suppression, author case-insensitive index 검증
-- stable merge sort equal-key 상대 순서, date/author sort, invalid sort 검증
-- malformed quote, Invalid args, Unknown branch/commit/command boundary 강화
-- verifier를 AST syntax parse로 변경하고 `sorted()`/`.sort()`/graph library/Secret-pattern scan 강화
-- Phase C `--runtime` Evidence Gate 추가
-- Evaluation Q&A에 10배 규모 병목, parent-only PATH, dependency-aware author ordering, counter/random hash trade-off 반영
-- `REFERENCE-STATUS.md`, 상세 Beginner Guide/Checklist/Mapping/Evidence/canonical README 동기화
-- 실제 Runtime 결과는 하나도 PASS로 기록하지 않음
+### B3-1 / B2-2 / B2-1 / B1-2 / B1-1
 
-### B3-1 ADVANCED → CORE READY
-
-- 자료구조 collision/resize/LRU/TTL/OOM edge tests, 금지 API verifier, Evaluation 확장 질문과 status 동기화
-
-### B2-2 ADVANCED → CORE READY
-
-- 실제 GitHub activity와 Reference template 분리, server-side collaboration Runtime Audit 강화
-
-### B2-1 ADVANCED → CORE READY
-
-- persistence/generator/atomic rewrite/import-export/error boundaries와 side-effect-light verifier 강화
-
-### B1-2 / B1-1
-
-- isolated fault Runtime Safety / controlled experiment와 safe SSH/UFW/effective permission/monitor validation Gate를 준비
+- 각 미션의 핵심 구현·경계 조건·검증·Evidence 계획을 CORE READY로 닫았습니다.
 
 ## 우선순위
 
-1. **B4-1** — ADVANCED 자체감사/정합성 마감
-2. **B5-1 / B6-1** — ADVANCED → CORE READY
-3. 현재 CORE READY 12개 — canonical 최종 정합성 검사
+1. **B5-1** — ADVANCED 자체감사/정합성 마감
+2. **B6-1** — ADVANCED → CORE READY
+3. CORE READY 15개 canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
