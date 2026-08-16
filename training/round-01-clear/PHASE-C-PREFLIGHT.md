@@ -4,7 +4,7 @@
 
 ## 목적
 
-각 미션 Runtime을 시작하기 전에 **잘못된 저장소, Cross-platform 파일 형식 문제, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
+각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
 
 이 문서는 미션 구현을 대신하지 않는 공통 안전 Gate입니다.
 
@@ -22,7 +22,53 @@ git remote -v
 
 실제 Secret이 remote URL에 포함되어 있지 않은지 확인합니다. 작업 중인 변경이 있으면 먼저 의미를 확인하고 무조건 reset하지 않습니다.
 
-## 2. Cross-platform Git / File 확인
+## 2. VS Code Remote / Workspace 경로 확인
+
+`MAC-V`에서는 macOS VS Code UI와 실제 Ubuntu 작업환경을 분리합니다.
+
+권장 구조:
+
+```text
+macOS VS Code
+→ Remote-SSH `orb`
+→ OrbStack Ubuntu 24.04
+→ `$HOME/codyssey/<current-repo>`
+→ Ubuntu Bash
+```
+
+Terminal에서 확인합니다.
+
+```bash
+printf 'SHELL=%s\n' "$SHELL"
+printf 'PWD=%s\n' "$PWD"
+printf 'HOME=%s\n' "$HOME"
+printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV:-<none>}"
+
+case "$PWD" in
+  /Users/*|/mnt/mac/*)
+    echo '[WARN] macOS shared path에서 작업 중입니다.'
+    ;;
+  "$HOME"/*)
+    echo '[PASS] Ubuntu home filesystem에서 작업 중입니다.'
+    ;;
+  *)
+    echo '[INFO] 작업 경로를 확인하세요.'
+    ;;
+esac
+```
+
+원칙:
+
+- Primary Mission Repository는 Ubuntu `$HOME/codyssey/...`에 둠
+- `/Users/...`, `/mnt/mac/Users/...`는 macOS 공유 filesystem이므로 기본 개발경로로 사용하지 않음
+- 새 VS Code Terminal은 `${workspaceFolder}`에서 Bash로 시작하도록 Repository `.vscode/settings.json`을 사용
+- Python Mission은 repo-local `.venv`를 사용
+- 특정 Project `.venv`를 Global `~/.bashrc`에서 강제 활성화하지 않음
+- B1-1에서는 OrbStack built-in SSH `orb`와 Mission OpenSSH `sshd:20022`를 서로 다른 계층으로 구분
+
+상세 계약은 `standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`를 사용합니다.
+
+## 3. Cross-platform Git / File 확인
 
 macOS + OrbStack Ubuntu 24.04와 Windows 11 Pro + WSL2 Ubuntu 24.04 사이에서 같은 Repository를 사용하므로 줄바꿈과 파일 속성을 확인합니다.
 
@@ -60,7 +106,7 @@ Shell/Python/Web/YAML/Dockerfile = LF
 
 상세 계약은 `standards/CROSS-PLATFORM-GIT-STANDARD.md`를 사용합니다.
 
-## 3. 기본 Runtime 확인
+## 4. 기본 Runtime 확인
 
 ```bash
 uname -a
@@ -75,7 +121,7 @@ command -v gh || true
 
 필요한 도구만 해당 미션에서 사용합니다. 모든 미션을 위해 모든 패키지를 전역 설치하지 않습니다.
 
-## 4. Process / Port 확인
+## 5. Process / Port 확인
 
 ```bash
 ss -lntp 2>/dev/null || ss -lnt 2>/dev/null || true
@@ -89,7 +135,7 @@ ps -ef | grep -E 'uvicorn|vite|http.server|agent-app|agent.*leak' | grep -v grep
 - FastAPI/HTTP/Vite는 순차 Runtime이므로 시작 전에 local port만 확인
 - 광범위한 `pkill -9`, `killall`, 재부팅으로 정리하지 않음
 
-## 5. Python 환경 격리
+## 6. Python 환경 격리
 
 ```bash
 printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV:-<none>}"
@@ -104,7 +150,9 @@ B5-2 .venv ≠ B5-3 .venv ≠ B7-1 .venv ≠ B7-2 .venv
 
 System Python에 FastAPI/SQLAlchemy 등을 일괄 설치하지 않습니다.
 
-## 6. Node 환경 격리
+VS Code Python Environments를 사용하는 경우 Remote Ubuntu의 현재 Repository `.venv`를 Interpreter로 선택합니다. Terminal 자동 활성화는 Remote User Setting의 `python-envs.terminal.autoActivationType = shellStartup`을 권장하며, 설정 변경 후 새 Terminal에서 실제 `VIRTUAL_ENV`를 확인합니다.
+
+## 7. Node 환경 격리
 
 B4-2에서만 확인합니다.
 
@@ -115,7 +163,7 @@ npm --version
 
 `node_modules`는 B4-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
 
-## 7. Secret Presence 확인 — 값은 출력하지 않음
+## 8. Secret Presence 확인 — 값은 출력하지 않음
 
 AI 계열에서는 아래처럼 **설정 여부만** 확인합니다.
 
@@ -138,7 +186,7 @@ set -x 상태에서 Secret 입력
 
 B5-3의 `SESSION_SECRET`, B4-2의 Supabase 변수도 같은 원칙을 적용합니다.
 
-## 8. Local data / DB 확인
+## 9. Local data / DB 확인
 
 새 Runtime 전에 현재 미션이 만들 기존 데이터가 있는지 먼저 확인합니다.
 
@@ -150,7 +198,7 @@ find training/round-01-clear/reference -maxdepth 2 \
 
 기존 파일이 보인다고 자동 삭제하지 않습니다. `reset.sh`가 있는 미션은 범위를 읽고, 현재 Round가 만든 파일임이 명확할 때만 사용합니다.
 
-## 9. Cloud / Remote resource 확인
+## 10. Cloud / Remote resource 확인
 
 B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 
@@ -161,7 +209,7 @@ B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 - Supabase Service Role Key를 frontend에 사용 금지
 - Cleanup은 현재 미션이 생성한 자원만 대상
 
-## 10. Evidence 시작 상태
+## 11. Evidence 시작 상태
 
 Evidence root:
 
@@ -178,13 +226,16 @@ training/round-01-clear/evidence/
 - Secret 값은 마스킹이 아니라 애초에 캡처하지 않는 것을 우선
 - 실제 외부 URL/PR/Review처럼 서버 측 증거가 필요한 항목은 placeholder로 대체 금지
 
-## 11. Start Gate
+## 12. Start Gate
 
 아래가 모두 확인되면 해당 미션의 `BEGINNER-GUIDE.md` STEP 01로 이동합니다.
 
 ```text
 [ ] 올바른 repository/branch
 [ ] 보존해야 할 local 변경 확인
+[ ] VS Code Remote/Workspace가 의도한 Ubuntu 경로임
+[ ] Bash/PWD/HOME 상태 확인
+[ ] Python Mission이면 올바른 `.venv` 상태 확인
 [ ] Cross-platform line ending / file mode 이상 없음
 [ ] 이전 미션 process/dev-server 정리
 [ ] 필요한 port 충돌 없음
