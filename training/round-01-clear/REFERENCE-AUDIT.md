@@ -17,63 +17,77 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 ## 15개 저장소 감사 결과
 
-| 미션 | 판정 | 핵심 근거 / 잔여 |
+| 미션 | 판정 | 핵심 근거 / Runtime 잔여 |
 |---|---|---|
-| B1-1 | **CORE READY** | safe SSH/UFW, permission model, strict verify, hardened monitor, full guide/status. Runtime만 잔여 |
-| B1-2 | **CORE READY** | Runtime Safety, controlled experiment, diagnostic monitor, runtime verify/status. 실제 장애 Runtime만 잔여 |
-| B2-1 | **CORE READY** | CLI/persistence/generator/atomic rewrite, boundaries, verify/status. Runtime만 잔여 |
-| B2-2 | **CORE READY** | team skeleton, collaboration policy, local verify, GitHub runtime audit/status. 팀 Runtime만 잔여 |
-| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, verify/status. REPL만 잔여 |
-| B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, no-path/tie/multi-parent tests, Guide/status. REPL만 잔여 |
-| B4-1 | **CORE READY** | Vanilla HTML/CSS/JS, explicit STATE, API state machine, responsive/static/runtime gates, Guide/status. Browser/API/Pages만 잔여 |
-| B5-1 | **ADVANCED** | REFERENCE-BUILD, reference/docs/environment/evidence. SQL 산출물 자체감사 필요 |
-| B6-1 | **ADVANCED** | AWS Reference 구조 존재. canonical Guide/Checklist 동기화 필요 |
-| B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
-| B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **CORE READY** | React SPA/Supabase CRUD/routes/components/hooks/form/state/deploy/evidence |
-| B5-2 | **CORE READY** | FastAPI CRUD/PRG/SQLite/SQLAlchemy/Guide/verify/mapping/evidence |
-| B5-3 | **CORE READY** | Session auth/Depends/relations/state transition/Guide/verify/mapping/evidence |
-| B7-2 | **CORE READY** | Full-stack REST/auth/user-scoped AI Chat/ownership/docs/deploy/evidence |
+| B1-1 | **CORE READY** | safe SSH/UFW, permission model, strict verify, hardened monitor, full guide/status. Runtime 잔여 |
+| B1-2 | **CORE READY** | Runtime Safety, controlled experiment, diagnostic monitor, runtime verify/status. 장애 Runtime 잔여 |
+| B2-1 | **CORE READY** | CLI/persistence/generator/atomic rewrite, boundaries, verify/status. CLI Runtime 잔여 |
+| B2-2 | **CORE READY** | team skeleton, collaboration policy, local verify, GitHub runtime audit/status. 팀 협업 Runtime 잔여 |
+| B3-1 | **CORE READY** | custom DLL/HashMap/MinHeap, LRU/TTL/OOM edges, verify/status. REPL Runtime 잔여 |
+| B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, edge tests, Guide/status. REPL Runtime 잔여 |
+| B4-1 | **CORE READY** | Vanilla HTML/CSS/JS, explicit STATE, API states, responsive/static/runtime gates. Browser/API/Pages 잔여 |
+| B5-1 | **CORE READY** | SQLite 4-table schema, PK/FK/constraints, 10+ rows, Q01~Q16, strict verify, runner/Guide/status. SQL Runtime 잔여 |
+| B6-1 | **CORE READY** | AWS VPC/Public Subnet/IGW/Route/SG/EC2/Nginx/IAM/Cleanup reference, read-only runtime verify, Guide/status. Cloud Runtime 잔여 |
+| B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan. 실제 AI API Runtime 잔여 |
+| B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본. browser/AI/deploy Runtime 잔여 |
+| B4-2 | **CORE READY** | React SPA/Supabase CRUD/routes/components/hooks/form/state/deploy/evidence. Runtime 잔여 |
+| B5-2 | **CORE READY** | FastAPI CRUD/PRG/SQLite/SQLAlchemy/Guide/verify/mapping/evidence. Runtime 잔여 |
+| B5-3 | **CORE READY** | Session auth/Depends/relations/state transition/Guide/verify/mapping/evidence. Runtime 잔여 |
+| B7-2 | **CORE READY** | Full-stack REST/auth/user-scoped AI Chat/ownership/docs/deploy/evidence. Runtime 잔여 |
 
 ## 집계
 
-- **CORE READY:** 13개
-- **ADVANCED:** 2개 — B5-1, B6-1
+- **CORE READY:** 15개
+- **ADVANCED:** 0개
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
-## 최근 자체감사 핵심
+## 마지막 자체감사 핵심
 
-### B4-1 ADVANCED → CORE READY
+### B6-1 ADVANCED → CORE READY
 
-- semantic HTML, mobile-first CSS, required interactions와 official evaluation 재대조
-- 기존 Reference에서 부족했던 explicit `STATE` object를 menu/theme/projects/form으로 도입
-- theme/projects/form의 Event → State → Render를 코드에서 추적 가능하게 구조화
-- GitHub API loading/success/error/empty state와 error retry를 하나의 render flow로 통합
-- 공식 ES6 평가에 맞게 fork `filter`, repo→card `map`, DOM append `forEach`를 실제 사용
-- IntersectionObserver threshold를 0.2로 정렬하고 nav 60px/top 300px와 함께 문서화
-- verifier를 semantic/anchor/form/CSS/JS/event/state/array/framework/Secret 기준으로 강화
-- browser/API/deploy/evaluation Runtime Evidence Gate 추가
-- Reference README, BEGINNER-GUIDE, CHECKLIST, Mapping, Q&A, Evidence, Status 동기화
-- 실제 API/브라우저/GitHub Pages를 실행한 것으로 표시하지 않음
+- 공식 필수 Region을 `ap-northeast-2`로 고정
+- VPC→Public Subnet→IGW→Route→SG→EC2→Nginx 흐름과 외부/내부 검증 분리
+- HTTP 80 public, SSH 22 learner CIDR-only, all-traffic public 금지
+- read-only verifier에 Route Table↔Subnet, EC2↔Subnet/SG, Public IPv4 검증 추가
+- external `/health`, Runtime Evidence, architecture PNG/PDF, Troubleshooting/Cleanup actual-completion gate 추가
+- Beginner Guide / Checklist / Status / Root README 동기화
+- 실제 AWS Runtime/과금 정리는 PASS 처리하지 않음
 
-### B3-2 ADVANCED → CORE READY
+### B5-1 ADVANCED → CORE READY
 
-- Mini Git no-path, equal-shortest lexical tie, multi-parent ancestor, stable-sort/index/error 경계와 runtime gate 강화
+- 공식 Query 범위를 Q01~Q16으로 명시
+- BASIC 4 / JOIN 4 / INNER 2+ / LEFT 1+ / AGGREGATE 3 / SUBQUERY / UPDATE / DELETE / INDEX 직접 매핑
+- PK/FK/NOT NULL/UNIQUE를 실제 SQLite 실패 경로까지 검사하도록 verifier 강화
+- index 요구를 Q16에 포함하고 Query Plan 추가
+- runtime evidence runner, ERD, detailed Guide/Checklist/Status 동기화
 
-### B3-1 / B2-2 / B2-1 / B1-2 / B1-1
+### B4-1 / B3-2 / B3-1 / B2-2 / B2-1 / B1-2 / B1-1
 
-- 각 미션의 핵심 구현·경계 조건·검증·Evidence 계획을 CORE READY로 닫았습니다.
+각 미션의 핵심 구현, 실패 경계, 자동 검증, Evidence 계획, 설명형 평가를 CORE READY 수준으로 보완했습니다.
 
-## 우선순위
+## Phase A 종료 Gate 결과
 
-1. **B5-1** — ADVANCED 자체감사/정합성 마감
-2. **B6-1** — ADVANCED → CORE READY
-3. CORE READY 15개 canonical 최종 정합성 검사
-4. **Phase B — Cross-Mission Audit**
-5. **Phase C — B1-1부터 Runtime CLEAR**
+| Gate | 결과 |
+|---|---|
+| Source 분석 | PASS |
+| 필수/선택/Runtime 분리 | PASS |
+| 최소 충분 Reference 구현 | PASS |
+| 자동/정적 검증 설계 | PASS |
+| Secret 정책 | PASS |
+| Requirement→Implementation→Verification→Evidence | PASS |
+| Beginner Guide / Checklist 정합성 | PASS |
+| 허위 Runtime PASS 없음 | PASS |
+| Runtime 항목 별도 분리 | PASS |
+| Phase A BLOCKER/MAJOR | **0** |
 
-## Phase A 종료 Gate
+**Phase A Reference Build는 15/15 CORE READY로 닫습니다.**
 
-15개 미션 모두에서 Source 분석, 필수/선택/Runtime 분리, 최소 충분 Reference 구현, 자동 검증 도구, Secret 정책, Requirement→Implementation→Verification→Evidence 매핑, Beginner Guide 정합성, 허위 PASS 없음, Runtime 항목 분리, BLOCKER/MAJOR 0을 확인한 뒤 Phase B로 이동합니다.
+단, 이는 공식 미션 통과가 아닙니다. 실제 Runtime CLEAR는 여전히 0/15입니다.
+
+## 다음 단계
+
+1. **Canonical Final Consistency Audit** — 15개 저장소에서 명칭·상태·경로·검증 Gate 최종 정합성 검사
+2. **Phase B — Cross-Mission Audit** — OS/Python/Node/DB/Port/Secret/Cloud/선후관계/재사용 환경 충돌 검사
+3. **Phase C — Runtime CLEAR** — B1-1부터 실제 실행·Evidence 후 순차 CLEAR
