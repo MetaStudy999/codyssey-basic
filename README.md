@@ -5,9 +5,91 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 ## 현재 상태
 
 - Active Round: **R01 — CLEAR**
-- Active Mission: **B1-1**
-- 우선순위: **필수 미션 → 선택 미션**
-- 핵심 원칙: **Mission First · Beginner First · One Round at a Time**
+- 현재 단계: **Phase C — RUNTIME CLEAR**
+- 운영 모드: **FAST EXECUTE**
+- Active Mission: **B1-1 🟡 ACTIVE**
+- Phase A Reference Build: **15 / 15 CORE READY**
+- Canonical Audit: **15 / 15 PASS**
+- Cross-Mission Audit: **COMPLETE / BLOCKER 0**
+- Runtime `✅ CLEAR`: **0 / 15**
+- 핵심 원칙: **Mission First · Beginner First · One Runtime at a Time**
+
+> 현재는 설계를 계속 확장하는 단계가 아니라, 이미 준비된 기준 경로를 실제로 실행하여 `Runtime → Verify → Evidence → CLEAR`로 전환하는 단계입니다.
+
+### 지금 바로 볼 문서
+
+1. [PROGRESS.md](PROGRESS.md) — 현재 위치와 전체 진행률
+2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 지금 해야 할 일
+3. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
+4. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
+5. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+
+## 설계 단계와 빠른 실행 단계
+
+| 구분 | 설계 단계 | 빠른 실행 단계 |
+|---|---|---|
+| 핵심 질문 | 어떻게 해야 제대로 수행할 수 있는가? | 지금 무엇을 하면 가장 빨리 CLEAR할 수 있는가? |
+| 목표 | 기준·구조·절차 준비 | 실제 Runtime 결과 확보 |
+| 중심 작업 | 요구 분석, Reference, Guide, Runbook, Audit | 실행, 오류 수정, Verify, Evidence, CLEAR |
+| 완료 의미 | 실행할 준비가 됨 | 실제 검증되어 미션이 끝남 |
+| 변경 범위 | 비교적 넓게 검토 | 현재 CLEAR를 막는 문제만 최소 수정 |
+| 개선 아이디어 | 설계에 반영 가능 | 현재 CLEAR와 무관하면 후속 개선 후보로 미룸 |
+
+R01의 Phase A/B에서 설계·기준화 작업을 완료했으므로, Phase C에서는 **실행을 우선하고 설계 보정은 필요한 만큼만 수행**합니다.
+
+```text
+DESIGN
+공식 Mission / Evaluation
+→ Reference Build
+→ Guide / Verify / Evidence 설계
+
+READY
+Canonical Audit
+→ Cross-Mission Audit
+→ Runbook / Preflight Freeze
+
+EXECUTE  ← 현재 위치
+START-CHECK
+→ Runtime
+→ Fix
+→ Verify
+→ Evidence
+→ CLEAR
+
+REVIEW / ADVANCED
+R01 완료 후 고도화
+```
+
+### Phase C — Design Freeze / Just-in-Time Design
+
+실행 중 문제가 발견되면 먼저 한 가지를 판단합니다.
+
+```text
+이 문제가 현재 미션의 CLEAR를 막는가?
+
+YES
+→ 필요한 범위만 최소 수정
+→ 재검증
+→ Evidence
+→ 계속 실행
+
+NO
+→ 현재 Runtime을 중단하지 않음
+→ 후속 개선 후보로 기록
+→ 계속 실행
+```
+
+운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다. 이는 고정 시간 할당이 아니라, 설계 루프로 되돌아가지 않기 위한 운영 원칙입니다.
+
+다음 경우에는 Phase C에서도 즉시 설계를 수정할 수 있습니다.
+
+- 공식 Mission/Evaluation 충족을 막는 오류
+- Runtime을 진행할 수 없는 BLOCKER
+- Secret 노출 또는 보안 문제
+- 데이터 손실·Cloud 비용·SSH lockout 등 안전 문제
+- Verify/Evidence가 실제 결과를 잘못 판정하는 문제
+
+반대로 현재 미션 CLEAR와 직접 관계없는 리팩터링, UI 고도화, 구조 확장, 미래 Round 기능은 R01 Runtime을 멈추는 이유로 사용하지 않습니다.
 
 ## 역할
 
@@ -57,29 +139,43 @@ START-CHECK
 
 상세한 `필수 선행 / 권장 선행 / 있으면 좋은 선행 지식`은 [`training/round-01-clear/MISSION-DEPENDENCY-MAP.md`](training/round-01-clear/MISSION-DEPENDENCY-MAP.md)에서 관리합니다.
 
-통합 Control Tower 저장소: [MetaStudy999/codyssey-basic](https://github.com/MetaStudy999/codyssey-basic)
+## Phase C 실행 순서
 
-## 시작 순서
+```text
+README
+→ PROGRESS
+→ NEXT-ACTIONS
+→ PHASE-C-PREFLIGHT
+→ 현재 미션 START-CHECK(있는 경우)
+→ BEGINNER-GUIDE
+→ Runtime
+→ Verify
+→ Evidence
+→ CLEAR
+→ 다음 미션
+```
 
-1. [MISSION-INDEX.md](MISSION-INDEX.md) — 전체 미션과 수행 순서
-2. [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01~R14 및 Expert 이후 Impact Cycle
-3. [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 모든 미션의 공통 수행 절차
-4. [PROGRESS.md](PROGRESS.md) — 전체 진행 현황
-5. [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명·주석·개념도 기준
-6. [standards/ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경설정·Secret·검증·초기화 기준
+설계·학습 체계 전체 문서는 필요할 때 참고합니다.
+
+- [MISSION-INDEX.md](MISSION-INDEX.md) — 전체 미션과 R01 수행 순서
+- [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01 이후 심화 Round
+- [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 전체 공통 수행 계약
+- [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명 기준
+- [standards/ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경·Secret·검증 기준
 
 ## 현재 실행 규칙
 
-- 공식 Mission PDF/MD/Evaluation/제공 파일을 먼저 확인합니다.
-- ChatGPT가 먼저 최소 통과 경로(Reference Complete Path)를 설계·검증합니다.
+- 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
+- Phase A/B에서 준비한 Reference/Runbook을 기본 경로로 사용하며 Phase C에서 임의 재설계를 반복하지 않습니다.
 - `START-CHECK.md`가 있는 미션은 먼저 선행 지식 상태를 확인합니다.
 - 필수 선행이 없거나 충족되었고 필요한 지식이 준비되었다면 권장 선행 미션을 CLEAR하지 않았어도 현재 미션으로 진입할 수 있습니다.
-- 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 수행합니다.
+- 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 실제 Runtime을 수행합니다.
+- 실행 중 BLOCKER가 생기면 **원인 → 최소 수정 → 재검증 → 계속 실행** 순서로 처리합니다.
+- CLEAR와 무관한 개선 아이디어는 현재 Runtime을 멈추지 않고 후속 개선 후보로 미룹니다.
 - 각 Step은 `왜 → 무엇 → 용어/개념 → 명령/코드 → 예상 결과 → 검증 → 오류 해결` 순서로 작성합니다.
-- Round 01에서는 입문자가 이해하기 어려운 코드와 명령에 충분한 주석을 붙입니다.
-- 실제 실행·검증·필요 증빙이 끝나기 전에는 CLEAR로 표시하지 않습니다.
+- 실제 실행·검증·필요 Evidence가 끝나기 전에는 CLEAR로 표시하지 않습니다.
 - 미래 Round 폴더는 미리 만들지 않습니다.
 
 ## 보존 원칙
 
-기존 대시보드/Growth OS 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존되어 있습니다. 현재 `main`은 빠른 미션 수행을 위한 새 기준으로 운영합니다.
+기존 대시보드/Growth OS 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존되어 있습니다. 현재 `main`은 R01 미션을 빠르게 실제 CLEAR하기 위한 실행 기준으로 운영합니다.
