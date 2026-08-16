@@ -107,8 +107,8 @@ missions:
   B1-1:
     state: ACTIVE
     phase: REQUIRED
-    next_action: "B1-1 Mission PDF와 평가 기준을 대조해 통과 체크리스트를 확정합니다."
-    help: "지금은 명령어를 실행하지 않습니다. 무엇을 해야 통과하는지부터 확인합니다."
+    next_action: "기존 B1-1 구현을 필수 체크리스트와 대조해 재사용 가능한 부분을 살리고, 통과에 필요한 부족한 부분만 보완합니다."
+    help: "G1은 새 기준으로 확인했습니다. 이제 과거 코드가 있다는 이유로 PASS하지 않고, 공식 요구와 일치하는 구현만 재사용합니다."
   B1-2:
     state: NOT_STARTED
     phase: REQUIRED
