@@ -6,14 +6,16 @@
 
 ## 현재 운영 모드
 
-- Phase: **B — CROSS-MISSION AUDIT**
+- Phase: **C — RUNTIME CLEAR**
 - Active Mission(Runtime 기준): **B1-1**
 - Runtime 상태: **🟡 ACTIVE**
 - Reference Build: **15 / 15 CORE READY**
 - Canonical Audit: **PASS 15 / 15**
+- Cross-Mission Audit: **COMPLETE / BLOCKER 0**
+- Runtime Runbook: **FROZEN**
 - Runtime CLEAR: **0 / 15**
 
-Phase B에서는 개별 미션 Runtime을 새로 시작하지 않고, Phase C에 들어가기 전에 전체 환경·의존성·포트·Secret·선후관계를 정리합니다.
+Phase A/B에서는 기준 구현과 전체 환경을 준비했습니다. 이제부터 상태 변경은 실제 Runtime·검증·Evidence에만 근거합니다.
 
 ## Runtime 진행표
 
@@ -35,20 +37,38 @@ Phase B에서는 개별 미션 Runtime을 새로 시작하지 않고, Phase C에
 | 14 | B5-3 | ⬜ NOT STARTED |
 | 15 | B7-2 | ⬜ NOT STARTED |
 
-## Phase B 작업
+## Phase C 시작 문서
 
-1. Environment Matrix
-2. Port/Service 충돌
-3. Python/Node/DB dependency
-4. Secret/API env naming
-5. Git/GitHub collaboration dependencies
-6. Cloud/Deploy/Cleanup
-7. Mission dependency/reuse map
-8. Phase C Runtime Runbook Freeze
+```text
+PHASE-C-PREFLIGHT.md
+→ PHASE-C-RUNBOOK.md
+→ MISSION-DEPENDENCY-MAP.md
+→ 각 Mission BEGINNER-GUIDE.md
+```
+
+## B1-1 현재 흐름
+
+```text
+Preflight
+→ 현재 OS/repository/runtime baseline
+→ safe SSH 20022
+→ UFW
+→ users/groups/permissions
+→ Agent boot + 15034
+→ monitor.sh
+→ rotation
+→ cron
+→ sudo verify
+→ Evidence
+→ Evaluation 설명
+→ CLEAR Gate
+```
+
+실제 `t_secret.key` 값은 GitHub/채팅/Evidence에 기록하지 않습니다.
 
 ## 전체 R01 흐름
 
-`Phase A Reference Build ✅ → Canonical Audit ✅ → Phase B Cross-Mission Audit 🟡 → Phase C Runtime CLEAR`
+`Phase A Reference Build ✅ → Canonical Audit ✅ → Phase B Cross-Mission Audit ✅ → Phase C Runtime CLEAR 🟡`
 
 ## CLEAR 원칙
 
