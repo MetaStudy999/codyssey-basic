@@ -15,7 +15,7 @@
 | 미션 | Reference 판정 | 현재 핵심 상태 |
 |---|---|---|
 | B1-1 | **CORE READY** | 15-Step Guide, strict UFW/permission verify, hardened monitor, mapping/Q&A/evidence/status 완료 |
-| B1-2 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + docs/environment/evidence |
+| B1-2 | **CORE READY** | isolated fault lab, controlled Before/After matrix, hardened diagnostic monitor, report/verify/mapping/status 완료 |
 | B2-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
 | B2-2 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
 | B3-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
@@ -32,8 +32,8 @@
 
 ### 집계
 
-- CORE READY: **7 / 15**
-- ADVANCED: **8 / 15**
+- CORE READY: **8 / 15**
+- ADVANCED: **7 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
@@ -62,49 +62,43 @@
 
 ## Phase A 작업 큐
 
-SCAFFOLD/PARTIAL은 모두 해소했고 B1-1 자체감사도 마감했습니다.
-
-1. **B1-2** — ADVANCED 자체감사/정합성 마감
-2. **B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
-3. **B1-1 / B4-2 / B5-2 / B5-3 / B6-2 / B7-1 / B7-2** — CORE READY canonical 최종 정합성 검사
+1. **B2-1** — ADVANCED 자체감사/정합성 마감
+2. **B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
+3. **현재 CORE READY 8개** — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
+### B1-2 — ADVANCED → CORE READY
+
+- OOM/CPU/Deadlock을 전용 WSL2/VM/실습 Linux에서 수행하는 Runtime Safety Gate 추가
+- 같은 host/binary에서 핵심 변수 하나를 우선 변경하는 Controlled Experiment Matrix 추가
+- diagnostic `monitor.sh`에 positive PID/interval 검증, sample count, 종료 marker 보강
+- OOM/CPU/Deadlock 최소 Before/After Evidence 구조 표준화
+- `verify.sh --runtime`에 report placeholder, PID 형식, time-series record, Secret-pattern Evidence 검사 추가
+- Deadlock은 PID 존재만으로 단정하지 않고 resource/log/thread 근거를 함께 요구
+- 실제 공식 예시 문구 대신 실제 앱 출력과 관측 결과를 Evidence로 사용하도록 명시
+
 ### B1-1 — ADVANCED → CORE READY
 
-자체감사에서 실제 Runtime 실패 가능성이 있는 부분을 보완했습니다.
-
-- `AGENT_HOME=/opt/agent-app` Golden Path로 공유/민감 디렉터리 상위 권한 문제 해결
-- `upload_files` common R/W, `api_keys`/logs core-only를 `runuser` effective permission으로 검증
-- 제공 실행 파일을 canonical `agent-app`으로 설치하고 `pgrep -x`로 process false-positive 방지
-- UFW active 시 20022 사전 허용 → `sshd -t`/`sshd -T` → reload → 새 세션 → Firewall 최종 정리 순서 확정
-- verify가 UFW default deny incoming과 **extra ALLOW IN 부재**까지 검사
-- Process/Port failure와 Warning을 실제 서비스 중단 없이 override로 재현
-- `/tmp`에서 실제 10MB/10개 회전 검증
-- Beginner Guide STEP 01~15, Checklist, Reference Status 동기화
+- `AGENT_HOME=/opt/agent-app`로 공유/민감 디렉터리 권한 모순 해소
+- effective permission/UFW strict verify
+- canonical `agent-app` + `pgrep -x`
+- SSH lockout 방지 순서
+- 안전한 failure/Warning/10MB rotation Runtime test 설계
 
 ### B4-2 — PARTIAL → CORE READY
-- React 18 + Vite + React Router
-- 6개 named route + Not Found
-- 10개 reusable component
-- custom hooks, controlled form, common Loading/Error/Empty
-- Supabase remote CRUD + deploy/evidence plan
+- React SPA + Supabase remote CRUD + routes/components/hooks/form/state/deploy/evidence
 
 ### B5-2 — SCAFFOLD → CORE READY
-- Memo FastAPI/Jinja2/SQLAlchemy/SQLite CRUD
-- `303` PRG, 역할 분리, verify/mapping/evidence/Beginner Guide
+- FastAPI/Jinja2/SQLAlchemy/SQLite CRUD + PRG + layered design
 
 ### B5-3 — SCAFFOLD → CORE READY
-- 세션 로그인/로그아웃, `Depends` 보호
-- User 1:N Project 1:N Task, `back_populates`, cascade
-- Task 상태 변경 Service
+- Session auth + Depends protection + relational domain/state transition
 
 ### B7-2 — SCAFFOLD → CORE READY
-- 회원가입/password hash, token auth/logout revoke
-- User-scoped ChatSession/Message + Post ownership REST
-- ERD/API/Architecture/Collaboration/Deployment/Evidence
+- Full-stack REST + auth + user-scoped chat + post ownership + technical docs/deployment/evidence
 
 실제 Runtime은 수행하지 않았으므로 Runtime 상태표는 변경하지 않습니다.
 
