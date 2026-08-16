@@ -8,6 +8,8 @@
 
 현재 Runtime 대상: **B1-1 🟡 ACTIVE**
 
+현재 Primary Runtime: **MAC-V — macOS → OrbStack → Ubuntu 24.04**
+
 > Phase A Reference Build, Canonical Final Consistency Audit, Phase B Cross-Mission Audit와 Runtime Runbook Freeze를 완료했습니다. 이제 FAST TRACK에 따라 **필수 미션을 먼저 모두 CLEAR한 뒤 선택 미션을 수행**합니다.
 
 ## 완료 현황
@@ -23,6 +25,9 @@
 핵심 문서:
 
 - `MISSION-INDEX.md`
+- `environments/README.md`
+- `environments/RUNTIME-PROFILES.md`
+- `environments/MISSION-LAB-MATRIX.md`
 - `training/round-01-clear/REFERENCE-AUDIT.md`
 - `training/round-01-clear/CANONICAL-AUDIT.md`
 - `training/round-01-clear/CROSS-MISSION-AUDIT.md`
@@ -30,6 +35,51 @@
 - `training/round-01-clear/PHASE-C-PREFLIGHT.md`
 - `training/round-01-clear/MISSION-DEPENDENCY-MAP.md`
 - `standards/CANONICAL-REFERENCE-STANDARD.md`
+
+## R01 Runtime Profiles
+
+```text
+macOS + OrbStack
+├─ MAC-D: Docker
+└─ MAC-V: Ubuntu 24.04 Linux Machine
+
+Windows 11 Pro + WSL2 Ubuntu 24.04
+├─ WIN-D: Docker
+└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+```
+
+현재 범위 밖:
+
+- Ubuntu Native Host
+- 별도 Hyper-V VM
+- VMware
+- KVM/QEMU/libvirt
+- Proxmox
+- Kubernetes
+
+위 환경은 R01 전체 CLEAR 이후 Portability/Advanced 단계로 미룹니다.
+
+### Dual-Runtime 운영
+
+Mission 상태와 Lab Coverage는 분리합니다.
+
+```text
+Mission CLEAR
+= 공식 Mission/Evaluation + Runtime + Verify + Evidence
+
+Lab Coverage
+= Docker/VM/Linux 환경에서 핵심 기능과 차이를 학습하는 별도 체크
+```
+
+같은 Mission을 네 프로필에서 전체 반복하지 않습니다. Primary Runtime에서 CLEAR를 먼저 확보하고, Twin Lab에서는 핵심 기능 1~3개와 환경 차이만 확인합니다.
+
+현재 B1-1:
+
+```text
+Primary CLEAR   MAC-V
+Twin            WIN-V
+Docker Practice MAC-D / WIN-D
+```
 
 ## FAST TRACK
 
@@ -116,6 +166,7 @@ B1-1/B1-2  AGENT_* + local-only key file
 ```text
 PHASE-C-PREFLIGHT
 → 현재 미션 START-CHECK(있는 경우)
+→ Primary Runtime 확인
 → BEGINNER-GUIDE
 → 실제 Runtime
 → Verify
@@ -123,6 +174,7 @@ PHASE-C-PREFLIGHT
 → Evaluation 설명
 → Secret 확인
 → ✅ CLEAR 판정
+→ 필요 범위 Twin Lab
 → FAST TRACK의 다음 미션
 ```
 
@@ -155,4 +207,4 @@ Phase A Reference Build          ✅ 15/15 CORE READY
 - ⛔ `BLOCKED`: 실제 의존성 때문에 진행 불가
 - ✅ `CLEAR`: 구현 + 실제 검증 + 필요한 Evidence 완료
 
-Reference/문서/정적검증만으로는 `✅ CLEAR`로 변경하지 않습니다.
+Reference/문서/정적검증이나 Twin Lab Coverage만으로는 `✅ CLEAR`로 변경하지 않습니다.
