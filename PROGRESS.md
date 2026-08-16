@@ -22,7 +22,7 @@
 | B3-2 | **CORE READY** | Mini Git DAG/branch/index/custom sort/BFS, edge tests, runtime gate/status |
 | B4-1 | **CORE READY** | Vanilla portfolio, explicit STATE flows, API states/map-filter, responsive/static/runtime gates |
 | B5-1 | **CORE READY** | SQLite 4-table schema, constraints, Q01~Q16, exact coverage verify, runtime evidence runner/status |
-| B6-1 | **ADVANCED** | AWS REFERENCE-BUILD + reference/docs/environment/evidence, canonical guide 동기화 필요 |
+| B6-1 | **CORE READY** | AWS network/EC2/Nginx/SG/IAM/cleanup reference, read-only runtime verify, Guide/Checklist/Status |
 | B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
 | B4-2 | **CORE READY** | React SPA, Supabase CRUD, routes/components/hooks/form/state/deploy/evidence |
@@ -32,8 +32,8 @@
 
 ### 집계
 
-- CORE READY: **14 / 15**
-- ADVANCED: **1 / 15**
+- CORE READY: **15 / 15**
+- ADVANCED: **0 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
@@ -62,36 +62,45 @@
 
 ## Phase A 작업 큐
 
-1. **B6-1** — 마지막 ADVANCED → CORE READY
-2. **CORE READY 15개 canonical 최종 정합성 검사**
-3. **Phase B — Cross-Mission Audit**
-4. **Phase C — B1-1부터 Runtime CLEAR**
+1. **15개 CORE READY canonical 최종 정합성 검사**
+2. **Phase B — Cross-Mission Audit**
+3. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
+### B6-1 — ADVANCED → CORE READY
+
+- 공식 Mission/Evaluation과 AWS Reference 구조 재대조
+- Region을 공식 필수 `ap-northeast-2`로 고정
+- VPC / Public Subnet / IGW / Public Route / SG / EC2 / Nginx traffic path 정리
+- SG HTTP 80 public, SSH 22 learner CIDR-only, all-traffic public 금지 원칙 강화
+- read-only Runtime verifier에 Route Table↔Subnet association, EC2↔Subnet/SG, Public IPv4 검증 추가
+- external `/health` actual check와 Runtime Evidence 6종 gate 추가
+- architecture PNG/PDF, Troubleshooting, Cleanup 실제 완료 gate 추가
+- detailed Beginner Guide / Checklist / Reference Status 동기화
+- 실제 AWS 생성/접속/과금 정리는 PASS로 기록하지 않음
+
 ### B5-1 — ADVANCED → CORE READY
 
-- 공식 Mission/Evaluation과 schema/seed/query 산출물을 재대조
-- 4 tables, 각 PK, FK 3개, 1:N 3개, NOT NULL/UNIQUE/CHECK 구조 확인
-- 각 table 10행 이상 sample data 유지
-- 공식 Query 범위를 `queries.sql` Q01~Q16으로 명시: BASIC 4, JOIN 4, AGGREGATE 3, SUBQUERY 2, UPDATE, DELETE, INDEX
-- `INNER JOIN`을 명시적으로 사용하고 LEFT JOIN 요구와 분리
-- index 요구를 별도 파일에만 두지 않고 Q16 `CREATE INDEX` + 적용 이유 + Query Plan으로 포함
-- verifier가 PK/FK/NOT NULL/UNIQUE를 선언이 아니라 실제 SQLite 동작으로 검사하도록 강화
-- Query 범주 개수, INNER/LEFT JOIN, aggregate function 종류, rollback 상태를 검사
-- `run-reference.sh`로 Phase C actual query/constraint/index Evidence 생성 경로 추가
-- SQLite ISO date TEXT 선택 이유, ERD, Evaluation Q&A, detailed Beginner Guide/Checklist/Status 동기화
-- 실제 SQLite Runtime 결과는 PASS로 기록하지 않음
+- 4-table SQLite schema, PK/FK/constraints, 10+ rows, Q01~Q16 exact query coverage를 정리
+- `INNER JOIN`, LEFT JOIN, aggregate, subquery, UPDATE/DELETE, INDEX를 verifier에서 범주별 검사
+- `run-reference.sh` Runtime Evidence runner와 ERD/Evaluation/Guide/Checklist/Status를 추가
 
-### B4-1 — ADVANCED → CORE READY
-
-- explicit STATE, API states, map/filter, responsive/static/runtime gates를 보완했습니다.
-
-### B3-2 / B3-1 / B2-2 / B2-1 / B1-2 / B1-1
+### B4-1 / B3-2 / B3-1 / B2-2 / B2-1 / B1-2 / B1-1
 
 - 각 미션의 구조/실패 경계/검증/Evidence Gate를 CORE READY 수준으로 보완했습니다.
 
 실제 Runtime은 수행하지 않았으므로 Runtime 상태표는 변경하지 않습니다.
+
+## Phase A 종료 판단
+
+15개 미션이 모두 **CORE READY**에 도달했습니다. 다만 Phase B로 이동하기 전에 다음 1회성 작업을 수행합니다.
+
+```text
+15개 canonical 최종 정합성 검사
+→ Cross-Mission Audit
+→ Runtime 실행 순서/공통환경/포트/Secret/의존성 확정
+```
 
 ## R01 작업 흐름
 
