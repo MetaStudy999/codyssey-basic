@@ -4,6 +4,16 @@
 
 ## Round 01 — 3-Phase 운영
 
+> **중요:** `Phase A / Phase B / Phase C`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 `R01 — CLEAR`를 일관되게 운영하기 위해 사용하는 **내부 실행 단계**입니다. 공식 Mission/Evaluation이 항상 최우선 기준입니다.
+
+단계와 용어의 쉬운 설명은 [`docs/R01-OPERATING-MODEL.md`](docs/R01-OPERATING-MODEL.md)를 사용합니다.
+
+```text
+Phase A = 기준 구현·가이드 준비
+Phase B = 15개 미션 전체 교차 점검
+Phase C = 실제 Runtime → Verify → Evidence → CLEAR
+```
+
 ### Phase A — REFERENCE BUILD
 
 B1-1부터 B7-2까지 공식 Mission/Evaluation을 기준으로 기준 구현과 학습 자료를 먼저 준비합니다.
