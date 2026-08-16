@@ -17,7 +17,7 @@
 | B1-1 | **CORE READY** | 15-Step Guide, strict UFW/permission verify, hardened monitor, mapping/Q&A/evidence/status 완료 |
 | B1-2 | **CORE READY** | isolated fault lab, controlled Before/After matrix, hardened diagnostic monitor, report/verify/mapping/status 완료 |
 | B2-1 | **CORE READY** | full CLI/persistence/streaming/atomic rewrite 구현, boundary tests, side-effect-light verify/status 완료 |
-| B2-2 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
+| B2-2 | **CORE READY** | team skeleton, PR/Issue/review/conflict/troubleshooting policy, local verify + GitHub runtime audit/status 완료 |
 | B3-1 | **ADVANCED** | 상세 Guide/Checklist + REFERENCE-BUILD + reference/docs/environment/evidence |
 | B3-2 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
 | B4-1 | **ADVANCED** | REFERENCE-BUILD + reference/docs/environment/evidence |
@@ -32,8 +32,8 @@
 
 ### 집계
 
-- CORE READY: **9 / 15**
-- ADVANCED: **6 / 15**
+- CORE READY: **10 / 15**
+- ADVANCED: **5 / 15**
 - PARTIAL: **0 / 15**
 - SCAFFOLD: **0 / 15**
 - Runtime `✅ CLEAR`: **0 / 15**
@@ -62,40 +62,33 @@
 
 ## Phase A 작업 큐
 
-1. **B2-2** — ADVANCED 자체감사/정합성 마감
-2. **B3-1 / B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
-3. **현재 CORE READY 9개** — canonical 최종 정합성 검사
+1. **B3-1** — ADVANCED 자체감사/정합성 마감
+2. **B3-2 / B4-1 / B5-1 / B6-1** — ADVANCED → CORE READY
+3. **현재 CORE READY 10개** — canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
 ## 최근 Phase A 변경
 
-### B2-1 — ADVANCED → CORE READY
+### B2-2 — ADVANCED → CORE READY
 
-- transactions/categories/budgets 3종을 재오픈해 persistence를 확인하는 테스트 보강
-- list/search가 실제 generator인지 계약 테스트 추가
-- date/type/category/0·음수 amount와 missing update/delete ID 오류 경계 추가
-- atomic rewrite 후 temp file 미잔존 + 재오픈 상태 확인
-- broken-row import의 partial-success/row reason, date-range export/조건 오류 테스트 강화
-- verify가 `compileall` 대신 AST parse를 사용하고 bytecode/cache를 남기지 않도록 개선
-- root/subcommand `--help`, GNU-style long option `--`, README/3-file store 계약을 자동 점검
+- 실제 협업과 Reference template을 엄격히 분리하고 `TODO_RUNTIME`을 실제 링크로만 교체하도록 유지
+- 로컬 Git으로 증명할 수 없는 Branch Protection/Ruleset, PR, Review, Issue linkage를 위한 `github-runtime-audit.md` 추가
+- 팀원별 merged PR 2+, 타인 Review 2+, own-PR feedback 1+, contribution/troubleshooting 최소 기준을 실제 링크로 대조하도록 설계
+- Review는 수량뿐 아니라 실질 내용/author interaction을 사람이 확인
+- conflict 2+/non-trivial 1+는 문서 주장 대신 실제 PR/commit과 연결
+- `verify.sh`가 policy/template/TODO/local history/명백한 무의미 commit을 검사하도록 강화
 - `REFERENCE-STATUS.md`, Checklist/README 동기화
 
-### B1-2 — ADVANCED → CORE READY
+### B2-1 — ADVANCED → CORE READY
 
-- 격리 장애 실험 Runtime Safety Gate
-- controlled Before/After matrix
-- hardened diagnostic monitor
-- Runtime evidence/placeholder/PID/time-series/Secret 검증
-- Deadlock 과잉 단정 방지
+- 3-file persistence, generator contract, input/error boundaries, atomic rewrite, import/export tests 강화
+- side-effect-light verifier와 status/canonical docs 동기화
 
-### B1-1 — ADVANCED → CORE READY
+### B1-2 / B1-1
 
-- `/opt/agent-app` 권한 Golden Path
-- effective permission/UFW strict verify
-- canonical `agent-app` + `pgrep -x`
-- SSH lockout 방지
-- 안전한 failure/Warning/log rotation 검증 설계
+- B1-2: isolated fault lab + controlled experiments + runtime evidence gate
+- B1-1: safe SSH/UFW + effective permission + hardened monitor/log rotation
 
 ### B4-2 / B5-2 / B5-3 / B7-2
 
