@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Validate the stable Codyssey Developer Growth OS V3/V3.1 contract.
+"""Validate the Codyssey Basic 2026-08-16 new-baseline contract.
 
-This validator does not replace Mission runtime verification. It checks the
-canonical repository structure, generated-data consistency, beginner Mission
-Clear Cycle, Markdown links, Growth contracts, and Dashboard wiring used by
-the Control Tower.
+This validates repository structure and current-state consistency only. Mission
+runtime PASS still requires the mission-specific runtime/evidence gates.
 """
 from __future__ import annotations
 
@@ -23,7 +21,7 @@ REQUIRED_FILES = [
     "AGENTS.md",
     "config/missions.yaml",
     "config/cycles/current.yaml",
-    "config/history/pre-v3-mission-history.yaml",
+    "config/history/pre-restart-20260816.yaml",
     "config/growth.yaml",
     "config/skills.yaml",
     "config/activities.yaml",
@@ -32,46 +30,18 @@ REQUIRED_FILES = [
     "config/resources.yaml",
     "scripts/sync_progress.py",
     "scripts/sync_growth.py",
+    "scripts/browser_smoke.py",
     "site/index.html",
     "site/css/beginner-dashboard.css",
     "site/js/beginner-dashboard.js",
-    "site/js/app.js",
-    "site/js/growth-os.js",
     "site/data/cycle.json",
     "site/data/missions.json",
-    "site/data/workcells.json",
-    "site/data/growth.json",
-    "site/data/skills.json",
-    "site/data/activities.json",
-    "site/data/projects.json",
-    "site/data/opportunities.json",
     "docs/00-governance/README.md",
-    "docs/00-governance/growth-model.md",
-    "docs/00-governance/status-model.md",
-    "docs/00-governance/priority-model.md",
-    "docs/00-governance/repository-policy.md",
-    "docs/00-governance/evidence-traceability.md",
-    "docs/00-governance/mission-gates.md",
     "docs/01-master-map/README.md",
-    "docs/01-master-map/growth-map.md",
-    "docs/01-master-map/current-state.md",
     "docs/01-master-map/mission-progress.md",
     "docs/01-master-map/mission-clear-cycle.md",
-    "docs/01-master-map/mission-dependency-map.md",
-    "docs/01-master-map/growth-routing.md",
-    "docs/01-master-map/repository-map.md",
-    "docs/01-master-map/dashboard-v3.md",
     "docs/02-missions/README.md",
     "docs/03-learning/README.md",
-    "docs/04-community/README.md",
-    "docs/05-projects/README.md",
-    "docs/06-opportunities/README.md",
-    "docs/07-research/README.md",
-    "docs/08-open-source/README.md",
-    "docs/09-career/README.md",
-    "docs/10-venture/README.md",
-    "docs/11-portfolio/README.md",
-    "docs/12-impact/README.md",
 ]
 
 MISSION_SUMMARIES = [
@@ -92,43 +62,16 @@ MISSION_SUMMARIES = [
     "docs/02-missions/b7-term-project/b7-2.md",
 ]
 
-FORBIDDEN_STAGE_DIRS = [
-    "docs/core",
-    "docs/explore",
-    "docs/advanced",
-    "docs/pro",
-    "docs/expert",
-]
-
-V3_LINK_ROOTS = [
-    ROOT / "README.md",
-    ROOT / "AGENTS.md",
-    ROOT / "docs" / "00-governance",
-    ROOT / "docs" / "01-master-map",
-    ROOT / "docs" / "02-missions",
-    ROOT / "docs" / "03-learning",
-    ROOT / "docs" / "04-community",
-    ROOT / "docs" / "05-projects",
-    ROOT / "docs" / "06-opportunities",
-    ROOT / "docs" / "07-research",
-    ROOT / "docs" / "08-open-source",
-    ROOT / "docs" / "09-career",
-    ROOT / "docs" / "10-venture",
-    ROOT / "docs" / "11-portfolio",
-    ROOT / "docs" / "12-impact",
-]
-
-MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
 EXPECTED_GATES = [
-    "G1_SOURCE",
-    "G2_BUILD",
-    "G3_TEST",
-    "G4_REVIEW",
-    "G5_RUNTIME",
-    "G6_EVIDENCE",
-    "G7_LEARN",
-    "G8_MERGE",
+    "G1_SOURCE", "G2_BUILD", "G3_TEST", "G4_REVIEW",
+    "G5_RUNTIME", "G6_EVIDENCE", "G7_LEARN", "G8_MERGE",
 ]
+EXPECTED_REQUIRED = ["B1-1", "B1-2", "B2-1", "B2-2", "B3-1", "B3-2", "B4-1", "B5-1", "B6-1", "B6-2", "B7-1"]
+EXPECTED_OPTIONAL = ["B4-2", "B5-2", "B5-3"]
+EXPECTED_EXTENSION = ["B7-2"]
+FORBIDDEN_STAGE_DIRS = ["docs/core", "docs/explore", "docs/advanced", "docs/pro", "docs/expert"]
+MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+LINK_ROOTS = [ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "docs"]
 
 
 def rel(path: Path) -> str:
@@ -143,130 +86,158 @@ def load_yaml(path: Path) -> dict:
 
 
 def load_json(path: Path) -> dict:
-    payload = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(payload, dict):
-        raise ValueError(f"{rel(path)} must contain a JSON object")
-    return payload
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"{rel(path)} must contain an object")
+    return data
 
 
-def mission_ids() -> list[str]:
+def mission_units() -> list[dict]:
     data = load_yaml(ROOT / "config/missions.yaml")
-    return [unit["id"] for domain in data.get("domains", []) for unit in domain.get("units", [])]
+    return [unit for domain in data.get("domains", []) for unit in domain.get("units", [])]
 
 
-def check_required_files(errors: list[str]) -> None:
+def check_files(errors: list[str]) -> None:
     for item in REQUIRED_FILES + MISSION_SUMMARIES:
         if not (ROOT / item).is_file():
             errors.append(f"missing required file: {item}")
-
-
-def check_forbidden_stage_dirs(errors: list[str]) -> None:
     for item in FORBIDDEN_STAGE_DIRS:
         if (ROOT / item).exists():
             errors.append(f"forbidden stage directory exists: {item}")
 
 
-def check_growth_contract(errors: list[str]) -> None:
-    growth = load_yaml(ROOT / "config/growth.yaml")
-    stages = [item.get("id") for item in growth.get("growth_stages", [])]
-    expected = ["CORE", "EXPLORE", "ADVANCED", "PRO", "EXPERT"]
-    if stages != expected:
-        errors.append(f"growth stage order mismatch: expected {expected}, got {stages}")
-
-    statuses = set(growth.get("progress_statuses", []))
-    expected_statuses = {"PLANNED", "READY", "ACTIVE", "BLOCKED", "DONE", "ARCHIVED"}
-    if statuses != expected_statuses:
-        errors.append("growth progress_statuses contract mismatch")
-
-    priorities = set(growth.get("priority_values", []))
-    if priorities != {"REQUIRED", "RECOMMENDED", "OPTIONAL"}:
-        errors.append("growth priority_values contract mismatch")
-
-    axes = growth.get("competency_axes", [])
-    if len(axes) != 12 or len(set(axes)) != 12:
-        errors.append("growth competency_axes must contain 12 unique axes")
+def check_mission_contract(errors: list[str]) -> None:
+    data = load_yaml(ROOT / "config/missions.yaml")
+    if data.get("gate_order") != EXPECTED_GATES:
+        errors.append("config/missions.yaml must preserve G1~G8 order")
+    units = mission_units()
+    ids = [unit.get("id") for unit in units]
+    if len(ids) != 15 or len(set(ids)) != 15:
+        errors.append(f"mission catalog must contain 15 unique ids, got {len(ids)}")
+    allowed_status = set(data.get("status_values", []))
+    allowed_learning = set(data.get("learning_values", []))
+    allowed_gate = set(data.get("gate_status_values", []))
+    for unit in units:
+        mid = unit.get("id", "UNKNOWN")
+        if unit.get("status") not in allowed_status:
+            errors.append(f"{mid}: invalid mission status")
+        if unit.get("learning") not in allowed_learning:
+            errors.append(f"{mid}: invalid learning status")
+        if unit.get("current_gate") not in EXPECTED_GATES:
+            errors.append(f"{mid}: invalid current gate")
+        gates = unit.get("gates") or {}
+        if list(gates) != EXPECTED_GATES:
+            errors.append(f"{mid}: gate keys/order mismatch")
+        elif any(value not in allowed_gate for value in gates.values()):
+            errors.append(f"{mid}: invalid gate value")
+    by_id = {unit["id"]: unit for unit in units}
+    if by_id.get("B7-2", {}).get("official_requirement") != "mission-pdf-does-not-state-required-or-optional":
+        errors.append("B7-2 official requirement must remain source-faithful and unclassified")
 
 
 def check_cycle_contract(errors: list[str]) -> None:
     cycle = load_yaml(ROOT / "config/cycles/current.yaml")
-    ids = mission_ids()
-    cycle_ids = list((cycle.get("missions") or {}).keys())
-    if set(cycle_ids) != set(ids):
-        errors.append("current cycle must contain all 15 mission ids exactly once")
-
-    states = cycle.get("cycle_state_values", [])
-    expected_states = ["NOT_STARTED", "READY", "ACTIVE", "CLEAR", "BLOCKED"]
-    if states != expected_states:
-        errors.append(f"cycle state contract mismatch: {states}")
-
+    entries = cycle.get("missions") or {}
+    ids = [unit["id"] for unit in mission_units()]
+    if set(entries) != set(ids) or len(entries) != 15:
+        errors.append("current cycle must contain all 15 mission ids")
     current = (cycle.get("cycle") or {}).get("current_mission")
-    active = [mid for mid, item in (cycle.get("missions") or {}).items() if item.get("state") == "ACTIVE"]
+    active = [mid for mid, entry in entries.items() if entry.get("state") == "ACTIVE"]
     if current not in ids or active != [current]:
-        errors.append(f"cycle current mission/ACTIVE mismatch: current={current}, active={active}")
+        errors.append(f"cycle current/ACTIVE mismatch: current={current}, active={active}")
+
+    plan = cycle.get("execution_plan") or {}
+    if plan.get("required_first") != EXPECTED_REQUIRED:
+        errors.append("required-first order mismatch")
+    if plan.get("optional_after_required") != EXPECTED_OPTIONAL:
+        errors.append("optional-after-required order mismatch")
+    if plan.get("extension_after_optional") != EXPECTED_EXTENSION:
+        errors.append("extension order mismatch")
+
+    expected_phase = {mid: "REQUIRED" for mid in EXPECTED_REQUIRED}
+    expected_phase.update({mid: "OPTIONAL" for mid in EXPECTED_OPTIONAL})
+    expected_phase.update({mid: "EXTENSION" for mid in EXPECTED_EXTENSION})
+    for mid, phase in expected_phase.items():
+        if entries.get(mid, {}).get("phase") != phase:
+            errors.append(f"{mid}: cycle phase must be {phase}")
 
     gate_display = cycle.get("gate_display") or {}
     if list(gate_display) != EXPECTED_GATES:
-        errors.append("beginner gate display must preserve G1~G8 order")
-    else:
-        steps = [gate_display[gate].get("step") for gate in EXPECTED_GATES]
-        if steps != list(range(1, 9)):
-            errors.append(f"beginner gate steps must be 1..8, got {steps}")
-        for gate in EXPECTED_GATES:
-            meta = gate_display[gate]
-            for key in ("title", "action", "why", "completion"):
-                if not str(meta.get(key, "")).strip():
-                    errors.append(f"{gate}: beginner metadata missing {key}")
+        errors.append("friendly gate display must preserve G1~G8 order")
+    for index, gate in enumerate(EXPECTED_GATES, 1):
+        meta = gate_display.get(gate) or {}
+        if meta.get("step") != index:
+            errors.append(f"{gate}: friendly step must be {index}")
+        for key in ("title", "action", "why", "completion"):
+            if not str(meta.get(key, "")).strip():
+                errors.append(f"{gate}: missing {key}")
 
-    cycle_json = load_json(ROOT / "site/data/cycle.json")
-    if cycle_json.get("generated_from") != "config/cycles/current.yaml":
-        errors.append("site/data/cycle.json generated_from mismatch")
-    if (cycle_json.get("cycle") or {}).get("current_mission") != current:
-        errors.append("cycle JSON current_mission mismatch")
-    if set((cycle_json.get("missions") or {}).keys()) != set(ids):
-        errors.append("cycle JSON mission set mismatch")
-
-    history = load_yaml(ROOT / "config/history/pre-v3-mission-history.yaml")
+    history = load_yaml(ROOT / "config/history/pre-restart-20260816.yaml")
+    if history.get("snapshot_branch") != "archive/pre-restart-20260816-main":
+        errors.append("history snapshot branch mismatch")
     preserved = {item.get("mission"): item.get("result") for item in history.get("mission_results", [])}
     if preserved.get("B2-1") != "PASS":
-        errors.append("pre-v3 B2-1 PASS history must remain preserved")
+        errors.append("previous B2-1 PASS must remain preserved as history")
 
 
-def check_json_sources(errors: list[str]) -> None:
-    expected = {
-        "growth": "config/growth.yaml",
-        "skills": "config/skills.yaml",
-        "activities": "config/activities.yaml",
-        "projects": "config/projects.yaml",
-        "opportunities": "config/opportunities.yaml",
-    }
-    for name, source in expected.items():
-        path = ROOT / f"site/data/{name}.json"
-        try:
-            payload = load_json(path)
-        except json.JSONDecodeError as exc:
-            errors.append(f"invalid JSON {rel(path)}: {exc}")
-            continue
-        if payload.get("generated_from") != source:
-            errors.append(
-                f"{rel(path)} generated_from mismatch: {payload.get('generated_from')} != {source}"
-            )
+def check_generated_data(errors: list[str]) -> None:
+    missions = load_json(ROOT / "site/data/missions.json")
+    cycle = load_json(ROOT / "site/data/cycle.json")
+    if missions.get("generated_from") != "config/missions.yaml":
+        errors.append("missions.json generated_from mismatch")
+    if cycle.get("generated_from") != "config/cycles/current.yaml":
+        errors.append("cycle.json generated_from mismatch")
+    if cycle.get("history_source") != "config/history/pre-restart-20260816.yaml":
+        errors.append("cycle.json history_source mismatch")
+    if (cycle.get("execution_plan") or {}).get("required_first") != EXPECTED_REQUIRED:
+        errors.append("cycle.json required-first plan mismatch")
+    if len(missions.get("missions") or []) != 15 or len(cycle.get("missions") or {}) != 15:
+        errors.append("generated mission/cycle data must contain 15 missions")
+
+
+def check_dashboard(errors: list[str]) -> None:
+    html = (ROOT / "site/index.html").read_text(encoding="utf-8")
+    js = (ROOT / "site/js/beginner-dashboard.js").read_text(encoding="utf-8")
+    markers = [
+        'id="current-id"', 'id="current-action"', 'id="required-count"',
+        'id="step-grid"', 'id="required-list"', 'id="optional-list"',
+        'id="extension-list"', 'id="refresh-button"',
+        'src="./js/beginner-dashboard.js"', 'href="./css/beginner-dashboard.css"',
+    ]
+    for marker in markers:
+        if marker not in html:
+            errors.append(f"dashboard marker missing: {marker}")
+    for text in ("필수 미션부터", "지금 할 일은 이것 하나입니다.", "선택 미션 · 필수 완료 후", "이전 수행 기록"):
+        if text not in html:
+            errors.append(f"learner-facing text missing: {text}")
+    forbidden_html = ("poll-live-status", "mission-control-grid", "Control Tower Snapshot", "V3 REBUILD ACTIVE")
+    for marker in forbidden_html:
+        if marker in html:
+            errors.append(f"legacy default dashboard marker must be removed: {marker}")
+    if "./data/cycle.json" not in js or "./data/missions.json" not in js:
+        errors.append("current dashboard must read cycle.json and missions.json")
+    if "5 * 60 * 1000" not in js:
+        errors.append("5-minute manual refresh cooldown missing")
+    for stale in ("mission-status.json", "raw.githubusercontent.com", "pollLiveStatuses"):
+        if stale in js:
+            errors.append(f"current dashboard must not read legacy telemetry: {stale}")
 
 
 def iter_markdown_files() -> list[Path]:
-    result: set[Path] = set()
-    for root in V3_LINK_ROOTS:
+    files: set[Path] = set()
+    for root in LINK_ROOTS:
         if root.is_file():
-            result.add(root)
+            files.add(root)
         elif root.is_dir():
-            result.update(root.rglob("*.md"))
-    return sorted(result)
+            files.update(root.rglob("*.md"))
+    return sorted(files)
 
 
 def check_markdown_links(errors: list[str]) -> None:
     for path in iter_markdown_files():
         text = path.read_text(encoding="utf-8")
-        for raw_target in MARKDOWN_LINK_RE.findall(text):
-            target = raw_target.strip()
+        for raw in MARKDOWN_LINK_RE.findall(text):
+            target = raw.strip()
             if not target or target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
             target = target.split("#", 1)[0].split("?", 1)[0]
@@ -276,74 +247,32 @@ def check_markdown_links(errors: list[str]) -> None:
             try:
                 candidate.relative_to(ROOT.resolve())
             except ValueError:
-                errors.append(f"link escapes repository: {rel(path)} -> {raw_target}")
+                errors.append(f"link escapes repository: {rel(path)} -> {raw}")
                 continue
             if not candidate.exists():
-                errors.append(f"broken local link: {rel(path)} -> {raw_target}")
+                errors.append(f"broken local link: {rel(path)} -> {raw}")
 
 
-def check_dashboard_wiring(errors: list[str]) -> None:
-    html = (ROOT / "site/index.html").read_text(encoding="utf-8")
-    beginner_js = (ROOT / "site/js/beginner-dashboard.js").read_text(encoding="utf-8")
-    growth_js = (ROOT / "site/js/growth-os.js").read_text(encoding="utf-8")
-    app_js = (ROOT / "site/js/app.js").read_text(encoding="utf-8")
-
-    beginner_markers = (
-        'id="beginner-dashboard"',
-        'id="beginner-current-title"',
-        'id="beginner-next-action"',
-        'id="beginner-step-grid"',
-        'id="beginner-journey"',
-        'id="beginner-mission-list"',
-        'id="beginner-help-button"',
-        'id="beginner-stuck-button"',
-        'href="#beginner-dashboard"',
-        'src="./js/beginner-dashboard.js"',
-        'href="./css/beginner-dashboard.css"',
-    )
-    for marker in beginner_markers:
-        if marker not in html:
-            errors.append(f"site/index.html missing Beginner First marker: {marker}")
-
-    for friendly_text in ("처음 시작하기", "지금 할 일은 이것 하나입니다.", "쉬운 설명", "막혔어요"):
-        if friendly_text not in html:
-            errors.append(f"Beginner First friendly text missing: {friendly_text}")
-
-    if "V3 REBUILD ACTIVE" in html:
-        errors.append("obsolete V3 REBUILD ACTIVE text must not appear on the learner dashboard")
-
-    if "./data/cycle.json" not in beginner_js or "./data/missions.json" not in beginner_js:
-        errors.append("beginner-dashboard.js must read cycle.json and missions.json")
-
-    for marker in (
-        'id="growth-os"',
-        'id="growth-stage-grid"',
-        'id="growth-registry-summary"',
-        'id="growth-skill-grid"',
-        'src="./js/growth-os.js"',
-    ):
-        if marker not in html:
-            errors.append(f"site/index.html missing Growth OS marker: {marker}")
-
-    for data_path in (
-        "./data/growth.json",
-        "./data/skills.json",
-        "./data/activities.json",
-        "./data/projects.json",
-        "./data/opportunities.json",
-    ):
-        if data_path not in growth_js:
-            errors.append(f"site/js/growth-os.js missing data source: {data_path}")
-
-    if "LIVE_POLL_COOLDOWN_MS = 5 * 60 * 1000" not in app_js:
-        errors.append("manual Mission refresh 5-minute cooldown contract not found")
-    if "pollLiveStatuses" not in app_js:
-        errors.append("manual Mission refresh handler not found")
+def check_growth_sources(errors: list[str]) -> None:
+    expected = {
+        "growth": "config/growth.yaml",
+        "skills": "config/skills.yaml",
+        "activities": "config/activities.yaml",
+        "projects": "config/projects.yaml",
+        "opportunities": "config/opportunities.yaml",
+    }
+    for name, source in expected.items():
+        path = ROOT / f"site/data/{name}.json"
+        if not path.exists():
+            errors.append(f"missing generated growth data: {rel(path)}")
+            continue
+        payload = load_json(path)
+        if payload.get("generated_from") != source:
+            errors.append(f"{rel(path)} generated_from mismatch")
 
 
 def run_sync_check(script: str, errors: list[str]) -> None:
-    command = [sys.executable, str(ROOT / script), "--check"]
-    result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
+    result = subprocess.run([sys.executable, str(ROOT / script), "--check"], cwd=ROOT, text=True, capture_output=True)
     if result.returncode != 0:
         detail = (result.stderr or result.stdout).strip()
         errors.append(f"{script} --check failed: {detail}")
@@ -351,27 +280,25 @@ def run_sync_check(script: str, errors: list[str]) -> None:
 
 def main() -> int:
     errors: list[str] = []
-
     try:
-        check_required_files(errors)
-        check_forbidden_stage_dirs(errors)
-        check_growth_contract(errors)
+        check_files(errors)
+        check_mission_contract(errors)
         check_cycle_contract(errors)
-        check_json_sources(errors)
+        check_generated_data(errors)
+        check_dashboard(errors)
         check_markdown_links(errors)
-        check_dashboard_wiring(errors)
+        check_growth_sources(errors)
         run_sync_check("scripts/sync_progress.py", errors)
         run_sync_check("scripts/sync_growth.py", errors)
     except (OSError, KeyError, TypeError, ValueError, yaml.YAMLError, json.JSONDecodeError) as exc:
         errors.append(str(exc))
 
     if errors:
-        print("Growth OS V3.1 validation failed:", file=sys.stderr)
+        print("New baseline validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
-
-    print("Growth OS V3.1 Beginner First contract validation passed.")
+    print("New baseline validation passed.")
     return 0
 
 
