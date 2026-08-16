@@ -91,47 +91,54 @@ NO
 
 ---
 
-## R01 Dual-Runtime Lab 정책
+## R01 Runtime / Docker 정책
 
 R01은 현재 두 Host 계열만 지원합니다.
 
 ```text
 macOS + OrbStack
-├─ MAC-D: Docker
-└─ MAC-V: Ubuntu 24.04 Linux Machine
+├─ MAC-V: Ubuntu 24.04 Linux Machine
+└─ MAC-D: Docker
 
 Windows 11 Pro + WSL2 Ubuntu 24.04
-├─ WIN-D: Docker
-└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+├─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+└─ WIN-D: Docker
 ```
 
-상세 계약은 `environments/RUNTIME-PROFILES.md`, Mission별 설계는 `environments/MISSION-LAB-MATRIX.md`를 사용합니다.
+상세 계약은 `environments/RUNTIME-PROFILES.md`, Docker 정책은 `environments/DOCKER-POLICY.md`, Mission별 설계는 `environments/MISSION-LAB-MATRIX.md`를 사용합니다.
 
-### CLEAR와 Lab을 분리한다
-
-각 Mission에는 두 가지 층이 있습니다.
+### CLEAR와 환경 학습을 분리한다
 
 ```text
 Mission CLEAR
 = 공식 Mission/Evaluation
-+ 실제 Runtime
++ 필요한 실제 Runtime
 + Verify
 + Evidence
 
-Dual-Runtime Lab
-= Docker/VM/Linux 환경 차이를 익히는 학습·Portability Coverage
+Secondary Platform Check
+= 권장 Portability 학습
+
+Docker Lab
+= 선택 Training Layer
 ```
 
-같은 Mission을 네 Runtime Profile에서 처음부터 끝까지 반복하지 않습니다. 각 Mission은 **Primary Runtime 1개**에서 CLEAR를 먼저 확보하고, 다른 환경에서는 핵심 기능 1~3개와 환경 차이만 Twin Lab으로 확인합니다.
+따라서 운영 우선순위는 다음과 같습니다.
 
-기본 선택 원칙:
+```text
+1. Primary Mission Runtime
+2. Verify
+3. Evidence
+4. ✅ CLEAR
+5. Secondary Platform Check — 권장
+6. Docker Lab — 선택
+```
 
-- OS/SSH/UFW/users/ACL/cron/troubleshooting 중심 → `MAC-V` Primary
-- Python/Web/DB/API/AI application 중심 → `MAC-D` Primary
-- Windows portability → `WIN-V` 또는 `WIN-D`
-- GitHub/AWS/실제 배포/실제 AI Provider Evidence → local Docker/VM이 대체하지 않음
+R01의 기본 로컬 Primary는 `MAC-V`, 기본 Secondary는 `WIN-V`입니다. 외부 GitHub/AWS/배포/AI Provider가 핵심인 미션은 해당 실제 외부 Runtime/Evidence가 최우선입니다.
 
-Dual-Runtime Lab 미완료를 Mission `⛔ BLOCKED`의 이유로 만들지 않습니다. Lab Coverage는 Mission 상태와 별도 체크로 관리합니다.
+Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `FAIL` 처리하지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 공식 요구가 우선합니다.
+
+같은 Mission을 네 Runtime Profile에서 처음부터 끝까지 반복하지 않습니다. Docker를 수행한다면 전체 미션 재수행이 아니라 핵심 기능 1~3개와 containerization/reproducibility 차이만 짧게 확인합니다.
 
 ---
 
@@ -152,7 +159,7 @@ Dual-Runtime Lab 미완료를 Mission `⛔ BLOCKED`의 이유로 만들지 않�
 4. 시스템 파일 변경 시 백업
 5. Secret은 Repository에 저장하지 않음
 6. `START-CHECK.md`가 있는 미션은 필수 선행과 현재 보유 지식을 먼저 확인
-7. 현재 Mission의 Primary Runtime Profile과 Twin Lab 범위를 확인
+7. 현재 Mission의 Primary Runtime을 확인하고 Docker는 선택 여부만 판단
 
 ## 3. BUILD
 
@@ -162,7 +169,7 @@ Dual-Runtime Lab 미완료를 Mission `⛔ BLOCKED`의 이유로 만들지 않�
 4. 이해하기 어려운 코드와 명령에는 목적을 설명하는 주석 제공
 5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
 6. Runtime 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
-7. Docker/VM 실습은 공통 Source를 재사용하고 환경별 코드 복제는 최소화
+7. Docker 실습을 하더라도 공통 Source를 재사용하고 환경별 코드 복제는 최소화
 
 ## 4. VERIFY
 
@@ -183,7 +190,7 @@ Dual-Runtime Lab 미완료를 Mission `⛔ BLOCKED`의 이유로 만들지 않�
 3. 실패 시 원인 → 확인 → 최소 해결 → 재검증 순서 사용
 4. 예상 출력과 실제 출력을 구분
 5. Runtime 결과가 정상이라면 불필요한 추가 리팩터링 없이 Evidence로 이동
-6. Twin Lab 결과를 Primary CLEAR Evidence와 혼동하지 않음
+6. Secondary/Docker Lab 결과를 Primary CLEAR Evidence와 혼동하지 않음
 
 ## 5. EVIDENCE
 
@@ -195,7 +202,7 @@ Secret, Token, Password, Private Key는 증빙에서도 노출하지 않습니�
 
 Reference Build 단계에서는 Evidence **계획과 저장 위치**만 준비할 수 있으며, 실제 실행하지 않은 결과를 Evidence로 만들지 않습니다.
 
-Docker/VM Twin Lab의 학습 결과는 Portability Note로 기록할 수 있지만, 공식 요구사항의 실제 Evidence를 대체하지 않습니다.
+Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있지만 공식 요구사항의 실제 Evidence를 대체하지 않습니다.
 
 ## 6. CLEAR
 
@@ -219,4 +226,4 @@ Mission 상태는 아래 네 가지만 사용합니다.
 - `⛔ BLOCKED`
 - `✅ CLEAR`
 
-Reference Build 진행 여부나 Dual-Runtime Lab Coverage는 Mission 상태를 임의로 변경하는 근거가 아닙니다.
+Reference Build 진행 여부, Secondary Platform Check, Docker Lab Coverage는 Mission 상태를 임의로 변경하는 근거가 아닙니다.
