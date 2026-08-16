@@ -15,7 +15,7 @@ Phase A에서 B1-1~B7-2 기준 구현·학습자료·검증계획이 어디까�
 ## 판정 기준
 
 ### CORE READY
-기준 구현, 검증 도구, 요구사항 매핑, 학습/증빙 자료가 핵심적으로 준비되어 있고 저장소 내부 `REFERENCE-STATUS` 등에서 Phase C Runtime만 남았음이 명확한 상태.
+기준 구현, 검증 도구, 요구사항 매핑, 학습/증빙 자료가 핵심적으로 준비되어 있고 Phase C Runtime 항목이 명확히 분리된 상태.
 
 ### ADVANCED
 `REFERENCE-BUILD.md`와 실제 reference/docs/environment/evidence 또는 상당한 Beginner Guide/Checklist가 존재하지만, canonical 문서 동기화·구현 내용 자체감사·최종 품질 Gate가 남은 상태.
@@ -42,42 +42,62 @@ R01 README/BEGINNER-GUIDE/CHECKLIST 골격 중심으로, 실제 기준 구현을
 | B6-2 | 필수 | **CORE READY** | `REFERENCE-STATUS.md`: collector/client/CLI/validator/tests/verify/secret scan 등 완료 표시 | canonical 문서 최종 동기화; 실제 Provider/API는 Phase C |
 | B7-1 | 필수 Term Project | **CORE READY** | `REFERENCE-STATUS.md`: auth/AI/DB/log/docs/verify 기준본 완료 표시 | 실제 AI/브라우저/팀 협업/외부 배포는 Phase C |
 | B4-2 | 선택 | **PARTIAL** | `REFERENCE-BUILD.md`, reference 존재. Beginner Guide/Checklist는 scaffold 크기 | React CRUD/remote backend/state/form/deploy 기준본 완성 |
-| B5-2 | 선택 | **SCAFFOLD** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | FastAPI CRUD 전체 Reference Build |
+| B5-2 | 선택 | **CORE READY** | Memo FastAPI CRUD Reference, Jinja2 SSR, `303` PRG, SQLite/SQLAlchemy, `Depends`, Guide/Checklist/verify/mapping/evidence/status 준비 | 실제 localhost/CRUD/DB/PRG Evidence는 Phase C |
 | B5-3 | 선택 | **SCAFFOLD** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | 인증/인가/3모델 연관관계/상태변경 전체 Reference Build |
 | B7-2 | 선택 Term Project | **SCAFFOLD** | R01 README/BEGINNER-GUIDE/CHECKLIST만 확인 | Project B 풀스택/소유권/REST/배포/기술문서 전체 Reference Build |
 
 ## 집계
 
-- **CORE READY:** 2개 — B6-2, B7-1
+- **CORE READY:** 3개 — B5-2, B6-2, B7-1
 - **ADVANCED:** 9개 — B1-1, B1-2, B2-1, B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
 - **PARTIAL:** 1개 — B4-2
-- **SCAFFOLD:** 3개 — B5-2, B5-3, B7-2
+- **SCAFFOLD:** 2개 — B5-3, B7-2
 - **Runtime CLEAR:** 0개
 
 이 집계는 'Reference 준비도'이며, 공식 미션 통과율이 아닙니다.
 
+## 최근 변경 — B5-2
+
+B5-2는 SCAFFOLD에서 실제 Reference 기준본으로 전환했습니다.
+
+- 단일 `Memo` 모델
+- Home/List/Detail/Create/Update/Delete SSR
+- Router → Service → Repository → ORM 분리
+- HTML Form / `Form()`
+- `303` PRG
+- SQLite `database.db`
+- SQLAlchemy Session + `Depends(get_db)`
+- Not Found 화면
+- setup/verify/reset/DB inspect
+- Requirement Mapping
+- Evaluation Q&A
+- Evidence Guide
+- Beginner Guide / Checklist / Reference Status
+
+실제 브라우저와 DB Runtime은 아직 수행하지 않았으므로 CLEAR와 분리합니다.
+
 ## 우선순위
 
 ### Priority 1 — Scaffold → 실제 Reference
-1. B5-2
-2. B5-3
-3. B7-2
+1. B5-3
+2. B7-2
 
 ### Priority 2 — Partial 마감
-4. B4-2
+3. B4-2
 
 ### Priority 3 — Advanced 자체감사/동기화
-5. B1-1
-6. B1-2
-7. B2-1
-8. B2-2
-9. B3-1
-10. B3-2
-11. B4-1
-12. B5-1
-13. B6-1
+4. B1-1
+5. B1-2
+6. B2-1
+7. B2-2
+8. B3-1
+9. B3-2
+10. B4-1
+11. B5-1
+12. B6-1
 
 ### Priority 4 — Core Ready 최종 정합성 검사
+13. B5-2
 14. B6-2
 15. B7-1
 
