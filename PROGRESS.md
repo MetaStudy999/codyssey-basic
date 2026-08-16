@@ -4,19 +4,21 @@
 
 현재 작업 모드: **Phase B — CROSS-MISSION AUDIT**
 
-> Phase A Reference Build와 Canonical Final Consistency Audit를 완료했습니다. Phase B는 실제 Runtime을 시작하기 전에 15개 미션의 환경·버전·포트·Secret·의존성·선후관계를 횡단 점검하는 단계입니다.
+> Phase A Reference Build와 Canonical Final Consistency Audit를 완료했습니다. Phase B는 실제 Runtime 전에 15개 미션의 환경·버전·포트·Secret·DB·Cloud·협업 의존성을 횡단 점검하는 단계입니다.
 
-## Phase A / Canonical 결과
+## 완료 현황
 
-- Reference Build: **CORE READY 15 / 15**
+- Phase A Reference Build: **CORE READY 15 / 15**
 - Canonical Final Consistency Audit: **PASS 15 / 15**
-- ADVANCED/PARTIAL/SCAFFOLD: **0**
+- Cross-Mission Environment Matrix: **작성 완료**
+- 초기 Cross-Mission BLOCKER: **0**
 - Runtime `✅ CLEAR`: **0 / 15**
 
-세부 감사 기록:
+감사 문서:
 
 - `training/round-01-clear/REFERENCE-AUDIT.md`
 - `training/round-01-clear/CANONICAL-AUDIT.md`
+- `training/round-01-clear/CROSS-MISSION-AUDIT.md`
 - `standards/CANONICAL-REFERENCE-STANDARD.md`
 
 ## Runtime Mission 상태
@@ -39,45 +41,58 @@
 | 14 | B5-3 | 선택 | ⬜ NOT STARTED |
 | 15 | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
-Runtime 상태는 Reference 준비도와 별개입니다. 실제 실행·검증·필요 Evidence 없이 상태를 `✅ CLEAR`로 변경하지 않습니다.
+## Phase B 확정 정책
 
-## Phase B 감사 축
+### Runtime isolation
 
-1. OS / WSL / systemd / Shell
-2. Python / Node / package manager / virtual environment
-3. SQLite / remote DB / persistence path
-4. Port / Service / local server 충돌
-5. Secret / `.env` / API environment variable naming
-6. Git / GitHub collaboration dependencies
-7. Cloud / Region / IAM / deploy / cleanup
-8. Evidence path / Runtime Gate
-9. 필수·선택 미션 선후관계
-10. 공통 환경 재사용과 Mission isolation
-11. Phase C 실제 실행 순서와 Runtime Runbook
+- 실제 Runtime은 **한 번에 한 미션**
+- Python 패키지는 미션별 `.venv`
+- SQLite DB는 미션별 파일/스키마 분리
+- B4-2 `node_modules`/Supabase는 B4-2 전용
+- B1-1 공식 Port `20022`, `15034`는 고정
+- Web app Port는 불필요하게 미션별 번호를 새로 만들지 않고 시작 전 충돌 확인
+
+### Secret naming
+
+AI 계열 B6-2/B7-1/B7-2는 다음 공통 이름을 사용합니다.
+
+```text
+AI_API_URL
+AI_API_KEY
+AI_MODEL
+```
+
+미션별 추가 변수:
+
+- B4-2: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+- B5-3: `SESSION_SECRET`
+- B7-2: `DATABASE_URL`
+- B1-1: `AGENT_*` + local-only key file
+
+### Dependency / reproducibility remediation
+
+- B7-1 unbounded Python dependency를 bounded range로 교정
+- B7-1에 Placeholder-only `.env.example` 추가
+- 실제 Secret 값은 Repository/Chat/Evidence 금지
+
+## Cross-Mission 이슈 처리 현황
+
+| ID | 내용 | 상태 |
+|---|---|---|
+| CM-01 | B7-1 dependency unbounded | ✅ 교정 |
+| CM-02 | B7-1 `.env.example` 부재 | ✅ 교정 |
+| CM-03 | AI env naming drift | ✅ 공통 계약 확인 |
+| CM-04 | FastAPI/Vite Port 충돌 가능성 | ✅ sequential Runtime 정책 |
+| CM-05 | SQLite schema/data 오염 가능성 | ✅ per-mission DB 격리 |
+| CM-06 | B1-2 장애 실험 host 영향 | ✅ isolated lab 유지 |
+| CM-07 | B6-1 과금/공유 resource 삭제 위험 | ✅ mission-only resource cleanup |
 
 ## 현재 작업 큐
 
-1. **Cross-Mission Environment Matrix 작성**
-2. **Port / Secret / Dependency 충돌 감사**
-3. **Mission Dependency Map 및 재사용 환경 확정**
-4. **Phase C Runtime Runbook Freeze**
-5. **B1-1부터 실제 Runtime CLEAR**
-
-## 최근 Canonical 보완
-
-### B6-2
-
-- canonical Beginner Guide / Checklist를 상세 Reference와 동기화
-- 실제 저장소에 없는 `b6-2-evaluation.md` 참조 제거
-- Mission PDF/MD만 공식 Source로 고정
-- root README / Reference Build / Status 동기화
-
-### B7-1
-
-- canonical Term Project Beginner Guide / Checklist 상세화
-- 실제 저장소에 없는 `b7-1-evaluation.md` 참조 제거
-- Mission PDF/MD만 공식 Source로 고정
-- root README / Reference Build / Status 동기화
+1. **15개 Runtime command / verify / Evidence 경로 통합**
+2. **Mission Dependency Map 최종 확정**
+3. **Phase C Runtime Runbook Freeze**
+4. **B1-1부터 실제 Runtime CLEAR**
 
 ## R01 전체 흐름
 
