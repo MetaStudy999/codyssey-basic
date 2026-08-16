@@ -19,7 +19,7 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 
 | 미션 | 판정 | 핵심 근거 / 잔여 |
 |---|---|---|
-| B1-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, monitor/environment/docs/evidence. Runtime Step/agent archive/자체감사 잔여 |
+| B1-1 | **CORE READY** | 15-Step Guide, `/opt/agent-app` 권한 모델, strict UFW/effective-permission verify, hardened monitor, mapping/Q&A/evidence/status 준비. Runtime만 잔여 |
 | B1-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, docs/environment/evidence. 최종 자체감사 잔여 |
 | B2-1 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 기준 구현 자체감사 잔여 |
 | B2-2 | **ADVANCED** | 상세 Guide/Checklist, REFERENCE-BUILD, reference/docs/environment/evidence. 팀 협업 Runtime 분리 최종검토 |
@@ -30,42 +30,53 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 | B6-1 | **ADVANCED** | AWS Reference 구조 존재. canonical Guide/Checklist 동기화 필요 |
 | B6-2 | **CORE READY** | collector/client/CLI/validator/tests/verify/secret scan 완료 기록 |
 | B7-1 | **CORE READY** | auth/AI/DB/log/docs/verify 핵심 기준본 완료 기록 |
-| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, 6 named routes + Not Found, 10 reusable components, hooks, form/state UX, verify/mapping/evidence/deploy plan 준비 |
+| B4-2 | **CORE READY** | React SPA, Supabase remote CRUD, routes/components/hooks/form/state/deploy/evidence 기준본 준비 |
 | B5-2 | **CORE READY** | Memo CRUD, PRG, SQLite/SQLAlchemy, Guide/verify/mapping/evidence/status 준비 |
 | B5-3 | **CORE READY** | Session auth, Depends 보호, User/Project/Task 관계, 상태변경, Guide/verify/mapping/evidence/status 준비 |
 | B7-2 | **CORE READY** | Full-stack REST, password hash/token auth, user-scoped Chat, Post ownership, frontend, ERD/API/Architecture, cloud/collaboration/evidence/runtime plans 준비 |
 
 ## 집계
 
-- **CORE READY:** 6개 — B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
-- **ADVANCED:** 9개
+- **CORE READY:** 7개 — B1-1, B4-2, B5-2, B5-3, B6-2, B7-1, B7-2
+- **ADVANCED:** 8개 — B1-2, B2-1, B2-2, B3-1, B3-2, B4-1, B5-1, B6-1
 - **PARTIAL:** 0개
 - **SCAFFOLD:** 0개
 - **Runtime CLEAR:** 0개
 
 ## 최근 변경
 
+### B1-1 ADVANCED → CORE READY
+
+자체감사에서 실제 Runtime 실패 가능성이 있던 설계를 보완했습니다.
+
+- `AGENT_HOME=/opt/agent-app` Golden Path로 상위 경로/공유 권한 모순 해소
+- upload는 `agent-common`, api_keys/log는 `agent-core`로 분리하고 `runuser`로 effective access 검증
+- 제공 실행 파일을 canonical `agent-app`으로 설치하고 `pgrep -x` 사용
+- UFW active 환경에서 `20022` 사전 허용 후 `sshd -t`/`sshd -T`/reload/새 접속/최종 Firewall 정리 순서 확정
+- UFW default deny incoming + 필수 두 포트 + extra ALLOW IN 없음까지 verify
+- Process/Port failure와 Warning을 안전한 environment override로 재현
+- `/tmp` 격리 경로에서 실제 10MB/10개 회전 검증
+- Beginner Guide STEP 01~15, Checklist, Reference Status, Mapping/Q&A 동기화
+
 ### B4-2 PARTIAL → CORE READY
-React/Vite/Router, 6 named route + Not Found, 10 reusable component, custom hooks, controlled form/validation/submitting, common Loading/Error/Empty, Supabase remote CRUD/schema/env, state→render 변화, deploy rewrite와 검증/학습/Evidence 문서를 준비했습니다.
+React/Vite/Router, routes, reusable components, custom hooks, form/state UX, Supabase remote CRUD/schema/env, deploy/evidence 기준본을 준비했습니다.
 
 ### B5-2 SCAFFOLD → CORE READY
-Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD, 303 PRG, 레이어 분리, verify/setup/reset/DB inspect, Requirements Mapping, Evaluation Q&A, Evidence/Beginner Guide/Checklist를 준비했습니다.
+Memo 단일 도메인 FastAPI/Jinja2/SQLAlchemy/SQLite CRUD, 303 PRG, 레이어 분리, verify/setup/reset/DB inspect, Mapping/Q&A/Evidence/Guide/Checklist를 준비했습니다.
 
 ### B5-3 SCAFFOLD → CORE READY
-세션 기반 인증, `Depends(require_username)` 보호, User→Project→Task 두 1:N 관계, `back_populates`, cascade 정책, Task 상태 전환 Service와 검증/학습 자료를 준비했습니다.
+세션 기반 인증, `Depends` 보호, User→Project→Task 관계, `back_populates`, cascade, Task 상태 전환 Service와 검증/학습 자료를 준비했습니다.
 
 ### B7-2 SCAFFOLD → CORE READY
-회원가입/PBKDF2 password hash, Bearer token/logout revoke, User-scoped ChatSession/Message, Post ownership REST, frontend client, env-only AI client, ERD/API/Architecture, collaboration/deployment/cleanup/evidence 계획을 준비했습니다.
+회원가입/password hash, token auth/logout revoke, User-scoped ChatSession/Message, Post ownership REST, frontend, ERD/API/Architecture, collaboration/deployment/evidence 계획을 준비했습니다.
 
 위 미션 모두 실제 Runtime/Evidence는 Phase C에서만 PASS 처리합니다.
 
 ## 우선순위
 
-SCAFFOLD/PARTIAL은 모두 해소했습니다.
-
-1. **B1-1** — ADVANCED 자체감사/Runtime Guide 마감
-2. B1-2 / B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED 자체감사/동기화
-3. B4-2 / B5-2 / B5-3 / B6-2 / B7-1 / B7-2 — CORE READY 최종 정합성 검사
+1. **B1-2** — ADVANCED 자체감사/정합성 마감
+2. B2-1 / B2-2 / B3-1 / B3-2 / B4-1 / B5-1 / B6-1 — ADVANCED → CORE READY
+3. B1-1 / B4-2 / B5-2 / B5-3 / B6-2 / B7-1 / B7-2 — CORE READY canonical 최종 정합성 검사
 4. **Phase B — Cross-Mission Audit**
 5. **Phase C — B1-1부터 Runtime CLEAR**
 
