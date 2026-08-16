@@ -1,43 +1,37 @@
-# Codyssey Basic
+# Codyssey Basic Training System
 
-코디세이 기초과정을 새 기준으로 다시 시작하기 위한 메인 저장소입니다.
+Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입니다.
 
-## 원칙
+## 현재 상태
 
-- 과거 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존합니다.
-- 현재 `main`은 깨끗한 새 출발점으로 사용합니다.
-- 필수 미션을 먼저 빠르게 클리어합니다.
-- 선택 미션은 필수 미션 완료 후 진행합니다.
-- 학습 고도화·포트폴리오·연구 확장은 미션 클리어 뒤에 진행합니다.
+- Active Round: **R01 — CLEAR**
+- Active Mission: **B1-1**
+- 우선순위: **필수 미션 → 선택 미션**
+- 핵심 원칙: **Mission First · Beginner First · One Round at a Time**
 
-## 진행 순서
+## 역할
 
-### 필수
+이 저장소는 전체 미션 목록, 필수/선택 구분, 훈련 차수, 수행 기준, 진행률과 심화 진입 기준을 관리합니다. 실제 코드·환경설정·테스트·증빙은 각 미션 저장소의 현재 Round 폴더에서 관리합니다.
 
-- [ ] B1-1
-- [ ] B1-2
-- [ ] B2-1
-- [ ] B2-2
-- [ ] B3-1
-- [ ] B3-2
-- [ ] B4-1
-- [ ] B5-1
-- [ ] B6-1
-- [ ] B6-2
-- [ ] B7-1
+## 시작 순서
 
-### 선택
+1. [MISSION-INDEX.md](MISSION-INDEX.md) — 전체 미션과 수행 순서
+2. [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01~R14 및 Expert 이후 Impact Cycle
+3. [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 모든 미션의 공통 수행 절차
+4. [PROGRESS.md](PROGRESS.md) — 전체 진행 현황
+5. [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명·주석·개념도 기준
+6. [standards/ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경설정·Secret·검증·초기화 기준
 
-- [ ] B4-2
-- [ ] B5-2
-- [ ] B5-3
+## 현재 실행 규칙
 
-### 이후 확장
+- 공식 Mission PDF/MD/Evaluation/제공 파일을 먼저 확인합니다.
+- ChatGPT가 먼저 최소 통과 경로(Reference Complete Path)를 설계·검증합니다.
+- 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 수행합니다.
+- 각 Step은 `왜 → 무엇 → 용어/개념 → 명령/코드 → 예상 결과 → 검증 → 오류 해결` 순서로 작성합니다.
+- Round 01에서는 입문자가 이해하기 어려운 코드와 명령에 충분한 주석을 붙입니다.
+- 실제 실행·검증·필요 증빙이 끝나기 전에는 CLEAR로 표시하지 않습니다.
+- 미래 Round 폴더는 미리 만들지 않습니다.
 
-- [ ] B7-2
+## 보존 원칙
 
-## 현재 시작점
-
-**B1-1부터 처음부터 다시 수행합니다.**
-
-각 미션 저장소는 공식 미션 PDF/Markdown, 평가 문서, 공식 제공 ZIP·데이터만 남기고 새롭게 시작합니다.
+기존 대시보드/Growth OS 작업은 `archive/pre-clean-restart-20260816` 브랜치에 보존되어 있습니다. 현재 `main`은 빠른 미션 수행을 위한 새 기준으로 운영합니다.
