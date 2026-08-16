@@ -8,7 +8,8 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 - 현재 단계: **Phase C — RUNTIME CLEAR**
 - 운영 모드: **FAST EXECUTE**
 - 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
-- 지원 Runtime: **MAC-D / MAC-V / WIN-D / WIN-V**
+- Runtime Profile: **MAC-V / WIN-V / MAC-D / WIN-D**
+- Docker 정책: **선택 Training Layer — 기본 CLEAR Gate 아님**
 - Active Mission: **B1-1 🟡 ACTIVE**
 - Phase A Reference Build: **15 / 15 CORE READY**
 - Canonical Audit: **15 / 15 PASS**
@@ -27,13 +28,12 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 3. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
 4. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
 5. [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 순서
-6. [environments/RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md) — Mac/Windows Docker·VM/Linux 실행 프로필
-7. [environments/MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md) — 15개 미션별 Docker/VM 실습
-8. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+6. [environments/RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md) — Mac/Windows Linux/Docker 프로필
+7. [environments/DOCKER-POLICY.md](environments/DOCKER-POLICY.md) — Docker 선택 학습 정책
+8. [environments/MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md) — 15개 미션별 Primary/Secondary/Docker Lab
+9. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
 
 ## FAST EXECUTE와 FAST TRACK
-
-두 용어는 역할이 다릅니다.
 
 - **FAST EXECUTE:** 한 미션 안에서 불필요한 재설계를 줄이고 `Runtime → Verify → Evidence → CLEAR`에 집중하는 실행 방식
 - **FAST TRACK:** R01에서 **필수 미션 11개를 먼저 모두 CLEAR한 뒤 선택 미션 4개를 수행**하는 미션 순서
@@ -49,27 +49,38 @@ B4-2 → B5-2 → B5-3 → B7-2
 
 **FAST TRACK은 미션을 생략하거나 B7-2로 바로 건너가는 경로가 아닙니다.** 필수 11개를 먼저 완료해 핵심 과정을 빠르게 닫고, 이후 선택 4개를 연속 수행하여 R01 전체 15개를 CLEAR합니다.
 
-권장 선행 지식과 Dependency는 학습 관계를 설명하기 위한 기준이고, FAST TRACK의 Stage 순서를 바꾸는 기준으로 사용하지 않습니다.
+## R01 실행환경
 
-## R01 실행환경 — Docker + VM/Linux
-
-현재 R01의 실행환경은 다음 두 Host 계열로 제한합니다.
+현재 R01은 두 Host 계열만 사용합니다.
 
 ```text
 macOS + OrbStack
-├─ MAC-D: Docker
-└─ MAC-V: Ubuntu 24.04 Linux Machine
+├─ MAC-V: Ubuntu 24.04 Linux Machine     ← 기본 Primary
+└─ MAC-D: Docker                         ← 선택 Lab
 
 Windows 11 Pro + WSL2 Ubuntu 24.04
-├─ WIN-D: Docker
-└─ WIN-V: Ubuntu 24.04 direct Linux Runtime
+├─ WIN-V: Ubuntu 24.04 direct runtime   ← 권장 Secondary
+└─ WIN-D: Docker                         ← 선택 Lab
 ```
 
 현재는 Ubuntu Native Host, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes를 R01 표준 범위에 추가하지 않습니다. R01 전체 CLEAR 이후 Portability/Advanced 단계에서 확장합니다.
 
-### Mission별 Dual-Runtime 원칙
+### Primary / Secondary / Docker 정책
 
-각 미션에는 Docker 실습과 VM/Linux Machine 실습을 함께 설계합니다. 그러나 **같은 미션을 네 환경에서 처음부터 끝까지 반복하지 않습니다.**
+```text
+Primary Mission Runtime = 필수
+Secondary Platform Check = 권장
+Docker Lab = 선택
+```
+
+- 기본 로컬 Primary는 `MAC-V`입니다.
+- Windows portability는 `WIN-V`에서 핵심 기능만 확인합니다.
+- Docker는 `MAC-D`/`WIN-D`에서 필요하거나 학습 가치가 높을 때만 수행합니다.
+- Docker 미수행 자체는 Mission `FAIL`, `BLOCKED`, `CLEAR 불가`의 근거가 아닙니다.
+- 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에는 공식 요구가 최우선입니다.
+- GitHub/AWS/실제 배포/실제 AI Provider Evidence는 local Linux/Docker Lab이 대체하지 않습니다.
+
+같은 미션을 네 환경에서 처음부터 끝까지 반복하지 않습니다.
 
 ```text
 Primary Runtime
@@ -78,19 +89,14 @@ Primary Runtime
 → Evidence
 → ✅ CLEAR
 
-Twin Lab
-→ 다른 Host/실행 형태에서 핵심 기능 1~3개 재현
+Secondary Platform Check (권장)
+→ 핵심 기능 1~3개
 → 환경 차이 기록
-→ 종료
+
+Docker Lab (선택)
+→ containerization/reproducibility 학습이 필요할 때만 수행
+→ 아니면 SKIP / 후속 Docker Track
 ```
-
-- OS/SSH/UFW/users/ACL/cron/troubleshooting 중심 미션은 `MAC-V`를 우선합니다.
-- Python/Web/DB/API/AI application 중심 미션은 `MAC-D`를 우선합니다.
-- Windows 쪽은 `WIN-V`/`WIN-D`로 Portability를 확인합니다.
-- GitHub/AWS/실제 배포/실제 AI Provider Evidence는 local Docker/VM 실습이 대체하지 않습니다.
-- Dual-Runtime Lab Coverage는 Mission 상태와 별도로 관리하며, Twin Lab 미완료만으로 Mission을 `⛔ BLOCKED` 처리하지 않습니다.
-
-상세 프로필은 [`environments/RUNTIME-PROFILES.md`](environments/RUNTIME-PROFILES.md), 15개 미션별 실습 설계는 [`environments/MISSION-LAB-MATRIX.md`](environments/MISSION-LAB-MATRIX.md)를 사용합니다.
 
 ## 설계 단계와 빠른 실행 단계
 
@@ -130,8 +136,6 @@ R01 완료 후 고도화
 
 ### Phase C — Design Freeze / Just-in-Time Design
 
-실행 중 문제가 발견되면 먼저 한 가지를 판단합니다.
-
 ```text
 이 문제가 현재 미션의 CLEAR를 막는가?
 
@@ -147,17 +151,16 @@ NO
 → 계속 실행
 ```
 
-운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다. 이는 고정 시간 할당이 아니라, 설계 루프로 되돌아가지 않기 위한 운영 원칙입니다.
+운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다. 이는 고정 시간 할당이 아니라 설계 루프로 되돌아가지 않기 위한 운영 원칙입니다.
 
-다음 경우에는 Phase C에서도 즉시 설계를 수정할 수 있습니다.
-
+즉시 설계 수정 대상:
 - 공식 Mission/Evaluation 충족을 막는 오류
-- Runtime을 진행할 수 없는 BLOCKER
-- Secret 노출 또는 보안 문제
+- Runtime BLOCKER
+- Secret/보안 문제
 - 데이터 손실·Cloud 비용·SSH lockout 등 안전 문제
-- Verify/Evidence가 실제 결과를 잘못 판정하는 문제
+- Verify/Evidence 오판정
 
-반대로 현재 미션 CLEAR와 직접 관계없는 리팩터링, UI 고도화, 구조 확장, 미래 Round 기능은 R01 Runtime을 멈추는 이유로 사용하지 않습니다.
+현재 CLEAR와 직접 관계없는 리팩터링, UI 고도화, 구조 확장, Docker 추가 실습, 미래 Round 기능은 현재 Runtime을 멈추는 이유로 사용하지 않습니다.
 
 ## 역할
 
@@ -166,9 +169,9 @@ NO
 ## 미션 목록 및 저장소
 
 > **행 정렬은 미션 번호 기준**입니다. 실제 R01 수행 순서는 `R01 실행 순번` 열을 따릅니다.  
-> `미션 제목`은 각 미션의 공식 `*-mission.md` 첫 제목을 **원문 그대로** 사용합니다.  
-> `필수 선행`은 선행 결과물을 직접 사용하거나 공식 미션이 이전 프로젝트를 기반으로 요구하는 경우만 표시합니다.  
-> `권장 선행`은 완료하지 않아도 현재 미션을 시작할 수 있지만, 관련 개념을 미리 익혀 두면 이해와 수행이 쉬워지는 교육 설계상 권장 경로입니다. **공식 필수 조건이 아닙니다.**  
+> `미션 제목`은 각 미션의 공식 `*-mission.md` 첫 제목을 원문 그대로 사용합니다.  
+> `필수 선행`은 공식 요구상 결과물이 직접 필요한 경우만 Gate로 둡니다.  
+> `권장 선행`은 학습 가속 경로이며 공식 필수 조건이 아닙니다.  
 > `R01 실행 순번`은 FAST TRACK을 따르며 **필수 11개를 먼저 완료하고 선택 4개를 이후에 수행**합니다.
 
 | 미션 | 미션 제목 | 구분 | 필수 선행 | 권장 선행 | R01 실행 순번 | 저장소 |
@@ -191,13 +194,13 @@ NO
 
 ### 선행 관계를 읽는 방법
 
-`필수 선행`은 **Dependency Gate**입니다. 해당 미션의 결과물이 없으면 후속 미션의 공식 요구를 그대로 수행하기 어렵습니다. 현재 R01에서는 B7-2가 Project A의 AI 챗봇을 기반으로 고도화하도록 요구하므로 B7-1만 필수 선행으로 둡니다.
+`필수 선행`은 **Dependency Gate**입니다. 현재 R01에서는 B7-2가 Project A의 AI 챗봇을 기반으로 고도화하도록 요구하므로 B7-1만 필수 선행으로 둡니다.
 
-`권장 선행`은 **학습 가속 경로**입니다. 미션 자체를 반드시 CLEAR할 필요는 없으며, 해당 미션에서 다루는 핵심 개념을 이미 알고 있다면 학습상 준비가 된 것으로 볼 수 있습니다.
+`권장 선행`은 학습 가속 경로입니다. 미션 자체를 반드시 CLEAR할 필요는 없으며 핵심 개념을 이미 알고 있다면 학습상 준비가 된 것으로 볼 수 있습니다.
 
-다만 **FAST TRACK의 실제 Runtime 순서는 Dependency와 별도로 고정**합니다. 따라서 Stage 1에서는 필수 11개를 먼저 CLEAR하고, Stage 2에서 선택 4개를 진행합니다.
+FAST TRACK의 실제 Runtime 순서는 Dependency와 별도로 고정합니다. Stage 1에서는 필수 11개를 먼저 CLEAR하고 Stage 2에서 선택 4개를 진행합니다.
 
-선행 관계가 있는 미션 저장소에는 `training/round-01-clear/START-CHECK.md`를 두어 **미션 완료 여부가 아니라 실제 보유 지식**을 먼저 점검합니다. 이 문서는 공식 평가가 아니며, 부족한 항목만 권장 선행 미션이나 해당 개념 학습으로 보충한 뒤 `BEGINNER-GUIDE.md`로 진입하는 용도입니다.
+선행 관계가 있는 미션 저장소에는 `training/round-01-clear/START-CHECK.md`를 두어 미션 완료 여부가 아니라 실제 보유 지식을 먼저 점검합니다.
 
 ```text
 START-CHECK
@@ -208,7 +211,7 @@ START-CHECK
 → Runtime / Verify / Evidence
 ```
 
-상세한 `필수 선행 / 권장 선행 / 있으면 좋은 선행 지식`은 [`training/round-01-clear/MISSION-DEPENDENCY-MAP.md`](training/round-01-clear/MISSION-DEPENDENCY-MAP.md)에서 관리합니다.
+상세 관계는 [`training/round-01-clear/MISSION-DEPENDENCY-MAP.md`](training/round-01-clear/MISSION-DEPENDENCY-MAP.md)에서 관리합니다.
 
 ## Phase C 실행 순서
 
@@ -224,32 +227,22 @@ README
 → Verify
 → Evidence
 → CLEAR
-→ 필요 범위 Twin Lab
 → FAST TRACK의 다음 미션
 ```
 
-설계·학습 체계 전체 문서는 필요할 때 참고합니다.
-
-- [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 미션 순서
-- [TRAINING-ROUNDS.md](TRAINING-ROUNDS.md) — R01 이후 심화 Round
-- [MISSION-RUNBOOK.md](MISSION-RUNBOOK.md) — 전체 공통 수행 계약
-- [environments/README.md](environments/README.md) — R01 실행환경 운영 기준
-- [standards/BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 설명 기준
-- [standards/ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경·Secret·검증 기준
+Secondary Platform Check와 Docker Lab은 CLEAR 이후 필요에 따라 수행하며 FAST TRACK 진행을 막지 않습니다.
 
 ## 현재 실행 규칙
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
 - Phase A/B에서 준비한 Reference/Runbook을 기본 경로로 사용하며 Phase C에서 임의 재설계를 반복하지 않습니다.
 - FAST TRACK은 **Stage 1 필수 11개 → Stage 2 선택 4개** 순서를 유지합니다.
-- R01 Runtime 환경은 `MAC-D`, `MAC-V`, `WIN-D`, `WIN-V` 네 프로필로 제한합니다.
-- 각 Mission은 Primary Runtime에서 CLEAR를 우선하고 Twin Lab은 Portability 학습으로 분리합니다.
+- R01 환경은 `MAC-V`, `WIN-V`, `MAC-D`, `WIN-D` 네 Profile로 제한합니다.
+- `MAC-V`를 기본 로컬 Primary, `WIN-V`를 권장 Secondary로 사용합니다.
+- Docker Lab은 선택이며 CLEAR를 위한 기본 추가 Gate로 만들지 않습니다.
 - `START-CHECK.md`가 있는 미션은 먼저 선행 지식 상태를 확인합니다.
-- 권장 선행은 학습 보조 기준이며 FAST TRACK 실행 순서를 임의로 앞당기는 근거로 사용하지 않습니다.
 - 사용자는 `BEGINNER-GUIDE.md`를 Step 1부터 따라 실제 Runtime을 수행합니다.
 - 실행 중 BLOCKER가 생기면 **원인 → 최소 수정 → 재검증 → 계속 실행** 순서로 처리합니다.
-- CLEAR와 무관한 개선 아이디어는 현재 Runtime을 멈추지 않고 후속 개선 후보로 미룹니다.
-- 각 Step은 `왜 → 무엇 → 용어/개념 → 명령/코드 → 예상 결과 → 검증 → 오류 해결` 순서로 작성합니다.
 - 실제 실행·검증·필요 Evidence가 끝나기 전에는 CLEAR로 표시하지 않습니다.
 - 미래 Round 폴더는 미리 만들지 않습니다.
 
