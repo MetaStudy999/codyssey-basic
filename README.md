@@ -24,14 +24,44 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 ### 지금 바로 볼 문서
 
 1. [PROGRESS.md](PROGRESS.md) — 현재 위치와 전체 진행률
-2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 지금 해야 할 일
-3. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
-4. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
-5. [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 순서
-6. [environments/RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md) — Mac/Windows Linux/Docker 프로필
-7. [environments/DOCKER-POLICY.md](environments/DOCKER-POLICY.md) — Docker 선택 학습 정책
-8. [environments/MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md) — 15개 미션별 Primary/Secondary/Docker Lab
-9. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+2. [docs/R01-OPERATING-MODEL.md](docs/R01-OPERATING-MODEL.md) — Phase A/B/C, FAST TRACK, FAST EXECUTE, CLEAR의 의미
+3. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 지금 해야 할 일
+4. [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 안전 점검
+5. [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 15개 실제 Runtime 경로
+6. [MISSION-INDEX.md](MISSION-INDEX.md) — FAST TRACK 전체 순서
+7. [environments/RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md) — Mac/Windows Linux/Docker 프로필
+8. [environments/DOCKER-POLICY.md](environments/DOCKER-POLICY.md) — Docker 선택 학습 정책
+9. [environments/MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md) — 15개 미션별 Primary/Secondary/Docker Lab
+10. [training/round-01-clear/MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md) — 필수/권장 선행 관계
+
+## R01 운영 단계 한눈에 보기
+
+> **Phase A / Phase B / Phase C는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 R01을 일관되게 운영하기 위해 사용하는 내부 실행 단계입니다.** 공식 Mission/Evaluation이 항상 최우선 기준입니다.
+
+```text
+R01 — CLEAR
+│
+├─ Phase A — REFERENCE BUILD
+│  └─ 기준 구현·가이드 준비
+│
+├─ Phase B — CROSS-MISSION AUDIT
+│  └─ 15개 미션 전체 충돌·일관성 점검
+│
+└─ Phase C — RUNTIME CLEAR   ← 현재
+   └─ 실제 실행 → Verify → Evidence → CLEAR
+```
+
+가장 쉽게 기억하면 `Phase A = 준비`, `Phase B = 전체 점검`, `Phase C = 실제 실행해서 통과`입니다. 상세 정의는 [`docs/R01-OPERATING-MODEL.md`](docs/R01-OPERATING-MODEL.md)를 사용합니다.
+
+현재 위치:
+
+```text
+R01 — CLEAR
+└─ Phase C — RUNTIME CLEAR
+   └─ FAST TRACK
+      └─ Stage 1 — Required
+         └─ B1-1 🟡 ACTIVE
+```
 
 ## FAST EXECUTE와 FAST TRACK
 
@@ -218,6 +248,7 @@ START-CHECK
 ```text
 README
 → PROGRESS
+→ R01-OPERATING-MODEL
 → NEXT-ACTIONS
 → PHASE-C-PREFLIGHT
 → 현재 미션 START-CHECK(있는 경우)
@@ -235,6 +266,7 @@ Secondary Platform Check와 Docker Lab은 CLEAR 이후 필요에 따라 수행�
 ## 현재 실행 규칙
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
+- `Phase A/B/C`는 이 저장소의 내부 운영 단계이며 코디세이 공식 과정 단계로 해석하지 않습니다.
 - Phase A/B에서 준비한 Reference/Runbook을 기본 경로로 사용하며 Phase C에서 임의 재설계를 반복하지 않습니다.
 - FAST TRACK은 **Stage 1 필수 11개 → Stage 2 선택 4개** 순서를 유지합니다.
 - R01 환경은 `MAC-V`, `WIN-V`, `MAC-D`, `WIN-D` 네 Profile로 제한합니다.
