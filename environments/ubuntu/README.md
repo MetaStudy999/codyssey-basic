@@ -26,6 +26,64 @@ Python .venv / pyproject.toml / requirements.txt / package.json / lock file
 
 Docker는 별도 선택 Training Layer이며 Ubuntu Bootstrap의 기본 CLEAR Gate가 아닙니다.
 
+## 🚀 빠른 시작(Quick Start)
+
+> 이미 Ubuntu 24.04에 접속했고 Control Tower를 `$HOME/codyssey/codyssey-basic`에 받은 사람을 위한 재진입 경로입니다.
+> 처음 환경을 만드는 경우에는 [`../START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 먼저 사용합니다.
+
+📍 **Ubuntu Bash / Control Tower root에서 실행**합니다.
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+pwd
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+bash environments/ubuntu/validate-scripts.sh
+```
+
+정상 기준:
+
+```text
+[ ] pwd가 /home/<user>/codyssey/codyssey-basic 계열이다.
+[ ] Bootstrap required 항목이 PASS다.
+[ ] Git/GitHub 사용자 상태를 확인했다.
+[ ] Ubuntu bootstrap shell script 문법 검사가 PASS다.
+```
+
+```text
+✅ GO
+→ 현재 Mission의 ubuntu-packages.txt 확인
+→ 부족한 Mission package만 설치
+
+❌ STOP
+→ Bootstrap required FAIL 또는 잘못된 경로를 먼저 해결
+```
+
+재실행 안전성:
+
+```text
+bootstrap.sh --check        → 🟢 SAFE TO RERUN
+verify-user-identity.sh     → 🟢 SAFE TO RERUN
+validate-scripts.sh         → 🟢 SAFE TO RERUN
+bootstrap.sh --install      → 🟡 CHECK BEFORE RERUN
+```
+
+## 📑 목차
+
+- [핵심 원칙](#principles)
+- [가장 빠른 시작 상세](#fast-start-detail)
+- [공통환경 Closeout](#closeout)
+- [기본 흐름](#workflow)
+- [파일](#files)
+- [Mission Package 사용](#mission-package)
+- [Package와 Command 검증 분리](#package-command)
+- [GitHub CLI gh](#github-cli)
+- [Project Dependency와 분리](#project-dependency)
+- [안전 원칙](#safety)
+
+---
+
+<a id="principles"></a>
 ## 핵심 원칙
 
 1. 새 Ubuntu에 모든 미션용 패키지를 한꺼번에 설치하지 않습니다.
@@ -40,7 +98,8 @@ Docker는 별도 선택 Training Layer이며 Ubuntu Bootstrap의 기본 CLEAR Ga
 10. 실제 Mission/Evaluation이 특정 도구·버전을 요구하면 공식 요구가 최우선입니다.
 11. 공통환경 설계는 Closeout Gate를 통과한 뒤 Freeze하고, 이후에는 현재 Mission CLEAR blocker가 있을 때만 JIT로 최소 수정합니다.
 
-## 가장 빠른 시작
+<a id="fast-start-detail"></a>
+## 가장 빠른 시작 상세
 
 ### 상태 확인만
 
@@ -51,11 +110,16 @@ bash environments/ubuntu/bootstrap.sh --check
 
 ### 필수 공통 개발도구 설치
 
+필수 항목이 실제로 누락된 경우에만:
+
 ```bash
 bash environments/ubuntu/bootstrap.sh --install
+bash environments/ubuntu/bootstrap.sh --check
 ```
 
 ### 권장 생산성 도구까지 함께 설치
+
+필요한 경우에만:
 
 ```bash
 bash environments/ubuntu/bootstrap.sh --install --recommended
@@ -75,6 +139,7 @@ Python/Node project dependency 설치
 apt autoremove
 ```
 
+<a id="closeout"></a>
 ## 공통환경 Closeout
 
 공통환경을 계속 확장하지 않고 다음 4개 확인 후 **COMMON ENVIRONMENT FREEZE**로 전환합니다.
@@ -95,18 +160,14 @@ B1-1 Runtime
 실행 예:
 
 ```bash
-# 실제 OrbStack Ubuntu 24.04에서 Bootstrap 확인
 bash environments/ubuntu/bootstrap.sh --check
-
-# Git/GitHub 사용자별 상태 확인 — 설정값을 자동 변경하지 않음
 bash environments/ubuntu/verify-user-identity.sh
-
-# Ubuntu Bootstrap shell script Bash 문법 확인
 bash environments/ubuntu/validate-scripts.sh
 ```
 
 현재 GitHub에 스크립트가 존재한다는 사실은 실제 MAC-V Runtime PASS를 의미하지 않습니다. Freeze 전 실제 Ubuntu 출력으로 확인합니다.
 
+<a id="workflow"></a>
 ## 기본 흐름
 
 ```text
@@ -124,6 +185,7 @@ bash environments/ubuntu/validate-scripts.sh
 → Mission Runtime
 ```
 
+<a id="files"></a>
 ## 파일
 
 - `base-packages.txt` — 공통 필수 APT 패키지
@@ -145,6 +207,7 @@ bash environments/ubuntu/validate-scripts.sh
 - `bootstrap.sh` — 공통 Ubuntu Developer Bootstrap 통합 진입점
 - `setup-mission-packages.sh` — 현재 미션의 `ubuntu-packages.txt` 검사/설치 helper
 
+<a id="mission-package"></a>
 ## Mission Package 사용
 
 현재 Mission Repository root에서:
@@ -166,6 +229,7 @@ bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
 
 `setup-mission-packages.sh`는 package 설치 여부를 확인합니다. 실제 command/service 동작은 해당 Mission의 `verify.sh`, Runtime Step, Evidence에서 별도로 검증합니다.
 
+<a id="package-command"></a>
 ## Package와 Command 검증을 분리하는 이유
 
 APT package 이름과 실제 command 이름이 다를 수 있습니다.
@@ -180,6 +244,7 @@ iproute2       → ss
 
 따라서 공통 Base에서는 `dpkg-query`로 package를 확인하고 `command -v`로 실제 command도 확인합니다.
 
+<a id="github-cli"></a>
 ## GitHub CLI `gh`
 
 `gh`는 공통 개발 CLI로 사용하지만 설치와 인증을 분리합니다.
@@ -191,6 +256,7 @@ iproute2       → ss
 
 이미 `gh`가 설치되어 있는데 공식 GitHub CLI APT source가 보이지 않는 경우, Bootstrap은 기존 설치를 자동 삭제·교체·다운그레이드하지 않고 경고만 표시합니다.
 
+<a id="project-dependency"></a>
 ## Project Dependency와 분리
 
 예를 들어 FastAPI 미션:
@@ -206,6 +272,7 @@ Repository
 
 Node 미션은 해당 미션의 Node runtime/version 정책과 `package.json`/lock file을 사용합니다. 모든 Node 패키지를 APT로 설치하지 않습니다.
 
+<a id="safety"></a>
 ## 안전 원칙
 
 - `CHECK → MISSING → INSTALL → VERIFY` 순서 유지
