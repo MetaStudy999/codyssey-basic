@@ -1,0 +1,5 @@
+# Codyssey Basic — Ubuntu 24.04 common minimal APT packages
+# Keep this list intentionally small. Mission-specific packages belong in each mission repo.
+ca-certificates
+curl
+git
