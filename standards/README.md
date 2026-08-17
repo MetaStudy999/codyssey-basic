@@ -125,7 +125,41 @@ R01에서는 다음을 우선합니다.
 - 빈 줄·단순 닫는 괄호·종료 태그: 독립 의미가 없으면 논리 단위로 묶어서 설명
 - 실행 블록 안에 과도한 주석을 섞기보다 **실행본 + 바로 아래 줄별 해설**을 기본 형식으로 사용
 
-### 5. 한글·영어 용어
+### 5. 개발환경·개발 Tool Set
+
+[DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md)
+
+입문자가 개발도구를 무작정 많이 설치하지 않고 **필수 / 미션별 / 권장 / 대체 IDE / AI 도구**로 구분하고, 공용·관리형 Mac에서 관리자 권한 없이 가능한 경로를 선택하도록 관리합니다.
+
+핵심 원칙:
+
+```text
+Host/권한 확인
+→ Linux Runtime
+→ 기본 Editor/IDE
+→ Git/GitHub
+→ Ubuntu Bootstrap
+→ Mission Tool
+→ Project Dependency
+→ Verify
+```
+
+포함 기준:
+
+- macOS + OrbStack Ubuntu 24.04
+- Windows 11 Pro + WSL2 Ubuntu 24.04
+- VS Code + Remote-SSH 기본 경로
+- Cursor / Windsurf / JetBrains / Google Antigravity IDE를 대체 개발환경으로 분류
+- ChatGPT / Codex / Claude / Gemini / Antigravity CLI를 선택 AI 도구로 분류
+- 공용 Mac의 no-admin 사용자 영역 설치 기준
+- OrbStack no-admin 경로
+- VS Code Portable/User-space 경로
+- Antigravity CLI의 `~/.local/bin/agy` 사용자 영역 경로
+- 관리자 암호·MDM·보안정책 우회 금지
+
+입문자 실제 설치·설정 순서는 [`../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용합니다.
+
+### 6. 한글·영어 용어
 
 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)
 
@@ -137,25 +171,25 @@ R01에서는 다음을 우선합니다.
 
 명령어, 경로, 파일명, 코드 식별자, 제품 공식명은 임의 번역하지 않습니다.
 
-### 6. Canonical Reference
+### 7. Canonical Reference
 
 [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md)
 
 각 미션의 Reference, Beginner Guide, Checklist, Verify, Evidence가 어떤 역할을 갖는지 관리합니다.
 
-### 7. 환경
+### 8. 환경
 
 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)
 
-Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset 원칙을 관리합니다.
+Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset, 공용 Mac no-admin 원칙을 관리합니다.
 
-### 8. Cross-platform Git/File
+### 9. Cross-platform Git/File
 
 [CROSS-PLATFORM-GIT-STANDARD.md](CROSS-PLATFORM-GIT-STANDARD.md)
 
 UTF-8, LF, `.gitattributes`, `.editorconfig`, executable bit, Windows/macOS/Linux 간 파일 차이를 관리합니다.
 
-### 9. VS Code Remote Ubuntu
+### 10. VS Code Remote Ubuntu
 
 [VS-CODE-REMOTE-UBUNTU-STANDARD.md](VS-CODE-REMOTE-UBUNTU-STANDARD.md)
 
@@ -176,17 +210,19 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 5. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
         ↓
-6. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
+6. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
         ↓
-7. TERMINOLOGY-STANDARD 적용
+7. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-8. 필요한 Environment/Canonical Standard 적용
+8. TERMINOLOGY-STANDARD 적용
         ↓
-9. 링크·명령·경로·상태 정합성 확인
+9. 필요한 Environment/Canonical Standard 적용
         ↓
-10. Beginner Documentation Audit
+10. 링크·명령·경로·상태 정합성 확인
         ↓
-11. BEGINNER READY 또는 보완 필요
+11. Beginner Documentation Audit
+        ↓
+12. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -199,6 +235,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 |---|---|
 | `README.md` | 처음 진입, 지금 할 일, 대표 경로, 탐색(Navigation) |
 | `BEGINNER-GUIDE.md` | 실제 수행의 대표 학습 경로 |
+| `START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 개발환경/도구 처음부터 끝까지 시작 경로 |
 | `START-CHECK.md` | 선행 조건·선행 지식 확인 |
 | `prerequisites.md` | 실행 전 환경·도구 준비 |
 | `TROUBLESHOOTING.md` 또는 동등 문서 | 오류 원인·확인·복구 |
@@ -237,6 +274,8 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 의미 있는 코드/SQL/설정 줄을 설명하지 않은 채 전체 코드만 제공
 - 명령만 제시하고 정상 결과/의미/복구 방법을 생략
 - 모든 괄호/빈 줄/종료 태그까지 기계적으로 반복 설명하여 핵심 흐름을 가림
+- 공용/관리형 Mac에서 관리자 암호·sudo·MDM/보안정책 우회를 정상 설치 절차로 안내
+- no-admin 환경에서 시스템 전역 설치만 제시하고 사용자 영역/Remote/CLI 대안을 제공하지 않음
 - 외부 블로그·영상이 없으면 수행할 수 없는 문서 구조
 - README 첫 화면에 운영자용 상세 정책을 과도하게 노출
 - 긴 README에 탐색용 목차 없이 정보만 누적
