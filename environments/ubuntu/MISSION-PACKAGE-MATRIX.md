@@ -4,6 +4,35 @@
 
 B1-1~B7-2의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, 프로젝트 내부 의존성을 분리합니다.
 
+## 한눈에 보기(Quick Read)
+
+```text
+공통 Base는 한 번 준비
+→ 현재 Mission의 추가 APT만 설치
+→ Python/Node library는 Project 안에서 관리
+```
+
+가장 중요한 구분:
+
+```text
+Common Base     ≠ Mission package
+Mission package ≠ Project library
+```
+
+현재 Mission package는 각 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
+
+## 📑 목차
+
+- [계층 구조](#layers)
+- [15개 Mission Package Matrix](#matrix)
+- [중요한 해석](#interpretation)
+- [Mission package file](#package-file)
+
+---
+
+<a id="layers"></a>
+## 계층 구조
+
 ```text
 Layer 0 — OS Prerequisites
 bash / apt-get / dpkg-query / sudo
@@ -26,6 +55,9 @@ Layer 4 — Project
 
 공식 Mission/Evaluation이 특정 도구나 버전을 요구하면 공식 자료가 최우선입니다. 이 Matrix는 R01 실행을 위한 내부 설치 지도입니다.
 
+<a id="matrix"></a>
+## 15개 Mission Package Matrix
+
 | Mission | Mission APT 추가 패키지 | Project/Runtime dependency 방향 |
 |---|---|---|
 | **B1-1** | `openssh-server ufw acl cron procps iproute2 util-linux` | `file`, `unzip`, SSH client 등은 Base 사용. Agent binary/Bash monitor는 Mission Runtime에서 관리 |
@@ -44,6 +76,7 @@ Layer 4 — Project
 | **B7-1** | `python3 python3-venv` | FastAPI/DB/AI package는 `.venv`; 실제 deploy/provider 별도 |
 | **B7-2** | `python3 python3-venv` | Backend/AI/DB project dependency는 `.venv`; frontend dependency는 project manifest |
 
+<a id="interpretation"></a>
 ## 중요한 해석
 
 ### B1-1
@@ -89,6 +122,7 @@ AI SDK
 
 Repository-local `.venv`를 사용합니다.
 
+<a id="package-file"></a>
 ## Mission package file
 
 각 Mission 저장소에는 다음 파일을 둡니다.
