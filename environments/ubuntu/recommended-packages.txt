@@ -1,0 +1,6 @@
+# Codyssey Basic — Ubuntu 24.04 recommended productivity packages
+# These are useful but are not a Mission CLEAR gate.
+vim
+tree
+ripgrep
+fd-find
