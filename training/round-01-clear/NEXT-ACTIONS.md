@@ -1,13 +1,55 @@
 # R01 Phase C — Next Actions
 
-현재 목표는 **공통환경 Closeout을 짧게 마친 뒤 B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
+현재 목표는 **공통환경 Closeout을 끝내고 B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
 
 현재 운영 모드: **FAST EXECUTE**
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
-> Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다.
+> Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `Runtime → Verify → Evidence → CLEAR`를 우선합니다. 다만 잘못된 기준·경로·안전 절차가 실제 실행을 방해하면 즉시 최소 교정합니다.
 
+## 🚀 빠른 시작(Quick Start)
+
+현재 바로 할 일은 **Git/GitHub 사용자 상태 재확인 → Common Environment Closeout 판정 → B1-1 Runtime 시작**입니다.
+
+📍 Ubuntu Bash / Control Tower root에서:
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+이미 실제 Runtime에서 확인된 항목:
+
+```text
+Gate 2 — MAC-V Bootstrap Runtime       ✅ PASS
+Gate 4 — Bash Static Syntax Validation ✅ PASS
+```
+
+아직 최종 확인이 필요한 항목:
+
+```text
+Gate 1 — Documentation Drift           🟡 blocker 수준은 지속 감사
+Gate 3 — Git/GitHub User Identity      🟡 최종 재확인 필요
+```
+
+`verify-user-identity.sh` 결과가 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 Freeze 조건을 확인한 뒤 B1-1으로 이동합니다.
+
+## 📑 목차
+
+- [R01 실행환경 범위](#runtime-scope)
+- [공통환경 Closeout](#environment-closeout)
+- [FAST TRACK 실행 순서](#fast-track)
+- [Phase A/B 완료 사항](#phase-ab)
+- [Phase C 실행 우선 원칙](#phase-c-principles)
+- [현재 Runtime 대상](#current-runtime)
+- [B1-1 즉시 실행 순서](#b1-1-now)
+- [B1-1 안전 제한](#b1-1-safety)
+- [Stage 전환 규칙](#stage-transition)
+
+---
+
+<a id="runtime-scope"></a>
 ## R01 실행환경 범위
 
 현재 R01에서 사용하는 환경은 아래 네 Profile로 제한합니다.
@@ -25,15 +67,18 @@ Windows 11 Pro + WSL2 Ubuntu 24.04
 Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 FAST TRACK 범위에서 제외하고 이후 Portability/Advanced 단계로 미룹니다.
 
 환경 계약:
+
+- `environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`
 - `environments/RUNTIME-PROFILES.md`
 - `environments/DOCKER-POLICY.md`
 - `environments/MISSION-LAB-MATRIX.md`
 - `environments/ubuntu/README.md`
 - `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`
 
+<a id="environment-closeout"></a>
 ## 공통환경 Closeout — B1-1 직전 마지막 환경 Gate
 
-공통환경 설계는 사실상 완료되었습니다. 다음 4개를 확인한 뒤 **COMMON ENVIRONMENT FREEZE**로 전환하고 B1-1 Runtime을 시작합니다.
+다음 4개 Gate를 기준으로 합니다.
 
 ```text
 ① Documentation Drift Check
@@ -46,48 +91,25 @@ COMMON ENVIRONMENT FREEZE
 B1-1 Runtime
 ```
 
-실제 MAC-V Ubuntu에서 다음 순서로 확인합니다.
+현재 확인 상태:
+
+| Gate | 상태 | 근거/다음 행동 |
+|---|---|---|
+| 1. Documentation Drift | 🟡 PARTIAL | Start Here·Control Tower·B1-1 주요 Drift 교정. B1-1 세부 실행 안전/줄별 해설은 JIT 감사 계속 |
+| 2. MAC-V Bootstrap | ✅ PASS | 실제 Ubuntu 24.04에서 required prerequisites/base/commands/`gh` 확인 완료 |
+| 3. Git/GitHub Identity | 🟡 RECHECK | `gh` 설치/인증은 준비되었으나 `user.name`/`user.email` 포함 최종 스크립트 재확인 필요 |
+| 4. Bash Syntax | ✅ PASS | `validate-scripts.sh` 실제 실행 11 PASS / 0 FAIL |
+
+다시 실행할 명령:
 
 ```bash
 cd "$HOME/codyssey/codyssey-basic"
-
-bash environments/ubuntu/validate-scripts.sh
-bash environments/ubuntu/bootstrap.sh --check
 bash environments/ubuntu/verify-user-identity.sh
 ```
 
-필수 Base 또는 `gh`가 부족한 경우에만:
+> 문서에 스크립트가 존재하는 것과 실제 Runtime PASS는 다릅니다. 위 PASS 표시는 이 대화에서 사용자가 실제 Ubuntu에서 제공한 출력에 근거한 항목만 반영합니다.
 
-```bash
-bash environments/ubuntu/bootstrap.sh --install
-bash environments/ubuntu/bootstrap.sh --check
-```
-
-권장 생산성 도구는 선택입니다.
-
-```bash
-bash environments/ubuntu/bootstrap.sh --install --recommended
-```
-
-현재 상태:
-
-- Documentation Drift: **PARTIAL — 중앙 기준과 핵심 package list 교정 완료, 비차단 문구는 Runtime을 멈추지 않고 JIT/별도 정합성 작업으로 처리**
-- MAC-V Bootstrap Runtime: **NOT VERIFIED**
-- Git/GitHub User Identity: **NOT VERIFIED**
-- Bash syntax validation: **NOT VERIFIED**
-
-위 항목은 GitHub 문서 존재 여부가 아니라 실제 Ubuntu Runtime 출력으로 확인합니다. 상세 체크리스트는 `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`를 사용합니다.
-
-## 환경 우선순위
-
-```text
-Primary Mission Runtime = 필수
-Secondary Platform Check = 권장
-Docker Lab = 선택
-```
-
-Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하거나 다음 Mission 진행을 늦추지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 공식 요구가 우선합니다.
-
+<a id="fast-track"></a>
 ## FAST TRACK 실행 순서
 
 ```text
@@ -103,6 +125,7 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 
 `FAST EXECUTE`는 한 미션 안에서 불필요한 재설계를 줄이는 운영 방식이고, `FAST TRACK`은 R01의 미션 실행 순서입니다.
 
+<a id="phase-ab"></a>
 ## Phase A/B 및 공통환경 설계 완료
 
 - [x] Phase A Reference Build — 15/15 CORE READY
@@ -119,9 +142,14 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] Ubuntu Developer Bootstrap 계층 정의
 - [x] Common Base / Recommended / `gh` / Mission / Project dependency 분리
 - [x] package와 command 검증 분리
-- [x] Common Environment Closeout/Freeze 기준 정의
-- [ ] 실제 MAC-V에서 Common Environment Closeout 실행 확인
+- [x] 목차·Quick Start·입문자 탐색 표준 수립
+- [x] Control Tower 핵심 진입/실행 문서에 탐색 기준 적용 시작
+- [x] MAC-V Bootstrap 실제 Runtime PASS 확인
+- [x] Ubuntu Bootstrap shell syntax 11 PASS / 0 FAIL 확인
+- [ ] Git/GitHub User Identity 최종 재확인
+- [ ] Common Environment Freeze 최종 판정
 
+<a id="phase-c-principles"></a>
 ## Phase C 실행 우선 원칙
 
 실행 중 새 문제나 개선 아이디어가 생기면 먼저 다음을 판단합니다.
@@ -140,10 +168,23 @@ NO
 → 후속 개선 후보로 미룸
 ```
 
-즉시 수정 대상은 공식 요구사항 누락, Runtime BLOCKER, Secret/보안, SSH/Data/Cloud 안전 문제, Verify/Evidence 오판정입니다. 현재 CLEAR와 무관한 리팩터링·문서 미세개선·UI 고도화·Docker 추가실습·미래 Round 확장은 뒤로 미룹니다.
+다만 **기준이 실제 명령·경로·안전·평가 판정을 잘못 이끌 수 있다면 이는 Runtime 품질 문제이므로 즉시 교정**합니다.
 
-운영 비중은 **실행 80~90% / 설계 보정 10~20%**를 지향합니다.
+즉시 수정 대상:
 
+- 공식 요구사항 누락
+- Runtime BLOCKER
+- Secret/보안 문제
+- SSH/Data/Cloud 안전 문제
+- Verify/Evidence 오판정
+- 입문자가 잘못된 Host/PWD/명령을 실행하게 만드는 문서 오류
+- 긴 실행형 문서에서 탐색 불가로 실제 수행 순서를 잃는 문제
+
+현재 CLEAR와 무관한 대규모 리팩터링·UI 고도화·Docker 추가실습·미래 Round 확장은 뒤로 미룹니다.
+
+운영 비중은 **실행 80~90% / 설계·기준 보정 10~20%**를 지향하되, 안전과 정합성은 비율 때문에 생략하지 않습니다.
+
+<a id="current-runtime"></a>
 ## 현재 Runtime 대상
 
 **B1-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**
@@ -160,30 +201,32 @@ B1-1 Runtime Profile:
 - Primary CLEAR: **MAC-V — macOS → OrbStack → Ubuntu 24.04**
 - Secondary Check: **WIN-V — Windows 11 Pro → WSL2 → Ubuntu 24.04** — 권장
 - Docker Practice: **MAC-D / WIN-D** — 선택
-- 상세: B1-1 `training/round-01-clear/environment/DUAL-RUNTIME-LABS.md`
 
+<a id="b1-1-now"></a>
 ## B1-1 즉시 실행 순서
 
-1. Common Environment Closeout 실제 확인
-2. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
-3. B1-1 repository root / branch / local changes 확인
-4. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
-5. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
-6. SSH 20022 safe migration
-7. UFW final policy
-8. users/groups/effective permission
-9. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
-10. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
-11. `monitor.sh` 정상/실패/Warning/rotation
-12. `agent-admin` cron 매분 + 실제 log growth
-13. `sudo bash training/round-01-clear/environment/verify.sh`
-14. `training/round-01-clear/evidence/` 실제 Evidence 연결
-15. Evaluation 설명 + Secret 최종 확인
-16. 조건 충족 시에만 `✅ B1-1 CLEAR`
-17. B1-2를 `🟡 ACTIVE`로 전환
+1. `verify-user-identity.sh` 최종 재확인
+2. Common Environment Closeout / Freeze 판정
+3. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
+4. B1-1 repository root / branch / local changes 확인
+5. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
+6. B1-1 `BEGINNER-GUIDE.md` Quick Start → STEP 01 baseline 수행
+7. SSH 20022 safe migration
+8. UFW final policy
+9. users/groups/effective permission
+10. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
+11. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
+12. `monitor.sh` 정상/실패/Warning/rotation
+13. `agent-admin` cron 매분 + 실제 log growth
+14. `sudo bash training/round-01-clear/environment/verify.sh`
+15. `training/round-01-clear/evidence/` 실제 Evidence 연결
+16. Evaluation 설명 + Secret 최종 확인
+17. 조건 충족 시에만 `✅ B1-1 CLEAR`
+18. B1-2를 `🟡 ACTIVE`로 전환
 
-**B1-1 CLEAR 전에 Docker Lab을 수행할 필요는 없습니다.** WIN-V Secondary Check와 MAC-D/WIN-D Docker Lab은 필요하거나 별도 학습 시간이 있을 때 수행합니다.
+**B1-1 CLEAR 전에 Docker Lab을 수행할 필요는 없습니다.**
 
+<a id="b1-1-safety"></a>
 ## B1-1 안전 제한
 
 - `t_secret.key` 실제 값은 GitHub/채팅/log/Evidence에 출력하지 않음
@@ -194,6 +237,7 @@ B1-1 Runtime Profile:
 - Runtime 결과를 받기 전에 PASS/CLEAR로 표시하지 않음
 - Docker Lab 결과만으로 B1-1 system-level 요구를 PASS 처리하지 않음
 
+<a id="stage-transition"></a>
 ## Stage 전환 규칙
 
 - B1-1부터 B7-1까지 필수 11개가 모두 `✅ CLEAR`되기 전에는 Stage 2를 정식 Runtime 대상으로 전환하지 않습니다.
