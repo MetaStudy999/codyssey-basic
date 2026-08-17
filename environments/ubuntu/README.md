@@ -38,6 +38,7 @@ Docker는 별도 선택 Training Layer이며 Ubuntu Bootstrap의 기본 CLEAR Ga
 8. 미션별 추가 APT 패키지는 각 미션 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
 9. package 설치 여부와 command 사용 가능 여부는 별도로 검증합니다.
 10. 실제 Mission/Evaluation이 특정 도구·버전을 요구하면 공식 요구가 최우선입니다.
+11. 공통환경 설계는 Closeout Gate를 통과한 뒤 Freeze하고, 이후에는 현재 Mission CLEAR blocker가 있을 때만 JIT로 최소 수정합니다.
 
 ## 가장 빠른 시작
 
@@ -74,6 +75,38 @@ Python/Node project dependency 설치
 apt autoremove
 ```
 
+## 공통환경 Closeout
+
+공통환경을 계속 확장하지 않고 다음 4개 확인 후 **COMMON ENVIRONMENT FREEZE**로 전환합니다.
+
+```text
+① Documentation Drift Check
+② MAC-V Runtime Bootstrap Verification
+③ Git / GitHub User Identity Readiness
+④ Shell Script Static Syntax Validation
+        ↓
+COMMON ENVIRONMENT FREEZE
+        ↓
+B1-1 Runtime
+```
+
+상세 체크리스트는 [`ENVIRONMENT-CLOSEOUT.md`](ENVIRONMENT-CLOSEOUT.md)를 사용합니다.
+
+실행 예:
+
+```bash
+# 실제 OrbStack Ubuntu 24.04에서 Bootstrap 확인
+bash environments/ubuntu/bootstrap.sh --check
+
+# Git/GitHub 사용자별 상태 확인 — 설정값을 자동 변경하지 않음
+bash environments/ubuntu/verify-user-identity.sh
+
+# Ubuntu Bootstrap shell script Bash 문법 확인
+bash environments/ubuntu/validate-scripts.sh
+```
+
+현재 GitHub에 스크립트가 존재한다는 사실은 실제 MAC-V Runtime PASS를 의미하지 않습니다. Freeze 전 실제 Ubuntu 출력으로 확인합니다.
+
 ## 기본 흐름
 
 ```text
@@ -82,6 +115,7 @@ apt autoremove
 → Layer 1 필수 Base 확인/설치
 → Layer 2 gh 확인/설치
 → 필요 시 Layer 1B Productivity 설치
+→ Common Environment Closeout
 → 현재 Mission 선택
 → Mission ubuntu-packages.txt 확인
 → 부족분만 설치
@@ -98,13 +132,16 @@ apt autoremove
 - `recommended-commands.txt` — 선택 생산성 command
 - `BASE-PACKAGES.md` — 계층별 공통 도구 설명과 운영 원칙
 - `MISSION-PACKAGE-MATRIX.md` — B1-1~B7-2 Ubuntu/System/Project dependency 지도
+- `ENVIRONMENT-CLOSEOUT.md` — 공통환경 마지막 검증과 Freeze Gate
 - `verify-prerequisites.sh` — Ubuntu/Bash/APT/sudo 기본 전제조건 검사
 - `verify-base.sh` — 공통 package + command 분리 검사
 - `setup-base.sh` — 공통 package 중 누락된 것만 설치
 - `verify-gh.sh` — `gh` 설치/공식 APT source 상태 확인
 - `setup-gh.sh` — GitHub CLI 공식 APT repository를 사용한 설치
+- `verify-user-identity.sh` — Git identity와 `gh auth`를 읽기 전용으로 점검
 - `verify-recommended.sh` — 권장 도구 상태 확인; 누락되어도 CLEAR Gate 아님
 - `setup-recommended.sh` — 권장 도구 설치
+- `validate-scripts.sh` — `environments/ubuntu/*.sh`에 대한 `bash -n` 문법 검사
 - `bootstrap.sh` — 공통 Ubuntu Developer Bootstrap 통합 진입점
 - `setup-mission-packages.sh` — 현재 미션의 `ubuntu-packages.txt` 검사/설치 helper
 
@@ -179,3 +216,4 @@ Node 미션은 해당 미션의 Node runtime/version 정책과 `package.json`/lo
 - Git identity/SSH private key/Token 자동 생성 또는 덮어쓰기 금지
 - package 설치와 Mission 기능 변경은 가능한 한 분리
 - 실제 버전은 Runtime 시점에 확인하고 Evidence에 필요한 경우만 기록
+- Freeze 이후 현재 Mission CLEAR와 무관한 공통환경 확장은 하지 않음
