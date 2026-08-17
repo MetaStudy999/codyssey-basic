@@ -8,17 +8,66 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫
 
 ---
 
+<a id="quick-start"></a>
+## 🚀 빠른 시작(Quick Start)
+
+처음 시작하는 분과 이미 환경을 준비한 분의 경로를 나눕니다.
+
+### 처음 개발환경을 만드는 경우
+
+1. [START-HERE-DEVELOPMENT-ENVIRONMENT.md](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)에서 Mac/Windows 환경을 준비합니다.
+2. 개발환경 최종 Verify가 끝나면 [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)에서 현재 작업을 확인합니다.
+3. 현재 Active Mission인 [B1-1 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)를 STEP 01부터 진행합니다.
+
+### Ubuntu 24.04 환경과 Control Tower가 이미 준비된 경우
+
+📍 **Ubuntu Bash / `$HOME/codyssey/codyssey-basic`에서 실행**합니다.
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+pwd
+git status --short
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+정상 기준:
+
+```text
+[ ] pwd가 /home/<user>/codyssey/codyssey-basic 계열이다.
+[ ] 예상하지 않은 Git 변경이 없다.
+[ ] Bootstrap required 항목이 PASS다.
+[ ] Git/GitHub 사용자 상태를 확인했다.
+```
+
+```text
+✅ GO
+→ NEXT-ACTIONS.md 확인
+→ 현재 Mission Beginner Guide 시작
+
+❌ STOP
+→ 환경/경로/Git/Bootstrap 문제부터 해결
+→ 실패 상태에서 Mission 설정을 계속 진행하지 않음
+```
+
+`pwd`, `git status --short`, `bootstrap.sh --check`, `verify-user-identity.sh`는 **🟢 SAFE TO RERUN**입니다.
+
+> Quick Start는 상세 환경 가이드나 Mission Guide를 대체하지 않습니다. SSH/UFW/Cloud/DB처럼 상태를 크게 바꾸는 작업은 반드시 해당 상세 문서의 Preflight와 Recovery 절차를 따릅니다.
+
+---
+
 <a id="toc"></a>
 ## 📖 목차
 
-1. [처음 시작하기](#part-1)
-2. [지금 내 위치](#current-position)
-3. [개발환경](#runtime-environment)
-4. [처음 볼 문서 3개](#first-three-docs)
-5. [전체 미션 지도](#part-2)
-6. [현재 진행 상태](#current-progress)
-7. [상세 운영 정보](#part-3)
-8. [문서·훈련 기준](#standards)
+1. [빠른 시작(Quick Start)](#quick-start)
+2. [처음 시작하기](#part-1)
+3. [지금 내 위치](#current-position)
+4. [개발환경](#runtime-environment)
+5. [처음 볼 문서 3개](#first-three-docs)
+6. [전체 미션 지도](#part-2)
+7. [현재 진행 상태](#current-progress)
+8. [상세 운영 정보](#part-3)
+9. [문서·훈련 기준](#standards)
 
 ---
 
@@ -457,28 +506,30 @@ NO
 
 1. [standards/README.md](standards/README.md) — 전체 기준 관리 Registry
 2. [BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
-3. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
-4. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
-5. [COMMAND-CODE-EXPLANATION-STANDARD.md](standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
-6. [DEVELOPMENT-TOOLSET-STANDARD.md](standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set·대체 IDE·공용 Mac no-admin 표준
-7. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
-8. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
-9. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
+3. [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차·Quick Start·빠른 진입 표준
+4. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
+5. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
+6. [COMMAND-CODE-EXPLANATION-STANDARD.md](standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
+7. [DEVELOPMENT-TOOLSET-STANDARD.md](standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set·대체 IDE·공용 Mac no-admin 표준
+8. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
+9. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
+10. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
 
 ### README 생성 핵심 원칙
 
 ```text
 저장소 목적
+→ Quick Start 또는 대표 시작 링크
+→ 클릭 가능한 목차
 → 지금 할 일
 → 첫 명령과 정상 결과
 → 현재 미션과 Beginner Guide
 → 전체 미션 지도
-→ 각 미션의 ▶ 입문자 따라하기 직접 진입
 → 현재 진행 상태
 → 필요할 때만 상세 운영 정보
 ```
 
-긴 README는 **목차 + 3부 구조 + Progressive Disclosure(필요한 만큼만 먼저 보여주기)**를 우선합니다.
+긴 README는 **Quick Start + 목차 + 3부 구조 + Progressive Disclosure(필요한 만큼만 먼저 보여주기)**를 우선합니다.
 
 ### 현재 실행 규칙
 
@@ -491,6 +542,7 @@ NO
 - 개발환경/Tool 문서는 관리자 권한 필요 여부와 no-admin 대안을 함께 설명합니다.
 - 가이드가 존재한다는 이유만으로 `BEGINNER READY`로 판정하지 않습니다. 상태/환경 정합성은 Beginner Documentation Audit에서 확인합니다.
 - 문서 개선만을 이유로 실제 Runtime을 불필요하게 중단하지 않습니다.
+- 기준 반영은 `POLICY → APPLY → VERIFY`로 확인하며, 실제 대상 문서 재확인 전에는 완료로 표현하지 않습니다.
 
 ## 보존 원칙(Preservation Policy)
 
