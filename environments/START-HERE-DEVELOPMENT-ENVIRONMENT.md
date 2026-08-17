@@ -6,14 +6,14 @@
 
 ```text
 내 환경 확인
-→ 올바른 Linux Runtime 준비
-→ Editor/IDE 연결
-→ Repository 위치 확인
+→ 올바른 Linux 실행 환경(Runtime) 준비
+→ 편집기/통합 개발 환경(Editor/IDE) 연결
+→ 저장소(Repository) 위치 확인
 → Git/GitHub 준비
-→ Ubuntu Bootstrap
-→ 필요한 Mission Tool만 준비
-→ 최종 Verify
-→ 현재 BEGINNER-GUIDE 시작
+→ Ubuntu 공통 환경 초기 준비(Bootstrap)
+→ 필요한 미션 도구(Mission Tool)만 준비
+→ 최종 검증(Verification)
+→ 현재 입문자 가이드(BEGINNER-GUIDE) 시작
 ```
 
 > 공용·관리형 macOS에서 관리자 권한이 없는 경우도 별도 경로를 제공합니다. 관리자 암호, MDM, 기관 보안정책을 우회하지 않습니다.
@@ -26,7 +26,7 @@
 ## 🚀 빠른 시작(Quick Start)
 
 > **이미 OrbStack/WSL2의 Ubuntu 24.04에 들어갈 수 있고 Git을 사용할 수 있는 분**을 위한 빠른 재진입 경로입니다.
-> 처음 개발환경을 만드는 분은 Quick Start를 건너뛰고 [PART 1 — 먼저 내 환경을 고르기](#choose-environment)부터 진행하세요.
+> 처음 개발환경을 만드는 분은 빠른 시작(Quick Start)을 건너뛰고 [PART 1 — 먼저 내 환경을 고르기](#choose-environment)부터 진행하세요.
 
 ### 1) 먼저 Ubuntu Terminal로 들어가기
 
@@ -123,8 +123,8 @@ bash environments/ubuntu/verify-user-identity.sh
 → 모두 만족하면 [PART 7 — 이제 현재 Mission 시작](#mission-start)으로 이동합니다.
 
 ❌ STOP
-→ 하나라도 실패하면 Quick Start에서 억지로 해결하지 않습니다.
-→ 아래 목차에서 해당 상세 STEP으로 이동해 원인 확인 → 최소 수정 → Verify를 수행합니다.
+→ 하나라도 실패하면 빠른 시작에서 억지로 해결하지 않습니다.
+→ 아래 목차에서 해당 상세 STEP으로 이동해 원인 확인 → 최소 수정 → 다시 검증합니다.
 ```
 
 재실행 안전성:
@@ -164,7 +164,7 @@ git clone                       → 🟡 CHECK BEFORE RERUN
   - COMMON STEP 05 — Git/GitHub
 - [PART 4 — Mission에 필요한 도구만 준비하기](#mission-tools)
 - [PART 5 — Editor/IDE와 AI CLI 선택](#ide-ai)
-- [PART 6 — 개발환경 최종 Verify](#final-verify)
+- [PART 6 — 개발환경 최종 검증(Verification)](#final-verify)
 - [PART 7 — 이제 현재 Mission 시작](#mission-start)
 - [문제가 생겼을 때 — 공통 복구 순서](#troubleshooting)
 - [Cloud / API / AI 비용 자원 안전 기준](#cost-resource-guard)
@@ -182,12 +182,12 @@ git clone                       → 🟡 CHECK BEFORE RERUN
 
 ```text
 📍 실행 위치(Context)
-→ 🔍 사전 점검(Preflight)
+→ 🔍 실행 전 점검(Preflight)
 → 따라하기
 → 정상 결과 / 정상 범위 확인
 → STOP / GO
 → 재실행 안전성(Rerun Safety)
-→ 필요 시 Recovery
+→ 필요 시 복구(Recovery)
 ```
 
 재실행 표시는 다음 의미입니다.
@@ -313,7 +313,7 @@ MDM / 보안정책 우회 금지
 
 ### OrbStack이 무엇인가요?
 
-macOS 안에서 Linux Machine과 Container를 실행할 수 있게 해 주는 도구입니다. Codyssey Basic의 macOS 기본 경로에서는 **OrbStack Ubuntu 24.04를 실제 Linux Runtime**으로 사용합니다.
+macOS 안에서 Linux Machine과 Container를 실행할 수 있게 해 주는 도구입니다. Codyssey Basic의 macOS 기본 경로에서는 **OrbStack Ubuntu 24.04를 실제 Linux 실행 환경(Runtime)**으로 사용합니다.
 
 공용 Mac에서는 OrbStack의 no-admin 지원 범위를 우선 검토하되, 기관의 MDM·앱 허용 정책이 실행 자체를 막으면 우회하지 않습니다.
 
@@ -611,7 +611,7 @@ code .
 
 이제부터 아래 명령은 **macOS Host Terminal이나 Windows PowerShell이 아니라 Ubuntu Terminal에서 실행**합니다.
 
-## COMMON STEP 01 — Ubuntu Runtime 최종 확인
+## COMMON STEP 01 — Ubuntu 실행 환경(Runtime) 최종 확인
 
 ### 📍 실행 위치
 
@@ -643,7 +643,7 @@ printf 'HOME=%s\n' "$HOME"
    → CPU Architecture를 확인합니다.
 
 3. ps -p 1 -o comm=
-   → PID 1의 실행 프로그램을 확인하여 Runtime 특성을 파악합니다.
+   → PID 1의 실행 프로그램을 확인하여 실행 환경 특성을 파악합니다.
 
 4. whoami
    → 현재 Ubuntu 사용자 이름을 확인합니다.
@@ -654,7 +654,7 @@ printf 'HOME=%s\n' "$HOME"
 
 ### 정상 범위
 
-사용자 이름과 Architecture는 환경에 따라 달라도 정상입니다. 핵심은 **Ubuntu 24.04 Runtime과 `/home/<user>` 계열 HOME**을 사용하는 것입니다.
+사용자 이름과 Architecture는 환경에 따라 달라도 정상입니다. 핵심은 **Ubuntu 24.04 실행 환경과 `/home/<user>` 계열 HOME**을 사용하는 것입니다.
 
 ### STOP / GO
 
@@ -1034,9 +1034,16 @@ Mission/Evaluation의 요구 버전
 training/round-01-clear/environment/ubuntu-packages.txt
 ```
 
-설치 전에는 **CHECK → MISSING → INSTALL → VERIFY** 순서를 사용합니다.
+설치 전에는 다음 순서를 사용합니다.
 
-SSH, UFW, Nginx, DB처럼 상태를 크게 바꾸는 작업은 Mission `BEGINNER-GUIDE.md`의 Checkpoint/Recovery 절차를 먼저 확인합니다.
+```text
+확인(Check)
+→ 누락(Missing)
+→ 설치(Install)
+→ 검증(Verification)
+```
+
+SSH, UFW, Nginx, DB처럼 상태를 크게 바꾸는 작업은 Mission `BEGINNER-GUIDE.md`의 중간 저장점(Checkpoint) / 복구(Recovery) 절차를 먼저 확인합니다.
 
 ---
 
@@ -1095,9 +1102,9 @@ Host에 시스템 전역 설치를 강제하지 않음
 한 Worktree
 → 실제 파일 수정 Agent는 한 번에 하나
 → 다른 AI는 Review / 분석 역할
-→ Diff 확인
-→ Test
-→ Verify
+→ 변경 비교(Diff) 확인
+→ 테스트(Test)
+→ 검증(Verification)
 ```
 
 AI가 만든 결과만으로 PASS/CLEAR/Evidence를 선언하지 않습니다.
@@ -1105,7 +1112,7 @@ AI가 만든 결과만으로 PASS/CLEAR/Evidence를 선언하지 않습니다.
 ---
 
 <a id="final-verify"></a>
-# PART 6 — 개발환경 최종 Verify
+# PART 6 — 개발환경 최종 검증(Verification)
 
 ## FINAL STEP 01 — 실행 위치와 도구 최종 확인
 
@@ -1177,14 +1184,14 @@ Python     → Python Mission이면 Ubuntu/repo-local 환경
 다음 항목을 확인합니다.
 
 ```text
-[ ] Ubuntu 24.04 Runtime을 사용한다.
+[ ] Ubuntu 24.04 실행 환경(Runtime)을 사용한다.
 [ ] Repository가 $HOME/codyssey/...에 있다.
 [ ] Terminal은 Ubuntu Bash다.
 [ ] Git은 Ubuntu Git이다.
 [ ] 공통 Bootstrap 필수 항목이 PASS다.
 [ ] Git/GitHub 사용자 상태를 확인했다.
 [ ] Python Mission이면 repo-local .venv를 사용한다.
-[ ] 선택 IDE를 써도 Runtime 계약을 유지한다.
+[ ] 선택 IDE를 써도 실행 환경 계약을 유지한다.
 [ ] 공용 Mac에서는 관리자/MDM 정책을 우회하지 않는다.
 [ ] AI CLI는 필요한 경우에만 선택했고 한 Worktree 동시 수정 규칙을 이해한다.
 ```
@@ -1195,7 +1202,7 @@ Python     → Python Mission이면 Ubuntu/repo-local 환경
 
 ❌ STOP
 → 하나라도 핵심 조건이 틀리면 Mission 설정을 시작하지 않습니다.
-→ 잘못된 Host / PWD / Tool / 인증부터 최소 수정 후 다시 Verify합니다.
+→ 잘못된 Host / PWD / Tool / 인증부터 최소 수정 후 다시 검증합니다.
 ```
 
 ---
@@ -1222,7 +1229,7 @@ cat training/round-01-clear/NEXT-ACTIONS.md
 
 그 다음 메인 README의 **▶ 입문자 따라하기(Beginner Guide)** 링크에서 현재 Mission을 시작합니다.
 
-> 이 문서의 최종 Verify가 통과했다는 사실은 개발환경 준비의 근거일 뿐입니다. 실제 Mission `CLEAR`는 해당 미션의 Runtime / Verify / Evidence가 있어야 합니다.
+> 이 문서의 최종 검증(Verification)이 통과했다는 사실은 개발환경 준비의 근거일 뿐입니다. 실제 Mission `CLEAR`는 해당 미션의 **실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence)**이 있어야 합니다.
 
 ---
 
@@ -1241,7 +1248,7 @@ cat training/round-01-clear/NEXT-ACTIONS.md
 → 현재 Mission package 확인
 → 오류 메시지의 첫 실제 실패 지점 확인
 → 최소 수정
-→ 다시 Verify
+→ 다시 검증
 → PASS면 다음 단계
 ```
 
@@ -1276,11 +1283,11 @@ B6/B7 또는 AI API처럼 비용 가능성이 있는 단계에서는 실제 생�
 실습은 가능한 경우 다음 흐름으로 닫습니다.
 
 ```text
-Create
-→ Verify
-→ Evidence
+생성(Create)
+→ 검증(Verification)
+→ 증빙(Evidence)
 → 더 이상 필요 없음
-→ Cleanup
+→ 정리(Cleanup)
 → 삭제/중지 확인
 ```
 
@@ -1291,12 +1298,12 @@ Create
 <a id="related-standards"></a>
 # 관련 기준
 
-- [`../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md`](../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차 / Quick Start 공통 기준
+- [`../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md`](../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차 / 빠른 시작(Quick Start) 공통 기준
 - [`../standards/BEGINNER-TRAINING-STANDARD.md`](../standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 학습·실행 안전 상위 기준
-- [`../standards/COMMAND-CODE-EXPLANATION-STANDARD.md`](../standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 줄별 해설 / Copy-Paste / Rerun 기준
+- [`../standards/COMMAND-CODE-EXPLANATION-STANDARD.md`](../standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 줄별 해설 / 복사·붙여넣기(Copy-Paste) / 재실행(Rerun) 기준
 - [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발도구 필수/선택/no-admin 기준
 - [`../standards/AI-CLI-TOOLSET-STANDARD.md`](../standards/AI-CLI-TOOLSET-STANDARD.md) — Codex / Claude Code / Gemini / Antigravity CLI 기준
-- [`../standards/ENVIRONMENT-STANDARD.md`](../standards/ENVIRONMENT-STANDARD.md) — 환경 / Checkpoint / Recovery / Cost Guard 기준
+- [`../standards/ENVIRONMENT-STANDARD.md`](../standards/ENVIRONMENT-STANDARD.md) — 환경 / 중간 저장점(Checkpoint) / 복구(Recovery) / 비용 보호(Cost Guard) 기준
 - [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — VS Code Remote Ubuntu 기준
 - [`../standards/BEGINNER-DOCUMENTATION-AUDIT.md`](../standards/BEGINNER-DOCUMENTATION-AUDIT.md) — BEGINNER READY 감사 기준
 - [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu Bootstrap 상세
@@ -1318,7 +1325,7 @@ Python .venv를 왜 Repository마다 따로 쓰는지
 실패했을 때 왜 다음 Step으로 계속 가지 않는지
 같은 명령을 다시 실행해도 되는지 어떻게 판단하는지
 AI CLI가 필수가 아니며 여러 Agent를 동시에 수정자로 쓰면 왜 위험한지
-현재 환경이 준비됐는지 무엇으로 Verify하는지
+현재 환경이 준비됐는지 무엇으로 검증하는지
 ```
 
 문서를 읽었다는 사실만으로 `BEGINNER READY`를 선언하지 않습니다. 실제 환경에서 위 Golden Path를 처음부터 따라가고, 막힌 지점이 없는지 Dry Run으로 확인한 뒤 문서 감사 기준에 따라 판정합니다.
