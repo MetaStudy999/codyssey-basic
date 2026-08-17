@@ -1,5 +1,14 @@
-# Codyssey Basic — Ubuntu 24.04 common minimal APT packages
-# Keep this list intentionally small. Mission-specific packages belong in each mission repo.
+# Codyssey Basic — Ubuntu 24.04 common required APT packages
+# Mission-specific packages belong in each mission repo.
 ca-certificates
 curl
+wget
 git
+openssh-client
+nano
+jq
+file
+unzip
+zip
+rsync
+bash-completion
