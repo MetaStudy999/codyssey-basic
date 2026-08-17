@@ -1,42 +1,57 @@
-# Environment Standard
+# Environment Standard — 환경 표준
 
 환경설정도 코드처럼 **재현 가능하고 검증 가능**해야 합니다.
 
-## Golden Path
+## 한글·영어 용어 표기
 
-Round 01은 미션별 기준 환경 하나를 우선합니다. 여러 OS/VM/Container 조합을 동시에 지원하여 가이드를 복잡하게 만들지 않습니다.
+입문자 문서는 핵심 기술·운영 용어의 첫 등장 시 **한글 의미(English Original)** 형식을 우선합니다.
+
+예:
+
+```text
+실행 환경(Runtime)
+검증(Verify)
+증빙 자료(Evidence)
+개발환경 초기 준비(Bootstrap)
+```
+
+명령어, 파일명, 경로, 제품명은 임의 번역하지 않습니다. 전체 기준은 [`TERMINOLOGY-STANDARD.md`](TERMINOLOGY-STANDARD.md)를 따릅니다.
+
+## 기준 실행 경로(Golden Path)
+
+훈련 차수(Round) 01은 미션별 기준 환경 하나를 우선합니다. 여러 OS/VM/Container 조합을 동시에 지원하여 가이드를 복잡하게 만들지 않습니다.
 
 현재 R01의 공통 Host 계열은 다음을 기준으로 합니다.
 
 ```text
 macOS + OrbStack → Ubuntu 24.04
 Windows 11 Pro + WSL2 → Ubuntu 24.04
-Docker → 선택 Training Layer
+Docker → 선택 훈련 계층(Training Layer)
 ```
 
-세부 Runtime Profile은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+세부 실행 환경 프로필(Runtime Profile)은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
 
-## Ubuntu 24.04 Developer Bootstrap 계약
+## Ubuntu 24.04 개발환경 초기 준비(Developer Bootstrap) 계약
 
 Ubuntu 개발환경은 다음 계층으로 분리합니다.
 
 ```text
-Layer 0 — OS Prerequisites
+Layer 0 — OS 전제조건(OS Prerequisites)
 bash / apt-get / dpkg-query / sudo
 
-Layer 1 — Common Required Base
+Layer 1 — 공통 필수 기본도구(Common Required Base)
 ca-certificates / curl / wget / git / openssh-client / nano / jq / file / unzip / zip / rsync / bash-completion
 
-Layer 1B — Recommended Productivity
+Layer 1B — 권장 생산성 도구(Recommended Productivity)
 vim / tree / ripgrep / fd-find
 
-Layer 2 — External/Common Developer CLI
+Layer 2 — 외부/공통 개발 CLI(External/Common Developer CLI)
 gh — GitHub CLI official APT repository
 
-Layer 3 — Mission / Shared Runtime
+Layer 3 — 미션/공유 실행환경(Mission / Shared Runtime)
 현재 Mission에 필요한 APT package만 추가
 
-Layer 4 — Project Dependencies
+Layer 4 — 프로젝트 의존성(Project Dependencies)
 .venv / pyproject.toml / requirements.txt / package.json / lock file
 ```
 
@@ -44,18 +59,18 @@ Layer 4 — Project Dependencies
 
 - 새 Ubuntu에 15개 미션용 패키지를 한꺼번에 설치하지 않음
 - 설치 전 `CHECK → MISSING → INSTALL → VERIFY` 순서 사용
-- package 설치 여부와 실제 command 사용 가능 여부를 별도로 확인
+- 패키지(package) 설치 여부와 실제 명령(command) 사용 가능 여부를 별도로 확인
 - `git`, SSH client, `nano`, JSON/압축/파일전송 도구는 공통 Base로 관리
-- `gh`는 공통 Developer CLI지만 설치는 GitHub CLI 공식 APT repository를 사용
+- `gh`는 공통 개발 CLI(Developer CLI)지만 설치는 GitHub CLI 공식 APT repository를 사용
 - `gh auth login`, Token 입력, SSH private key 생성/교체, Git identity 설정은 자동화하지 않음
-- `vim`, `tree`, `ripgrep`, `fd-find`는 권장 Productivity 도구이며 Mission CLEAR Gate가 아님
+- `vim`, `tree`, `ripgrep`, `fd-find`는 권장 생산성 도구(Productivity Tool)이며 미션 완료(CLEAR) Gate가 아님
 - System Python에 FastAPI/SQLAlchemy/AI SDK 등을 전역 설치하지 않음
 - Python Mission은 repository-local `.venv` 사용
 - Node dependency는 project manifest/lock file로 관리
 - 각 Mission의 추가 APT Source of Truth는 `training/round-01-clear/environment/ubuntu-packages.txt`
 - 실제 Mission/Evaluation이 특정 package/runtime/version을 요구하면 공식 요구가 최우선
 
-통합 Bootstrap:
+통합 개발환경 초기 준비(Bootstrap):
 
 ```bash
 bash environments/ubuntu/bootstrap.sh --check
@@ -65,21 +80,21 @@ bash environments/ubuntu/bootstrap.sh --install --recommended
 
 Control Tower의 상세 기준은 [`../environments/ubuntu/README.md`](../environments/ubuntu/README.md), [`../environments/ubuntu/BASE-PACKAGES.md`](../environments/ubuntu/BASE-PACKAGES.md), [`../environments/ubuntu/MISSION-PACKAGE-MATRIX.md`](../environments/ubuntu/MISSION-PACKAGE-MATRIX.md)를 사용합니다.
 
-## VS Code Remote Ubuntu Workspace 계약
+## VS Code 원격 Ubuntu 작업공간(VS Code Remote Ubuntu Workspace) 계약
 
 macOS에서 VS Code를 실행하더라도 `MAC-V`의 실제 개발 작업은 **OrbStack Ubuntu 24.04 내부의 Linux filesystem**을 기준으로 합니다.
 
 ```text
 VS Code UI        = macOS
-Remote transport  = OrbStack SSH (`orb`)
-Repository        = Ubuntu `$HOME/codyssey/...`
-Terminal          = Ubuntu Bash
+원격 전송(Remote transport) = OrbStack SSH (`orb`)
+저장소(Repository) = Ubuntu `$HOME/codyssey/...`
+터미널(Terminal)    = Ubuntu Bash
 Git               = Ubuntu Git
 Python            = Ubuntu Python
-Virtual Env       = Python Mission별 repo-local `.venv`
+가상환경(Virtual Env) = Python Mission별 repo-local `.venv`
 ```
 
-OrbStack이 제공하는 `/Users/...`, `/mnt/mac/Users/...` 경로는 macOS 공유 filesystem이므로 Primary Mission Workspace로 사용하지 않고 파일 교환/참조 용도로만 사용합니다.
+OrbStack이 제공하는 `/Users/...`, `/mnt/mac/Users/...` 경로는 macOS 공유 filesystem이므로 기본 미션 작업공간(Primary Mission Workspace)으로 사용하지 않고 파일 교환/참조 용도로만 사용합니다.
 
 Repository의 VS Code Terminal은 다음 원칙을 사용합니다.
 
@@ -93,13 +108,13 @@ Python Mission의 `.venv` 자동 활성화는 특정 Project를 `~/.bashrc`에 �
 
 상세 기준은 [`VS-CODE-REMOTE-UBUNTU-STANDARD.md`](VS-CODE-REMOTE-UBUNTU-STANDARD.md)를 사용합니다.
 
-## Cross-platform Git / File 계약
+## 교차 플랫폼 Git/파일(Cross-platform Git / File) 계약
 
 macOS, Windows 11 Pro, WSL2, Ubuntu 24.04 사이에서 같은 Repository를 안전하게 사용하기 위해 모든 Codyssey Basic 저장소는 다음을 기본 계약으로 사용합니다.
 
 ```text
-Text encoding = UTF-8
-Canonical line ending = LF
+텍스트 인코딩(Text encoding) = UTF-8
+기준 줄바꿈(Canonical line ending) = LF
 Windows .bat / .cmd = CRLF 허용
 ```
 
@@ -149,17 +164,17 @@ environment/
 - `setup.sh`: 환경 재현용 구축 스크립트
 - `verify.sh`: 환경 정상 여부 확인
 - `reset.sh`: **현재 Round에서 만든 자원만** 안전하게 제거
-- `.env.example`: 실제 Secret이 없는 예제 설정
+- `.env.example`: 실제 비밀정보(Secret)가 없는 예제 설정
 
 Round 01에서는 가이드의 명령을 직접 따라 이해하는 것을 본 훈련으로 하고, 자동 setup은 재현·복구 보조 수단으로 사용합니다.
 
 ## 시스템 설정 변경
 
-`현재 상태 확인 → 백업 → 변경 → 문법 검사 → 적용 → 검증 → Evidence`
+`현재 상태 확인 → 백업 → 변경 → 문법 검사 → 적용 → 검증(Verify) → 증빙 자료(Evidence)`
 
 광범위한 `rm -rf`, 무차별 사용자 삭제, 시스템 전체 초기화 같은 위험한 reset은 금지합니다.
 
-## Secret
+## 비밀정보(Secret)
 
 Repository 및 Evidence에 다음 실제 값을 저장하지 않습니다.
 
