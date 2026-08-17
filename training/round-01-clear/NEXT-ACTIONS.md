@@ -1,6 +1,6 @@
 # R01 Phase C — Next Actions
 
-현재 목표는 **B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
+현재 목표는 **공통환경 Closeout을 짧게 마친 뒤 B1-1부터 실제 Runtime/Evidence를 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
 
 현재 운영 모드: **FAST EXECUTE**
 
@@ -28,6 +28,55 @@ Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 F
 - `environments/RUNTIME-PROFILES.md`
 - `environments/DOCKER-POLICY.md`
 - `environments/MISSION-LAB-MATRIX.md`
+- `environments/ubuntu/README.md`
+- `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`
+
+## 공통환경 Closeout — B1-1 직전 마지막 환경 Gate
+
+공통환경 설계는 사실상 완료되었습니다. 다음 4개를 확인한 뒤 **COMMON ENVIRONMENT FREEZE**로 전환하고 B1-1 Runtime을 시작합니다.
+
+```text
+① Documentation Drift Check
+② MAC-V Runtime Bootstrap Verification
+③ Git / GitHub User Identity Readiness
+④ Shell Script Static Syntax Validation
+        ↓
+COMMON ENVIRONMENT FREEZE
+        ↓
+B1-1 Runtime
+```
+
+실제 MAC-V Ubuntu에서 다음 순서로 확인합니다.
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+
+bash environments/ubuntu/validate-scripts.sh
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+필수 Base 또는 `gh`가 부족한 경우에만:
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install
+bash environments/ubuntu/bootstrap.sh --check
+```
+
+권장 생산성 도구는 선택입니다.
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install --recommended
+```
+
+현재 상태:
+
+- Documentation Drift: **PARTIAL — 중앙 기준과 핵심 package list 교정 완료, 비차단 문구는 Runtime을 멈추지 않고 JIT/별도 정합성 작업으로 처리**
+- MAC-V Bootstrap Runtime: **NOT VERIFIED**
+- Git/GitHub User Identity: **NOT VERIFIED**
+- Bash syntax validation: **NOT VERIFIED**
+
+위 항목은 GitHub 문서 존재 여부가 아니라 실제 Ubuntu Runtime 출력으로 확인합니다. 상세 체크리스트는 `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`를 사용합니다.
 
 ## 환경 우선순위
 
@@ -54,7 +103,7 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 
 `FAST EXECUTE`는 한 미션 안에서 불필요한 재설계를 줄이는 운영 방식이고, `FAST TRACK`은 R01의 미션 실행 순서입니다.
 
-## Phase A/B 완료
+## Phase A/B 및 공통환경 설계 완료
 
 - [x] Phase A Reference Build — 15/15 CORE READY
 - [x] Canonical Final Consistency Audit — PASS 15/15
@@ -67,6 +116,11 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] R01 Runtime Profiles — MAC-V/WIN-V/MAC-D/WIN-D 정의
 - [x] Docker를 선택 Training Layer로 분리
 - [x] 15개 Mission Primary/Secondary/Docker Lab Matrix 정의
+- [x] Ubuntu Developer Bootstrap 계층 정의
+- [x] Common Base / Recommended / `gh` / Mission / Project dependency 분리
+- [x] package와 command 검증 분리
+- [x] Common Environment Closeout/Freeze 기준 정의
+- [ ] 실제 MAC-V에서 Common Environment Closeout 실행 확인
 
 ## Phase C 실행 우선 원칙
 
@@ -110,22 +164,23 @@ B1-1 Runtime Profile:
 
 ## B1-1 즉시 실행 순서
 
-1. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
-2. B1-1 repository root / branch / local changes 확인
-3. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
-4. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
-5. SSH 20022 safe migration
-6. UFW final policy
-7. users/groups/effective permission
-8. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
-9. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
-10. `monitor.sh` 정상/실패/Warning/rotation
-11. `agent-admin` cron 매분 + 실제 log growth
-12. `sudo bash training/round-01-clear/environment/verify.sh`
-13. `training/round-01-clear/evidence/` 실제 Evidence 연결
-14. Evaluation 설명 + Secret 최종 확인
-15. 조건 충족 시에만 `✅ B1-1 CLEAR`
-16. B1-2를 `🟡 ACTIVE`로 전환
+1. Common Environment Closeout 실제 확인
+2. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
+3. B1-1 repository root / branch / local changes 확인
+4. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
+5. `training/round-01-clear/BEGINNER-GUIDE.md` STEP 01 baseline 수행
+6. SSH 20022 safe migration
+7. UFW final policy
+8. users/groups/effective permission
+9. 제공 `agent-app.zip`의 실제 CPU architecture/파일 확인
+10. 실제 Agent Boot 5/5 + `Agent READY` + `15034 LISTEN`
+11. `monitor.sh` 정상/실패/Warning/rotation
+12. `agent-admin` cron 매분 + 실제 log growth
+13. `sudo bash training/round-01-clear/environment/verify.sh`
+14. `training/round-01-clear/evidence/` 실제 Evidence 연결
+15. Evaluation 설명 + Secret 최종 확인
+16. 조건 충족 시에만 `✅ B1-1 CLEAR`
+17. B1-2를 `🟡 ACTIVE`로 전환
 
 **B1-1 CLEAR 전에 Docker Lab을 수행할 필요는 없습니다.** WIN-V Secondary Check와 MAC-D/WIN-D Docker Lab은 필요하거나 별도 학습 시간이 있을 때 수행합니다.
 
