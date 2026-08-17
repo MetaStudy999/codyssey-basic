@@ -4,6 +4,41 @@
 
 IDE, LLM, 새 채팅이 바뀌어도 동일한 실행환경을 해석하도록 R01의 Runtime Profile을 고정합니다.
 
+## 한눈에 보기(Quick Read)
+
+```text
+MAC-V = macOS → OrbStack Ubuntu 24.04        ← 기본 Primary
+WIN-V = Windows 11 → WSL2 Ubuntu 24.04      ← 권장 Secondary
+MAC-D = macOS → OrbStack Docker              ← 선택 Lab
+WIN-D = Windows 11 → WSL2 → Docker           ← 선택 Lab
+```
+
+핵심 판단:
+
+```text
+Mission CLEAR
+→ 공식 요구 + 실제 Primary Runtime + Verify + Evidence
+
+Secondary / Docker
+→ 학습·이식성 확인용
+→ 공식 요구가 없으면 CLEAR Gate 아님
+```
+
+처음 환경을 준비하는 경우 [`START-HERE-DEVELOPMENT-ENVIRONMENT.md`](START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용합니다.
+
+## 📑 목차
+
+- [R01 운영 범위](#scope)
+- [Profile 정의](#profiles)
+- [Runtime 우선순위](#priority)
+- [Mission 상태와 Lab 상태 분리](#state-separation)
+- [Docker 정책](#docker)
+- [Architecture 규칙](#architecture)
+- [Repository/Workspace 규칙](#workspace)
+
+---
+
+<a id="scope"></a>
 ## R01 운영 범위
 
 ```text
@@ -18,6 +53,7 @@ Windows 11 Pro + WSL2 Ubuntu 24.04
 
 현재는 Ubuntu Native Host, 수동 Hyper-V VM, VMware, KVM/QEMU/libvirt, Proxmox, Kubernetes를 R01 표준 범위에 포함하지 않습니다.
 
+<a id="profiles"></a>
 ## Profile 정의
 
 ### MAC-V — Primary Linux Runtime
@@ -82,6 +118,7 @@ Windows 11 Pro Host
 
 역시 기본 CLEAR Gate가 아닙니다.
 
+<a id="priority"></a>
 ## Runtime 우선순위
 
 ```text
@@ -104,6 +141,7 @@ Docker Lab = MAC-D / WIN-D 선택
 
 GitHub/AWS/실제 배포/실제 AI Provider가 본 요구인 미션에서는 해당 외부 Runtime/Evidence가 Primary 기준입니다.
 
+<a id="state-separation"></a>
 ## Mission 상태와 Lab 상태 분리
 
 Mission 상태:
@@ -123,6 +161,7 @@ WIN-D Docker Lab         [ ] / [x]
 
 Docker Lab 또는 Secondary Check가 미완료여도 공식 요구와 실제 Runtime/Verify/Evidence가 충족되었다면 Mission 상태를 임의로 BLOCKED로 바꾸지 않습니다.
 
+<a id="docker"></a>
 ## Docker 정책
 
 상세 정책은 [`DOCKER-POLICY.md`](DOCKER-POLICY.md)를 사용합니다.
@@ -136,6 +175,7 @@ Docker 사용 여부 ≠ Mission PASS/CLEAR
 
 단, 미래에 공식 Mission/Evaluation이 Docker를 필수로 요구한다면 공식 자료가 이 정책보다 우선합니다.
 
+<a id="architecture"></a>
 ## Architecture 규칙
 
 Runtime마다 실제 결과를 확인합니다.
@@ -151,6 +191,7 @@ dpkg --print-architecture 2>/dev/null || true
 
 특히 제공 binary가 있는 미션에서는 macOS/Windows Host CPU를 보고 binary를 추측하지 않습니다.
 
+<a id="workspace"></a>
 ## Repository/Workspace 규칙
 
 가능하면 IDE Workspace에는 동시에 아래 두 저장소만 엽니다.
