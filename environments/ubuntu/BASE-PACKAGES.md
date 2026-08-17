@@ -2,46 +2,163 @@
 
 ## 목적
 
-R01의 Ubuntu 24.04 Machine에서 모든 미션이 공통으로 기대할 수 있는 **최소 시스템 도구**만 관리합니다.
+R01의 Ubuntu 24.04 Machine에서 모든 미션이 공통으로 기대할 수 있는 **필수 개발 도구**와 선택 생산성 도구를 구분합니다.
 
-현재 Base는 다음 세 패키지입니다.
+## Layer 0 — OS Prerequisites
+
+설치 전에 다음을 확인합니다.
+
+```text
+bash
+apt-get
+dpkg-query
+sudo
+```
+
+검사:
+
+```bash
+bash environments/ubuntu/verify-prerequisites.sh
+```
+
+Golden Path는 Ubuntu 24.04입니다. 다른 동등 Linux가 공식 Mission에서 허용되더라도 R01 공통 자동화는 Ubuntu 24.04를 기준으로 설명합니다.
+
+## Layer 1 — Common Required Base
+
+`base-packages.txt`:
 
 ```text
 ca-certificates
 curl
+wget
 git
+openssh-client
+nano
+jq
+file
+unzip
+zip
+rsync
+bash-completion
 ```
 
-선정 원칙:
+역할:
 
-- 여러 미션과 GitHub 연동에서 반복적으로 사용
-- 프로젝트별 라이브러리가 아님
-- 버전 충돌 가능성이 비교적 낮음
-- Ubuntu 24.04의 기본 APT 흐름에서 관리 가능
+- `ca-certificates`, `curl`, `wget`: HTTPS download/API/bootstrap
+- `git`: 모든 Repository 작업
+- `openssh-client`: `ssh`, `scp`, `sftp`, `ssh-keygen`
+- `nano`: 입문자용 터미널 편집기
+- `jq`: JSON/API 결과 확인
+- `file`, `unzip`, `zip`: 파일/압축 확인
+- `rsync`: 안전한 파일 복사·동기화 보조
+- `bash-completion`: Bash 자동완성
 
-다음은 Base에 넣지 않습니다.
+`verify-base.sh`는 **APT package 설치 여부와 실제 command 사용 가능 여부를 분리해서 확인**합니다. package 이름과 command 이름이 항상 같지 않기 때문입니다.
 
-- Python Web framework
-- SQLAlchemy 등 Python library
-- Node package
-- SQLite/Nginx/UFW/ACL 등 특정 미션 중심 도구
-- AWS/AI Provider별 도구
-- Docker/Kubernetes
+예:
 
-이들은 각 미션 또는 별도 선택 Training Layer에서 관리합니다.
+```text
+openssh-client → ssh
+ripgrep        → rg
+fd-find        → fdfind
+procps         → ps
+iproute2       → ss
+```
 
-## 검사
+## Layer 1B — Recommended Productivity
+
+다음은 유용하지만 Mission CLEAR Gate가 아닙니다.
+
+```text
+vim
+tree
+ripgrep
+fd-find
+```
+
+설치:
 
 ```bash
-bash environments/ubuntu/verify-base.sh
+bash environments/ubuntu/setup-recommended.sh
 ```
 
-## 설치
-
-누락된 경우에만:
+검사:
 
 ```bash
-bash environments/ubuntu/setup-base.sh
+bash environments/ubuntu/verify-recommended.sh
 ```
 
-`setup-base.sh`는 기존 패키지를 제거하거나 다운그레이드하지 않습니다.
+`nano`는 공통 기본 편집기로, `vim`은 권장 생산성 도구로 구분합니다.
+
+## Layer 2 — External/Common Developer CLI
+
+GitHub CLI `gh`는 공통 개발 CLI로 사용하지만 Ubuntu community package에 단순 의존하지 않고 **GitHub CLI 공식 APT repository**를 사용합니다.
+
+```bash
+bash environments/ubuntu/setup-gh.sh
+bash environments/ubuntu/verify-gh.sh
+```
+
+설치와 인증을 분리합니다.
+
+```text
+setup-gh.sh = gh 설치/공식 repository 구성
+
+gh auth login = 사용자가 필요할 때 대화형으로 수행
+```
+
+공통 자동화는 `gh auth login`, Token 입력, SSH private key 생성/교체를 수행하지 않습니다.
+
+## Layer 3 — Mission / Shared Runtime
+
+다음은 필요한 Mission에서만 설치합니다.
+
+```text
+python3 / python3-venv
+sqlite3
+nginx
+openssh-server
+ufw
+acl
+cron
+procps / iproute2 / strace ...
+```
+
+각 Mission의 Source of Truth:
+
+```text
+training/round-01-clear/environment/ubuntu-packages.txt
+```
+
+## Layer 4 — Project Dependencies
+
+APT와 분리합니다.
+
+```text
+Python → repo-local .venv / pyproject.toml / requirements.txt
+Node   → package.json / lock file
+```
+
+System Python에 FastAPI, SQLAlchemy, Uvicorn, AI SDK 같은 프로젝트 라이브러리를 전역 설치하지 않습니다.
+
+## 통합 Bootstrap
+
+확인만:
+
+```bash
+bash environments/ubuntu/bootstrap.sh --check
+```
+
+필수 공통 도구 설치:
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install
+```
+
+권장 생산성 도구까지 포함:
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install --recommended
+```
+
+Bootstrap은 기존 package downgrade/remove, `apt autoremove`, Git identity 설정, SSH private key 교체, `core.autocrlf` 변경을 하지 않습니다.
