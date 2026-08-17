@@ -1,0 +1,14 @@
+# Commands expected after Ubuntu Base installation
+curl
+wget
+git
+ssh
+scp
+sftp
+ssh-keygen
+nano
+jq
+file
+unzip
+zip
+rsync
