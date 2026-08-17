@@ -1,6 +1,143 @@
 # Codyssey Basic Training System
 
-Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입니다.
+Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫 환경 확인부터 실제 미션 실행·검증·완료까지 순서대로 따라갈 수 있도록 만든 통합(Control Tower) 저장소**입니다.
+
+> 처음 방문했다면 운영 용어를 모두 이해하려고 하지 않아도 됩니다. **환경 확인 → 현재 미션 확인 → 입문자 가이드 따라하기** 순서만 먼저 진행하면 됩니다.
+
+---
+
+## 👋 처음 오셨나요?
+
+현재 첫 실행 미션은 **B1-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**입니다.
+
+처음에는 아래 흐름만 기억하면 됩니다.
+
+```text
+1. Ubuntu 개발환경 확인
+        ↓
+2. 현재 해야 할 미션 확인
+        ↓
+3. B1-1 입문자 가이드를 STEP 01부터 따라하기
+        ↓
+4. 실제 실행
+        ↓
+5. Verify
+        ↓
+6. Evidence
+        ↓
+7. ✅ CLEAR
+```
+
+### 1단계 — Ubuntu 개발환경 확인
+
+통합 저장소가 Ubuntu의 `$HOME/codyssey/codyssey-basic`에 있다고 가정합니다.
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+bash environments/ubuntu/bootstrap.sh --check
+```
+
+정상이라면 마지막에 다음과 같은 결과를 확인합니다.
+
+```text
+[PASS] required Ubuntu developer bootstrap is ready
+```
+
+누락된 필수 도구가 있을 때만 설치합니다.
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install
+bash environments/ubuntu/bootstrap.sh --check
+```
+
+권장 생산성 도구(`vim`, `tree`, `ripgrep`, `fd-find`)는 선택이며 미션 시작을 막지 않습니다.
+
+환경 상세: [environments/ubuntu/README.md](environments/ubuntu/README.md)
+
+### 2단계 — 지금 해야 할 일 확인
+
+현재 해야 할 작업은 아래 문서 하나에서 시작합니다.
+
+👉 [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)
+
+### 3단계 — B1-1 시작
+
+현재 Active Mission:
+
+**B1-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**
+
+- [B1-1 저장소](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor)
+- [B1-1 입문자 가이드](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+
+입문자는 `BEGINNER-GUIDE.md`를 **STEP 01부터 위에서 아래로 순서대로** 따라갑니다.
+
+---
+
+## 🧭 지금 내 위치
+
+```text
+Codyssey Basic
+└─ R01 — CLEAR
+   └─ 실제 실행 단계
+      └─ 필수 미션 진행
+         └─ B1-1 🟡 ACTIVE
+```
+
+쉽게 말하면:
+
+```text
+준비와 전체 점검은 끝남
+→ 이제 B1-1부터 실제로 실행
+→ 검증
+→ 증빙
+→ 통과
+→ 다음 미션
+```
+
+처음에는 `R01`, `Phase C`, `FAST TRACK`, `Runtime Profile` 같은 운영 용어를 외울 필요가 없습니다. 실제 수행하면서 필요한 시점에 아래의 상세 설명을 참고하면 됩니다.
+
+---
+
+## 💻 처음 사용할 실행환경
+
+가장 단순하게는 아래만 이해하면 됩니다.
+
+```text
+기본 환경
+macOS
+└─ OrbStack
+   └─ Ubuntu 24.04
+      └─ VS Code Remote SSH
+         └─ 미션 실행
+```
+
+Windows에서는 다음 환경을 사용할 수 있습니다.
+
+```text
+Windows 11 Pro
+└─ WSL2
+   └─ Ubuntu 24.04
+```
+
+Docker는 **선택 학습**입니다. Docker를 하지 않았다는 이유만으로 기본 미션을 실패 처리하지 않습니다.
+
+상세 환경 기준은 [environments/README.md](environments/README.md)를 참고합니다.
+
+---
+
+## 📌 입문자가 처음에 볼 문서 3개
+
+1. [environments/ubuntu/README.md](environments/ubuntu/README.md) — Ubuntu 개발환경 확인
+2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 지금 해야 할 일
+3. [B1-1 BEGINNER-GUIDE.md](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) — 첫 미션 따라하기
+
+이 세 문서를 먼저 보고, 나머지 운영 문서는 필요할 때 참고하면 됩니다.
+
+---
+
+# Control Tower 상세 정보
+
+아래부터는 전체 진행률, 운영 모델, 실행 순서, 환경 정책을 관리하기 위한 상세 영역입니다.
 
 ## 현재 상태
 
@@ -21,7 +158,7 @@ Codyssey Basic 전체 훈련을 관리하는 통합(Control Tower) 저장소입�
 
 > 현재는 설계를 계속 확장하는 단계가 아니라, 이미 준비된 기준 경로를 실제로 실행하여 `Runtime → Verify → Evidence → CLEAR`로 전환하는 단계입니다.
 
-### 지금 바로 볼 문서
+### 상세 운영 문서
 
 1. [PROGRESS.md](PROGRESS.md) — 현재 위치와 전체 진행률
 2. [docs/R01-OPERATING-MODEL.md](docs/R01-OPERATING-MODEL.md) — Phase A/B/C, FAST TRACK, FAST EXECUTE, CLEAR의 의미
