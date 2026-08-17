@@ -8,6 +8,30 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 
 본 감사는 실제 Runtime 미션 통과 검증이 아닙니다.
 
+## 한눈에 보기(Audit Summary)
+
+```text
+Canonical Audit = PASS 15 / 15
+BLOCKER / MAJOR = 0
+Runtime CLEAR   = 0 / 15
+```
+
+이 문서는 **Phase A 당시 수행한 Canonical 감사 기록**입니다. 당시 다음 단계였던 Phase B는 이미 완료되었고, 현재 운영 단계는 **Phase C — Runtime CLEAR**입니다.
+
+현재 행동은 [NEXT-ACTIONS.md](NEXT-ACTIONS.md)를 확인합니다.
+
+## 📑 목차
+
+- [감사 기준](#criteria)
+- [15개 미션 구조 감사](#mission-audit)
+- [발견한 Canonical 문제](#issues)
+- [최종 결과](#result)
+- [상태 해석](#interpretation)
+- [현재 Hand-off](#handoff)
+
+---
+
+<a id="criteria"></a>
 ## 감사 기준
 
 `standards/CANONICAL-REFERENCE-STANDARD.md`를 기준으로 다음을 확인합니다.
@@ -20,6 +44,7 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 - `docs` / `environment` / `evidence`가 미션에 필요한 역할을 갖는지
 - Secret 금지와 허위 Runtime PASS 금지
 
+<a id="mission-audit"></a>
 ## 15개 미션 구조 감사
 
 | 미션 | Canonical 구조 | 판정 |
@@ -40,6 +65,7 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 | B7-1 | Guide/Checklist/Reference Build/Status/docs/environment/evidence/reference | PASS after remediation |
 | B7-2 | Guide/Checklist/Reference Build/Status/docs/environment/evidence/reference | PASS |
 
+<a id="issues"></a>
 ## 발견한 Canonical 문제
 
 ### B6-2
@@ -72,6 +98,7 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 - `docs/evaluation-qa.md`를 Mission 기반 설명 연습 자료로 구분
 - `REFERENCE-STATUS.md`와 root README 동기화
 
+<a id="result"></a>
 ## 최종 결과
 
 | Gate | 결과 |
@@ -87,6 +114,7 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 
 **Canonical Final Consistency Audit: PASS — 15 / 15**
 
+<a id="interpretation"></a>
 ## 상태 해석
 
 - Phase A Reference Build: **15 / 15 CORE READY**
@@ -95,20 +123,24 @@ Phase A Reference Build가 15/15 CORE READY에 도달한 뒤, 각 미션의 R01 
 
 Reference/Canonical 완료는 공식 미션 통과가 아닙니다.
 
-## 다음 단계
+<a id="handoff"></a>
+## 현재 Hand-off
 
-**Phase B — Cross-Mission Audit**로 이동합니다.
+이 감사가 끝난 뒤 수행된 **Phase B — Cross-Mission Audit은 이미 COMPLETE / BLOCKER 0**입니다.
 
-Phase B에서는 개별 미션의 구현을 다시 늘리는 것이 아니라 전체 15개를 횡단하여 다음 충돌을 제거합니다.
+현재는 다음 흐름입니다.
 
 ```text
-OS / WSL / systemd
-→ Python / Node / DB 버전
-→ Port / Service
-→ Secret / API env naming
-→ Git / GitHub collaboration
-→ Cloud / Deployment
-→ Evidence
-→ 선후관계 / 환경 재사용
-→ Phase C Runtime Runbook 확정
+Canonical Audit ✅
+→ Cross-Mission Audit ✅
+→ Phase C Runtime CLEAR 🟡
+→ B1-1 ACTIVE
 ```
+
+현재 실행 상세는 다음 문서를 사용합니다.
+
+- [NEXT-ACTIONS.md](NEXT-ACTIONS.md)
+- [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)
+- [PHASE-C-RUNBOOK.md](PHASE-C-RUNBOOK.md)
+
+역사적 감사 문서의 당시 결과는 보존하되, “다음 단계” 표현이 현재 진행 상태로 오해되지 않도록 현재 Hand-off를 함께 표시합니다.
