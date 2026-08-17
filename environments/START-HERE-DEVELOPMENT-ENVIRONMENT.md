@@ -22,6 +22,158 @@
 
 ---
 
+<a id="quick-start"></a>
+## 🚀 빠른 시작(Quick Start)
+
+> **이미 OrbStack/WSL2의 Ubuntu 24.04에 들어갈 수 있고 Git을 사용할 수 있는 분**을 위한 빠른 재진입 경로입니다.
+> 처음 개발환경을 만드는 분은 Quick Start를 건너뛰고 [PART 1 — 먼저 내 환경을 고르기](#choose-environment)부터 진행하세요.
+
+### 1) 먼저 Ubuntu Terminal로 들어가기
+
+macOS + OrbStack을 이미 준비했다면 macOS Terminal에서:
+
+```bash
+ssh orb
+```
+
+Windows + WSL2를 이미 준비했다면 PowerShell에서 실제 배포판 이름을 확인한 뒤:
+
+```powershell
+wsl -l -v
+wsl -d Ubuntu-24.04
+```
+
+> `Ubuntu-24.04`라는 이름은 설치 방식에 따라 다를 수 있습니다. `wsl -l -v`에 표시된 실제 이름을 사용합니다.
+
+### 2) Ubuntu에서 Control Tower 확인
+
+#### 이미 Repository가 있는 경우
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+pwd
+git status --short
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+줄별 의미:
+
+```text
+1. cd ...
+   → 기존 Control Tower Repository로 이동합니다.
+
+2. pwd
+   → 현재 위치가 Ubuntu의 $HOME/codyssey/codyssey-basic인지 확인합니다.
+
+3. git status --short
+   → 예상하지 않은 변경 파일이 있는지 확인합니다.
+
+4. bootstrap.sh --check
+   → 공통 필수 개발도구가 준비되었는지 설치 없이 검사합니다.
+
+5. verify-user-identity.sh
+   → Git 작성자 정보와 GitHub CLI 인증 상태를 확인합니다.
+```
+
+#### Repository가 아직 없는 경우
+
+```bash
+mkdir -p "$HOME/codyssey"
+cd "$HOME/codyssey"
+git clone https://github.com/MetaStudy999/codyssey-basic.git
+cd codyssey-basic
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+줄별 의미:
+
+```text
+1. mkdir -p ...
+   → Ubuntu 홈 아래에 codyssey 작업 폴더를 만듭니다.
+
+2. cd ...
+   → 작업 폴더로 이동합니다.
+
+3. git clone ...
+   → 공개 Control Tower Repository를 Ubuntu로 복제합니다.
+
+4. cd codyssey-basic
+   → 복제한 Repository로 이동합니다.
+
+5. bootstrap.sh --check
+   → 공통 개발도구 준비 상태를 확인합니다.
+
+6. verify-user-identity.sh
+   → Git/GitHub 사용자 상태를 확인합니다.
+```
+
+### Quick Start 정상 기준
+
+```text
+[ ] Repository가 /home/<user>/codyssey/codyssey-basic 계열에 있다.
+[ ] Bootstrap required 항목이 PASS다.
+[ ] 예상하지 않은 Git 변경이 없다.
+[ ] Git/GitHub 사용자 상태를 확인했다.
+```
+
+```text
+✅ GO
+→ 모두 만족하면 [PART 7 — 이제 현재 Mission 시작](#mission-start)으로 이동합니다.
+
+❌ STOP
+→ 하나라도 실패하면 Quick Start에서 억지로 해결하지 않습니다.
+→ 아래 목차에서 해당 상세 STEP으로 이동해 원인 확인 → 최소 수정 → Verify를 수행합니다.
+```
+
+재실행 안전성:
+
+```text
+ssh orb                         → 🟢 SAFE TO RERUN
+wsl -l -v                       → 🟢 SAFE TO RERUN
+pwd / git status --short        → 🟢 SAFE TO RERUN
+bootstrap.sh --check            → 🟢 SAFE TO RERUN
+verify-user-identity.sh         → 🟢 SAFE TO RERUN
+git clone                       → 🟡 CHECK BEFORE RERUN
+                                  같은 Repository 폴더가 이미 있으면 다시 clone하지 않습니다.
+```
+
+---
+
+<a id="toc"></a>
+## 📑 목차(Table of Contents)
+
+- [🚀 빠른 시작(Quick Start)](#quick-start)
+- [0. 실행 안전 규칙](#safety-rules)
+- [PART 1 — 먼저 내 환경을 고르기](#choose-environment)
+- [PART 2A — macOS + OrbStack 따라하기](#macos-orbstack)
+  - MAC STEP 01 — 공용 Mac 권한
+  - MAC STEP 02 — OrbStack Ubuntu 24.04
+  - MAC STEP 03 — VS Code
+  - MAC STEP 04 — Remote - SSH
+- [PART 2B — Windows 11 + WSL2 따라하기](#windows-wsl2)
+  - WIN STEP 01 — WSL2 상태
+  - WIN STEP 02 — Ubuntu 24.04
+  - WIN STEP 03 — VS Code Remote - WSL
+- [PART 3 — 공통 Ubuntu 단계](#common-ubuntu)
+  - COMMON STEP 01 — Runtime 확인
+  - COMMON STEP 02 — Workspace
+  - COMMON STEP 03 — Control Tower Clone
+  - COMMON STEP 04 — Bootstrap
+  - COMMON STEP 05 — Git/GitHub
+- [PART 4 — Mission에 필요한 도구만 준비하기](#mission-tools)
+- [PART 5 — Editor/IDE와 AI CLI 선택](#ide-ai)
+- [PART 6 — 개발환경 최종 Verify](#final-verify)
+- [PART 7 — 이제 현재 Mission 시작](#mission-start)
+- [문제가 생겼을 때 — 공통 복구 순서](#troubleshooting)
+- [Cloud / API / AI 비용 자원 안전 기준](#cost-resource-guard)
+- [관련 기준](#related-standards)
+- [이 문서의 BEGINNER READY 목표](#beginner-ready-goal)
+
+---
+
+<a id="safety-rules"></a>
 ## 0. 이 문서에서 사용하는 실행 안전 규칙
 
 입문자는 명령 자체보다 **어디에서 실행했는지, 실행 전에 무엇을 확인했는지, 실패했을 때 멈췄는지** 때문에 더 자주 문제가 생깁니다.
@@ -60,6 +212,7 @@
 
 ---
 
+<a id="choose-environment"></a>
 # PART 1 — 먼저 내 환경을 고르기
 
 ## A. macOS — 기본 권장 경로
@@ -86,6 +239,7 @@ Docker는 공식 Mission/Evaluation이 요구하지 않는 한 **선택 학습(O
 
 ---
 
+<a id="macos-orbstack"></a>
 # PART 2A — macOS + OrbStack 따라하기
 
 ## MAC STEP 01 — 공용 Mac의 권한 상태 이해하기
@@ -296,6 +450,7 @@ Repository를 받은 뒤 사용할 기본 폴더는 다음 계열입니다.
 
 ---
 
+<a id="windows-wsl2"></a>
 # PART 2B — Windows 11 + WSL2 따라하기
 
 ## WIN STEP 01 — WSL2 상태 확인하기
@@ -451,6 +606,7 @@ code .
 
 ---
 
+<a id="common-ubuntu"></a>
 # PART 3 — macOS/Windows 공통 Ubuntu 단계
 
 이제부터 아래 명령은 **macOS Host Terminal이나 Windows PowerShell이 아니라 Ubuntu Terminal에서 실행**합니다.
@@ -793,6 +949,7 @@ git config --global ... → 🟡 CHECK BEFORE RERUN
 
 ---
 
+<a id="mission-tools"></a>
 # PART 4 — Mission에 필요한 도구만 준비하기
 
 ## Python Mission
@@ -883,6 +1040,7 @@ SSH, UFW, Nginx, DB처럼 상태를 크게 바꾸는 작업은 Mission `BEGINNER
 
 ---
 
+<a id="ide-ai"></a>
 # PART 5 — Editor/IDE와 AI CLI 선택
 
 ## 기본 Editor/IDE
@@ -946,6 +1104,7 @@ AI가 만든 결과만으로 PASS/CLEAR/Evidence를 선언하지 않습니다.
 
 ---
 
+<a id="final-verify"></a>
 # PART 6 — 개발환경 최종 Verify
 
 ## FINAL STEP 01 — 실행 위치와 도구 최종 확인
@@ -1041,6 +1200,7 @@ Python     → Python Mission이면 Ubuntu/repo-local 환경
 
 ---
 
+<a id="mission-start"></a>
 # PART 7 — 이제 현재 Mission 시작
 
 Control Tower에서 현재 해야 할 작업을 확인합니다.
@@ -1066,6 +1226,7 @@ cat training/round-01-clear/NEXT-ACTIONS.md
 
 ---
 
+<a id="troubleshooting"></a>
 # 문제가 생겼을 때 — 공통 복구 순서
 
 아래 순서대로 한 단계씩 확인합니다.
@@ -1099,6 +1260,7 @@ Repository 내부 가이드와 공식 제품 문서를 우선합니다.
 
 ---
 
+<a id="cost-resource-guard"></a>
 # Cloud / API / AI 비용 자원 안전 기준
 
 B6/B7 또는 AI API처럼 비용 가능성이 있는 단계에서는 실제 생성 전에 다음을 확인합니다.
@@ -1126,8 +1288,10 @@ Create
 
 ---
 
+<a id="related-standards"></a>
 # 관련 기준
 
+- [`../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md`](../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차 / Quick Start 공통 기준
 - [`../standards/BEGINNER-TRAINING-STANDARD.md`](../standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 학습·실행 안전 상위 기준
 - [`../standards/COMMAND-CODE-EXPLANATION-STANDARD.md`](../standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 줄별 해설 / Copy-Paste / Rerun 기준
 - [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발도구 필수/선택/no-admin 기준
@@ -1139,6 +1303,7 @@ Create
 
 ---
 
+<a id="beginner-ready-goal"></a>
 ## 이 문서의 BEGINNER READY 목표
 
 이 문서를 따라간 입문자는 최소한 다음을 자기 말로 설명하고 직접 확인할 수 있어야 합니다.
