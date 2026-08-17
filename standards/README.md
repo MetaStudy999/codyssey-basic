@@ -4,6 +4,49 @@
 
 목표는 문서마다 기준이 달라지는 것을 막고, 입문자가 어느 미션을 열어도 같은 원칙으로 이해·실행·검증할 수 있게 하는 것입니다.
 
+## 한눈에 보기(Quick Read)
+
+기준을 사용할 때 가장 중요한 순서는 다음입니다.
+
+```text
+공식 Source 확인
+→ 현재 실제 상태 확인
+→ 문서 역할 판단
+→ 필요한 기준만 적용
+→ 실제 대상 문서 수정
+→ 다시 열어 VERIFY
+```
+
+즉 **기준을 많이 적용하는 것보다 필요한 기준을 실제 문서와 Runtime에 정확히 적용하는 것**을 우선합니다.
+
+Control Tower 문서별 적용 현황은 다음 문서에서 관리합니다.
+
+- [`../docs/CONTROL-TOWER-DOCUMENT-MAP.md`](../docs/CONTROL-TOWER-DOCUMENT-MAP.md) — Root/docs/environments/training/standards 문서 적용 지도
+
+## 📑 목차
+
+- [기준 적용 우선순위](#priority)
+- [1. 입문자 훈련·문서 생성](#beginner-training)
+- [2. README 정보 구조](#readme-ia)
+- [2.1 목차·빠른 시작](#navigation)
+- [3. 입문자 문서 품질 감사](#beginner-audit)
+- [4. 명령어·코드 한 줄 해설](#command-code)
+- [5. 개발환경·개발 Tool Set](#toolset)
+- [5.1 주요 LLM/AI CLI](#ai-cli)
+- [6. 한글·영어 용어](#terminology)
+- [7. Canonical Reference](#canonical)
+- [8. 환경](#environment)
+- [9. Cross-platform Git/File](#cross-platform)
+- [10. VS Code Remote Ubuntu](#vscode)
+- [새 입문자 문서 생성 흐름](#creation-flow)
+- [문서 역할 분리](#roles)
+- [문서 품질과 Mission 진행의 관계](#quality-progress)
+- [금지](#forbidden)
+- [관리 원칙](#management)
+
+---
+
+<a id="priority"></a>
 ## 기준 적용 우선순위
 
 ```text
@@ -24,6 +67,7 @@ Control Tower의 현재 운영 상태
 
 ## 문서 생성 시 반드시 보는 기준
 
+<a id="beginner-training"></a>
 ### 1. 입문자 훈련·문서 생성
 
 [BEGINNER-TRAINING-STANDARD.md](BEGINNER-TRAINING-STANDARD.md)
@@ -62,6 +106,7 @@ Self-contained First
 
 문서 품질 내부 판정은 `BEGINNER READY`를 사용하며, 이는 공식 Mission CLEAR와 별개입니다.
 
+<a id="readme-ia"></a>
 ### 2. README 정보 구조
 
 [README-INFORMATION-ARCHITECTURE-STANDARD.md](README-INFORMATION-ARCHITECTURE-STANDARD.md)
@@ -91,6 +136,7 @@ Self-contained First
 - 미션 정보가 많은 경우 미션당 3행(`미션 / 과정 / 시작`) 구조
 - `시작` 행에서 저장소(Repository) + `▶ 입문자 따라하기(Beginner Guide)` 직접 연결
 
+<a id="navigation"></a>
 ### 2.1 목차·빠른 시작(Quick Start)
 
 [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md)
@@ -119,6 +165,7 @@ Self-contained First
 
 즉 **모든 문서는 빠르게 진입할 수 있어야 하지만, 모든 문서에 동일한 Quick Start 명령 블록을 기계적으로 넣지는 않습니다.**
 
+<a id="beginner-audit"></a>
 ### 3. 입문자 문서 품질 감사
 
 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)
@@ -145,6 +192,7 @@ Self-contained First
 
 현재 Active Mission을 P0로 두고, 다음 필수 미션(P1), 선택 미션(P2) 순서로 실제 실행 전에 감사·교정합니다. 표준 변경만을 이유로 15개 문서를 기계적으로 한꺼번에 다시 쓰지 않습니다.
 
+<a id="command-code"></a>
 ### 4. 명령어·코드 한 줄 해설
 
 [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md)
@@ -176,6 +224,7 @@ R01에서는 다음을 우선합니다.
 - Shell prompt/설명/예상 출력은 실행 블록에 섞지 않음
 - 상태 변경 명령은 필요한 경우 재실행 안전 등급을 표시
 
+<a id="toolset"></a>
 ### 5. 개발환경·개발 Tool Set
 
 [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md)
@@ -209,6 +258,7 @@ Host/권한 확인
 
 입문자 실제 설치·설정 순서는 [`../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용합니다.
 
+<a id="ai-cli"></a>
 ### 5.1 주요 LLM/AI CLI
 
 [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md)
@@ -230,6 +280,7 @@ AI CLI 하나 선택
 
 공용 Mac에서는 시스템 권한을 우회하지 않고 사용자 영역 또는 OrbStack Ubuntu 경로를 우선합니다.
 
+<a id="terminology"></a>
 ### 6. 한글·영어 용어
 
 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)
@@ -242,24 +293,28 @@ AI CLI 하나 선택
 
 명령어, 경로, 파일명, 코드 식별자, 제품 공식명은 임의 번역하지 않습니다.
 
+<a id="canonical"></a>
 ### 7. Canonical Reference
 
 [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md)
 
 각 미션의 Reference, Beginner Guide, Checklist, Verify, Evidence가 어떤 역할을 갖는지 관리합니다.
 
+<a id="environment"></a>
 ### 8. 환경
 
 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)
 
 Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset, 공용 Mac no-admin 원칙과 실행 위치/Preflight/Checkpoint/비용 자원 보호를 관리합니다.
 
+<a id="cross-platform"></a>
 ### 9. Cross-platform Git/File
 
 [CROSS-PLATFORM-GIT-STANDARD.md](CROSS-PLATFORM-GIT-STANDARD.md)
 
 UTF-8, LF, `.gitattributes`, `.editorconfig`, executable bit, Windows/macOS/Linux 간 파일 차이를 관리합니다.
 
+<a id="vscode"></a>
 ### 10. VS Code Remote Ubuntu
 
 [VS-CODE-REMOTE-UBUNTU-STANDARD.md](VS-CODE-REMOTE-UBUNTU-STANDARD.md)
@@ -268,6 +323,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 ---
 
+<a id="creation-flow"></a>
 ## 새 입문자 문서 생성 흐름
 
 ```text
@@ -297,13 +353,16 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 13. 링크·명령·경로·상태 정합성 확인
         ↓
-14. Beginner Documentation Audit
+14. 실제 대상 문서 다시 fetch하여 VERIFY
         ↓
-15. BEGINNER READY 또는 보완 필요
+15. Beginner Documentation Audit
+        ↓
+16. BEGINNER READY 또는 보완 필요
 ```
 
 ---
 
+<a id="roles"></a>
 ## 문서 역할 분리
 
 가능하면 다음 역할을 유지합니다.
@@ -314,6 +373,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 | `BEGINNER-GUIDE.md` | Quick Start + 실제 수행의 대표 학습 경로 |
 | `START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 개발환경 Quick Start + 처음부터 끝까지 시작 경로 |
 | `DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` | 모든 문서의 목차/빠른 진입 적용 기준 |
+| `CONTROL-TOWER-DOCUMENT-MAP.md` | 통합 레포 문서별 역할·적용·검증 상태 |
 | `AI-CLI-TOOLSET-STANDARD.md` | 주요 AI CLI 설치·인증·안전 사용 기준 |
 | `START-CHECK.md` | 선행 조건·선행 지식 확인 |
 | `prerequisites.md` | 실행 전 환경·도구 준비 |
@@ -325,24 +385,27 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 ---
 
+<a id="quality-progress"></a>
 ## 문서 품질과 Mission 진행의 관계
 
 문서 표준은 학습 품질을 높이기 위한 내부 기준입니다.
 
 ```text
-문서 오류가 Runtime/평가를 막음
+기준 누락/문서 오류가 Runtime·안전·평가를 잘못 이끔
 → 즉시 최소 수정
+→ 실제 문서 재확인
 → 재검증
 
-문서 개선이 현재 Runtime과 무관함
-→ 개선 후보로 기록
+현재 Runtime과 무관한 형식/고도화
+→ 후속 개선 후보
 → 미션 실행 계속
 ```
 
-문서 품질 개선 때문에 이미 준비된 실제 미션 수행을 불필요하게 중단하지 않습니다.
+**진도와 기준은 경쟁 관계가 아닙니다. 기준은 잘못된 진도를 막는 안전 레일이며, 기준 설계 자체가 끝없는 병목이 되지 않도록 실제 사용 순서에 맞춰 적용합니다.**
 
 ---
 
+<a id="forbidden"></a>
 ## 금지
 
 - 공식 Source를 확인하지 않고 Mission 요구를 추정하여 작성
@@ -375,6 +438,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 ---
 
+<a id="management"></a>
 ## 관리 원칙
 
 기준을 변경할 때는 다음 순서를 사용합니다.
@@ -383,8 +447,10 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 기준 문서 수정
 → 관련 표준과 충돌 확인
 → 현재 Active Mission에 미치는 영향 확인
-→ Runtime blocker만 즉시 교정
-→ 나머지 기존 문서는 순차 반영
+→ 실제 대상 문서에 APPLY
+→ 대상 문서를 다시 VERIFY
+→ Runtime blocker/오판정은 즉시 교정
+→ 나머지 기존 문서는 실제 사용 순서로 순차 반영
 ```
 
 15개 미션 전체를 기준 변경만을 이유로 기계적으로 한 번에 재작성하지 않습니다. 대신 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)에서 현재 Active Mission부터 실행 순서에 맞춰 감사·교정합니다.
