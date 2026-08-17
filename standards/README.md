@@ -38,12 +38,26 @@ Self-contained First
 → 한글 + 영어 원어
 → 개념/도식
 → 최소 예제
+→ 실행 위치/Preflight
 → 실제 따라하기
 → 명령·코드 해설
-→ 정상 결과
-→ 오류 복구
+→ 정상 결과와 정상 범위
+→ Rerun Safety / STOP-GO
+→ 오류 복구 / Checkpoint
 → 완료 확인
 → 평가 연결
+```
+
+입문자 실행 안전 7원칙:
+
+```text
+1. 실행 위치(Context)
+2. Preflight + STOP / GO
+3. Rerun Safety
+4. Copy & Paste Safety
+5. Output Variation
+6. Checkpoint / Recovery
+7. Cost / Resource Guard
 ```
 
 문서 품질 내부 판정은 `BEGINNER READY`를 사용하며, 이는 공식 Mission CLEAR와 별개입니다.
@@ -90,9 +104,13 @@ Self-contained First
 → 메인 README 직접 연결
 → 현재 상태/환경 정합성
 → 실제 따라하기
+→ 실행 위치/Preflight
 → 명령·코드 줄별 해설
+→ Copy/Paste / Output Variation
+→ Rerun Safety / STOP-GO
+→ Checkpoint / Recovery
 → 정상 결과/오류 복구
-→ 평가/증빙 연결
+→ 평가/증빙/비용 자원 Cleanup 연결
 → BEGINNER READY 판정
 ```
 
@@ -112,7 +130,9 @@ Self-contained First
 → 중요한 옵션/인자 해설
 → 의미 있는 코드/SQL/설정 줄 해설
 → 전체 흐름
-→ 예상 결과
+→ 예상 결과와 정상 범위
+→ Copy/Paste Safety
+→ Rerun Safety
 → 오류/복구
 ```
 
@@ -124,6 +144,8 @@ R01에서는 다음을 우선합니다.
 - Nginx/systemd/YAML/JSON 등: 핵심 directive/key 설명
 - 빈 줄·단순 닫는 괄호·종료 태그: 독립 의미가 없으면 논리 단위로 묶어서 설명
 - 실행 블록 안에 과도한 주석을 섞기보다 **실행본 + 바로 아래 줄별 해설**을 기본 형식으로 사용
+- Shell prompt/설명/예상 출력은 실행 블록에 섞지 않음
+- 상태 변경 명령은 필요한 경우 재실행 안전 등급을 표시
 
 ### 5. 개발환경·개발 Tool Set
 
@@ -201,7 +223,7 @@ AI CLI 하나 선택
 
 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)
 
-Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset, 공용 Mac no-admin 원칙을 관리합니다.
+Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset, 공용 Mac no-admin 원칙과 실행 위치/Preflight/Checkpoint/비용 자원 보호를 관리합니다.
 
 ### 9. Cross-platform Git/File
 
@@ -228,23 +250,25 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 4. BEGINNER-TRAINING-STANDARD 적용
         ↓
-5. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
+5. 실행 위치 / Preflight / STOP-GO / Rerun Safety 확인
         ↓
-6. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
+6. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
         ↓
-7. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
+7. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
         ↓
-8. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
+8. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
         ↓
-9. TERMINOLOGY-STANDARD 적용
+9. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-10. 필요한 Environment/Canonical Standard 적용
+10. TERMINOLOGY-STANDARD 적용
         ↓
-11. 링크·명령·경로·상태 정합성 확인
+11. 필요한 Environment/Canonical Standard 적용
         ↓
-12. Beginner Documentation Audit
+12. 링크·명령·경로·상태 정합성 확인
         ↓
-13. BEGINNER READY 또는 보완 필요
+13. Beginner Documentation Audit
+        ↓
+14. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -292,15 +316,19 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 공식 Source를 확인하지 않고 Mission 요구를 추정하여 작성
 - 과거 Phase/OS/경로를 현재 상태처럼 복사
 - 영어 용어만 연속 사용하여 입문자 이해를 전제
+- 실행 위치가 불명확한 상태에서 Host/Ubuntu/Cloud 명령을 섞어 안내
+- Preflight 실패 후에도 다음 Step으로 계속 진행하도록 안내
 - 여러 실행 명령을 제시하고 일부 핵심 명령만 설명하여 나머지를 입문자가 추측하게 함
 - 중요한 옵션·인자·입력값의 의미를 생략
 - 의미 있는 코드/SQL/설정 줄을 설명하지 않은 채 전체 코드만 제공
-- 명령만 제시하고 정상 결과/의미/복구 방법을 생략
+- 명령/설명/예상 출력을 하나의 복사용 코드 블록에 섞음
+- 위험 명령의 반복 실행 영향을 설명하지 않음
 - 모든 괄호/빈 줄/종료 태그까지 기계적으로 반복 설명하여 핵심 흐름을 가림
 - 공용/관리형 Mac에서 관리자 암호·sudo·MDM/보안정책 우회를 정상 설치 절차로 안내
 - no-admin 환경에서 시스템 전역 설치만 제시하고 사용자 영역/Remote/CLI 대안을 제공하지 않음
 - 여러 AI CLI가 같은 Worktree를 동시에 수정하게 하여 변경 충돌을 만드는 운영
 - AI가 만든 결과를 실제 Verify 없이 PASS/CLEAR/Evidence로 취급
+- Cloud/API/AI 유료 자원을 만들게 하면서 비용 가능성과 Cleanup을 설명하지 않음
 - 외부 블로그·영상이 없으면 수행할 수 없는 문서 구조
 - README 첫 화면에 운영자용 상세 정책을 과도하게 노출
 - 긴 README에 탐색용 목차 없이 정보만 누적
