@@ -48,6 +48,8 @@ README를 처음 연 입문자는 1~2분 안에 다음을 알 수 있어야 합�
 - 필수/선택/Term Project 구분
 - 선행 관계
 - 각 미션 Repository 링크
+- 각 미션 `BEGINNER-GUIDE.md` 직접 링크
+- `START-CHECK.md`가 실제로 존재하고 선행 확인이 필요하면 시작 점검 링크
 - 입문자가 가로 스크롤 없이 읽을 수 있는 구조
 
 정보가 많은 미션 표는 **미션당 3행**을 우선합니다.
@@ -55,8 +57,19 @@ README를 처음 연 입문자는 1~2분 안에 다음을 알 수 있어야 합�
 ```text
 미션
 과정
-저장소
+시작
 ```
+
+`시작` 행은 최소한 다음 두 진입점을 제공합니다.
+
+```text
+저장소(Repository)
++ ▶ 입문자 따라하기(Beginner Guide)
+```
+
+따라서 학습자가 미션 제목을 확인한 뒤 다른 문서나 검색을 거치지 않고 **한 번의 클릭으로 실제 따라하기 문서에 진입**할 수 있어야 합니다.
+
+`START-CHECK.md`가 필요한 미션은 `시작` 행에 추가할 수 있지만, 존재하지 않는 파일 링크를 형식상 만들지 않습니다.
 
 ### 3부 — 상세 운영 정보
 
@@ -130,6 +143,8 @@ README가 길어지면 상단에 **클릭 가능한 목차**를 제공합니다.
 
 나머지 문서는 `상세 문서`, `운영 문서`, `더 알아보기` 영역으로 분리합니다.
 
+단, **전체 미션 지도에서는 각 미션의 Beginner Guide 직접 링크를 모두 제공**합니다. 이는 첫 화면의 문서 수를 늘리는 것이 아니라, 사용자가 특정 미션을 선택했을 때 바로 수행 경로로 이동하도록 하기 위한 탐색(Navigation) 기능입니다.
+
 ## 6. 한글 + 영어 표기
 
 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)를 따릅니다.
@@ -140,6 +155,7 @@ README가 길어지면 상단에 **클릭 가능한 목차**를 제공합니다.
 증빙 자료(Evidence)
 완료(CLEAR)
 저장소(Repository)
+입문자 따라하기(Beginner Guide)
 ```
 
 명령어, 파일명, 경로, 제품명은 임의 번역하지 않습니다.
@@ -180,6 +196,7 @@ README
 → PROGRESS
 → NEXT-ACTIONS
 → Mission Index
+→ 각 Mission Beginner Guide
 → Environment
 → Standards
 → Detailed Runbook
@@ -194,6 +211,9 @@ README
 [ ] 현재 해야 할 행동이 첫 화면에 있다.
 [ ] 첫 명령과 정상 결과가 있다.
 [ ] 현재 Mission과 Beginner Guide가 바로 연결된다.
+[ ] 전체 미션 지도에서 각 Mission의 Beginner Guide로 직접 이동할 수 있다.
+[ ] 미션당 3행을 쓰는 경우 `미션 / 과정 / 시작` 구조이며 시작 행에 Repository + Beginner Guide가 있다.
+[ ] 존재하지 않는 START-CHECK 링크를 형식상 만들지 않았다.
 [ ] 처음 볼 문서는 3개 이내로 제한했다.
 [ ] 클릭 가능한 목차가 있다(긴 README인 경우).
 [ ] 1부/2부/3부 또는 동등한 계층이 명확하다.
@@ -216,7 +236,10 @@ README
 + 정상/실패 여부를 판단할 수 있음
 + 현재 미션으로 이동할 수 있음
 + 전체 미션 지도를 볼 수 있음
++ 각 미션의 Beginner Guide로 한 번에 이동할 수 있음
 + 운영 상세를 필요할 때만 열어볼 수 있음
 ```
 
 `BEGINNER READY`는 내부 문서 품질 기준이며 공식 Mission `CLEAR`와는 별개입니다.
+
+관련 내용 감사는 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)에서 관리합니다.
