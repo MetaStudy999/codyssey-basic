@@ -93,17 +93,19 @@ Python     = Ubuntu Python
 
 IDE가 바뀌어도 Runtime의 Source of Truth는 바뀌지 않습니다.
 
-### LEVEL 5 — AI 개발 도구
+### LEVEL 5 — AI 개발 도구 / 주요 CLI
 
 ```text
 ChatGPT
-Codex
-Claude
-Gemini
-Antigravity CLI (agy)
+OpenAI Codex CLI        → codex
+Anthropic Claude Code   → claude
+Google Gemini CLI       → gemini
+Google Antigravity CLI  → agy
 ```
 
 AI 도구는 공식 요구를 대신하지 않으며, 생성 결과는 사람이 검토하고 실제 Verify/Evidence로 확인합니다.
+
+설치·인증·no-admin·Remote/SSH·동시 사용 기준은 [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md)를 사용합니다.
 
 ---
 
@@ -243,6 +245,25 @@ Host Mac에 패키지를 많이 설치하기보다 Ubuntu Runtime에 개발 도�
 
 Antigravity IDE의 공식 문서는 로컬 설치를 요구하지만 **관리형 Mac에서 사용자 영역 설치가 항상 허용된다고 보장하지는 않습니다.** 따라서 IDE 설치가 막히면 관리자 정책을 우회하지 않고 CLI 또는 기존 허용 IDE를 사용합니다.
 
+### 4.7 주요 AI CLI의 no-admin 우선순위
+
+```text
+Codex CLI standalone
+→ 기본적으로 ~/.local/bin/codex 사용자 영역
+
+Antigravity CLI
+→ 기본적으로 ~/.local/bin/agy 사용자 영역
+
+Gemini CLI
+→ npx @google/gemini-cli 로 영구 설치 없이 먼저 실행 가능
+
+Claude Code
+→ sudo npm install -g 금지
+→ Ubuntu 또는 사용자 소유 npm/native 설치 경로 우선
+```
+
+세부 설치·인증·검증 방법은 [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md)를 따릅니다.
+
 ---
 
 ## 5. macOS 공용 PC Golden Path
@@ -260,8 +281,9 @@ STEP 9  필요한 경우 Bootstrap --install
 STEP 10 Git/GitHub 사용자 상태 확인
 STEP 11 현재 Mission package 확인
 STEP 12 Project .venv/Node 환경 구성
-STEP 13 Verify
-STEP 14 BEGINNER-GUIDE 시작
+STEP 13 필요한 경우 AI CLI 하나 선택·검증
+STEP 14 Verify
+STEP 15 BEGINNER-GUIDE 시작
 ```
 
 Host Mac에는 가능한 한 최소 도구만 두고, 실제 개발 의존성은 Ubuntu에 둡니다.
@@ -289,6 +311,18 @@ Host Mac에는 가능한 한 최소 도구만 두고, 실제 개발 의존성은
 
 명령이 있으면 [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md)를 따릅니다.
 
+AI CLI라면 추가로 다음을 확인합니다.
+
+```text
+공식 인증 방식
+Repository 접근 범위
+명령 실행 승인 방식
+Secret 비노출
+작업 전 git status / Branch 확인
+동일 Worktree 동시 수정 금지
+변경 후 Diff / Test / Verify
+```
+
 ---
 
 ## 7. 설치 판단표
@@ -303,6 +337,9 @@ Host Mac에는 가능한 한 최소 도구만 두고, 실제 개발 의존성은
 | Python | 미션별 Runtime | Ubuntu | APT + repo-local `.venv` |
 | Node.js | 미션별 Runtime | Ubuntu | Mission 정책에 맞춰 설치 |
 | Antigravity IDE | 대체 IDE | 로컬 App | 허용될 때만, 정책 우회 금지 |
+| Codex CLI | 선택 AI CLI | Ubuntu 또는 사용자 영역 | official standalone 사용자 영역 우선 |
+| Claude Code | 선택 AI CLI | Ubuntu | `sudo npm install -g` 금지, 사용자 소유 설치 우선 |
+| Gemini CLI | 선택 AI CLI | Ubuntu | `npx` 무설치 실행 우선 검토 |
 | Antigravity CLI | 선택 AI CLI | `~/.local/bin/agy` | **사용자 영역 우선 경로** |
 | Docker | 선택 Training Layer | OrbStack/WSL2 | 기본 Mission Gate 아님 |
 
@@ -320,7 +357,17 @@ Host Mac에는 가능한 한 최소 도구만 두고, 실제 개발 의존성은
 + 설치 후 정상 여부를 스스로 확인할 수 있음
 + 실패 시 다음 대안을 알 수 있음
 + Repository/Terminal/Runtime 위치를 혼동하지 않음
++ AI CLI 사용 시 한 Worktree 한 실제 수정 Agent 원칙을 지킴
 + 현재 Mission으로 바로 이동할 수 있음
 ```
 
 개발도구가 많이 설치되었다는 사실만으로 BEGINNER READY가 되지 않습니다.
+
+---
+
+## 9. 관련 기준
+
+- [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md) — Codex / Claude Code / Gemini / Antigravity CLI 상세 설치·인증·안전 기준
+- [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 한 줄 해설
+- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — Runtime/환경 기준
+- [../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 개발환경 처음부터 따라하기
