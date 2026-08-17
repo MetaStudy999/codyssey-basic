@@ -4,6 +4,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGE_FILE="$SCRIPT_DIR/base-packages.txt"
 
+bash "$SCRIPT_DIR/verify-prerequisites.sh"
+
 if [[ ! -f "$PACKAGE_FILE" ]]; then
   echo "[FAIL] package file not found: $PACKAGE_FILE"
   exit 2
@@ -22,7 +24,8 @@ for pkg in "${PACKAGES[@]}"; do
 done
 
 if ((${#missing[@]} == 0)); then
-  echo "[PASS] Ubuntu Base is already ready"
+  echo "[PASS] Ubuntu Base packages are already installed"
+  bash "$SCRIPT_DIR/verify-base.sh"
   exit 0
 fi
 
