@@ -16,6 +16,33 @@ Docker → 선택 Training Layer
 
 세부 Runtime Profile은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
 
+## Ubuntu 24.04 Package 계약
+
+Ubuntu 시스템 패키지는 **공통 최소 → 미션별 추가 → 프로젝트 내부 의존성**의 3계층으로 분리합니다.
+
+```text
+Layer 1 — Ubuntu Base
+공통 최소 APT package
+
+Layer 2 — Mission System Packages
+현재 Mission에 필요한 APT package만 추가
+
+Layer 3 — Project Dependencies
+.venv / pyproject.toml / requirements.txt / package.json / lock file
+```
+
+운영 원칙:
+
+- 15개 미션에서 쓸 가능성이 있다는 이유로 모든 패키지를 한 번에 설치하지 않음
+- 설치 전 `CHECK → MISSING → INSTALL → VERIFY` 순서 사용
+- System Python에 FastAPI/SQLAlchemy/AI SDK 등을 전역 설치하지 않음
+- Python Mission은 repository-local `.venv` 사용
+- Node dependency는 project manifest/lock file로 관리
+- 각 Mission의 추가 APT Source of Truth는 `training/round-01-clear/environment/ubuntu-packages.txt`
+- 실제 Mission/Evaluation이 특정 package/runtime/version을 요구하면 공식 요구가 최우선
+
+Control Tower의 상세 기준은 [`../environments/ubuntu/README.md`](../environments/ubuntu/README.md)와 [`../environments/ubuntu/MISSION-PACKAGE-MATRIX.md`](../environments/ubuntu/MISSION-PACKAGE-MATRIX.md)를 사용합니다.
+
 ## VS Code Remote Ubuntu Workspace 계약
 
 macOS에서 VS Code를 실행하더라도 `MAC-V`의 실제 개발 작업은 **OrbStack Ubuntu 24.04 내부의 Linux filesystem**을 기준으로 합니다.
@@ -82,6 +109,7 @@ environment/
 ├── README.md
 ├── prerequisites.md
 ├── versions.md
+├── ubuntu-packages.txt
 ├── setup.sh
 ├── verify.sh
 ├── reset.sh
@@ -95,6 +123,7 @@ environment/
 
 - `prerequisites.md`: 시작 조건과 필요한 도구
 - `versions.md`: 실제 검증한 버전
+- `ubuntu-packages.txt`: Base를 제외한 현재 Mission 전용 Ubuntu APT 패키지
 - `setup.sh`: 환경 재현용 구축 스크립트
 - `verify.sh`: 환경 정상 여부 확인
 - `reset.sh`: **현재 Round에서 만든 자원만** 안전하게 제거
