@@ -6,6 +6,38 @@ B1-1~B7-2의 FAST TRACK Runtime을 빠르게 수행하면서, Docker는 **선택
 
 공식 Mission/Evaluation과 `training/round-01-clear/PHASE-C-RUNBOOK.md`가 CLEAR의 Source of Truth입니다. 이 문서는 실행환경과 추가 학습 범위를 정리하며 공식 요구사항을 임의로 늘리지 않습니다.
 
+## 한눈에 보기(Quick Read)
+
+```text
+Primary Runtime          = Mission CLEAR의 실제 핵심 실행환경
+Secondary Platform Check = 권장 이식성 확인
+Docker Lab               = 선택 학습
+```
+
+현재 B1-1은:
+
+```text
+Primary   = MAC-V / OrbStack Ubuntu 24.04
+Secondary = WIN-V / WSL2 Ubuntu 24.04
+Docker    = 선택
+```
+
+> Matrix는 **환경 선택 지도**입니다. 실제 수행 명령은 각 Mission의 `BEGINNER-GUIDE.md`와 Phase C Runbook을 따릅니다.
+
+## 📑 목차
+
+- [Profile](#profiles)
+- [핵심 정책](#policy)
+- [15개 Mission Matrix](#matrix)
+- [Secondary Platform Check 운영](#secondary)
+- [Optional Docker Lab 운영](#docker-lab)
+- [Docker Lab 공통 체크](#docker-check)
+- [VM/Linux Machine 공통 체크](#linux-check)
+- [FAST TRACK과의 관계](#fast-track)
+
+---
+
+<a id="profiles"></a>
 ## Profile
 
 - `MAC-V`: macOS → OrbStack Ubuntu 24.04 Linux Machine — 기본 Primary
@@ -13,6 +45,7 @@ B1-1~B7-2의 FAST TRACK Runtime을 빠르게 수행하면서, Docker는 **선택
 - `MAC-D`: macOS → OrbStack Docker — 선택 Docker Lab
 - `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker — 선택 Docker Portability Lab
 
+<a id="policy"></a>
 ## 핵심 정책
 
 ```text
@@ -23,6 +56,7 @@ Docker Lab = 선택
 
 Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 그 공식 요구가 우선합니다.
 
+<a id="matrix"></a>
 ## 15개 Mission Matrix
 
 | Mission | Primary Runtime | Secondary Check | Optional Docker Lab | CLEAR에서 주의할 점 |
@@ -43,6 +77,7 @@ Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하�
 | **B7-1** | `MAC-V` local integration + 실제 배포 | `WIN-V` | AI chatbot stack containerization 연습 | browser/two-user/AI/deploy/team acceptance가 최종 기준 |
 | **B7-2** | `MAC-V` local integration + 실제 배포 | `WIN-V` | backend/frontend/DB/AI stack containerization 연습 | B7-1 결과 기반 ownership/AI/API/browser/deploy/team acceptance 필요 |
 
+<a id="secondary"></a>
 ## Secondary Platform Check 운영
 
 Primary Runtime에서 Mission CLEAR에 필요한 경로를 먼저 완료합니다. Windows/WSL2 쪽은 같은 미션을 처음부터 전부 반복하지 않고 필요한 핵심만 확인합니다.
@@ -56,6 +91,7 @@ Primary Runtime에서 Mission CLEAR에 필요한 경로를 먼저 완료합니�
 
 Secondary Check는 권장 학습이지만 공식 Mission이 요구하지 않는 한 CLEAR Gate가 아닙니다.
 
+<a id="docker-lab"></a>
 ## Optional Docker Lab 운영
 
 Docker는 FAST TRACK을 지연시키지 않는 범위에서 선택합니다.
@@ -76,6 +112,7 @@ Container 기동
 → 안전하게 정리
 ```
 
+<a id="docker-check"></a>
 ## Docker Lab 공통 체크
 
 - [ ] 이 Mission에서 Docker를 하는 학습 목적이 명확함
@@ -85,6 +122,7 @@ Container 기동
 - [ ] persistence가 필요하면 volume/path 확인
 - [ ] container 삭제 후 재현 가능
 
+<a id="linux-check"></a>
 ## VM/Linux Machine 공통 체크
 
 - [ ] Ubuntu 24.04 확인
@@ -95,6 +133,7 @@ Container 기동
 - [ ] Host/Guest 경계 확인
 - [ ] destructive change 전 backup/rollback 확인
 
+<a id="fast-track"></a>
 ## FAST TRACK과의 관계
 
 ```text
