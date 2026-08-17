@@ -32,7 +32,7 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫
 처음에는 아래 흐름만 기억하면 됩니다.
 
 ```text
-1. Ubuntu 개발환경 확인
+1. 개발환경 확인/준비
         ↓
 2. 지금 해야 할 일 확인
         ↓
@@ -47,9 +47,13 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫
 7. ✅ 미션 완료(CLEAR)
 ```
 
-## 1단계 — Ubuntu 개발환경 확인
+## 1단계 — 개발환경 확인
 
-통합 저장소(Control Tower)가 Ubuntu의 `$HOME/codyssey/codyssey-basic`에 있다고 가정합니다.
+**개발환경이 아직 준비되지 않았거나, 공용 Mac에서 관리자 권한 없이 시작해야 한다면 먼저 다음 문서를 따라갑니다.**
+
+👉 [START-HERE-DEVELOPMENT-ENVIRONMENT.md — 입문자 개발환경 처음부터 따라하기](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
+
+이미 Control Tower가 Ubuntu의 `$HOME/codyssey/codyssey-basic`에 준비되어 있다면 다음 확인부터 시작합니다.
 
 ```bash
 cd "$HOME/codyssey/codyssey-basic"
@@ -73,7 +77,7 @@ bash environments/ubuntu/bootstrap.sh --check
 
 `vim`, `tree`, `ripgrep`, `fd-find` 같은 권장 생산성 도구(Recommended Productivity Tools)는 선택이며 미션 시작을 막지 않습니다.
 
-환경 상세: [Ubuntu 개발환경 안내(Ubuntu Developer Bootstrap)](environments/ubuntu/README.md)
+환경 상세: [환경 시스템(Environment System)](environments/README.md)
 
 ## 2단계 — 지금 해야 할 일 확인
 
@@ -145,7 +149,22 @@ Windows 11 Pro
 
 Docker는 **선택 학습(Optional Training)**입니다. 공식 Mission/Evaluation에서 Docker를 요구하지 않는 한 Docker 미수행 자체를 기본 미션 실패 사유로 사용하지 않습니다.
 
-상세 환경 기준: [환경 시스템(Environment System)](environments/README.md)
+### 공용 Mac / 관리자 권한 없음
+
+공용·관리형 Mac에서는 관리자 암호나 MDM/보안정책을 우회하지 않습니다. 가능한 경우 **사용자 영역 설치 + OrbStack Ubuntu Runtime**을 우선하고, Host Mac에 개발 패키지를 대량 설치하지 않습니다.
+
+```text
+OrbStack Ubuntu
+→ VS Code 사용자/Portable 경로
+→ Git/Python/Node 등은 Ubuntu 안에서 관리
+→ 필요하면 Antigravity CLI ~/.local/bin/agy 사용
+```
+
+대체 개발환경으로 Cursor, Windsurf, JetBrains, **Google Antigravity IDE**를 사용할 수 있지만 R01 기본 문서는 VS Code를 기준으로 합니다. IDE가 바뀌어도 Repository/Terminal/Git/Python은 Ubuntu Runtime을 기준으로 유지합니다.
+
+- [입문자 개발환경 처음부터 따라하기](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
+- [개발 Tool Set / no-admin 기준](standards/DEVELOPMENT-TOOLSET-STANDARD.md)
+- [환경 시스템(Environment System)](environments/README.md)
 
 [목차로 돌아가기](#toc)
 
@@ -156,7 +175,7 @@ Docker는 **선택 학습(Optional Training)**입니다. 공식 Mission/Evaluati
 
 처음에는 아래 세 문서만 보면 됩니다.
 
-1. [environments/ubuntu/README.md](environments/ubuntu/README.md) — Ubuntu 개발환경 초기 준비(Bootstrap)
+1. [START-HERE-DEVELOPMENT-ENVIRONMENT.md](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md) — **개발환경·개발도구 처음부터 따라하기**
 2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 다음 작업 안내(Next Actions)
 3. [B1-1 BEGINNER-GUIDE.md](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) — 첫 미션 입문자 따라하기(Beginner Guide)
 
@@ -165,6 +184,7 @@ Docker는 **선택 학습(Optional Training)**입니다. 공식 Mission/Evaluati
 ### 자주 보는 파일 이름
 
 ```text
+START-HERE-DEVELOPMENT-ENVIRONMENT.md = 개발환경 처음부터 따라하기
 NEXT-ACTIONS.md          = 다음 작업 안내(Next Actions)
 PHASE-C-PREFLIGHT.md     = 실행 전 사전 점검(Preflight)
 BEGINNER-GUIDE.md        = 입문자 따라하기 가이드(Beginner Guide)
@@ -379,6 +399,7 @@ Docker 실습(Docker Lab) = 선택
 
 상세:
 
+- [START-HERE-DEVELOPMENT-ENVIRONMENT.md](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
 - [RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md)
 - [DOCKER-POLICY.md](environments/DOCKER-POLICY.md)
 - [MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md)
@@ -422,6 +443,7 @@ NO
 - [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 점검
 - [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 실제 실행 절차
 - [MISSION-INDEX.md](MISSION-INDEX.md) — 전체 미션 색인
+- [environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 개발환경 처음부터 따라하기
 - [environments/README.md](environments/README.md) — 환경 시스템
 
 [목차로 돌아가기](#toc)
@@ -437,9 +459,11 @@ NO
 2. [BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
 3. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
 4. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
-5. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
-6. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
-7. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
+5. [COMMAND-CODE-EXPLANATION-STANDARD.md](standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
+6. [DEVELOPMENT-TOOLSET-STANDARD.md](standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set·대체 IDE·공용 Mac no-admin 표준
+7. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
+8. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
+9. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
 
 ### README 생성 핵심 원칙
 
@@ -464,6 +488,7 @@ NO
 - 사용자는 현재 Mission의 `BEGINNER-GUIDE.md`를 위에서 아래로 따라 실제 Runtime을 수행합니다.
 - 메인 README의 각 미션 `시작` 행은 Repository와 `▶ 입문자 따라하기`를 직접 연결합니다.
 - 입문자 문서는 한글+영어 병기와 Self-contained First 원칙을 따릅니다.
+- 개발환경/Tool 문서는 관리자 권한 필요 여부와 no-admin 대안을 함께 설명합니다.
 - 가이드가 존재한다는 이유만으로 `BEGINNER READY`로 판정하지 않습니다. 상태/환경 정합성은 Beginner Documentation Audit에서 확인합니다.
 - 문서 개선만을 이유로 실제 Runtime을 불필요하게 중단하지 않습니다.
 
