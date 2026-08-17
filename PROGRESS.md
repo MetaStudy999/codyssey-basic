@@ -12,6 +12,38 @@
 
 > Phase A Reference Build, Canonical Final Consistency Audit, Phase B Cross-Mission Audit와 Runtime Runbook Freeze를 완료했습니다. 이제 FAST TRACK에 따라 **필수 미션을 먼저 모두 CLEAR한 뒤 선택 미션을 수행**합니다.
 
+## 🚀 빠른 상태 확인(Quick Status)
+
+```text
+현재 위치     = R01 / Phase C / Stage 1
+현재 미션     = B1-1 🟡 ACTIVE
+Runtime CLEAR = 0 / 15
+필수 경로     = 0 / 11 CLEAR
+선택 경로     = 0 / 4 CLEAR
+Primary       = MAC-V / Ubuntu 24.04
+```
+
+지금 할 일:
+
+1. [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)에서 B1-1 직전 Gate를 확인합니다.
+2. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)를 따라 실제 Runtime을 수행합니다.
+3. 실제 Verify/Evidence가 완료되기 전에는 `CLEAR` 숫자를 올리지 않습니다.
+
+## 📑 목차
+
+- [완료 현황](#completion)
+- [R01 Runtime Profiles](#runtime-profiles)
+- [FAST TRACK](#fast-track)
+- [Runtime Mission 상태](#mission-status)
+- [Phase B 공통 정책](#common-policies)
+- [Cross-Mission 교정 완료](#cross-mission)
+- [Phase C 실행 흐름](#phase-c-flow)
+- [R01 전체 흐름](#r01-flow)
+- [상태 정의](#status-definition)
+
+---
+
+<a id="completion"></a>
 ## 완료 현황
 
 - Phase A Reference Build: **CORE READY 15 / 15**
@@ -24,18 +56,23 @@
 
 핵심 문서:
 
+- `README.md`
 - `MISSION-INDEX.md`
+- `MISSION-RUNBOOK.md`
 - `environments/README.md`
+- `environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`
 - `environments/RUNTIME-PROFILES.md`
 - `environments/MISSION-LAB-MATRIX.md`
+- `training/round-01-clear/NEXT-ACTIONS.md`
 - `training/round-01-clear/REFERENCE-AUDIT.md`
 - `training/round-01-clear/CANONICAL-AUDIT.md`
 - `training/round-01-clear/CROSS-MISSION-AUDIT.md`
 - `training/round-01-clear/PHASE-C-RUNBOOK.md`
 - `training/round-01-clear/PHASE-C-PREFLIGHT.md`
 - `training/round-01-clear/MISSION-DEPENDENCY-MAP.md`
-- `standards/CANONICAL-REFERENCE-STANDARD.md`
+- `standards/BEGINNER-DOCUMENTATION-AUDIT.md`
 
+<a id="runtime-profiles"></a>
 ## R01 Runtime Profiles
 
 ```text
@@ -81,6 +118,7 @@ Twin            WIN-V
 Docker Practice MAC-D / WIN-D
 ```
 
+<a id="fast-track"></a>
 ## FAST TRACK
 
 ```text
@@ -96,6 +134,7 @@ FAST TRACK은 선택 미션을 생략하는 경로가 아닙니다. **필수 11�
 
 Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FAST TRACK은 실제 R01 Runtime의 운영 순서를 설명합니다.
 
+<a id="mission-status"></a>
 ## Runtime Mission 상태
 
 | 순서 | Stage | 미션 | 구분 | 상태 |
@@ -116,6 +155,7 @@ Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FA
 | 14 | Optional | B5-3 | 선택 | ⬜ NOT STARTED |
 | 15 | Optional | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
+<a id="common-policies"></a>
 ## Phase B에서 확정한 공통 정책
 
 ### Runtime isolation
@@ -148,6 +188,7 @@ B1-1/B1-2  AGENT_* + local-only key file
 
 실제 Secret 값은 Repository/Chat/Evidence 금지입니다.
 
+<a id="cross-mission"></a>
 ## Cross-Mission 교정 완료
 
 | ID | 내용 | 상태 |
@@ -161,6 +202,7 @@ B1-1/B1-2  AGENT_* + local-only key file
 | CM-07 | B6-1 Cloud cleanup 위험 | ✅ mission-only cleanup |
 | CM-08 | B5-1 `15개 Query` 문서 drift | ✅ Q01~Q16으로 교정 |
 
+<a id="phase-c-flow"></a>
 ## Phase C 실행 흐름
 
 ```text
@@ -189,6 +231,7 @@ B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 B4-2 → B5-2 → B5-3 → B7-2
 ```
 
+<a id="r01-flow"></a>
 ## R01 전체 흐름
 
 ```text
@@ -200,6 +243,7 @@ Phase A Reference Build          ✅ 15/15 CORE READY
    └─ Stage 2 Optional           ⬜ 0 of 4 CLEAR
 ```
 
+<a id="status-definition"></a>
 ## 상태 정의
 
 - ⬜ `NOT STARTED`: 해당 미션 Runtime 미시작
