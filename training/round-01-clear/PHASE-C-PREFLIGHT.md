@@ -4,7 +4,7 @@
 
 ## 목적
 
-각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, Ubuntu 패키지 누락, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
+각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, Ubuntu 공통 개발도구/미션 패키지 누락, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
 
 이 문서는 미션 구현을 대신하지 않는 공통 안전 Gate입니다.
 
@@ -106,41 +106,67 @@ Shell/Python/Web/YAML/Dockerfile = LF
 
 상세 계약은 `standards/CROSS-PLATFORM-GIT-STANDARD.md`를 사용합니다.
 
-## 4. 기본 Runtime 확인
+## 4. 기본 Runtime / 공통 CLI 확인
 
 ```bash
 uname -a
 command -v bash || true
+command -v apt-get || true
+command -v sudo || true
+command -v git || true
+command -v gh || true
+command -v ssh || true
+command -v nano || true
+command -v jq || true
+command -v curl || true
+command -v wget || true
 command -v python3 || true
 command -v node || true
 command -v npm || true
 command -v sqlite3 || true
-command -v git || true
-command -v gh || true
 ```
 
-필요한 도구만 해당 미션에서 사용합니다. 모든 미션을 위해 모든 패키지를 전역 설치하지 않습니다.
+`vim`, `tree`, `rg`, `fdfind`는 권장 Productivity 도구이므로 없다고 Mission Runtime을 막지 않습니다.
 
-## 5. Ubuntu Base / Mission Package 확인
+## 5. Ubuntu Developer Bootstrap / Mission Package 확인
 
-Ubuntu 설치는 세 계층으로 분리합니다.
+Ubuntu 설치는 다음 계층으로 구분합니다.
 
 ```text
-Layer 1 — Ubuntu Base
-Layer 2 — Mission System Packages
-Layer 3 — Project Dependencies
+Layer 0 — OS Prerequisites
+Layer 1 — Common Required Base
+Layer 1B — Recommended Productivity
+Layer 2 — External/Common Developer CLI (`gh`)
+Layer 3 — Mission / Shared Runtime
+Layer 4 — Project Dependencies
 ```
 
-Control Tower가 권장 위치에 있으면 Base를 확인합니다.
+Control Tower 기본 위치:
 
 ```bash
 CONTROL_TOWER="${CONTROL_TOWER:-$HOME/codyssey/codyssey-basic}"
+```
 
-if [[ -f "$CONTROL_TOWER/environments/ubuntu/verify-base.sh" ]]; then
-  bash "$CONTROL_TOWER/environments/ubuntu/verify-base.sh"
+공통 개발환경은 통합 Bootstrap으로 확인합니다.
+
+```bash
+if [[ -f "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" ]]; then
+  bash "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" --check
 else
-  echo '[INFO] Control Tower verify-base.sh 경로를 확인하세요.'
+  echo '[INFO] Control Tower Ubuntu bootstrap 경로를 확인하세요.'
 fi
+```
+
+`--check` 결과에서 필수 Base 또는 `gh`가 빠진 경우에만 공통 설치를 수행합니다.
+
+```bash
+bash "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" --install
+```
+
+권장 생산성 도구까지 원하는 경우에만:
+
+```bash
+bash "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" --install --recommended
 ```
 
 현재 Mission Repository root에서는 추가 APT package를 확인합니다.
@@ -156,7 +182,7 @@ else
 fi
 ```
 
-`[MISSING]`이 있으면 바로 모든 개발도구를 설치하지 않고 현재 package list의 누락분만 설치합니다.
+`[MISSING]`이 있으면 현재 Mission 목록의 누락분만 설치합니다.
 
 ```bash
 bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
@@ -165,14 +191,17 @@ bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
 
 원칙:
 
-- Base는 의도적으로 작게 유지
-- 각 Mission의 `ubuntu-packages.txt`에는 Base를 제외한 추가 APT package만 기록
+- `git`, `openssh-client`, `nano`, `jq`, `file`, `unzip`, `zip`, `rsync` 등은 Common Base
+- `gh`는 GitHub CLI 공식 APT repository를 사용하는 공통 Developer CLI
+- `gh auth login`, Token 입력, SSH private key 생성/교체, `git user.name/email`, `core.autocrlf`는 Bootstrap이 자동 변경하지 않음
+- `vim/tree/ripgrep/fd-find`는 권장 도구이며 CLEAR Gate가 아님
+- 각 Mission의 `ubuntu-packages.txt`에는 Common Base와 공통 `gh`를 제외한 추가 APT package만 기록
 - Python project library는 `.venv`에 설치
 - Node package는 `package.json`/lock file로 관리
 - package 설치 여부와 실제 service/command 정상 동작을 구분
 - `apt autoremove`, package downgrade, 무차별 전역 설치 자동화 금지
 
-상세 계약은 `environments/ubuntu/README.md`와 `environments/ubuntu/MISSION-PACKAGE-MATRIX.md`를 사용합니다.
+상세 계약은 `environments/ubuntu/README.md`, `environments/ubuntu/BASE-PACKAGES.md`, `environments/ubuntu/MISSION-PACKAGE-MATRIX.md`를 사용합니다.
 
 ## 6. Process / Port 확인
 
@@ -289,7 +318,9 @@ training/round-01-clear/evidence/
 [ ] VS Code Remote/Workspace가 의도한 Ubuntu 경로임
 [ ] Bash/PWD/HOME 상태 확인
 [ ] Cross-platform line ending / file mode 이상 없음
-[ ] Ubuntu Base 상태 확인
+[ ] Ubuntu Developer Bootstrap 필수 항목 PASS
+[ ] `gh` 설치 상태 확인 — 인증은 필요할 때 별도
+[ ] 권장 Productivity 누락은 CLEAR Blocker로 취급하지 않음
 [ ] 현재 Mission ubuntu-packages.txt 누락 여부 확인
 [ ] 필요한 package만 설치/검증
 [ ] Python Mission이면 올바른 `.venv` 상태 확인
