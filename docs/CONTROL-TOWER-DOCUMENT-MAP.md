@@ -91,7 +91,7 @@ Script / JSON / TXT / machine-readable file
 | 파일 | 역할 | 적용 방식 | 상태 |
 |---|---|---|---|
 | `docs/R01-OPERATING-MODEL.md` | 내부 Phase/FAST TRACK 용어 설명 | At a Glance + 클릭 목차 + 현재 행동 링크 | ✅ APPLIED & VERIFIED |
-| `docs/CONTROL-TOWER-DOCUMENT-MAP.md` | Control Tower 문서 적용 지도 | Quick Read + 목차 + POLICY/APPLY/VERIFY 상태 관리 | ✅ CURRENT DOCUMENT |
+| `docs/CONTROL-TOWER-DOCUMENT-MAP.md` | Control Tower 문서 적용 지도 | Quick Read + 목차 + POLICY/APPLY/VERIFY 상태 관리 | ✅ APPLIED & VERIFIED |
 
 ---
 
@@ -102,12 +102,12 @@ Script / JSON / TXT / machine-readable file
 |---|---|---|---|
 | `environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 입문자 개발환경 Golden Path | 안전한 Quick Start + 클릭 목차 + Mac/Windows 상세 경로 | ✅ APPLIED & VERIFIED |
 | `environments/README.md` | 환경 시스템 진입 | Quick Start + 목차 | ✅ APPLIED & VERIFIED |
-| `environments/RUNTIME-PROFILES.md` | Runtime Profile Reference | Quick Read + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `environments/DOCKER-POLICY.md` | Docker 선택 정책 | Quick Read + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `environments/MISSION-LAB-MATRIX.md` | 15개 환경/Lab Matrix | Quick Read + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
+| `environments/RUNTIME-PROFILES.md` | Runtime Profile Reference | Quick Read + 목차 | ✅ APPLIED & VERIFIED |
+| `environments/DOCKER-POLICY.md` | Docker 선택 정책 | Quick Read + 목차 | ✅ APPLIED & VERIFIED |
+| `environments/MISSION-LAB-MATRIX.md` | 15개 환경/Lab Matrix | Quick Read + 목차 | ✅ APPLIED & VERIFIED |
 | `environments/ubuntu/README.md` | Ubuntu Bootstrap 진입 | 안전한 Quick Start + 목차 | ✅ APPLIED & VERIFIED |
-| `environments/ubuntu/BASE-PACKAGES.md` | Package Layer Reference | Quick Read + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `environments/ubuntu/MISSION-PACKAGE-MATRIX.md` | 15개 Mission package 지도 | Quick Read + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
+| `environments/ubuntu/BASE-PACKAGES.md` | Package Layer Reference | Quick Read + 목차 | ✅ APPLIED & VERIFIED |
+| `environments/ubuntu/MISSION-PACKAGE-MATRIX.md` | 15개 Mission package 지도 | Quick Read + 목차 | ✅ APPLIED & VERIFIED |
 | `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md` | Common Environment Freeze Gate | Quick Check + 목차 + 실제 Gate 상태 | ✅ APPLIED & VERIFIED |
 
 `environments/ubuntu/*.sh`, `*.txt`는 실행/데이터 파일이므로 Markdown 목차·Quick Start 형식을 적용하지 않습니다.
@@ -123,11 +123,11 @@ Script / JSON / TXT / machine-readable file
 | `PHASE-C-PREFLIGHT.md` | 모든 미션 공통 시작 Gate | Quick Preflight + 목차 | ✅ APPLIED & VERIFIED |
 | `PHASE-C-RUNBOOK.md` | 15개 Runtime 실행 색인 | Quick Start + 목차 | ✅ APPLIED & VERIFIED |
 | `MISSION-DEPENDENCY-MAP.md` | 필수/권장 선행 관계 | Quick Read + 목차; 명령 Quick Start 없음 | ✅ APPLIED & VERIFIED |
-| `PROGRESS.md` | R01 진행 상태 | Quick Status + 목차 | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `REFERENCE-AUDIT.md` | Phase A 역사적 감사 | Audit Summary + 목차 + 현재 Hand-off | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `CANONICAL-AUDIT.md` | Canonical 역사적 감사 | Audit Summary + 목차 + 현재 Hand-off | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `CROSS-MISSION-AUDIT.md` | Phase B 교차 감사 | Audit Summary + 목차 + 현재 Phase C 링크 | ✅ APPLIED; VERIFY IN THIS AUDIT |
-| `REFERENCE-PROGRESS.md` | Phase A 짧은 상태 기록 | 한눈에 보기 + 현재 Hand-off; 별도 목차는 생략 | ✅ APPLIED; VERIFY IN THIS AUDIT |
+| `PROGRESS.md` | R01 진행 상태 | Quick Status + 목차 | ✅ APPLIED & VERIFIED |
+| `REFERENCE-AUDIT.md` | Phase A 역사적 감사 | Audit Summary + 목차 + 현재 Hand-off | ✅ APPLIED & VERIFIED |
+| `CANONICAL-AUDIT.md` | Canonical 역사적 감사 | Audit Summary + 목차 + 현재 Hand-off | ✅ APPLIED & VERIFIED |
+| `CROSS-MISSION-AUDIT.md` | Phase B 교차 감사 | Audit Summary + 목차 + 현재 Phase C 링크 | ✅ APPLIED & VERIFIED |
+| `REFERENCE-PROGRESS.md` | Phase A 짧은 상태 기록 | 한눈에 보기 + 현재 Hand-off; 별도 목차는 생략 | ✅ APPLIED & VERIFIED |
 
 역사적 Audit 문서는 당시 결과를 바꾸지 않습니다. 대신 과거의 `다음 단계` 문구가 현재 작업 지시로 오해되지 않도록 **현재 Hand-off**를 명시합니다.
 
@@ -140,19 +140,19 @@ Script / JSON / TXT / machine-readable file
 
 | 파일 | 역할 | 현재 판단 |
 |---|---|---|
-| `standards/README.md` | 모든 기준 Registry | 긴 Registry이므로 Quick Read/목차 적용 권장 — 이번 Control Tower 감사에서 후속 적용 |
-| `DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` | 목차/빠른 진입 적용 기준 | POLICY → APPLY → VERIFY 기준 적용 완료 |
-| `BEGINNER-DOCUMENTATION-AUDIT.md` | 15개 Beginner Guide 품질 감사 | 현재 B1-1부터 JIT 감사 |
-| `BEGINNER-TRAINING-STANDARD.md` | 입문자 문서 상위 기준 | 기준 문서; 명령 Quick Start를 기계적으로 요구하지 않음 |
-| `COMMAND-CODE-EXPLANATION-STANDARD.md` | 명령/코드 설명 기준 | 기준 문서 |
-| `ENVIRONMENT-STANDARD.md` | 환경 기준 | 기준 문서 |
-| `DEVELOPMENT-TOOLSET-STANDARD.md` | 개발 Tool Set/no-admin 기준 | 기준 문서 |
-| `AI-CLI-TOOLSET-STANDARD.md` | Codex/Claude/Gemini/Antigravity CLI | 기준 문서 |
-| `README-INFORMATION-ARCHITECTURE-STANDARD.md` | README 정보 구조 | 기준 문서 |
-| `CANONICAL-REFERENCE-STANDARD.md` | Canonical 역할/Gate | 기준 문서 |
-| `CROSS-PLATFORM-GIT-STANDARD.md` | UTF-8/LF/Git 파일 계약 | 기준 문서 |
-| `TERMINOLOGY-STANDARD.md` | 한글/영어 용어 | 기준 문서 |
-| `VS-CODE-REMOTE-UBUNTU-STANDARD.md` | VS Code Remote Ubuntu | 기준 문서 |
+| `standards/README.md` | 모든 기준 Registry | Quick Read + 클릭 목차 + Control Tower Document Map 연결 | ✅ APPLIED & VERIFIED |
+| `DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` | 목차/빠른 진입 적용 기준 | POLICY → APPLY → VERIFY 기준 적용 완료 | ✅ ACTIVE STANDARD |
+| `BEGINNER-DOCUMENTATION-AUDIT.md` | 15개 Beginner Guide 품질 감사 | 현재 B1-1부터 JIT 감사 | 🟡 REVIEW / JIT |
+| `BEGINNER-TRAINING-STANDARD.md` | 입문자 문서 상위 기준 | 기준 문서; 명령 Quick Start를 기계적으로 요구하지 않음 | 🟡 ROLE-BASED REVIEW |
+| `COMMAND-CODE-EXPLANATION-STANDARD.md` | 명령/코드 설명 기준 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `ENVIRONMENT-STANDARD.md` | 환경 기준 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `DEVELOPMENT-TOOLSET-STANDARD.md` | 개발 Tool Set/no-admin 기준 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `AI-CLI-TOOLSET-STANDARD.md` | Codex/Claude/Gemini/Antigravity CLI | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `README-INFORMATION-ARCHITECTURE-STANDARD.md` | README 정보 구조 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `CANONICAL-REFERENCE-STANDARD.md` | Canonical 역할/Gate | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `CROSS-PLATFORM-GIT-STANDARD.md` | UTF-8/LF/Git 파일 계약 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `TERMINOLOGY-STANDARD.md` | 한글/영어 용어 | 기준 문서 | 🟡 ROLE-BASED REVIEW |
+| `VS-CODE-REMOTE-UBUNTU-STANDARD.md` | VS Code Remote Ubuntu | 기준 문서 | 🟡 ROLE-BASED REVIEW |
 
 표준 문서 자체는 **실행형 문서가 아니므로 Quick Start 명령을 일괄 삽입하지 않습니다.** 길고 자주 참조되는 표준에는 필요할 때 `한눈에 보기 + 목차`를 적용합니다.
 
