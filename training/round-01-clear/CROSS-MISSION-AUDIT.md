@@ -6,6 +6,32 @@
 
 15개 Reference를 개별적으로 다시 확장하지 않고, Phase C에서 **한 미션씩 실제 실행할 때 환경 충돌·Secret 노출·DB 오염·Port 충돌·Cloud 과금·협업 Evidence 누락을 최소화**하도록 전체 실행 규칙을 고정합니다.
 
+## 한눈에 보기(Audit Summary)
+
+```text
+Phase B Cross-Mission Audit = COMPLETE
+Cross-Mission BLOCKER       = 0
+현재 운영 단계              = Phase C — Runtime CLEAR
+현재 Active Mission         = B1-1
+```
+
+이 문서는 Phase B의 **교차 감사 기록/정책 근거**입니다. 현재 실제 실행은 [NEXT-ACTIONS.md](NEXT-ACTIONS.md)와 [PHASE-C-RUNBOOK.md](PHASE-C-RUNBOOK.md)를 사용합니다.
+
+## 📑 목차
+
+- [1. Cross-Mission Environment Matrix](#matrix)
+- [2. 공통 Runtime 정책](#runtime-policy)
+- [3. Git / GitHub Collaboration 정책](#git-policy)
+- [4. Cloud / Deployment 정책](#cloud-policy)
+- [5. Dependency / Reuse](#dependency)
+- [6. Cross-Mission 이슈 처리 결과](#issues)
+- [7. Phase C 실행 자산](#phase-c-assets)
+- [8. Phase B Exit Gate](#exit-gate)
+- [9. Phase C 기본 실행 순서](#phase-c-order)
+
+---
+
+<a id="matrix"></a>
 ## 1. Cross-Mission Environment Matrix
 
 | 미션 | 핵심 Runtime | 주요 저장/외부 자원 | 격리 원칙 |
@@ -26,6 +52,7 @@
 | B7-1 | FastAPI/Jinja2/SQLite + AI API | local/deploy DB + team GitHub | per-repo env/DB + actual team/deploy evidence |
 | B7-2 | FastAPI/SQLAlchemy + Vanilla frontend + AI API | SQLite/Cloud + Bearer auth | B7-1과 DB/token/runtime 분리 |
 
+<a id="runtime-policy"></a>
 ## 2. 공통 Runtime 정책
 
 ### Python
@@ -88,6 +115,7 @@ B1-1/B1-2: AGENT_* + local-only key file
 
 실제 값은 Repository/Chat/Evidence에 저장하지 않습니다.
 
+<a id="git-policy"></a>
 ## 3. Git / GitHub Collaboration 정책
 
 GitHub 서버 측 기록이 공식 Evidence인 미션은 로컬 history로 대체하지 않습니다.
@@ -98,6 +126,7 @@ GitHub 서버 측 기록이 공식 Evidence인 미션은 로컬 history로 대�
 
 Reference의 placeholder URL은 Runtime Evidence가 아닙니다.
 
+<a id="cloud-policy"></a>
 ## 4. Cloud / Deployment 정책
 
 ### B6-1
@@ -112,6 +141,7 @@ AWS Region은 `ap-northeast-2`로 유지합니다. Mission 전용 이름/태그�
 
 실제 외부 URL에서 핵심 flow를 다시 검증해야 합니다.
 
+<a id="dependency"></a>
 ## 5. Dependency / Reuse
 
 ### 필수 선행
@@ -146,6 +176,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 필수 과정의 Hard prerequisi
 
 상세 지도와 `있으면 좋은 선행 지식`은 `MISSION-DEPENDENCY-MAP.md`에서 관리합니다.
 
+<a id="issues"></a>
 ## 6. Cross-Mission 이슈 처리 결과
 
 | ID | 이슈 | 처리 |
@@ -162,6 +193,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 필수 과정의 Hard prerequisi
 
 **Phase B BLOCKER: 0**
 
+<a id="phase-c-assets"></a>
 ## 7. Phase C 실행 자산
 
 다음 문서를 추가하고 동결했습니다.
@@ -170,6 +202,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 필수 과정의 Hard prerequisi
 - `MISSION-DEPENDENCY-MAP.md` — 필수 선행 / 권장 선행 / 선행 지식 분리
 - `PHASE-C-PREFLIGHT.md` — Repository/Process/Port/venv/Secret/DB/Cloud 시작 전 Gate
 
+<a id="exit-gate"></a>
 ## 8. Phase B Exit Gate
 
 | Gate | 결과 |
@@ -187,6 +220,7 @@ B4-2/B5-2/B5-3는 선택적 보강 경로이며 필수 과정의 Hard prerequisi
 
 **Phase B — Cross-Mission Audit: COMPLETE**
 
+<a id="phase-c-order"></a>
 ## 9. Phase C 기본 실행 순서
 
 ```text
@@ -197,4 +231,4 @@ B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 
 이 순서는 R01 운영 순서이며 모든 인접 미션 사이의 필수 의존성을 뜻하지 않습니다.
 
-이제 다음 단계는 **Phase C — B1-1 실제 Runtime CLEAR**입니다. Runtime 결과를 얻기 전에는 현재의 Reference PASS를 Mission PASS로 승격하지 않습니다.
+현재 단계는 **Phase C — B1-1 실제 Runtime CLEAR**입니다. Runtime 결과를 얻기 전에는 현재의 Reference PASS를 Mission PASS로 승격하지 않습니다.
