@@ -2,6 +2,47 @@
 
 모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 Runtime CLEAR를 분리**합니다.
 
+## 🚀 빠른 시작(Quick Start)
+
+현재 R01은 **Phase C — RUNTIME CLEAR / FAST EXECUTE**이며 Active Mission은 **B1-1**입니다.
+
+처음 실행한다면 다음 세 문서만 순서대로 봅니다.
+
+1. [개발환경 Start Here](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
+2. [현재 Next Actions](training/round-01-clear/NEXT-ACTIONS.md)
+3. [B1-1 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+
+이미 공통환경이 준비되었다면 한 미션은 다음 흐름으로 처리합니다.
+
+```text
+Preflight
+→ Beginner Guide
+→ Runtime
+→ Verify
+→ Evidence
+→ Evaluation 설명
+→ CLEAR Gate
+→ 다음 Mission
+```
+
+> Quick Start는 운영 계약을 생략하는 경로가 아닙니다. 시스템·Cloud·DB·Secret 관련 변경은 각 상세 Guide의 Preflight/STOP-GO/Recovery를 따릅니다.
+
+## 📑 목차
+
+- [Round 01 — 3-Phase 운영](#round-01)
+- [Phase C — Design Freeze / JIT Design](#phase-c-freeze)
+- [R01 Runtime / Docker 정책](#runtime-policy)
+- [1. UNDERSTAND](#understand)
+- [2. PREPARE](#prepare)
+- [3. BUILD](#build)
+- [4. VERIFY](#verify)
+- [5. EVIDENCE](#evidence)
+- [6. CLEAR](#clear)
+- [상태](#status)
+
+---
+
+<a id="round-01"></a>
 ## Round 01 — 3-Phase 운영
 
 > **중요:** `Phase A / Phase B / Phase C`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 `R01 — CLEAR`를 일관되게 운영하기 위해 사용하는 **내부 실행 단계**입니다. 공식 Mission/Evaluation이 항상 최우선 기준입니다.
@@ -56,6 +97,7 @@ Phase C는 **FAST EXECUTE** 모드입니다. 이미 준비된 Reference, Preflig
 
 현재 미션의 Runtime에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
 
+<a id="phase-c-freeze"></a>
 ## Phase C — Design Freeze / Just-in-Time Design
 
 Phase A/B에서 전체 설계와 교차감사를 완료했으므로 Phase C에서는 새로운 설계를 계속 확장하지 않습니다.
@@ -87,12 +129,13 @@ NO
 - SSH lockout, 데이터 손실, Cloud 과금/삭제 등 안전 문제
 - Verify가 실제 결과를 잘못 판정하는 문제
 - Evidence가 공식 평가 요구와 연결되지 않는 문제
+- 입문자 가이드의 명령·경로·목차가 실제 수행을 막거나 잘못된 행동을 유도하는 문제
 
 ### Phase C에서 후속으로 미루는 경우
 
 - 현재 CLEAR와 무관한 리팩터링
 - UI/UX 고도화
-- 폴더/문서 구조의 미세한 개선
+- 실행을 막지 않는 문서 미세 개선
 - 선택 기능 확장
 - 다음 Round에서 다룰 심화 기술
 - 미래 프로젝트를 위한 선행 최적화
@@ -101,6 +144,7 @@ NO
 
 ---
 
+<a id="runtime-policy"></a>
 ## R01 Runtime / Docker 정책
 
 R01은 현재 두 Host 계열만 지원합니다.
@@ -152,6 +196,7 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 
 ---
 
+<a id="understand"></a>
 ## 1. UNDERSTAND
 
 1. 공식 Mission PDF 확인
@@ -160,7 +205,9 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 4. 필수/선택 요구사항 분리
 5. 현재 Step에 필요한 용어 설명
 6. 핵심 개념 및 필요한 개념도 제공
+7. 긴 실행형 Guide는 Quick Start와 클릭 가능한 목차가 실제 본문과 맞는지 확인
 
+<a id="prepare"></a>
 ## 2. PREPARE
 
 1. 기준 환경(Golden Path) 확인
@@ -170,17 +217,20 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 5. Secret은 Repository에 저장하지 않음
 6. `START-CHECK.md`가 있는 미션은 필수 선행과 현재 보유 지식을 먼저 확인
 7. 현재 Mission의 Primary Runtime을 확인하고 Docker는 선택 여부만 판단
+8. 실행 위치(Context), Preflight, STOP/GO, Rerun Safety를 먼저 확인
 
+<a id="build"></a>
 ## 3. BUILD
 
 1. Phase A에서 준비된 최소 통과 경로를 기본값으로 사용
 2. Reference Build에서는 실제 환경 없이 만들 수 있는 기준 구현을 먼저 완성
 3. 입문자는 Runtime 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
-4. 이해하기 어려운 코드와 명령에는 목적을 설명하는 주석 제공
+4. 실행 가능한 명령과 의미 있는 코드 줄은 입문자가 자기 말로 설명할 수 있게 해설
 5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
 6. Runtime 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
 7. Docker 실습을 하더라도 공통 Source를 재사용하고 환경별 코드 복제는 최소화
 
+<a id="verify"></a>
 ## 4. VERIFY
 
 검증은 둘로 분리합니다.
@@ -201,7 +251,9 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 4. 예상 출력과 실제 출력을 구분
 5. Runtime 결과가 정상이라면 불필요한 추가 리팩터링 없이 Evidence로 이동
 6. Secondary/Docker Lab 결과를 Primary CLEAR Evidence와 혼동하지 않음
+7. 문서 기준은 `POLICY → APPLY → VERIFY`로 실제 대상 문서까지 확인
 
+<a id="evidence"></a>
 ## 5. EVIDENCE
 
 평가 요구사항과 증빙을 1:1로 연결합니다.
@@ -214,6 +266,7 @@ Reference Build 단계에서는 Evidence **계획과 저장 위치**만 준비�
 
 Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있지만 공식 요구사항의 실제 Evidence를 대체하지 않습니다.
 
+<a id="clear"></a>
 ## 6. CLEAR
 
 다음 조건을 모두 만족해야 CLEAR입니다.
@@ -223,10 +276,11 @@ Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있�
 - 자동 검증 가능한 항목 PASS
 - 필요한 실제 환경 검증 완료
 - 필요한 Evidence 확보
-- Round 01 입문자 재현 가이드 완성
+- Round 01 입문자 재현 가이드가 현재 Runtime/경로와 정합함
 
 CLEAR 뒤에 발견한 비필수 개선은 다음 미션 Runtime을 막지 않고 후속 개선/심화 Round에서 처리합니다.
 
+<a id="status"></a>
 ## 상태
 
 Mission 상태는 아래 네 가지만 사용합니다.
