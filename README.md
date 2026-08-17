@@ -193,57 +193,69 @@ Stage 2 — 선택 경로 4개
 
 > `필수 선행`은 공식 요구상 선행 결과물이 직접 필요한 경우이고, `권장 선행`은 학습을 쉽게 하기 위한 권장 경로입니다.
 
-## 미션 목록 및 저장소
+## 미션 목록 및 바로 시작
 
-각 미션은 **3행(미션 / 과정 / 저장소)**으로 표시합니다. 가로로 긴 표보다 한 미션의 정보를 위에서 아래로 읽기 쉽게 하기 위한 입문자 우선(Beginner First) 형식입니다.
+각 미션은 **3행(미션 / 과정 / 시작)**으로 표시합니다. `시작` 행에서 저장소와 **▶ 입문자 따라하기(Beginner Guide)**로 바로 이동할 수 있습니다.
+
+```text
+미션 제목 확인
+→ 과정/선행 확인
+→ ▶ 입문자 따라하기
+→ 실제 수행(Runtime)
+→ 검증(Verify)
+→ 증빙(Evidence)
+→ 완료(CLEAR)
+```
 
 | 미션 | 항목 | 내용 |
 |---|---|---|
 | **B1-1** | 미션 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **1**<br>필수 선행 없음 · 권장 선행 없음 |
-|  | 저장소(Repository) | [codyssey-basic-b1-1-system-monitor](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B1-2** | 미션 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **2**<br>필수 선행 없음 · 권장 선행 **B1-1** |
-|  | 저장소(Repository) | [codyssey-basic-b1-2-linux-troubleshooting](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B2-1** | 미션 | 나만의 용돈 기입장 프로그램 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **3**<br>필수 선행 없음 · 권장 선행 없음 |
-|  | 저장소(Repository) | [codyssey-basic-b2-1-budget-tracker](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B2-2** | 미션 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **4**<br>필수 선행 없음 · 권장 선행 **B2-1** |
-|  | 저장소(Repository) | [codyssey-basic-b2-2-git-team-collaboration](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B3-1** | 미션 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **5**<br>필수 선행 없음 · 권장 선행 **B2-1** |
-|  | 저장소(Repository) | [codyssey-basic-b3-1-fast-data-store](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B3-2** | 미션 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **6**<br>필수 선행 없음 · 권장 선행 **B3-1, B2-2** |
-|  | 저장소(Repository) | [codyssey-basic-b3-2-file-change-tracker](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B4-1** | 미션 | 나를 소개하는 웹페이지 처음부터 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **7**<br>필수 선행 없음 · 권장 선행 없음 |
-|  | 저장소(Repository) | [codyssey-basic-b4-1-portfolio](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B4-2** | 미션 | 버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기 |
 |  | 과정 | **선택(Optional)** · 실행 순번 **12**<br>필수 선행 없음 · 권장 선행 **B4-1** |
-|  | 저장소(Repository) | [codyssey-basic-b4-2-interactive-web-app](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B5-1** | 미션 | 정보를 깔끔하게 정리하는 디지털 서랍장 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **8**<br>필수 선행 없음 · 권장 선행 없음 |
-|  | 저장소(Repository) | [codyssey-basic-b5-1-database-design](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B5-2** | 미션 | 글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기 |
 |  | 과정 | **선택(Optional)** · 실행 순번 **13**<br>필수 선행 없음 · 권장 선행 **B5-1, B4-1** |
-|  | 저장소(Repository) | [codyssey-basic-b5-2-fastapi-crud-app](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B5-3** | 미션 | 로그인이 되고 회원끼리 연결되는 웹 서비스 만들기 |
 |  | 과정 | **선택(Optional)** · 실행 순번 **14**<br>필수 선행 없음 · 권장 선행 **B5-2, B5-1** |
-|  | 저장소(Repository) | [codyssey-basic-b5-3-fastapi-auth-service](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B6-1** | 미션 | 내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **9**<br>필수 선행 없음 · 권장 선행 **B4-1** |
-|  | 저장소(Repository) | [codyssey-basic-b6-1-cloud-deployment](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B6-2** | 미션 | 내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기 |
 |  | 과정 | **필수(Required)** · 실행 순번 **10**<br>필수 선행 없음 · 권장 선행 **B2-2** |
-|  | 저장소(Repository) | [codyssey-basic-b6-2-ai-code-summarizer](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B7-1** | 미션 | 웹 기반 AI 챗봇 서비스 개발 프로젝트 |
 |  | 과정 | **필수 텀프로젝트(Required Term Project)** · 실행 순번 **11**<br>필수 선행 없음 · 권장 선행 **B2-2, B4-1, B5-1, B6-1, B6-2** |
-|  | 저장소(Repository) | [codyssey-basic-b7-1-web-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
 | **B7-2** | 미션 | 웹 기반 AI 챗봇 서비스 고도화 프로젝트 |
 |  | 과정 | **선택 텀프로젝트/고도화(Optional Term Project / Advanced)** · 실행 순번 **15**<br>필수 선행 **B7-1** · 권장 선행 **B4-2, B5-2, B5-3, B6-1** |
-|  | 저장소(Repository) | [codyssey-basic-b7-2-advanced-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
+|  | 시작 | [저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) · [▶ 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) |
+
+> 15개 `BEGINNER-GUIDE.md`는 모두 존재하지만, **가이드 존재 = BEGINNER READY 또는 Mission CLEAR**를 뜻하지 않습니다. 현재 상태·환경·공식 요구와의 정합성은 [Beginner Documentation Audit](standards/BEGINNER-DOCUMENTATION-AUDIT.md)에서 실제 실행 순서에 맞춰 관리합니다.
 
 ### 선행 관계(Dependency) 읽는 법
 
@@ -280,6 +292,7 @@ Stage 2 — 선택 경로 4개
 - [PROGRESS.md — 현재 진행 상태](PROGRESS.md)
 - [NEXT-ACTIONS.md — 다음 작업](training/round-01-clear/NEXT-ACTIONS.md)
 - [MISSION-INDEX.md — 전체 미션 색인](MISSION-INDEX.md)
+- [BEGINNER-DOCUMENTATION-AUDIT.md — 입문자 문서 품질 감사](standards/BEGINNER-DOCUMENTATION-AUDIT.md)
 
 [목차로 돌아가기](#toc)
 
@@ -423,9 +436,10 @@ NO
 1. [standards/README.md](standards/README.md) — 전체 기준 관리 Registry
 2. [BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
 3. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
-4. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
-5. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
-6. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
+4. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
+5. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
+6. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/Verify/Evidence 기준
+7. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
 
 ### README 생성 핵심 원칙
 
@@ -435,6 +449,7 @@ NO
 → 첫 명령과 정상 결과
 → 현재 미션과 Beginner Guide
 → 전체 미션 지도
+→ 각 미션의 ▶ 입문자 따라하기 직접 진입
 → 현재 진행 상태
 → 필요할 때만 상세 운영 정보
 ```
@@ -447,7 +462,9 @@ NO
 - 실제 실행·검증·필요 Evidence가 끝나기 전에는 CLEAR로 표시하지 않습니다.
 - Secret, Token, Password, Private Key를 Repository/Chat/Evidence에 남기지 않습니다.
 - 사용자는 현재 Mission의 `BEGINNER-GUIDE.md`를 위에서 아래로 따라 실제 Runtime을 수행합니다.
+- 메인 README의 각 미션 `시작` 행은 Repository와 `▶ 입문자 따라하기`를 직접 연결합니다.
 - 입문자 문서는 한글+영어 병기와 Self-contained First 원칙을 따릅니다.
+- 가이드가 존재한다는 이유만으로 `BEGINNER READY`로 판정하지 않습니다. 상태/환경 정합성은 Beginner Documentation Audit에서 확인합니다.
 - 문서 개선만을 이유로 실제 Runtime을 불필요하게 중단하지 않습니다.
 
 ## 보존 원칙(Preservation Policy)
