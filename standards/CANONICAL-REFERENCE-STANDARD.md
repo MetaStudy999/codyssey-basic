@@ -38,12 +38,13 @@ training/round-01-clear/
 2. 공식 Evaluation 파일이 없으면 없는 것으로 명시하고 Mission 자체를 검증 기준으로 사용합니다.
 3. `docs/evaluation-qa.md`처럼 Reference Build 과정에서 작성한 설명 연습 자료는 공식 평가 원본이라고 부르지 않습니다.
 4. 공식 PDF/MD의 요구사항을 Reference 문서가 임의로 삭제·완화하지 않습니다.
+5. 현재 Phase/Runtime/OS/경로처럼 변할 수 있는 상태를 문서에 적을 때는 현재 Control Tower와 Repository 상태를 먼저 확인합니다.
 
 ## 4. Beginner Guide 규칙
 
-Canonical `BEGINNER-GUIDE.md`는 제목만 있는 scaffold가 아니라 실제 수행 경로여야 합니다.
+Canonical `BEGINNER-GUIDE.md`는 제목만 있는 scaffold가 아니라 **입문자가 다른 비공식 자료를 검색하지 않고도 핵심 경로를 이해하고 실제로 수행할 수 있는 대표 실행 문서**여야 합니다.
 
-Phase C의 각 hands-on Step은 다음 10개 항목을 사용합니다.
+기존 10항목 Hands-on 흐름은 계속 사용합니다.
 
 1. 왜 하는가
 2. 무엇을 하는가
@@ -56,7 +57,34 @@ Phase C의 각 hands-on Step은 다음 10개 항목을 사용합니다.
 9. 자주 발생하는 오류와 해결 방법
 10. 완료 확인
 
-용어는 JIT 방식으로 필요한 시점에 제공하며 `한국어 (English)`를 함께 사용합니다.
+문서 품질은 [BEGINNER-TRAINING-STANDARD.md](BEGINNER-TRAINING-STANDARD.md)의 확장 12요소 기준을 함께 적용합니다.
+
+```text
+쉬운 설명/비유
+→ 한글+영어 용어
+→ 개념/도식
+→ 이번 미션에서의 역할
+→ 최소 예제
+→ 실제 따라하기
+→ 명령 의미
+→ 정상/실패 결과
+→ 오류 복구
+→ 완료 확인
+→ 자기 설명
+→ 평가 연결
+```
+
+핵심 원칙:
+
+- 용어는 JIT 방식으로 필요한 시점에 제공하고 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)를 따릅니다.
+- 복잡한 개념은 `쉬운 한 문장 → 정확한 기술 설명 → 미션에서의 사용 → 예제` 순으로 설명합니다.
+- GitHub/AWS/Cloud Console 같은 UI 작업은 메뉴 경로, 입력값 의미, 정상 화면, 비활성/오류 시 확인 순서를 제공합니다.
+- 명령어는 복사만 하게 하지 말고 핵심 옵션과 목적을 설명합니다.
+- 오류는 `증상 → 원인 → 확인 → 최소 수정 → 재검증` 경로를 제공합니다.
+- `BEGINNER-GUIDE.md`는 지금 무엇을 해야 하는지 자체적으로 알려야 하며, 세부 용어/개념/오류 문서는 보조 계층으로 연결합니다.
+- 과거 Phase, 과거 OS, 과거 Runtime 상태가 현재 상태와 모순되면 문서 품질을 완료로 판정하지 않습니다.
+
+`BEGINNER READY`는 문서 품질을 위한 내부 판정이며 공식 Mission CLEAR와 별개입니다.
 
 ## 5. Checklist / Status 규칙
 
@@ -69,6 +97,8 @@ Runtime CLEAR: 아님
 ```
 
 Reference 구현·문서·테스트 설계가 존재해도 실제 환경 실행과 필요한 Evidence가 없으면 `✅ CLEAR`가 아닙니다.
+
+문서의 `Reference Status`, `Runtime Status`, Control Tower Progress가 서로 모순되지 않도록 합니다.
 
 ## 6. Verify 규칙
 
@@ -83,6 +113,8 @@ Result: N PASS / N FAIL
 
 `verify.sh`는 검증 역할만 담당합니다. 실제 Cloud/API/Browser/협업처럼 자동화 스크립트만으로 증명할 수 없는 요구사항은 Runtime Gate로 남깁니다.
 
+입문자 문서에서는 가능하면 각 Verify 결과가 무엇을 의미하는지도 설명합니다.
+
 ## 7. Environment 규칙
 
 환경은 미션별 Golden Path 하나를 우선합니다.
@@ -92,6 +124,8 @@ Result: N PASS / N FAIL
 - `reset.sh`: 현재 Mission/Round에서 만든 자원만 안전하게 제거
 
 시스템 설정 변경은 `현재 상태 → 백업 → 변경 → 문법 검사 → 적용 → 검증 → Evidence` 순서를 사용합니다.
+
+환경 문서는 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)를 따릅니다.
 
 ## 8. Secret 규칙
 
@@ -133,5 +167,15 @@ Requirement
 - Runtime-only 항목이 명확함
 - Secret 정책 준수
 - 허위 Runtime PASS 없음
+- Beginner Guide의 현재 상태/환경/경로가 실제 기준과 충돌하지 않음
+- 핵심 수행 경로가 외부 비공식 검색에 의존하지 않음
 
 동일한 파일 수나 동일한 기술 선택은 Canonical Gate가 아닙니다.
+
+## 11. 관련 기준
+
+전체 기준의 진입점은 [README.md](README.md)입니다.
+
+- [BEGINNER-TRAINING-STANDARD.md](BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성
+- [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어
+- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 환경
