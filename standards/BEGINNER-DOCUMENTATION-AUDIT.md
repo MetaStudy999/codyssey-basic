@@ -12,9 +12,9 @@
 메인 README의 미션 지도
 → 저장소(Repository)
 → 입문자 따라하기(BEGINNER-GUIDE.md)
-→ Quick Start 또는 상세 시작 경로
+→ 빠른 시작(Quick Start) 또는 상세 시작 경로
 → 실제 수행(Runtime)
-→ 검증(Verify)
+→ 검증(Verification)
 → 증빙(Evidence)
 → 완료(CLEAR)
 ```
@@ -26,21 +26,22 @@
 + 공식 요구사항 연결
 + 쉬운 한글 설명
 + 한글 + 영어 원어
++ 영어 원어의 명사/동사 품사 정합성
 + 긴 문서이면 클릭 가능한 목차
-+ 실행형 문서이면 안전한 Quick Start 또는 동등한 빠른 진입 경로
++ 실행형 문서이면 안전한 빠른 시작(Quick Start) 또는 동등한 빠른 진입 경로
 + 실제 따라하기
-+ 실행 위치/Preflight
++ 실행 위치(Execution Context) / 실행 전 점검(Preflight)
 + 실행 가능한 Shell 명령 각 줄 해설
 + 의미 있는 코드/SQL/설정 줄 해설
 + 중요한 옵션·인자·입력값 설명
-+ Copy/Paste 안전
++ 복사·붙여넣기 안전(Copy/Paste Safety)
 + 정상 결과와 달라도 정상인 값 구분
-+ Rerun Safety
++ 재실행 안전성(Rerun Safety)
 + STOP / GO
-+ 필요한 Checkpoint / Recovery
-+ 환경/Tool 설치가 있으면 필수·선택·권한·설치위치·Verify 설명
-+ 공용/관리형 Mac이면 no-admin 대안 설명
-+ Cloud/API/AI면 비용·자원·Cleanup 설명
++ 필요한 중간 저장점(Checkpoint) / 복구(Recovery)
++ 환경/Tool 설치가 있으면 필수·선택·권한·설치위치·검증(Verification) 설명
++ 공용/관리형 Mac이면 관리자 권한 없는 대안(no-admin) 설명
++ Cloud/API/AI면 비용·자원·정리(Cleanup) 설명
 + 오류 복구
 + 완료 확인
 + 평가/증빙 연결
@@ -52,21 +53,21 @@
 
 | 실행 순번 | 미션 | 구분 | Beginner Guide | 문서 내용 감사 | 우선순위 |
 |---:|---|---|---|---|---|
-| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 **탐색·현재 Runtime 정합성 반영 완료 / 줄별 해설·실행안전 상세 감사 필요** | **P0 — 현재 미션** |
-| 2 | B1-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 3 | B2-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 5 | B3-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 6 | B3-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 7 | B4-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 8 | B5-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 9 | B6-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 10 | B6-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 11 | B7-1 | 필수 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
-| 12 | B4-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
-| 13 | B5-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
-| 14 | B5-3 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
-| 15 | B7-2 | 선택 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
+| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 **탐색·현재 Runtime 정합성 반영 완료 / 용어·줄별 해설·실행안전 상세 감사 필요** | **P0 — 현재 미션** |
+| 2 | B1-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 3 | B2-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 5 | B3-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 6 | B3-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 7 | B4-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 8 | B5-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 9 | B6-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 10 | B6-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 11 | B7-1 | 필수 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P1 |
+| 12 | B4-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P2 |
+| 13 | B5-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P2 |
+| 14 | B5-3 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P2 |
+| 15 | B7-2 | 선택 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요 | P2 |
 
 ### B1-1 실제 적용 확인 — 2026-08-18
 
@@ -85,9 +86,9 @@ APPLIED & VERIFIED
 - 일부 위험 Step에 Rerun Safety 경고 추가
 ```
 
-단, 이는 **B1-1 전체가 BEGINNER READY라는 뜻이 아닙니다.** 기존 본문의 모든 실행 가능한 명령과 의미 있는 설정 줄이 새 줄별 해설 기준을 충족하는지, 모든 위험 Step의 Context/Preflight/STOP-GO/Recovery가 충분한지는 계속 P0 상세 감사 대상입니다.
+단, 이는 **B1-1 전체가 BEGINNER READY라는 뜻이 아닙니다.** 기존 본문의 모든 실행 가능한 명령과 의미 있는 설정 줄이 새 줄별 해설 기준을 충족하는지, 모든 위험 Step의 Context/Preflight/STOP-GO/Recovery가 충분한지, 한국어 중심 용어와 영어 원어의 품사가 맞는지는 계속 P0 상세 감사 대상입니다.
 
-`🟡 정합성·탐색·줄별 해설·실행안전 감사 필요`는 가이드가 없다는 뜻이 아닙니다. **가이드는 이미 존재하지만 과거 Phase/Runtime/OS 표현, 현재 실행 경로, 목차/Quick Start 적합성, 명령·코드 설명의 상세도와 실행 안전 계층을 다시 확인해야 한다는 뜻**입니다.
+`🟡 정합성·탐색·용어·줄별 해설·실행안전 감사 필요`는 가이드가 없다는 뜻이 아닙니다. **가이드는 이미 존재하지만 과거 Phase/Runtime/OS 표현, 현재 실행 경로, 목차/Quick Start 적합성, 한글·영어 용어 정합성, 명령·코드 설명의 상세도와 실행 안전 계층을 다시 확인해야 한다는 뜻**입니다.
 
 ## 3. 알려진 Documentation Drift 유형
 
@@ -98,6 +99,9 @@ Phase A — REFERENCE BUILD
 과거 Runtime 상태
 과거 Ubuntu 버전 또는 과거 Golden Path
 현재 Control Tower와 다른 Active/Not Started 표현
+"최종 Verify"처럼 한국어 문장에 핵심 영어 용어만 단독 삽입
+"검증(Verify)"처럼 명사 문맥에 영어 동사형을 병기
+첫 등장 핵심 용어의 한글(English Original) 병기 누락
 긴 문서인데 클릭 가능한 목차가 없음
 실행형 문서인데 Quick Start 또는 빠른 진입 경로가 없음
 Quick Start가 상세 Preflight/STOP-GO를 우회함
@@ -110,7 +114,7 @@ Preflight 없이 바로 변경 명령을 실행함
 재실행 위험 명령의 반복 실행 영향 설명 누락
 예상 출력의 변동 가능 값을 실패로 오판할 수 있음
 Checkpoint/Recovery 없이 SSH/UFW/Cloud/DB를 변경함
-개발도구를 설치하라고만 하고 필수/선택/권한/설치 위치/Verify를 설명하지 않음
+개발도구를 설치하라고만 하고 필수/선택/권한/설치 위치/검증을 설명하지 않음
 공용 Mac에서 관리자 권한을 전제하고 no-admin 대안을 제공하지 않음
 Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 ```
@@ -135,7 +139,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 |---:|---|---|
 | 1 | 상태/환경 정합성 | 현재 Runtime/OS/경로와 모순 없음 |
 | 2 | 공식 Source | Mission/Evaluation/제공 파일과 연결됨 |
-| 3 | 한글+영어 용어 | 핵심 용어 첫 등장 병기 |
+| 3 | 한글+영어 용어 | 핵심 용어 첫 등장 병기, 한국어 중심 문장, 영어 원어 품사 일치 |
 | 4 | 쉬운 설명 | 입문자가 한 문장으로 의미를 파악 가능 |
 | 5 | 구조/탐색 | 복잡한 흐름은 도식이 있고, 긴 문서는 클릭 가능한 목차가 있으며 실행형 문서는 Quick Start/빠른 진입 경로가 적합함 |
 | 6 | 최소 예제 | 본 실습 전에 필요한 작은 예가 있으면 제공 |
@@ -144,9 +148,24 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 | 9 | 정상 결과 | 성공 조건과 환경에 따라 달라도 정상인 값을 구분할 수 있음 |
 | 10 | 오류 복구 | 증상→원인→확인→수정→재검증 및 필요한 Recovery 경로 제공 |
 | 11 | 완료 확인 | STOP/GO, Rerun Safety, Checkpoint를 필요한 Step에서 판정 가능 |
-| 12 | 평가/증빙 연결 | Requirement→Verify→Evidence 관계가 보이고 비용 자원은 Cleanup까지 연결 |
+| 12 | 평가/증빙 연결 | Requirement→Verification→Evidence 관계가 보이고 비용 자원은 Cleanup까지 연결 |
 
-### 4.1 줄별 해설 세부 판정
+### 4.1 한글·영어 용어 세부 판정
+
+상세 기준은 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)를 따릅니다.
+
+```text
+[ ] 제목과 한국어 설명 문장에서 핵심 개념이 영어 단독으로 튀어나오지 않는다.
+[ ] 핵심 용어 첫 등장은 한글 의미(English Original) 형식이다.
+[ ] 명사 개념은 영어 명사형, 동작은 영어 동사형으로 문맥에 맞게 병기한다.
+[ ] "개발환경 최종 Verify"가 아니라 "개발환경 최종 검증(Verification)"처럼 쓴다.
+[ ] "검증(Verify) 단계"가 아니라 "검증(Verification) 단계"처럼 쓴다.
+[ ] `verify.sh`, `git status` 같은 실제 파일명·명령어는 원문 그대로 둔다.
+[ ] 실제 UI 영문 문자열은 보존하되 한국어 설명을 붙인다.
+[ ] 같은 문서에서 첫 병기 후에는 불필요한 영어 반복보다 한국어를 우선한다.
+```
+
+### 4.2 줄별 해설 세부 판정
 
 다음은 `#8 명령·코드 줄별 해설`의 세부 기준입니다.
 
@@ -164,7 +183,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 
 상세 기준은 [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md)를 따릅니다.
 
-### 4.2 개발환경·개발 Tool Setup 세부 판정
+### 4.3 개발환경·개발 Tool Setup 세부 판정
 
 미션 가이드나 환경 문서에서 도구 설치/설정을 요구하면 다음도 확인합니다.
 
@@ -176,7 +195,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 [ ] Host에 설치하는지 Ubuntu Runtime에 설치하는지 구분한다.
 [ ] 설치 위치 또는 Repository-local 위치를 설명한다.
 [ ] 설치 명령의 각 실행 줄과 중요한 옵션을 설명한다.
-[ ] 설치 후 command/version/서비스 등으로 정상 여부를 확인한다.
+[ ] 설치 후 command/version/서비스 등으로 정상 여부를 검증한다.
 [ ] 설치 실패 시 최소 복구 경로를 제공한다.
 [ ] 공용·관리형 Mac이면 sudo/MDM 우회 없이 가능한 사용자 영역/Remote/CLI 대안을 제공한다.
 [ ] 대체 IDE를 써도 Repository/Terminal/Git/Python Runtime 계약이 유지된다.
@@ -185,18 +204,18 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 
 상세 기준은 [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md)와 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)를 따릅니다.
 
-### 4.3 실행 안전 7원칙 세부 판정
+### 4.4 실행 안전 7원칙 세부 판정
 
 핵심 실행 Step에는 필요한 범위에서 다음을 확인합니다.
 
 ```text
 [ ] 실행 위치(Context): Host/Terminal/Repository/Branch/권한/venv를 혼동하지 않는다.
-[ ] Preflight: 실행 전에 PWD, command, Git 상태, 권한 등 필요한 선행 조건을 확인한다.
-[ ] STOP / GO: 필수 조건 또는 Verify가 실패하면 다음 Step으로 진행하지 않는다.
-[ ] Rerun Safety: 상태를 바꾸는 명령은 반복 실행 영향을 판단할 수 있다.
-[ ] Copy & Paste: 실행 블록에 prompt/설명/예상 출력이 섞이지 않고 Placeholder가 명확하다.
-[ ] Output Variation: 정확히 같아야 하는 조건과 사용자명/PID/시간/버전 등 달라도 정상인 값을 구분한다.
-[ ] Checkpoint / Recovery: 위험하거나 긴 변경은 되돌아갈 상태를 확보하고 실패 시 복구 경로가 있다.
+[ ] 실행 전 점검(Preflight): 실행 전에 PWD, command, Git 상태, 권한 등 필요한 선행 조건을 확인한다.
+[ ] STOP / GO: 필수 조건 또는 검증이 실패하면 다음 Step으로 진행하지 않는다.
+[ ] 재실행 안전성(Rerun Safety): 상태를 바꾸는 명령은 반복 실행 영향을 판단할 수 있다.
+[ ] 복사·붙여넣기(Copy & Paste): 실행 블록에 prompt/설명/예상 출력이 섞이지 않고 Placeholder가 명확하다.
+[ ] 출력 변동(Output Variation): 정확히 같아야 하는 조건과 사용자명/PID/시간/버전 등 달라도 정상인 값을 구분한다.
+[ ] 중간 저장점(Checkpoint) / 복구(Recovery): 위험하거나 긴 변경은 되돌아갈 상태를 확보하고 실패 시 복구 경로가 있다.
 ```
 
 Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
@@ -209,7 +228,7 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 [ ] 실습 종료 후 실제 자원 삭제/중지 여부를 확인한다.
 ```
 
-### 4.4 목차·Quick Start 세부 판정
+### 4.5 목차·Quick Start 세부 판정
 
 상세 기준은 [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md)를 따릅니다.
 
@@ -234,10 +253,11 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 P0 현재 Active Mission
 → Runtime을 막거나 오판정을 만드는 문서 오류 즉시 수정
 → 목차/Quick Start를 실제 문서 역할에 맞게 적용
+→ 한글·영어 용어와 영어 품사를 실제 문장 문맥에 맞게 적용
 → 적용 후 실제 대상 문서를 다시 열어 확인
 → 명령·코드 줄별 해설도 실제 실행 직전 기준에 맞춤
 → 실행 위치/Preflight/STOP-GO/Rerun Safety를 실제 흐름에 적용
-→ 필요한 개발 Tool Setup도 권한/설치위치/Verify까지 확인
+→ 필요한 개발 Tool Setup도 권한/설치위치/검증까지 확인
 
 P1 다음 필수 미션
 → 해당 미션 진입 직전 Beginner Documentation Audit
@@ -259,7 +279,8 @@ P2 선택 미션
 + 실행형 문서이면 안전한 Quick Start/빠른 진입 경로가 있음
 + Beginner Guide가 실제 수행 순서를 제공함
 + 현재 상태/환경과 모순 없음
-+ 필요한 개발도구의 설치 위치/권한/Verify를 이해할 수 있음
++ 핵심 용어가 한국어 중심으로 설명되고 영어 원어의 품사가 맞음
++ 필요한 개발도구의 설치 위치/권한/검증 방법을 이해할 수 있음
 + 실행 위치와 Preflight를 스스로 확인할 수 있음
 + 실행 명령과 의미 있는 코드 줄을 자기 말로 설명할 수 있음
 + 실패 시 STOP하고 최소 복구 후 재검증할 수 있음
@@ -282,5 +303,5 @@ P2 선택 미션
 - [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set / no-admin 기준
 - [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 환경 표준
 - [README-INFORMATION-ARCHITECTURE-STANDARD.md](README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조와 직접 진입 기준
-- [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기
-- [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — Requirement/Reference/Verify/Evidence 기준
+- [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어 및 영어 품사 표기 기준
+- [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — Requirement/Reference/Verification/Evidence 기준
