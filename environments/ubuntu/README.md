@@ -1,40 +1,89 @@
-# Ubuntu 24.04 Package Model
+# Ubuntu 24.04 Developer Bootstrap & Package Model
 
 ## 목적
 
-Codyssey Basic의 Ubuntu 24.04 환경을 **공통 최소 패키지 → 미션별 시스템 패키지 → 프로젝트 내부 의존성**의 3계층으로 관리합니다.
+Codyssey Basic의 Ubuntu 24.04 환경을 **OS 전제조건 → 공통 필수 도구 → 권장 생산성 도구 → 공통 외부 CLI → 미션/프로젝트 의존성**으로 분리해 관리합니다.
 
 ```text
-Layer 1 — Ubuntu Base
-공통 최소 시스템 도구
+Layer 0 — OS Prerequisites
+bash / apt-get / dpkg-query / sudo
 
-Layer 2 — Mission System Packages
-현재 미션에 필요한 APT 패키지만 추가
+Layer 1 — Common Required Base
+ca-certificates / curl / wget / git / openssh-client / nano / jq / file / unzip / zip / rsync / bash-completion
 
-Layer 3 — Project Dependencies
-Python .venv / pyproject.toml / requirements.txt / package.json 등
+Layer 1B — Recommended Productivity
+vim / tree / ripgrep / fd-find
+
+Layer 2 — External/Common Developer CLI
+gh (GitHub CLI official APT repository)
+
+Layer 3 — Mission / Shared Runtime
+python3 / python3-venv / sqlite3 / nginx / openssh-server / ufw / acl / cron / ...
+
+Layer 4 — Project Dependencies
+Python .venv / pyproject.toml / requirements.txt / package.json / lock file
 ```
 
-Docker는 별도 선택 Training Layer이며 Ubuntu 패키지 모델의 기본 Gate가 아닙니다.
+Docker는 별도 선택 Training Layer이며 Ubuntu Bootstrap의 기본 CLEAR Gate가 아닙니다.
 
 ## 핵심 원칙
 
-1. 15개 미션에서 쓸 수 있다는 이유만으로 모든 패키지를 한 번에 설치하지 않습니다.
+1. 새 Ubuntu에 모든 미션용 패키지를 한꺼번에 설치하지 않습니다.
 2. 설치 전에 현재 상태를 먼저 확인합니다.
 3. `apt`는 OS/System package에만 사용합니다.
-4. Python 라이브러리는 프로젝트 `.venv` 안에 설치합니다.
+4. Python 라이브러리는 Repository-local `.venv` 안에 설치합니다.
 5. Node 패키지는 `package.json`과 lock file로 관리합니다.
-6. 미션별 추가 APT 패키지는 각 미션 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
-7. 실제 Mission/Evaluation이 특정 도구·버전을 요구하면 공식 요구가 최우선입니다.
+6. `gh`는 일반 Ubuntu community package에만 의존하지 않고 GitHub CLI 공식 APT repository 경로를 사용합니다.
+7. `nano`는 공통 기본 편집기, `vim/tree/rg/fdfind`는 권장 생산성 도구로 구분합니다.
+8. 미션별 추가 APT 패키지는 각 미션 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
+9. package 설치 여부와 command 사용 가능 여부는 별도로 검증합니다.
+10. 실제 Mission/Evaluation이 특정 도구·버전을 요구하면 공식 요구가 최우선입니다.
+
+## 가장 빠른 시작
+
+### 상태 확인만
+
+```bash
+cd "$HOME/codyssey/codyssey-basic"
+bash environments/ubuntu/bootstrap.sh --check
+```
+
+### 필수 공통 개발도구 설치
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install
+```
+
+### 권장 생산성 도구까지 함께 설치
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install --recommended
+```
+
+Bootstrap은 다음을 자동화하지 않습니다.
+
+```text
+gh auth login
+GitHub Token 입력
+SSH private key 생성/덮어쓰기
+git user.name / user.email 지정
+core.autocrlf 변경
+Mission별 package 설치
+Python/Node project dependency 설치
+기존 package downgrade/remove
+apt autoremove
+```
 
 ## 기본 흐름
 
 ```text
 새 Ubuntu 24.04
-→ Base 상태 확인
-→ Base 부족분만 설치
+→ Layer 0 확인
+→ Layer 1 필수 Base 확인/설치
+→ Layer 2 gh 확인/설치
+→ 필요 시 Layer 1B Productivity 설치
 → 현재 Mission 선택
-→ Mission package list 확인
+→ Mission ubuntu-packages.txt 확인
 → 부족분만 설치
 → Project environment 구성
 → Verify
@@ -43,64 +92,90 @@ Docker는 별도 선택 Training Layer이며 Ubuntu 패키지 모델의 기본 G
 
 ## 파일
 
-- `base-packages.txt` — 공통 최소 APT 패키지
-- `BASE-PACKAGES.md` — 공통 패키지 설명과 운영 원칙
-- `MISSION-PACKAGE-MATRIX.md` — B1-1~B7-2의 Ubuntu/System/Project dependency 지도
-- `verify-base.sh` — 공통 패키지 설치 여부 확인
-- `setup-base.sh` — 공통 패키지 중 누락된 것만 설치
-- `setup-mission-packages.sh` — 각 미션의 `ubuntu-packages.txt`를 검사/설치하는 공통 helper
+- `base-packages.txt` — 공통 필수 APT 패키지
+- `base-commands.txt` — Base 설치 후 기대 command
+- `recommended-packages.txt` — 선택 생산성 APT 패키지
+- `recommended-commands.txt` — 선택 생산성 command
+- `BASE-PACKAGES.md` — 계층별 공통 도구 설명과 운영 원칙
+- `MISSION-PACKAGE-MATRIX.md` — B1-1~B7-2 Ubuntu/System/Project dependency 지도
+- `verify-prerequisites.sh` — Ubuntu/Bash/APT/sudo 기본 전제조건 검사
+- `verify-base.sh` — 공통 package + command 분리 검사
+- `setup-base.sh` — 공통 package 중 누락된 것만 설치
+- `verify-gh.sh` — `gh` 설치/공식 APT source 상태 확인
+- `setup-gh.sh` — GitHub CLI 공식 APT repository를 사용한 설치
+- `verify-recommended.sh` — 권장 도구 상태 확인; 누락되어도 CLEAR Gate 아님
+- `setup-recommended.sh` — 권장 도구 설치
+- `bootstrap.sh` — 공통 Ubuntu Developer Bootstrap 통합 진입점
+- `setup-mission-packages.sh` — 현재 미션의 `ubuntu-packages.txt` 검사/설치 helper
 
-## 실행 예
+## Mission Package 사용
 
-Control Tower에서 Base 확인:
-
-```bash
-bash environments/ubuntu/verify-base.sh
-```
-
-필요할 때만 Base 설치:
-
-```bash
-bash environments/ubuntu/setup-base.sh
-```
-
-현재 Mission 저장소의 추가 패키지 확인:
+현재 Mission Repository root에서:
 
 ```bash
-bash ~/codyssey/codyssey-basic/environments/ubuntu/setup-mission-packages.sh \
-  training/round-01-clear/environment/ubuntu-packages.txt --check
+CONTROL_TOWER="${CONTROL_TOWER:-$HOME/codyssey/codyssey-basic}"
+PACKAGE_FILE="training/round-01-clear/environment/ubuntu-packages.txt"
+
+bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
+  "$PACKAGE_FILE" --check
 ```
 
 부족분만 설치:
 
 ```bash
-bash ~/codyssey/codyssey-basic/environments/ubuntu/setup-mission-packages.sh \
-  training/round-01-clear/environment/ubuntu-packages.txt --install
+bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
+  "$PACKAGE_FILE" --install
 ```
 
-`setup-mission-packages.sh`는 package list의 주석과 빈 줄을 무시합니다.
+`setup-mission-packages.sh`는 package 설치 여부를 확인합니다. 실제 command/service 동작은 해당 Mission의 `verify.sh`, Runtime Step, Evidence에서 별도로 검증합니다.
+
+## Package와 Command 검증을 분리하는 이유
+
+APT package 이름과 실제 command 이름이 다를 수 있습니다.
+
+```text
+openssh-client → ssh
+ripgrep        → rg
+fd-find        → fdfind
+procps         → ps
+iproute2       → ss
+```
+
+따라서 공통 Base에서는 `dpkg-query`로 package를 확인하고 `command -v`로 실제 command도 확인합니다.
+
+## GitHub CLI `gh`
+
+`gh`는 공통 개발 CLI로 사용하지만 설치와 인증을 분리합니다.
+
+```text
+설치 = setup-gh.sh
+인증 = 필요할 때 사용자가 gh auth login
+```
+
+이미 `gh`가 설치되어 있는데 공식 GitHub CLI APT source가 보이지 않는 경우, Bootstrap은 기존 설치를 자동 삭제·교체·다운그레이드하지 않고 경고만 표시합니다.
 
 ## Project Dependency와 분리
 
-예를 들어 FastAPI 미션에서는 다음처럼 분리합니다.
+예를 들어 FastAPI 미션:
 
 ```text
 APT
-└─ python3, python3-venv 같은 System Runtime
+└─ python3, python3-venv
 
 Repository
 └─ .venv
-   └─ FastAPI / SQLAlchemy / 기타 Python package
+   └─ FastAPI / Uvicorn / SQLAlchemy / Jinja2 / 기타 Python package
 ```
 
-Node 미션은 Node runtime/version 정책과 `package.json`을 사용하며 모든 Node 패키지를 APT로 설치하지 않습니다.
+Node 미션은 해당 미션의 Node runtime/version 정책과 `package.json`/lock file을 사용합니다. 모든 Node 패키지를 APT로 설치하지 않습니다.
 
 ## 안전 원칙
 
-- `apt install` 전에 누락 여부 확인
+- `CHECK → MISSING → INSTALL → VERIFY` 순서 유지
 - 기존 package 제거/다운그레이드 자동화 금지
 - `apt autoremove` 자동 실행 금지
 - System Python에 프로젝트 package 전역 설치 금지
 - 미션 간 `.venv` 공유 금지
+- Git identity/SSH private key/Token 자동 생성 또는 덮어쓰기 금지
 - package 설치와 Mission 기능 변경은 가능한 한 분리
 - 실제 버전은 Runtime 시점에 확인하고 Evidence에 필요한 경우만 기록
