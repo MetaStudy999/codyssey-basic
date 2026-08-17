@@ -4,7 +4,7 @@
 
 ## 목적
 
-각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
+각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, Ubuntu 패키지 누락, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
 
 이 문서는 미션 구현을 대신하지 않는 공통 안전 Gate입니다.
 
@@ -121,7 +121,60 @@ command -v gh || true
 
 필요한 도구만 해당 미션에서 사용합니다. 모든 미션을 위해 모든 패키지를 전역 설치하지 않습니다.
 
-## 5. Process / Port 확인
+## 5. Ubuntu Base / Mission Package 확인
+
+Ubuntu 설치는 세 계층으로 분리합니다.
+
+```text
+Layer 1 — Ubuntu Base
+Layer 2 — Mission System Packages
+Layer 3 — Project Dependencies
+```
+
+Control Tower가 권장 위치에 있으면 Base를 확인합니다.
+
+```bash
+CONTROL_TOWER="${CONTROL_TOWER:-$HOME/codyssey/codyssey-basic}"
+
+if [[ -f "$CONTROL_TOWER/environments/ubuntu/verify-base.sh" ]]; then
+  bash "$CONTROL_TOWER/environments/ubuntu/verify-base.sh"
+else
+  echo '[INFO] Control Tower verify-base.sh 경로를 확인하세요.'
+fi
+```
+
+현재 Mission Repository root에서는 추가 APT package를 확인합니다.
+
+```bash
+PACKAGE_FILE="training/round-01-clear/environment/ubuntu-packages.txt"
+
+if [[ -f "$PACKAGE_FILE" && -f "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" ]]; then
+  bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
+    "$PACKAGE_FILE" --check
+else
+  echo '[INFO] Mission package file 또는 Control Tower helper 경로를 확인하세요.'
+fi
+```
+
+`[MISSING]`이 있으면 바로 모든 개발도구를 설치하지 않고 현재 package list의 누락분만 설치합니다.
+
+```bash
+bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
+  "$PACKAGE_FILE" --install
+```
+
+원칙:
+
+- Base는 의도적으로 작게 유지
+- 각 Mission의 `ubuntu-packages.txt`에는 Base를 제외한 추가 APT package만 기록
+- Python project library는 `.venv`에 설치
+- Node package는 `package.json`/lock file로 관리
+- package 설치 여부와 실제 service/command 정상 동작을 구분
+- `apt autoremove`, package downgrade, 무차별 전역 설치 자동화 금지
+
+상세 계약은 `environments/ubuntu/README.md`와 `environments/ubuntu/MISSION-PACKAGE-MATRIX.md`를 사용합니다.
+
+## 6. Process / Port 확인
 
 ```bash
 ss -lntp 2>/dev/null || ss -lnt 2>/dev/null || true
@@ -135,7 +188,7 @@ ps -ef | grep -E 'uvicorn|vite|http.server|agent-app|agent.*leak' | grep -v grep
 - FastAPI/HTTP/Vite는 순차 Runtime이므로 시작 전에 local port만 확인
 - 광범위한 `pkill -9`, `killall`, 재부팅으로 정리하지 않음
 
-## 6. Python 환경 격리
+## 7. Python 환경 격리
 
 ```bash
 printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV:-<none>}"
@@ -152,7 +205,7 @@ System Python에 FastAPI/SQLAlchemy 등을 일괄 설치하지 않습니다.
 
 VS Code Python Environments를 사용하는 경우 Remote Ubuntu의 현재 Repository `.venv`를 Interpreter로 선택합니다. Terminal 자동 활성화는 Remote User Setting의 `python-envs.terminal.autoActivationType = shellStartup`을 권장하며, 설정 변경 후 새 Terminal에서 실제 `VIRTUAL_ENV`를 확인합니다.
 
-## 7. Node 환경 격리
+## 8. Node 환경 격리
 
 B4-2에서만 확인합니다.
 
@@ -163,7 +216,7 @@ npm --version
 
 `node_modules`는 B4-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
 
-## 8. Secret Presence 확인 — 값은 출력하지 않음
+## 9. Secret Presence 확인 — 값은 출력하지 않음
 
 AI 계열에서는 아래처럼 **설정 여부만** 확인합니다.
 
@@ -186,7 +239,7 @@ set -x 상태에서 Secret 입력
 
 B5-3의 `SESSION_SECRET`, B4-2의 Supabase 변수도 같은 원칙을 적용합니다.
 
-## 9. Local data / DB 확인
+## 10. Local data / DB 확인
 
 새 Runtime 전에 현재 미션이 만들 기존 데이터가 있는지 먼저 확인합니다.
 
@@ -198,7 +251,7 @@ find training/round-01-clear/reference -maxdepth 2 \
 
 기존 파일이 보인다고 자동 삭제하지 않습니다. `reset.sh`가 있는 미션은 범위를 읽고, 현재 Round가 만든 파일임이 명확할 때만 사용합니다.
 
-## 10. Cloud / Remote resource 확인
+## 11. Cloud / Remote resource 확인
 
 B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 
@@ -209,7 +262,7 @@ B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 - Supabase Service Role Key를 frontend에 사용 금지
 - Cleanup은 현재 미션이 생성한 자원만 대상
 
-## 11. Evidence 시작 상태
+## 12. Evidence 시작 상태
 
 Evidence root:
 
@@ -226,7 +279,7 @@ training/round-01-clear/evidence/
 - Secret 값은 마스킹이 아니라 애초에 캡처하지 않는 것을 우선
 - 실제 외부 URL/PR/Review처럼 서버 측 증거가 필요한 항목은 placeholder로 대체 금지
 
-## 12. Start Gate
+## 13. Start Gate
 
 아래가 모두 확인되면 해당 미션의 `BEGINNER-GUIDE.md` STEP 01로 이동합니다.
 
@@ -235,8 +288,11 @@ training/round-01-clear/evidence/
 [ ] 보존해야 할 local 변경 확인
 [ ] VS Code Remote/Workspace가 의도한 Ubuntu 경로임
 [ ] Bash/PWD/HOME 상태 확인
-[ ] Python Mission이면 올바른 `.venv` 상태 확인
 [ ] Cross-platform line ending / file mode 이상 없음
+[ ] Ubuntu Base 상태 확인
+[ ] 현재 Mission ubuntu-packages.txt 누락 여부 확인
+[ ] 필요한 package만 설치/검증
+[ ] Python Mission이면 올바른 `.venv` 상태 확인
 [ ] 이전 미션 process/dev-server 정리
 [ ] 필요한 port 충돌 없음
 [ ] 현재 미션 Python/Node 환경 격리
