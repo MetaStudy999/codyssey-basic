@@ -224,6 +224,90 @@ Windows .bat / .cmd = CRLF 허용
 
 대규모 line-ending 변경은 Active Mission 기능 변경과 섞지 않고, 실제 필요 시 별도 정규화 작업으로 검토합니다.
 
+## 실행 위치(Context)와 Preflight 계약
+
+환경/설정 문서에서 명령을 실행하기 전에는 **어디에서 실행하는지**를 먼저 구분합니다.
+
+필요한 경우 다음 형식을 사용합니다.
+
+```text
+Host       : macOS / Windows / Ubuntu / Cloud
+Terminal   : Ubuntu Bash / PowerShell / macOS Terminal
+Repository : $HOME/codyssey/<repo>
+Branch     : 현재 작업 Branch
+권한       : 일반 사용자 / sudo 필요
+venv       : 활성 / 비활성 / 해당 없음
+```
+
+환경 변경 전에는 최소한 다음을 확인합니다.
+
+```text
+현재 Host/Runtime이 맞는가
+→ 현재 PWD가 맞는가
+→ 필요한 command가 존재하는가
+→ Git 작업이면 Branch/변경사항이 예상과 맞는가
+→ 필요한 권한이 있는가
+→ 비용/외부 Resource가 발생하는가
+```
+
+필수 조건이 맞지 않으면 **STOP**하고 해당 조건을 복구한 뒤 다시 확인합니다.
+
+## 재실행 안전성과 Checkpoint
+
+환경설정 명령은 반복 실행 시 영향이 다를 수 있으므로 필요한 경우 다음으로 표시합니다.
+
+```text
+🟢 SAFE TO RERUN
+🟡 CHECK BEFORE RERUN
+🔴 DO NOT RERUN BLINDLY
+```
+
+특히 아래 작업은 `CHECK → BACKUP/CHECKPOINT → CHANGE → VERIFY → RECOVERY` 흐름을 우선합니다.
+
+- SSH / sshd
+- UFW / firewall
+- systemd service
+- Nginx
+- DB schema/migration
+- Git history 변경
+- Cloud Resource Create/Update/Delete
+- API/AI Provider 유료 자원
+
+Checkpoint는 실제로 복구 가능한 근거여야 합니다. 예:
+
+```text
+Git clean 상태
+설정 파일 백업
+현재 service 상태 기록
+현재 Cloud Resource 목록
+DB backup 또는 migration 이전 상태
+```
+
+## 비용·자원 보호(Cost / Resource Guard)
+
+Cloud/API/AI Provider를 사용하는 환경 문서는 비용 가능성이 있으면 실행 전에 다음을 확인하게 합니다.
+
+```text
+[ ] Account / Project / Region을 확인했다.
+[ ] 무료 한도 또는 과금 가능성을 확인했다.
+[ ] 생성할 Resource 수를 확인했다.
+[ ] 유료 API/Model 사용 여부를 확인했다.
+[ ] Cleanup 또는 Stop/Delete 절차를 먼저 읽었다.
+```
+
+실습 종료는 가능한 경우 다음 흐름으로 닫습니다.
+
+```text
+Create
+→ Verify
+→ Evidence
+→ 더 이상 필요 없음
+→ Cleanup
+→ 삭제/중지 확인
+```
+
+비용이나 정책이 변동되는 외부 서비스는 현재 공식 문서를 확인하고, 저장소에는 특정 가격을 장기간 고정 사실처럼 남기지 않습니다.
+
 ## 필요한 경우의 구조
 
 ```text
@@ -262,11 +346,15 @@ Round 01에서는 가이드의 명령을 직접 따라 이해하는 것을 본 �
 → 왜 필요한가
 → 필수/권장/선택
 → 관리자 권한 필요 여부
+→ 실행 위치
 → 설치 위치
+→ 사전 점검
 → 설치/설정 방법
 → 명령 한 줄 해설
-→ 정상 결과
+→ 정상 결과와 달라도 정상인 값
+→ 재실행 안전 여부
 → 오류/복구
+→ STOP / GO
 → 다음 단계
 ```
 
@@ -274,7 +362,7 @@ Round 01에서는 가이드의 명령을 직접 따라 이해하는 것을 본 �
 
 ## 시스템 설정 변경
 
-`현재 상태 확인 → 백업 → 변경 → 문법 검사 → 적용 → 검증(Verify) → 증빙 자료(Evidence)`
+`현재 상태 확인 → 백업/Checkpoint → 변경 → 문법 검사 → 적용 → 검증(Verify) → 증빙 자료(Evidence)`
 
 광범위한 `rm -rf`, 무차별 사용자 삭제, 시스템 전체 초기화 같은 위험한 reset은 금지합니다.
 
@@ -304,3 +392,11 @@ Result: 2 PASS / 1 FAIL
 ```
 
 사용자가 실패 지점만 쉽게 전달할 수 있어야 합니다.
+
+또한 예시 출력에는 필요한 경우 다음을 구분합니다.
+
+```text
+정확히 만족해야 하는 조건
+vs
+사용자명/PID/시간/버전처럼 달라도 정상인 값
+```
