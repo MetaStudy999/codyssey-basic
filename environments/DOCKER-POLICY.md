@@ -6,6 +6,36 @@ Round 01에서 Docker를 **Mission CLEAR의 기본 필수조건이 아니라 선
 
 공식 Mission/Evaluation이 특정 실행환경을 요구하면 공식 자료가 최우선입니다. 그 외에는 Docker 사용 여부만으로 PASS/FAIL/CLEAR를 판정하지 않습니다.
 
+## 한눈에 보기(Quick Read)
+
+```text
+Mission CLEAR 먼저
+→ Secondary Check는 권장
+→ Docker Lab은 선택
+```
+
+따라서:
+
+```text
+Docker 미수행 ≠ FAIL
+Docker 미수행 ≠ BLOCKED
+Docker 사용     ≠ 자동 CLEAR
+```
+
+현재 Mission의 실제 실행은 [NEXT-ACTIONS.md](../training/round-01-clear/NEXT-ACTIONS.md)를 우선합니다.
+
+## 📑 목차
+
+- [핵심 계약](#contract)
+- [R01 우선순위](#priority)
+- [환경 역할](#roles)
+- [Docker가 특히 유용한 경우](#useful)
+- [Docker가 실제 요구를 대체하지 못하는 경우](#not-substitute)
+- [현재 R01 운영 원칙](#r01-principles)
+
+---
+
+<a id="contract"></a>
 ## 핵심 계약
 
 ```text
@@ -25,6 +55,7 @@ Docker Lab
 
 즉 Docker Lab 미수행은 그 자체로 Mission `⛔ BLOCKED` 또는 `FAIL`의 근거가 아닙니다.
 
+<a id="priority"></a>
 ## R01 우선순위
 
 1. 공식 Mission/Evaluation 요구 충족
@@ -37,6 +68,7 @@ Docker Lab
 
 FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미룹니다.
 
+<a id="roles"></a>
 ## 환경 역할
 
 - `MAC-V`: macOS → OrbStack Ubuntu 24.04 직접 Linux Runtime. R01의 기본 Primary Linux 환경
@@ -44,6 +76,7 @@ FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미�
 - `MAC-D`: macOS → OrbStack Docker. 선택 Docker Lab
 - `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker. 선택 Docker Portability Lab
 
+<a id="useful"></a>
 ## Docker가 특히 유용한 경우
 
 - 깨끗한 Python/Node runtime 재현
@@ -53,7 +86,8 @@ FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미�
 - multi-service 개발환경 연습
 - 배포 전 containerization 연습
 
-## Docker를 최종 판정에 사용하지 않는 경우
+<a id="not-substitute"></a>
+## Docker가 실제 요구를 대체하지 못하는 경우
 
 다음처럼 시스템/외부 서비스 자체가 평가 대상이면 Docker가 실제 요구를 대체하지 않습니다.
 
@@ -63,6 +97,7 @@ FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미�
 - 실제 외부 AI Provider 호출
 - 실제 배포 URL/browser/team acceptance
 
+<a id="r01-principles"></a>
 ## 현재 R01 운영 원칙
 
 ```text
