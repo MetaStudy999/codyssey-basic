@@ -350,29 +350,59 @@ NO
 
 ## 미션 목록 및 저장소
 
-> **행 정렬은 미션 번호 기준**입니다. 실제 R01 수행 순서는 `R01 실행 순번` 열을 따릅니다.  
+> 각 미션은 **3행(미션 / 과정 / 저장소)**으로 묶어 표시합니다. 가로로 긴 표보다 한 미션의 정보를 위에서 아래로 읽기 쉽게 하기 위한 입문자 우선(Beginner First) 형식입니다.  
 > `미션 제목`은 각 미션의 공식 `*-mission.md` 첫 제목을 원문 그대로 사용합니다.  
 > `필수 선행`은 공식 요구상 결과물이 직접 필요한 경우만 게이트(Gate)로 둡니다.  
 > `권장 선행`은 학습 가속 경로이며 공식 필수 조건이 아닙니다.  
-> `R01 실행 순번`은 FAST TRACK을 따르며 **필수 11개를 먼저 완료하고 선택 4개를 이후에 수행**합니다.
+> `실행 순번`은 빠른 실행 경로(FAST TRACK)를 따르며 **필수 11개를 먼저 완료하고 선택 4개를 이후에 수행**합니다.
 
-| 미션 | 미션 제목 | 구분 | 필수 선행 | 권장 선행 | R01 실행 순번 | 저장소(Repository) |
-|---|---|---|---|---|---:|---|
-| B1-1 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 | 필수(Required) | - | - | **1** | [codyssey-basic-b1-1-system-monitor](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
-| B1-2 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 | 필수(Required) | - | **B1-1** | **2** | [codyssey-basic-b1-2-linux-troubleshooting](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
-| B2-1 | 나만의 용돈 기입장 프로그램 만들기 | 필수(Required) | - | - | **3** | [codyssey-basic-b2-1-budget-tracker](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
-| B2-2 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 | 필수(Required) | - | B2-1 | **4** | [codyssey-basic-b2-2-git-team-collaboration](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
-| B3-1 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 | 필수(Required) | - | B2-1 | **5** | [codyssey-basic-b3-1-fast-data-store](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
-| B3-2 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 | 필수(Required) | - | B3-1, B2-2 | **6** | [codyssey-basic-b3-2-file-change-tracker](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
-| B4-1 | 나를 소개하는 웹페이지 처음부터 만들기 | 필수(Required) | - | - | **7** | [codyssey-basic-b4-1-portfolio](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
-| B4-2 | 버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기 | 선택(Optional) | - | B4-1 | **12** | [codyssey-basic-b4-2-interactive-web-app](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
-| B5-1 | 정보를 깔끔하게 정리하는 디지털 서랍장 만들기 | 필수(Required) | - | - | **8** | [codyssey-basic-b5-1-database-design](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
-| B5-2 | 글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기 | 선택(Optional) | - | B5-1, B4-1 | **13** | [codyssey-basic-b5-2-fastapi-crud-app](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
-| B5-3 | 로그인이 되고 회원끼리 연결되는 웹 서비스 만들기 | 선택(Optional) | - | B5-2, B5-1 | **14** | [codyssey-basic-b5-3-fastapi-auth-service](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
-| B6-1 | 내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기 | 필수(Required) | - | B4-1 | **9** | [codyssey-basic-b6-1-cloud-deployment](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
-| B6-2 | 내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기 | 필수(Required) | - | B2-2 | **10** | [codyssey-basic-b6-2-ai-code-summarizer](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
-| B7-1 | 웹 기반 AI 챗봇 서비스 개발 프로젝트 | 필수 텀프로젝트(Required Term Project) | - | B2-2, B4-1, B5-1, B6-1, B6-2 | **11** | [codyssey-basic-b7-1-web-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
-| B7-2 | 웹 기반 AI 챗봇 서비스 고도화 프로젝트 | 선택 텀프로젝트/고도화(Optional Term Project / Advanced) | **B7-1** | B4-2, B5-2, B5-3, B6-1 | **15** | [codyssey-basic-b7-2-advanced-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
+| 미션 | 항목 | 내용 |
+|---|---|---|
+| **B1-1** | 미션 | 컴퓨터가 알아서 자기 상태를 점검하게 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **1**<br>필수 선행 없음 · 권장 선행 없음 |
+|  | 저장소(Repository) | [codyssey-basic-b1-1-system-monitor](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor) |
+| **B1-2** | 미션 | 컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **2**<br>필수 선행 없음 · 권장 선행 **B1-1** |
+|  | 저장소(Repository) | [codyssey-basic-b1-2-linux-troubleshooting](https://github.com/MetaStudy999/codyssey-basic-b1-2-linux-troubleshooting) |
+| **B2-1** | 미션 | 나만의 용돈 기입장 프로그램 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **3**<br>필수 선행 없음 · 권장 선행 없음 |
+|  | 저장소(Repository) | [codyssey-basic-b2-1-budget-tracker](https://github.com/MetaStudy999/codyssey-basic-b2-1-budget-tracker) |
+| **B2-2** | 미션 | 친구 3~5명과 함께 프로그램 만드는 법 연습하기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **4**<br>필수 선행 없음 · 권장 선행 **B2-1** |
+|  | 저장소(Repository) | [codyssey-basic-b2-2-git-team-collaboration](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration) |
+| **B3-1** | 미션 | 정보를 엄청 빠르게 찾아주는 작은 저장소 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **5**<br>필수 선행 없음 · 권장 선행 **B2-1** |
+|  | 저장소(Repository) | [codyssey-basic-b3-1-fast-data-store](https://github.com/MetaStudy999/codyssey-basic-b3-1-fast-data-store) |
+| **B3-2** | 미션 | 파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **6**<br>필수 선행 없음 · 권장 선행 **B3-1, B2-2** |
+|  | 저장소(Repository) | [codyssey-basic-b3-2-file-change-tracker](https://github.com/MetaStudy999/codyssey-basic-b3-2-file-change-tracker) |
+| **B4-1** | 미션 | 나를 소개하는 웹페이지 처음부터 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **7**<br>필수 선행 없음 · 권장 선행 없음 |
+|  | 저장소(Repository) | [codyssey-basic-b4-1-portfolio](https://github.com/MetaStudy999/codyssey-basic-b4-1-portfolio) |
+| **B4-2** | 미션 | 버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기 |
+|  | 과정 | **선택(Optional)** · 실행 순번 **12**<br>필수 선행 없음 · 권장 선행 **B4-1** |
+|  | 저장소(Repository) | [codyssey-basic-b4-2-interactive-web-app](https://github.com/MetaStudy999/codyssey-basic-b4-2-interactive-web-app) |
+| **B5-1** | 미션 | 정보를 깔끔하게 정리하는 디지털 서랍장 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **8**<br>필수 선행 없음 · 권장 선행 없음 |
+|  | 저장소(Repository) | [codyssey-basic-b5-1-database-design](https://github.com/MetaStudy999/codyssey-basic-b5-1-database-design) |
+| **B5-2** | 미션 | 글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기 |
+|  | 과정 | **선택(Optional)** · 실행 순번 **13**<br>필수 선행 없음 · 권장 선행 **B5-1, B4-1** |
+|  | 저장소(Repository) | [codyssey-basic-b5-2-fastapi-crud-app](https://github.com/MetaStudy999/codyssey-basic-b5-2-fastapi-crud-app) |
+| **B5-3** | 미션 | 로그인이 되고 회원끼리 연결되는 웹 서비스 만들기 |
+|  | 과정 | **선택(Optional)** · 실행 순번 **14**<br>필수 선행 없음 · 권장 선행 **B5-2, B5-1** |
+|  | 저장소(Repository) | [codyssey-basic-b5-3-fastapi-auth-service](https://github.com/MetaStudy999/codyssey-basic-b5-3-fastapi-auth-service) |
+| **B6-1** | 미션 | 내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **9**<br>필수 선행 없음 · 권장 선행 **B4-1** |
+|  | 저장소(Repository) | [codyssey-basic-b6-1-cloud-deployment](https://github.com/MetaStudy999/codyssey-basic-b6-1-cloud-deployment) |
+| **B6-2** | 미션 | 내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기 |
+|  | 과정 | **필수(Required)** · 실행 순번 **10**<br>필수 선행 없음 · 권장 선행 **B2-2** |
+|  | 저장소(Repository) | [codyssey-basic-b6-2-ai-code-summarizer](https://github.com/MetaStudy999/codyssey-basic-b6-2-ai-code-summarizer) |
+| **B7-1** | 미션 | 웹 기반 AI 챗봇 서비스 개발 프로젝트 |
+|  | 과정 | **필수 텀프로젝트(Required Term Project)** · 실행 순번 **11**<br>필수 선행 없음 · 권장 선행 **B2-2, B4-1, B5-1, B6-1, B6-2** |
+|  | 저장소(Repository) | [codyssey-basic-b7-1-web-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-1-web-ai-chatbot) |
+| **B7-2** | 미션 | 웹 기반 AI 챗봇 서비스 고도화 프로젝트 |
+|  | 과정 | **선택 텀프로젝트/고도화(Optional Term Project / Advanced)** · 실행 순번 **15**<br>필수 선행 **B7-1** · 권장 선행 **B4-2, B5-2, B5-3, B6-1** |
+|  | 저장소(Repository) | [codyssey-basic-b7-2-advanced-ai-chatbot](https://github.com/MetaStudy999/codyssey-basic-b7-2-advanced-ai-chatbot) |
 
 ### 선행 관계(Dependency)를 읽는 방법
 
