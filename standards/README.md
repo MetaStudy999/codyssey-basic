@@ -91,6 +91,34 @@ Self-contained First
 - 미션 정보가 많은 경우 미션당 3행(`미션 / 과정 / 시작`) 구조
 - `시작` 행에서 저장소(Repository) + `▶ 입문자 따라하기(Beginner Guide)` 직접 연결
 
+### 2.1 목차·빠른 시작(Quick Start)
+
+[DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md)
+
+입문자가 긴 문서에서 길을 잃지 않고, 이미 한 번 수행한 사람은 빠르게 재진입할 수 있도록 **문서 상단 탐색 구조와 Quick Start 기준**을 관리합니다.
+
+핵심 원칙:
+
+```text
+문서 제목
+→ 한 문장 목적
+→ 실행형 문서면 🚀 Quick Start
+→ 길거나 여러 섹션이면 📑 클릭 가능한 목차
+→ 상세 따라하기
+→ Verify / 완료 확인
+```
+
+적용 원칙:
+
+- `README`, `BEGINNER-GUIDE`, `START-HERE`, 환경 Setup/Verify, Hands-on 문서에는 안전한 Quick Start 또는 동등한 빠른 진입 경로를 우선합니다.
+- 긴 문서나 여러 H2/H3 섹션이 있는 문서는 클릭 가능한 목차를 우선합니다.
+- 짧은 체크리스트·단일 Reference·순수 Standard 문서에는 형식만을 위해 Quick Start/목차를 강제하지 않습니다.
+- Standard/Glossary/ADR 같은 비실행 문서는 `Quick Start` 대신 `요약`, `이 문서를 언제 보는가`, `핵심 원칙`을 사용할 수 있습니다.
+- Quick Start는 Preflight, STOP/GO, Rerun Safety, Secret/비용 보호를 우회하지 않습니다.
+- 위험한 삭제·Reset·Firewall·DB destructive 작업·고비용 Cloud/API 명령을 Quick Start에 무분별하게 넣지 않습니다.
+
+즉 **모든 문서는 빠르게 진입할 수 있어야 하지만, 모든 문서에 동일한 Quick Start 명령 블록을 기계적으로 넣지는 않습니다.**
+
 ### 3. 입문자 문서 품질 감사
 
 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)
@@ -103,6 +131,7 @@ Self-contained First
 가이드 존재 확인
 → 메인 README 직접 연결
 → 현재 상태/환경 정합성
+→ Quick Start / 목차 적합성
 → 실제 따라하기
 → 실행 위치/Preflight
 → 명령·코드 줄별 해설
@@ -250,25 +279,27 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 4. BEGINNER-TRAINING-STANDARD 적용
         ↓
-5. 실행 위치 / Preflight / STOP-GO / Rerun Safety 확인
+5. DOCUMENT-NAVIGATION-QUICK-START-STANDARD로 Quick Start/목차 적용 여부 결정
         ↓
-6. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
+6. 실행 위치 / Preflight / STOP-GO / Rerun Safety 확인
         ↓
-7. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
+7. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
         ↓
-8. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
+8. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
         ↓
-9. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
+9. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
         ↓
-10. TERMINOLOGY-STANDARD 적용
+10. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-11. 필요한 Environment/Canonical Standard 적용
+11. TERMINOLOGY-STANDARD 적용
         ↓
-12. 링크·명령·경로·상태 정합성 확인
+12. 필요한 Environment/Canonical Standard 적용
         ↓
-13. Beginner Documentation Audit
+13. 링크·명령·경로·상태 정합성 확인
         ↓
-14. BEGINNER READY 또는 보완 필요
+14. Beginner Documentation Audit
+        ↓
+15. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -279,14 +310,15 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 | 문서 | 기본 역할 |
 |---|---|
-| `README.md` | 처음 진입, 지금 할 일, 대표 경로, 탐색(Navigation) |
-| `BEGINNER-GUIDE.md` | 실제 수행의 대표 학습 경로 |
-| `START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 개발환경/도구 처음부터 끝까지 시작 경로 |
+| `README.md` | 처음 진입, 지금 할 일, Quick Start/대표 경로, 탐색(Navigation) |
+| `BEGINNER-GUIDE.md` | Quick Start + 실제 수행의 대표 학습 경로 |
+| `START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 개발환경 Quick Start + 처음부터 끝까지 시작 경로 |
+| `DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` | 모든 문서의 목차/빠른 진입 적용 기준 |
 | `AI-CLI-TOOLSET-STANDARD.md` | 주요 AI CLI 설치·인증·안전 사용 기준 |
 | `START-CHECK.md` | 선행 조건·선행 지식 확인 |
 | `prerequisites.md` | 실행 전 환경·도구 준비 |
-| `TROUBLESHOOTING.md` 또는 동등 문서 | 오류 원인·확인·복구 |
-| `EVALUATION-GUIDE.md` 또는 동등 문서 | 평가 요구와 수행 결과 연결 |
+| `TROUBLESHOOTING.md` 또는 동등 문서 | 빠른 진단 + 오류 원인·확인·복구 |
+| `EVALUATION-GUIDE.md` 또는 동등 문서 | 빠른 평가 확인 + 평가 요구와 수행 결과 연결 |
 | `requirements-mapping.md` | Requirement → Implementation → Verification → Evidence |
 
 필요 없는 파일은 형식 때문에 만들지 않습니다. 대신 대표 실행 문서에서 필요한 정보로 바로 이동할 수 있어야 합니다.
@@ -316,6 +348,10 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 공식 Source를 확인하지 않고 Mission 요구를 추정하여 작성
 - 과거 Phase/OS/경로를 현재 상태처럼 복사
 - 영어 용어만 연속 사용하여 입문자 이해를 전제
+- 실행형 긴 문서에 목차/빠른 진입 경로 없이 정보만 누적
+- 모든 짧은 Reference/Standard에 형식만을 위해 동일한 Quick Start 명령을 강제
+- Quick Start에서 Preflight/STOP-GO/Rerun Safety를 생략하여 속도를 안전보다 우선
+- 위험한 삭제/Reset/Firewall/DB destructive/고비용 Cloud 명령을 Quick Start에 무분별하게 배치
 - 실행 위치가 불명확한 상태에서 Host/Ubuntu/Cloud 명령을 섞어 안내
 - Preflight 실패 후에도 다음 Step으로 계속 진행하도록 안내
 - 여러 실행 명령을 제시하고 일부 핵심 명령만 설명하여 나머지를 입문자가 추측하게 함
@@ -331,7 +367,6 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - Cloud/API/AI 유료 자원을 만들게 하면서 비용 가능성과 Cleanup을 설명하지 않음
 - 외부 블로그·영상이 없으면 수행할 수 없는 문서 구조
 - README 첫 화면에 운영자용 상세 정책을 과도하게 노출
-- 긴 README에 탐색용 목차 없이 정보만 누적
 - 각 미션을 나열하면서 Beginner Guide 직접 진입 링크를 제공하지 않음
 - 동일한 상세 정책을 README와 하위 문서에 반복 복제
 - 실제 실행하지 않은 결과를 PASS/CLEAR/Evidence로 표현
