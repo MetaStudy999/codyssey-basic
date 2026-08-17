@@ -29,6 +29,8 @@
 + 실행 가능한 Shell 명령 각 줄 해설
 + 의미 있는 코드/SQL/설정 줄 해설
 + 중요한 옵션·인자·입력값 설명
++ 환경/Tool 설치가 있으면 필수·선택·권한·설치위치·Verify 설명
++ 공용/관리형 Mac이면 no-admin 대안 설명
 + 정상 결과
 + 오류 복구
 + 완료 확인
@@ -71,6 +73,8 @@ Phase A — REFERENCE BUILD
 여러 줄의 실행 명령을 제시하고 일부 명령만 설명
 중요한 옵션/인자 설명 누락
 의미 있는 코드/SQL/설정 줄의 역할 설명 누락
+개발도구를 설치하라고만 하고 필수/선택/권한/설치 위치/Verify를 설명하지 않음
+공용 Mac에서 관리자 권한을 전제하고 no-admin 대안을 제공하지 않음
 ```
 
 따라서 단순히 `BEGINNER-GUIDE.md`가 존재한다는 이유만으로 `BEGINNER READY`로 판정하지 않습니다.
@@ -122,6 +126,27 @@ Phase A — REFERENCE BUILD
 
 상세 기준은 [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md)를 따릅니다.
 
+### 4.2 개발환경·개발 Tool Setup 세부 판정
+
+미션 가이드나 환경 문서에서 도구 설치/설정을 요구하면 다음도 확인합니다.
+
+```text
+[ ] 이 도구가 무엇인지 한 문장으로 설명한다.
+[ ] 왜 현재 미션에 필요한지 설명한다.
+[ ] 필수 / 권장 / 선택 여부를 표시한다.
+[ ] 관리자 권한이 필요한지 여부를 설명한다.
+[ ] Host에 설치하는지 Ubuntu Runtime에 설치하는지 구분한다.
+[ ] 설치 위치 또는 Repository-local 위치를 설명한다.
+[ ] 설치 명령의 각 실행 줄과 중요한 옵션을 설명한다.
+[ ] 설치 후 command/version/서비스 등으로 정상 여부를 확인한다.
+[ ] 설치 실패 시 최소 복구 경로를 제공한다.
+[ ] 공용·관리형 Mac이면 sudo/MDM 우회 없이 가능한 사용자 영역/Remote/CLI 대안을 제공한다.
+[ ] 대체 IDE를 써도 Repository/Terminal/Git/Python Runtime 계약이 유지된다.
+[ ] Google Antigravity를 쓰는 경우 IDE와 CLI 역할을 구분하고, CLI의 사용자 영역 설치 경로를 설명한다.
+```
+
+상세 기준은 [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md)와 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)를 따릅니다.
+
 ## 5. 운영 우선순위
 
 15개 가이드를 표준 변경만을 이유로 한꺼번에 기계적으로 다시 쓰지 않습니다.
@@ -130,6 +155,7 @@ Phase A — REFERENCE BUILD
 P0 현재 Active Mission
 → Runtime을 막거나 오판정을 만드는 문서 오류 즉시 수정
 → 명령·코드 줄별 해설도 실제 실행 직전 기준에 맞춤
+→ 필요한 개발 Tool Setup도 권한/설치위치/Verify까지 확인
 
 P1 다음 필수 미션
 → 해당 미션 진입 직전 Beginner Documentation Audit
@@ -149,6 +175,7 @@ P2 선택 미션
 메인 README에서 한 번에 찾을 수 있음
 + Beginner Guide가 실제 수행 순서를 제공함
 + 현재 상태/환경과 모순 없음
++ 필요한 개발도구의 설치 위치/권한/Verify를 이해할 수 있음
 + 실행 명령과 의미 있는 코드 줄을 자기 말로 설명할 수 있음
 + 외부 비공식 검색 없이 핵심 경로 수행 가능
 + 정상 결과와 오류 복구를 스스로 판단 가능
@@ -161,6 +188,8 @@ P2 선택 미션
 
 - [BEGINNER-TRAINING-STANDARD.md](BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
 - [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
+- [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set / no-admin 기준
+- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 환경 표준
 - [README-INFORMATION-ARCHITECTURE-STANDARD.md](README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조와 직접 진입 기준
 - [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기
 - [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — Requirement/Reference/Verify/Evidence 기준
