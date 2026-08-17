@@ -1,12 +1,55 @@
 # Training Rounds
 
+이 문서는 Codyssey Basic의 장기 훈련 차수(Round)를 **기초 완주 → 재구축 → 디버깅/운영 → 통합 → 전문화 → 외부 기여**로 확장하는 로드맵입니다.
+
+## 한눈에 보기(At a Glance)
+
+현재 활성 Round는 **R01 — CLEAR**입니다. 다음 Round를 미리 수행하지 않고, 현재 Round를 검증 가능한 상태로 완료한 뒤 다음 단계로 이동합니다.
+
+```text
+FOUNDATION
+R01 CLEAR → R02 REBUILD
+        ↓
+ENGINEERING
+R03 DEBUG & TEST → R04 HARDEN → R05 PRODUCTION
+        ↓
+ADVANCED
+R06 INTEGRATE → R07 ADVANCED BRIDGE
+        ↓
+PROFESSIONAL
+R08 SPECIALIZE → R09 CHALLENGE → R10 CREATE
+        ↓
+EXPERT TRACK
+R11 DEEP MASTERY → R12 ARCHITECT → R13 CONTRIBUTE → R14 EXPERT VALIDATION
+        ↓
+IMPACT CYCLE
+```
+
+현재 실제 실행은 [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)와 [PROGRESS.md](PROGRESS.md)를 확인합니다.
+
+## 📑 목차
+
+- [운영 원칙](#principles)
+- [Phase 1 — FOUNDATION](#phase-1)
+- [Phase 2 — ENGINEERING](#phase-2)
+- [Phase 3 — ADVANCED](#phase-3)
+- [Phase 4 — PROFESSIONAL](#phase-4)
+- [Phase 5 — EXPERT TRACK](#phase-5)
+- [Expert 이후 — Impact Cycle](#impact-cycle)
+- [권장 범위 축소](#scope-reduction)
+
+---
+
+<a id="principles"></a>
 ## 운영 원칙
 
 - **현재 Round 하나만 활성화**합니다.
 - 다음 Round의 실제 폴더는 해당 Round를 시작할 때 생성합니다.
 - 차수가 올라갈수록 미션 수는 줄이고 독립성·난이도·깊이는 높입니다.
 - Round 완료는 횟수가 아니라 검증된 역량으로 판정합니다.
+- 기준(Standard)은 현재 Round에서 학습자의 실패·오판을 줄이는 데 사용하고, 미래 Round의 과도한 설계로 현재 실행을 지연시키지 않습니다.
 
+<a id="phase-1"></a>
 ## Phase 1 — FOUNDATION
 
 ### R01 — CLEAR
@@ -15,6 +58,7 @@
 ### R02 — REBUILD
 완성본 의존도를 줄이고 요구사항을 보고 다시 구축합니다.
 
+<a id="phase-2"></a>
 ## Phase 2 — ENGINEERING
 
 ### R03 — DEBUG & TEST
@@ -26,6 +70,7 @@
 ### R05 — PRODUCTION
 배포, 환경, Secret, CI/CD, 모니터링, 로그, 백업·복구 등 운영 역량을 훈련합니다.
 
+<a id="phase-3"></a>
 ## Phase 3 — ADVANCED
 
 ### R06 — INTEGRATE
@@ -34,6 +79,7 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 ### R07 — ADVANCED BRIDGE
 가이드 없이 문제를 분석하고 설계·구현·검증할 수 있는지 확인합니다. 완료 시 `ADVANCED READY` Gate를 검토합니다.
 
+<a id="phase-4"></a>
 ## Phase 4 — PROFESSIONAL
 
 ### R08 — SPECIALIZE
@@ -45,6 +91,7 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 ### R10 — CREATE
 문제를 직접 정의하고 독립 프로젝트를 설계·제작·공개합니다.
 
+<a id="phase-5"></a>
 ## Phase 5 — EXPERT TRACK
 
 ### R11 — DEEP MASTERY
@@ -59,6 +106,7 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 ### R14 — EXPERT VALIDATION
 독립 문제 해결, Production, Architecture, Contribution, 반복 성과를 외부 Evidence로 검증합니다. R14 수행만으로 Expert를 자동 부여하지 않습니다.
 
+<a id="impact-cycle"></a>
 ## Expert 이후 — Impact Cycle
 
 - **IC01 — Principal Practice**: 대형·복합 시스템의 기술 책임
@@ -70,6 +118,7 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 
 `IC`는 **Impact Cycle**을 의미합니다. Expert 이후에는 Codyssey 미션을 반복하기보다 대표 프로젝트·연구·OSS·조직·제품 단위로 운영합니다.
 
+<a id="scope-reduction"></a>
 ## 권장 범위 축소
 
 | Round | 권장 대상 |
