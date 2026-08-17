@@ -52,7 +52,7 @@
 
 | 실행 순번 | 미션 | 구분 | Beginner Guide | 문서 내용 감사 | 우선순위 |
 |---:|---|---|---|---|---|
-| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | **P0 — 현재 미션** |
+| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 **탐색·현재 Runtime 정합성 반영 완료 / 줄별 해설·실행안전 상세 감사 필요** | **P0 — 현재 미션** |
 | 2 | B1-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
 | 3 | B2-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
 | 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P1 |
@@ -67,6 +67,25 @@
 | 13 | B5-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
 | 14 | B5-3 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
 | 15 | B7-2 | 선택 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·줄별 해설·실행안전 감사 필요 | P2 |
+
+### B1-1 실제 적용 확인 — 2026-08-18
+
+B1-1은 기준만 추가한 상태가 아니라 실제 `BEGINNER-GUIDE.md`를 다시 수정하고 재확인했습니다.
+
+```text
+APPLIED & VERIFIED
+- 안전한 Quick Start 추가
+- 명시적 anchor 기반 클릭 목차 추가
+- Phase A 표현을 현재 Phase C / FAST EXECUTE 흐름으로 교정
+- Primary Runtime을 MAC-V / Ubuntu 24.04로 교정
+- WIN-V Ubuntu 24.04 Secondary 경로 명시
+- Docker를 선택 Lab으로 구분
+- 공통 Bootstrap과 B1-1 Mission package 계층 구분
+- Quick Start에서 SSH/UFW 변경을 하지 않도록 제한
+- 일부 위험 Step에 Rerun Safety 경고 추가
+```
+
+단, 이는 **B1-1 전체가 BEGINNER READY라는 뜻이 아닙니다.** 기존 본문의 모든 실행 가능한 명령과 의미 있는 설정 줄이 새 줄별 해설 기준을 충족하는지, 모든 위험 Step의 Context/Preflight/STOP-GO/Recovery가 충분한지는 계속 P0 상세 감사 대상입니다.
 
 `🟡 정합성·탐색·줄별 해설·실행안전 감사 필요`는 가이드가 없다는 뜻이 아닙니다. **가이드는 이미 존재하지만 과거 Phase/Runtime/OS 표현, 현재 실행 경로, 목차/Quick Start 적합성, 명령·코드 설명의 상세도와 실행 안전 계층을 다시 확인해야 한다는 뜻**입니다.
 
@@ -204,6 +223,7 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 [ ] Quick Start 실패 시 STOP하고 상세 복구 위치로 이동한다.
 [ ] Quick Start가 Rerun Safety, Secret, 비용 보호를 우회하지 않는다.
 [ ] Standard/Glossary/짧은 Reference에는 형식만을 위해 Quick Start 명령을 강제하지 않는다.
+[ ] 기준만 작성한 것이 아니라 실제 대상 문서를 다시 열어 적용 여부를 확인했다.
 ```
 
 ## 5. 운영 우선순위
@@ -214,6 +234,7 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 P0 현재 Active Mission
 → Runtime을 막거나 오판정을 만드는 문서 오류 즉시 수정
 → 목차/Quick Start를 실제 문서 역할에 맞게 적용
+→ 적용 후 실제 대상 문서를 다시 열어 확인
 → 명령·코드 줄별 해설도 실제 실행 직전 기준에 맞춤
 → 실행 위치/Preflight/STOP-GO/Rerun Safety를 실제 흐름에 적용
 → 필요한 개발 Tool Setup도 권한/설치위치/Verify까지 확인
@@ -248,6 +269,7 @@ P2 선택 미션
 + Cloud/API/AI면 비용과 Cleanup 경로를 알 수 있음
 + 외부 비공식 검색 없이 핵심 경로 수행 가능
 + 평가/증빙까지 연결됨
++ 기준 적용 후 실제 대상 파일을 다시 확인함
 ```
 
 `BEGINNER READY`가 되더라도 실제 Runtime/Evidence가 없다면 Mission `CLEAR`가 아닙니다.
