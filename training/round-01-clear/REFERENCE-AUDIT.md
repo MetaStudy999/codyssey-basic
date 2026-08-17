@@ -4,10 +4,34 @@
 
 ## 목적
 
-Phase A에서 B1-1~B7-2 기준 구현·학습자료·검증계획이 어디까지 준비되었는지 15개 미션 저장소의 현재 `main`과 `training/round-01-clear/`를 기준으로 점검합니다.
+Phase A에서 B1-1~B7-2 기준 구현·학습자료·검증계획이 어디까지 준비되었는지 15개 미션 저장소의 당시 `main`과 `training/round-01-clear/`를 기준으로 점검한 기록입니다.
 
 Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행·검증·Evidence가 없으면 `✅ CLEAR`가 아닙니다.
 
+## 한눈에 보기(Audit Summary)
+
+```text
+Phase A Reference Build = CLOSED
+CORE READY              = 15 / 15
+Canonical Audit         = PASS 15 / 15
+Runtime CLEAR           = 0 / 15
+```
+
+이 감사 이후 Phase B도 완료되었으며, **현재는 Phase C — Runtime CLEAR / B1-1 ACTIVE**입니다. 현재 행동은 [NEXT-ACTIONS.md](NEXT-ACTIONS.md)를 확인합니다.
+
+## 📑 목차
+
+- [판정 기준](#criteria)
+- [15개 저장소 최종 결과](#results)
+- [집계](#totals)
+- [Phase A 종료 Gate](#phase-a-gate)
+- [Canonical Final Consistency Audit](#canonical)
+- [Phase A 최종 판정](#phase-a-final)
+- [현재 Hand-off](#handoff)
+
+---
+
+<a id="criteria"></a>
 ## 판정 기준
 
 - **CORE READY**: 기준 구현, 검증 도구, 요구사항 매핑, 학습/증빙 자료가 핵심적으로 준비되고 Runtime 항목이 명확히 분리됨
@@ -15,6 +39,7 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 - **PARTIAL**: 일부 구현/설계는 있으나 요구사항 전체 기준본이 닫히지 않음
 - **SCAFFOLD**: 기본 README/Guide/Checklist 골격 중심
 
+<a id="results"></a>
 ## 15개 저장소 최종 결과
 
 | 미션 | Phase A 판정 | Runtime 잔여 |
@@ -35,6 +60,7 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 | B5-3 | **CORE READY** | Auth/관계/상태변경 Runtime |
 | B7-2 | **CORE READY** | Full-stack/Auth/AI/배포 Runtime |
 
+<a id="totals"></a>
 ## 집계
 
 - **CORE READY:** 15 / 15
@@ -43,6 +69,7 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 - **SCAFFOLD:** 0 / 15
 - **Runtime CLEAR:** 0 / 15
 
+<a id="phase-a-gate"></a>
 ## Phase A 종료 Gate
 
 | Gate | 결과 |
@@ -57,6 +84,7 @@ Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행�
 | 허위 Runtime PASS 없음 | PASS |
 | Phase A BLOCKER/MAJOR | **0** |
 
+<a id="canonical"></a>
 ## Canonical Final Consistency Audit
 
 Phase A 완료 후 `CANONICAL-AUDIT.md`에서 15개 미션의 대표 진입점과 Source 표기를 추가 감사했습니다.
@@ -73,8 +101,9 @@ Phase A 완료 후 `CANONICAL-AUDIT.md`에서 15개 미션의 대표 진입점�
 
 **Canonical Final Consistency Audit: PASS — 15 / 15**
 
-공통 Canonical 규칙은 `standards/CANONICAL-REFERENCE-STANDARD.md`에 고정했습니다.
+공통 Canonical 규칙은 `../../standards/CANONICAL-REFERENCE-STANDARD.md`를 사용합니다.
 
+<a id="phase-a-final"></a>
 ## Phase A 최종 판정
 
 **Phase A — REFERENCE BUILD: CLOSED**  
@@ -82,10 +111,25 @@ Phase A 완료 후 `CANONICAL-AUDIT.md`에서 15개 미션의 대표 진입점�
 **Canonical Audit: PASS 15 / 15**  
 **Runtime CLEAR: 0 / 15**
 
-## 다음 단계
+<a id="handoff"></a>
+## 현재 Hand-off
 
-**Phase B — Cross-Mission Audit**
+이 문서 작성 당시의 다음 단계는 Phase B였습니다. **Phase B — Cross-Mission Audit은 현재 이미 COMPLETE / BLOCKER 0**입니다.
 
-개별 구현을 더 늘리지 않고 다음을 전체 횡단 점검합니다.
+현재 흐름:
 
-`OS/WSL/systemd → Python/Node/DB → Port/Service → Secret/API env → Git/GitHub → Cloud/Deploy → Evidence → 선후관계/재사용 → Phase C Runbook`
+```text
+Reference Build ✅
+→ Canonical Audit ✅
+→ Cross-Mission Audit ✅
+→ Phase C Runtime CLEAR 🟡
+→ B1-1 ACTIVE
+```
+
+현재 작업은 다음 문서를 사용합니다.
+
+- [NEXT-ACTIONS.md](NEXT-ACTIONS.md)
+- [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)
+- [PHASE-C-RUNBOOK.md](PHASE-C-RUNBOOK.md)
+
+역사적 감사 결과는 보존하되, 과거의 “다음 단계”가 현재 지시로 오해되지 않도록 현재 Hand-off를 명시합니다.
