@@ -46,6 +46,54 @@ Docker Lab = 선택
 7. Architecture는 Host 이름으로 추측하지 않고 Runtime 내부 `uname -m`으로 확인합니다.
 8. Secret은 어떤 Runtime에서도 GitHub/채팅/로그/Evidence에 기록하지 않습니다.
 
+## Ubuntu 24.04 Package 정책
+
+Ubuntu 설치 내용은 한꺼번에 전역 설치하지 않고 세 계층으로 관리합니다.
+
+```text
+Layer 1 — Ubuntu Base
+공통 최소 APT package
+
+Layer 2 — Mission System Packages
+현재 Mission에 필요한 APT package만 추가
+
+Layer 3 — Project Dependencies
+.venv / pyproject.toml / requirements.txt / package.json / lock file
+```
+
+현재 Base는 의도적으로 작게 유지합니다.
+
+```text
+ca-certificates
+curl
+git
+```
+
+각 Mission 저장소의 추가 APT Source of Truth:
+
+```text
+training/round-01-clear/environment/ubuntu-packages.txt
+```
+
+설치 흐름:
+
+```text
+CHECK
+→ MISSING 확인
+→ 필요한 package만 INSTALL
+→ VERIFY
+→ Project environment 구성
+→ Mission Runtime
+```
+
+Python Web/AI library는 System Python에 전역 설치하지 않고 repository-local `.venv`에 둡니다. Node package는 `package.json`/lock file로 관리합니다.
+
+상세 기준:
+
+- [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu 24.04 계층형 설치 모델
+- [`ubuntu/BASE-PACKAGES.md`](ubuntu/BASE-PACKAGES.md) — 공통 최소 패키지
+- [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — 15개 Mission별 시스템/프로젝트 의존성 지도
+
 ## VS Code Remote Ubuntu Workspace 정책
 
 `MAC-V`에서 VS Code는 macOS에 실행하되 실제 개발환경은 OrbStack Ubuntu 24.04로 고정합니다.
@@ -124,6 +172,8 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - [`RUNTIME-PROFILES.md`](RUNTIME-PROFILES.md) — 4개 실행 프로필 상세 계약
 - [`DOCKER-POLICY.md`](DOCKER-POLICY.md) — Docker 선택 학습 정책
 - [`MISSION-LAB-MATRIX.md`](MISSION-LAB-MATRIX.md) — B1-1~B7-2 Primary/Secondary/Docker Lab 설계
+- [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu 24.04 공통/미션/프로젝트 의존성 모델
+- [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — B1-1~B7-2 Ubuntu 패키지 지도
 - [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — OrbStack Ubuntu + VS Code Remote Workspace/Terminal 표준
 - [`../standards/CROSS-PLATFORM-GIT-STANDARD.md`](../standards/CROSS-PLATFORM-GIT-STANDARD.md) — Mac/Windows/Ubuntu Git 파일 호환성 표준
 - [`../templates/vscode-remote-linux-settings.json`](../templates/vscode-remote-linux-settings.json) — Mission Repository용 VS Code Remote Linux 설정 템플릿
@@ -136,6 +186,10 @@ Mission 시작
 → Primary Runtime
 → VS Code Remote / Workspace 경로 확인
 → Cross-platform Git/File Preflight
+→ Ubuntu Base 확인
+→ 현재 Mission ubuntu-packages.txt 확인
+→ 부족한 System package만 설치
+→ Project environment 구성
 → 공식 Mission/Evaluation 수행
 → Verify
 → Evidence
