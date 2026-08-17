@@ -2,6 +2,28 @@
 
 Round 01 FAST TRACK에서 사용하는 실행환경의 범위를 관리합니다.
 
+## 입문자는 여기서 시작
+
+개발환경과 개발도구를 처음 준비한다면 먼저 다음 문서를 위에서 아래로 따라갑니다.
+
+👉 [`START-HERE-DEVELOPMENT-ENVIRONMENT.md`](START-HERE-DEVELOPMENT-ENVIRONMENT.md) — **입문자 개발환경 처음부터 따라하기**
+
+이 문서는 macOS/Windows 환경 선택부터 OrbStack/WSL2, VS Code Remote, Git/GitHub, Ubuntu Bootstrap, Python `.venv`, 대체 IDE, Google Antigravity, 공용 Mac의 **관리자 권한 없는(no-admin) 경로**까지 하나의 Golden Path로 연결합니다.
+
+```text
+Host/권한 확인
+→ Linux Runtime
+→ Editor/IDE
+→ Git/GitHub
+→ Ubuntu Bootstrap
+→ Mission Tool
+→ Project Dependency
+→ Verify
+→ Beginner Guide
+```
+
+개발도구의 필수/선택/no-admin 기준은 [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md)를 사용합니다.
+
 ## 현재 지원 범위
 
 ```text
@@ -45,6 +67,31 @@ Docker Lab = 선택
 6. GitHub, AWS, 실제 배포, 실제 AI Provider Evidence는 로컬 Linux/Docker 실습이 대체하지 않습니다.
 7. Architecture는 Host 이름으로 추측하지 않고 Runtime 내부 `uname -m`으로 확인합니다.
 8. Secret은 어떤 Runtime에서도 GitHub/채팅/로그/Evidence에 기록하지 않습니다.
+
+## 공용·관리형 Mac — 관리자 권한 없음
+
+공용 Mac에서는 Host에 개발도구를 많이 설치하지 않고 **사용자 영역 + OrbStack Ubuntu Runtime**을 우선합니다.
+
+```text
+sudo 우회 금지
+MDM/보안정책 우회 금지
+→ 사용자 영역 설치 가능 여부 확인
+→ OrbStack Ubuntu 사용
+→ VS Code 사용자/Portable 경로
+→ Git/Python/Node 등은 Ubuntu에 설치
+→ 필요하면 Antigravity CLI ~/.local/bin 사용
+```
+
+OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하지만, 기관의 MDM/앱 허용 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+
+Google Antigravity는 다음처럼 분류합니다.
+
+```text
+Antigravity IDE = 선택 대체 IDE
+Antigravity CLI = 선택 AI Terminal 도구 / no-admin 사용자 영역 우선 대안
+```
+
+Antigravity CLI의 macOS/Linux 공식 기본 설치 위치는 `~/.local/bin/agy`입니다. 상세 설치·안전 기준은 [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md)와 입문자 Start Here 문서를 따릅니다.
 
 ## Ubuntu 24.04 Developer Bootstrap 정책
 
@@ -149,6 +196,29 @@ Python Mission = repo-local `.venv` 자동 활성화
 
 상세 기준은 [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md)를 사용합니다.
 
+## 대체 IDE / AI 개발도구 정책
+
+기본 Beginner Guide는 VS Code를 기준으로 하지만 다음 대체 도구를 사용할 수 있습니다.
+
+```text
+Cursor
+Windsurf
+JetBrains IDE
+Google Antigravity IDE
+```
+
+대체 IDE를 사용해도 실제 Runtime 계약은 유지합니다.
+
+```text
+Repository = Ubuntu $HOME/codyssey/...
+Terminal   = Ubuntu Bash
+Git        = Ubuntu Git
+Python     = Ubuntu Python
+.venv      = Repository-local
+```
+
+AI 개발도구는 ChatGPT/Codex/Claude/Gemini/Antigravity CLI 등을 선택적으로 사용할 수 있으며, AI 출력은 실제 Verify/Evidence를 대체하지 않습니다.
+
 ## Cross-platform Git / File 정책
 
 macOS, Windows 11 Pro, WSL2, Ubuntu 24.04 사이에서 GitHub Repository를 주고받을 때 OS 차이를 개인 설정에 맡기지 않고 **Repository 계약으로 고정**합니다.
@@ -198,6 +268,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 
 ## 문서
 
+- [`START-HERE-DEVELOPMENT-ENVIRONMENT.md`](START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 개발환경 처음부터 따라하기
 - [`RUNTIME-PROFILES.md`](RUNTIME-PROFILES.md) — 4개 실행 프로필 상세 계약
 - [`DOCKER-POLICY.md`](DOCKER-POLICY.md) — Docker 선택 학습 정책
 - [`MISSION-LAB-MATRIX.md`](MISSION-LAB-MATRIX.md) — B1-1~B7-2 Primary/Secondary/Docker Lab 설계
@@ -205,6 +276,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - [`ubuntu/BASE-PACKAGES.md`](ubuntu/BASE-PACKAGES.md) — 공통 Base, 권장 도구, GitHub CLI 계층
 - [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — B1-1~B7-2 Ubuntu 패키지 지도
 - [`ubuntu/ENVIRONMENT-CLOSEOUT.md`](ubuntu/ENVIRONMENT-CLOSEOUT.md) — 공통환경 Closeout / Freeze 기준
+- [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발도구와 no-admin 기준
 - [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — OrbStack Ubuntu + VS Code Remote Workspace/Terminal 표준
 - [`../standards/CROSS-PLATFORM-GIT-STANDARD.md`](../standards/CROSS-PLATFORM-GIT-STANDARD.md) — Mac/Windows/Ubuntu Git 파일 호환성 표준
 - [`../templates/vscode-remote-linux-settings.json`](../templates/vscode-remote-linux-settings.json) — Mission Repository용 VS Code Remote Linux 설정 템플릿
