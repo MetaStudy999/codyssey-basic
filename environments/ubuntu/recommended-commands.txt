@@ -1,0 +1,5 @@
+# Commands expected from recommended productivity packages
+vim
+tree
+rg
+fdfind
