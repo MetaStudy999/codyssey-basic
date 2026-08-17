@@ -61,6 +61,7 @@ Self-contained First
 → 첫 명령과 정상 결과
 → 현재 Mission / Beginner Guide
 → 전체 미션 지도
+→ 각 Mission Beginner Guide 직접 진입
 → 현재 진행 상태
 → 필요할 때만 상세 운영 정보
 ```
@@ -72,9 +73,30 @@ Self-contained First
 - 처음 볼 문서 3개 이내
 - 상세 운영 정보의 Progressive Disclosure(`<details>` 등)
 - 좁은 화면에서도 읽기 쉬운 표
-- 미션 정보가 많은 경우 미션당 3행(`미션 / 과정 / 저장소`) 구조
+- 미션 정보가 많은 경우 미션당 3행(`미션 / 과정 / 시작`) 구조
+- `시작` 행에서 저장소(Repository) + `▶ 입문자 따라하기(Beginner Guide)` 직접 연결
 
-### 3. 한글·영어 용어
+### 3. 입문자 문서 품질 감사
+
+[BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)
+
+15개 Mission/Term Project의 `BEGINNER-GUIDE.md`가 존재하는지뿐 아니라, **현재 상태·환경·공식 요구와 정합하고 실제 따라하기로 기능하는지** 관리합니다.
+
+핵심 원칙:
+
+```text
+가이드 존재 확인
+→ 메인 README 직접 연결
+→ 현재 상태/환경 정합성
+→ 실제 따라하기
+→ 정상 결과/오류 복구
+→ 평가/증빙 연결
+→ BEGINNER READY 판정
+```
+
+현재 Active Mission을 P0로 두고, 다음 필수 미션(P1), 선택 미션(P2) 순서로 실제 실행 전에 감사·교정합니다. 표준 변경만을 이유로 15개 문서를 기계적으로 한꺼번에 다시 쓰지 않습니다.
+
+### 4. 한글·영어 용어
 
 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)
 
@@ -86,25 +108,25 @@ Self-contained First
 
 명령어, 경로, 파일명, 코드 식별자, 제품 공식명은 임의 번역하지 않습니다.
 
-### 4. Canonical Reference
+### 5. Canonical Reference
 
 [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md)
 
 각 미션의 Reference, Beginner Guide, Checklist, Verify, Evidence가 어떤 역할을 갖는지 관리합니다.
 
-### 5. 환경
+### 6. 환경
 
 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)
 
 Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset 원칙을 관리합니다.
 
-### 6. Cross-platform Git/File
+### 7. Cross-platform Git/File
 
 [CROSS-PLATFORM-GIT-STANDARD.md](CROSS-PLATFORM-GIT-STANDARD.md)
 
 UTF-8, LF, `.gitattributes`, `.editorconfig`, executable bit, Windows/macOS/Linux 간 파일 차이를 관리합니다.
 
-### 7. VS Code Remote Ubuntu
+### 8. VS Code Remote Ubuntu
 
 [VS-CODE-REMOTE-UBUNTU-STANDARD.md](VS-CODE-REMOTE-UBUNTU-STANDARD.md)
 
@@ -183,6 +205,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 외부 블로그·영상이 없으면 수행할 수 없는 문서 구조
 - README 첫 화면에 운영자용 상세 정책을 과도하게 노출
 - 긴 README에 탐색용 목차 없이 정보만 누적
+- 각 미션을 나열하면서 Beginner Guide 직접 진입 링크를 제공하지 않음
 - 동일한 상세 정책을 README와 하위 문서에 반복 복제
 - 실제 실행하지 않은 결과를 PASS/CLEAR/Evidence로 표현
 - Secret, Token, Password, Private Key를 문서·로그·Evidence에 기록
@@ -202,4 +225,4 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 → 나머지 기존 문서는 순차 반영
 ```
 
-15개 미션 전체를 기준 변경만을 이유로 기계적으로 한 번에 재작성하지 않습니다.
+15개 미션 전체를 기준 변경만을 이유로 기계적으로 한 번에 재작성하지 않습니다. 대신 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)에서 현재 Active Mission부터 실행 순서에 맞춰 감사·교정합니다.
