@@ -89,11 +89,39 @@ bash environments/ubuntu/bootstrap.sh --install --recommended
 - Python Web/AI library는 System Python에 전역 설치하지 않고 repository-local `.venv`에 둠
 - Node package는 `package.json`/lock file로 관리
 
+### Common Environment Closeout / Freeze
+
+공통환경 설계는 이제 계속 확장하지 않고 다음 4개 Closeout Gate를 실제 MAC-V Ubuntu에서 확인한 뒤 Freeze합니다.
+
+```text
+① Documentation Drift Check
+② MAC-V Runtime Bootstrap Verification
+③ Git / GitHub User Identity Readiness
+④ Shell Script Static Syntax Validation
+        ↓
+COMMON ENVIRONMENT FREEZE
+        ↓
+B1-1 Runtime
+```
+
+실행 도구:
+
+```bash
+bash environments/ubuntu/validate-scripts.sh
+bash environments/ubuntu/bootstrap.sh --check
+bash environments/ubuntu/verify-user-identity.sh
+```
+
+상세 기준은 [`ubuntu/ENVIRONMENT-CLOSEOUT.md`](ubuntu/ENVIRONMENT-CLOSEOUT.md)를 사용합니다.
+
+Freeze 이후에는 **현재 Mission CLEAR를 막는 문제만 JIT로 최소 수정**하고, 비차단 공통환경 확장은 후속 개선으로 미룹니다.
+
 상세 기준:
 
 - [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu Developer Bootstrap 전체 모델
 - [`ubuntu/BASE-PACKAGES.md`](ubuntu/BASE-PACKAGES.md) — 공통 필수/권장/`gh` 계층
 - [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — 15개 Mission별 시스템/프로젝트 의존성 지도
+- [`ubuntu/ENVIRONMENT-CLOSEOUT.md`](ubuntu/ENVIRONMENT-CLOSEOUT.md) — 공통환경 마지막 검증과 Freeze Gate
 
 ## VS Code Remote Ubuntu Workspace 정책
 
@@ -176,6 +204,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu 24.04 Developer Bootstrap / package model
 - [`ubuntu/BASE-PACKAGES.md`](ubuntu/BASE-PACKAGES.md) — 공통 Base, 권장 도구, GitHub CLI 계층
 - [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — B1-1~B7-2 Ubuntu 패키지 지도
+- [`ubuntu/ENVIRONMENT-CLOSEOUT.md`](ubuntu/ENVIRONMENT-CLOSEOUT.md) — 공통환경 Closeout / Freeze 기준
 - [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — OrbStack Ubuntu + VS Code Remote Workspace/Terminal 표준
 - [`../standards/CROSS-PLATFORM-GIT-STANDARD.md`](../standards/CROSS-PLATFORM-GIT-STANDARD.md) — Mac/Windows/Ubuntu Git 파일 호환성 표준
 - [`../templates/vscode-remote-linux-settings.json`](../templates/vscode-remote-linux-settings.json) — Mission Repository용 VS Code Remote Linux 설정 템플릿
@@ -189,6 +218,7 @@ Mission 시작
 → VS Code Remote / Workspace 경로 확인
 → Cross-platform Git/File Preflight
 → Ubuntu Developer Bootstrap 확인
+→ Common Environment Closeout / Freeze
 → 현재 Mission ubuntu-packages.txt 확인
 → 부족한 System package만 설치
 → Project environment 구성
