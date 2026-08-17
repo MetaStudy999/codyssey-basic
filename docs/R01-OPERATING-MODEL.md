@@ -8,8 +8,35 @@
 
 공식 Mission/Evaluation이 언제나 최우선 Source of Truth이며, 이 운영 모델은 공식 요구사항을 바꾸거나 추가하지 않습니다.
 
+## 한눈에 보기(At a Glance)
+
+```text
+Phase A — 준비
+→ Phase B — 전체 점검
+→ Phase C — 실제 Runtime
+   └─ FAST TRACK: 필수 11 → 선택 4
+      └─ FAST EXECUTE: 현재 CLEAR에 필요한 것만 우선 해결
+         └─ Runtime + Verify + Evidence = CLEAR
+```
+
+현재 실제 행동은 [NEXT-ACTIONS.md](../training/round-01-clear/NEXT-ACTIONS.md)에서 확인합니다.
+
+## 📑 목차
+
+- [1. R01 — CLEAR란 무엇인가](#r01-clear)
+- [2. Phase A — REFERENCE BUILD](#phase-a)
+- [3. Phase B — CROSS-MISSION AUDIT](#phase-b)
+- [4. Phase C — RUNTIME CLEAR](#phase-c)
+- [5. FAST TRACK](#fast-track)
+- [6. FAST EXECUTE](#fast-execute)
+- [7. CLEAR](#clear)
+- [8. 현재 위치](#current-position)
+- [9. 용어 한눈에 보기](#terms)
+- [10. 문서 역할 분리](#document-roles)
+
 ---
 
+<a id="r01-clear"></a>
 ## 1. R01 — CLEAR란 무엇인가
 
 `R01`은 현재 사용하는 첫 번째 완주 Round입니다.
@@ -39,6 +66,7 @@ Phase C = 실제로 직접 실행해서 통과하기
 
 ---
 
+<a id="phase-a"></a>
 ## 2. Phase A — REFERENCE BUILD
 
 ### 목적
@@ -68,6 +96,7 @@ Reference Build 완료
 
 ---
 
+<a id="phase-b"></a>
 ## 3. Phase B — CROSS-MISSION AUDIT
 
 ### 목적
@@ -94,6 +123,7 @@ Phase B 완료는 **전체 실행 경로가 정리되고 큰 충돌이 제거되
 
 ---
 
+<a id="phase-c"></a>
 ## 4. Phase C — RUNTIME CLEAR
 
 ### 목적
@@ -152,8 +182,11 @@ NO
 → 계속 실행
 ```
 
+기준(Standard)도 같은 방식으로 사용합니다. **실제 실행을 막거나 잘못된 행동을 유도하는 기준 누락은 즉시 교정하고, 현재 Runtime과 무관한 형식 개선은 후속으로 미룹니다.**
+
 ---
 
+<a id="fast-track"></a>
 ## 5. FAST TRACK이란 무엇인가
 
 `FAST TRACK`은 **Phase C에서 미션을 어떤 순서로 실행할지** 정하는 운영 순서입니다.
@@ -179,6 +212,7 @@ FAST TRACK은 미션을 생략하는 방식이 아닙니다.
 
 ---
 
+<a id="fast-execute"></a>
 ## 6. FAST EXECUTE란 무엇인가
 
 `FAST EXECUTE`는 **Phase C에서 한 미션을 처리하는 방식**입니다.
@@ -195,6 +229,7 @@ FAST TRACK은 미션을 생략하는 방식이 아닙니다.
 
 ---
 
+<a id="clear"></a>
 ## 7. CLEAR란 무엇인가
 
 Mission `✅ CLEAR`는 문서 작성이나 Reference 준비만으로 부여하지 않습니다.
@@ -220,6 +255,7 @@ Mission 상태는 네 가지만 사용합니다.
 
 ---
 
+<a id="current-position"></a>
 ## 8. 현재 위치
 
 현재 Control Tower 기준 위치는 다음과 같습니다.
@@ -249,6 +285,7 @@ B1-1 실제 실행
 
 ---
 
+<a id="terms"></a>
 ## 9. 용어 한눈에 보기
 
 | 용어 | 의미 | 쉽게 말하면 |
@@ -263,6 +300,7 @@ B1-1 실제 실행
 
 ---
 
+<a id="document-roles"></a>
 ## 10. 문서 역할 분리
 
 이 문서는 **용어와 운영 단계의 의미**를 설명합니다.
@@ -274,5 +312,6 @@ B1-1 실제 실행
 - `training/round-01-clear/NEXT-ACTIONS.md` — 지금 해야 할 일
 - `training/round-01-clear/PHASE-C-PREFLIGHT.md` — 실행 전 안전 확인
 - `training/round-01-clear/PHASE-C-RUNBOOK.md` — 15개 실제 Runtime 경로
+- `standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` — 문서 탐색/Quick Start 적용 기준
 
 새 채팅이나 새 IDE/Agent에서 `Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR`의 의미가 불명확하면 이 문서를 먼저 확인합니다.
