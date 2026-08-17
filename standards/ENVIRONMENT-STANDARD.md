@@ -2,6 +2,8 @@
 
 환경설정도 코드처럼 **재현 가능하고 검증 가능**해야 합니다.
 
+입문자용 실제 시작 경로는 [`../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용하고, 개발도구의 필수/선택/no-admin 기준은 [`DEVELOPMENT-TOOLSET-STANDARD.md`](DEVELOPMENT-TOOLSET-STANDARD.md)를 따릅니다.
+
 ## 한글·영어 용어 표기
 
 입문자 문서는 핵심 기술·운영 용어의 첫 등장 시 **한글 의미(English Original)** 형식을 우선합니다.
@@ -30,6 +32,56 @@ Docker → 선택 훈련 계층(Training Layer)
 ```
 
 세부 실행 환경 프로필(Runtime Profile)은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+
+## 공용·관리형 Mac의 관리자 권한 없음(No-Admin) 계약
+
+공용 PC, 교육기관, 회사 관리 Mac처럼 관리자 암호를 사용할 수 없는 경우 다음 원칙을 적용합니다.
+
+```text
+관리자 암호 우회 금지
+MDM/보안정책 우회 금지
+sudo를 전제로 한 Host 설치 금지
+→ 사용자 영역 설치 가능 여부 확인
+→ Linux Runtime으로 개발 의존성 이동
+→ CLI/Web/허용된 IDE 대안 사용
+→ 필요 시 관리자 승인 요청
+```
+
+가능한 사용자 영역:
+
+```text
+$HOME/Applications
+$HOME/.local/bin
+$HOME/codyssey
+$HOME/.config
+```
+
+`/Applications`, `/usr/local`, `/opt/homebrew`처럼 사용자에게 쓰기 권한이 없을 수 있는 시스템/공용 위치를 기본 전제로 삼지 않습니다.
+
+### OrbStack
+
+OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하므로 macOS의 기본 Linux Runtime 후보로 유지합니다. 다만 MDM/앱 허용목록 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+
+### VS Code
+
+macOS에서 기관 정책이 허용하는 범위에서 사용자 실행 가능한 위치와 Portable Mode를 우선 검토합니다. Portable Mode를 사용하는 경우 앱과 함께 `code-portable-data`를 관리할 수 있습니다.
+
+보안정책 또는 quarantine 때문에 실행이 제한되면 임의로 보안정책을 해제하지 않고 허용된 Editor/CLI/브라우저 도구 또는 관리자 승인 경로를 사용합니다.
+
+### Homebrew
+
+No-Admin Golden Path에서는 Homebrew를 필수 전제로 사용하지 않습니다. Host Mac에 개발 패키지를 대량 설치하기보다 Git, Python, Node, SQLite, Nginx 등 실제 개발 도구는 Ubuntu Runtime 내부에서 관리하는 것을 우선합니다.
+
+### Google Antigravity
+
+```text
+Antigravity IDE = 선택 대체 IDE
+Antigravity CLI = 선택 AI Terminal 도구
+```
+
+Antigravity CLI의 macOS/Linux 공식 설치 기본 위치가 `~/.local/bin/agy`이므로 사용자 영역 설치가 필요한 no-admin 환경에서 우선 검토할 수 있습니다.
+
+Antigravity IDE는 로컬 앱 설치가 허용되는 경우에만 사용하고, 관리형 Mac에서 사용자 영역 설치가 항상 가능하다고 가정하지 않습니다.
 
 ## Ubuntu 24.04 개발환경 초기 준비(Developer Bootstrap) 계약
 
@@ -79,6 +131,39 @@ bash environments/ubuntu/bootstrap.sh --install --recommended
 ```
 
 Control Tower의 상세 기준은 [`../environments/ubuntu/README.md`](../environments/ubuntu/README.md), [`../environments/ubuntu/BASE-PACKAGES.md`](../environments/ubuntu/BASE-PACKAGES.md), [`../environments/ubuntu/MISSION-PACKAGE-MATRIX.md`](../environments/ubuntu/MISSION-PACKAGE-MATRIX.md)를 사용합니다.
+
+## 개발 Tool Set 계약
+
+R01의 도구는 다음처럼 계층화합니다.
+
+```text
+LEVEL 1 — 기본 필수
+Ubuntu 24.04 / Bash / Git / gh / VS Code / Remote-SSH
+
+LEVEL 2 — Mission별
+Python / Node.js / SQLite / Nginx / OpenSSH Server / 기타 package
+
+LEVEL 3 — 권장 생산성
+vim / tree / ripgrep / fd-find
+
+LEVEL 4 — 대체 IDE
+Cursor / Windsurf / JetBrains / Antigravity IDE
+
+LEVEL 5 — 선택 AI 도구
+ChatGPT / Codex / Claude / Gemini / Antigravity CLI
+```
+
+대체 IDE를 사용하더라도 실제 Runtime 계약은 유지합니다.
+
+```text
+Repository = Ubuntu $HOME/codyssey/...
+Terminal   = Ubuntu Bash
+Git        = Ubuntu Git
+Python     = Ubuntu Python
+.venv      = Repository-local
+```
+
+세부 기준은 [`DEVELOPMENT-TOOLSET-STANDARD.md`](DEVELOPMENT-TOOLSET-STANDARD.md)를 따릅니다.
 
 ## VS Code 원격 Ubuntu 작업공간(VS Code Remote Ubuntu Workspace) 계약
 
@@ -167,6 +252,25 @@ environment/
 - `.env.example`: 실제 비밀정보(Secret)가 없는 예제 설정
 
 Round 01에서는 가이드의 명령을 직접 따라 이해하는 것을 본 훈련으로 하고, 자동 setup은 재현·복구 보조 수단으로 사용합니다.
+
+## 환경/도구 문서의 입문자 작성 계약
+
+설치·설정 문서는 가능한 범위에서 다음을 제공합니다.
+
+```text
+무엇인가
+→ 왜 필요한가
+→ 필수/권장/선택
+→ 관리자 권한 필요 여부
+→ 설치 위치
+→ 설치/설정 방법
+→ 명령 한 줄 해설
+→ 정상 결과
+→ 오류/복구
+→ 다음 단계
+```
+
+명령·코드 설명은 [`COMMAND-CODE-EXPLANATION-STANDARD.md`](COMMAND-CODE-EXPLANATION-STANDARD.md)를 따릅니다.
 
 ## 시스템 설정 변경
 
