@@ -8,6 +8,70 @@
 
 이 문서는 미션 구현을 대신하지 않는 공통 안전 Gate입니다.
 
+## 🚀 빠른 사전점검(Quick Preflight)
+
+> 이미 Ubuntu 24.04 Runtime과 현재 Mission Repository가 준비된 학습자용입니다. 처음 환경을 만드는 경우 [`../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 먼저 완료합니다.
+
+📍 현재 Mission Repository root의 **Ubuntu Bash**에서 실행합니다.
+
+```bash
+pwd
+git rev-parse --show-toplevel
+git branch --show-current
+git status --short
+printf 'HOME=%s\n' "$HOME"
+printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV:-<none>}"
+git diff --check
+```
+
+공통 개발환경 확인:
+
+```bash
+CONTROL_TOWER="${CONTROL_TOWER:-$HOME/codyssey/codyssey-basic}"
+bash "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" --check
+```
+
+정상 기준:
+
+```text
+[ ] Repository/PWD/Branch를 스스로 설명할 수 있다.
+[ ] 예상하지 않은 Git 변경을 무시하지 않았다.
+[ ] HOME/PWD가 Ubuntu /home/... 계열이다.
+[ ] 다른 Mission의 .venv가 활성화되어 있지 않다.
+[ ] git diff --check에 line-ending/whitespace blocker가 없다.
+[ ] Bootstrap required 항목이 PASS다.
+```
+
+```text
+✅ GO
+→ 아래 상세 Preflight에서 현재 Mission에 해당하는 항목을 확인
+→ Start Gate PASS 후 Beginner Guide 시작
+
+❌ STOP
+→ 잘못된 Host/PWD/Branch/venv/Bootstrap을 먼저 수정
+```
+
+위 상태 확인 명령은 **🟢 SAFE TO RERUN**입니다.
+
+## 📑 목차
+
+- [1. Repository 확인](#repository)
+- [2. VS Code Remote / Workspace](#workspace)
+- [3. Cross-platform Git / File](#cross-platform)
+- [4. 기본 Runtime / 공통 CLI](#runtime-cli)
+- [5. Ubuntu Bootstrap / Mission Package](#bootstrap)
+- [6. Process / Port](#process-port)
+- [7. Python 환경 격리](#python)
+- [8. Node 환경 격리](#node)
+- [9. Secret Presence](#secret)
+- [10. Local data / DB](#data-db)
+- [11. Cloud / Remote resource](#cloud)
+- [12. Evidence 시작 상태](#evidence)
+- [13. Start Gate](#start-gate)
+
+---
+
+<a id="repository"></a>
 ## 1. Repository 확인
 
 Repository root에서 다음을 확인합니다.
@@ -22,6 +86,7 @@ git remote -v
 
 실제 Secret이 remote URL에 포함되어 있지 않은지 확인합니다. 작업 중인 변경이 있으면 먼저 의미를 확인하고 무조건 reset하지 않습니다.
 
+<a id="workspace"></a>
 ## 2. VS Code Remote / Workspace 경로 확인
 
 `MAC-V`에서는 macOS VS Code UI와 실제 Ubuntu 작업환경을 분리합니다.
@@ -68,6 +133,7 @@ esac
 
 상세 계약은 `standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`를 사용합니다.
 
+<a id="cross-platform"></a>
 ## 3. Cross-platform Git / File 확인
 
 macOS + OrbStack Ubuntu 24.04와 Windows 11 Pro + WSL2 Ubuntu 24.04 사이에서 같은 Repository를 사용하므로 줄바꿈과 파일 속성을 확인합니다.
@@ -106,6 +172,7 @@ Shell/Python/Web/YAML/Dockerfile = LF
 
 상세 계약은 `standards/CROSS-PLATFORM-GIT-STANDARD.md`를 사용합니다.
 
+<a id="runtime-cli"></a>
 ## 4. 기본 Runtime / 공통 CLI 확인
 
 ```bash
@@ -128,6 +195,7 @@ command -v sqlite3 || true
 
 `vim`, `tree`, `rg`, `fdfind`는 권장 Productivity 도구이므로 없다고 Mission Runtime을 막지 않습니다.
 
+<a id="bootstrap"></a>
 ## 5. Ubuntu Developer Bootstrap / Mission Package 확인
 
 Ubuntu 설치는 다음 계층으로 구분합니다.
@@ -203,6 +271,7 @@ bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
 
 상세 계약은 `environments/ubuntu/README.md`, `environments/ubuntu/BASE-PACKAGES.md`, `environments/ubuntu/MISSION-PACKAGE-MATRIX.md`를 사용합니다.
 
+<a id="process-port"></a>
 ## 6. Process / Port 확인
 
 ```bash
@@ -217,6 +286,7 @@ ps -ef | grep -E 'uvicorn|vite|http.server|agent-app|agent.*leak' | grep -v grep
 - FastAPI/HTTP/Vite는 순차 Runtime이므로 시작 전에 local port만 확인
 - 광범위한 `pkill -9`, `killall`, 재부팅으로 정리하지 않음
 
+<a id="python"></a>
 ## 7. Python 환경 격리
 
 ```bash
@@ -234,6 +304,7 @@ System Python에 FastAPI/SQLAlchemy 등을 일괄 설치하지 않습니다.
 
 VS Code Python Environments를 사용하는 경우 Remote Ubuntu의 현재 Repository `.venv`를 Interpreter로 선택합니다. Terminal 자동 활성화는 Remote User Setting의 `python-envs.terminal.autoActivationType = shellStartup`을 권장하며, 설정 변경 후 새 Terminal에서 실제 `VIRTUAL_ENV`를 확인합니다.
 
+<a id="node"></a>
 ## 8. Node 환경 격리
 
 B4-2에서만 확인합니다.
@@ -245,6 +316,7 @@ npm --version
 
 `node_modules`는 B4-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
 
+<a id="secret"></a>
 ## 9. Secret Presence 확인 — 값은 출력하지 않음
 
 AI 계열에서는 아래처럼 **설정 여부만** 확인합니다.
@@ -268,6 +340,7 @@ set -x 상태에서 Secret 입력
 
 B5-3의 `SESSION_SECRET`, B4-2의 Supabase 변수도 같은 원칙을 적용합니다.
 
+<a id="data-db"></a>
 ## 10. Local data / DB 확인
 
 새 Runtime 전에 현재 미션이 만들 기존 데이터가 있는지 먼저 확인합니다.
@@ -280,6 +353,7 @@ find training/round-01-clear/reference -maxdepth 2 \
 
 기존 파일이 보인다고 자동 삭제하지 않습니다. `reset.sh`가 있는 미션은 범위를 읽고, 현재 Round가 만든 파일임이 명확할 때만 사용합니다.
 
+<a id="cloud"></a>
 ## 11. Cloud / Remote resource 확인
 
 B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
@@ -291,6 +365,7 @@ B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 - Supabase Service Role Key를 frontend에 사용 금지
 - Cleanup은 현재 미션이 생성한 자원만 대상
 
+<a id="evidence"></a>
 ## 12. Evidence 시작 상태
 
 Evidence root:
@@ -308,6 +383,7 @@ training/round-01-clear/evidence/
 - Secret 값은 마스킹이 아니라 애초에 캡처하지 않는 것을 우선
 - 실제 외부 URL/PR/Review처럼 서버 측 증거가 필요한 항목은 placeholder로 대체 금지
 
+<a id="start-gate"></a>
 ## 13. Start Gate
 
 아래가 모두 확인되면 해당 미션의 `BEGINNER-GUIDE.md` STEP 01로 이동합니다.
