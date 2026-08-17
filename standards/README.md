@@ -47,7 +47,34 @@ Self-contained First
 
 문서 품질 내부 판정은 `BEGINNER READY`를 사용하며, 이는 공식 Mission CLEAR와 별개입니다.
 
-### 2. 한글·영어 용어
+### 2. README 정보 구조
+
+[README-INFORMATION-ARCHITECTURE-STANDARD.md](README-INFORMATION-ARCHITECTURE-STANDARD.md)
+
+루트 README와 Mission README를 **입문자 우선(Beginner First)**으로 설계할 때 적용합니다.
+
+핵심 원칙:
+
+```text
+저장소 목적
+→ 지금 할 일
+→ 첫 명령과 정상 결과
+→ 현재 Mission / Beginner Guide
+→ 전체 미션 지도
+→ 현재 진행 상태
+→ 필요할 때만 상세 운영 정보
+```
+
+긴 README는 다음을 우선합니다.
+
+- 클릭 가능한 목차
+- `1부 — 처음 시작하는 분 / 2부 — 전체 미션 지도 / 3부 — 상세 운영 정보` 또는 동등한 3계층 구조
+- 처음 볼 문서 3개 이내
+- 상세 운영 정보의 Progressive Disclosure(`<details>` 등)
+- 좁은 화면에서도 읽기 쉬운 표
+- 미션 정보가 많은 경우 미션당 3행(`미션 / 과정 / 저장소`) 구조
+
+### 3. 한글·영어 용어
 
 [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md)
 
@@ -59,25 +86,25 @@ Self-contained First
 
 명령어, 경로, 파일명, 코드 식별자, 제품 공식명은 임의 번역하지 않습니다.
 
-### 3. Canonical Reference
+### 4. Canonical Reference
 
 [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md)
 
 각 미션의 Reference, Beginner Guide, Checklist, Verify, Evidence가 어떤 역할을 갖는지 관리합니다.
 
-### 4. 환경
+### 5. 환경
 
 [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md)
 
 Ubuntu 개발환경, Mission package, `.venv`, Secret, Setup/Verify/Reset 원칙을 관리합니다.
 
-### 5. Cross-platform Git/File
+### 6. Cross-platform Git/File
 
 [CROSS-PLATFORM-GIT-STANDARD.md](CROSS-PLATFORM-GIT-STANDARD.md)
 
 UTF-8, LF, `.gitattributes`, `.editorconfig`, executable bit, Windows/macOS/Linux 간 파일 차이를 관리합니다.
 
-### 6. VS Code Remote Ubuntu
+### 7. VS Code Remote Ubuntu
 
 [VS-CODE-REMOTE-UBUNTU-STANDARD.md](VS-CODE-REMOTE-UBUNTU-STANDARD.md)
 
@@ -96,15 +123,17 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 4. BEGINNER-TRAINING-STANDARD 적용
         ↓
-5. TERMINOLOGY-STANDARD 적용
+5. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-6. 필요한 Environment/Canonical Standard 적용
+6. TERMINOLOGY-STANDARD 적용
         ↓
-7. 링크·명령·경로·상태 정합성 확인
+7. 필요한 Environment/Canonical Standard 적용
         ↓
-8. Beginner Documentation Audit
+8. 링크·명령·경로·상태 정합성 확인
         ↓
-9. BEGINNER READY 또는 보완 필요
+9. Beginner Documentation Audit
+        ↓
+10. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -115,7 +144,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 | 문서 | 기본 역할 |
 |---|---|
-| `README.md` | 처음 진입, 지금 할 일, 대표 경로 |
+| `README.md` | 처음 진입, 지금 할 일, 대표 경로, 탐색(Navigation) |
 | `BEGINNER-GUIDE.md` | 실제 수행의 대표 학습 경로 |
 | `START-CHECK.md` | 선행 조건·선행 지식 확인 |
 | `prerequisites.md` | 실행 전 환경·도구 준비 |
@@ -152,6 +181,9 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 영어 용어만 연속 사용하여 입문자 이해를 전제
 - 명령만 제시하고 정상 결과/의미/복구 방법을 생략
 - 외부 블로그·영상이 없으면 수행할 수 없는 문서 구조
+- README 첫 화면에 운영자용 상세 정책을 과도하게 노출
+- 긴 README에 탐색용 목차 없이 정보만 누적
+- 동일한 상세 정책을 README와 하위 문서에 반복 복제
 - 실제 실행하지 않은 결과를 PASS/CLEAR/Evidence로 표현
 - Secret, Token, Password, Private Key를 문서·로그·Evidence에 기록
 - 형식을 맞추기 위해 불필요한 파일을 대량 생성
