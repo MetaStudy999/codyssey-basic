@@ -1,10 +1,10 @@
 # Mission Runbook
 
-모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 Runtime CLEAR를 분리**합니다.
+모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 실제 실행 완료(Runtime CLEAR)를 분리**합니다.
 
 ## 🚀 빠른 시작(Quick Start)
 
-현재 R01은 **Phase C — RUNTIME CLEAR / FAST EXECUTE**이며 Active Mission은 **B1-1**입니다.
+현재 R01은 **Phase C — RUNTIME CLEAR / FAST EXECUTE**이며 현재 미션(Active Mission)은 **B1-1**입니다.
 
 처음 실행한다면 다음 세 문서만 순서대로 봅니다.
 
@@ -15,29 +15,29 @@
 이미 공통환경이 준비되었다면 한 미션은 다음 흐름으로 처리합니다.
 
 ```text
-Preflight
-→ Beginner Guide
-→ Runtime
-→ Verify
-→ Evidence
-→ Evaluation 설명
-→ CLEAR Gate
-→ 다음 Mission
+실행 전 점검(Preflight)
+→ 입문자 가이드(Beginner Guide)
+→ 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ 평가 설명(Evaluation)
+→ 완료 판정(CLEAR Gate)
+→ 다음 미션
 ```
 
-> Quick Start는 운영 계약을 생략하는 경로가 아닙니다. 시스템·Cloud·DB·Secret 관련 변경은 각 상세 Guide의 Preflight/STOP-GO/Recovery를 따릅니다.
+> 빠른 시작(Quick Start)은 운영 계약을 생략하는 경로가 아닙니다. 시스템·Cloud·DB·Secret 관련 변경은 각 상세 Guide의 실행 전 점검(Preflight) / STOP-GO / 복구(Recovery)를 따릅니다.
 
 ## 📑 목차
 
 - [Round 01 — 3-Phase 운영](#round-01)
 - [Phase C — Design Freeze / JIT Design](#phase-c-freeze)
 - [R01 Runtime / Docker 정책](#runtime-policy)
-- [1. UNDERSTAND](#understand)
-- [2. PREPARE](#prepare)
-- [3. BUILD](#build)
-- [4. VERIFY](#verify)
-- [5. EVIDENCE](#evidence)
-- [6. CLEAR](#clear)
+- [1. 이해(UNDERSTAND)](#understand)
+- [2. 준비(PREPARE)](#prepare)
+- [3. 구현(BUILD)](#build)
+- [4. 검증(Verification)](#verify)
+- [5. 증빙(Evidence)](#evidence)
+- [6. 완료(CLEAR)](#clear)
 - [상태](#status)
 
 ---
@@ -52,7 +52,7 @@ Preflight
 ```text
 Phase A = 기준 구현·가이드 준비
 Phase B = 15개 미션 전체 교차 점검
-Phase C = 실제 Runtime → Verify → Evidence → CLEAR
+Phase C = 실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) → 완료(CLEAR)
 ```
 
 ### Phase A — REFERENCE BUILD
@@ -68,11 +68,11 @@ B1-1부터 B7-2까지 공식 Mission/Evaluation을 기준으로 기준 구현과
 5. 코드·설정·문서·검증 도구 중 실제 환경 없이 준비 가능한 항목 구현
 6. `BEGINNER-GUIDE.md`, `CHECKLIST.md` 구체화
 7. Secret 노출 점검
-8. 실제 Runtime이 필요한 항목을 명시적으로 남김
+8. 실제 실행(Runtime)이 필요한 항목을 명시적으로 남김
 
-**중요:** Reference Build가 완료되어도 실제 Runtime과 Evidence가 없으면 Mission을 `CLEAR`로 변경하지 않습니다.
+**중요:** Reference Build가 완료되어도 실제 실행(Runtime)과 증빙(Evidence)이 없으면 Mission을 `CLEAR`로 변경하지 않습니다.
 
-Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이며, 사용자가 해당 미션의 Runtime 수행을 시작했다는 의미가 아닙니다.
+Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이며, 사용자가 해당 미션의 실제 실행을 시작했다는 의미가 아닙니다.
 
 ### Phase B — CROSS-MISSION AUDIT
 
@@ -91,11 +91,11 @@ Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이�
 
 ### Phase C — RUNTIME CLEAR
 
-Phase C는 **FAST EXECUTE** 모드입니다. 이미 준비된 Reference, Preflight, Runbook, Beginner Guide를 실제 환경에서 실행하여 Mission을 `✅ CLEAR`로 전환합니다.
+Phase C는 **FAST EXECUTE** 모드입니다. 이미 준비된 Reference, 실행 전 점검(Preflight), Runbook, Beginner Guide를 실제 환경에서 실행하여 Mission을 `✅ CLEAR`로 전환합니다.
 
-`이해 → 직접 실행 → 검증 → 오류 해결 → Evidence → 평가 확인 → CLEAR`
+`이해 → 직접 실행 → 검증 → 오류 해결 → 증빙(Evidence) → 평가 확인 → 완료(CLEAR)`
 
-현재 미션의 Runtime에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
+현재 미션의 실제 실행(Runtime)에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
 
 <a id="phase-c-freeze"></a>
 ## Phase C — Design Freeze / Just-in-Time Design
@@ -111,11 +111,11 @@ YES
 → 원인 확인
 → 필요한 범위만 최소 수정
 → 재검증
-→ Evidence
-→ Runtime 계속
+→ 증빙(Evidence)
+→ 실제 실행 계속
 
 NO
-→ 현재 Runtime 유지
+→ 현재 실제 실행 유지
 → 후속 개선 후보로 미룸
 ```
 
@@ -124,11 +124,11 @@ NO
 ### Phase C에서 즉시 수정해야 하는 경우
 
 - 공식 Mission/Evaluation 요구사항 충족을 막는 문제
-- Runtime 진행 자체가 불가능한 BLOCKER
+- 실제 실행 진행 자체가 불가능한 BLOCKER
 - Secret/Token/Password 노출 위험
 - SSH lockout, 데이터 손실, Cloud 과금/삭제 등 안전 문제
-- Verify가 실제 결과를 잘못 판정하는 문제
-- Evidence가 공식 평가 요구와 연결되지 않는 문제
+- 검증이 실제 결과를 잘못 판정하는 문제
+- 증빙(Evidence)이 공식 평가 요구와 연결되지 않는 문제
 - 입문자 가이드의 명령·경로·목차가 실제 수행을 막거나 잘못된 행동을 유도하는 문제
 
 ### Phase C에서 후속으로 미루는 경우
@@ -145,7 +145,7 @@ NO
 ---
 
 <a id="runtime-policy"></a>
-## R01 Runtime / Docker 정책
+## R01 실제 실행(Runtime) / Docker 정책
 
 R01은 현재 두 Host 계열만 지원합니다.
 
@@ -166,9 +166,9 @@ Windows 11 Pro + WSL2 Ubuntu 24.04
 ```text
 Mission CLEAR
 = 공식 Mission/Evaluation
-+ 필요한 실제 Runtime
-+ Verify
-+ Evidence
++ 필요한 실제 실행(Runtime)
++ 검증(Verification)
++ 증빙(Evidence)
 
 Secondary Platform Check
 = 권장 Portability 학습
@@ -180,24 +180,24 @@ Docker Lab
 따라서 운영 우선순위는 다음과 같습니다.
 
 ```text
-1. Primary Mission Runtime
-2. Verify
-3. Evidence
-4. ✅ CLEAR
-5. Secondary Platform Check — 권장
-6. Docker Lab — 선택
+1. 기본 미션 실제 실행(Primary Mission Runtime)
+2. 검증(Verification)
+3. 증빙(Evidence)
+4. ✅ 완료(CLEAR)
+5. 보조 플랫폼 확인(Secondary Platform Check) — 권장
+6. Docker 실습(Docker Lab) — 선택
 ```
 
-R01의 기본 로컬 Primary는 `MAC-V`, 기본 Secondary는 `WIN-V`입니다. 외부 GitHub/AWS/배포/AI Provider가 핵심인 미션은 해당 실제 외부 Runtime/Evidence가 최우선입니다.
+R01의 기본 로컬 Primary는 `MAC-V`, 기본 Secondary는 `WIN-V`입니다. 외부 GitHub/AWS/배포/AI Provider가 핵심인 미션은 해당 실제 외부 실행과 증빙이 최우선입니다.
 
 Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `FAIL` 처리하지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 공식 요구가 우선합니다.
 
-같은 Mission을 네 Runtime Profile에서 처음부터 끝까지 반복하지 않습니다. Docker를 수행한다면 전체 미션 재수행이 아니라 핵심 기능 1~3개와 containerization/reproducibility 차이만 짧게 확인합니다.
+같은 Mission을 네 실행 환경 프로필(Runtime Profile)에서 처음부터 끝까지 반복하지 않습니다. Docker를 수행한다면 전체 미션 재수행이 아니라 핵심 기능 1~3개와 containerization/reproducibility 차이만 짧게 확인합니다.
 
 ---
 
 <a id="understand"></a>
-## 1. UNDERSTAND
+## 1. 이해(UNDERSTAND)
 
 1. 공식 Mission PDF 확인
 2. Mission MD 확인
@@ -208,7 +208,7 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 7. 긴 실행형 Guide는 Quick Start와 클릭 가능한 목차가 실제 본문과 맞는지 확인
 
 <a id="prepare"></a>
-## 2. PREPARE
+## 2. 준비(PREPARE)
 
 1. 기준 환경(Golden Path) 확인
 2. 버전과 사전조건 확인
@@ -216,22 +216,22 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 4. 시스템 파일 변경 시 백업
 5. Secret은 Repository에 저장하지 않음
 6. `START-CHECK.md`가 있는 미션은 필수 선행과 현재 보유 지식을 먼저 확인
-7. 현재 Mission의 Primary Runtime을 확인하고 Docker는 선택 여부만 판단
-8. 실행 위치(Context), Preflight, STOP/GO, Rerun Safety를 먼저 확인
+7. 현재 Mission의 기본 실행 환경(Primary Runtime)을 확인하고 Docker는 선택 여부만 판단
+8. 실행 위치(Context), 실행 전 점검(Preflight), STOP/GO, 재실행 안전성(Rerun Safety)을 먼저 확인
 
 <a id="build"></a>
-## 3. BUILD
+## 3. 구현(BUILD)
 
 1. Phase A에서 준비된 최소 통과 경로를 기본값으로 사용
 2. Reference Build에서는 실제 환경 없이 만들 수 있는 기준 구현을 먼저 완성
-3. 입문자는 Runtime 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
+3. 입문자는 실제 실행(Runtime) 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
 4. 실행 가능한 명령과 의미 있는 코드 줄은 입문자가 자기 말로 설명할 수 있게 해설
 5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
-6. Runtime 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
+6. 실제 실행 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
 7. Docker 실습을 하더라도 공통 Source를 재사용하고 환경별 코드 복제는 최소화
 
 <a id="verify"></a>
-## 4. VERIFY
+## 4. 검증(Verification)
 
 검증은 둘로 분리합니다.
 
@@ -243,31 +243,31 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 - Secret 노출
 - 실제 실행하지 않은 항목을 PASS로 표시하지 않았는지 확인
 
-### Runtime 검증
+### 실제 실행 검증(Runtime Verification)
 
 1. 실제 환경이 필요한 항목을 직접 실행
 2. `PASS / FAIL` 판정을 명확히 표시
 3. 실패 시 원인 → 확인 → 최소 해결 → 재검증 순서 사용
 4. 예상 출력과 실제 출력을 구분
-5. Runtime 결과가 정상이라면 불필요한 추가 리팩터링 없이 Evidence로 이동
-6. Secondary/Docker Lab 결과를 Primary CLEAR Evidence와 혼동하지 않음
-7. 문서 기준은 `POLICY → APPLY → VERIFY`로 실제 대상 문서까지 확인
+5. 실제 실행 결과가 정상이라면 불필요한 추가 리팩터링 없이 증빙(Evidence)으로 이동
+6. Secondary/Docker Lab 결과를 Primary CLEAR 증빙과 혼동하지 않음
+7. 문서 기준은 `정책(POLICY) → 적용(APPLY) → 검증(VERIFY)`로 실제 대상 문서까지 확인
 
 <a id="evidence"></a>
-## 5. EVIDENCE
+## 5. 증빙(Evidence)
 
 평가 요구사항과 증빙을 1:1로 연결합니다.
 
-`Requirement → Implementation → Verification → Evidence`
+`요구사항(Requirement) → 구현(Implementation) → 검증(Verification) → 증빙(Evidence)`
 
 Secret, Token, Password, Private Key는 증빙에서도 노출하지 않습니다.
 
-Reference Build 단계에서는 Evidence **계획과 저장 위치**만 준비할 수 있으며, 실제 실행하지 않은 결과를 Evidence로 만들지 않습니다.
+Reference Build 단계에서는 증빙(Evidence) **계획과 저장 위치**만 준비할 수 있으며, 실제 실행하지 않은 결과를 Evidence로 만들지 않습니다.
 
-Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있지만 공식 요구사항의 실제 Evidence를 대체하지 않습니다.
+Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있지만 공식 요구사항의 실제 증빙을 대체하지 않습니다.
 
 <a id="clear"></a>
-## 6. CLEAR
+## 6. 완료(CLEAR)
 
 다음 조건을 모두 만족해야 CLEAR입니다.
 
@@ -275,10 +275,10 @@ Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있�
 - 구현 완료
 - 자동 검증 가능한 항목 PASS
 - 필요한 실제 환경 검증 완료
-- 필요한 Evidence 확보
+- 필요한 증빙(Evidence) 확보
 - Round 01 입문자 재현 가이드가 현재 Runtime/경로와 정합함
 
-CLEAR 뒤에 발견한 비필수 개선은 다음 미션 Runtime을 막지 않고 후속 개선/심화 Round에서 처리합니다.
+CLEAR 뒤에 발견한 비필수 개선은 다음 미션 실제 실행을 막지 않고 후속 개선/심화 Round에서 처리합니다.
 
 <a id="status"></a>
 ## 상태
