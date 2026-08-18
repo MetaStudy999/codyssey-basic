@@ -1,30 +1,30 @@
-# Ubuntu 24.04 Developer Bootstrap & Package Model
+# Ubuntu 24.04 개발환경 초기 준비 및 패키지 모델(Developer Bootstrap & Package Model)
 
 ## 목적
 
 Codyssey Basic의 Ubuntu 24.04 환경을 **OS 전제조건 → 공통 필수 도구 → 권장 생산성 도구 → 공통 외부 CLI → 미션/프로젝트 의존성**으로 분리해 관리합니다.
 
 ```text
-Layer 0 — OS Prerequisites
+Layer 0 — OS 전제조건(OS Prerequisites)
 bash / apt-get / dpkg-query / sudo
 
-Layer 1 — Common Required Base
+Layer 1 — 공통 필수 기본도구(Common Required Base)
 ca-certificates / curl / wget / git / openssh-client / nano / jq / file / unzip / zip / rsync / bash-completion
 
-Layer 1B — Recommended Productivity
+Layer 1B — 권장 생산성 도구(Recommended Productivity)
 vim / tree / ripgrep / fd-find
 
-Layer 2 — External/Common Developer CLI
+Layer 2 — 외부/공통 개발 CLI(External/Common Developer CLI)
 gh (GitHub CLI official APT repository)
 
-Layer 3 — Mission / Shared Runtime
+Layer 3 — 미션/공유 실행환경(Mission / Shared Runtime)
 python3 / python3-venv / sqlite3 / nginx / openssh-server / ufw / acl / cron / ...
 
-Layer 4 — Project Dependencies
+Layer 4 — 프로젝트 의존성(Project Dependencies)
 Python .venv / pyproject.toml / requirements.txt / package.json / lock file
 ```
 
-Docker는 별도 선택 Training Layer이며 Ubuntu Bootstrap의 기본 CLEAR Gate가 아닙니다.
+Docker는 별도 선택 훈련 계층(Training Layer)이며 Ubuntu Bootstrap의 기본 CLEAR Gate가 아닙니다.
 
 ## 🚀 빠른 시작(Quick Start)
 
@@ -59,7 +59,7 @@ bash environments/ubuntu/validate-scripts.sh
 → Bootstrap required FAIL 또는 잘못된 경로를 먼저 해결
 ```
 
-재실행 안전성:
+재실행 안전성(Rerun Safety):
 
 ```text
 bootstrap.sh --check        → 🟢 SAFE TO RERUN
@@ -72,7 +72,7 @@ bootstrap.sh --install      → 🟡 CHECK BEFORE RERUN
 
 - [핵심 원칙](#principles)
 - [가장 빠른 시작 상세](#fast-start-detail)
-- [공통환경 Closeout](#closeout)
+- [공통환경 마무리(Common Environment Closeout)](#closeout)
 - [기본 흐름](#workflow)
 - [파일](#files)
 - [Mission Package 사용](#mission-package)
@@ -93,10 +93,10 @@ bootstrap.sh --install      → 🟡 CHECK BEFORE RERUN
 5. Node 패키지는 `package.json`과 lock file로 관리합니다.
 6. `gh`는 일반 Ubuntu community package에만 의존하지 않고 GitHub CLI 공식 APT repository 경로를 사용합니다.
 7. `nano`는 공통 기본 편집기, `vim/tree/rg/fdfind`는 권장 생산성 도구로 구분합니다.
-8. 미션별 추가 APT 패키지는 각 미션 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
+8. 미션별 추가 APT 패키지는 각 미션 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 기준(Source of Truth)입니다.
 9. package 설치 여부와 command 사용 가능 여부는 별도로 검증합니다.
 10. 실제 Mission/Evaluation이 특정 도구·버전을 요구하면 공식 요구가 최우선입니다.
-11. 공통환경 설계는 Closeout Gate를 통과한 뒤 Freeze하고, 이후에는 현재 Mission CLEAR blocker가 있을 때만 JIT로 최소 수정합니다.
+11. 공통환경 설계는 마무리 판정(Closeout Gate)을 통과한 뒤 동결(Freeze)하고, 이후에는 현재 Mission CLEAR blocker가 있을 때만 JIT로 최소 수정합니다.
 
 <a id="fast-start-detail"></a>
 ## 가장 빠른 시작 상세
@@ -140,19 +140,19 @@ apt autoremove
 ```
 
 <a id="closeout"></a>
-## 공통환경 Closeout
+## 공통환경 마무리(Common Environment Closeout)
 
-공통환경을 계속 확장하지 않고 다음 4개 확인 후 **COMMON ENVIRONMENT FREEZE**로 전환합니다.
+공통환경을 계속 확장하지 않고 다음 4개 확인 후 **공통 환경 동결(COMMON ENVIRONMENT FREEZE)**로 전환합니다.
 
 ```text
-① Documentation Drift Check
-② MAC-V Runtime Bootstrap Verification
-③ Git / GitHub User Identity Readiness
-④ Shell Script Static Syntax Validation
+① 문서 불일치 점검(Documentation Drift Check)
+② MAC-V Runtime Bootstrap 검증(Verification)
+③ Git / GitHub 사용자 준비 상태(User Identity Readiness)
+④ Shell Script 정적 문법 검증(Static Syntax Validation)
         ↓
-COMMON ENVIRONMENT FREEZE
+공통 환경 동결(COMMON ENVIRONMENT FREEZE)
         ↓
-B1-1 Runtime
+B1-1 실제 실행(Runtime)
 ```
 
 상세 체크리스트는 [`ENVIRONMENT-CLOSEOUT.md`](ENVIRONMENT-CLOSEOUT.md)를 사용합니다.
@@ -176,13 +176,13 @@ bash environments/ubuntu/validate-scripts.sh
 → Layer 1 필수 Base 확인/설치
 → Layer 2 gh 확인/설치
 → 필요 시 Layer 1B Productivity 설치
-→ Common Environment Closeout
+→ 공통 환경 마무리(Common Environment Closeout)
 → 현재 Mission 선택
 → Mission ubuntu-packages.txt 확인
 → 부족분만 설치
 → Project environment 구성
-→ Verify
-→ Mission Runtime
+→ 검증(Verification)
+→ Mission 실제 실행(Runtime)
 ```
 
 <a id="files"></a>
@@ -204,7 +204,7 @@ bash environments/ubuntu/validate-scripts.sh
 - `verify-recommended.sh` — 권장 도구 상태 확인; 누락되어도 CLEAR Gate 아님
 - `setup-recommended.sh` — 권장 도구 설치
 - `validate-scripts.sh` — `environments/ubuntu/*.sh`에 대한 `bash -n` 문법 검사
-- `bootstrap.sh` — 공통 Ubuntu Developer Bootstrap 통합 진입점
+- `bootstrap.sh` — 공통 Ubuntu 개발환경 초기 준비(Developer Bootstrap) 통합 진입점
 - `setup-mission-packages.sh` — 현재 미션의 `ubuntu-packages.txt` 검사/설치 helper
 
 <a id="mission-package"></a>
@@ -227,7 +227,7 @@ bash "$CONTROL_TOWER/environments/ubuntu/setup-mission-packages.sh" \
   "$PACKAGE_FILE" --install
 ```
 
-`setup-mission-packages.sh`는 package 설치 여부를 확인합니다. 실제 command/service 동작은 해당 Mission의 `verify.sh`, Runtime Step, Evidence에서 별도로 검증합니다.
+`setup-mission-packages.sh`는 package 설치 여부를 확인합니다. 실제 command/service 동작은 해당 Mission의 `verify.sh`, 실제 실행(Runtime) Step, 증빙(Evidence)에서 별도로 검증합니다.
 
 <a id="package-command"></a>
 ## Package와 Command 검증을 분리하는 이유
@@ -275,7 +275,7 @@ Node 미션은 해당 미션의 Node runtime/version 정책과 `package.json`/lo
 <a id="safety"></a>
 ## 안전 원칙
 
-- `CHECK → MISSING → INSTALL → VERIFY` 순서 유지
+- `확인(Check) → 누락(Missing) → 설치(Install) → 검증(Verification)` 순서 유지
 - 기존 package 제거/다운그레이드 자동화 금지
 - `apt autoremove` 자동 실행 금지
 - System Python에 프로젝트 package 전역 설치 금지
