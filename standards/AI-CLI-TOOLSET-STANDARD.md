@@ -1,6 +1,6 @@
-# AI CLI Toolset Standard — 주요 LLM/AI CLI 입문자 표준
+# 주요 LLM/AI CLI 입문자 표준(AI CLI Toolset Standard)
 
-Codyssey Basic에서 주요 LLM/AI 기반 CLI를 **입문자가 안전하게 설치·인증·검증하고, 같은 Repository에서 충돌 없이 사용하는 기준**입니다.
+Codyssey Basic에서 주요 LLM/AI 기반 CLI를 **입문자가 안전하게 설치·인증·검증하고, 같은 저장소(Repository)에서 충돌 없이 사용하는 기준**입니다.
 
 대상 도구는 다음 네 가지를 기본 범위로 합니다.
 
@@ -11,7 +11,7 @@ Google Gemini CLI
 Google Antigravity CLI (agy)
 ```
 
-> 이 문서는 코디세이 공식 Mission/Evaluation을 대체하지 않습니다. AI CLI는 선택 개발도구이며, 실제 Mission 요구·Runtime·Verify·Evidence가 항상 우선합니다.
+> 이 문서는 코디세이 공식 Mission/Evaluation을 대체하지 않습니다. AI CLI는 선택 개발도구이며, 실제 Mission 요구·실행 환경(Runtime)·검증(Verification)·증빙(Evidence)이 항상 우선합니다.
 >
 > 설치법과 인증 방식은 자주 바뀔 수 있으므로 이 문서는 **2026-08-18 공식 문서 기준**으로 작성합니다. 이후 수정 시 각 Provider의 공식 문서를 다시 확인합니다.
 
@@ -24,14 +24,14 @@ AI CLI를 많이 설치하는 것이 목표가 아닙니다.
 R01에서는 다음 원칙을 사용합니다.
 
 ```text
-현재 Repository 확인
+현재 저장소(Repository) 확인
 → AI CLI 하나 선택
-→ 사용자 영역 또는 Ubuntu Runtime에 설치
+→ 사용자 영역 또는 Ubuntu 실행 환경(Runtime)에 설치
 → 공식 로그인
 → 읽기/분석부터 시작
-→ 제안 Diff 검토
-→ 실제 테스트/Verify
-→ Evidence는 실제 결과만 사용
+→ 제안 변경 비교(Diff) 검토
+→ 실제 테스트(Test) / 검증(Verification)
+→ 증빙(Evidence)은 실제 결과만 사용
 ```
 
 ### 기본 안전 규칙
@@ -40,14 +40,14 @@ R01에서는 다음 원칙을 사용합니다.
 - 처음 실행할 때는 분석/계획 중심으로 시작합니다.
 - Shell 명령 실행, 파일 삭제, Cloud 변경, Git reset/rebase 등 영향이 큰 작업은 사람이 먼저 검토합니다.
 - `.env`, API Key, Token, Private Key, Password를 Prompt/README/Evidence에 붙여 넣지 않습니다.
-- AI가 만든 코드라고 해서 PASS/CLEAR로 간주하지 않습니다. 실제 테스트와 Mission Verify를 수행합니다.
+- AI가 만든 코드라고 해서 PASS/CLEAR로 간주하지 않습니다. 실제 테스트와 Mission 검증(Verification)을 수행합니다.
 - 현재 Repository가 깨끗한지 `git status --short`로 먼저 확인합니다.
 
 ---
 
 ## 2. Codyssey에서 어디에 설치할까?
 
-기본 권장은 **실제 Repository가 있는 Ubuntu Runtime 안에서 CLI를 사용하는 것**입니다.
+기본 권장은 **실제 Repository가 있는 Ubuntu 실행 환경(Runtime) 안에서 CLI를 사용하는 것**입니다.
 
 ```text
 macOS Host
@@ -59,7 +59,7 @@ macOS Host
       └─ Antigravity CLI
 ```
 
-이렇게 하면 CLI가 보는 파일, Terminal, Git, Python 환경이 실제 Mission Runtime과 일치합니다.
+이렇게 하면 CLI가 보는 파일, Terminal, Git, Python 환경이 실제 Mission 실행 환경과 일치합니다.
 
 공용 Mac에서 관리자 권한이 없어도 Host 보안정책을 우회하지 않습니다. 가능한 경우 사용자 영역 설치 또는 OrbStack Ubuntu 안의 사용자 환경을 사용합니다.
 
@@ -95,7 +95,7 @@ $HOME/codyssey
 
 OpenAI Codex CLI는 Terminal에서 Repository를 읽고, 코드 변경을 제안하거나 수행하고, 명령 실행을 지원하는 coding agent입니다.
 
-R01에서는 **현재 Repository 이해 → 변경 제안 → Diff 검토 → 테스트** 순으로 사용합니다.
+R01에서는 **현재 Repository 이해 → 변경 제안 → 변경 비교(Diff) 검토 → 테스트(Test)** 순으로 사용합니다.
 
 ## 4.2 macOS/Linux 공식 standalone 설치
 
@@ -272,7 +272,7 @@ R01에서는 처음부터 권한 우회 옵션을 사용하지 않습니다. 특
 
 Gemini CLI는 Gemini 모델을 Terminal에서 사용하여 코드 이해, 생성, 수정, 자동화 작업을 수행하는 Google의 CLI입니다.
 
-현재 공식 권장 Runtime은 Node.js 20+입니다.
+현재 공식 권장 실행 환경(Runtime)은 Node.js 20+입니다.
 
 ## 6.2 no-admin에 특히 유용한 무설치 실행
 
@@ -350,7 +350,7 @@ command -v agy
 agy --help
 ```
 
-## 7.3 Remote/SSH 인증
+## 7.3 원격/SSH(Remote/SSH) 인증
 
 로컬 환경에서는 브라우저 인증을 사용할 수 있습니다.
 
@@ -434,8 +434,8 @@ git branch --show-current
 계획 확인
 → 변경 범위 확인
 → 한 작업만 요청
-→ Diff 확인
-→ 테스트/Verify
+→ 변경 비교(Diff) 확인
+→ 테스트(Test) / 검증(Verification)
 → Commit 여부 판단
 ```
 
@@ -450,14 +450,14 @@ git branch --show-current
 권장 역할 분담 예:
 
 ```text
-Primary Agent 1개
+주 수정 Agent(Primary Agent) 1개
 → 실제 수정 담당
 
-Secondary Reviewer 1개
+보조 검토자(Secondary Reviewer) 1개
 → diff / 설계 / 오류 검토
 
 사람
-→ 최종 승인 / Runtime / Evidence 판단
+→ 최종 승인 / 실제 실행(Runtime) / 증빙(Evidence) 판단
 ```
 
 예:
@@ -483,7 +483,7 @@ AI가 만든 결과를 검증 없이 바로 push
 
 ---
 
-# 11. 설치 상태 Verify
+# 11. 설치 상태 검증(Verification)
 
 사용하는 CLI만 확인합니다.
 
@@ -509,10 +509,10 @@ agy --help
 설치 여부 확인
 → PATH 확인
 → 사용자 설치 위치 확인
-→ Runtime이 Host인지 Ubuntu인지 확인
+→ 실행 환경(Runtime)이 Host인지 Ubuntu인지 확인
 → 공식 설치 문서 확인
 → 최소 수정
-→ 다시 Verify
+→ 다시 검증
 ```
 
 ---
@@ -528,8 +528,8 @@ agy --help
 [ ] Secret을 Repository/Prompt/Evidence에 기록하지 않았다.
 [ ] 작업 전 git status와 Branch를 확인한다.
 [ ] 한 Worktree에서 한 AI CLI만 실제 수정을 담당한다.
-[ ] AI 변경 후 Diff와 테스트를 확인한다.
-[ ] Mission Verify/Evidence를 AI 출력으로 대신하지 않는다.
+[ ] AI 변경 후 변경 비교(Diff)와 테스트(Test)를 확인한다.
+[ ] Mission 검증(Verification)/증빙(Evidence)을 AI 출력으로 대신하지 않는다.
 ```
 
 ---
@@ -538,5 +538,5 @@ agy --help
 
 - [DEVELOPMENT-TOOLSET-STANDARD.md](DEVELOPMENT-TOOLSET-STANDARD.md) — 전체 개발 Tool Set 분류
 - [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령 한 줄 해설
-- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — Runtime/환경 기준
+- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 실행 환경(Runtime)/환경 기준
 - [../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 환경 처음부터 따라하기
