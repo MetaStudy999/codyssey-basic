@@ -1,0 +1,50 @@
+name: One-shot dispatcher guide modularization standard
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Execute embedded one-shot patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          workflow = Path('.github/workflows/_oneshot-guide-modularization-standard.yml').read_text(encoding='utf-8')
+          start_marker = "          python3 - <<'PY'\n"
+          end_marker = "\n          PY\n"
+          start = workflow.index(start_marker) + len(start_marker)
+          end = workflow.index(end_marker, start)
+          script = workflow[start:end]
+          script = '\n'.join(line[10:] if line.startswith('          ') else line for line in script.splitlines())
+          subprocess.run(['python3', '-c', script], check=True)
+          PY
+
+          test -s standards/BEGINNER-GUIDE-MODULARIZATION-STANDARD.md
+          grep -q 'BEGINNER READY = FAIL' standards/BEGINNER-GUIDE-MODULARIZATION-STANDARD.md
+          grep -q 'BEGINNER-GUIDE-MODULARIZATION-STANDARD.md' standards/README.md
+          grep -q 'BEGINNER-GUIDE-MODULARIZATION-STANDARD.md' standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md
+          grep -q 'Trigger에 해당하면서 단일 대형 가이드가 유지되면' standards/BEGINNER-DOCUMENTATION-AUDIT.md
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add standards/README.md \
+                  standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md \
+                  standards/BEGINNER-DOCUMENTATION-AUDIT.md \
+                  standards/BEGINNER-GUIDE-MODULARIZATION-STANDARD.md
+          git rm .github/workflows/_oneshot-guide-modularization-standard.yml
+          git rm .github/workflows/_oneshot-dispatch-guide-modularization-standard.yml
+          git rm -f .github/_run-guide-modularization-standard 2>/dev/null || true
+          git commit -m 'docs: require modular beginner guides when complexity triggers'
+          git push origin HEAD:main
