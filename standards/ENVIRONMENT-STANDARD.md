@@ -12,7 +12,7 @@
 
 ```text
 실행 환경(Runtime)
-검증(Verify)
+검증(Verification)
 증빙 자료(Evidence)
 개발환경 초기 준비(Bootstrap)
 ```
@@ -42,7 +42,7 @@ Docker → 선택 훈련 계층(Training Layer)
 MDM/보안정책 우회 금지
 sudo를 전제로 한 Host 설치 금지
 → 사용자 영역 설치 가능 여부 확인
-→ Linux Runtime으로 개발 의존성 이동
+→ Linux 실행 환경(Runtime)으로 개발 의존성 이동
 → CLI/Web/허용된 IDE 대안 사용
 → 필요 시 관리자 승인 요청
 ```
@@ -60,7 +60,7 @@ $HOME/.config
 
 ### OrbStack
 
-OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하므로 macOS의 기본 Linux Runtime 후보로 유지합니다. 다만 MDM/앱 허용목록 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하므로 macOS의 기본 Linux 실행 환경(Runtime) 후보로 유지합니다. 다만 MDM/앱 허용목록 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
 
 ### VS Code
 
@@ -70,7 +70,7 @@ macOS에서 기관 정책이 허용하는 범위에서 사용자 실행 가능�
 
 ### Homebrew
 
-No-Admin Golden Path에서는 Homebrew를 필수 전제로 사용하지 않습니다. Host Mac에 개발 패키지를 대량 설치하기보다 Git, Python, Node, SQLite, Nginx 등 실제 개발 도구는 Ubuntu Runtime 내부에서 관리하는 것을 우선합니다.
+No-Admin Golden Path에서는 Homebrew를 필수 전제로 사용하지 않습니다. Host Mac에 개발 패키지를 대량 설치하기보다 Git, Python, Node, SQLite, Nginx 등 실제 개발 도구는 Ubuntu 실행 환경(Runtime) 내부에서 관리하는 것을 우선합니다.
 
 ### Google Antigravity
 
@@ -110,7 +110,7 @@ Layer 4 — 프로젝트 의존성(Project Dependencies)
 운영 원칙:
 
 - 새 Ubuntu에 15개 미션용 패키지를 한꺼번에 설치하지 않음
-- 설치 전 `CHECK → MISSING → INSTALL → VERIFY` 순서 사용
+- 설치 전 `확인(Check) → 누락(Missing) → 설치(Install) → 검증(Verification)` 순서 사용
 - 패키지(package) 설치 여부와 실제 명령(command) 사용 가능 여부를 별도로 확인
 - `git`, SSH client, `nano`, JSON/압축/파일전송 도구는 공통 Base로 관리
 - `gh`는 공통 개발 CLI(Developer CLI)지만 설치는 GitHub CLI 공식 APT repository를 사용
@@ -153,7 +153,7 @@ LEVEL 5 — 선택 AI 도구
 ChatGPT / Codex / Claude / Gemini / Antigravity CLI
 ```
 
-대체 IDE를 사용하더라도 실제 Runtime 계약은 유지합니다.
+대체 IDE를 사용하더라도 실제 실행 환경(Runtime) 계약은 유지합니다.
 
 ```text
 Repository = Ubuntu $HOME/codyssey/...
@@ -224,7 +224,7 @@ Windows .bat / .cmd = CRLF 허용
 
 대규모 line-ending 변경은 Active Mission 기능 변경과 섞지 않고, 실제 필요 시 별도 정규화 작업으로 검토합니다.
 
-## 실행 위치(Context)와 Preflight 계약
+## 실행 위치(Context)와 실행 전 점검(Preflight) 계약
 
 환경/설정 문서에서 명령을 실행하기 전에는 **어디에서 실행하는지**를 먼저 구분합니다.
 
@@ -252,7 +252,7 @@ venv       : 활성 / 비활성 / 해당 없음
 
 필수 조건이 맞지 않으면 **STOP**하고 해당 조건을 복구한 뒤 다시 확인합니다.
 
-## 재실행 안전성과 Checkpoint
+## 재실행 안전성(Rerun Safety)과 중간 저장점(Checkpoint)
 
 환경설정 명령은 반복 실행 시 영향이 다를 수 있으므로 필요한 경우 다음으로 표시합니다.
 
@@ -262,7 +262,7 @@ venv       : 활성 / 비활성 / 해당 없음
 🔴 DO NOT RERUN BLINDLY
 ```
 
-특히 아래 작업은 `CHECK → BACKUP/CHECKPOINT → CHANGE → VERIFY → RECOVERY` 흐름을 우선합니다.
+특히 아래 작업은 `확인(Check) → 백업/중간 저장점(Backup/Checkpoint) → 변경(Change) → 검증(Verification) → 복구(Recovery)` 흐름을 우선합니다.
 
 - SSH / sshd
 - UFW / firewall
@@ -273,7 +273,7 @@ venv       : 활성 / 비활성 / 해당 없음
 - Cloud Resource Create/Update/Delete
 - API/AI Provider 유료 자원
 
-Checkpoint는 실제로 복구 가능한 근거여야 합니다. 예:
+중간 저장점(Checkpoint)은 실제로 복구 가능한 근거여야 합니다. 예:
 
 ```text
 Git clean 상태
@@ -298,11 +298,11 @@ Cloud/API/AI Provider를 사용하는 환경 문서는 비용 가능성이 있�
 실습 종료는 가능한 경우 다음 흐름으로 닫습니다.
 
 ```text
-Create
-→ Verify
-→ Evidence
+생성(Create)
+→ 검증(Verification)
+→ 증빙(Evidence)
 → 더 이상 필요 없음
-→ Cleanup
+→ 정리(Cleanup)
 → 삭제/중지 확인
 ```
 
@@ -362,7 +362,7 @@ Round 01에서는 가이드의 명령을 직접 따라 이해하는 것을 본 �
 
 ## 시스템 설정 변경
 
-`현재 상태 확인 → 백업/Checkpoint → 변경 → 문법 검사 → 적용 → 검증(Verify) → 증빙 자료(Evidence)`
+`현재 상태 확인 → 백업/중간 저장점(Checkpoint) → 변경 → 문법 검사 → 적용 → 검증(Verification) → 증빙 자료(Evidence)`
 
 광범위한 `rm -rf`, 무차별 사용자 삭제, 시스템 전체 초기화 같은 위험한 reset은 금지합니다.
 
