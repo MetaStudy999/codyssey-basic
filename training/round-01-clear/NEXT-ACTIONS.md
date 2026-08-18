@@ -30,7 +30,7 @@ Gate 4 — Bash 정적 문법 검증(Static Syntax Validation)                 �
 
 ```text
 Gate 1 — 문서 불일치 점검(Documentation Drift Check)              🟡 blocker 수준 지속 감사
-Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 최종 재확인 필요
+Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 WIN-V PASS / MAC-V 재확인 대기
 ```
 
 `verify-user-identity.sh` 결과가 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 동결(Freeze) 조건을 확인한 뒤 B1-1으로 이동합니다.
@@ -97,7 +97,7 @@ B1-1 실제 실행(Runtime)
 |---|---|---|
 | 1. 문서 불일치 점검(Documentation Drift) | 🟡 PARTIAL | Start Here·Control Tower·B1-1 주요 Drift 교정. B1-1 세부 실행 안전/줄별 해설은 JIT 감사 계속 |
 | 2. MAC-V 개발환경 초기 준비(Bootstrap) | ✅ PASS | 실제 Ubuntu 24.04에서 required prerequisites/base/commands/`gh` 확인 완료 |
-| 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 RECHECK | `gh` 설치/인증은 준비되었으나 `user.name`/`user.email` 포함 최종 스크립트 재확인 필요 |
+| 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 PARTIAL | WIN-V 실제 실행 `3 PASS / 0 WARNING` 확인. R01 기본 실행 환경인 MAC-V에서는 동일 스크립트 최종 재확인 필요 |
 | 4. Bash 문법(Syntax) | ✅ PASS | `validate-scripts.sh` 실제 실행 11 PASS / 0 FAIL |
 
 다시 실행할 명령:

@@ -29,7 +29,7 @@ B1-1 실제 실행(Runtime)
 ```text
 Gate 1 — Documentation Drift           🟡 PARTIAL / blocker 중심 감사 계속
 Gate 2 — MAC-V Bootstrap Runtime       ✅ PASS
-Gate 3 — Git/GitHub User Identity      🟡 RECHECK REQUIRED
+Gate 3 — Git/GitHub User Identity      🟡 PARTIAL — WIN-V PASS / MAC-V PENDING
 Gate 4 — Bash Static Syntax Validation ✅ PASS
 ```
 
@@ -185,9 +185,18 @@ Identity 미설정은 공통환경 스크립트 실패와 동일하지 않습니
 
 ### 현재 상태
 
-**🟡 RECHECK REQUIRED**
+**🟡 PARTIAL — WIN-V PASS / MAC-V PENDING**
 
-이전 확인에서는 `git user.name`, `git user.email`이 비어 있었고 당시 `gh`도 아직 설치 전이었습니다. 이후 Bootstrap에서 `gh` 설치와 인증 준비는 확인되었으므로 **현재 상태를 다시 한 번 실행해서 최종 판정**해야 합니다.
+WIN-V(Windows 11 Pro → WSL2 Ubuntu 24.04)에서 `verify-user-identity.sh`를 실제 실행하여 다음 결과를 확인했습니다.
+
+```text
+[PASS] git user.name is configured
+[PASS] git user.email is configured
+[PASS] gh authentication is ready
+Result: 3 PASS / 0 WARNING
+```
+
+따라서 **WIN-V 사용자 준비 상태는 ✅ PASS**입니다. 다만 R01 기본 실행 환경(Primary)인 MAC-V(OrbStack Ubuntu 24.04)에서는 사용자별 Git/GitHub 상태가 별도로 달라질 수 있으므로, MAC-V에서 같은 스크립트를 다시 실행하기 전까지 Gate 3 전체는 최종 PASS로 닫지 않습니다.
 
 필요한 경우에만 본인 정보로 설정합니다.
 
@@ -231,7 +240,7 @@ bash environments/ubuntu/validate-scripts.sh
 ```text
 [ ] Gate 1 — 현재 B1-1 실행을 잘못 이끄는 blocker 수준 Drift 없음
 [x] Gate 2 — MAC-V bootstrap 실제 확인 PASS
-[ ] Gate 3 — 필요한 Git/GitHub Identity 상태 최종 확인
+[ ] Gate 3 — WIN-V Identity ✅ PASS / MAC-V Primary Identity 최종 확인 대기
 [x] Gate 4 — bash -n syntax validation PASS
 ```
 
@@ -268,7 +277,7 @@ ShellCheck 공통 필수화
 현재 남은 핵심은:
 
 ```text
-Git/GitHub 사용자 준비 상태(User Identity) 최종 재확인
+MAC-V 기본 실행 환경(Primary)의 Git/GitHub 사용자 준비 상태(User Identity) 최종 확인
 + B1-1 실행을 막는 문서 불일치(Documentation Drift)가 없는지 확인
         ↓
 공통 환경 동결(COMMON ENVIRONMENT FREEZE)
