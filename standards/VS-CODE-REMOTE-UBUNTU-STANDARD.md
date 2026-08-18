@@ -1,4 +1,4 @@
-# VS Code Remote Ubuntu Standard
+# VS Code 원격 Ubuntu 표준(VS Code Remote Ubuntu Standard)
 
 ## 목적
 
@@ -10,17 +10,17 @@ macOS에서 VS Code를 사용하더라도 실제 Codyssey 개발 작업은 **Orb
 
 ```text
 VS Code UI        = macOS
-Remote transport  = OrbStack built-in SSH (`orb`)
-Repository        = Ubuntu `$HOME/codyssey/...`
-Terminal          = Ubuntu Bash
+원격 전송(Remote transport) = OrbStack built-in SSH (`orb`)
+저장소(Repository) = Ubuntu `$HOME/codyssey/...`
+터미널(Terminal)    = Ubuntu Bash
 Git               = Ubuntu Git
 Python            = Ubuntu Python
-Virtual Env       = 각 Python repo의 `.venv`
+가상환경(Virtual Env) = 각 Python repo의 `.venv`
 Mac shared path   = 파일 교환/참조용
 Docker            = 필요할 때만 선택
 ```
 
-가장 중요한 원칙은 **Mac에서 VS Code 창을 실행하더라도 Repository와 Terminal의 실제 작업 위치는 Ubuntu `$HOME` 아래에 둔다**는 것입니다.
+가장 중요한 원칙은 **Mac에서 VS Code 창을 실행하더라도 저장소(Repository)와 터미널(Terminal)의 실제 작업 위치는 Ubuntu `$HOME` 아래에 둔다**는 것입니다.
 
 ---
 
@@ -37,14 +37,14 @@ Linux 안에서도 Mac 파일을 다음처럼 볼 수 있습니다.
 
 따라서 VS Code가 Mac의 `/Users/...` Repository를 연 상태에서 Ubuntu shell을 실행하면, shell 자체는 Bash여도 작업 파일은 Mac shared filesystem에 있을 수 있습니다.
 
-R01의 Primary Linux Runtime에서는 이 구조를 기본 개발경로로 사용하지 않습니다.
+R01의 기본 Linux 실행 환경(Primary Linux Runtime)에서는 이 구조를 기본 개발경로로 사용하지 않습니다.
 
 ```text
-비권장 Primary Workspace
+비권장 기본 작업공간(Primary Workspace)
 /Users/<mac-user>/codyssey/...
 /mnt/mac/Users/<mac-user>/codyssey/...
 
-권장 Primary Workspace
+권장 기본 작업공간(Primary Workspace)
 /home/<linux-user>/codyssey/...
 = $HOME/codyssey/...
 ```
@@ -83,9 +83,9 @@ VS Code는 해당 Remote 연결 안에서 Ubuntu Repository를 엽니다.
 
 ---
 
-## 3. 권장 Repository 위치
+## 3. 권장 저장소(Repository) 위치
 
-Ubuntu 안에서 공통 Workspace root를 사용합니다.
+Ubuntu 안에서 공통 작업공간 루트(Workspace root)를 사용합니다.
 
 ```bash
 mkdir -p "$HOME/codyssey"
@@ -107,12 +107,12 @@ $HOME/codyssey/
 
 ```text
 Control Tower
-+ 현재 Active Mission Workcell
++ 현재 미션(Active Mission) Workcell
 ```
 
 ---
 
-## 4. VS Code Workspace Terminal 기준
+## 4. VS Code 작업공간 터미널(Workspace Terminal) 기준
 
 Mission Repository의 `.vscode/settings.json`은 최소한 다음 원칙을 사용합니다.
 
@@ -286,7 +286,7 @@ B1-1 Ubuntu OpenSSH `sshd:20022`
 
 둘을 같은 SSH로 취급하지 않습니다.
 
-OrbStack의 built-in SSH는 VS Code가 Ubuntu Machine에 들어가는 관리 채널이고, B1-1의 `sshd:20022`는 공식 Mission Runtime 검증 대상입니다.
+OrbStack의 built-in SSH는 VS Code가 Ubuntu Machine에 들어가는 관리 채널이고, B1-1의 `sshd:20022`는 공식 Mission 실제 실행(Runtime) 검증 대상입니다.
 
 ---
 
