@@ -151,7 +151,7 @@ README가 길어지면 상단에 **클릭 가능한 목차**를 제공합니다.
 
 ```text
 실행 환경(Runtime)
-검증(Verify)
+검증(Verification)
 증빙 자료(Evidence)
 완료(CLEAR)
 저장소(Repository)
