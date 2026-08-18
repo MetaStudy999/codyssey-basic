@@ -1,16 +1,16 @@
-# R01 Phase C — Next Actions
+# R01 Phase C — 다음 작업(Next Actions)
 
-현재 목표는 **공통환경 Closeout을 끝내고 B1-1부터 실제 실행(Runtime)과 증빙(Evidence)을 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
+현재 목표는 **공통 환경 마무리(Common Environment Closeout)를 끝내고 B1-1부터 실제 실행(Runtime)과 증빙(Evidence)을 확보해 순차적으로 `✅ CLEAR`하는 것**입니다.
 
-현재 운영 모드: **FAST EXECUTE**
+현재 운영 모드: **빠른 실행 방식(FAST EXECUTE)**
 
-현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
+현재 실행 경로: **빠른 실행 경로(FAST TRACK) — 필수 11개 → 선택 4개**
 
 > Phase A/B에서 설계·Reference·Audit·Runbook 준비를 완료했습니다. Phase C에서는 새로운 설계를 반복하지 않고 `실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) → 완료(CLEAR)`를 우선합니다. 다만 잘못된 기준·경로·안전 절차가 실제 실행을 방해하면 즉시 최소 교정합니다.
 
 ## 🚀 빠른 시작(Quick Start)
 
-현재 바로 할 일은 **Git/GitHub 사용자 상태 재확인 → Common Environment Closeout 판정 → B1-1 실제 실행(Runtime) 시작**입니다.
+현재 바로 할 일은 **Git/GitHub 사용자 상태 재확인 → 공통 환경 마무리(Common Environment Closeout) 판정 → B1-1 실제 실행(Runtime) 시작**입니다.
 
 📍 Ubuntu Bash / Control Tower root에서:
 
@@ -22,24 +22,24 @@ bash environments/ubuntu/verify-user-identity.sh
 이미 실제 실행 환경(Runtime)에서 확인된 항목:
 
 ```text
-Gate 2 — MAC-V Bootstrap Runtime       ✅ PASS
-Gate 4 — Bash Static Syntax Validation ✅ PASS
+Gate 2 — MAC-V 개발환경 초기 준비 실행 검증(Bootstrap Runtime Verification) ✅ PASS
+Gate 4 — Bash 정적 문법 검증(Static Syntax Validation)                 ✅ PASS
 ```
 
 아직 최종 확인이 필요한 항목:
 
 ```text
-Gate 1 — Documentation Drift           🟡 blocker 수준은 지속 감사
-Gate 3 — Git/GitHub User Identity      🟡 최종 재확인 필요
+Gate 1 — 문서 불일치 점검(Documentation Drift Check)              🟡 blocker 수준 지속 감사
+Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 최종 재확인 필요
 ```
 
-`verify-user-identity.sh` 결과가 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 Freeze 조건을 확인한 뒤 B1-1으로 이동합니다.
+`verify-user-identity.sh` 결과가 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 동결(Freeze) 조건을 확인한 뒤 B1-1으로 이동합니다.
 
 ## 📑 목차
 
 - [R01 실행환경 범위](#runtime-scope)
-- [공통환경 Closeout](#environment-closeout)
-- [FAST TRACK 실행 순서](#fast-track)
+- [공통 환경 마무리](#environment-closeout)
+- [빠른 실행 경로(FAST TRACK) 실행 순서](#fast-track)
 - [Phase A/B 완료 사항](#phase-ab)
 - [Phase C 실행 우선 원칙](#phase-c-principles)
 - [현재 실제 실행 대상](#current-runtime)
@@ -52,16 +52,16 @@ Gate 3 — Git/GitHub User Identity      🟡 최종 재확인 필요
 <a id="runtime-scope"></a>
 ## R01 실행환경 범위
 
-현재 R01에서 사용하는 환경은 아래 네 Profile로 제한합니다.
+현재 R01에서 사용하는 환경은 아래 네 실행 환경 프로필(Runtime Profile)로 제한합니다.
 
 ```text
 macOS + OrbStack
-├─ MAC-V: Ubuntu 24.04 Linux Machine     ← 기본 Primary
-└─ MAC-D: Docker                         ← 선택 Lab
+├─ MAC-V: Ubuntu 24.04 Linux Machine     ← 기본 실행 환경(Primary)
+└─ MAC-D: Docker                         ← 선택 실습(Lab)
 
 Windows 11 Pro + WSL2 Ubuntu 24.04
-├─ WIN-V: Ubuntu 24.04 direct runtime   ← 권장 Secondary
-└─ WIN-D: Docker                         ← 선택 Lab
+├─ WIN-V: Ubuntu 24.04 direct runtime   ← 권장 보조 환경(Secondary)
+└─ WIN-D: Docker                         ← 선택 실습(Lab)
 ```
 
 Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 FAST TRACK 범위에서 제외하고 이후 Portability/Advanced 단계로 미룹니다.
@@ -76,17 +76,17 @@ Ubuntu Native, 별도 Hyper-V VM, VMware, KVM/QEMU, Proxmox, Kubernetes는 R01 F
 - `environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`
 
 <a id="environment-closeout"></a>
-## 공통환경 Closeout — B1-1 직전 마지막 환경 Gate
+## 공통 환경 마무리(Common Environment Closeout) — B1-1 직전 마지막 환경 판정(Gate)
 
 다음 4개 Gate를 기준으로 합니다.
 
 ```text
-① Documentation Drift Check
-② MAC-V Runtime Bootstrap Verification
-③ Git / GitHub User Identity Readiness
-④ Shell Script Static Syntax Validation
+① 문서 불일치 점검(Documentation Drift Check)
+② MAC-V 개발환경 초기 준비 실행 검증(Bootstrap Runtime Verification)
+③ Git/GitHub 사용자 준비 상태(User Identity Readiness)
+④ Shell Script 정적 문법 검증(Static Syntax Validation)
         ↓
-COMMON ENVIRONMENT FREEZE
+공통 환경 동결(COMMON ENVIRONMENT FREEZE)
         ↓
 B1-1 실제 실행(Runtime)
 ```
@@ -95,10 +95,10 @@ B1-1 실제 실행(Runtime)
 
 | Gate | 상태 | 근거/다음 행동 |
 |---|---|---|
-| 1. Documentation Drift | 🟡 PARTIAL | Start Here·Control Tower·B1-1 주요 Drift 교정. B1-1 세부 실행 안전/줄별 해설은 JIT 감사 계속 |
-| 2. MAC-V Bootstrap | ✅ PASS | 실제 Ubuntu 24.04에서 required prerequisites/base/commands/`gh` 확인 완료 |
-| 3. Git/GitHub Identity | 🟡 RECHECK | `gh` 설치/인증은 준비되었으나 `user.name`/`user.email` 포함 최종 스크립트 재확인 필요 |
-| 4. Bash Syntax | ✅ PASS | `validate-scripts.sh` 실제 실행 11 PASS / 0 FAIL |
+| 1. 문서 불일치 점검(Documentation Drift) | 🟡 PARTIAL | Start Here·Control Tower·B1-1 주요 Drift 교정. B1-1 세부 실행 안전/줄별 해설은 JIT 감사 계속 |
+| 2. MAC-V 개발환경 초기 준비(Bootstrap) | ✅ PASS | 실제 Ubuntu 24.04에서 required prerequisites/base/commands/`gh` 확인 완료 |
+| 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 RECHECK | `gh` 설치/인증은 준비되었으나 `user.name`/`user.email` 포함 최종 스크립트 재확인 필요 |
+| 4. Bash 문법(Syntax) | ✅ PASS | `validate-scripts.sh` 실제 실행 11 PASS / 0 FAIL |
 
 다시 실행할 명령:
 
@@ -110,14 +110,14 @@ bash environments/ubuntu/verify-user-identity.sh
 > 문서에 스크립트가 존재하는 것과 실제 실행 환경(Runtime)에서의 PASS는 다릅니다. 위 PASS 표시는 이 대화에서 사용자가 실제 Ubuntu에서 제공한 출력에 근거한 항목만 반영합니다.
 
 <a id="fast-track"></a>
-## FAST TRACK 실행 순서
+## 빠른 실행 경로(FAST TRACK) 실행 순서
 
 ```text
-Stage 1 — REQUIRED CLEAR
+Stage 1 — 필수 완료(REQUIRED CLEAR)
 B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
 → B4-1 → B5-1 → B6-1 → B6-2 → B7-1
 
-Stage 2 — OPTIONAL CLEAR
+Stage 2 — 선택 완료(OPTIONAL CLEAR)
 B4-2 → B5-2 → B5-3 → B7-2
 ```
 
@@ -206,11 +206,11 @@ B1-1 실행 환경 프로필(Runtime Profile):
 ## B1-1 즉시 실행 순서
 
 1. `verify-user-identity.sh` 최종 재확인
-2. Common Environment Closeout / Freeze 판정
+2. 공통 환경 마무리(Common Environment Closeout) / 동결(Freeze) 판정
 3. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
 4. B1-1 repository root / branch / local changes 확인
 5. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
-6. B1-1 `BEGINNER-GUIDE.md` Quick Start → STEP 01 baseline 수행
+6. B1-1 `BEGINNER-GUIDE.md` 빠른 시작(Quick Start) → STEP 01 baseline 수행
 7. SSH 20022 safe migration
 8. UFW final policy
 9. users/groups/effective permission
