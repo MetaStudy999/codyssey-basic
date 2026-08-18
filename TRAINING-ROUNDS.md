@@ -1,4 +1,4 @@
-# Training Rounds
+# 훈련 차수(Training Rounds)
 
 이 문서는 Codyssey Basic의 장기 훈련 차수(Round)를 **기초 완주 → 재구축 → 디버깅/운영 → 통합 → 전문화 → 외부 기여**로 확장하는 로드맵입니다.
 
@@ -68,7 +68,7 @@ IMPACT CYCLE
 리팩터링, 보안, 성능, 신뢰성, 유지보수성을 높입니다.
 
 ### R05 — PRODUCTION
-배포, 환경, Secret, CI/CD, 모니터링, 로그, 백업·복구 등 운영 역량을 훈련합니다.
+배포, 환경, 비밀정보(Secret), CI/CD, 모니터링, 로그, 백업·복구 등 운영 역량을 훈련합니다.
 
 <a id="phase-3"></a>
 ## Phase 3 — ADVANCED
@@ -104,7 +104,7 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 연구, OSS, 교육, 기술 문서, 커뮤니티 등 외부 생태계에 검증 가능한 기여를 남깁니다.
 
 ### R14 — EXPERT VALIDATION
-독립 문제 해결, Production, Architecture, Contribution, 반복 성과를 외부 Evidence로 검증합니다. R14 수행만으로 Expert를 자동 부여하지 않습니다.
+독립 문제 해결, Production, Architecture, Contribution, 반복 성과를 외부 증빙(Evidence)으로 검증합니다. R14 수행만으로 Expert를 자동 부여하지 않습니다.
 
 <a id="impact-cycle"></a>
 ## Expert 이후 — Impact Cycle
