@@ -1,0 +1,66 @@
+name: one-shot record WIN-V identity status
+on:
+  push:
+    paths:
+      - '.github/workflows/_oneshot-record-win-v-identity.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch closeout status
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('environments/ubuntu/ENVIRONMENT-CLOSEOUT.md')
+          s = p.read_text()
+          replacements = {
+              'Gate 3 — Git/GitHub User Identity      🟡 RECHECK REQUIRED':
+              'Gate 3 — Git/GitHub User Identity      🟡 PARTIAL — WIN-V PASS / MAC-V PENDING',
+              '**🟡 RECHECK REQUIRED**\n\n이전 확인에서는 `git user.name`, `git user.email`이 비어 있었고 당시 `gh`도 아직 설치 전이었습니다. 이후 Bootstrap에서 `gh` 설치와 인증 준비는 확인되었으므로 **현재 상태를 다시 한 번 실행해서 최종 판정**해야 합니다.':
+              '**🟡 PARTIAL — WIN-V PASS / MAC-V PENDING**\n\nWIN-V(Windows 11 Pro → WSL2 Ubuntu 24.04)에서 `verify-user-identity.sh`를 실제 실행하여 다음 결과를 확인했습니다.\n\n```text\n[PASS] git user.name is configured\n[PASS] git user.email is configured\n[PASS] gh authentication is ready\nResult: 3 PASS / 0 WARNING\n```\n\n따라서 **WIN-V 사용자 준비 상태는 ✅ PASS**입니다. 다만 R01 기본 실행 환경(Primary)인 MAC-V(OrbStack Ubuntu 24.04)에서는 사용자별 Git/GitHub 상태가 별도로 달라질 수 있으므로, MAC-V에서 같은 스크립트를 다시 실행하기 전까지 Gate 3 전체는 최종 PASS로 닫지 않습니다.',
+              '[ ] Gate 3 — 필요한 Git/GitHub Identity 상태 최종 확인':
+              '[ ] Gate 3 — WIN-V Identity ✅ PASS / MAC-V Primary Identity 최종 확인 대기',
+              'Git/GitHub 사용자 준비 상태(User Identity) 최종 재확인\n+ B1-1 실행을 막는 문서 불일치(Documentation Drift)가 없는지 확인':
+              'MAC-V 기본 실행 환경(Primary)의 Git/GitHub 사용자 준비 상태(User Identity) 최종 확인\n+ B1-1 실행을 막는 문서 불일치(Documentation Drift)가 없는지 확인',
+          }
+          for old, new in replacements.items():
+              if s.count(old) != 1:
+                  raise SystemExit(f'ENVIRONMENT-CLOSEOUT marker count != 1: {old[:80]!r} -> {s.count(old)}')
+              s = s.replace(old, new)
+          p.write_text(s)
+
+          p = Path('training/round-01-clear/NEXT-ACTIONS.md')
+          s = p.read_text()
+          replacements = {
+              'Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 최종 재확인 필요':
+              'Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 WIN-V PASS / MAC-V 재확인 대기',
+              '| 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 RECHECK | `gh` 설치/인증은 준비되었으나 `user.name`/`user.email` 포함 최종 스크립트 재확인 필요 |':
+              '| 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 PARTIAL | WIN-V 실제 실행 `3 PASS / 0 WARNING` 확인. R01 기본 실행 환경인 MAC-V에서는 동일 스크립트 최종 재확인 필요 |',
+          }
+          for old, new in replacements.items():
+              if s.count(old) != 1:
+                  raise SystemExit(f'NEXT-ACTIONS marker count != 1: {old[:80]!r} -> {s.count(old)}')
+              s = s.replace(old, new)
+          p.write_text(s)
+          PY
+
+          git diff --check
+          git diff -- environments/ubuntu/ENVIRONMENT-CLOSEOUT.md training/round-01-clear/NEXT-ACTIONS.md
+
+      - name: Commit final status docs only
+        shell: bash
+        run: |
+          rm .github/workflows/_oneshot-record-win-v-identity.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add environments/ubuntu/ENVIRONMENT-CLOSEOUT.md training/round-01-clear/NEXT-ACTIONS.md .github/workflows/_oneshot-record-win-v-identity.yml
+          git diff --cached --check
+          git commit -m 'docs: record WIN-V identity pass and keep MAC-V pending'
+          git push
