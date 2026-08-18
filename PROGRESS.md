@@ -6,9 +6,9 @@
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
-현재 Runtime 대상: **B1-1 🟡 ACTIVE**
+현재 실제 실행(Runtime) 대상: **B1-1 🟡 ACTIVE**
 
-현재 Primary Runtime: **MAC-V — macOS → OrbStack → Ubuntu 24.04**
+현재 기본 실행 환경(Primary Runtime): **MAC-V — macOS → OrbStack → Ubuntu 24.04**
 
 > Phase A Reference Build, Canonical Final Consistency Audit, Phase B Cross-Mission Audit와 Runtime Runbook Freeze를 완료했습니다. 이제 FAST TRACK에 따라 **필수 미션을 먼저 모두 CLEAR한 뒤 선택 미션을 수행**합니다.
 
@@ -26,15 +26,15 @@ Primary       = MAC-V / Ubuntu 24.04
 지금 할 일:
 
 1. [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)에서 B1-1 직전 Gate를 확인합니다.
-2. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)를 따라 실제 Runtime을 수행합니다.
-3. 실제 Verify/Evidence가 완료되기 전에는 `CLEAR` 숫자를 올리지 않습니다.
+2. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)를 따라 실제 실행(Runtime)을 수행합니다.
+3. 실제 검증(Verification)과 증빙(Evidence)이 완료되기 전에는 `CLEAR` 숫자를 올리지 않습니다.
 
 ## 📑 목차
 
 - [완료 현황](#completion)
-- [R01 Runtime Profiles](#runtime-profiles)
+- [R01 실행 환경 프로필(Runtime Profiles)](#runtime-profiles)
 - [FAST TRACK](#fast-track)
-- [Runtime Mission 상태](#mission-status)
+- [실제 실행 미션 상태](#mission-status)
 - [Phase B 공통 정책](#common-policies)
 - [Cross-Mission 교정 완료](#cross-mission)
 - [Phase C 실행 흐름](#phase-c-flow)
@@ -73,7 +73,7 @@ Primary       = MAC-V / Ubuntu 24.04
 - `standards/BEGINNER-DOCUMENTATION-AUDIT.md`
 
 <a id="runtime-profiles"></a>
-## R01 Runtime Profiles
+## R01 실행 환경 프로필(Runtime Profiles)
 
 ```text
 macOS + OrbStack
@@ -96,19 +96,19 @@ Windows 11 Pro + WSL2 Ubuntu 24.04
 
 위 환경은 R01 전체 CLEAR 이후 Portability/Advanced 단계로 미룹니다.
 
-### Dual-Runtime 운영
+### 이중 실행 환경(Dual-Runtime) 운영
 
 Mission 상태와 Lab Coverage는 분리합니다.
 
 ```text
 Mission CLEAR
-= 공식 Mission/Evaluation + Runtime + Verify + Evidence
+= 공식 Mission/Evaluation + 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence)
 
 Lab Coverage
 = Docker/VM/Linux 환경에서 핵심 기능과 차이를 학습하는 별도 체크
 ```
 
-같은 Mission을 네 프로필에서 전체 반복하지 않습니다. Primary Runtime에서 CLEAR를 먼저 확보하고, Twin Lab에서는 핵심 기능 1~3개와 환경 차이만 확인합니다.
+같은 Mission을 네 프로필에서 전체 반복하지 않습니다. 기본 실행 환경(Primary Runtime)에서 CLEAR를 먼저 확보하고, Twin Lab에서는 핵심 기능 1~3개와 환경 차이만 확인합니다.
 
 현재 B1-1:
 
@@ -132,10 +132,10 @@ B4-2 → B5-2 → B5-3 → B7-2
 
 FAST TRACK은 선택 미션을 생략하는 경로가 아닙니다. **필수 11개를 먼저 완료하여 핵심 과정을 빠르게 닫고, 이후 선택 4개를 연속 수행해 R01 전체 15개를 CLEAR**합니다.
 
-Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FAST TRACK은 실제 R01 Runtime의 운영 순서를 설명합니다.
+Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FAST TRACK은 실제 R01 실행 순서를 설명합니다.
 
 <a id="mission-status"></a>
-## Runtime Mission 상태
+## 실제 실행 미션 상태
 
 | 순서 | Stage | 미션 | 구분 | 상태 |
 |---:|---|---|---|---|
@@ -158,9 +158,9 @@ Dependency의 `필수 선행/권장 선행`은 학습 관계를 설명하고, FA
 <a id="common-policies"></a>
 ## Phase B에서 확정한 공통 정책
 
-### Runtime isolation
+### 실행 환경 격리(Runtime Isolation)
 
-- 실제 Runtime은 **한 번에 한 미션**
+- 실제 실행(Runtime)은 **한 번에 한 미션**
 - Python package는 미션별 `.venv`
 - SQLite DB는 미션별 분리
 - B4-2 `node_modules`/Supabase는 B4-2 전용
@@ -206,16 +206,16 @@ B1-1/B1-2  AGENT_* + local-only key file
 ## Phase C 실행 흐름
 
 ```text
-PHASE-C-PREFLIGHT
-→ 현재 미션 START-CHECK(있는 경우)
-→ Primary Runtime 확인
-→ BEGINNER-GUIDE
-→ 실제 Runtime
-→ Verify
-→ Evidence
-→ Evaluation 설명
-→ Secret 확인
-→ ✅ CLEAR 판정
+실행 전 점검(PHASE-C-PREFLIGHT)
+→ 현재 미션 시작 점검(START-CHECK, 있는 경우)
+→ 기본 실행 환경(Primary Runtime) 확인
+→ 입문자 가이드(BEGINNER-GUIDE)
+→ 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ 평가 설명(Evaluation)
+→ 비밀정보(Secret) 확인
+→ ✅ 완료(CLEAR) 판정
 → 필요 범위 Twin Lab
 → FAST TRACK의 다음 미션
 ```
@@ -246,9 +246,9 @@ Phase A Reference Build          ✅ 15/15 CORE READY
 <a id="status-definition"></a>
 ## 상태 정의
 
-- ⬜ `NOT STARTED`: 해당 미션 Runtime 미시작
+- ⬜ `NOT STARTED`: 해당 미션 실제 실행(Runtime) 미시작
 - 🟡 `ACTIVE`: 현재 실제 수행/검증 대상
 - ⛔ `BLOCKED`: 실제 의존성 때문에 진행 불가
-- ✅ `CLEAR`: 구현 + 실제 검증 + 필요한 Evidence 완료
+- ✅ `CLEAR`: 구현 + 실제 검증 + 필요한 증빙(Evidence) 완료
 
 Reference/문서/정적검증이나 Twin Lab Coverage만으로는 `✅ CLEAR`로 변경하지 않습니다.
