@@ -1,4 +1,4 @@
-# Development Toolset Standard — 입문자 개발 도구 표준
+# 입문자 개발 도구 표준(Development Toolset Standard)
 
 Codyssey Basic에서 입문자가 **새 개발환경을 만들 때 무엇이 필수이고 무엇이 선택인지**, 그리고 공용·관리형 Mac처럼 관리자 권한이 없는 환경에서 어떤 경로를 우선할지 정의합니다.
 
@@ -13,13 +13,13 @@ Codyssey Basic에서 입문자가 **새 개발환경을 만들 때 무엇이 필
 ```text
 Host 확인
 → 관리자 권한 여부 확인
-→ Linux Runtime 준비
-→ 기본 Editor/IDE 준비
+→ Linux 실행 환경(Runtime) 준비
+→ 기본 편집기/통합 개발 환경(Editor/IDE) 준비
 → Git/GitHub 준비
-→ 공통 Ubuntu Bootstrap
+→ 공통 Ubuntu 개발환경 초기 준비(Bootstrap)
 → Mission 전용 도구
 → Project 전용 의존성
-→ Verify
+→ 검증(Verification)
 → 현재 Mission 시작
 ```
 
@@ -42,7 +42,7 @@ VS Code
 Remote - SSH
 ```
 
-macOS의 기본 Runtime은 OrbStack Ubuntu 24.04, Windows의 기본 보조 Runtime은 WSL2 Ubuntu 24.04입니다.
+macOS의 기본 실행 환경(Runtime)은 OrbStack Ubuntu 24.04, Windows의 기본 보조 실행 환경은 WSL2 Ubuntu 24.04입니다.
 
 ### LEVEL 2 — 미션에 따라 추가
 
@@ -91,7 +91,7 @@ Python     = Ubuntu Python
 .venv      = Repository-local
 ```
 
-IDE가 바뀌어도 Runtime의 Source of Truth는 바뀌지 않습니다.
+IDE가 바뀌어도 실행 환경(Runtime)의 기준(Source of Truth)은 바뀌지 않습니다.
 
 ### LEVEL 5 — AI 개발 도구 / 주요 CLI
 
@@ -103,7 +103,7 @@ Google Gemini CLI       → gemini
 Google Antigravity CLI  → agy
 ```
 
-AI 도구는 공식 요구를 대신하지 않으며, 생성 결과는 사람이 검토하고 실제 Verify/Evidence로 확인합니다.
+AI 도구는 공식 요구를 대신하지 않으며, 생성 결과는 사람이 검토하고 실제 **검증(Verification)과 증빙(Evidence)**으로 확인합니다.
 
 설치·인증·no-admin·Remote/SSH·동시 사용 기준은 [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md)를 사용합니다.
 
@@ -123,10 +123,10 @@ Antigravity SDK  = 프로그래밍 통합용 SDK
 Codyssey Basic에서는 다음처럼 사용합니다.
 
 ```text
-VS Code + Ubuntu Runtime       = 기본 경로
-Antigravity IDE               = 대체 IDE
-Antigravity CLI (agy)         = 선택 AI Terminal 도구
-Antigravity standalone app    = 선택 Agent orchestration 도구
+VS Code + Ubuntu 실행 환경(Runtime) = 기본 경로
+Antigravity IDE                     = 대체 IDE
+Antigravity CLI (agy)               = 선택 AI Terminal 도구
+Antigravity standalone app          = 선택 Agent orchestration 도구
 ```
 
 ### Antigravity IDE
@@ -183,7 +183,7 @@ sudo를 전제로 한 Host 설치 금지
 시스템 폴더 강제 변경 금지
 ```
 
-설치가 막히면 우회하지 않고 **사용자 영역 설치 → Remote/Linux Runtime → Web/CLI 대안 → 관리자 승인 요청** 순으로 전환합니다.
+설치가 막히면 우회하지 않고 **사용자 영역 설치 → 원격/Linux 실행 환경(Remote/Linux Runtime) → Web/CLI 대안 → 관리자 승인 요청** 순으로 전환합니다.
 
 ### 4.2 사용자 영역 우선 위치
 
@@ -200,7 +200,7 @@ $HOME/.config
 
 ### 4.3 OrbStack
 
-OrbStack은 공식적으로 **관리자 권한 없이 동작하는 것(works without admin)**을 기능으로 안내합니다. 따라서 공용 Mac에서도 먼저 검토할 수 있는 기본 Linux Runtime 후보입니다.
+OrbStack은 공식적으로 **관리자 권한 없이 동작하는 것(works without admin)**을 기능으로 안내합니다. 따라서 공용 Mac에서도 먼저 검토할 수 있는 기본 Linux 실행 환경(Runtime) 후보입니다.
 
 다만 기관의 MDM, 앱 허용목록, 실행 제한 정책이 OrbStack 실행을 차단할 수 있습니다. 이 경우 정책을 우회하지 않습니다.
 
@@ -224,14 +224,14 @@ VS Code의 macOS Portable Mode는 일반 macOS Application 다운로드를 지�
 
 ### 4.5 Homebrew
 
-공용 Mac의 **no-admin Golden Path에서 Homebrew를 필수 전제로 사용하지 않습니다.**
+공용 Mac의 **no-admin 기준 실행 경로(Golden Path)에서 Homebrew를 필수 전제로 사용하지 않습니다.**
 
 이유:
 - 표준 설치 위치가 시스템/공용 경로와 연결될 수 있음
 - 기관 정책에 의해 설치·실행이 제한될 수 있음
-- Codyssey 기본 도구 대부분은 Ubuntu Runtime 내부에서 APT로 관리 가능
+- Codyssey 기본 도구 대부분은 Ubuntu 실행 환경(Runtime) 내부에서 APT로 관리 가능
 
-Host Mac에 패키지를 많이 설치하기보다 Ubuntu Runtime에 개발 도구를 두는 것을 우선합니다.
+Host Mac에 패키지를 많이 설치하기보다 Ubuntu 실행 환경에 개발 도구를 두는 것을 우선합니다.
 
 ### 4.6 Antigravity
 
@@ -266,7 +266,7 @@ Claude Code
 
 ---
 
-## 5. macOS 공용 PC Golden Path
+## 5. macOS 공용 PC 기준 실행 경로(Golden Path)
 
 ```text
 STEP 1  일반 사용자 계정으로 로그인
@@ -282,7 +282,7 @@ STEP 10 Git/GitHub 사용자 상태 확인
 STEP 11 현재 Mission package 확인
 STEP 12 Project .venv/Node 환경 구성
 STEP 13 필요한 경우 AI CLI 하나 선택·검증
-STEP 14 Verify
+STEP 14 검증(Verification)
 STEP 15 BEGINNER-GUIDE 시작
 ```
 
@@ -292,7 +292,7 @@ Host Mac에는 가능한 한 최소 도구만 두고, 실제 개발 의존성은
 
 ## 6. 개발도구 설치 문서 작성 기준
 
-입문자용 Tool Setup 문서는 각 도구마다 다음을 제공합니다.
+입문자용 도구 설정(Tool Setup) 문서는 각 도구마다 다음을 제공합니다.
 
 ```text
 ① 이 도구가 무엇인가
@@ -320,7 +320,7 @@ Repository 접근 범위
 Secret 비노출
 작업 전 git status / Branch 확인
 동일 Worktree 동시 수정 금지
-변경 후 Diff / Test / Verify
+변경 후 변경 비교(Diff) / 테스트(Test) / 검증(Verification)
 ```
 
 ---
@@ -329,19 +329,19 @@ Secret 비노출
 
 | 도구 | R01 역할 | 설치 위치 우선 | No-Admin Mac 전략 |
 |---|---|---|---|
-| OrbStack | Primary Linux Runtime | macOS user app/allowed app | 공식 no-admin 지원, MDM 정책 확인 |
+| OrbStack | 기본 Linux 실행 환경(Primary Linux Runtime) | macOS user app/allowed app | 공식 no-admin 지원, MDM 정책 확인 |
 | VS Code | 기본 Editor | 사용자 실행 가능한 앱 위치 | Portable/User-space 우선 |
 | Remote - SSH | VS Code Extension | VS Code 사용자 데이터 | 사용자 Extension 영역 |
 | Git | 공통 개발도구 | Ubuntu | Host보다 Ubuntu Git 우선 |
 | gh | GitHub CLI | Ubuntu | Ubuntu Bootstrap에서 관리 |
-| Python | 미션별 Runtime | Ubuntu | APT + repo-local `.venv` |
-| Node.js | 미션별 Runtime | Ubuntu | Mission 정책에 맞춰 설치 |
+| Python | 미션별 실행 환경(Runtime) | Ubuntu | APT + repo-local `.venv` |
+| Node.js | 미션별 실행 환경(Runtime) | Ubuntu | Mission 정책에 맞춰 설치 |
 | Antigravity IDE | 대체 IDE | 로컬 App | 허용될 때만, 정책 우회 금지 |
 | Codex CLI | 선택 AI CLI | Ubuntu 또는 사용자 영역 | official standalone 사용자 영역 우선 |
 | Claude Code | 선택 AI CLI | Ubuntu | `sudo npm install -g` 금지, 사용자 소유 설치 우선 |
 | Gemini CLI | 선택 AI CLI | Ubuntu | `npx` 무설치 실행 우선 검토 |
 | Antigravity CLI | 선택 AI CLI | `~/.local/bin/agy` | **사용자 영역 우선 경로** |
-| Docker | 선택 Training Layer | OrbStack/WSL2 | 기본 Mission Gate 아님 |
+| Docker | 선택 훈련 계층(Training Layer) | OrbStack/WSL2 | 기본 Mission Gate 아님 |
 
 ---
 
@@ -369,5 +369,5 @@ Secret 비노출
 
 - [AI-CLI-TOOLSET-STANDARD.md](AI-CLI-TOOLSET-STANDARD.md) — Codex / Claude Code / Gemini / Antigravity CLI 상세 설치·인증·안전 기준
 - [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 한 줄 해설
-- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — Runtime/환경 기준
+- [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 실행 환경(Runtime)/환경 기준
 - [../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 개발환경 처음부터 따라하기
