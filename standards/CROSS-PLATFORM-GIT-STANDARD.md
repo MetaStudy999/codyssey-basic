@@ -1,16 +1,16 @@
-# Cross-Platform Git Standard
+# 교차 플랫폼 Git 표준(Cross-Platform Git Standard)
 
 ## 목적
 
 Codyssey Basic 저장소를 **macOS + OrbStack Ubuntu 24.04**, **Windows 11 Pro + WSL2 Ubuntu 24.04**, 그리고 필요 시 Docker 사이에서 이동해도 줄바꿈·실행권한·파일명·경로 차이 때문에 불필요한 오류가 발생하지 않도록 공통 Git 파일 계약을 정의합니다.
 
-이 문서는 코디세이 공식 Mission/Evaluation 요구사항을 바꾸지 않습니다. Repository portability를 위한 내부 표준입니다.
+이 문서는 코디세이 공식 Mission/Evaluation 요구사항을 바꾸지 않습니다. 저장소 이식성(Repository Portability)을 위한 내부 표준입니다.
 
 ## 핵심 계약
 
 ```text
-Repository text encoding = UTF-8
-Repository text line ending = LF
+저장소 텍스트 인코딩(Repository text encoding) = UTF-8
+저장소 텍스트 줄바꿈(Repository text line ending) = LF
 Windows .bat / .cmd = CRLF 허용
 Linux shell / Python / Web / YAML / Dockerfile = LF
 ```
@@ -22,11 +22,11 @@ Linux shell / Python / Web / YAML / Dockerfile = LF
 .editorconfig  = VS Code/Cursor/Windsurf/JetBrains 등 Editor 저장 형식 계약
 ```
 
-`.gitattributes`가 Repository Source of Truth이며 개인의 `core.autocrlf` 설정에만 의존하지 않습니다.
+`.gitattributes`가 저장소 기준(Source of Truth)이며 개인의 `core.autocrlf` 설정에만 의존하지 않습니다.
 
 ---
 
-## 1. Line Ending — LF / CRLF
+## 1. 줄바꿈(Line Ending) — LF / CRLF
 
 전통적으로 다음 차이가 있습니다.
 
@@ -82,7 +82,7 @@ git check-attr text eol -- path/to/file
 
 ---
 
-## 3. 기존 Clone / 기존 파일의 정규화
+## 3. 기존 복제(Clone) / 기존 파일의 정규화
 
 `.gitattributes`를 새로 도입해도 기존 Local Working Tree를 무조건 대량 변경하지 않습니다.
 
@@ -105,7 +105,7 @@ git diff --cached --summary
 주의:
 
 - 기능 변경과 대규모 line-ending 정규화를 같은 Commit/PR에 섞지 않습니다.
-- Active Mission Runtime을 방해하지 않는 범위에서만 수행합니다.
+- 현재 미션 실제 실행(Active Mission Runtime)을 방해하지 않는 범위에서만 수행합니다.
 - 예상하지 못한 대규모 Diff가 보이면 Commit하지 말고 원인을 먼저 확인합니다.
 - `git reset --hard`, `git clean -fd`를 단순 줄바꿈 정리를 위해 사용하지 않습니다.
 
@@ -130,7 +130,7 @@ Git mode:
 
 Windows에서 파일을 편집했다고 해서 필요한 executable bit를 임의로 없애지 않습니다.
 
-실행권한이 중요한 스크립트는 Runtime/Verify 전에 다음도 확인합니다.
+실행권한이 중요한 스크립트는 실제 실행/검증(Runtime/Verification) 전에 다음도 확인합니다.
 
 ```bash
 git ls-files --stage '*.sh'
@@ -189,11 +189,11 @@ Windows + WSL2에서 Linux 중심 미션은 가능하면 WSL filesystem 아래�
 
 ---
 
-## 7. Symlink
+## 7. 심볼릭 링크(Symlink)
 
 Symlink 동작은 Windows 설정과 Git 옵션에 따라 달라질 수 있습니다.
 
-기초 미션에서는 공식 요구가 없다면 불필요한 symlink 의존성을 만들지 않습니다. 필요한 경우 실제 Linux Runtime에서 link type과 target을 검증합니다.
+기초 미션에서는 공식 요구가 없다면 불필요한 symlink 의존성을 만들지 않습니다. 필요한 경우 실제 Linux 실행 환경(Runtime)에서 link type과 target을 검증합니다.
 
 ```bash
 ls -l path
@@ -219,7 +219,7 @@ macOS/Linux 사이에서 Unicode normalization 차이가 생길 수 있으므로
 
 ---
 
-## 9. Binary 파일
+## 9. 이진 파일(Binary File)
 
 이미지, PDF, Archive, Database, Font 등은 line-ending 변환 대상이 아닙니다.
 
@@ -251,7 +251,7 @@ Editor가 다른 line ending으로 저장하려고 하더라도 `.editorconfig`�
 
 ---
 
-## 11. Cross-platform Preflight
+## 11. 교차 플랫폼 실행 전 점검(Cross-platform Preflight)
 
 새 환경에서 Mission을 시작할 때 최소 확인:
 
@@ -285,7 +285,7 @@ sed -n '1,5l' path/to/script.sh
 
 ## 12. R01 적용 범위
 
-현재 R01 Runtime Profile:
+현재 R01 실행 환경 프로필(Runtime Profile):
 
 ```text
 MAC-V = macOS → OrbStack → Ubuntu 24.04
@@ -294,9 +294,9 @@ MAC-D = macOS → OrbStack Docker                 (선택 Lab)
 WIN-D = Windows 11 Pro → WSL2 → Docker         (선택 Lab)
 ```
 
-Cross-platform Git 규칙은 Docker 사용 여부와 관계없이 모든 Codyssey Basic 저장소에 적용합니다.
+교차 플랫폼 Git(Cross-platform Git) 규칙은 Docker 사용 여부와 관계없이 모든 Codyssey Basic 저장소에 적용합니다.
 
-Mission CLEAR는 여전히 공식 Mission/Evaluation + Runtime + Verify + Evidence로 판단합니다. 이 파일 표준 자체가 별도의 평가항목을 추가하지 않습니다.
+Mission CLEAR는 여전히 **공식 Mission/Evaluation + 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence)**으로 판단합니다. 이 파일 표준 자체가 별도의 평가항목을 추가하지 않습니다.
 
 ---
 
