@@ -1,4 +1,4 @@
-# R01 — Mission Dependency Map
+# R01 — 미션 선후관계 지도(Mission Dependency Map)
 
 동결일: 2026-08-17
 
@@ -6,11 +6,11 @@
 
 15개 미션의 선행 관계를 다음 3가지로 분리합니다.
 
-1. **필수 선행 미션 (Required Prerequisite)** — 선행 결과물을 직접 사용하거나 공식 미션이 이전 프로젝트를 기반으로 요구함
-2. **권장 선행 미션 (Recommended Prerequisite)** — 완료하지 않아도 시작 가능하지만 관련 개념을 미리 익혀 두면 수행이 쉬워짐
-3. **있으면 좋은 선행 지식 (Recommended Prior Knowledge)** — 특정 미션 완료 여부와 무관하게 알고 있으면 좋은 개념
+1. **필수 선행 미션(Required Prerequisite)** — 선행 결과물을 직접 사용하거나 공식 미션이 이전 프로젝트를 기반으로 요구함
+2. **권장 선행 미션(Recommended Prerequisite)** — 완료하지 않아도 시작 가능하지만 관련 개념을 미리 익혀 두면 수행이 쉬워짐
+3. **있으면 좋은 선행 지식(Recommended Prior Knowledge)** — 특정 미션 완료 여부와 무관하게 알고 있으면 좋은 개념
 
-핵심 원칙은 **미션 완료를 불필요하게 Gate로 만들지 않는 것**입니다.
+핵심 원칙은 **미션 완료를 불필요하게 판정 조건(Gate)으로 만들지 않는 것**입니다.
 
 ## 한눈에 보기(Quick Read)
 
@@ -37,7 +37,7 @@ B1-1 → B1-2 → ... → B7-1 → B4-2 → B5-2 → B5-3 → B7-2
 - [6. 시작 전 지식 체크 운영](#start-check)
 - [7. Phase C 기본 실행 순서](#phase-c-order)
 - [8. 환경 재사용과 금지사항](#reuse)
-- [9. Dependency 판단 규칙](#rules)
+- [9. 선후관계(Dependency) 판단 규칙](#rules)
 - [최종 판정](#final)
 
 ---
@@ -67,7 +67,7 @@ B1-2는 `monitor.sh`, 프로세스, 포트, 로그, 자원 관제 개념을 사�
 <a id="recommended"></a>
 ## 2. 권장 선행 미션
 
-> 아래 관계는 **교육 설계상 권장**이며 공식 Hard prerequisite가 아닙니다. 해당 미션을 CLEAR하지 않았더라도 관련 지식을 이미 알고 있다면 후속 미션을 시작할 수 있습니다.
+> 아래 관계는 **교육 설계상 권장**이며 공식 필수 선행(Hard prerequisite)이 아닙니다. 해당 미션을 CLEAR하지 않았더라도 관련 지식을 이미 알고 있다면 후속 미션을 시작할 수 있습니다.
 
 | 미션 | 권장 선행 미션 | 권장 이유 |
 |---|---|---|
@@ -176,12 +176,14 @@ B7-2
 운영 흐름:
 
 ```text
-START-CHECK
+시작 점검(START-CHECK)
 → 필수 선행 존재 여부 확인
 → 권장 선행/선행 지식 자가진단
 → 부족한 개념만 선택 보충
-→ BEGINNER-GUIDE
-→ Runtime / Verify / Evidence
+→ 입문자 가이드(BEGINNER-GUIDE)
+→ 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
 ```
 
 ### 판정 원칙
@@ -248,7 +250,7 @@ B7-1/B7-2 auth token/DB/runtime 혼합 금지
 ---
 
 <a id="rules"></a>
-## 9. Dependency 판단 규칙
+## 9. 선후관계(Dependency) 판단 규칙
 
 ### 필수 선행으로 올리는 조건
 
@@ -276,5 +278,5 @@ B7-1/B7-2 auth token/DB/runtime 혼합 금지
 - 필수 선행 연결: **1개 — B7-1 → B7-2**
 - B1-1 → B1-2: **권장 선행으로 재분류**
 - `START-CHECK.md` 적용 미션: **11개**
-- 선택 미션이 필수 과정의 Hard blocker가 되는 경우: **0**
-- R01 실행 순서와 Dependency 분류: **서로 분리하여 관리**
+- 선택 미션이 필수 과정의 필수 차단 조건(Hard blocker)이 되는 경우: **0**
+- R01 실행 순서와 선후관계(Dependency) 분류: **서로 분리하여 관리**
