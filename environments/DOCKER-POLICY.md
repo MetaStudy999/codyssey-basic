@@ -1,8 +1,8 @@
-# R01 Docker Policy
+# R01 Docker 정책(Docker Policy)
 
 ## 목적
 
-Round 01에서 Docker를 **Mission CLEAR의 기본 필수조건이 아니라 선택적 Training Layer**로 관리합니다.
+Round 01에서 Docker를 **Mission CLEAR의 기본 필수조건이 아니라 선택 훈련 계층(Training Layer)**으로 관리합니다.
 
 공식 Mission/Evaluation이 특정 실행환경을 요구하면 공식 자료가 최우선입니다. 그 외에는 Docker 사용 여부만으로 PASS/FAIL/CLEAR를 판정하지 않습니다.
 
@@ -10,8 +10,8 @@ Round 01에서 Docker를 **Mission CLEAR의 기본 필수조건이 아니라 선
 
 ```text
 Mission CLEAR 먼저
-→ Secondary Check는 권장
-→ Docker Lab은 선택
+→ 보조 플랫폼 확인(Secondary Check)은 권장
+→ Docker 실습(Docker Lab)은 선택
 ```
 
 따라서:
@@ -41,15 +41,15 @@ Docker 사용     ≠ 자동 CLEAR
 ```text
 Mission CLEAR
 = 공식 Mission/Evaluation
-+ 필요한 실제 Runtime
-+ Verify
-+ Evidence
++ 필요한 실제 실행(Runtime)
++ 검증(Verification)
++ 증빙(Evidence)
 
-Docker Lab
+Docker 실습(Docker Lab)
 = 선택 학습
 + 격리
 + 재현성
-+ portability
++ 이식성(portability)
 + 배포 연습
 ```
 
@@ -59,22 +59,22 @@ Docker Lab
 ## R01 우선순위
 
 1. 공식 Mission/Evaluation 요구 충족
-2. Primary Runtime 실행
-3. Verify
-4. Evidence
-5. `✅ CLEAR`
-6. 필요하거나 학습 가치가 높은 경우 Secondary Platform Check
-7. Docker Lab은 필요/시간/학습목표에 따라 선택 수행
+2. 기본 실행 환경(Primary Runtime)에서 실행
+3. 검증(Verification)
+4. 증빙(Evidence)
+5. `✅ 완료(CLEAR)`
+6. 필요하거나 학습 가치가 높은 경우 보조 플랫폼 확인(Secondary Platform Check)
+7. Docker 실습(Docker Lab)은 필요/시간/학습목표에 따라 선택 수행
 
 FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미룹니다.
 
 <a id="roles"></a>
 ## 환경 역할
 
-- `MAC-V`: macOS → OrbStack Ubuntu 24.04 직접 Linux Runtime. R01의 기본 Primary Linux 환경
-- `WIN-V`: Windows 11 Pro → WSL2 Ubuntu 24.04 직접 Linux Runtime. 권장 Secondary/Portability 환경
-- `MAC-D`: macOS → OrbStack Docker. 선택 Docker Lab
-- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker. 선택 Docker Portability Lab
+- `MAC-V`: macOS → OrbStack Ubuntu 24.04 직접 Linux Runtime. R01의 기본 Linux 실행 환경(Primary)
+- `WIN-V`: Windows 11 Pro → WSL2 Ubuntu 24.04 직접 Linux Runtime. 권장 보조/이식성(Secondary/Portability) 환경
+- `MAC-D`: macOS → OrbStack Docker. 선택 Docker 실습(Docker Lab)
+- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker. 선택 Docker 이식성 실습(Portability Lab)
 
 <a id="useful"></a>
 ## Docker가 특히 유용한 경우
@@ -101,9 +101,9 @@ FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미�
 ## 현재 R01 운영 원칙
 
 ```text
-Primary Mission Runtime = 필수
-Secondary Platform Check = 권장
-Docker Lab = 선택
+기본 미션 실제 실행(Primary Mission Runtime) = 필수
+보조 플랫폼 확인(Secondary Platform Check) = 권장
+Docker 실습(Docker Lab) = 선택
 공식 Docker 요구 = 공식 자료가 있을 때만 Gate
 ```
 
