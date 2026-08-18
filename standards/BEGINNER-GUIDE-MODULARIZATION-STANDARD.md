@@ -248,9 +248,10 @@ guide/01-PREFLIGHT-AND-BASELINE.md = STEP 01~02
 guide/02-SSH-AND-FIREWALL.md      = STEP 03~04
 guide/03-USERS-GROUPS-ACL.md      = STEP 05
 guide/04-AGENT-RUNTIME.md         = STEP 06~07
-guide/05-MONITOR-AND-CRON.md      = STEP 08~11
-guide/06-VERIFICATION-AND-EVIDENCE.md = STEP 12~14
-guide/07-FINAL-CLEAR.md           = STEP 15 + 최종 상태 판정
+guide/05-MONITOR-AND-LOG-ROTATION.md = STEP 08~09
+guide/06-CRON-FAILURE-WARNING.md  = STEP 10~11
+guide/07-VERIFICATION-AND-EVIDENCE.md = STEP 12~14
+guide/08-FINAL-CLEAR.md           = STEP 15 + 최종 상태 판정
 ```
 
 다른 미션은 기술 흐름에 맞춰 모듈 이름과 묶음을 조정하되, **허브 + 모듈 + 양방향 탐색 + 내용 보존 + BEGINNER READY 강제 판정** 원칙은 반드시 지킵니다.
