@@ -28,6 +28,7 @@
 + 한글 + 영어 원어
 + 영어 원어의 명사/동사 품사 정합성
 + 긴 문서이면 클릭 가능한 목차
++ 모듈화 Trigger에 해당하면 중앙 허브(BEGINNER-GUIDE.md) + guide/ 모듈 구조
 + 실행형 문서이면 안전한 빠른 시작(Quick Start) 또는 동등한 빠른 진입 경로
 + 실제 따라하기
 + 실행 위치(Execution Context) / 실행 전 점검(Preflight)
@@ -141,7 +142,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 | 2 | 공식 Source | Mission/Evaluation/제공 파일과 연결됨 |
 | 3 | 한글+영어 용어 | 핵심 용어 첫 등장 병기, 한국어 중심 문장, 영어 원어 품사 일치 |
 | 4 | 쉬운 설명 | 입문자가 한 문장으로 의미를 파악 가능 |
-| 5 | 구조/탐색 | 복잡한 흐름은 도식이 있고, 긴 문서는 클릭 가능한 목차가 있으며 실행형 문서는 Quick Start/빠른 진입 경로가 적합함 |
+| 5 | 구조/탐색 | 복잡한 흐름은 도식이 있고, 긴 문서는 클릭 가능한 목차가 있으며, 모듈화 Trigger 해당 시 허브+`guide/` 구조가 있고, 실행형 문서는 Quick Start/빠른 진입 경로가 적합함 |
 | 6 | 최소 예제 | 본 실습 전에 필요한 작은 예가 있으면 제공 |
 | 7 | 실제 따라하기 | 실행 위치/Preflight가 명확하고 명령·코드·UI 경로가 구체적이며 실행 가능 |
 | 8 | 명령·코드 줄별 해설 | 실행 가능한 Shell 명령은 각 줄의 목적을 설명하고, 중요한 옵션·인자·입력값과 의미 있는 Python/JavaScript/SQL/설정 줄을 입문자가 자기 말로 설명할 수 있음 |
@@ -149,6 +150,20 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 | 10 | 오류 복구 | 증상→원인→확인→수정→재검증 및 필요한 Recovery 경로 제공 |
 | 11 | 완료 확인 | STOP/GO, Rerun Safety, Checkpoint를 필요한 Step에서 판정 가능 |
 | 12 | 평가/증빙 연결 | Requirement→Verification→Evidence 관계가 보이고 비용 자원은 Cleanup까지 연결 |
+
+### 4.0 긴 입문자 가이드 모듈화 판정
+
+상세 기준은 [BEGINNER-GUIDE-MODULARIZATION-STANDARD.md](BEGINNER-GUIDE-MODULARIZATION-STANDARD.md)를 따릅니다.
+
+```text
+[ ] STEP 수 / 파일 크기 / 줄 수 / 기술 관심사 복잡도를 확인했다.
+[ ] Trigger에 해당하면 BEGINNER-GUIDE.md는 중앙 허브 역할만 한다.
+[ ] 상세 따라하기는 guide/*.md에 기술 흐름 단위로 분리되어 있다.
+[ ] 허브 → 모듈, 모듈 → 허브/이전/다음 링크가 있다.
+[ ] 분할 전 STEP/공식 요구/명령/Recovery/Evidence 연결이 누락되지 않았다.
+```
+
+Trigger에 해당하면서 단일 대형 가이드가 유지되면 `BEGINNER READY = FAIL`입니다.
 
 ### 4.1 한글·영어 용어 세부 판정
 

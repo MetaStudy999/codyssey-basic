@@ -68,6 +68,24 @@ Codyssey Basic의 입문자 문서는 **처음 보는 사람은 길을 잃지 �
 
 ---
 
+## 2.1 긴 입문자 가이드의 모듈화 — 필수 판정
+
+`BEGINNER-GUIDE.md`가 길거나 실행 단계가 많은 경우에는 클릭 목차만 추가하지 않고 [BEGINNER-GUIDE-MODULARIZATION-STANDARD.md](BEGINNER-GUIDE-MODULARIZATION-STANDARD.md)를 적용합니다.
+
+다음 중 하나라도 해당하면 중앙 허브(Hub) + `guide/` 모듈(Module) 구조가 필수입니다.
+
+```text
+STEP 8개 이상
+100KB 이상
+1,000줄 이상
+여러 기술 관심사 혼재
+입문자 탐색 부담이 큰 복잡한 문서
+```
+
+이 조건에 해당하는 단일 대형 `BEGINNER-GUIDE.md`는 목차가 있더라도 `BEGINNER READY`를 통과하지 않습니다.
+
+---
+
 ## 3. 빠른 시작(Quick Start) 적용 기준
 
 실제로 실행·설정·검증하는 학습자용 문서에는 빠른 시작(Quick Start) 또는 동등한 빠른 진입 경로를 기본으로 둡니다.

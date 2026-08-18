@@ -29,6 +29,7 @@ Control Tower 문서별 적용 현황은 다음 문서에서 관리합니다.
 - [1. 입문자 훈련·문서 생성](#beginner-training)
 - [2. README 정보 구조](#readme-ia)
 - [2.1 목차·빠른 시작](#navigation)
+- [2.2 긴 입문자 가이드 모듈화](#guide-modularization)
 - [3. 입문자 문서 품질 감사](#beginner-audit)
 - [4. 명령어·코드 한 줄 해설](#command-code)
 - [5. 개발환경·개발 Tool Set](#toolset)
@@ -164,6 +165,33 @@ Self-contained First
 - 위험한 삭제·Reset·Firewall·DB destructive 작업·고비용 Cloud/API 명령을 Quick Start에 무분별하게 넣지 않습니다.
 
 즉 **모든 문서는 빠르게 진입할 수 있어야 하지만, 모든 문서에 동일한 Quick Start 명령 블록을 기계적으로 넣지는 않습니다.**
+
+<a id="guide-modularization"></a>
+### 2.2 긴 입문자 가이드 모듈화 — 필수
+
+[BEGINNER-GUIDE-MODULARIZATION-STANDARD.md](BEGINNER-GUIDE-MODULARIZATION-STANDARD.md)
+
+긴 `BEGINNER-GUIDE.md`를 한 파일에 계속 누적하지 않고 **중앙 허브(Hub) + `guide/` 학습 모듈(Module)** 구조로 관리합니다.
+
+모듈화 판정(Trigger) 중 하나라도 해당하면 **필수(MUST)**입니다.
+
+```text
+실행 STEP 8개 이상
+또는 100KB 이상
+또는 1,000줄 이상
+또는 여러 기술 관심사가 한 파일에 혼재
+또는 입문자가 현재 위치를 잃을 정도로 복잡함
+```
+
+Trigger에 해당하는데 상세 STEP 전체가 한 파일에 남아 있으면 `BEGINNER READY`로 판정하지 않습니다.
+
+```text
+BEGINNER-GUIDE.md = Quick Start + 전체 지도 + 모듈 링크
+
+guide/*.md         = 실제 상세 따라하기
+```
+
+분할은 내용 삭제가 아니라 구조 리팩터링(Refactoring)이며, STEP/요구사항/명령/복구/증빙 연결을 보존해야 합니다.
 
 <a id="beginner-audit"></a>
 ### 3. 입문자 문서 품질 감사
