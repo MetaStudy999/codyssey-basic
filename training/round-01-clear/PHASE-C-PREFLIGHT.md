@@ -1,16 +1,16 @@
-# R01 Phase C — Runtime Preflight
+# R01 Phase C — 실행 전 점검(Runtime Preflight)
 
 동결일: 2026-08-17
 
 ## 목적
 
-각 미션 Runtime을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, Ubuntu 공통 개발도구/미션 패키지 누락, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
+각 미션 실제 실행(Runtime)을 시작하기 전에 **잘못된 저장소, 잘못된 Host/Guest 작업경로, Cross-platform 파일 형식 문제, Ubuntu 공통 개발도구/미션 패키지 누락, 남아 있는 프로세스, Port 충돌, 가상환경 혼동, Secret 노출, 기존 데이터/Cloud 자원 오염**을 먼저 차단합니다.
 
-이 문서는 미션 구현을 대신하지 않는 공통 안전 Gate입니다.
+이 문서는 미션 구현을 대신하지 않는 공통 안전 판정(Gate)입니다.
 
 ## 🚀 빠른 사전점검(Quick Preflight)
 
-> 이미 Ubuntu 24.04 Runtime과 현재 Mission Repository가 준비된 학습자용입니다. 처음 환경을 만드는 경우 [`../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 먼저 완료합니다.
+> 이미 Ubuntu 24.04 실행 환경(Runtime)과 현재 Mission Repository가 준비된 학습자용입니다. 처음 환경을 만드는 경우 [`../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 먼저 완료합니다.
 
 📍 현재 Mission Repository root의 **Ubuntu Bash**에서 실행합니다.
 
@@ -44,35 +44,35 @@ bash "$CONTROL_TOWER/environments/ubuntu/bootstrap.sh" --check
 
 ```text
 ✅ GO
-→ 아래 상세 Preflight에서 현재 Mission에 해당하는 항목을 확인
-→ Start Gate PASS 후 Beginner Guide 시작
+→ 아래 상세 실행 전 점검(Preflight)에서 현재 Mission에 해당하는 항목을 확인
+→ 시작 판정(Start Gate) PASS 후 입문자 가이드(Beginner Guide) 시작
 
 ❌ STOP
 → 잘못된 Host/PWD/Branch/venv/Bootstrap을 먼저 수정
 ```
 
-위 상태 확인 명령은 **🟢 SAFE TO RERUN**입니다.
+위 상태 확인 명령은 **🟢 재실행 안전(SAFE TO RERUN)**입니다.
 
 ## 📑 목차
 
-- [1. Repository 확인](#repository)
+- [1. 저장소(Repository) 확인](#repository)
 - [2. VS Code Remote / Workspace](#workspace)
 - [3. Cross-platform Git / File](#cross-platform)
-- [4. 기본 Runtime / 공통 CLI](#runtime-cli)
+- [4. 기본 실행 환경(Runtime) / 공통 CLI](#runtime-cli)
 - [5. Ubuntu Bootstrap / Mission Package](#bootstrap)
 - [6. Process / Port](#process-port)
 - [7. Python 환경 격리](#python)
 - [8. Node 환경 격리](#node)
-- [9. Secret Presence](#secret)
+- [9. 비밀정보 설정 여부(Secret Presence)](#secret)
 - [10. Local data / DB](#data-db)
 - [11. Cloud / Remote resource](#cloud)
-- [12. Evidence 시작 상태](#evidence)
-- [13. Start Gate](#start-gate)
+- [12. 증빙(Evidence) 시작 상태](#evidence)
+- [13. 시작 판정(Start Gate)](#start-gate)
 
 ---
 
 <a id="repository"></a>
-## 1. Repository 확인
+## 1. 저장소(Repository) 확인
 
 Repository root에서 다음을 확인합니다.
 
@@ -173,7 +173,7 @@ Shell/Python/Web/YAML/Dockerfile = LF
 상세 계약은 `standards/CROSS-PLATFORM-GIT-STANDARD.md`를 사용합니다.
 
 <a id="runtime-cli"></a>
-## 4. 기본 Runtime / 공통 CLI 확인
+## 4. 기본 실행 환경(Runtime) / 공통 CLI 확인
 
 ```bash
 uname -a
@@ -193,10 +193,10 @@ command -v npm || true
 command -v sqlite3 || true
 ```
 
-`vim`, `tree`, `rg`, `fdfind`는 권장 Productivity 도구이므로 없다고 Mission Runtime을 막지 않습니다.
+`vim`, `tree`, `rg`, `fdfind`는 권장 생산성 도구(Productivity Tool)이므로 없다고 Mission 실제 실행(Runtime)을 막지 않습니다.
 
 <a id="bootstrap"></a>
-## 5. Ubuntu Developer Bootstrap / Mission Package 확인
+## 5. Ubuntu 개발환경 초기 준비(Developer Bootstrap) / Mission Package 확인
 
 Ubuntu 설치는 다음 계층으로 구분합니다.
 
@@ -317,7 +317,7 @@ npm --version
 `node_modules`는 B4-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
 
 <a id="secret"></a>
-## 9. Secret Presence 확인 — 값은 출력하지 않음
+## 9. 비밀정보 설정 여부(Secret Presence) 확인 — 값은 출력하지 않음
 
 AI 계열에서는 아래처럼 **설정 여부만** 확인합니다.
 
@@ -343,7 +343,7 @@ B5-3의 `SESSION_SECRET`, B4-2의 Supabase 변수도 같은 원칙을 적용합�
 <a id="data-db"></a>
 ## 10. Local data / DB 확인
 
-새 Runtime 전에 현재 미션이 만들 기존 데이터가 있는지 먼저 확인합니다.
+새 실제 실행(Runtime) 전에 현재 미션이 만들 기존 데이터가 있는지 먼저 확인합니다.
 
 ```bash
 find training/round-01-clear/reference -maxdepth 2 \
@@ -366,25 +366,25 @@ B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
 - Cleanup은 현재 미션이 생성한 자원만 대상
 
 <a id="evidence"></a>
-## 12. Evidence 시작 상태
+## 12. 증빙(Evidence) 시작 상태
 
-Evidence root:
+증빙 저장 위치(Evidence root):
 
 ```text
 training/round-01-clear/evidence/
 ```
 
-미션의 verifier가 `evidence/runtime/`을 요구하면 해당 하위 경로를 사용합니다.
+미션의 검증 도구(verifier)가 `evidence/runtime/`을 요구하면 해당 하위 경로를 사용합니다.
 
 원칙:
 
-- 이전 Runtime Evidence를 새 실행 결과로 가장하지 않음
+- 이전 실제 실행 증빙(Runtime Evidence)을 새 실행 결과로 가장하지 않음
 - timestamp/command/result가 연결되도록 기록
 - Secret 값은 마스킹이 아니라 애초에 캡처하지 않는 것을 우선
 - 실제 외부 URL/PR/Review처럼 서버 측 증거가 필요한 항목은 placeholder로 대체 금지
 
 <a id="start-gate"></a>
-## 13. Start Gate
+## 13. 시작 판정(Start Gate)
 
 아래가 모두 확인되면 해당 미션의 `BEGINNER-GUIDE.md` STEP 01로 이동합니다.
 
@@ -406,7 +406,7 @@ training/round-01-clear/evidence/
 [ ] Secret 값 출력 없음
 [ ] 기존 DB/data 처리 방침 확인
 [ ] Cloud/remote 대상 확인
-[ ] Evidence 저장 위치 확인
+[ ] 증빙(Evidence) 저장 위치 확인
 ```
 
-Preflight PASS는 Mission PASS가 아닙니다. 실제 기능·실패경로·Evidence를 모두 검증해야 CLEAR입니다.
+실행 전 점검(Preflight) PASS는 Mission PASS가 아닙니다. 실제 기능·실패경로·증빙(Evidence)을 모두 검증해야 CLEAR입니다.
