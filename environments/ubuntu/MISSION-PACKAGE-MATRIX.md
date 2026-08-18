@@ -1,4 +1,4 @@
-# Ubuntu 24.04 Mission Package Matrix
+# Ubuntu 24.04 미션 패키지 매트릭스(Mission Package Matrix)
 
 ## 목적
 
@@ -7,7 +7,7 @@ B1-1~B7-2의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, �
 ## 한눈에 보기(Quick Read)
 
 ```text
-공통 Base는 한 번 준비
+공통 기본도구(Common Base)는 한 번 준비
 → 현재 Mission의 추가 APT만 설치
 → Python/Node library는 Project 안에서 관리
 ```
@@ -15,11 +15,11 @@ B1-1~B7-2의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, �
 가장 중요한 구분:
 
 ```text
-Common Base     ≠ Mission package
-Mission package ≠ Project library
+공통 기본도구(Common Base)     ≠ Mission package
+Mission package                 ≠ Project library
 ```
 
-현재 Mission package는 각 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 Source of Truth입니다.
+현재 Mission package는 각 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 기준(Source of Truth)입니다.
 
 ## 📑 목차
 
@@ -34,22 +34,22 @@ Mission package ≠ Project library
 ## 계층 구조
 
 ```text
-Layer 0 — OS Prerequisites
+Layer 0 — OS 전제조건(OS Prerequisites)
 bash / apt-get / dpkg-query / sudo
 
-Layer 1 — Common Required Base
+Layer 1 — 공통 필수 기본도구(Common Required Base)
 ca-certificates / curl / wget / git / openssh-client / nano / jq / file / unzip / zip / rsync / bash-completion
 
-Layer 1B — Recommended Productivity
+Layer 1B — 권장 생산성 도구(Recommended Productivity)
 vim / tree / ripgrep / fd-find
 
-Layer 2 — External/Common Developer CLI
+Layer 2 — 외부/공통 개발 CLI(External/Common Developer CLI)
 gh (GitHub CLI official APT repository)
 
-Layer 3 — Mission / Shared Runtime
+Layer 3 — 미션/공유 실행 환경(Mission / Shared Runtime)
 각 Mission의 ubuntu-packages.txt
 
-Layer 4 — Project
+Layer 4 — 프로젝트(Project)
 .venv / pyproject.toml / requirements.txt / package.json / lock file
 ```
 
@@ -71,7 +71,7 @@ Layer 4 — Project
 | **B5-1** | `sqlite3` | SQL 파일/DB schema/query는 Repository에서 관리 |
 | **B5-2** | `python3 python3-venv` | FastAPI/Jinja2/SQLAlchemy 등은 `.venv` 내부 |
 | **B5-3** | `python3 python3-venv` | FastAPI/Auth/Session/SQLAlchemy 등은 `.venv` 내부 |
-| **B6-1** | `nginx` | SSH client는 Base 사용. 실제 AWS/VPC/EC2/SG Evidence가 최종 기준; AWS CLI는 필요 시 별도 설치 정책 |
+| **B6-1** | `nginx` | SSH client는 Base 사용. 실제 AWS/VPC/EC2/SG 증빙(Evidence)이 최종 기준; AWS CLI는 필요 시 별도 설치 정책 |
 | **B6-2** | `python3 python3-venv` | AI API client/project dependency는 `.venv`; Git/`gh`는 공통 개발계층 |
 | **B7-1** | `python3 python3-venv` | FastAPI/DB/AI package는 `.venv`; 실제 deploy/provider 별도 |
 | **B7-2** | `python3 python3-venv` | Backend/AI/DB project dependency는 `.venv`; frontend dependency는 project manifest |
@@ -81,7 +81,7 @@ Layer 4 — Project
 
 ### B1-1
 
-`openssh-client`, `file`, `unzip`은 여러 미션에서 반복 사용하므로 Common Base로 승격했습니다. B1-1의 Mission package file에는 **서버 역할과 시스템 실습에 실제로 추가 필요한 패키지만** 남깁니다.
+`openssh-client`, `file`, `unzip`은 여러 미션에서 반복 사용하므로 공통 기본도구(Common Base)로 승격했습니다. B1-1의 Mission package file에는 **서버 역할과 시스템 실습에 실제로 추가 필요한 패키지만** 남깁니다.
 
 ```text
 openssh-server
@@ -105,7 +105,7 @@ Node/npm의 버전 요구는 프로젝트와 당시 공식 Mission 기준을 확
 
 ### B6-1
 
-`openssh-client`는 Common Base이므로 B6-1 추가 목록에서는 제거하고 `nginx`만 남깁니다. 로컬 Ubuntu의 `nginx`/SSH rehearsal은 실제 AWS resource와 배포 Evidence를 대체하지 않습니다.
+`openssh-client`는 Common Base이므로 B6-1 추가 목록에서는 제거하고 `nginx`만 남깁니다. 로컬 Ubuntu의 `nginx`/SSH rehearsal은 실제 AWS resource와 배포 증빙(Evidence)을 대체하지 않습니다.
 
 ### Python Missions
 
@@ -131,6 +131,6 @@ Repository-local `.venv`를 사용합니다.
 training/round-01-clear/environment/ubuntu-packages.txt
 ```
 
-이 파일에는 **Common Base와 공통 `gh`를 제외하고 해당 Mission에서 추가로 필요한 APT 패키지만** 기록합니다.
+이 파일에는 **공통 기본도구(Common Base)와 공통 `gh`를 제외하고 해당 Mission에서 추가로 필요한 APT 패키지만** 기록합니다.
 
-Package 설치 확인은 `setup-mission-packages.sh`가 담당하고, 실제 command/service 동작은 각 Mission의 Runtime/verify에서 확인합니다.
+Package 설치 확인은 `setup-mission-packages.sh`가 담당하고, 실제 command/service 동작은 각 Mission의 **실제 실행(Runtime) / 검증(Verification)**에서 확인합니다.
