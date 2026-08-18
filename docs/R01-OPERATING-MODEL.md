@@ -1,4 +1,4 @@
-# R01 Operating Model
+# R01 운영 모델(R01 Operating Model)
 
 ## 목적
 
@@ -6,17 +6,17 @@
 
 > **중요:** `Phase A / Phase B / Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 15개 미션을 일관되게 수행하기 위해 사용하는 **내부 운영 모델**입니다.
 
-공식 Mission/Evaluation이 언제나 최우선 Source of Truth이며, 이 운영 모델은 공식 요구사항을 바꾸거나 추가하지 않습니다.
+공식 Mission/Evaluation이 언제나 최우선 기준(Source of Truth)이며, 이 운영 모델은 공식 요구사항을 바꾸거나 추가하지 않습니다.
 
 ## 한눈에 보기(At a Glance)
 
 ```text
 Phase A — 준비
 → Phase B — 전체 점검
-→ Phase C — 실제 Runtime
+→ Phase C — 실제 실행(Runtime)
    └─ FAST TRACK: 필수 11 → 선택 4
       └─ FAST EXECUTE: 현재 CLEAR에 필요한 것만 우선 해결
-         └─ Runtime + Verify + Evidence = CLEAR
+         └─ 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence) = 완료(CLEAR)
 ```
 
 현재 실제 행동은 [NEXT-ACTIONS.md](../training/round-01-clear/NEXT-ACTIONS.md)에서 확인합니다.
@@ -39,7 +39,7 @@ Phase A — 준비
 <a id="r01-clear"></a>
 ## 1. R01 — CLEAR란 무엇인가
 
-`R01`은 현재 사용하는 첫 번째 완주 Round입니다.
+`R01`은 현재 사용하는 첫 번째 완주 훈련 차수(Round)입니다.
 
 목표는 15개 미션을 먼저 실제로 수행하고 검증하여 `✅ CLEAR` 상태로 만드는 것입니다.
 
@@ -53,7 +53,7 @@ R01 — CLEAR
 │   └─ 15개 미션 전체 충돌·일관성 점검
 │
 └─ Phase C — RUNTIME CLEAR
-    └─ 실제 실행 → Verify → Evidence → CLEAR
+    └─ 실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) → 완료(CLEAR)
 ```
 
 가장 쉽게 기억하면 다음과 같습니다.
@@ -71,7 +71,7 @@ Phase C = 실제로 직접 실행해서 통과하기
 
 ### 목적
 
-실제 Runtime을 시작하기 전에 공식 Mission/Evaluation을 기준으로 기준 경로를 준비합니다.
+실제 실행(Runtime)을 시작하기 전에 공식 Mission/Evaluation을 기준으로 기준 경로를 준비합니다.
 
 주요 작업:
 
@@ -80,15 +80,15 @@ Phase C = 실제로 직접 실행해서 통과하기
 - 기준 구현과 설정 준비
 - `BEGINNER-GUIDE.md` 작성
 - `CHECKLIST.md` 작성
-- Verify 구조 준비
-- Evidence 저장 위치와 수집 계획 준비
+- 검증(Verification) 구조 준비
+- 증빙(Evidence) 저장 위치와 수집 계획 준비
 - Secret 노출 점검
 
 ### 완료의 의미
 
 ```text
 Reference Build 완료
-≠ Mission Runtime 완료
+≠ Mission 실제 실행(Runtime) 완료
 ≠ Mission CLEAR
 ```
 
@@ -113,13 +113,13 @@ Reference Build 완료
 - 미션 간 선후관계
 - B5/B6/B7 연결 구조
 - 중복 설정과 불필요한 반복
-- Verify/Evidence 기준의 일관성
+- 검증(Verification)/증빙(Evidence) 기준의 일관성
 
 ### 완료의 의미
 
 Phase B 완료는 **전체 실행 경로가 정리되고 큰 충돌이 제거되었다는 뜻**입니다.
 
-아직 실제 Runtime을 수행한 것은 아닙니다.
+아직 실제 실행(Runtime)을 수행한 것은 아닙니다.
 
 ---
 
@@ -128,7 +128,7 @@ Phase B 완료는 **전체 실행 경로가 정리되고 큰 충돌이 제거되
 
 ### 목적
 
-Phase A/B에서 준비한 Reference, Guide, Preflight, Runbook을 실제 환경에서 실행해 미션을 `✅ CLEAR`로 전환합니다.
+Phase A/B에서 준비한 Reference, Guide, 실행 전 점검(Preflight), Runbook을 실제 환경에서 실행해 미션을 `✅ CLEAR`로 전환합니다.
 
 ```text
 이해
@@ -139,25 +139,25 @@ Phase A/B에서 준비한 Reference, Guide, Preflight, Runbook을 실제 환경�
 ↓
 오류 해결
 ↓
-Evidence
+증빙(Evidence)
 ↓
 평가 확인
 ↓
-✅ CLEAR
+✅ 완료(CLEAR)
 ```
 
 Phase C에서 한 미션의 기본 흐름은 다음과 같습니다.
 
 ```text
-Preflight
-→ START-CHECK(있는 경우)
-→ BEGINNER-GUIDE
-→ Runtime
-→ Verify
-→ Evidence
-→ Evaluation 확인
-→ Secret 확인
-→ ✅ CLEAR
+실행 전 점검(Preflight)
+→ 시작 점검(START-CHECK, 있는 경우)
+→ 입문자 가이드(BEGINNER-GUIDE)
+→ 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ 평가 확인(Evaluation)
+→ 비밀정보(Secret) 확인
+→ ✅ 완료(CLEAR)
 ```
 
 ### Phase C에서 가장 중요한 원칙
@@ -173,11 +173,11 @@ YES
 → 원인 확인
 → 최소 수정
 → 재검증
-→ Evidence
+→ 증빙(Evidence)
 → 계속 실행
 
 NO
-→ 현재 Runtime을 멈추지 않음
+→ 현재 실제 실행(Runtime)을 멈추지 않음
 → 후속 개선 후보로 미룸
 → 계속 실행
 ```
@@ -238,12 +238,12 @@ Mission `✅ CLEAR`는 문서 작성이나 Reference 준비만으로 부여하�
 
 ```text
 공식 Mission/Evaluation 충족
-+ 필요한 실제 Runtime 정상 경로
++ 필요한 실제 실행(Runtime) 정상 경로
 + 필요한 실패/예외 경로 확인
-+ Verify
-+ 실제 Evidence
++ 검증(Verification)
++ 실제 증빙(Evidence)
 + Secret 노출 없음
-= ✅ CLEAR
+= ✅ 완료(CLEAR)
 ```
 
 Mission 상태는 네 가지만 사용합니다.
@@ -276,10 +276,10 @@ CODYSSEY BASIC
 따라서 현재의 핵심 행동은 다음입니다.
 
 ```text
-B1-1 실제 실행
-→ Verify
-→ Evidence
-→ ✅ CLEAR
+B1-1 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ ✅ 완료(CLEAR)
 → B1-2
 ```
 
@@ -296,7 +296,7 @@ B1-1 실제 실행
 | `Phase C` | Runtime CLEAR | 실제 실행해서 통과 |
 | `FAST TRACK` | 미션 실행 순서 | 필수 11 → 선택 4 |
 | `FAST EXECUTE` | 실행 운영 방식 | 실행 우선, 필요할 때만 최소 수정 |
-| `CLEAR` | 실제 완료 상태 | Runtime + Verify + Evidence 완료 |
+| `CLEAR` | 실제 완료 상태 | 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence) 완료 |
 
 ---
 
@@ -311,7 +311,7 @@ B1-1 실제 실행
 - `PROGRESS.md` — 실제 진행 상태
 - `training/round-01-clear/NEXT-ACTIONS.md` — 지금 해야 할 일
 - `training/round-01-clear/PHASE-C-PREFLIGHT.md` — 실행 전 안전 확인
-- `training/round-01-clear/PHASE-C-RUNBOOK.md` — 15개 실제 Runtime 경로
-- `standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` — 문서 탐색/Quick Start 적용 기준
+- `training/round-01-clear/PHASE-C-RUNBOOK.md` — 15개 실제 실행(Runtime) 경로
+- `standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` — 문서 탐색/빠른 시작(Quick Start) 적용 기준
 
 새 채팅이나 새 IDE/Agent에서 `Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR`의 의미가 불명확하면 이 문서를 먼저 확인합니다.
