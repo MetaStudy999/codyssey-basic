@@ -1,4 +1,4 @@
-# Beginner Training & Document Standard — 입문자 훈련·문서 생성 표준
+# 입문자 훈련·문서 생성 표준(Beginner Training & Document Standard)
 
 Codyssey Basic의 입문자 문서는 **처음 접하는 학습자가 다른 블로그·영상·검색 결과에 의존하지 않고, 저장소 안의 공식 Source와 학습 문서만으로 핵심 개념을 이해하고 실제 미션을 수행할 수 있게 하는 것**을 기본 목표로 합니다.
 
@@ -8,7 +8,7 @@ Codyssey Basic의 입문자 문서는 **처음 접하는 학습자가 다른 블
 
 ---
 
-## 1. 최우선 목표 — Self-contained First
+## 1. 최우선 목표 — 자체 완결 우선(Self-contained First)
 
 입문자는 다음 질문에 현재 문서 또는 저장소 내부의 직접 연결 문서만으로 답할 수 있어야 합니다.
 
@@ -53,7 +53,7 @@ GitHub, AWS, AI Provider, Cloud/PaaS처럼 UI·가격·정책·API가 바뀌는 
 
 ---
 
-## 2. Source of Truth와 문서 정합성
+## 2. 기준(Source of Truth)과 문서 정합성
 
 문서를 생성하거나 수정하기 전에 다음 순서로 기준을 확인합니다.
 
@@ -73,12 +73,12 @@ Beginner 문서
 
 - 공식 Mission/Evaluation의 요구를 임의로 삭제·완화·대체하지 않습니다.
 - 실제 존재하지 않는 공식 Evaluation 파일을 있다고 쓰지 않습니다.
-- Reference 예시를 실제 Runtime 결과처럼 표현하지 않습니다.
+- Reference 예시를 실제 실행 환경(Runtime) 결과처럼 표현하지 않습니다.
 - 과거 Phase, 과거 Ubuntu 버전, 과거 Runtime 상태를 현재 상태처럼 남기지 않습니다.
 - 현재 상태를 문서에 넣을 경우 작성/수정 시점의 실제 기준과 일치하는지 확인합니다.
 - 변동 가능성이 큰 상태는 가능한 한 현재 상태 Source로 연결하고, 학습 개념 문서에 불필요하게 하드코딩하지 않습니다.
 
-### 문서 상태 드리프트(Documentation Drift) 점검
+### 문서 상태 불일치(Documentation Drift) 점검
 
 다음이 서로 모순되면 입문자 문서를 `BEGINNER READY`로 판정하지 않습니다.
 
@@ -152,13 +152,13 @@ R01의 핵심 Hands-on Step은 아래 요소를 기준으로 작성합니다.
 
 ```text
 📍 실행 위치(Context)
-→ 🔍 사전 점검(Preflight)
+→ 🔍 실행 전 점검(Preflight)
 → 깨끗한 실행본
 → 예상 결과와 정상 범위
 → 재실행 안전 여부(Rerun Safety)
 → STOP / GO 판정
-→ 필요 시 Checkpoint / Recovery
-→ Cloud/API/AI면 Cost / Resource Guard
+→ 필요 시 중간 저장점(Checkpoint) / 복구(Recovery)
+→ Cloud/API/AI면 비용·자원 보호(Cost / Resource Guard)
 ```
 
 입문자 화면에서는 이를 다음 6개 묶음으로 단순하게 보여 줄 수 있습니다.
@@ -326,7 +326,7 @@ Repository
 → 가능한 원인(Cause)
 → 확인(Check)
 → 최소 수정(Fix)
-→ 재검증(Re-verify)
+→ 다시 검증(Re-verification)
 ```
 
 단순히 `오류가 나면 설정을 확인하세요`라고 끝내지 않습니다.
@@ -361,7 +361,7 @@ venv       : 활성 / 비활성 / 해당 없음
 
 문서에서는 필요에 따라 `[MAC]`, `[UBUNTU]`, `[WINDOWS]`, `[WSL]`, `[REPOSITORY ROOT]`, `[VENV]`, `[AWS CONSOLE]`, `[GITHUB WEB]` 같은 짧은 위치 표시를 사용할 수 있습니다.
 
-#### 2) 사전 점검(Preflight) + STOP / GO
+#### 2) 실행 전 점검(Preflight) + STOP / GO
 
 핵심 Step 전에 현재 위치·필수 명령·Branch·변경사항·권한 등을 확인합니다.
 
@@ -394,7 +394,7 @@ PASS?
 
 특히 삭제, Git history 변경, SSH/UFW, DB migration, Cloud 자원 변경에는 반드시 재실행 영향을 검토합니다.
 
-#### 4) Copy & Paste 안전
+#### 4) 복사·붙여넣기 안전(Copy & Paste Safety)
 
 복사 가능한 실행 블록에는 가능한 한 **실제로 입력할 명령만** 둡니다.
 
@@ -425,16 +425,16 @@ PASS?
 
 화면이 예시와 조금 다르다는 이유만으로 실패로 오판하지 않게 합니다.
 
-#### 6) Checkpoint / Recovery Point
+#### 6) 중간 저장점(Checkpoint) / 복구 지점(Recovery Point)
 
 긴 실습 또는 위험한 변경 전후에는 필요한 경우 중간 저장점을 둡니다.
 
 ```text
-CHECKPOINT
+중간 저장점(CHECKPOINT)
 → 현재 상태 확인
 → 필요한 설정/파일 백업
 → 변경
-→ Verify
+→ 검증(Verification)
 → 실패 시 백업/이전 상태로 복구
 ```
 
@@ -455,11 +455,11 @@ AWS/Cloud/API/AI Provider처럼 비용이나 외부 자원이 발생할 수 있�
 실습 종료 흐름은 가능하면 다음으로 닫습니다.
 
 ```text
-Create
-→ Verify
-→ Evidence
+생성(Create)
+→ 검증(Verification)
+→ 증빙(Evidence)
 → 더 이상 필요 없음
-→ Cleanup
+→ 정리(Cleanup)
 → 삭제/중지 확인
 ```
 
@@ -476,7 +476,7 @@ Create
 
 ---
 
-## 10. 문서 분리와 Progressive Disclosure
+## 10. 문서 분리와 단계적 공개(Progressive Disclosure)
 
 `BEGINNER-GUIDE.md` 하나에 모든 이론을 복사해 수천 줄로 만들지 않습니다.
 
@@ -511,7 +511,7 @@ BEGINNER-GUIDE.md          ← 대표 실행 경로
 
 ---
 
-## 11. README의 Beginner First 기준
+## 11. README의 입문자 우선(Beginner First) 기준
 
 입문자 진입 README는 첫 화면에서 다음을 우선합니다.
 
@@ -520,7 +520,7 @@ BEGINNER-GUIDE.md          ← 대표 실행 경로
 → 지금 무엇을 해야 하는가
 → 첫 명령/첫 행동
 → 현재 미션
-→ 대표 Beginner Guide 링크
+→ 대표 입문자 가이드(Beginner Guide) 링크
 ```
 
 다음과 같은 운영·관리 정보는 아래 상세 계층으로 내립니다.
@@ -540,16 +540,16 @@ BEGINNER-GUIDE.md          ← 대표 실행 경로
 각 핵심 Step은 가능한 범위에서 다음 연결을 보여 줍니다.
 
 ```text
-공식 Requirement
+공식 요구사항(Requirement)
 → 지금 배우는 개념
-→ 실제 Implementation
-→ Verification
-→ Evidence
+→ 실제 구현(Implementation)
+→ 검증(Verification)
+→ 증빙(Evidence)
 ```
 
 입문자는 `왜 이 실습을 하는지`뿐 아니라 `이 결과가 어떤 평가 요구를 증명하는지`도 알 수 있어야 합니다.
 
-실제로 수행하지 않은 Evidence를 예시 출력이나 과거 기록으로 대신하지 않습니다.
+실제로 수행하지 않은 증빙(Evidence)을 예시 출력이나 과거 기록으로 대신하지 않습니다.
 
 ---
 
@@ -570,7 +570,7 @@ BEGINNER-GUIDE.md          ← 대표 실행 경로
 
 ---
 
-## 14. Beginner Documentation Audit — 문서 품질 점검
+## 14. 입문자 문서 품질 감사(Beginner Documentation Audit)
 
 문서를 새로 만들거나 큰 수정 후에는 아래 12항목을 점검합니다.
 
@@ -582,12 +582,12 @@ BEGINNER-GUIDE.md          ← 대표 실행 경로
 | 4 | 개념 연결 | 전체 구조에서 역할을 설명 |
 | 5 | 도식/시각화 | 필요할 때 구조를 눈으로 이해 가능 |
 | 6 | 최소 예제 | 복잡한 본 실습 전 작은 예가 필요한 경우 제공 |
-| 7 | 실제 따라하기 | 실행 위치·Preflight가 명확하고 명령/코드/UI 경로가 실행 가능 |
+| 7 | 실제 따라하기 | 실행 위치·실행 전 점검(Preflight)이 명확하고 명령/코드/UI 경로가 실행 가능 |
 | 8 | 명령·코드 줄별 해설 | Shell 실행 줄, 중요한 옵션/인자, 의미 있는 코드/SQL/설정 줄을 입문자가 자기 말로 설명 가능 |
 | 9 | 정상 결과 | 성공 조건과 환경에 따라 달라도 정상인 값을 구분할 수 있음 |
-| 10 | 오류 복구 | 증상→원인→확인→수정→재검증 및 필요한 Recovery 경로 제공 |
-| 11 | 완료 확인 | STOP/GO, Rerun Safety, Checkpoint를 필요한 Step에서 판정 가능 |
-| 12 | 평가 연결 | Requirement→Verify→Evidence 관계를 알 수 있고 비용 자원은 Cleanup까지 연결 |
+| 10 | 오류 복구 | 증상→원인→확인→수정→재검증 및 필요한 복구(Recovery) 경로 제공 |
+| 11 | 완료 확인 | STOP/GO, 재실행 안전성(Rerun Safety), 중간 저장점(Checkpoint)을 필요한 Step에서 판정 가능 |
+| 12 | 평가 연결 | 요구사항(Requirement)→검증(Verification)→증빙(Evidence) 관계를 알 수 있고 비용 자원은 정리(Cleanup)까지 연결 |
 
 ### 판정
 
@@ -596,13 +596,13 @@ BEGINNER READY
 = 핵심 수행 경로에 치명적 누락 없음
 + 현재 상태와 문서가 모순되지 않음
 + 실행 명령과 의미 있는 코드 줄을 설명할 수 있음
-+ 실행 위치/Preflight/STOP-GO/Rerun Safety를 필요한 Step에서 판단할 수 있음
++ 실행 위치/실행 전 점검(Preflight)/STOP-GO/재실행 안전성(Rerun Safety)을 필요한 Step에서 판단할 수 있음
 + 외부 비공식 검색 없이 기본 수행 가능
 ```
 
 `BEGINNER READY`는 **문서 품질을 위한 내부 상태**이며 코디세이 공식 Mission CLEAR를 대신하지 않습니다.
 
-문서 품질 문제가 실제 Runtime을 막지 않는다면 현재 미션 실행을 무조건 중단하는 별도 공식 Gate로 사용하지 않습니다. 다만 잘못된 환경/명령/평가 설명처럼 실행 실패나 오판정을 유발하는 문서 오류는 즉시 수정합니다.
+문서 품질 문제가 실제 실행(Runtime)을 막지 않는다면 현재 미션 실행을 무조건 중단하는 별도 공식 Gate로 사용하지 않습니다. 다만 잘못된 환경/명령/평가 설명처럼 실행 실패나 오판정을 유발하는 문서 오류는 즉시 수정합니다.
 
 ---
 
@@ -613,11 +613,11 @@ BEGINNER READY
 ```text
 [ ] 공식 Source를 먼저 확인했다.
 [ ] 현재 Repository 구조와 경로를 확인했다.
-[ ] 현재 Runtime/환경 상태와 모순되는 과거 문구가 없다.
+[ ] 현재 실행 환경(Runtime)/환경 상태와 모순되는 과거 문구가 없다.
 [ ] 한글+영어 용어 표준을 적용했다.
 [ ] 처음 보는 사람에게 필요한 선행 개념을 설명했다.
 [ ] 실행 위치(Host/Terminal/Repository/Branch/권한/venv)가 필요한 Step에서 명확하다.
-[ ] 실행 전 Preflight와 실패 시 STOP 조건이 필요한 Step에 있다.
+[ ] 실행 전 점검(Preflight)과 실패 시 STOP 조건이 필요한 Step에 있다.
 [ ] 실행 명령/코드/UI 경로가 구체적이다.
 [ ] 학습자가 직접 실행하는 Shell 명령 각 줄의 목적을 설명했다.
 [ ] 중요한 옵션/인자/입력값을 설명했다.
@@ -626,8 +626,8 @@ BEGINNER READY
 [ ] Placeholder를 실제 값으로 바꿔야 하는지 명확히 설명했다.
 [ ] 예상 출력에서 정확히 같아야 할 값과 달라도 정상인 값을 구분했다.
 [ ] 위험하거나 상태를 바꾸는 명령은 재실행 안전 여부를 검토했다.
-[ ] 긴/위험 실습은 필요한 Checkpoint/Recovery Point가 있다.
-[ ] Cloud/API/AI 비용 가능 Step은 비용·자원·Cleanup을 설명했다.
+[ ] 긴/위험 실습은 필요한 중간 저장점(Checkpoint)/복구 지점(Recovery Point)이 있다.
+[ ] Cloud/API/AI 비용 가능 Step은 비용·자원·정리(Cleanup)를 설명했다.
 [ ] 정상 결과를 제공했다.
 [ ] 핵심 오류의 복구 경로를 제공했다.
 [ ] Secret을 노출하지 않는다.
@@ -645,8 +645,8 @@ BEGINNER READY
 우선순위:
 
 ```text
-현재 Active Mission의 대표 실행 문서
-→ Runtime을 막거나 혼동시키는 문서
+현재 미션(Active Mission)의 대표 실행 문서
+→ 실제 실행(Runtime)을 막거나 혼동시키는 문서
 → 다음 실행 예정 미션
 → 신규/수정 문서
 → 나머지 기존 문서 순차 개선
@@ -656,9 +656,9 @@ BEGINNER READY
 
 ---
 
-## 17. Round에 따른 독립성
+## 17. 훈련 차수(Round)에 따른 독립성
 
-- **R01 — CLEAR:** 상세 설명, 줄별 명령·코드 해설, 최소 예제, 오류 복구, 실행 위치/Preflight/STOP-GO/Rerun Safety, 기준 실행 경로를 충분히 제공합니다.
+- **R01 — CLEAR:** 상세 설명, 줄별 명령·코드 해설, 최소 예제, 오류 복구, 실행 위치/실행 전 점검(Preflight)/STOP-GO/재실행 안전성(Rerun Safety), 기준 실행 경로를 충분히 제공합니다.
 - **R02:** 반복되는 기본 명령/문법의 해설을 줄이고 요구사항을 먼저 제시하며 필요 시 Hint를 제공합니다.
 - **R03+:** 가이드 의존도를 줄이고 문제 해결, 설계 판단, 성능·보안·운영 Trade-off 설명을 늘립니다.
 
@@ -670,7 +670,7 @@ BEGINNER READY
 
 - [COMMAND-CODE-EXPLANATION-STANDARD.md](COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설
 - [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기
-- [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — 미션 Reference/Guide/Verify/Evidence 최소 계약
+- [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — 미션 Reference/Guide/검증(Verification)/증빙(Evidence) 최소 계약
 - [ENVIRONMENT-STANDARD.md](ENVIRONMENT-STANDARD.md) — 환경 재현·검증·Secret 원칙
 - [CROSS-PLATFORM-GIT-STANDARD.md](CROSS-PLATFORM-GIT-STANDARD.md) — 파일/Line Ending/Git 공통 기준
 - [VS-CODE-REMOTE-UBUNTU-STANDARD.md](VS-CODE-REMOTE-UBUNTU-STANDARD.md) — Remote Ubuntu 개발환경 기준
