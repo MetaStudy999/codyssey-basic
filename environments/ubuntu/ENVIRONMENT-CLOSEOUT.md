@@ -1,23 +1,26 @@
-# Ubuntu Common Environment Closeout
+# Ubuntu 공통 환경 마무리(Common Environment Closeout)
 
 ## 목적
 
-R01 Phase C에서 공통환경 설계를 더 확장하기 전에, 지금까지 준비한 Ubuntu 24.04 Developer Bootstrap을 실제 실행 가능한 상태로 닫고 이후에는 Mission Runtime을 우선합니다.
+R01 Phase C에서 공통환경 설계를 더 확장하기 전에, 지금까지 준비한 Ubuntu 24.04 개발환경 초기 준비(Developer Bootstrap)를 실제 실행 가능한 상태로 닫고 이후에는 미션 실제 실행(Mission Runtime)을 우선합니다.
 
-공통환경은 다음 4개 Closeout Gate를 통과한 뒤 **COMMON ENVIRONMENT FREEZE**로 간주합니다.
+공통환경은 다음 4개 마무리 판정(Closeout Gate)을 통과한 뒤 **공통 환경 동결(COMMON ENVIRONMENT FREEZE)**로 간주합니다.
 
 ```text
-① Documentation Drift Check
-② MAC-V Runtime Bootstrap Verification
-③ Git / GitHub User Identity Readiness
-④ Shell Script Static Syntax Validation
+① 문서 불일치 점검(Documentation Drift Check)
+② MAC-V Runtime Bootstrap 검증(Verification)
+③ Git / GitHub 사용자 준비 상태(User Identity Readiness)
+④ Shell Script 정적 문법 검증(Static Syntax Validation)
         ↓
-COMMON ENVIRONMENT FREEZE
+공통 환경 동결(COMMON ENVIRONMENT FREEZE)
         ↓
-B1-1 Runtime → Verify → Evidence → CLEAR
+B1-1 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ ✅ 완료(CLEAR)
 ```
 
-이 Freeze는 코디세이 공식 Mission/Evaluation을 변경하지 않습니다. 실제 Mission Runtime에서 blocker가 발견되면 JIT 방식으로 최소 수정합니다.
+이 동결(Freeze)은 코디세이 공식 Mission/Evaluation을 변경하지 않습니다. 실제 Mission Runtime에서 blocker가 발견되면 JIT 방식으로 최소 수정합니다.
 
 ## 🚀 빠른 확인(Quick Check)
 
@@ -37,27 +40,27 @@ cd "$HOME/codyssey/codyssey-basic"
 bash environments/ubuntu/verify-user-identity.sh
 ```
 
-Gate 3가 현재 Git/GitHub 작업에 필요한 수준으로 준비되어 있으면 아래 Freeze Gate를 다시 확인합니다.
+Gate 3가 현재 Git/GitHub 작업에 필요한 수준으로 준비되어 있으면 아래 동결 판정(Freeze Gate)을 다시 확인합니다.
 
 ## 📑 목차
 
-- [Gate 1 — Documentation Drift](#gate-1)
-- [Gate 2 — MAC-V Bootstrap](#gate-2)
-- [Gate 3 — Git/GitHub Identity](#gate-3)
-- [Gate 4 — Bash Syntax](#gate-4)
-- [Freeze 규칙](#freeze)
+- [Gate 1 — 문서 불일치 점검(Documentation Drift Check)](#gate-1)
+- [Gate 2 — MAC-V Runtime Bootstrap 검증(Verification)](#gate-2)
+- [Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)](#gate-3)
+- [Gate 4 — Shell Script 정적 문법 검증(Static Syntax Validation)](#gate-4)
+- [동결(Freeze) 규칙](#freeze)
 - [현재 결론](#conclusion)
 
 ---
 
 <a id="gate-1"></a>
-## Gate 1 — Documentation Drift Check
+## Gate 1 — 문서 불일치 점검(Documentation Drift Check)
 
 ### 목표
 
 중앙 Base/Bootstrap 기준과 각 Mission 설명 문서의 오래된 설치 예시가 충돌하지 않는지 확인합니다.
 
-현재 Source of Truth:
+현재 기준 문서(Source of Truth):
 
 ```text
 environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md
@@ -83,7 +86,7 @@ Common External Developer CLI
 = gh (GitHub CLI official APT repository)
 ```
 
-문서 Drift 교정은 기능 변경과 분리하며, 공식 Mission/Evaluation의 요구를 임의 변경하지 않습니다.
+문서 불일치(Drift) 교정은 기능 변경과 분리하며, 공식 Mission/Evaluation의 요구를 임의 변경하지 않습니다.
 
 ### 현재 상태
 
@@ -91,12 +94,12 @@ Common External Developer CLI
 
 남은 B1-1 세부 줄별 해설/실행안전 감사와 이후 미션 문서 정합성은 실제 실행 순서에 맞춰 계속합니다.
 
-이 상태는 공통환경 Runtime 자체가 실패했다는 뜻이 아닙니다. 현재 B1-1 수행을 잘못 이끌 수 있는 문서 오류가 발견되면 즉시 최소 수정합니다.
+이 상태는 공통환경 실제 실행(Runtime) 자체가 실패했다는 뜻이 아닙니다. 현재 B1-1 수행을 잘못 이끌 수 있는 문서 오류가 발견되면 즉시 최소 수정합니다.
 
 ---
 
 <a id="gate-2"></a>
-## Gate 2 — MAC-V Runtime Bootstrap Verification
+## Gate 2 — MAC-V Runtime Bootstrap 검증(Verification)
 
 ### 목표
 
@@ -129,7 +132,7 @@ bash environments/ubuntu/bootstrap.sh --check
 
 **✅ PASS**
 
-실제 Ubuntu 24.04 Runtime에서 확인된 핵심 결과:
+실제 Ubuntu 24.04 실행 환경(Runtime)에서 확인된 핵심 결과:
 
 ```text
 prerequisites: 5 PASS / 0 missing
@@ -144,7 +147,7 @@ required Ubuntu developer bootstrap: PASS
 ---
 
 <a id="gate-3"></a>
-## Gate 3 — Git / GitHub User Identity Readiness
+## Gate 3 — Git / GitHub 사용자 준비 상태(User Identity Readiness)
 
 ### 목표
 
@@ -193,12 +196,12 @@ git config --global user.name "내 Git 작성자 이름"
 git config --global user.email "내 GitHub 이메일"
 ```
 
-> 실제 이메일이나 Token 값을 문서·채팅·Evidence에 붙여 넣지 않습니다.
+> 실제 이메일이나 Token 값을 문서·채팅·증빙(Evidence)에 붙여 넣지 않습니다.
 
 ---
 
 <a id="gate-4"></a>
-## Gate 4 — Shell Script Static Syntax Validation
+## Gate 4 — Shell Script 정적 문법 검증(Static Syntax Validation)
 
 ### 목표
 
@@ -216,12 +219,12 @@ bash environments/ubuntu/validate-scripts.sh
 
 **✅ PASS — 11 PASS / 0 FAIL**
 
-실제 Ubuntu Runtime에서 Bash syntax validation이 성공했습니다.
+실제 Ubuntu 실행 환경(Runtime)에서 Bash 정적 문법 검증이 성공했습니다.
 
 ---
 
 <a id="freeze"></a>
-## Freeze 규칙
+## 동결(Freeze) 규칙
 
 다음 조건을 만족하면 공통환경 설계를 동결합니다.
 
@@ -232,7 +235,7 @@ bash environments/ubuntu/validate-scripts.sh
 [x] Gate 4 — bash -n syntax validation PASS
 ```
 
-Freeze 이후 기본 원칙:
+동결(Freeze) 이후 기본 원칙:
 
 ```text
 현재 Mission CLEAR를 막는가?
@@ -265,20 +268,20 @@ ShellCheck 공통 필수화
 현재 남은 핵심은:
 
 ```text
-Git/GitHub Identity 최종 재확인
-+ B1-1 실행을 막는 Documentation Drift가 없는지 확인
+Git/GitHub 사용자 준비 상태(User Identity) 최종 재확인
++ B1-1 실행을 막는 문서 불일치(Documentation Drift)가 없는지 확인
         ↓
-COMMON ENVIRONMENT FREEZE
+공통 환경 동결(COMMON ENVIRONMENT FREEZE)
         ↓
-B1-1 Runtime
+B1-1 실제 실행(Runtime)
 ```
 
 새로운 공통 Tool을 계속 추가하기보다 위 Gate를 닫고 B1-1으로 이동합니다.
 
 ```text
-COMMON ENVIRONMENT CLOSEOUT
-→ B1-1 Runtime
-→ Verify
-→ Evidence
-→ ✅ CLEAR
+공통 환경 마무리(COMMON ENVIRONMENT CLOSEOUT)
+→ B1-1 실제 실행(Runtime)
+→ 검증(Verification)
+→ 증빙(Evidence)
+→ ✅ 완료(CLEAR)
 ```
