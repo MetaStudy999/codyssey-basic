@@ -2,52 +2,79 @@
 
 ## 목적
 
-R01 Phase C에서 공통환경 설계를 더 확장하기 전에, 지금까지 준비한 Ubuntu 24.04 개발환경 초기 준비(Developer Bootstrap)를 실제 실행 가능한 상태로 닫고 이후에는 미션 실제 실행(Mission Runtime)을 우선합니다.
+R01 Phase C에서 공통 환경 설계를 계속 확장하지 않고, **공통 문서·스크립트는 동결(Freeze)하고 실제 사용하는 실행 환경(Runtime Profile)은 작업 시점에 개별 확인**한 뒤 Mission Runtime으로 진입합니다.
 
-공통환경은 다음 4개 마무리 판정(Closeout Gate)을 통과한 뒤 **공통 환경 동결(COMMON ENVIRONMENT FREEZE)**로 간주합니다.
+`MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary 관계가 아니라 동등한 **지원 실행 환경(Supported Runtime)**입니다.
 
 ```text
-① 문서 불일치 점검(Documentation Drift Check)
-② MAC-V Runtime Bootstrap 검증(Verification)
-③ Git / GitHub 사용자 준비 상태(User Identity Readiness)
-④ Shell Script 정적 문법 검증(Static Syntax Validation)
+전역 공통 Gate
+├─ Documentation Drift
+└─ Bash Static Syntax Validation
         ↓
-공통 환경 동결(COMMON ENVIRONMENT FREEZE)
+공통 환경 설계 동결(Common Environment Design Freeze)
         ↓
-B1-1 실제 실행(Runtime)
-→ 검증(Verification)
-→ 증빙(Evidence)
-→ ✅ 완료(CLEAR)
+현재 실행 환경(Current Runtime Context) 선택
+        ↓
+선택 환경의 Bootstrap / Git·GitHub Identity 확인
+        ↓
+Mission Runtime
+→ Verification
+→ Evidence
+→ 플랫폼별 Runtime Record
+→ Evaluation
+→ Mission CLEAR
 ```
 
 이 동결(Freeze)은 코디세이 공식 Mission/Evaluation을 변경하지 않습니다. 실제 Mission Runtime에서 blocker가 발견되면 JIT 방식으로 최소 수정합니다.
 
 ## 🚀 빠른 확인(Quick Check)
 
-현재 실제 확인 상태:
+### 전역 공통 상태
 
 ```text
 Gate 1 — Documentation Drift           ✅ PASS — B1-1 blocker-level audit complete
-Gate 2 — MAC-V Bootstrap Runtime       ✅ PASS
-Gate 3 — Git/GitHub User Identity      🟡 PARTIAL — WIN-V PASS / MAC-V PENDING
-Gate 4 — Bash Static Syntax Validation ✅ PASS
+Gate 4 — Bash Static Syntax Validation ✅ PASS — 11 PASS / 0 FAIL
+Common Environment Design Freeze       ✅ FROZEN
 ```
 
-지금 필요한 명령은 하나입니다.
+### 프로필별 알려진 준비 기록
+
+```text
+MAC-V
+- Bootstrap: ✅ 과거 실제 PASS 기록 있음
+- Identity : 🟡 PENDING / 작업 시점 재확인 필요
+- 특성     : Resettable / Ephemeral
+
+WIN-V
+- Identity : ✅ 실제 3 PASS / 0 WARNING 기록 있음
+- Bootstrap: 현재 작업 시점에 --check로 확인
+- 특성     : Persistent
+```
+
+> 위 준비 기록은 **Mission Runtime PASS가 아닙니다.** B1-1의 MAC-V/WIN-V 실제 수행 기록은 `training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`에서 별도로 관리합니다.
+
+작업을 시작할 때 사용자가 현재 환경을 알려 주면 다음 두 명령으로 선택 환경을 확인합니다.
 
 ```bash
 cd "$HOME/codyssey/codyssey-basic"
+bash environments/ubuntu/bootstrap.sh --check
 bash environments/ubuntu/verify-user-identity.sh
 ```
 
-Gate 3가 현재 Git/GitHub 작업에 필요한 수준으로 준비되어 있으면 아래 동결 판정(Freeze Gate)을 다시 확인합니다.
+Bootstrap 필수 항목이 실제로 누락된 경우에만:
+
+```bash
+bash environments/ubuntu/bootstrap.sh --install
+bash environments/ubuntu/bootstrap.sh --check
+```
 
 ## 📑 목차
 
-- [Gate 1 — 문서 불일치 점검(Documentation Drift Check)](#gate-1)
-- [Gate 2 — MAC-V Runtime Bootstrap 검증(Verification)](#gate-2)
-- [Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)](#gate-3)
-- [Gate 4 — Shell Script 정적 문법 검증(Static Syntax Validation)](#gate-4)
+- [Gate 1 — 문서 불일치 점검](#gate-1)
+- [프로필 준비 상태 — Bootstrap](#gate-2)
+- [프로필 준비 상태 — Git/GitHub Identity](#gate-3)
+- [Gate 4 — Shell Script 정적 문법 검증](#gate-4)
+- [MAC-V / WIN-V 운영 차이](#profile-policy)
 - [동결(Freeze) 규칙](#freeze)
 - [현재 결론](#conclusion)
 
@@ -64,68 +91,46 @@ Gate 3가 현재 Git/GitHub 작업에 필요한 수준으로 준비되어 있으
 
 ```text
 environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md
+environments/RUNTIME-PROFILES.md
 environments/ubuntu/base-packages.txt
 environments/ubuntu/README.md
 environments/ubuntu/BASE-PACKAGES.md
 environments/ubuntu/MISSION-PACKAGE-MATRIX.md
+standards/CODYSSEY-WORKING-OPERATING-STANDARD.md
 standards/BEGINNER-TRAINING-STANDARD.md
 standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md
 standards/BEGINNER-GUIDE-MODULARIZATION-STANDARD.md
 standards/BEGINNER-DOCUMENTATION-AUDIT.md
+training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md
 각 Mission training/round-01-clear/environment/ubuntu-packages.txt
 ```
 
-현재 기준:
-
-```text
-Common Required Base
-= ca-certificates / curl / wget / git / openssh-client / nano / jq / file / unzip / zip / rsync / bash-completion
-
-Recommended Productivity
-= vim / tree / ripgrep / fd-find
-
-Common External Developer CLI
-= gh (GitHub CLI official APT repository)
-```
-
-문서 불일치(Drift) 교정은 기능 변경과 분리하며, 공식 Mission/Evaluation의 요구를 임의 변경하지 않습니다.
-
-### 현재 상태
+현재 상태:
 
 **✅ PASS — 현재 B1-1 실제 실행(Runtime)을 잘못 이끌 수 있는 blocker 수준 Documentation Drift 없음.**
 
-2026-08-19 기준으로 현재 B1-1 `main`과 Control Tower 기준을 다시 대조하여 다음을 확인했습니다.
+B1-1의 3계층 문서 구조, SSH/UFW 안전 절차, Secret 보호, Verification/Evidence/CLEAR 분리 기준은 유지합니다.
+
+환경 관련 운영 기준은 다음처럼 갱신했습니다.
 
 ```text
-- BEGINNER-GUIDE.md가 전체 중앙 허브(Global Hub) 역할을 함
-- 00~08 모듈 README 지역 목차(Local TOC)가 실제 경로로 연결됨
-- STEP 01~15 실행형 본문이 세부 학습 문서(Learning Unit)로 분리됨
-- 기존 평면 상세 문서는 호환 경로(Compatibility Path)만 유지하고 주 학습 기준으로 사용하지 않음
-- Primary Runtime = MAC-V / OrbStack Ubuntu 24.04, Secondary = WIN-V / WSL2 Ubuntu 24.04 구분
-- Common Base와 B1-1 Mission Package 계층이 충돌하지 않음
-- Quick Start가 공통 환경 동결 전에 SSH/UFW 변경으로 우회하지 않음
-- SSH 20022 변경은 backup → 사전 허용 → sshd 검증 → reload → 새 세션 → 기존 경로 정리 순서
-- UFW는 20022/15034 선허용 → 기본 정책 → 활성화/재적용 → SSH 유지 확인 → 추가 ALLOW IN 개별 정리 순서
-- OrbStack 관리 접속과 Mission OpenSSH `sshd:20022`를 명확히 구분
-- Secret은 실제 값이 아니라 존재·소유권·권한 등 메타데이터만 취급
-- Verification / Evidence / Evaluation / CLEAR를 서로 대체하지 않음
-- 실제 Runtime을 수행하지 않은 상태를 PASS/CLEAR로 기록하지 않음
+MAC-V / WIN-V = 동등한 지원 실행 환경
+Current Runtime Context = 작업 시점 사용자가 선택
+MAC-V = Resettable / Ephemeral
+WIN-V = Persistent
+플랫폼별 Runtime Record와 Mission CLEAR는 분리
 ```
 
-이 PASS는 **공통 환경 동결을 막는 blocker 수준 문서 Drift가 없다는 판정**입니다. 모든 문장의 용어·품사·가독성 polishing까지 완전히 끝났다는 뜻은 아닙니다. 비차단 표현 개선과 이후 미션 문서 정합성은 실제 실행 순서에 맞춰 JIT 감사로 계속합니다.
-
-`BEGINNER READY` 및 Mission `CLEAR`는 별도 상태이며, 실제 Runtime/Verification/Evidence 없이 자동으로 승격하지 않습니다.
+Gate 1 PASS는 모든 문장 polishing 완료를 뜻하지 않습니다. 실제 실행을 잘못 이끄는 blocker가 없다는 판정입니다.
 
 ---
 
 <a id="gate-2"></a>
-## Gate 2 — MAC-V Runtime Bootstrap 검증(Verification)
+## 프로필 준비 상태 — Bootstrap Runtime Verification
 
 ### 목표
 
-GitHub에 저장된 스크립트의 존재가 아니라 실제 OrbStack Ubuntu 24.04에서 동작하는지 확인합니다.
-
-확인 명령:
+현재 선택한 Ubuntu 24.04 실행 환경에서 공통 필수 개발 도구가 실제로 준비되어 있는지 확인합니다.
 
 ```bash
 cd "$HOME/codyssey/codyssey-basic"
@@ -148,11 +153,9 @@ bash environments/ubuntu/bootstrap.sh --check
 - 설치 후 `bootstrap.sh --check` PASS
 - Secret/Identity를 자동 생성하지 않음
 
-### 실제 확인 상태
+### 알려진 실제 기록
 
-**✅ PASS**
-
-실제 Ubuntu 24.04 실행 환경(Runtime)에서 확인된 핵심 결과:
+MAC-V에서 이전 실제 확인 시 다음 결과가 PASS였습니다.
 
 ```text
 prerequisites: 5 PASS / 0 missing
@@ -162,16 +165,16 @@ gh: 2.97.0
 required Ubuntu developer bootstrap: PASS
 ```
 
-권장 생산성 도구(`tree`, `ripgrep`, `fd-find` 등)의 누락은 기본 CLEAR blocker가 아닙니다.
+다만 학교 Mac은 Reset될 수 있으므로 **과거 PASS를 현재 장비 상태로 추정하지 않습니다.** MAC-V를 다시 사용할 때 `--check`를 재실행합니다.
+
+WIN-V는 지속 환경이므로 재설치부터 하지 않고 `--check`로 현재 상태를 먼저 확인합니다.
 
 ---
 
 <a id="gate-3"></a>
-## Gate 3 — Git / GitHub 사용자 준비 상태(User Identity Readiness)
+## 프로필 준비 상태 — Git / GitHub 사용자 준비 상태(User Identity Readiness)
 
-### 목표
-
-패키지 설치와 사용자별 Git/GitHub Identity를 분리하되, Mission 시작 전에 현재 상태를 읽기 전용으로 확인합니다.
+현재 선택한 Runtime Context에서 읽기 전용으로 확인합니다.
 
 ```bash
 bash environments/ubuntu/verify-user-identity.sh
@@ -191,7 +194,7 @@ SSH Git remote를 실제 사용하는 경우에만 필요 시:
 ssh -T git@github.com
 ```
 
-### 자동화 금지
+자동화 금지:
 
 ```text
 gh auth login 자동 실행
@@ -201,13 +204,9 @@ git user.name / user.email 임의 설정
 core.autocrlf 강제 변경
 ```
 
-Identity 미설정은 공통환경 스크립트 실패와 동일하지 않습니다. GitHub write 작업이 필요한 Mission에서만 실제 blocker 여부를 판단합니다.
+### 알려진 실제 기록
 
-### 현재 상태
-
-**🟡 PARTIAL — WIN-V PASS / MAC-V PENDING**
-
-WIN-V(Windows 11 Pro → WSL2 Ubuntu 24.04)에서 `verify-user-identity.sh`를 실제 실행하여 다음 결과를 확인했습니다.
+WIN-V에서 다음 결과를 실제 확인했습니다.
 
 ```text
 [PASS] git user.name is configured
@@ -216,55 +215,84 @@ WIN-V(Windows 11 Pro → WSL2 Ubuntu 24.04)에서 `verify-user-identity.sh`를 �
 Result: 3 PASS / 0 WARNING
 ```
 
-따라서 **WIN-V 사용자 준비 상태는 ✅ PASS**입니다. 다만 R01 기본 실행 환경(Primary)인 MAC-V(OrbStack Ubuntu 24.04)에서는 사용자별 Git/GitHub 상태가 별도로 달라질 수 있으므로, MAC-V에서 같은 스크립트를 다시 실행하기 전까지 Gate 3 전체는 최종 PASS로 닫지 않습니다.
+따라서 **WIN-V Identity의 과거 실제 기록은 ✅ PASS**입니다.
 
-필요한 경우에만 본인 정보로 설정합니다.
+MAC-V는 학교 Mac의 현재 사용자 상태가 Reset 여부에 따라 달라질 수 있으므로 실제 사용할 때 다시 확인합니다.
 
-```bash
-git config --global user.name "내 Git 작성자 이름"
-git config --global user.email "내 GitHub 이메일"
-```
-
-> 실제 이메일이나 Token 값을 문서·채팅·증빙(Evidence)에 붙여 넣지 않습니다.
+Identity 확인은 해당 Runtime Profile의 GitHub 작업 준비 상태이며 **Mission CLEAR 자체가 아닙니다.**
 
 ---
 
 <a id="gate-4"></a>
 ## Gate 4 — Shell Script 정적 문법 검증(Static Syntax Validation)
 
-### 목표
-
-Ubuntu Bootstrap 관련 `.sh` 파일에 기본 Bash 문법 오류가 없는지 확인합니다.
-
 ```bash
 bash environments/ubuntu/validate-scripts.sh
 ```
 
-이 스크립트는 `environments/ubuntu/*.sh`에 대해 `bash -n`을 수행합니다.
-
-추후 선택적으로 ShellCheck를 사용할 수 있지만 R01 Common Required Base나 Mission CLEAR Gate로 추가하지 않습니다.
-
-### 실제 확인 상태
+현재 실제 확인 상태:
 
 **✅ PASS — 11 PASS / 0 FAIL**
 
-실제 Ubuntu 실행 환경(Runtime)에서 Bash 정적 문법 검증이 성공했습니다.
+이 Gate는 공통 스크립트 저장소 상태에 대한 전역 정적 검증으로 관리합니다.
+
+---
+
+<a id="profile-policy"></a>
+## MAC-V / WIN-V 운영 차이
+
+### MAC-V — 학교 Mac
+
+```text
+환경 성격 = Resettable / Ephemeral
+운영 원칙 = CHECK BEFORE INSTALL
+
+현재 상태 확인
+→ 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
+→ Bootstrap / Identity 확인
+→ Mission Runtime
+```
+
+학교 Mac이 Reset되어도 과거의 추적 가능한 MAC-V Mission PASS Evidence는 자동으로 FAIL 처리하지 않습니다. 현재 장비 재현 상태와 과거 수행 이력을 분리합니다.
+
+### WIN-V — 개인 Windows 11 Pro 노트북
+
+```text
+환경 성격 = Persistent
+운영 원칙 = VERIFY BEFORE REINSTALL
+
+기존 환경 확인
+→ Verification
+→ 정상이라면 보존
+→ 문제 있을 때만 최소 Repair
+→ Mission Runtime
+```
+
+정상적인 WSL2 Ubuntu, Repository, `.venv`, Git/GitHub 설정을 작업마다 재설치하지 않습니다.
 
 ---
 
 <a id="freeze"></a>
 ## 동결(Freeze) 규칙
 
-다음 조건을 만족하면 공통환경 설계를 동결합니다.
+공통 환경 **설계와 공통 스크립트 기준**은 다음 전역 Gate를 기준으로 동결합니다.
 
 ```text
-[x] Gate 1 — 현재 B1-1 실행을 잘못 이끄는 blocker 수준 Drift 없음
-[x] Gate 2 — MAC-V bootstrap 실제 확인 PASS
-[ ] Gate 3 — WIN-V Identity ✅ PASS / MAC-V Primary Identity 최종 확인 대기
-[x] Gate 4 — bash -n syntax validation PASS
+[x] Gate 1 — blocker 수준 Documentation Drift 없음
+[x] Gate 4 — bash static syntax validation PASS
+[x] Common Environment Design Freeze
 ```
 
-동결(Freeze) 이후 기본 원칙:
+`MAC-V`와 `WIN-V`의 Bootstrap / Identity는 장비별 현재 상태이므로 **두 환경이 동시에 준비될 때까지 기다리지 않습니다.**
+
+```text
+Current Runtime Context 선택
+→ 그 환경의 Bootstrap / Identity 확인
+→ READY이면 Mission Runtime 시작
+```
+
+동결 이후 기본 원칙:
 
 ```text
 현재 Mission CLEAR를 막는가?
@@ -272,7 +300,7 @@ YES → 최소 수정 → 재검증 → 계속 실행
 NO  → 공통환경 확장하지 않음 → 후속 개선 후보로 미룸
 ```
 
-지금 추가하지 않는 항목:
+현재 공통 필수로 추가하지 않는 항목:
 
 ```text
 build-essential / gcc / g++ / make / pkg-config
@@ -285,31 +313,27 @@ ShellCheck 공통 필수화
 추가 IDE extension 강제
 ```
 
-이 항목들은 실제 Mission 또는 이후 Advanced/Portability 단계에서 필요할 때 추가합니다.
-
 ---
 
 <a id="conclusion"></a>
 ## 현재 결론
 
-공통환경 **설계와 핵심 Runtime Bootstrap, B1-1 blocker 수준 문서 감사는 준비 완료**입니다.
-
-현재 남은 핵심은 하나입니다.
+공통 환경 **설계 동결은 완료**했습니다. 이제 실제 작업 위치에 따라 Runtime Context를 선택합니다.
 
 ```text
-MAC-V 기본 실행 환경(Primary)의 Git/GitHub 사용자 준비 상태(User Identity) 최종 확인
-        ↓
-공통 환경 동결(COMMON ENVIRONMENT FREEZE)
-        ↓
-B1-1 실제 실행(Runtime)
+학교 Mac에서 작업
+→ MAC-V
+→ Bootstrap / Identity 현재 상태 확인
+→ B1-1 Runtime
+
+노트북 Win11에서 작업
+→ WIN-V
+→ 기존 환경 Verification / Identity 확인
+→ B1-1 Runtime
 ```
 
-새로운 공통 Tool을 계속 추가하기보다 Gate 3을 닫고 B1-1으로 이동합니다. 비차단 문서 표현 개선은 실제 Runtime을 중단하지 않고 JIT 방식으로 처리합니다.
+B1-1의 플랫폼별 실제 수행 결과는 다음 파일에서 별도로 기록합니다.
 
-```text
-공통 환경 마무리(COMMON ENVIRONMENT CLOSEOUT)
-→ B1-1 실제 실행(Runtime)
-→ 검증(Verification)
-→ 증빙(Evidence)
-→ ✅ 완료(CLEAR)
-```
+- [`../../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
+
+현재 공통 환경 준비 기록을 B1-1 Mission Runtime PASS로 사용하지 않습니다. 실제 B1-1 실행·검증·Evidence가 있어야 해당 `MAC-V` 또는 `WIN-V` Runtime Record를 PASS로 변경할 수 있습니다.
