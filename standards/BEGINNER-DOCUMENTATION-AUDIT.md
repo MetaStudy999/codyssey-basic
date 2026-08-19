@@ -15,10 +15,12 @@
 → 전체 중앙 허브(Global Hub)
 → 모듈 목차(Module Table of Contents, Module TOC)
 → 세부 학습 문서(Learning Unit)
+→ 현재 실행 환경(Current Runtime Context) 선택
 → 빠른 시작(Quick Start) 또는 상세 시작 경로
 → 실제 수행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ 플랫폼별 Runtime Record
 → 완료(CLEAR)
 ```
 
@@ -36,6 +38,7 @@
 + 실행형 문서이면 안전한 빠른 시작(Quick Start) 또는 동등한 빠른 진입 경로
 + 실제 따라하기
 + 실행 위치(Execution Context) / 실행 전 점검(Preflight)
++ 현재 Runtime Profile(MAC-V / WIN-V) 식별
 + 실행 가능한 Shell 명령 각 줄 해설
 + 의미 있는 코드/SQL/설정 줄 해설
 + 중요한 옵션·인자·입력값 설명
@@ -45,7 +48,8 @@
 + STOP / GO
 + 필요한 중간 저장점(Checkpoint) / 복구(Recovery)
 + 환경/Tool 설치가 있으면 필수·선택·권한·설치위치·검증(Verification) 설명
-+ 공용/관리형 Mac이면 관리자 권한 없는 대안(no-admin) 설명
++ 공용/관리형 Mac이면 관리자 권한 없는 대안(no-admin)과 Reset 대응 설명
++ Windows 11 Persistent 환경이면 불필요한 재설치 방지 설명
 + Cloud/API/AI면 비용·자원·정리(Cleanup) 설명
 + 오류 복구
 + 완료 확인
@@ -89,8 +93,12 @@ APPLIED & VERIFIED — 현재까지
 - 모듈 README → Learning Unit 직접 링크 재검증
 - Learning Unit → 모듈 README / 이전·다음 학습 단위 이동 경로 재검증
 - Phase A 표현을 현재 Phase C / FAST EXECUTE 흐름으로 교정
-- Primary Runtime을 MAC-V / Ubuntu 24.04로 교정
-- WIN-V Ubuntu 24.04 Secondary 경로 명시
+- MAC-V와 WIN-V를 동등한 지원 실행 환경(Supported Runtime)으로 정의
+- Current Runtime Context를 작업 시작 시 사용자가 지정하도록 교정
+- MAC-V는 Resettable / CHECK BEFORE INSTALL로 정의
+- WIN-V는 Persistent / VERIFY BEFORE REINSTALL로 정의
+- 플랫폼별 Runtime Record와 Mission CLEAR를 분리
+- 두 환경 실제 PASS 시 CROSS-PLATFORM VERIFIED를 별도 내부 품질 상태로 정의
 - Docker를 선택 Lab으로 구분
 - 공통 Bootstrap과 B1-1 Mission package 계층 구분
 - Quick Start에서 SSH/UFW 변경을 하지 않도록 제한
@@ -104,7 +112,16 @@ APPLIED & VERIFIED — 현재까지
 
 또한 실제 Runtime 진입 직전 blocker 수준 감사에서 **현재 B1-1 실행을 잘못 이끌 수 있는 상태/환경/경로/SSH·UFW 안전/Secret/Verification·Evidence 판정 Drift는 발견되지 않았습니다.** 따라서 공통 환경 마무리(Common Environment Closeout)의 Gate 1은 blocker 기준으로 PASS할 수 있습니다.
 
-단, **Gate 1 blocker PASS가 B1-1 전체 `BEGINNER READY` 또는 Mission `CLEAR`를 뜻하지는 않습니다.** 한국어 중심 용어와 영어 원어의 세부 품사, 모든 비위험 설명 줄의 표현 일관성, 추가적인 가독성 polishing은 실제 실행 중 JIT 감사 대상으로 계속 관리합니다. 실제 Runtime/Verification/Evidence가 없으면 Mission CLEAR도 아닙니다.
+단, **Gate 1 blocker PASS가 B1-1 전체 `BEGINNER READY`, 플랫폼별 Runtime PASS 또는 Mission `CLEAR`를 뜻하지는 않습니다.** 한국어 중심 용어와 영어 원어의 세부 품사, 모든 비위험 설명 줄의 표현 일관성, 추가적인 가독성 polishing은 실제 실행 중 JIT 감사 대상으로 계속 관리합니다. 실제 Runtime/Verification/Evidence가 없으면 플랫폼 PASS와 Mission CLEAR도 아닙니다.
+
+B1-1의 실제 미션 Runtime 기록은 현재 다음처럼 유지합니다.
+
+```text
+MAC-V = NOT RUN
+WIN-V = NOT RUN
+CROSS-PLATFORM = NOT VERIFIED
+Mission = ACTIVE / NOT CLEAR
+```
 
 ## 3. 알려진 Documentation Drift 유형
 
@@ -115,6 +132,10 @@ Phase A — REFERENCE BUILD
 과거 Runtime 상태
 과거 Ubuntu 버전 또는 과거 Golden Path
 현재 Control Tower와 다른 Active/Not Started 표현
+MAC-V를 CLEAR 우선 Primary, WIN-V를 단순 Secondary로 표현하는 과거 정책
+Current Runtime Context 없이 Host별 명령을 섞어 안내
+학교 Mac Reset 가능성을 무시하고 기존 설치를 현재 상태로 가정
+WIN-V Persistent 환경에서 정상 상태인데도 매번 재설치하도록 안내
 "최종 Verify"처럼 한국어 문장에 핵심 영어 용어만 단독 삽입
 "검증(Verify)"처럼 명사 문맥에 영어 동사형을 병기
 첫 등장 핵심 용어의 한글(English Original) 병기 누락
@@ -146,6 +167,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 공식 Mission / Evaluation
 → 현재 Repository 실제 상태
 → Control Tower 현재 상태
+→ 상위 작업 운영 표준
 → 환경/문서 표준
 → Beginner Guide
 ```
@@ -156,7 +178,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 
 | # | 감사 항목 | PASS 기준 |
 |---:|---|---|
-| 1 | 상태/환경 정합성 | 현재 Runtime/OS/경로와 모순 없음 |
+| 1 | 상태/환경 정합성 | Current Runtime Context, Runtime Profile, OS/경로와 모순 없음 |
 | 2 | 공식 Source | Mission/Evaluation/제공 파일과 연결됨 |
 | 3 | 한글+영어 용어 | 핵심 용어 첫 등장 병기, 한국어 중심 문장, 영어 원어 품사 일치 |
 | 4 | 쉬운 설명 | 입문자가 한 문장으로 의미를 파악 가능 |
@@ -167,7 +189,7 @@ Cloud/API/AI 비용 가능성이나 Cleanup 절차가 없음
 | 9 | 정상 결과 | 성공 조건과 환경에 따라 달라도 정상인 값을 구분할 수 있음 |
 | 10 | 오류 복구 | 증상→원인→확인→수정→재검증 및 필요한 Recovery 경로 제공 |
 | 11 | 완료 확인 | STOP/GO, Rerun Safety, Checkpoint를 필요한 Step에서 판정 가능 |
-| 12 | 평가/증빙 연결 | Requirement→Verification→Evidence 관계가 보이고 비용 자원은 Cleanup까지 연결 |
+| 12 | 평가/증빙 연결 | Requirement→Verification→Evidence 관계가 보이고 Runtime Profile/Commit을 추적하며 비용 자원은 Cleanup까지 연결 |
 
 ### 4.0 긴 입문자 가이드 모듈화 판정
 
@@ -232,6 +254,9 @@ Trigger에 해당하면서 단일 대형 가이드가 유지되거나, 모듈 RE
 [ ] 필수 / 권장 / 선택 여부를 표시한다.
 [ ] 관리자 권한이 필요한지 여부를 설명한다.
 [ ] Host에 설치하는지 Ubuntu Runtime에 설치하는지 구분한다.
+[ ] 현재 Runtime Context가 MAC-V 또는 WIN-V인지 구분한다.
+[ ] MAC-V는 Resettable 특성을 고려해 Check Before Install을 사용한다.
+[ ] WIN-V는 Persistent 특성을 고려해 Verify Before Reinstall을 사용한다.
 [ ] 설치 위치 또는 Repository-local 위치를 설명한다.
 [ ] 설치 명령의 각 실행 줄과 중요한 옵션을 설명한다.
 [ ] 설치 후 command/version/서비스 등으로 정상 여부를 검증한다.
@@ -248,7 +273,7 @@ Trigger에 해당하면서 단일 대형 가이드가 유지되거나, 모듈 RE
 핵심 실행 Step에는 필요한 범위에서 다음을 확인합니다.
 
 ```text
-[ ] 실행 위치(Context): Host/Terminal/Repository/Branch/권한/venv를 혼동하지 않는다.
+[ ] 실행 위치(Context): Runtime Profile/Host/Terminal/Repository/Branch/Commit/권한/venv를 혼동하지 않는다.
 [ ] 실행 전 점검(Preflight): 실행 전에 PWD, command, Git 상태, 권한 등 필요한 선행 조건을 확인한다.
 [ ] STOP / GO: 필수 조건 또는 검증이 실패하면 다음 Step으로 진행하지 않는다.
 [ ] 재실행 안전성(Rerun Safety): 상태를 바꾸는 명령은 반복 실행 영향을 판단할 수 있다.
@@ -291,6 +316,7 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 ```text
 P0 현재 Active Mission
 → Runtime을 막거나 오판정을 만드는 문서 오류 즉시 수정
+→ Current Runtime Context / Supported Runtime 정합성 확인
 → 목차/Quick Start를 실제 문서 역할에 맞게 적용
 → 모듈화 Trigger 및 3계층 구조 판정
 → 모듈 README 지역 목차와 Learning Unit 연결 확인
@@ -322,6 +348,9 @@ P2 선택 미션
 + 실행형 문서이면 안전한 Quick Start/빠른 진입 경로가 있음
 + Beginner Guide가 실제 수행 순서를 제공함
 + 현재 상태/환경과 모순 없음
++ MAC-V/WIN-V를 Primary/Secondary 합격 등급으로 오해하게 하지 않음
++ Current Runtime Context를 작업 시작 시 식별할 수 있음
++ 플랫폼별 Runtime Record와 Mission CLEAR를 구분함
 + 핵심 용어가 한국어 중심으로 설명되고 영어 원어의 품사가 맞음
 + 필요한 개발도구의 설치 위치/권한/검증 방법을 이해할 수 있음
 + 실행 위치와 Preflight를 스스로 확인할 수 있음
@@ -336,10 +365,11 @@ P2 선택 미션
 + 기준 적용 후 실제 대상 파일을 다시 확인함
 ```
 
-`BEGINNER READY`가 되더라도 실제 Runtime/Evidence가 없다면 Mission `CLEAR`가 아닙니다.
+`BEGINNER READY`가 되더라도 실제 Runtime/Evidence가 없다면 플랫폼 Runtime PASS나 Mission `CLEAR`가 아닙니다.
 
 ## 7. 관련 기준
 
+- [CODYSSEY-WORKING-OPERATING-STANDARD.md](CODYSSEY-WORKING-OPERATING-STANDARD.md) — 전체 작업 운영 표준
 - [BEGINNER-TRAINING-STANDARD.md](BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
 - [BEGINNER-GUIDE-MODULARIZATION-STANDARD.md](BEGINNER-GUIDE-MODULARIZATION-STANDARD.md) — 전체 허브 / 모듈 목차 / 세부 학습 문서 3계층 표준
 - [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차 / Quick Start / 빠른 진입 기준
@@ -349,3 +379,4 @@ P2 선택 미션
 - [README-INFORMATION-ARCHITECTURE-STANDARD.md](README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조와 직접 진입 기준
 - [TERMINOLOGY-STANDARD.md](TERMINOLOGY-STANDARD.md) — 한글·영어 용어 및 영어 품사 표기 기준
 - [CANONICAL-REFERENCE-STANDARD.md](CANONICAL-REFERENCE-STANDARD.md) — Requirement/Reference/Verification/Evidence 기준
+- [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md) — MAC-V/WIN-V 실제 수행 상태
