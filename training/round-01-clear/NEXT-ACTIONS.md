@@ -10,7 +10,7 @@
 
 ## 🚀 빠른 시작(Quick Start)
 
-현재 바로 할 일은 **Git/GitHub 사용자 상태 재확인 → 공통 환경 마무리(Common Environment Closeout) 판정 → B1-1 실제 실행(Runtime) 시작**입니다.
+현재 바로 할 일은 **MAC-V Git/GitHub 사용자 상태 재확인 → 공통 환경 동결(Common Environment Freeze) 최종 판정 → B1-1 실제 실행(Runtime) 시작**입니다.
 
 📍 Ubuntu Bash / Control Tower root에서:
 
@@ -19,21 +19,21 @@ cd "$HOME/codyssey/codyssey-basic"
 bash environments/ubuntu/verify-user-identity.sh
 ```
 
-이미 실제 실행 환경(Runtime)에서 확인된 항목:
+이미 확인된 항목:
 
 ```text
+Gate 1 — 문서 불일치 점검(Documentation Drift Check)                    ✅ PASS — B1-1 blocker 수준 감사 완료
 Gate 2 — MAC-V 개발환경 초기 준비 실행 검증(Bootstrap Runtime Verification) ✅ PASS
-Gate 4 — Bash 정적 문법 검증(Static Syntax Validation)                 ✅ PASS
+Gate 4 — Bash 정적 문법 검증(Static Syntax Validation)                   ✅ PASS
 ```
 
 아직 최종 확인이 필요한 항목:
 
 ```text
-Gate 1 — 문서 불일치 점검(Documentation Drift Check)              🟡 blocker 수준 지속 감사
-Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)      🟡 WIN-V PASS / MAC-V 재확인 대기
+Gate 3 — Git/GitHub 사용자 준비 상태(User Identity Readiness)            🟡 WIN-V PASS / MAC-V 재확인 대기
 ```
 
-`verify-user-identity.sh` 결과가 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 동결(Freeze) 조건을 확인한 뒤 B1-1으로 이동합니다.
+`verify-user-identity.sh` 결과가 MAC-V에서 현재 작업에 필요한 수준으로 준비되면 [`environments/ubuntu/ENVIRONMENT-CLOSEOUT.md`](../../environments/ubuntu/ENVIRONMENT-CLOSEOUT.md)에서 동결(Freeze) 조건을 최종 확인한 뒤 B1-1으로 이동합니다.
 
 ## 📑 목차
 
@@ -95,7 +95,7 @@ B1-1 실제 실행(Runtime)
 
 | Gate | 상태 | 근거/다음 행동 |
 |---|---|---|
-| 1. 문서 불일치 점검(Documentation Drift) | 🟡 PARTIAL | Start Here·Control Tower·B1-1 주요 Drift 교정. B1-1 세부 실행 안전/줄별 해설은 JIT 감사 계속 |
+| 1. 문서 불일치 점검(Documentation Drift) | ✅ PASS | B1-1 3계층 구조와 Runtime 진입 경로 재검증. 현재 실행을 잘못 이끄는 blocker 수준 Drift 없음. 비차단 표현 개선은 JIT 지속 |
 | 2. MAC-V 개발환경 초기 준비(Bootstrap) | ✅ PASS | 실제 Ubuntu 24.04에서 required prerequisites/base/commands/`gh` 확인 완료 |
 | 3. Git/GitHub 사용자 준비 상태(Identity) | 🟡 PARTIAL | WIN-V 실제 실행 `3 PASS / 0 WARNING` 확인. R01 기본 실행 환경인 MAC-V에서는 동일 스크립트 최종 재확인 필요 |
 | 4. Bash 문법(Syntax) | ✅ PASS | `validate-scripts.sh` 실제 실행 11 PASS / 0 FAIL |
@@ -107,7 +107,7 @@ cd "$HOME/codyssey/codyssey-basic"
 bash environments/ubuntu/verify-user-identity.sh
 ```
 
-> 문서에 스크립트가 존재하는 것과 실제 실행 환경(Runtime)에서의 PASS는 다릅니다. 위 PASS 표시는 이 대화에서 사용자가 실제 Ubuntu에서 제공한 출력에 근거한 항목만 반영합니다.
+> 문서에 스크립트가 존재하는 것과 실제 실행 환경(Runtime)에서의 PASS는 다릅니다. Gate 2·4와 WIN-V Gate 3 PASS는 이 대화에서 사용자가 실제 Ubuntu에서 제공한 출력에 근거합니다. Gate 1은 현재 GitHub `main`의 문서·경로·안전 절차를 blocker 기준으로 재감사한 결과입니다.
 
 <a id="fast-track"></a>
 ## 빠른 실행 경로(FAST TRACK) 실행 순서
@@ -144,9 +144,11 @@ FAST TRACK은 선택 미션을 건너뛰는 경로가 아닙니다. **필수 11�
 - [x] package와 command 검증 분리
 - [x] 목차·Quick Start·입문자 탐색 표준 수립
 - [x] Control Tower 핵심 진입/실행 문서에 탐색 기준 적용 시작
+- [x] B1-1 전체 허브 → 모듈 README → Learning Unit 3계층 구조 적용·검증
+- [x] B1-1 blocker 수준 Documentation Drift Gate PASS
 - [x] MAC-V Bootstrap 실제 Runtime PASS 확인
 - [x] Ubuntu Bootstrap shell syntax 11 PASS / 0 FAIL 확인
-- [ ] Git/GitHub User Identity 최종 재확인
+- [ ] MAC-V Git/GitHub User Identity 최종 재확인
 - [ ] Common Environment Freeze 최종 판정
 
 <a id="phase-c-principles"></a>
@@ -205,8 +207,8 @@ B1-1 실행 환경 프로필(Runtime Profile):
 <a id="b1-1-now"></a>
 ## B1-1 즉시 실행 순서
 
-1. `verify-user-identity.sh` 최종 재확인
-2. 공통 환경 마무리(Common Environment Closeout) / 동결(Freeze) 판정
+1. MAC-V에서 `verify-user-identity.sh` 최종 재확인
+2. 공통 환경 마무리(Common Environment Closeout) / 동결(Freeze) 최종 판정
 3. `PHASE-C-PREFLIGHT.md` 공통 Gate 확인
 4. B1-1 repository root / branch / local changes 확인
 5. Primary `MAC-V` 환경에서 Ubuntu 24.04 / architecture / systemd 확인
