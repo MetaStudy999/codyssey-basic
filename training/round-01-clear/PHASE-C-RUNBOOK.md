@@ -4,7 +4,7 @@
 
 ## 목적
 
-이 문서는 Phase A에서 준비한 15개 Reference를 **실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) → 설명형 평가 → 완료(CLEAR)**로 전환할 때 사용하는 통합 실행표입니다.
+이 문서는 Phase A에서 준비한 15개 Reference를 **현재 실행 환경 선택 → 실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) → 플랫폼별 수행 기록 → 설명형 평가 → 완료(CLEAR)**로 전환할 때 사용하는 통합 실행표입니다.
 
 Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 PASS를 대신하지 않습니다.
 
@@ -12,19 +12,26 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 
 현재 미션(Active Mission)은 **B1-1**입니다.
 
-1. [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)의 시작 판정(Start Gate)을 확인합니다.
-2. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)의 빠른 시작(Quick Start)과 STEP 01부터 진행합니다.
-3. B1-1의 실제 실행(Runtime)·검증(Verification)·증빙(Evidence)이 완료된 뒤에만 `CLEAR`로 변경합니다.
-4. 다음 미션은 이 문서의 실제 실행표 순서로 이동합니다.
+1. 현재 작업 위치를 `MAC-V` 또는 `WIN-V`로 지정합니다.
+2. [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)의 시작 판정(Start Gate)을 확인합니다.
+3. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)의 빠른 시작(Quick Start)과 STEP 01부터 진행합니다.
+4. 실제 실행·검증·Evidence가 완료된 뒤 실행한 플랫폼의 Runtime Record를 갱신합니다.
+5. 공식 조건을 충족한 뒤에만 Mission을 `CLEAR`로 변경합니다.
+6. 필요하면 다른 지원 실행 환경에서도 같은 미션을 수행해 교차 플랫폼 검증(Cross-platform Verification)을 추가합니다.
+7. 다음 미션은 이 문서의 실제 실행표 순서로 이동합니다.
 
 ```text
-실행 전 점검(Preflight)
+현재 실행 환경(Current Runtime Context) 선택
+→ 실행 전 점검(Preflight)
 → 입문자 가이드(Beginner Guide)
 → 실제 실행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ MAC-V 또는 WIN-V Runtime Record 갱신
 → 평가(Evaluation)
 → 완료 판정(CLEAR Gate)
+→ 필요 시 다른 환경 재수행
+→ 두 환경 PASS 시 CROSS-PLATFORM VERIFIED
 → 다음 미션
 ```
 
@@ -33,6 +40,7 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 ## 📑 목차
 
 - [공통 실행 원칙](#common-principles)
+- [지원 실행 환경과 수행 기록](#runtime-records)
 - [15개 실제 실행표](#runtime-table)
 - [단일 명령으로 고정되지 않는 미션](#complex-missions)
 - [Port 정책](#port-policy)
@@ -45,12 +53,14 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 ## 공통 실행 원칙
 
 ```text
-실행 전 점검(Preflight)
+Current Runtime Context 선택
+→ 실행 전 점검(Preflight)
 → 해당 Mission Repository 확인
 → BEGINNER-GUIDE.md 순서대로 실제 실행(Runtime)
 → 자동/정적 검증
 → 실제 동작/실패 경로 확인
 → 증빙(Evidence) 저장
+→ 해당 플랫폼 Runtime Record 갱신
 → Secret scan
 → 자기 말 평가(Evaluation) 설명
 → 완료 판정(CLEAR Gate)
@@ -62,17 +72,70 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 
 추가 원칙:
 
+- `MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary 관계가 아니라 동등한 지원 실행 환경(Supported Runtime)입니다.
+- 작업 시작 시 사용자가 현재 작업 위치를 알려 주면 그 환경을 Current Runtime Context로 사용합니다.
+- 학교 Mac `MAC-V`는 Resettable / Ephemeral이므로 `CHECK BEFORE INSTALL`을 적용합니다.
+- 개인 노트북 `WIN-V`는 Persistent이므로 `VERIFY BEFORE REINSTALL`을 적용합니다.
 - 긴 실행형 Beginner Guide는 Quick Start와 클릭 가능한 목차가 실제 본문과 정합해야 합니다.
 - Quick Start는 위험한 시스템/Cloud/DB 변경을 우회하지 않습니다.
 - 실행 위치, Branch, PWD, `.venv`, Secret, 비용 자원은 각 미션 시작 전 확인합니다.
 - 실제 출력이 없는 항목은 Reference PASS를 실제 실행 PASS로 바꾸지 않습니다.
+- 한 플랫폼의 실제 출력을 다른 플랫폼 PASS로 재사용하지 않습니다.
+
+---
+
+<a id="runtime-records"></a>
+## 지원 실행 환경과 수행 기록(Runtime Records)
+
+```text
+MAC-V
+학교 macOS → OrbStack → Ubuntu 24.04
+
+WIN-V
+개인 Windows 11 Pro → WSL2 → Ubuntu 24.04
+```
+
+플랫폼별 실제 수행 기록은 다음 상태를 사용합니다.
+
+```text
+⬜ NOT RUN
+🟡 PENDING
+✅ PASS
+❌ FAIL
+```
+
+Mission 상태와는 별도입니다.
+
+```text
+MAC-V PASS ≠ WIN-V PASS
+플랫폼별 PASS ≠ 자동 Mission CLEAR
+Mission CLEAR ≠ 두 플랫폼 모두 PASS 의무
+```
+
+공식 Mission/Evaluation이 두 플랫폼 모두를 요구하지 않는 한 한 지원 실행환경에서 공식 요구를 충족하면 Mission CLEAR가 가능할 수 있습니다.
+
+두 환경 모두 같은 R01에서 실제 PASS하고 각각의 Repository/Branch/Commit/Verification/Evidence가 추적 가능하면 내부 품질 상태로:
+
+```text
+✅ CROSS-PLATFORM VERIFIED
+```
+
+를 사용할 수 있습니다.
+
+중앙 수행 기록:
+
+- [`RUNTIME-EXECUTION-MATRIX.md`](RUNTIME-EXECUTION-MATRIX.md)
+
+학교 Mac이 Reset되어도 과거의 추적 가능한 MAC-V PASS Evidence는 자동으로 FAIL 처리하지 않습니다. 현재 장비 재현 상태가 달라졌다면 `READY / STALE / REBUILD NEEDED`를 별도로 사용할 수 있습니다.
+
+---
 
 <a id="runtime-table"></a>
 ## 15개 실제 실행(Runtime) 실행표
 
 | 순서 | Mission / Repository | Working Directory | 실제 실행 시작 명령·경로 | 검증(Verification) | 증빙 위치(Evidence Root) |
 |---:|---|---|---|---|---|
-| 1 | B1-1 `codyssey-basic-b1-1-system-monitor` | repository root | `training/round-01-clear/BEGINNER-GUIDE.md`의 SSH→UFW→권한→Agent→monitor→cron 순서. 제공 ZIP의 실제 실행 파일은 Runtime에서 `uname -m`과 archive 내용을 확인한 후 선택 | `sudo bash training/round-01-clear/environment/verify.sh` | `training/round-01-clear/evidence/` |
+| 1 | B1-1 `codyssey-basic-b1-1-system-monitor` | repository root | `training/round-01-clear/BEGINNER-GUIDE.md`의 SSH→UFW→권한→Agent→monitor→cron 순서. 제공 ZIP은 Runtime에서 `uname -m`과 archive 내용을 확인한 후 선택 | `sudo bash training/round-01-clear/environment/verify.sh` | `training/round-01-clear/evidence/` |
 | 2 | B1-2 `codyssey-basic-b1-2-linux-troubleshooting` | repository root | `RUNTIME-SAFETY.md` 확인 후 `$HOME/b1-2-agent` 격리 경로에서 OOM→CPU→Deadlock controlled experiment | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` |
 | 3 | B2-1 `codyssey-basic-b2-1-budget-tracker` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"` 후 `python -m budget_app --help`; 실제 학습 데이터는 별도 `--data-dir` 권장 | `bash training/round-01-clear/environment/verify.sh` + 실제 CLI/persistence 확인 | `training/round-01-clear/evidence/` |
 | 4 | B2-2 `codyssey-basic-b2-2-git-team-collaboration` | mission repo + 실제 team repo | Git/GitHub 실제 팀 workflow 수행. local audit는 실제 team repo 경로를 인수로 전달 | `bash training/round-01-clear/environment/verify.sh --runtime <actual-team-repo-path>` + `docs/github-runtime-audit.md` | `training/round-01-clear/evidence/` + 실제 GitHub Issue/PR/Review URL |
@@ -88,6 +151,10 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 | 14 | B5-3 `codyssey-basic-b5-3-fastapi-auth-service` | `training/round-01-clear/reference` | venv/install 후 `source .venv/bin/activate`; local-only `SESSION_SECRET`; `uvicorn app.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + login/protected route/relationship/toggle acceptance | `training/round-01-clear/evidence/` |
 | 15 | B7-2 `codyssey-basic-b7-2-advanced-ai-chatbot` | `training/round-01-clear/reference` | `python3 -m venv .venv`; activate; `python -m pip install -r requirements.txt`; `cp .env.example .env`; local env 입력; `uvicorn backend.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + ownership/AI/API/browser/deploy/team acceptance | `training/round-01-clear/evidence/` + 실제 deployment/team URLs |
 
+실제 플랫폼 PASS를 기록할 때 Evidence Root 아래에 필요하면 `mac-v/`, `win-v/`를 만들어 분리합니다. 실제 실행 전 빈 디렉터리를 형식 때문에 대량 생성하지 않습니다.
+
+---
+
 <a id="complex-missions"></a>
 ## 실제 실행 명령이 하나로 고정되지 않는 미션
 
@@ -100,6 +167,8 @@ B1-1, B1-2, B2-2, B6-1은 하나의 실행 명령으로 미션을 대체하지 �
 
 따라서 이 네 미션은 canonical `BEGINNER-GUIDE.md`가 실제 실행(Runtime)의 주 실행 절차입니다.
 
+---
+
 <a id="port-policy"></a>
 ## Port 정책
 
@@ -109,6 +178,8 @@ B1-1, B1-2, B2-2, B6-1은 하나의 실행 명령으로 미션을 대체하지 �
 - B4-2 Vite: Vite가 선택한 local dev port를 사용하며 시작 전 충돌 확인
 
 새 미션마다 임의의 고정 포트 번호를 추가하지 않습니다.
+
+---
 
 <a id="secret-contract"></a>
 ## Secret 계약
@@ -133,6 +204,8 @@ B1-2  AGENT_* + local-only secret.key
 
 실제 값은 GitHub, 채팅, screenshot, 제출 Evidence에 기록하지 않습니다.
 
+---
+
 <a id="clear-gate"></a>
 ## 완료 판정(CLEAR Gate)
 
@@ -149,3 +222,13 @@ B1-2  AGENT_* + local-only secret.key
 ```
 
 정적 Reference PASS 또는 파일 존재만으로 CLEAR하지 않습니다.
+
+플랫폼별 추가 상태:
+
+```text
+MAC-V PASS
+WIN-V PASS
+CROSS-PLATFORM VERIFIED
+```
+
+한 지원 실행환경에서 CLEAR를 확보한 뒤 다른 지원 실행환경에서 추가 PASS를 확보할 수 있습니다. 공식 요구가 없다면 이 추가 교차 플랫폼 검증은 CLEAR의 필수 Gate가 아닙니다.
