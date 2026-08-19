@@ -12,14 +12,16 @@
 2. [현재 Next Actions](training/round-01-clear/NEXT-ACTIONS.md)
 3. [B1-1 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
 
-이미 공통환경이 준비되었다면 한 미션은 다음 흐름으로 처리합니다.
+한 미션은 다음 흐름으로 처리합니다.
 
 ```text
-실행 전 점검(Preflight)
+현재 실행 환경(Current Runtime Context) 선택
+→ 실행 전 점검(Preflight)
 → 입문자 가이드(Beginner Guide)
 → 실제 실행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ 플랫폼별 Runtime Record 갱신
 → 평가 설명(Evaluation)
 → 완료 판정(CLEAR Gate)
 → 다음 미션
@@ -45,9 +47,7 @@
 <a id="round-01"></a>
 ## Round 01 — 3-Phase 운영
 
-> **중요:** `Phase A / Phase B / Phase C`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 `R01 — CLEAR`를 일관되게 운영하기 위해 사용하는 **내부 실행 단계**입니다. 공식 Mission/Evaluation이 항상 최우선 기준입니다.
-
-단계와 용어의 쉬운 설명은 [`docs/R01-OPERATING-MODEL.md`](docs/R01-OPERATING-MODEL.md)를 사용합니다.
+> `Phase A / Phase B / Phase C`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 `R01 — CLEAR`를 일관되게 운영하기 위해 사용하는 **내부 실행 단계**입니다. 공식 Mission/Evaluation이 항상 최우선 기준입니다.
 
 ```text
 Phase A = 기준 구현·가이드 준비
@@ -57,52 +57,54 @@ Phase C = 실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence) �
 
 ### Phase A — REFERENCE BUILD
 
-B1-1부터 B7-2까지 공식 Mission/Evaluation을 기준으로 기준 구현과 학습 자료를 먼저 준비합니다.
-
-이 단계에서 수행합니다.
-
 1. 공식 Mission PDF/MD/Evaluation/제공 파일 확인
 2. 필수/선택 요구사항 분리
 3. Requirement → Implementation → Verification → Evidence 설계
-4. ChatGPT Reference Complete Path 설계
-5. 코드·설정·문서·검증 도구 중 실제 환경 없이 준비 가능한 항목 구현
-6. `BEGINNER-GUIDE.md`, `CHECKLIST.md` 구체화
-7. Secret 노출 점검
-8. 실제 실행(Runtime)이 필요한 항목을 명시적으로 남김
+4. 기준 구현과 학습 자료 준비
+5. `BEGINNER-GUIDE.md`, `CHECKLIST.md` 구체화
+6. Secret 노출 점검
+7. 실제 Runtime이 필요한 항목을 명확히 남김
 
-**중요:** Reference Build가 완료되어도 실제 실행(Runtime)과 증빙(Evidence)이 없으면 Mission을 `CLEAR`로 변경하지 않습니다.
-
-Reference Build는 다음 미션의 기준본을 미리 준비하는 작업이며, 사용자가 해당 미션의 실제 실행을 시작했다는 의미가 아닙니다.
+Reference Build가 완료되어도 실제 Runtime과 Evidence가 없으면 Mission을 `CLEAR`로 변경하지 않습니다.
 
 ### Phase B — CROSS-MISSION AUDIT
 
-15개 미션의 Reference Build가 준비된 뒤 전체 연결성을 한 번 검토합니다.
+15개 미션의 Reference Build가 준비된 뒤 다음 연결성을 검토합니다.
 
 - 공통 개발환경과 버전
 - 포트/서비스 충돌
 - Python/Node/DB/Cloud 구성
 - Secret 정책
 - Git/브랜치 운영
-- 미션 간 선후관계와 재사용 가능 환경
-- B5/B6/B7 연결 구조
+- 미션 간 선후관계
 - 중복 설정과 불필요한 반복
 
-현재 미션 통과와 관계없는 고도화는 별도 후속 Round로 미룹니다.
+현재 미션 통과와 관계없는 고도화는 후속 Round로 미룹니다.
 
 ### Phase C — RUNTIME CLEAR
 
-Phase C는 **FAST EXECUTE** 모드입니다. 이미 준비된 Reference, 실행 전 점검(Preflight), Runbook, Beginner Guide를 실제 환경에서 실행하여 Mission을 `✅ CLEAR`로 전환합니다.
+Phase C는 **FAST EXECUTE** 모드입니다.
 
-`이해 → 직접 실행 → 검증 → 오류 해결 → 증빙(Evidence) → 평가 확인 → 완료(CLEAR)`
+```text
+이해
+→ Current Runtime Context 선택
+→ 직접 실행
+→ 검증
+→ 오류 해결
+→ 증빙(Evidence)
+→ 플랫폼별 수행 기록
+→ 평가 확인
+→ 완료(CLEAR)
+```
 
-현재 미션의 실제 실행(Runtime)에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
+현재 미션의 실제 실행에 집중하며 한 번에 여러 미션의 실행 상태를 섞지 않습니다.
+
+---
 
 <a id="phase-c-freeze"></a>
 ## Phase C — Design Freeze / Just-in-Time Design
 
 Phase A/B에서 전체 설계와 교차감사를 완료했으므로 Phase C에서는 새로운 설계를 계속 확장하지 않습니다.
-
-실행 중 문제가 발견되면 먼저 다음을 판단합니다.
 
 ```text
 이 문제가 현재 Mission CLEAR를 막는가?
@@ -119,80 +121,117 @@ NO
 → 후속 개선 후보로 미룸
 ```
 
-실행 80~90%, 설계 보정 10~20%를 지향합니다. 이는 엄격한 시간 배분이 아니라 **설계 루프로 되돌아가 실제 CLEAR가 지연되는 것을 방지하기 위한 운영 기준**입니다.
-
-### Phase C에서 즉시 수정해야 하는 경우
+즉시 수정 대상:
 
 - 공식 Mission/Evaluation 요구사항 충족을 막는 문제
-- 실제 실행 진행 자체가 불가능한 BLOCKER
+- 실제 실행 BLOCKER
 - Secret/Token/Password 노출 위험
 - SSH lockout, 데이터 손실, Cloud 과금/삭제 등 안전 문제
-- 검증이 실제 결과를 잘못 판정하는 문제
-- 증빙(Evidence)이 공식 평가 요구와 연결되지 않는 문제
-- 입문자 가이드의 명령·경로·목차가 실제 수행을 막거나 잘못된 행동을 유도하는 문제
+- 검증 또는 증빙 오판정
+- Current Runtime Context를 잘못 해석하게 만드는 문서 오류
 
-### Phase C에서 후속으로 미루는 경우
+후속으로 미루는 대상:
 
 - 현재 CLEAR와 무관한 리팩터링
 - UI/UX 고도화
 - 실행을 막지 않는 문서 미세 개선
 - 선택 기능 확장
-- 다음 Round에서 다룰 심화 기술
-- 미래 프로젝트를 위한 선행 최적화
-
-즉, **실패하지 않도록 길을 만드는 일은 Phase A/B에서 하고, Phase C에서는 이미 만든 길을 실제로 끝까지 통과합니다.**
+- 다음 Round 심화 기술
 
 ---
 
 <a id="runtime-policy"></a>
 ## R01 실제 실행(Runtime) / Docker 정책
 
-R01은 현재 두 Host 계열만 지원합니다.
+R01은 다음 두 직접 Linux Runtime을 동등하게 지원합니다.
 
 ```text
-macOS + OrbStack
+학교 macOS + OrbStack
 ├─ MAC-V: Ubuntu 24.04 Linux Machine
 └─ MAC-D: Docker
 
-Windows 11 Pro + WSL2 Ubuntu 24.04
+개인 노트북 Windows 11 Pro + WSL2 Ubuntu 24.04
 ├─ WIN-V: Ubuntu 24.04 direct Linux Runtime
 └─ WIN-D: Docker
 ```
 
-상세 계약은 `environments/RUNTIME-PROFILES.md`, Docker 정책은 `environments/DOCKER-POLICY.md`, Mission별 설계는 `environments/MISSION-LAB-MATRIX.md`를 사용합니다.
+상세 계약:
 
-### CLEAR와 환경 학습을 분리한다
+- `environments/RUNTIME-PROFILES.md`
+- `environments/MISSION-LAB-MATRIX.md`
+- `training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`
+- `environments/DOCKER-POLICY.md`
+
+### MAC-V / WIN-V 동일 기준
 
 ```text
+MAC-V / WIN-V
+= 동등한 지원 실행 환경(Supported Runtime)
+
 Mission CLEAR
 = 공식 Mission/Evaluation
-+ 필요한 실제 실행(Runtime)
-+ 검증(Verification)
-+ 증빙(Evidence)
-
-Secondary Platform Check
-= 권장 Portability 학습
-
-Docker Lab
-= 선택 Training Layer
++ 필요한 실제 Runtime
++ Verification
++ Evidence
 ```
 
-따라서 운영 우선순위는 다음과 같습니다.
+`MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary 관계가 아닙니다.
+
+작업 시작 시 사용자가 현재 수행 환경을 알려 주면 그 환경을 **현재 실행 환경(Current Runtime Context)**으로 사용합니다.
 
 ```text
-1. 기본 미션 실제 실행(Primary Mission Runtime)
-2. 검증(Verification)
-3. 증빙(Evidence)
-4. ✅ 완료(CLEAR)
-5. 보조 플랫폼 확인(Secondary Platform Check) — 권장
-6. Docker 실습(Docker Lab) — 선택
+학교 Mac → MAC-V
+노트북 Win11 → WIN-V
 ```
 
-R01의 기본 로컬 Primary는 `MAC-V`, 기본 Secondary는 `WIN-V`입니다. 외부 GitHub/AWS/배포/AI Provider가 핵심인 미션은 해당 실제 외부 실행과 증빙이 최우선입니다.
+### 환경 유지 방식의 차이
 
-Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `FAIL` 처리하지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 공식 요구가 우선합니다.
+MAC-V:
 
-같은 Mission을 네 실행 환경 프로필(Runtime Profile)에서 처음부터 끝까지 반복하지 않습니다. Docker를 수행한다면 전체 미션 재수행이 아니라 핵심 기능 1~3개와 containerization/reproducibility 차이만 짧게 확인합니다.
+```text
+Resettable / Ephemeral
+→ CHECK BEFORE INSTALL
+→ 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
+```
+
+WIN-V:
+
+```text
+Persistent
+→ VERIFY BEFORE REINSTALL
+→ 기존 WSL2/Repository 보존
+→ 문제 있을 때만 최소 Repair
+```
+
+### 플랫폼별 수행 기록
+
+각 Mission에서 다음을 별도로 기록합니다.
+
+```text
+MAC-V Runtime Record
+WIN-V Runtime Record
+Mission CLEAR
+CROSS-PLATFORM VERIFIED
+```
+
+공식 Mission/Evaluation이 두 플랫폼 모두를 요구하지 않는 한, 한 지원 환경에서 공식 요구를 충족하면 다른 환경 미수행을 이유로 CLEAR를 자동 차단하지 않습니다.
+
+두 환경 모두 실제 PASS하면 내부 품질 상태로 `CROSS-PLATFORM VERIFIED`를 기록할 수 있습니다.
+
+학교 Mac이 Reset되어도 과거의 추적 가능한 MAC-V PASS Evidence는 자동으로 FAIL이 되지 않습니다. 현재 장비 재현 상태와 과거 수행 기록을 분리합니다.
+
+### Docker
+
+Docker는 선택 Training Layer입니다.
+
+```text
+Docker 미수행 ≠ Mission FAIL
+Docker 미수행 ≠ Mission BLOCKED
+Docker 사용 여부 ≠ Mission CLEAR 판정
+```
+
+공식 Mission/Evaluation이 Docker를 요구하는 경우에만 공식 요구가 우선합니다.
 
 ---
 
@@ -201,93 +240,146 @@ Docker를 하지 않았다는 이유만으로 Mission을 `⛔ BLOCKED` 또는 `F
 
 1. 공식 Mission PDF 확인
 2. Mission MD 확인
-3. Evaluation이 있으면 확인
+3. Evaluation 확인
 4. 필수/선택 요구사항 분리
 5. 현재 Step에 필요한 용어 설명
-6. 핵심 개념 및 필요한 개념도 제공
-7. 긴 실행형 Guide는 Quick Start와 클릭 가능한 목차가 실제 본문과 맞는지 확인
+6. 핵심 개념과 필요한 개념도 제공
+7. 긴 실행형 Guide의 Quick Start와 목차 정합성 확인
 
 <a id="prepare"></a>
 ## 2. 준비(PREPARE)
 
-1. 기준 환경(Golden Path) 확인
-2. 버전과 사전조건 확인
-3. 환경설정 전 현재 상태 확인
-4. 시스템 파일 변경 시 백업
-5. Secret은 Repository에 저장하지 않음
-6. `START-CHECK.md`가 있는 미션은 필수 선행과 현재 보유 지식을 먼저 확인
-7. 현재 Mission의 기본 실행 환경(Primary Runtime)을 확인하고 Docker는 선택 여부만 판단
-8. 실행 위치(Context), 실행 전 점검(Preflight), STOP/GO, 재실행 안전성(Rerun Safety)을 먼저 확인
+1. 현재 실행 환경(Current Runtime Context)을 `MAC-V` 또는 `WIN-V`로 확인
+2. Host / Ubuntu / Repository / Branch / Commit 확인
+3. 환경 버전과 사전조건 확인
+4. Bootstrap / Git·GitHub Identity 확인
+5. 시스템 파일 변경 시 백업
+6. Secret은 Repository에 저장하지 않음
+7. `START-CHECK.md`가 있으면 선행 조건 확인
+8. 실행 위치(Context), Preflight, STOP/GO, Rerun Safety 확인
+9. Docker는 선택 여부만 판단
 
 <a id="build"></a>
 ## 3. 구현(BUILD)
 
 1. Phase A에서 준비된 최소 통과 경로를 기본값으로 사용
-2. Reference Build에서는 실제 환경 없이 만들 수 있는 기준 구현을 먼저 완성
-3. 입문자는 실제 실행(Runtime) 단계에서 `BEGINNER-GUIDE.md` Step 순서대로 수행
-4. 실행 가능한 명령과 의미 있는 코드 줄은 입문자가 자기 말로 설명할 수 있게 해설
-5. 현재 미션 통과와 관계없는 고도화는 뒤로 미룸
-6. 실제 실행 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
-7. Docker 실습을 하더라도 공통 Source를 재사용하고 환경별 코드 복제는 최소화
+2. 입문자는 `BEGINNER-GUIDE.md` Step 순서대로 수행
+3. 실행 가능한 명령과 의미 있는 코드 줄을 자기 말로 설명할 수 있게 해설
+4. 현재 미션 CLEAR와 관계없는 고도화는 뒤로 미룸
+5. 실제 실행 중 새 설계가 필요하면 CLEAR를 막는 범위까지만 수정
+6. 환경별 코드 복제는 최소화
 
 <a id="verify"></a>
 ## 4. 검증(Verification)
 
-검증은 둘로 분리합니다.
-
 ### Reference Build 검증
 
 - 요구사항 누락 확인
-- 문법/정적 검사 가능한 항목
+- 문법/정적 검사
 - 코드·문서 일치성
 - Secret 노출
 - 실제 실행하지 않은 항목을 PASS로 표시하지 않았는지 확인
 
 ### 실제 실행 검증(Runtime Verification)
 
-1. 실제 환경이 필요한 항목을 직접 실행
+1. 선택된 Current Runtime Context에서 실제 실행
 2. `PASS / FAIL` 판정을 명확히 표시
-3. 실패 시 원인 → 확인 → 최소 해결 → 재검증 순서 사용
+3. 실패 시 원인 → 확인 → 최소 해결 → 재검증
 4. 예상 출력과 실제 출력을 구분
-5. 실제 실행 결과가 정상이라면 불필요한 추가 리팩터링 없이 증빙(Evidence)으로 이동
-6. Secondary/Docker Lab 결과를 Primary CLEAR 증빙과 혼동하지 않음
-7. 문서 기준은 `정책(POLICY) → 적용(APPLY) → 검증(VERIFY)`로 실제 대상 문서까지 확인
+5. 실제 결과가 정상이라면 Evidence로 이동
+6. MAC-V의 결과를 WIN-V PASS로 대신 사용하지 않음
+7. WIN-V의 결과를 MAC-V PASS로 대신 사용하지 않음
+8. Docker Lab을 직접 Linux Runtime PASS와 혼동하지 않음
 
 <a id="evidence"></a>
 ## 5. 증빙(Evidence)
 
-평가 요구사항과 증빙을 1:1로 연결합니다.
+기본 관계:
 
-`요구사항(Requirement) → 구현(Implementation) → 검증(Verification) → 증빙(Evidence)`
+```text
+Requirement
+→ Implementation
+→ Verification
+→ Evidence
+```
 
-Secret, Token, Password, Private Key는 증빙에서도 노출하지 않습니다.
+플랫폼별 PASS Evidence에는 최소한 다음을 연결합니다.
 
-Reference Build 단계에서는 증빙(Evidence) **계획과 저장 위치**만 준비할 수 있으며, 실제 실행하지 않은 결과를 Evidence로 만들지 않습니다.
+```text
+Runtime Profile
+Host / Linux Runtime
+Mission
+Repository / Branch / Commit
+Executed At
+Verification Result
+Evidence Path
+```
 
-Secondary/Docker Lab의 학습 결과는 Portability Note로 기록할 수 있지만 공식 요구사항의 실제 증빙을 대체하지 않습니다.
+각 Mission에서 실제 Evidence를 만들 때 필요하면 다음처럼 분리합니다.
+
+```text
+training/round-01-clear/evidence/
+├── mac-v/
+└── win-v/
+```
+
+실제 수행 전 빈 디렉터리를 형식 때문에 미리 만들지 않습니다.
+
+Secret, Token, Password, Private Key는 Evidence에 노출하지 않습니다.
+
+플랫폼별 중앙 수행 상태는 [`training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)에서 관리합니다.
 
 <a id="clear"></a>
 ## 6. 완료(CLEAR)
 
-다음 조건을 모두 만족해야 CLEAR입니다.
+Mission CLEAR는 다음이 실제로 충족되었을 때만 기록합니다.
 
-- 공식 요구사항 충족
-- 구현 완료
-- 자동 검증 가능한 항목 PASS
-- 필요한 실제 환경 검증 완료
-- 필요한 증빙(Evidence) 확보
-- Round 01 입문자 재현 가이드가 현재 Runtime/경로와 정합함
+```text
+공식 필수 요구사항
++ 실제 Runtime
++ Verification
++ 필요한 Evidence
++ Evaluation 설명 가능
++ Secret 보호
+```
 
-CLEAR 뒤에 발견한 비필수 개선은 다음 미션 실제 실행을 막지 않고 후속 개선/심화 Round에서 처리합니다.
+플랫폼별 추가 상태:
+
+```text
+MAC-V PASS
+WIN-V PASS
+CROSS-PLATFORM VERIFIED
+```
+
+한 지원 환경에서 Mission CLEAR를 확보한 후 다른 지원 환경에서 재수행하여 Cross-platform Verification을 추가할 수 있습니다. 공식 요구가 없다면 이 추가 검증 때문에 다음 Mission 진도를 자동 차단하지 않습니다.
 
 <a id="status"></a>
 ## 상태
 
-Mission 상태는 아래 네 가지만 사용합니다.
+Mission 상태:
 
-- `⬜ NOT STARTED`
-- `🟡 ACTIVE`
-- `⛔ BLOCKED`
-- `✅ CLEAR`
+```text
+⬜ NOT STARTED
+🟡 ACTIVE
+⛔ BLOCKED
+✅ CLEAR
+```
 
-Reference Build 진행 여부, Secondary Platform Check, Docker Lab Coverage는 Mission 상태를 임의로 변경하는 근거가 아닙니다.
+플랫폼 Runtime Record:
+
+```text
+⬜ NOT RUN
+🟡 PENDING
+✅ PASS
+❌ FAIL
+```
+
+현재 장비 재현 상태가 필요한 경우:
+
+```text
+READY
+STALE
+REBUILD NEEDED
+```
+
+`STALE`은 과거 PASS Evidence가 있지만 현재 장비 상태를 다시 확인해야 한다는 뜻이며, 과거 PASS를 FAIL로 바꾸지 않습니다.
