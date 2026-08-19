@@ -29,7 +29,7 @@ Runtime CLEAR               = 0 / 15
 B2-2 MAC-V Mission Record   = NOT RUN
 B2-2 WIN-V Mission Record   = NOT RUN
 B2-2 Cross-platform         = NOT VERIFIED
-B2-2 5계정 Simulation       = Documentation Ready / Runtime 미실행
+B2-2 5계정 Simulation       = Documentation/Automation Ready / Runtime 미실행
 Current Runtime Context     = MAC-V 우선 진행 예정
 ```
 
@@ -39,18 +39,23 @@ Current Runtime Context     = MAC-V 우선 진행 예정
 
 현재 바로 할 일:
 
-1. B2-2의 MAC-V 학습 Simulation을 학교 Mac → OrbStack → Ubuntu 24.04 `codyssey` 기준으로 시작합니다.
+1. 학교 Mac에서 B2-2 `mac-v-orchestrate.sh --prepare` 또는 동등 수동 절차로 MAC-V CORE를 실제 준비합니다.
 2. Control Tower Ubuntu Bootstrap을 공통 Source of Truth로 사용합니다.
-3. Ubuntu 내부에 `codyssey01`~`codyssey05` Linux User 5개를 구성합니다.
-4. 동일한 GitHub 학습 계정 A~E를 `gh` + HTTPS로 각 Linux User에 1:1 인증합니다.
-5. Account Identity Gate 5/5를 통과한 뒤 Issue/PR/Review Simulation으로 이동합니다.
-6. Simulation 기록은 실제 3~5인 팀 Evidence와 분리합니다.
-7. 실제 팀 GitHub 기록이 확인되기 전에는 B2-2 Mission CLEAR로 승격하지 않습니다.
+3. Ubuntu 내부 `codyssey01`~`codyssey05`와 GitHub 학습 Account A~E를 1:1로 인증합니다.
+4. Account Identity Gate 5/5를 실제 통과합니다.
+5. Account A에서 별도 `codyssey-b2-2-sim-mac-v` Simulation Repository seed를 생성합니다.
+6. Account B~E collaborator 수락과 `main` 보호 정책을 확인합니다.
+7. Repository Gate 0 FAIL 후 5개 독립 clone을 준비합니다.
+8. `TASK-MATRIX.md`에 따라 Issue 10+ / PR 10+ / Review 10+ / Feedback 5+를 실제 수행합니다.
+9. conflict 2+ / troubleshooting 4종 / Simulation SUBMISSION을 완료합니다.
+10. Simulation 기록은 실제 3~5인 팀 Evidence와 분리하고, 실제 팀 GitHub 기록 검증 전에는 B2-2 Mission CLEAR로 승격하지 않습니다.
 
 B2-2 진입 문서:
 
 - [B2-2 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
-- [B2-2 MAC-V Runbook](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/environment/mac-v/README.md)
+- [B2-2 MAC-V Run Now](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/environment/mac-v/RUN-NOW.md)
+- [B2-2 MAC-V Simulation](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/simulation/mac-v/README.md)
+- [Simulation Repository Setup](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/simulation/mac-v/SIMULATION-REPOSITORY-SETUP.md)
 
 ## 📑 목차
 
@@ -217,7 +222,13 @@ A. 실제 B2-2 Mission
 B. 5계정 학습 Simulation
 동일 GitHub Account A~E
 → MAC-V Ubuntu 24.04 + Linux User 5개
-→ WIN-V Ubuntu 24.04 + Linux User 5개
+→ Identity Gate 5/5
+→ 별도 Simulation Repository
+→ collaborator / main protection Gate
+→ 독립 clone 5개
+→ Issue / PR / Review / Feedback
+→ Conflict / Troubleshooting
+→ WIN-V 동일 구조 재현
 → Cross-platform
 → 독립 VM/Instance 5개 ADVANCED
 ```
