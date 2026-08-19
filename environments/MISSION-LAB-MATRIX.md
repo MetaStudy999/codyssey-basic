@@ -2,37 +2,40 @@
 
 ## 목적
 
-B1-1~B7-2의 FAST TRACK 실제 실행(Runtime)을 빠르게 수행하면서, Docker는 **선택 실습**으로 분리합니다.
+B1-1~B7-2의 FAST TRACK 실제 실행(Runtime)을 빠르게 수행하면서, `MAC-V`와 `WIN-V`는 **동등한 지원 실행 환경(Supported Runtime)**으로, Docker는 **선택 실습**으로 분리합니다.
 
 공식 Mission/Evaluation과 `training/round-01-clear/PHASE-C-RUNBOOK.md`가 CLEAR의 기준(Source of Truth)입니다. 이 문서는 실행환경과 추가 학습 범위를 정리하며 공식 요구사항을 임의로 늘리지 않습니다.
 
 ## 한눈에 보기(Quick Read)
 
 ```text
-기본 실행 환경(Primary Runtime)          = Mission CLEAR의 실제 핵심 실행환경
-보조 플랫폼 확인(Secondary Platform Check) = 권장 이식성 확인
-Docker 실습(Docker Lab)                 = 선택 학습
+MAC-V = 학교 Mac / OrbStack Ubuntu 24.04        ← 지원 실행 환경
+WIN-V = Windows 11 Pro / WSL2 Ubuntu 24.04     ← 지원 실행 환경
+MAC-D / WIN-D                                  ← 선택 Docker 실습
 ```
 
-현재 B1-1은:
+핵심 원칙:
 
 ```text
-Primary   = MAC-V / OrbStack Ubuntu 24.04
-Secondary = WIN-V / WSL2 Ubuntu 24.04
-Docker    = 선택
+MAC-V와 WIN-V의 Mission/Evaluation/CLEAR 기준은 동일
+→ 실제 작업 시 Current Runtime Context 선택
+→ 실제 수행한 환경의 Runtime Record를 기록
+→ 두 환경 모두 PASS하면 CROSS-PLATFORM VERIFIED 가능
 ```
 
-> Matrix는 **환경 선택 지도**입니다. 실제 수행 명령은 각 Mission의 `BEGINNER-GUIDE.md`와 Phase C Runbook을 따릅니다.
+플랫폼별 실제 수행 상태는 [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)에서 관리합니다.
+
+> 이 Matrix는 **환경 선택 지도**입니다. 실제 수행 명령은 각 Mission의 `BEGINNER-GUIDE.md`와 Phase C Runbook을 따릅니다.
 
 ## 📑 목차
 
 - [프로필(Profile)](#profiles)
 - [핵심 정책](#policy)
 - [15개 Mission Matrix](#matrix)
-- [보조 플랫폼 확인(Secondary Platform Check) 운영](#secondary)
-- [선택 Docker 실습(Optional Docker Lab) 운영](#docker-lab)
+- [MAC-V / WIN-V 운영](#direct-runtime)
+- [선택 Docker 실습](#docker-lab)
 - [Docker 실습 공통 체크](#docker-check)
-- [VM/Linux Machine 공통 체크](#linux-check)
+- [Linux Runtime 공통 체크](#linux-check)
 - [FAST TRACK과의 관계](#fast-track)
 
 ---
@@ -40,56 +43,77 @@ Docker    = 선택
 <a id="profiles"></a>
 ## 프로필(Profile)
 
-- `MAC-V`: macOS → OrbStack Ubuntu 24.04 Linux Machine — 기본 실행 환경(Primary)
-- `WIN-V`: Windows 11 Pro → WSL2 Ubuntu 24.04 direct runtime — 권장 보조 환경(Secondary)
+- `MAC-V`: 학교 macOS → OrbStack Ubuntu 24.04 Linux Machine — 지원 실행 환경(Supported Runtime), Resettable / Ephemeral
+- `WIN-V`: 개인 Windows 11 Pro → WSL2 Ubuntu 24.04 direct runtime — 지원 실행 환경(Supported Runtime), Persistent
 - `MAC-D`: macOS → OrbStack Docker — 선택 Docker 실습(Docker Lab)
-- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker — 선택 Docker 이식성 실습(Portability Lab)
+- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker — 선택 Docker 실습(Docker Lab)
 
 <a id="policy"></a>
 ## 핵심 정책
 
 ```text
-기본 미션 실제 실행(Primary Mission Runtime) = 필수
-보조 플랫폼 확인(Secondary Platform Check) = 권장
-Docker 실습(Docker Lab) = 선택
+지원 미션 실제 실행(Supported Mission Runtime) = MAC-V 또는 WIN-V
+플랫폼별 수행 기록(Runtime Record)             = 각각 별도 기록
+교차 플랫폼 검증(Cross-platform Verification)   = 두 환경 실제 PASS 시 추가 품질 상태
+Docker 실습(Docker Lab)                         = 선택
 ```
 
-Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하지 않습니다. 공식 Mission/Evaluation이 Docker를 명시적으로 요구하는 경우에만 그 공식 요구가 우선합니다.
+공식 Mission/Evaluation이 특정 플랫폼을 요구하면 공식 요구가 우선합니다.
+
+Docker를 하지 않았다는 이유만으로 Mission을 BLOCKED/FAIL 처리하지 않습니다. `MAC-V`와 `WIN-V` 두 환경을 모두 수행하지 않았다는 이유만으로도, 공식 요구가 두 플랫폼을 요구하지 않는 한 Mission CLEAR를 자동 차단하지 않습니다.
 
 <a id="matrix"></a>
 ## 15개 Mission Matrix
 
-| Mission | 기본 실행 환경(Primary Runtime) | 보조 확인(Secondary Check) | 선택 Docker 실습 | CLEAR에서 주의할 점 |
+| Mission | MAC-V 지원 | WIN-V 지원 | 선택 Docker 실습 | CLEAR에서 주의할 점 |
 |---|---|---|---|---|
-| **B1-1** | `MAC-V` | `WIN-V` | Agent/monitor process·port·resource·log 반복 연습 | SSH 20022, UFW, users/groups, ACL, cron, Agent 15034는 실제 Linux 실행 환경의 증빙(Evidence) 필요 |
-| **B1-2** | `MAC-V` 격리 실습 | `WIN-V` | disposable container에서 process/CPU/log 장애 관찰 연습 | 장애 실험은 Host를 위험하게 만들지 않고 Before/After 증빙 확보 |
-| **B2-1** | `MAC-V` Python direct runtime | `WIN-V` | Python CLI/JSONL/CSV 재현성 연습 | CLI와 실제 persistence가 핵심; Docker 불필요 |
-| **B2-2** | GitHub + `MAC-V` local Git | `WIN-V` | branch/merge/reset/revert/stash 반복 연습 | 실제 Issue/PR/Review/충돌 기록은 GitHub server-side 증빙 필요 |
-| **B3-1** | `MAC-V` Python direct runtime | `WIN-V` | clean Python container에서 자료구조 테스트 | custom 자료구조 요구와 실제 실행 검증(Runtime Verification) 우선 |
-| **B3-2** | `MAC-V` Python/filesystem direct runtime | `WIN-V` | 격리 filesystem에서 Mini Git/DAG 반복 실험 | algorithm/정렬/탐색/파일 변경 흐름이 핵심 |
-| **B4-1** | `MAC-V` + browser + GitHub Pages | `WIN-V` | static site container serving 연습 | 실제 browser/GitHub Pages 증빙이 우선 |
-| **B4-2** | `MAC-V` Node/Vite + 실제 Supabase | `WIN-V` | React/Vite container/dev stack 연습 | 실제 Supabase CRUD/deploy 필요; Docker는 선택 |
-| **B5-1** | `MAC-V` SQLite direct runtime | `WIN-V` | clean SQLite container 반복 연습 | schema/FK/data/Q01~Q16 결과와 검증 우선 |
-| **B5-2** | `MAC-V` venv + uvicorn | `WIN-V` | FastAPI CRUD containerization 연습 | 실제 browser CRUD/DB/PRG acceptance 필요 |
-| **B5-3** | `MAC-V` venv + uvicorn | `WIN-V` | auth/session app containerization 연습 | login/authorization/relationship acceptance 필요 |
-| **B6-1** | 실제 AWS + `MAC-V` rehearsal | `WIN-V` rehearsal | Nginx/web container와 port/publish 개념 연습 | VPC/Subnet/IGW/Route/SG/EC2/HTTP 실제 AWS 증빙이 최종 기준 |
-| **B6-2** | `MAC-V` + real AI provider | `WIN-V` | Git diff→AI API 흐름 containerization 연습 | 실제 provider/Commit/PR 결과와 Secret 보호 필요 |
-| **B7-1** | `MAC-V` local integration + 실제 배포 | `WIN-V` | AI chatbot stack containerization 연습 | browser/two-user/AI/deploy/team acceptance가 최종 기준 |
-| **B7-2** | `MAC-V` local integration + 실제 배포 | `WIN-V` | backend/frontend/DB/AI stack containerization 연습 | B7-1 결과 기반 ownership/AI/API/browser/deploy/team acceptance 필요 |
+| **B1-1** | OrbStack Ubuntu 24.04 | WSL2 Ubuntu 24.04 | Agent/monitor process·port·resource·log 반복 연습 | SSH 20022, UFW, users/groups, ACL, cron, Agent 15034는 실제 Linux 실행 환경 Evidence 필요 |
+| **B1-2** | 격리 Linux 실습 | 격리 Linux 실습 | disposable container에서 process/CPU/log 장애 관찰 | 장애 실험은 Host를 위험하게 만들지 않고 Before/After 증빙 확보 |
+| **B2-1** | Python direct runtime | Python direct runtime | Python CLI/JSONL/CSV 재현성 연습 | CLI와 실제 persistence가 핵심; Docker 불필요 |
+| **B2-2** | GitHub + local Git | GitHub + local Git | branch/merge/reset/revert/stash 반복 연습 | 실제 Issue/PR/Review/충돌 기록은 GitHub server-side 증빙 필요 |
+| **B3-1** | Python direct runtime | Python direct runtime | clean Python container 자료구조 테스트 | custom 자료구조 요구와 실제 Runtime Verification 우선 |
+| **B3-2** | Python/filesystem direct runtime | Python/filesystem direct runtime | 격리 filesystem Mini Git/DAG 실험 | algorithm/정렬/탐색/파일 변경 흐름이 핵심 |
+| **B4-1** | browser + GitHub Pages | browser + GitHub Pages | static site container serving | 실제 browser/GitHub Pages 증빙 우선 |
+| **B4-2** | Node/Vite + 실제 Supabase | Node/Vite + 실제 Supabase | React/Vite container/dev stack | 실제 Supabase CRUD/deploy 필요; Docker는 선택 |
+| **B5-1** | SQLite direct runtime | SQLite direct runtime | clean SQLite container | schema/FK/data/Q01~Q16 결과와 검증 우선 |
+| **B5-2** | venv + uvicorn | venv + uvicorn | FastAPI CRUD containerization | 실제 browser CRUD/DB/PRG acceptance 필요 |
+| **B5-3** | venv + uvicorn | venv + uvicorn | auth/session app containerization | login/authorization/relationship acceptance 필요 |
+| **B6-1** | 실제 AWS + Linux rehearsal | 실제 AWS + Linux rehearsal | Nginx/web container와 port/publish 개념 | VPC/Subnet/IGW/Route/SG/EC2/HTTP 실제 AWS 증빙이 최종 기준 |
+| **B6-2** | real AI provider | real AI provider | Git diff→AI API containerization | 실제 provider/Commit/PR 결과와 Secret 보호 필요 |
+| **B7-1** | local integration + 실제 배포 | local integration + 실제 배포 | AI chatbot stack containerization | browser/two-user/AI/deploy/team acceptance가 최종 기준 |
+| **B7-2** | local integration + 실제 배포 | local integration + 실제 배포 | backend/frontend/DB/AI stack containerization | B7-1 기반 ownership/AI/API/browser/deploy/team acceptance 필요 |
 
-<a id="secondary"></a>
-## 보조 플랫폼 확인(Secondary Platform Check) 운영
+<a id="direct-runtime"></a>
+## MAC-V / WIN-V 운영
 
-기본 실행 환경(Primary Runtime)에서 Mission CLEAR에 필요한 경로를 먼저 완료합니다. Windows/WSL2 쪽은 같은 미션을 처음부터 전부 반복하지 않고 필요한 핵심만 확인합니다.
+두 환경의 **결과 기준은 동일**하지만 환경 유지 특성이 다릅니다.
+
+### MAC-V — 학교 Mac
 
 ```text
-1. 환경 기동
-2. 핵심 기능 1~3개 재현
-3. Mac/OrbStack ↔ Windows/WSL2 차이 기록
-4. 정리
+Resettable / Ephemeral
+→ CHECK BEFORE INSTALL
+→ 환경이 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
 ```
 
-보조 확인(Secondary Check)은 권장 학습이지만 공식 Mission이 요구하지 않는 한 CLEAR Gate가 아닙니다.
+### WIN-V — 개인 노트북
+
+```text
+Persistent
+→ VERIFY BEFORE REINSTALL
+→ 기존 WSL2/Repository 보존
+→ 문제 있을 때만 최소 Repair
+```
+
+작업 시작 시 사용자가 현재 위치를 알려 주면 그 환경을 `Current Runtime Context`로 사용합니다.
+
+```text
+학교 Mac → MAC-V
+노트북 Win11 → WIN-V
+```
+
+플랫폼을 바꾸어 재수행할 때는 새 Context에서 Preflight부터 다시 수행합니다.
 
 <a id="docker-lab"></a>
 ## 선택 Docker 실습(Optional Docker Lab) 운영
@@ -100,10 +124,10 @@ Docker는 FAST TRACK을 지연시키지 않는 범위에서 선택합니다.
 Mission CLEAR 우선
 → Docker 학습 가치가 높은가?
    ├─ YES → MAC-D 또는 WIN-D에서 짧은 실습(Lab)
-   └─ NO  → Docker Lab SKIP / 후속 Docker Track으로 이동
+   └─ NO  → Docker Lab SKIP / 후속 Docker Track
 ```
 
-Docker 실습에서는 전체 미션을 다시 반복하지 않습니다.
+Docker 실습에서는 전체 미션을 다시 반복할 필요가 없습니다.
 
 ```text
 Container 기동
@@ -123,7 +147,7 @@ Container 기동
 - [ ] container 삭제 후 재현 가능
 
 <a id="linux-check"></a>
-## VM/Linux Machine 공통 체크
+## Linux Runtime 공통 체크
 
 - [ ] Ubuntu 24.04 확인
 - [ ] `uname -m` 확인
@@ -131,7 +155,8 @@ Container 기동
 - [ ] package/version 기록
 - [ ] 필요한 service/port 실제 확인
 - [ ] Host/Guest 경계 확인
-- [ ] 파괴적 변경(destructive change) 전 백업/복구(backup/rollback) 확인
+- [ ] Repository/Branch/Commit 기록
+- [ ] 파괴적 변경 전 backup/rollback 확인
 
 <a id="fast-track"></a>
 ## FAST TRACK과의 관계
@@ -145,4 +170,4 @@ Stage 2 Optional
 B4-2 → B5-2 → B5-3 → B7-2
 ```
 
-보조 확인(Secondary Check) 또는 Docker 실습(Docker Lab)이 아직 미완료라는 이유로 다음 Mission 실제 실행(Runtime)을 막지 않습니다. 환경 학습 Coverage는 Mission 상태와 별도로 기록합니다.
+한 지원 환경에서 공식 조건을 충족해 Mission CLEAR한 후 다른 지원 환경에서 같은 Mission을 재수행하여 `CROSS-PLATFORM VERIFIED`를 추가할 수 있습니다. 이 추가 검증 또는 Docker 실습이 미완료라는 이유로 다음 Mission 실행을 자동 차단하지 않습니다.
