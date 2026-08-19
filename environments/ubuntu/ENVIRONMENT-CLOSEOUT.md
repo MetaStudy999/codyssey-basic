@@ -27,7 +27,7 @@ B1-1 실제 실행(Runtime)
 현재 실제 확인 상태:
 
 ```text
-Gate 1 — Documentation Drift           🟡 PARTIAL / blocker 중심 감사 계속
+Gate 1 — Documentation Drift           ✅ PASS — B1-1 blocker-level audit complete
 Gate 2 — MAC-V Bootstrap Runtime       ✅ PASS
 Gate 3 — Git/GitHub User Identity      🟡 PARTIAL — WIN-V PASS / MAC-V PENDING
 Gate 4 — Bash Static Syntax Validation ✅ PASS
@@ -70,6 +70,8 @@ environments/ubuntu/BASE-PACKAGES.md
 environments/ubuntu/MISSION-PACKAGE-MATRIX.md
 standards/BEGINNER-TRAINING-STANDARD.md
 standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md
+standards/BEGINNER-GUIDE-MODULARIZATION-STANDARD.md
+standards/BEGINNER-DOCUMENTATION-AUDIT.md
 각 Mission training/round-01-clear/environment/ubuntu-packages.txt
 ```
 
@@ -90,11 +92,29 @@ Common External Developer CLI
 
 ### 현재 상태
 
-**🟡 PARTIAL — blocker 수준 Drift는 우선 교정 중이며, Start Here·Control Tower 핵심 문서·B1-1 상단 Runtime/Navigation Drift는 교정되었습니다.**
+**✅ PASS — 현재 B1-1 실제 실행(Runtime)을 잘못 이끌 수 있는 blocker 수준 Documentation Drift 없음.**
 
-남은 B1-1 세부 줄별 해설/실행안전 감사와 이후 미션 문서 정합성은 실제 실행 순서에 맞춰 계속합니다.
+2026-08-19 기준으로 현재 B1-1 `main`과 Control Tower 기준을 다시 대조하여 다음을 확인했습니다.
 
-이 상태는 공통환경 실제 실행(Runtime) 자체가 실패했다는 뜻이 아닙니다. 현재 B1-1 수행을 잘못 이끌 수 있는 문서 오류가 발견되면 즉시 최소 수정합니다.
+```text
+- BEGINNER-GUIDE.md가 전체 중앙 허브(Global Hub) 역할을 함
+- 00~08 모듈 README 지역 목차(Local TOC)가 실제 경로로 연결됨
+- STEP 01~15 실행형 본문이 세부 학습 문서(Learning Unit)로 분리됨
+- 기존 평면 상세 문서는 호환 경로(Compatibility Path)만 유지하고 주 학습 기준으로 사용하지 않음
+- Primary Runtime = MAC-V / OrbStack Ubuntu 24.04, Secondary = WIN-V / WSL2 Ubuntu 24.04 구분
+- Common Base와 B1-1 Mission Package 계층이 충돌하지 않음
+- Quick Start가 공통 환경 동결 전에 SSH/UFW 변경으로 우회하지 않음
+- SSH 20022 변경은 backup → 사전 허용 → sshd 검증 → reload → 새 세션 → 기존 경로 정리 순서
+- UFW는 20022/15034 선허용 → 기본 정책 → 활성화/재적용 → SSH 유지 확인 → 추가 ALLOW IN 개별 정리 순서
+- OrbStack 관리 접속과 Mission OpenSSH `sshd:20022`를 명확히 구분
+- Secret은 실제 값이 아니라 존재·소유권·권한 등 메타데이터만 취급
+- Verification / Evidence / Evaluation / CLEAR를 서로 대체하지 않음
+- 실제 Runtime을 수행하지 않은 상태를 PASS/CLEAR로 기록하지 않음
+```
+
+이 PASS는 **공통 환경 동결을 막는 blocker 수준 문서 Drift가 없다는 판정**입니다. 모든 문장의 용어·품사·가독성 polishing까지 완전히 끝났다는 뜻은 아닙니다. 비차단 표현 개선과 이후 미션 문서 정합성은 실제 실행 순서에 맞춰 JIT 감사로 계속합니다.
+
+`BEGINNER READY` 및 Mission `CLEAR`는 별도 상태이며, 실제 Runtime/Verification/Evidence 없이 자동으로 승격하지 않습니다.
 
 ---
 
@@ -238,7 +258,7 @@ bash environments/ubuntu/validate-scripts.sh
 다음 조건을 만족하면 공통환경 설계를 동결합니다.
 
 ```text
-[ ] Gate 1 — 현재 B1-1 실행을 잘못 이끄는 blocker 수준 Drift 없음
+[x] Gate 1 — 현재 B1-1 실행을 잘못 이끄는 blocker 수준 Drift 없음
 [x] Gate 2 — MAC-V bootstrap 실제 확인 PASS
 [ ] Gate 3 — WIN-V Identity ✅ PASS / MAC-V Primary Identity 최종 확인 대기
 [x] Gate 4 — bash -n syntax validation PASS
@@ -272,20 +292,19 @@ ShellCheck 공통 필수화
 <a id="conclusion"></a>
 ## 현재 결론
 
-공통환경 **설계와 핵심 Runtime Bootstrap은 준비된 상태**입니다.
+공통환경 **설계와 핵심 Runtime Bootstrap, B1-1 blocker 수준 문서 감사는 준비 완료**입니다.
 
-현재 남은 핵심은:
+현재 남은 핵심은 하나입니다.
 
 ```text
 MAC-V 기본 실행 환경(Primary)의 Git/GitHub 사용자 준비 상태(User Identity) 최종 확인
-+ B1-1 실행을 막는 문서 불일치(Documentation Drift)가 없는지 확인
         ↓
 공통 환경 동결(COMMON ENVIRONMENT FREEZE)
         ↓
 B1-1 실제 실행(Runtime)
 ```
 
-새로운 공통 Tool을 계속 추가하기보다 위 Gate를 닫고 B1-1으로 이동합니다.
+새로운 공통 Tool을 계속 추가하기보다 Gate 3을 닫고 B1-1으로 이동합니다. 비차단 문서 표현 개선은 실제 Runtime을 중단하지 않고 JIT 방식으로 처리합니다.
 
 ```text
 공통 환경 마무리(COMMON ENVIRONMENT CLOSEOUT)
