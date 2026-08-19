@@ -58,7 +58,7 @@
 
 | 실행 순번 | 미션 | 구분 | Beginner Guide | 문서 내용 감사 | 우선순위 |
 |---:|---|---|---|---|---|
-| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 **3계층 마이그레이션 진행 중: 중앙 허브 + 모듈 README 지역 목차 적용 / 기존 평면 상세 문서의 Learning Unit 이동·분할 및 최종 링크 감사 필요** | **P0 — 현재 미션** |
+| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | ✅ **3계층 구조 APPLIED & VERIFIED / Runtime 진입을 잘못 이끄는 blocker 수준 Documentation Drift 없음. 전체 용어·줄별 해설 polishing은 JIT 감사로 지속** | **P0 — 현재 미션** |
 | 2 | B1-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
 | 3 | B2-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
 | 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
@@ -76,7 +76,7 @@
 
 ### B1-1 실제 적용 확인 — 2026-08-19
 
-B1-1은 기준만 추가한 상태가 아니라 실제 `BEGINNER-GUIDE.md`와 모듈 목차를 수정하고 재확인했습니다.
+B1-1은 기준만 추가한 상태가 아니라 실제 `BEGINNER-GUIDE.md`, 모듈 목차, 세부 학습 문서를 수정하고 GitHub `main`에서 재확인했습니다.
 
 ```text
 APPLIED & VERIFIED — 현재까지
@@ -84,20 +84,27 @@ APPLIED & VERIFIED — 현재까지
 - 전체 중앙 허브에서 모듈 README로 직접 이동
 - 00~08 모듈별 README 지역 목차(Local TOC) 생성
 - 연관 개념과 STEP을 모듈별로 분류
+- STEP 01~15를 실행형 모듈 내부 Learning Unit으로 물리 분리
+- 기존 평면 상세 문서는 상세 본문을 중복하지 않는 호환 경로(Compatibility Path)로 축소
+- 모듈 README → Learning Unit 직접 링크 재검증
+- Learning Unit → 모듈 README / 이전·다음 학습 단위 이동 경로 재검증
 - Phase A 표현을 현재 Phase C / FAST EXECUTE 흐름으로 교정
 - Primary Runtime을 MAC-V / Ubuntu 24.04로 교정
 - WIN-V Ubuntu 24.04 Secondary 경로 명시
 - Docker를 선택 Lab으로 구분
 - 공통 Bootstrap과 B1-1 Mission package 계층 구분
 - Quick Start에서 SSH/UFW 변경을 하지 않도록 제한
-- 일부 위험 Step에 Rerun Safety 경고 추가
+- SSH 변경은 backup → 20022 사전 허용 → sshd 문법/최종 설정 검증 → reload → 실제 새 세션 → 기존 경로 정리 순서로 고정
+- UFW 변경은 체크포인트 → 20022/15034 선허용 → 기본 정책 → 활성화/재적용 → 실제 20022 유지 → 불필요 ALLOW IN 개별 정리 순서로 고정
+- Secret은 값이 아니라 존재·소유권·권한 등 메타데이터만 검증하도록 제한
+- Verification / Evidence / Evaluation / CLEAR 상태를 서로 분리
 ```
 
-현재 B1-1의 3계층 구조는 **마이그레이션 진행 중**입니다. 중앙 허브와 모듈 README 지역 목차는 적용되었지만, 기존 `guide/*.md` 평면 상세 문서를 각 모듈 내부의 세부 학습 문서(Learning Unit)로 이동·분할하고 링크를 최종 재검증하는 작업이 남아 있습니다. 따라서 이 상태만으로 `BEGINNER READY`를 선언하지 않습니다.
+현재 B1-1의 **3계층 정보 구조(Information Architecture, IA) 마이그레이션은 완료**되었습니다. 중앙 허브 → 00~08 모듈 README → 실행형 세부 학습 문서가 연결되며, STEP 01~15의 주 학습 경로는 새 Learning Unit입니다. 기존 평면 파일은 오래된 링크가 즉시 깨지지 않게 하는 호환 안내만 유지합니다.
 
-단, 이는 **B1-1 전체가 BEGINNER READY라는 뜻이 아닙니다.** 기존 본문의 모든 실행 가능한 명령과 의미 있는 설정 줄이 새 줄별 해설 기준을 충족하는지, 모든 위험 Step의 Context/Preflight/STOP-GO/Recovery가 충분한지, 한국어 중심 용어와 영어 원어의 품사가 맞는지는 계속 P0 상세 감사 대상입니다.
+또한 실제 Runtime 진입 직전 blocker 수준 감사에서 **현재 B1-1 실행을 잘못 이끌 수 있는 상태/환경/경로/SSH·UFW 안전/Secret/Verification·Evidence 판정 Drift는 발견되지 않았습니다.** 따라서 공통 환경 마무리(Common Environment Closeout)의 Gate 1은 blocker 기준으로 PASS할 수 있습니다.
 
-`🟡 ... 감사 필요`는 가이드가 없다는 뜻이 아닙니다. **가이드는 이미 존재하지만 현재 실행 경로, 3계층 탐색 구조, 한글·영어 용어 정합성, 명령·코드 설명의 상세도와 실행 안전 계층을 다시 확인해야 한다는 뜻**입니다.
+단, **Gate 1 blocker PASS가 B1-1 전체 `BEGINNER READY` 또는 Mission `CLEAR`를 뜻하지는 않습니다.** 한국어 중심 용어와 영어 원어의 세부 품사, 모든 비위험 설명 줄의 표현 일관성, 추가적인 가독성 polishing은 실제 실행 중 JIT 감사 대상으로 계속 관리합니다. 실제 Runtime/Verification/Evidence가 없으면 Mission CLEAR도 아닙니다.
 
 ## 3. 알려진 Documentation Drift 유형
 
