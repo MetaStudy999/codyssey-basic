@@ -6,6 +6,8 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫
 
 > 핵심 기술·운영 용어는 가능한 경우 **한글 의미(English Original)**로 함께 표기합니다.
 
+> 메인 레포와 각 Mission Repository에서 공통으로 사용하는 작업 운영 규칙은 [WORKING-RULES.md](WORKING-RULES.md)에서 시작합니다. 공통 규칙의 단일 기준은 [CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md)입니다.
+
 ---
 
 <a id="quick-start"></a>
@@ -67,7 +69,8 @@ bash environments/ubuntu/verify-user-identity.sh
 6. [전체 미션 지도](#part-2)
 7. [현재 진행 상태](#current-progress)
 8. [상세 운영 정보](#part-3)
-9. [문서·훈련 기준](#standards)
+9. [작업 운영 룰](#working-rules)
+10. [문서·훈련 기준](#standards)
 
 ---
 
@@ -228,13 +231,14 @@ OrbStack Ubuntu
 2. [training/round-01-clear/NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md) — 다음 작업 안내(Next Actions)
 3. [B1-1 BEGINNER-GUIDE.md](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md) — 첫 미션 입문자 따라하기(Beginner Guide)
 
-나머지 문서는 필요할 때 확인합니다.
+나머지 문서는 필요할 때 확인합니다. 운영 규칙을 확인하거나 수정할 때는 [WORKING-RULES.md](WORKING-RULES.md)에서 시작합니다.
 
 ### 자주 보는 파일 이름
 
 ```text
 START-HERE-DEVELOPMENT-ENVIRONMENT.md = 개발환경 처음부터 따라하기
 NEXT-ACTIONS.md          = 다음 작업 안내(Next Actions)
+WORKING-RULES.md         = 메인/미션 공통 작업 룰 진입점(Entry Point)
 PHASE-C-PREFLIGHT.md     = 실행 전 사전 점검(Preflight)
 BEGINNER-GUIDE.md        = 입문자 따라하기 가이드(Beginner Guide)
 START-CHECK.md           = 시작 점검(Start Check)
@@ -360,6 +364,7 @@ Stage 2 — 선택 경로 4개
 
 - [PROGRESS.md — 현재 진행 상태](PROGRESS.md)
 - [NEXT-ACTIONS.md — 다음 작업](training/round-01-clear/NEXT-ACTIONS.md)
+- [WORKING-RULES.md — 작업 운영 룰 진입점](WORKING-RULES.md)
 - [MISSION-INDEX.md — 전체 미션 색인](MISSION-INDEX.md)
 - [BEGINNER-DOCUMENTATION-AUDIT.md — 입문자 문서 품질 감사](standards/BEGINNER-DOCUMENTATION-AUDIT.md)
 
@@ -487,6 +492,8 @@ NO
 
 ### 상세 운영 문서
 
+- [WORKING-RULES.md](WORKING-RULES.md) — 메인 작업 운영 룰 진입점
+- [standards/CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 메인/전체 Mission 공통 상위 작업 운영 표준
 - [PROGRESS.md](PROGRESS.md) — 현재 진행 상태
 - [docs/R01-OPERATING-MODEL.md](docs/R01-OPERATING-MODEL.md) — R01 운영 모델
 - [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 점검
@@ -499,21 +506,51 @@ NO
 
 ---
 
+<a id="working-rules"></a>
+## 🧭 작업 운영 룰(Working Rules)
+
+메인 레포와 모든 Mission Repository의 공통 작업 운영 규칙은 다음 경로로 관리합니다.
+
+```text
+README.md
+→ WORKING-RULES.md
+→ standards/CODYSSEY-WORKING-OPERATING-STANDARD.md
+→ 필요한 세부 Standard
+→ 각 Mission의 WORKING-RULES.md
+→ Mission 공식 Source
+→ BEGINNER-GUIDE / CHECKLIST
+→ Runtime → Verification → Evidence → Evaluation → CLEAR
+```
+
+- [WORKING-RULES.md](WORKING-RULES.md) — Control Tower 작업 룰 진입점(Entry Point)
+- [CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 전체 Mission이 공유하는 상위 작업 운영 계약(Operating Contract)
+- [Standards Registry](standards/README.md) — 세부 표준의 전체 색인
+
+공통 규칙 전문은 메인 상위 표준에서 한 번만 관리하고, 각 Mission의 `WORKING-RULES.md`에는 **해당 미션의 공식 요구·예외·실행 문서 연결만** 둡니다. 공식 Mission/Evaluation/제공 파일은 항상 내부 작업 룰보다 우선합니다.
+
+이 작업 룰을 수정하거나 새 미션에 적용한 경우에도 문서 변경만으로 실제 실행(Runtime Execution), 검증(Verification), 증빙 자료(Evidence), 완료(CLEAR) 상태를 올리지 않습니다.
+
+[목차로 돌아가기](#toc)
+
+---
+
 <a id="standards"></a>
 ## 📚 문서·훈련 기준
 
-입문자 문서를 새로 만들거나 수정할 때는 아래 기준을 사용합니다.
+공통 작업 룰과 세부 문서 기준은 아래 순서로 확인합니다.
 
-1. [standards/README.md](standards/README.md) — 전체 기준 관리 Registry
-2. [BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
-3. [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차·Quick Start·빠른 진입 표준
-4. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
-5. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
-6. [COMMAND-CODE-EXPLANATION-STANDARD.md](standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
-7. [DEVELOPMENT-TOOLSET-STANDARD.md](standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set·대체 IDE·공용 Mac no-admin 표준
-8. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
-9. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/검증(Verification)/증빙(Evidence) 기준
-10. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
+1. [WORKING-RULES.md](WORKING-RULES.md) — 메인 작업 룰 진입점
+2. [CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 메인/각 Mission 공통 상위 운영 표준
+3. [standards/README.md](standards/README.md) — 전체 세부 기준 Registry
+4. [BEGINNER-TRAINING-STANDARD.md](standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 훈련·문서 생성 표준
+5. [DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md](standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차·Quick Start·빠른 진입 표준
+6. [README-INFORMATION-ARCHITECTURE-STANDARD.md](standards/README-INFORMATION-ARCHITECTURE-STANDARD.md) — README 정보 구조 표준
+7. [BEGINNER-DOCUMENTATION-AUDIT.md](standards/BEGINNER-DOCUMENTATION-AUDIT.md) — 15개 미션 입문자 문서 품질 감사
+8. [COMMAND-CODE-EXPLANATION-STANDARD.md](standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령어·코드 한 줄 해설 표준
+9. [DEVELOPMENT-TOOLSET-STANDARD.md](standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발 Tool Set·대체 IDE·공용 Mac no-admin 표준
+10. [TERMINOLOGY-STANDARD.md](standards/TERMINOLOGY-STANDARD.md) — 한글·영어 용어 표기 표준
+11. [CANONICAL-REFERENCE-STANDARD.md](standards/CANONICAL-REFERENCE-STANDARD.md) — Reference/Guide/검증(Verification)/증빙(Evidence) 기준
+12. [ENVIRONMENT-STANDARD.md](standards/ENVIRONMENT-STANDARD.md) — 환경 기준
 
 ### README 생성 핵심 원칙
 
@@ -534,6 +571,7 @@ NO
 ### 현재 실행 규칙
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
+- 메인/미션 공통 작업 룰은 `WORKING-RULES.md` → `CODYSSEY-WORKING-OPERATING-STANDARD.md` 순서로 확인합니다.
 - 실제 실행·검증·필요 Evidence가 끝나기 전에는 CLEAR로 표시하지 않습니다.
 - Secret, Token, Password, Private Key를 Repository/Chat/Evidence에 남기지 않습니다.
 - 사용자는 현재 Mission의 `BEGINNER-GUIDE.md`를 위에서 아래로 따라 실제 Runtime을 수행합니다.
