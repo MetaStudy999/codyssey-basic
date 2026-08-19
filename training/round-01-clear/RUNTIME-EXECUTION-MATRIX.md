@@ -13,6 +13,15 @@ WIN-V Runtime Record        = 개인 노트북 Windows 11 Pro → WSL2 → Ubunt
 CROSS-PLATFORM VERIFIED     = 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
 ```
 
+현재 Workcell 포커스:
+
+```text
+B1-1 = ⏸ PAUSED / READY TO RESUME
+B2-2 = 🟡 ACTIVE
+```
+
+B1-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 문서/Simulation 준비도 실제 팀 Runtime PASS를 의미하지 않습니다.
+
 핵심 원칙:
 
 ```text
@@ -77,14 +86,14 @@ MAC-V PASS + WIN-V PASS     → CROSS-PLATFORM VERIFIED 가능
 <a id="matrix"></a>
 ## 현재 R01 수행 기록
 
-> 현재 표는 **미션 실제 실행(Runtime Execution) 기록**만 나타냅니다. 개발환경 Bootstrap 또는 Git/GitHub Identity 확인 기록을 미션 Runtime PASS로 계산하지 않습니다.
+> 현재 표는 **미션 실제 실행(Runtime Execution) 기록**만 나타냅니다. 개발환경 Bootstrap, Git/GitHub Identity 확인, Simulation 문서 준비를 미션 Runtime PASS로 계산하지 않습니다.
 
-| 순서 | 미션 | MAC-V | WIN-V | 교차 플랫폼 | Mission 상태 |
+| 순서 | 미션 | MAC-V | WIN-V | 교차 플랫폼 | Mission / Workcell 상태 |
 |---:|---|---|---|---|---|
-| 1 | B1-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
+| 1 | B1-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⏸ PAUSED / READY TO RESUME |
 | 2 | B1-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 3 | B2-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 4 | B2-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 4 | B2-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
 | 5 | B3-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 6 | B3-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 7 | B4-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
@@ -96,6 +105,8 @@ MAC-V PASS + WIN-V PASS     → CROSS-PLATFORM VERIFIED 가능
 | 13 | B5-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 14 | B5-3 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 15 | B7-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+
+B2-2의 현재 5계정 MAC-V/WIN-V Simulation은 별도 학습 트랙입니다. 실제 Simulation Runtime이 시작되어도 공식 팀 Runtime Record와 Evidence를 자동으로 PASS 처리하지 않습니다.
 
 ---
 
@@ -135,13 +146,23 @@ REBUILD NEEDED
 
 `STALE` 또는 `REBUILD NEEDED`는 **과거의 실제 PASS Evidence를 FAIL로 바꾸지 않습니다.** 과거 수행 기록과 현재 장비 상태를 분리합니다.
 
-### Mission 상태
+### Mission / Workcell 상태
 
 ```text
 ⬜ NOT STARTED
+= 해당 미션 실제 실행 Workcell 미시작
+
 🟡 ACTIVE
+= 현재 실제 수행/검증 또는 공식 수행 준비의 주 Workcell
+
+⏸ PAUSED / READY TO RESUME
+= 현재 실행을 일시정지했지만 FAIL/CLEAR가 아니며 재개 가능한 상태
+
 ⛔ BLOCKED
+= 실제 의존성 때문에 진행 불가
+
 ✅ CLEAR
+= 공식 요구 + 실제 Runtime + Verification + 필요한 Evidence 완료
 ```
 
 Mission CLEAR는 공식 Mission/Evaluation의 필수 조건, 실제 Runtime, 검증(Verification), 필요한 증빙 자료(Evidence)를 충족했을 때만 기록합니다.
@@ -299,7 +320,8 @@ Mission CLEAR와 플랫폼 기록을 동시에 추정하여 변경하지 않습�
 업데이트 순서:
 
 ```text
-실제 Runtime
+현재 Workcell 선택
+→ 실제 Runtime
 → Verification
 → Evidence 저장
 → 해당 MAC-V 또는 WIN-V Runtime Record 갱신
