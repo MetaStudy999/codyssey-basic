@@ -171,7 +171,7 @@ Self-contained First
 
 [BEGINNER-GUIDE-MODULARIZATION-STANDARD.md](BEGINNER-GUIDE-MODULARIZATION-STANDARD.md)
 
-긴 `BEGINNER-GUIDE.md`를 한 파일에 계속 누적하지 않고 **중앙 허브(Hub) + `guide/` 학습 모듈(Module)** 구조로 관리합니다.
+긴 `BEGINNER-GUIDE.md`를 한 파일에 계속 누적하지 않고 **전체 중앙 허브(Hub) → 모듈별 `README.md` 목차(Module Table of Contents, Module TOC) → 세부 학습 문서(Learning Unit)**의 3계층 정보 구조(Information Architecture, IA)로 관리합니다.
 
 모듈화 판정(Trigger) 중 하나라도 해당하면 **필수(MUST)**입니다.
 
@@ -183,13 +183,17 @@ Self-contained First
 또는 입문자가 현재 위치를 잃을 정도로 복잡함
 ```
 
-Trigger에 해당하는데 상세 STEP 전체가 한 파일에 남아 있으면 `BEGINNER READY`로 판정하지 않습니다.
+Trigger에 해당하면 다음 구조를 사용합니다.
 
 ```text
-BEGINNER-GUIDE.md = Quick Start + 전체 지도 + 모듈 링크
+BEGINNER-GUIDE.md              = Quick Start + 전체 모듈 지도
 
-guide/*.md         = 실제 상세 따라하기
+guide/<module>/README.md       = 연관 개념·STEP의 지역 목차(Local TOC)
+
+guide/<module>/<unit>.md       = 실제 상세 따라하기(Learning Unit)
 ```
+
+모든 모듈 디렉터리에는 `README.md` 지역 목차를 두며, 세부 학습 문서가 50KB 이상·700줄 이상·독립 STEP 3개 이상·분리되는 기술 개념이 여러 개이거나 탐색이 어려우면 추가 분할을 판정합니다. 이 구조를 충족하지 않으면 내부 문서 품질 상태인 `BEGINNER READY`로 판정하지 않습니다.
 
 분할은 내용 삭제가 아니라 구조 리팩터링(Refactoring)이며, STEP/요구사항/명령/복구/증빙 연결을 보존해야 합니다.
 
@@ -365,27 +369,29 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 5. DOCUMENT-NAVIGATION-QUICK-START-STANDARD로 Quick Start/목차 적용 여부 결정
         ↓
-6. 실행 위치 / 실행 전 점검(Preflight) / STOP-GO / 재실행 안전성(Rerun Safety) 확인
+6. BEGINNER-GUIDE-MODULARIZATION-STANDARD로 모듈화/3계층 구조 판정
         ↓
-7. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
+7. 실행 위치 / 실행 전 점검(Preflight) / STOP-GO / 재실행 안전성(Rerun Safety) 확인
         ↓
-8. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
+8. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
         ↓
-9. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
+9. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
         ↓
-10. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
+10. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
         ↓
-11. TERMINOLOGY-STANDARD 적용
+11. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-12. 필요한 Environment/Canonical Standard 적용
+12. TERMINOLOGY-STANDARD 적용
         ↓
-13. 링크·명령·경로·상태 정합성 확인
+13. 필요한 Environment/Canonical Standard 적용
         ↓
-14. 실제 대상 문서를 다시 열어 검증(VERIFY)
+14. 링크·명령·경로·상태 정합성 확인
         ↓
-15. Beginner Documentation Audit
+15. 실제 대상 문서를 다시 열어 검증(VERIFY)
         ↓
-16. BEGINNER READY 또는 보완 필요
+16. Beginner Documentation Audit
+        ↓
+17. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -398,7 +404,9 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 | 문서 | 기본 역할 |
 |---|---|
 | `README.md` | 처음 진입, 지금 할 일, Quick Start/대표 경로, 탐색(Navigation) |
-| `BEGINNER-GUIDE.md` | Quick Start + 실제 수행의 대표 학습 경로 |
+| `BEGINNER-GUIDE.md` | Quick Start + 실제 수행의 전체 중앙 허브(Global Hub) |
+| `guide/<module>/README.md` | 연관 개념·STEP의 모듈 목차(Module TOC)와 이전/다음 탐색 |
+| `guide/<module>/<unit>.md` | 실제 세부 학습·실행·검증(Learning Unit) |
 | `START-HERE-DEVELOPMENT-ENVIRONMENT.md` | 개발환경 Quick Start + 처음부터 끝까지 시작 경로 |
 | `DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` | 모든 문서의 목차/빠른 진입 적용 기준 |
 | `CONTROL-TOWER-DOCUMENT-MAP.md` | 통합 레포 문서별 역할·적용·검증 상태 |
@@ -440,6 +448,8 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 - 과거 Phase/OS/경로를 현재 상태처럼 복사
 - 영어 용어만 연속 사용하여 입문자 이해를 전제
 - 실행형 긴 문서에 목차/빠른 진입 경로 없이 정보만 누적
+- 모듈화 Trigger에 해당하는 긴 가이드에 **전체 허브 → 모듈 README 목차 → 세부 학습 문서** 구조를 적용하지 않음
+- 모듈 README에 상세 명령을 중복 복제하여 세부 학습 문서와 기준이 갈리게 함
 - 모든 짧은 Reference/Standard에 형식만을 위해 동일한 Quick Start 명령을 강제
 - Quick Start에서 실행 전 점검(Preflight)/STOP-GO/재실행 안전성(Rerun Safety)을 생략하여 속도를 안전보다 우선
 - 위험한 삭제/Reset/Firewall/DB destructive/고비용 Cloud 명령을 Quick Start에 무분별하게 배치
