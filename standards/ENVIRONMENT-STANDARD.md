@@ -4,6 +4,8 @@
 
 입문자용 실제 시작 경로는 [`../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md`](../environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용하고, 개발도구의 필수/선택/no-admin 기준은 [`DEVELOPMENT-TOOLSET-STANDARD.md`](DEVELOPMENT-TOOLSET-STANDARD.md)를 따릅니다.
 
+상위 운영 계약은 [`CODYSSEY-WORKING-OPERATING-STANDARD.md`](CODYSSEY-WORKING-OPERATING-STANDARD.md)를 따릅니다.
+
 ## 한글·영어 용어 표기
 
 입문자 문서는 핵심 기술·운영 용어의 첫 등장 시 **한글 의미(English Original)** 형식을 우선합니다.
@@ -12,6 +14,7 @@
 
 ```text
 실행 환경(Runtime)
+현재 실행 환경(Current Runtime Context)
 검증(Verification)
 증빙 자료(Evidence)
 개발환경 초기 준비(Bootstrap)
@@ -21,17 +24,38 @@
 
 ## 기준 실행 경로(Golden Path)
 
-훈련 차수(Round) 01은 미션별 기준 환경 하나를 우선합니다. 여러 OS/VM/Container 조합을 동시에 지원하여 가이드를 복잡하게 만들지 않습니다.
-
-현재 R01의 공통 Host 계열은 다음을 기준으로 합니다.
+R01은 다음 두 직접 Linux Runtime을 **동등한 지원 실행 환경(Supported Runtime)**으로 관리합니다.
 
 ```text
-macOS + OrbStack → Ubuntu 24.04
-Windows 11 Pro + WSL2 → Ubuntu 24.04
-Docker → 선택 훈련 계층(Training Layer)
+MAC-V = 학교 macOS + OrbStack → Ubuntu 24.04
+WIN-V = 개인 Windows 11 Pro + WSL2 → Ubuntu 24.04
+Docker = 선택 훈련 계층(Training Layer)
 ```
 
-세부 실행 환경 프로필(Runtime Profile)은 `environments/RUNTIME-PROFILES.md`를 따릅니다.
+`MAC-V`와 `WIN-V`는 합격 기준의 Primary/Secondary 관계가 아닙니다. 공식 Mission/Evaluation, 코드·기능 품질, 검증(Verification), 증빙 자료(Evidence), Mission CLEAR 기준은 동일합니다.
+
+실제 작업 시작 시 사용자가 현재 수행 위치를 알려 주면 그 환경을 **현재 실행 환경(Current Runtime Context)**으로 선택합니다.
+
+```text
+학교 Mac에서 진행 → MAC-V
+노트북 Win11에서 진행 → WIN-V
+```
+
+환경 유지 특성은 다르게 관리합니다.
+
+```text
+MAC-V
+= Resettable / Ephemeral
+= CHECK BEFORE INSTALL
+
+WIN-V
+= Persistent
+= VERIFY BEFORE REINSTALL
+```
+
+플랫폼별 실제 수행 기록은 [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)를 사용합니다.
+
+세부 실행 환경 프로필(Runtime Profile)은 [`../environments/RUNTIME-PROFILES.md`](../environments/RUNTIME-PROFILES.md)를 따릅니다.
 
 ## 공용·관리형 Mac의 관리자 권한 없음(No-Admin) 계약
 
@@ -60,7 +84,17 @@ $HOME/.config
 
 ### OrbStack
 
-OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하므로 macOS의 기본 Linux 실행 환경(Runtime) 후보로 유지합니다. 다만 MDM/앱 허용목록 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+OrbStack은 macOS의 Linux 실행 환경(Runtime) 후보로 유지합니다. 다만 MDM/앱 허용목록 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+
+학교 Mac은 Reset 가능성을 기본 전제로 하므로 다음 순서를 사용합니다.
+
+```text
+현재 상태 확인
+→ 기존 OrbStack/Ubuntu가 정상이라면 재설치 생략
+→ Reset되었거나 누락되었으면 필요한 항목만 재구성
+→ Bootstrap / Identity 확인
+→ Mission Runtime
+```
 
 ### VS Code
 
@@ -82,6 +116,22 @@ Antigravity CLI = 선택 AI Terminal 도구
 Antigravity CLI의 macOS/Linux 공식 설치 기본 위치가 `~/.local/bin/agy`이므로 사용자 영역 설치가 필요한 no-admin 환경에서 우선 검토할 수 있습니다.
 
 Antigravity IDE는 로컬 앱 설치가 허용되는 경우에만 사용하고, 관리형 Mac에서 사용자 영역 설치가 항상 가능하다고 가정하지 않습니다.
+
+## Windows 11 Pro 지속 환경(Persistent Runtime) 계약
+
+WIN-V는 개인 노트북의 기존 상태 보존을 기본으로 합니다.
+
+```text
+VERIFY BEFORE REINSTALL
+
+기존 WSL2 Ubuntu 확인
+→ Repository / Git / gh / Bootstrap 확인
+→ 정상이라면 그대로 사용
+→ 문제가 있을 때만 최소 Repair
+→ Mission Runtime
+```
+
+정상 상태인 WSL2 Ubuntu, Repository, `.venv`, Git/GitHub 설정을 작업마다 삭제·재설치하지 않습니다.
 
 ## Ubuntu 24.04 개발환경 초기 준비(Developer Bootstrap) 계약
 
@@ -130,6 +180,15 @@ bash environments/ubuntu/bootstrap.sh --install
 bash environments/ubuntu/bootstrap.sh --install --recommended
 ```
 
+`--install`은 `--check`에서 필수 누락이 확인된 경우에만 사용합니다.
+
+환경별 원칙:
+
+```text
+MAC-V → Reset 가능성을 고려하되 현재 상태부터 확인
+WIN-V → Persistent 상태를 보존하고 정상이라면 재설치 금지 기본
+```
+
 Control Tower의 상세 기준은 [`../environments/ubuntu/README.md`](../environments/ubuntu/README.md), [`../environments/ubuntu/BASE-PACKAGES.md`](../environments/ubuntu/BASE-PACKAGES.md), [`../environments/ubuntu/MISSION-PACKAGE-MATRIX.md`](../environments/ubuntu/MISSION-PACKAGE-MATRIX.md)를 사용합니다.
 
 ## 개발 Tool Set 계약
@@ -138,7 +197,7 @@ R01의 도구는 다음처럼 계층화합니다.
 
 ```text
 LEVEL 1 — 기본 필수
-Ubuntu 24.04 / Bash / Git / gh / VS Code / Remote-SSH
+Ubuntu 24.04 / Bash / Git / gh / VS Code / Remote 연결
 
 LEVEL 2 — Mission별
 Python / Node.js / SQLite / Nginx / OpenSSH Server / 기타 package
@@ -167,7 +226,9 @@ Python     = Ubuntu Python
 
 ## VS Code 원격 Ubuntu 작업공간(VS Code Remote Ubuntu Workspace) 계약
 
-macOS에서 VS Code를 실행하더라도 `MAC-V`의 실제 개발 작업은 **OrbStack Ubuntu 24.04 내부의 Linux filesystem**을 기준으로 합니다.
+### MAC-V
+
+macOS에서 VS Code를 실행하더라도 실제 개발 작업은 **OrbStack Ubuntu 24.04 내부의 Linux filesystem**을 기준으로 합니다.
 
 ```text
 VS Code UI        = macOS
@@ -179,7 +240,23 @@ Python            = Ubuntu Python
 가상환경(Virtual Env) = Python Mission별 repo-local `.venv`
 ```
 
-OrbStack이 제공하는 `/Users/...`, `/mnt/mac/Users/...` 경로는 macOS 공유 filesystem이므로 기본 미션 작업공간(Primary Mission Workspace)으로 사용하지 않고 파일 교환/참조 용도로만 사용합니다.
+OrbStack이 제공하는 `/Users/...`, `/mnt/mac/Users/...` 경로는 macOS 공유 filesystem이므로 기본 Mission Workspace로 사용하지 않고 파일 교환/참조 용도로만 사용합니다.
+
+### WIN-V
+
+Windows VS Code를 사용하더라도 실제 Mission 작업은 **WSL2 Ubuntu 24.04 내부 Linux filesystem**을 기준으로 합니다.
+
+```text
+VS Code UI        = Windows 11 Pro
+Remote/WSL        = WSL2 Ubuntu 24.04
+Repository        = Ubuntu `$HOME/codyssey/...`
+Terminal          = Ubuntu Bash
+Git               = Ubuntu Git
+Python            = Ubuntu Python
+Virtual Env       = Python Mission별 repo-local `.venv`
+```
+
+`/mnt/c/...`와 같은 Windows mounted filesystem은 기본 Mission Workspace로 사용하지 않습니다.
 
 Repository의 VS Code Terminal은 다음 원칙을 사용합니다.
 
@@ -192,6 +269,44 @@ Shell Integration = enabled
 Python Mission의 `.venv` 자동 활성화는 특정 Project를 `~/.bashrc`에 하드코딩하지 않고 VS Code Python Environment 선택/Remote User Setting을 사용합니다.
 
 상세 기준은 [`VS-CODE-REMOTE-UBUNTU-STANDARD.md`](VS-CODE-REMOTE-UBUNTU-STANDARD.md)를 사용합니다.
+
+## 플랫폼별 수행 기록(Runtime Record) 계약
+
+Mission 상태와 플랫폼별 수행 이력을 분리합니다.
+
+```text
+Mission CLEAR
+= 공식 Mission/Evaluation + 실제 Runtime + Verification + 필요한 Evidence
+
+MAC-V Runtime Record
+= MAC-V에서 실제 수행한 이력
+
+WIN-V Runtime Record
+= WIN-V에서 실제 수행한 이력
+
+CROSS-PLATFORM VERIFIED
+= 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
+```
+
+플랫폼별 상태:
+
+```text
+NOT RUN / PENDING / PASS / FAIL
+```
+
+현재 장비 재현 상태가 필요한 경우:
+
+```text
+READY / STALE / REBUILD NEEDED
+```
+
+학교 Mac이 Reset되어도 이전에 확보한 추적 가능한 MAC-V PASS와 Evidence는 자동으로 FAIL 처리하지 않습니다. 과거 수행 기록과 현재 장비 상태를 분리합니다.
+
+공식 Mission/Evaluation이 두 환경 모두를 요구하지 않는 한 한 지원 환경에서 공식 요구를 충족하면 다른 환경 미수행만으로 Mission CLEAR를 자동 차단하지 않습니다.
+
+플랫폼별 중앙 상태표:
+
+- [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
 
 ## 교차 플랫폼 Git/파일(Cross-platform Git / File) 계약
 
@@ -231,18 +346,20 @@ Windows .bat / .cmd = CRLF 허용
 필요한 경우 다음 형식을 사용합니다.
 
 ```text
-Host       : macOS / Windows / Ubuntu / Cloud
-Terminal   : Ubuntu Bash / PowerShell / macOS Terminal
-Repository : $HOME/codyssey/<repo>
-Branch     : 현재 작업 Branch
-권한       : 일반 사용자 / sudo 필요
-venv       : 활성 / 비활성 / 해당 없음
+Runtime Profile : MAC-V / WIN-V / 기타 공식 요구 환경
+Host            : macOS / Windows / Ubuntu / Cloud
+Terminal        : Ubuntu Bash / PowerShell / macOS Terminal
+Repository      : $HOME/codyssey/<repo>
+Branch          : 현재 작업 Branch
+Commit          : 현재 작업 Commit
+권한            : 일반 사용자 / sudo 필요
+venv            : 활성 / 비활성 / 해당 없음
 ```
 
 환경 변경 전에는 최소한 다음을 확인합니다.
 
 ```text
-현재 Host/Runtime이 맞는가
+현재 Runtime Context가 맞는가
 → 현재 PWD가 맞는가
 → 필요한 command가 존재하는가
 → Git 작업이면 Branch/변경사항이 예상과 맞는가
