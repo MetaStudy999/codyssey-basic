@@ -23,7 +23,14 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 첫
 
 ### Ubuntu 24.04 환경과 Control Tower가 이미 준비된 경우
 
-📍 **Ubuntu Bash / `$HOME/codyssey/codyssey-basic`에서 실행**합니다.
+먼저 현재 실행 환경(Current Runtime Context)을 정합니다.
+
+```text
+학교 Mac → MAC-V
+노트북 Win11 → WIN-V
+```
+
+📍 **선택한 Ubuntu Bash / `$HOME/codyssey/codyssey-basic`에서 실행**합니다.
 
 ```bash
 cd "$HOME/codyssey/codyssey-basic"
@@ -86,17 +93,21 @@ bash environments/ubuntu/verify-user-identity.sh
 ```text
 1. 개발환경 확인/준비
         ↓
-2. 지금 해야 할 일 확인
+2. 현재 실행 환경(MAC-V 또는 WIN-V) 선택
         ↓
-3. B1-1 입문자 가이드(Beginner Guide)를 STEP 01부터 따라하기
+3. 지금 해야 할 일 확인
         ↓
-4. 실제 실행(Runtime Execution)
+4. B1-1 입문자 가이드(Beginner Guide)를 STEP 01부터 따라하기
         ↓
-5. 결과 검증(Verification)
+5. 실제 실행(Runtime Execution)
         ↓
-6. 증빙 자료 정리(Evidence)
+6. 결과 검증(Verification)
         ↓
-7. ✅ 미션 완료(CLEAR)
+7. 증빙 자료 정리(Evidence)
+        ↓
+8. 플랫폼별 Runtime Record 갱신
+        ↓
+9. ✅ 미션 완료(CLEAR)
 ```
 
 ## 1단계 — 개발환경 확인
@@ -165,9 +176,11 @@ Codyssey Basic
 
 ```text
 준비와 전체 점검
+→ 현재 Runtime Context 선택
 → B1-1부터 실제 실행(Runtime)
 → 결과 검증(Verification)
 → 증빙 자료(Evidence)
+→ 플랫폼별 수행 기록
 → 미션 완료(CLEAR)
 → 다음 미션
 ```
@@ -181,23 +194,57 @@ Codyssey Basic
 <a id="runtime-environment"></a>
 ## 💻 처음 사용할 실행환경(Runtime Environment)
 
-기본 환경(Primary Environment)은 다음처럼 이해하면 됩니다.
+R01의 직접 Linux 실행은 다음 두 환경을 **동등한 지원 실행 환경(Supported Runtime)**으로 사용합니다.
+
+### MAC-V — 학교 Mac
 
 ```text
-macOS
+학교 macOS
 └─ OrbStack
    └─ Ubuntu 24.04
       └─ VS Code Remote SSH
          └─ 미션 실행(Mission Runtime)
 ```
 
-Windows에서는 다음 환경을 사용할 수 있습니다.
+환경 특성:
+
+```text
+Resettable / Ephemeral
+→ CHECK BEFORE INSTALL
+→ 환경이 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
+```
+
+### WIN-V — 개인 노트북
 
 ```text
 Windows 11 Pro
 └─ WSL2
    └─ Ubuntu 24.04
+      └─ 미션 실행(Mission Runtime)
 ```
+
+환경 특성:
+
+```text
+Persistent
+→ VERIFY BEFORE REINSTALL
+→ 기존 환경 보존
+→ 문제 있을 때만 최소 Repair
+```
+
+`MAC-V`와 `WIN-V`는 합격 기준의 Primary/Secondary 관계가 아닙니다. 공식 Mission/Evaluation, 검증(Verification), 증빙(Evidence), Mission CLEAR 기준은 동일합니다.
+
+각 환경에서 실제로 수행한 기록은 별도로 남깁니다.
+
+```text
+MAC-V Runtime Record
+WIN-V Runtime Record
+Mission CLEAR
+CROSS-PLATFORM VERIFIED
+```
+
+플랫폼별 중앙 수행 현황: [RUNTIME-EXECUTION-MATRIX.md](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
 
 Docker는 **선택 학습(Optional Training)**입니다. 공식 Mission/Evaluation에서 Docker를 요구하지 않는 한 Docker 미수행 자체를 기본 미션 실패 사유로 사용하지 않습니다.
 
@@ -215,6 +262,7 @@ OrbStack Ubuntu
 대체 개발환경으로 Cursor, Windsurf, JetBrains, **Google Antigravity IDE**를 사용할 수 있지만 R01 기본 문서는 VS Code를 기준으로 합니다. IDE가 바뀌어도 Repository/Terminal/Git/Python은 Ubuntu 실행 환경(Runtime)을 기준으로 유지합니다.
 
 - [입문자 개발환경 처음부터 따라하기](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
+- [실행 환경 프로필(Runtime Profiles)](environments/RUNTIME-PROFILES.md)
 - [개발 Tool Set / no-admin 기준](standards/DEVELOPMENT-TOOLSET-STANDARD.md)
 - [환경 시스템(Environment System)](environments/README.md)
 
@@ -239,6 +287,7 @@ OrbStack Ubuntu
 START-HERE-DEVELOPMENT-ENVIRONMENT.md = 개발환경 처음부터 따라하기
 NEXT-ACTIONS.md          = 다음 작업 안내(Next Actions)
 WORKING-RULES.md         = 메인/미션 공통 작업 룰 진입점(Entry Point)
+RUNTIME-EXECUTION-MATRIX.md = MAC-V/WIN-V 플랫폼별 실제 수행 기록
 PHASE-C-PREFLIGHT.md     = 실행 전 사전 점검(Preflight)
 BEGINNER-GUIDE.md        = 입문자 따라하기 가이드(Beginner Guide)
 START-CHECK.md           = 시작 점검(Start Check)
@@ -277,6 +326,7 @@ Stage 2 — 선택 경로 4개
 → 실제 수행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ 플랫폼별 수행 기록
 → 완료(CLEAR)
 ```
 
@@ -353,9 +403,11 @@ Stage 2 — 선택 경로 4개
 
 ```text
 현재 미션 B1-1
+→ Current Runtime Context 선택
 → 실제 실행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ 플랫폼별 Runtime Record
 → 완료(CLEAR)
 → 다음 미션
 ```
@@ -363,6 +415,7 @@ Stage 2 — 선택 경로 4개
 세부 진행률과 상태는 중복해서 관리하지 않고 다음 문서를 우선 확인합니다.
 
 - [PROGRESS.md — 현재 진행 상태](PROGRESS.md)
+- [RUNTIME-EXECUTION-MATRIX.md — MAC-V/WIN-V 실제 수행 기록](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
 - [NEXT-ACTIONS.md — 다음 작업](training/round-01-clear/NEXT-ACTIONS.md)
 - [WORKING-RULES.md — 작업 운영 룰 진입점](WORKING-RULES.md)
 - [MISSION-INDEX.md — 전체 미션 색인](MISSION-INDEX.md)
@@ -410,6 +463,7 @@ Phase C — 실제 실행 및 완료(Runtime CLEAR)
 실행(Runtime)
 → 검증(Verification)
 → 증빙(Evidence)
+→ 플랫폼별 수행 기록
 → 완료(CLEAR)
 ```
 
@@ -432,29 +486,33 @@ FAST TRACK은 미션을 생략하는 경로가 아니라 **필수 경로를 먼�
 <summary><strong>실행환경 프로필(Runtime Profiles) 자세히 보기</strong></summary>
 
 ```text
-macOS + OrbStack
-├─ MAC-V: Ubuntu 24.04 Linux Machine     ← 기본 실행환경(Primary)
-└─ MAC-D: Docker                         ← 선택 실습(Optional Lab)
+학교 macOS + OrbStack
+├─ MAC-V: Ubuntu 24.04 Linux Machine      ← 지원 실행환경(Supported Runtime)
+└─ MAC-D: Docker                          ← 선택 실습(Optional Lab)
 
-Windows 11 Pro + WSL2 Ubuntu 24.04
-├─ WIN-V: Ubuntu 24.04 direct runtime   ← 권장 보조환경(Secondary)
-└─ WIN-D: Docker                         ← 선택 실습(Optional Lab)
+개인 노트북 Windows 11 Pro + WSL2 Ubuntu 24.04
+├─ WIN-V: Ubuntu 24.04 direct runtime    ← 지원 실행환경(Supported Runtime)
+└─ WIN-D: Docker                          ← 선택 실습(Optional Lab)
 ```
 
 원칙:
 
 ```text
-기본 미션 실행환경(Primary Mission Runtime) = 필수
-보조 플랫폼 확인(Secondary Platform Check) = 권장
-Docker 실습(Docker Lab) = 선택
+MAC-V / WIN-V = 동일 Mission/Evaluation/CLEAR 기준
+Current Runtime Context = 작업 시작 시 사용자 지정
+MAC-V = Resettable / CHECK BEFORE INSTALL
+WIN-V = Persistent / VERIFY BEFORE REINSTALL
+CROSS-PLATFORM VERIFIED = 두 환경 실제 PASS 시 추가 품질 상태
+Docker Lab = 선택
 ```
 
-같은 미션을 모든 환경에서 처음부터 끝까지 반복하지 않습니다.
+공식 Mission이 두 플랫폼을 모두 요구하지 않는 한, 한 지원 환경에서 공식 요구를 충족한 Mission CLEAR를 다른 환경 미수행만으로 자동 차단하지 않습니다.
 
 상세:
 
 - [START-HERE-DEVELOPMENT-ENVIRONMENT.md](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
 - [RUNTIME-PROFILES.md](environments/RUNTIME-PROFILES.md)
+- [RUNTIME-EXECUTION-MATRIX.md](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
 - [DOCKER-POLICY.md](environments/DOCKER-POLICY.md)
 - [MISSION-LAB-MATRIX.md](environments/MISSION-LAB-MATRIX.md)
 
@@ -495,6 +553,7 @@ NO
 - [WORKING-RULES.md](WORKING-RULES.md) — 메인 작업 운영 룰 진입점
 - [standards/CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 메인/전체 Mission 공통 상위 작업 운영 표준
 - [PROGRESS.md](PROGRESS.md) — 현재 진행 상태
+- [training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md) — MAC-V/WIN-V 실제 수행 기록
 - [docs/R01-OPERATING-MODEL.md](docs/R01-OPERATING-MODEL.md) — R01 운영 모델
 - [training/round-01-clear/PHASE-C-PREFLIGHT.md](training/round-01-clear/PHASE-C-PREFLIGHT.md) — 실행 전 점검
 - [training/round-01-clear/PHASE-C-RUNBOOK.md](training/round-01-clear/PHASE-C-RUNBOOK.md) — 실제 실행 절차
@@ -519,16 +578,20 @@ README.md
 → 각 Mission의 WORKING-RULES.md
 → Mission 공식 Source
 → BEGINNER-GUIDE / CHECKLIST
-→ Runtime → Verification → Evidence → Evaluation → CLEAR
+→ Current Runtime Context
+→ Runtime → Verification → Evidence
+→ 플랫폼별 Runtime Record
+→ Evaluation → CLEAR
 ```
 
 - [WORKING-RULES.md](WORKING-RULES.md) — Control Tower 작업 룰 진입점(Entry Point)
 - [CODYSSEY-WORKING-OPERATING-STANDARD.md](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 전체 Mission이 공유하는 상위 작업 운영 계약(Operating Contract)
+- [RUNTIME-EXECUTION-MATRIX.md](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md) — MAC-V/WIN-V 플랫폼별 실제 수행 기록
 - [Standards Registry](standards/README.md) — 세부 표준의 전체 색인
 
 공통 규칙 전문은 메인 상위 표준에서 한 번만 관리하고, 각 Mission의 `WORKING-RULES.md`에는 **해당 미션의 공식 요구·예외·실행 문서 연결만** 둡니다. 공식 Mission/Evaluation/제공 파일은 항상 내부 작업 룰보다 우선합니다.
 
-이 작업 룰을 수정하거나 새 미션에 적용한 경우에도 문서 변경만으로 실제 실행(Runtime Execution), 검증(Verification), 증빙 자료(Evidence), 완료(CLEAR) 상태를 올리지 않습니다.
+이 작업 룰을 수정하거나 새 미션에 적용한 경우에도 문서 변경만으로 실제 실행(Runtime Execution), 검증(Verification), 증빙 자료(Evidence), 플랫폼 PASS, 완료(CLEAR) 상태를 올리지 않습니다.
 
 [목차로 돌아가기](#toc)
 
@@ -572,7 +635,10 @@ README.md
 
 - 공식 Mission PDF/MD/Evaluation/제공 파일이 최우선 기준입니다.
 - 메인/미션 공통 작업 룰은 `WORKING-RULES.md` → `CODYSSEY-WORKING-OPERATING-STANDARD.md` 순서로 확인합니다.
-- 실제 실행·검증·필요 Evidence가 끝나기 전에는 CLEAR로 표시하지 않습니다.
+- `MAC-V`와 `WIN-V`는 동등한 지원 실행 환경이며 작업 시점의 Current Runtime Context를 사용합니다.
+- 학교 Mac은 `CHECK BEFORE INSTALL`, Windows 노트북은 `VERIFY BEFORE REINSTALL` 원칙을 사용합니다.
+- 실제 실행·검증·필요 Evidence가 끝나기 전에는 해당 플랫폼 PASS나 CLEAR로 표시하지 않습니다.
+- MAC-V와 WIN-V가 모두 실제 PASS하면 내부 품질 상태로 `CROSS-PLATFORM VERIFIED`를 기록할 수 있습니다.
 - Secret, Token, Password, Private Key를 Repository/Chat/Evidence에 남기지 않습니다.
 - 사용자는 현재 Mission의 `BEGINNER-GUIDE.md`를 위에서 아래로 따라 실제 Runtime을 수행합니다.
 - 메인 README의 각 미션 `시작` 행은 Repository와 `▶ 입문자 따라하기`를 직접 연결합니다.
