@@ -38,6 +38,13 @@ bash environments/ubuntu/verify-user-identity.sh
 → Host/PWD/Bootstrap 문제부터 해결
 ```
 
+작업을 시작할 때 현재 실행 환경(Current Runtime Context)을 선택합니다.
+
+```text
+학교 Mac → MAC-V
+노트북 Win11 → WIN-V
+```
+
 상세 설치와 no-admin Mac 경로는 [`START-HERE-DEVELOPMENT-ENVIRONMENT.md`](START-HERE-DEVELOPMENT-ENVIRONMENT.md)를 사용합니다.
 
 ## 📑 목차
@@ -68,6 +75,7 @@ bash environments/ubuntu/verify-user-identity.sh
 
 ```text
 Host/권한 확인
+→ 현재 실행 환경(Current Runtime Context) 선택
 → Linux 실행 환경(Runtime)
 → 편집기/통합 개발 환경(Editor/IDE)
 → Git/GitHub
@@ -84,12 +92,12 @@ Host/권한 확인
 ## 현재 지원 범위
 
 ```text
-macOS
+학교 macOS
 └─ OrbStack
    ├─ Ubuntu 24.04 Linux Machine
    └─ Docker
 
-Windows 11 Pro
+개인 노트북 Windows 11 Pro
 └─ WSL2 Ubuntu 24.04
    ├─ Ubuntu 24.04 Direct Linux Runtime
    └─ Docker
@@ -100,32 +108,40 @@ Windows 11 Pro
 <a id="runtime-profiles"></a>
 ## 4개 실행 환경 프로필(Runtime Profile)
 
-| Profile | Host | 실행 형태 | 역할 | R01 우선도 |
+| Profile | Host | 실행 형태 | 역할 | 환경 특성 |
 |---|---|---|---|---|
-| `MAC-V` | macOS | OrbStack Ubuntu 24.04 Linux Machine | 기본 Primary Mission Runtime | **필수 경로 우선** |
-| `WIN-V` | Windows 11 Pro | WSL2 Ubuntu 24.04 direct runtime | Secondary/Portability | **권장** |
-| `MAC-D` | macOS | OrbStack Docker | Docker Training Lab | **선택** |
-| `WIN-D` | Windows 11 Pro | WSL2 Ubuntu + Docker | Docker Portability Lab | **선택** |
+| `MAC-V` | 학교 macOS | OrbStack Ubuntu 24.04 Linux Machine | 지원 Mission Runtime | Resettable / Ephemeral |
+| `WIN-V` | 개인 Windows 11 Pro | WSL2 Ubuntu 24.04 direct runtime | 지원 Mission Runtime | Persistent |
+| `MAC-D` | macOS | OrbStack Docker | Docker Training Lab | 선택 |
+| `WIN-D` | Windows 11 Pro | WSL2 Ubuntu + Docker | Docker Training Lab | 선택 |
 
 > `WIN-V`는 프로젝트 내 프로필 이름입니다. 전통적인 수동 Hyper-V VM을 의미하지 않고, Docker Container와 구분되는 WSL2 Ubuntu 24.04 직접 Linux Runtime을 뜻합니다.
+
+`MAC-V`와 `WIN-V`는 합격 기준의 Primary/Secondary 관계가 아닙니다. 공식 Mission/Evaluation과 CLEAR 기준은 동일합니다.
 
 <a id="core-principles"></a>
 ## 핵심 원칙
 
 ```text
-기본 미션 실행환경(Primary Mission Runtime) = 필수
-보조 플랫폼 확인(Secondary Platform Check) = 권장
+MAC-V / WIN-V = 동등한 지원 실행 환경(Supported Runtime)
+Current Runtime Context = 작업 시작 시 사용자가 선택
+플랫폼별 Runtime Record = 각각 별도 기록
+CROSS-PLATFORM VERIFIED = 두 환경 모두 실제 PASS
 Docker 실습(Docker Lab) = 선택
 ```
 
-1. **Mission CLEAR와 환경 학습을 분리합니다.** 공식 Mission/Evaluation + 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence)이 CLEAR 기준입니다.
-2. R01의 기본 Linux Primary는 `MAC-V`입니다. 외부 GitHub/AWS/배포/API가 핵심인 미션은 해당 실제 외부 실행/증빙이 우선합니다.
-3. `WIN-V`는 Mac/OrbStack에서 수행한 핵심 경로의 Windows/WSL2 portability 확인에 사용합니다.
-4. Docker는 현재 R01의 기본 Gate가 아닙니다. 학습 가치가 있거나 필요할 때 `MAC-D`/`WIN-D`로 선택 실습합니다.
-5. 같은 미션을 네 환경에서 처음부터 끝까지 반복하지 않습니다.
-6. GitHub, AWS, 실제 배포, 실제 AI Provider 증빙(Evidence)은 로컬 Linux/Docker 실습이 대체하지 않습니다.
-7. Architecture는 Host 이름으로 추측하지 않고 실행 환경(Runtime) 내부 `uname -m`으로 확인합니다.
-8. Secret은 어떤 실행 환경에서도 GitHub/채팅/로그/Evidence에 기록하지 않습니다.
+1. **Mission CLEAR와 플랫폼별 수행 기록을 분리합니다.** 공식 Mission/Evaluation + 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence)이 CLEAR 기준입니다.
+2. `MAC-V`와 `WIN-V` 중 현재 실제 작업하는 환경을 Current Runtime Context로 선택합니다.
+3. 학교 Mac은 Resettable / Ephemeral이므로 `CHECK BEFORE INSTALL`을 사용합니다.
+4. Windows 11 노트북은 Persistent이므로 `VERIFY BEFORE REINSTALL`을 사용합니다.
+5. 한 지원 실행환경에서 공식 요구를 실제 충족하면, 공식 Mission이 두 플랫폼을 요구하지 않는 한 다른 환경 미수행을 이유로 CLEAR를 자동 차단하지 않습니다.
+6. MAC-V와 WIN-V 모두 실제 PASS하면 내부 품질 상태로 `CROSS-PLATFORM VERIFIED`를 기록할 수 있습니다.
+7. Docker는 현재 R01의 기본 Gate가 아닙니다. 학습 가치가 있거나 필요할 때 `MAC-D`/`WIN-D`로 선택 실습합니다.
+8. GitHub, AWS, 실제 배포, 실제 AI Provider 증빙(Evidence)은 로컬 Linux/Docker 실습이 대체하지 않습니다.
+9. Architecture는 Host 이름으로 추측하지 않고 실행 환경(Runtime) 내부 `uname -m`으로 확인합니다.
+10. Secret은 어떤 실행 환경에서도 GitHub/채팅/로그/Evidence에 기록하지 않습니다.
+
+플랫폼별 실제 수행 현황은 [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)를 사용합니다.
 
 <a id="no-admin-mac"></a>
 ## 공용·관리형 Mac — 관리자 권한 없음
@@ -143,6 +159,14 @@ MDM/보안정책 우회 금지
 ```
 
 OrbStack은 공식적으로 관리자 권한 없이 동작하는 기능을 안내하지만, 기관의 MDM/앱 허용 정책이 실행을 막는 경우에는 정책을 우회하지 않습니다.
+
+학교 Mac은 Reset 가능성을 기본 전제로 합니다.
+
+```text
+CHECK BEFORE INSTALL
+→ 현재 환경이 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
+```
 
 Google Antigravity는 다음처럼 분류합니다.
 
@@ -199,18 +223,23 @@ bash environments/ubuntu/bootstrap.sh --install --recommended
 
 ### 공통 환경 마무리(Common Environment Closeout) / 동결(Freeze)
 
-공통환경 설계는 이제 계속 확장하지 않고 다음 4개 Closeout Gate를 실제 MAC-V Ubuntu에서 확인한 뒤 Freeze합니다.
+공통 환경 마무리는 **전역 공통 Gate**와 **현재 Runtime Profile 준비 상태**를 분리합니다.
 
 ```text
-① 문서 불일치 점검(Documentation Drift Check)
-② MAC-V Runtime Bootstrap 검증(Verification)
-③ Git / GitHub 사용자 준비 상태(User Identity Readiness)
-④ Shell Script 정적 문법 검증(Static Syntax Validation)
+전역 공통 Gate
+├─ Documentation Drift
+└─ Bash Static Syntax Validation
         ↓
-COMMON ENVIRONMENT FREEZE
+Common Environment Design Freeze
         ↓
-B1-1 실제 실행(Runtime)
+Current Runtime Context 선택
+        ↓
+해당 환경 Bootstrap / Identity 확인
+        ↓
+Mission Runtime
 ```
+
+즉 MAC-V와 WIN-V 두 장비가 동시에 준비될 때까지 기다리지 않습니다.
 
 실행 도구:
 
@@ -234,7 +263,7 @@ Freeze 이후에는 **현재 Mission CLEAR를 막는 문제만 JIT로 최소 수
 <a id="vscode-remote"></a>
 ## VS Code Remote Ubuntu Workspace 정책
 
-`MAC-V`에서 VS Code는 macOS에 실행하되 실제 개발환경은 OrbStack Ubuntu 24.04로 고정합니다.
+`MAC-V`에서 VS Code는 macOS에 실행하되 실제 개발환경은 OrbStack Ubuntu 24.04로 사용합니다.
 
 ```text
 macOS VS Code
@@ -244,7 +273,9 @@ macOS VS Code
 → Ubuntu Bash / Git / Python / `.venv`
 ```
 
-Primary Repository는 Ubuntu `$HOME/codyssey/...`에 두고 `/Users/...` 또는 `/mnt/mac/Users/...` 같은 macOS shared path를 기본 개발경로로 사용하지 않습니다.
+MAC-V Repository는 Ubuntu `$HOME/codyssey/...`에 두고 `/Users/...` 또는 `/mnt/mac/Users/...` 같은 macOS shared path를 기본 개발경로로 사용하지 않습니다.
+
+WIN-V에서도 Repository, Terminal, Git, Python은 WSL2 Ubuntu 24.04 내부를 기준으로 합니다.
 
 새 VS Code Terminal은 다음을 목표로 합니다.
 
@@ -341,16 +372,17 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - [`START-HERE-DEVELOPMENT-ENVIRONMENT.md`](START-HERE-DEVELOPMENT-ENVIRONMENT.md) — 입문자 개발환경 처음부터 따라하기
 - [`RUNTIME-PROFILES.md`](RUNTIME-PROFILES.md) — 4개 실행 프로필 상세 계약
 - [`DOCKER-POLICY.md`](DOCKER-POLICY.md) — Docker 선택 학습 정책
-- [`MISSION-LAB-MATRIX.md`](MISSION-LAB-MATRIX.md) — B1-1~B7-2 Primary/Secondary/Docker Lab 설계
+- [`MISSION-LAB-MATRIX.md`](MISSION-LAB-MATRIX.md) — B1-1~B7-2 MAC-V/WIN-V/Docker Lab 설계
+- [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md) — 플랫폼별 실제 수행 상태
 - [`ubuntu/README.md`](ubuntu/README.md) — Ubuntu 24.04 Developer Bootstrap / package model
 - [`ubuntu/BASE-PACKAGES.md`](ubuntu/BASE-PACKAGES.md) — 공통 Base, 권장 도구, GitHub CLI 계층
 - [`ubuntu/MISSION-PACKAGE-MATRIX.md`](ubuntu/MISSION-PACKAGE-MATRIX.md) — B1-1~B7-2 Ubuntu 패키지 지도
 - [`ubuntu/ENVIRONMENT-CLOSEOUT.md`](ubuntu/ENVIRONMENT-CLOSEOUT.md) — 공통환경 Closeout / Freeze 기준
+- [`../standards/CODYSSEY-WORKING-OPERATING-STANDARD.md`](../standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 상위 작업 운영 표준
 - [`../standards/DEVELOPMENT-TOOLSET-STANDARD.md`](../standards/DEVELOPMENT-TOOLSET-STANDARD.md) — 개발도구와 no-admin 기준
 - [`../standards/AI-CLI-TOOLSET-STANDARD.md`](../standards/AI-CLI-TOOLSET-STANDARD.md) — 주요 AI CLI 기준
-- [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — OrbStack Ubuntu + VS Code Remote Workspace/Terminal 표준
+- [`../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`](../standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md) — VS Code Remote Workspace/Terminal 표준
 - [`../standards/CROSS-PLATFORM-GIT-STANDARD.md`](../standards/CROSS-PLATFORM-GIT-STANDARD.md) — Mac/Windows/Ubuntu Git 파일 호환성 표준
-- [`../templates/vscode-remote-linux-settings.json`](../templates/vscode-remote-linux-settings.json) — Mission Repository용 VS Code Remote Linux 설정 템플릿
 - [`../templates/DUAL-RUNTIME-LAB-TEMPLATE.md`](../templates/DUAL-RUNTIME-LAB-TEMPLATE.md) — Mission별 상세 환경 실습 템플릿
 
 <a id="workflow"></a>
@@ -358,21 +390,22 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 
 ```text
 Mission 시작
-→ 기본 실행 환경(Primary Runtime)
+→ Current Runtime Context 선택(MAC-V 또는 WIN-V)
 → VS Code Remote / Workspace 경로 확인
-→ 교차 플랫폼 Git/File 실행 전 점검(Cross-platform Git/File Preflight)
-→ Ubuntu 개발환경 초기 준비(Developer Bootstrap) 확인
-→ 공통 환경 마무리(Common Environment Closeout) / 동결(Freeze)
+→ 교차 플랫폼 Git/File Preflight
+→ 선택 환경 Ubuntu Bootstrap / Identity 확인
 → 현재 Mission ubuntu-packages.txt 확인
 → 부족한 System package만 설치
 → Project environment 구성
 → 공식 Mission/Evaluation 수행
 → 검증(Verification)
 → 증빙(Evidence)
-→ ✅ 완료(CLEAR)
-→ 필요한 경우 보조 플랫폼 확인(Secondary Platform Check)
+→ 해당 플랫폼 Runtime Record 갱신
+→ ✅ Mission CLEAR 판정
+→ 필요하면 다른 지원 Runtime에서 재수행
+→ 두 환경 PASS 시 CROSS-PLATFORM VERIFIED
 → 원하는 경우 Docker 실습(Docker Lab)
 → FAST TRACK 다음 Mission
 ```
 
-FAST TRACK에서는 **CLEAR를 먼저 만들고 Docker 학습은 별도 Training Layer로 관리**합니다.
+FAST TRACK에서는 **Mission CLEAR를 먼저 만들고 교차 플랫폼 추가 검증과 Docker 학습은 별도 품질/Training Layer로 관리**합니다.
