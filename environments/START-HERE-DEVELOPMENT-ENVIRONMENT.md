@@ -6,6 +6,7 @@
 
 ```text
 내 환경 확인
+→ 현재 실행 환경(Current Runtime Context) 선택
 → 올바른 Linux 실행 환경(Runtime) 준비
 → 편집기/통합 개발 환경(Editor/IDE) 연결
 → 저장소(Repository) 위치 확인
@@ -16,6 +17,8 @@
 → 현재 입문자 가이드(BEGINNER-GUIDE) 시작
 ```
 
+> `MAC-V`와 `WIN-V`는 합격 기준의 Primary/Secondary 관계가 아니라 **동등한 지원 실행 환경(Supported Runtime)**입니다. 사용자가 실제 작업하는 위치를 현재 실행 환경(Current Runtime Context)으로 선택합니다.
+>
 > 공용·관리형 macOS에서 관리자 권한이 없는 경우도 별도 경로를 제공합니다. 관리자 암호, MDM, 기관 보안정책을 우회하지 않습니다.
 >
 > 이 문서는 공식 Mission/Evaluation을 대체하지 않습니다. 특정 미션의 공식 요구가 이 문서와 다르면 공식 요구가 우선합니다.
@@ -28,15 +31,31 @@
 > **이미 OrbStack/WSL2의 Ubuntu 24.04에 들어갈 수 있고 Git을 사용할 수 있는 분**을 위한 빠른 재진입 경로입니다.
 > 처음 개발환경을 만드는 분은 빠른 시작(Quick Start)을 건너뛰고 [PART 1 — 먼저 내 환경을 고르기](#choose-environment)부터 진행하세요.
 
+### 0) 현재 실행 환경(Current Runtime Context) 선택
+
+```text
+학교 Mac에서 작업
+→ MAC-V
+→ 학교 macOS → OrbStack → Ubuntu 24.04
+→ Resettable / Ephemeral
+→ CHECK BEFORE INSTALL
+
+개인 노트북 Win11에서 작업
+→ WIN-V
+→ Windows 11 Pro → WSL2 → Ubuntu 24.04
+→ Persistent
+→ VERIFY BEFORE REINSTALL
+```
+
 ### 1) 먼저 Ubuntu Terminal로 들어가기
 
-macOS + OrbStack을 이미 준비했다면 macOS Terminal에서:
+MAC-V를 이미 준비했다면 macOS Terminal에서:
 
 ```bash
 ssh orb
 ```
 
-Windows + WSL2를 이미 준비했다면 PowerShell에서 실제 배포판 이름을 확인한 뒤:
+WIN-V를 이미 준비했다면 PowerShell에서 실제 배포판 이름을 확인한 뒤:
 
 ```powershell
 wsl -l -v
@@ -112,6 +131,7 @@ bash environments/ubuntu/verify-user-identity.sh
 ### Quick Start 정상 기준
 
 ```text
+[ ] 현재 Runtime Context가 MAC-V 또는 WIN-V로 명확하다.
 [ ] Repository가 /home/<user>/codyssey/codyssey-basic 계열에 있다.
 [ ] Bootstrap required 항목이 PASS다.
 [ ] 예상하지 않은 Git 변경이 없다.
@@ -147,12 +167,12 @@ git clone                       → 🟡 CHECK BEFORE RERUN
 - [🚀 빠른 시작(Quick Start)](#quick-start)
 - [0. 실행 안전 규칙](#safety-rules)
 - [PART 1 — 먼저 내 환경을 고르기](#choose-environment)
-- [PART 2A — macOS + OrbStack 따라하기](#macos-orbstack)
+- [PART 2A — MAC-V: 학교 macOS + OrbStack 따라하기](#macos-orbstack)
   - MAC STEP 01 — 공용 Mac 권한
   - MAC STEP 02 — OrbStack Ubuntu 24.04
   - MAC STEP 03 — VS Code
   - MAC STEP 04 — Remote - SSH
-- [PART 2B — Windows 11 + WSL2 따라하기](#windows-wsl2)
+- [PART 2B — WIN-V: Windows 11 + WSL2 따라하기](#windows-wsl2)
   - WIN STEP 01 — WSL2 상태
   - WIN STEP 02 — Ubuntu 24.04
   - WIN STEP 03 — VS Code Remote - WSL
@@ -215,17 +235,24 @@ git clone                       → 🟡 CHECK BEFORE RERUN
 <a id="choose-environment"></a>
 # PART 1 — 먼저 내 환경을 고르기
 
-## A. macOS — 기본 권장 경로
+두 환경은 **동일 Mission/Evaluation/CLEAR 기준**을 사용하며, 작업 위치와 환경 유지 방식만 다릅니다.
+
+## A. MAC-V — 학교 Mac 지원 경로
 
 ```text
-macOS
+학교 macOS
 └─ OrbStack
    └─ Ubuntu 24.04
       └─ VS Code Remote - SSH
          └─ $HOME/codyssey/<repo>
 ```
 
-## B. Windows 11 Pro — 보조 경로
+```text
+환경 특성 = Resettable / Ephemeral
+운영 원칙 = CHECK BEFORE INSTALL
+```
+
+## B. WIN-V — 개인 Windows 11 Pro 지원 경로
 
 ```text
 Windows 11 Pro
@@ -235,12 +262,19 @@ Windows 11 Pro
          └─ $HOME/codyssey/<repo>
 ```
 
+```text
+환경 특성 = Persistent
+운영 원칙 = VERIFY BEFORE REINSTALL
+```
+
 Docker는 공식 Mission/Evaluation이 요구하지 않는 한 **선택 학습(Optional Training)**입니다.
+
+플랫폼별 실제 Mission 수행 기록은 [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)에서 관리합니다.
 
 ---
 
 <a id="macos-orbstack"></a>
-# PART 2A — macOS + OrbStack 따라하기
+# PART 2A — MAC-V: macOS + OrbStack 따라하기
 
 ## MAC STEP 01 — 공용 Mac의 권한 상태 이해하기
 
@@ -261,6 +295,7 @@ OrbStack Ubuntu 내부 sudo 권한
 ### 📍 실행 위치
 
 ```text
+Runtime    : MAC-V
 Host       : macOS
 Terminal   : macOS Terminal
 Repository : 해당 없음
@@ -313,7 +348,14 @@ MDM / 보안정책 우회 금지
 
 ### OrbStack이 무엇인가요?
 
-macOS 안에서 Linux Machine과 Container를 실행할 수 있게 해 주는 도구입니다. Codyssey Basic의 macOS 기본 경로에서는 **OrbStack Ubuntu 24.04를 실제 Linux 실행 환경(Runtime)**으로 사용합니다.
+macOS 안에서 Linux Machine과 Container를 실행할 수 있게 해 주는 도구입니다. Codyssey Basic의 `MAC-V`에서는 **OrbStack Ubuntu 24.04를 실제 Linux 실행 환경(Runtime)**으로 사용합니다.
+
+학교 Mac은 Reset될 수 있으므로 무조건 설치부터 하지 않습니다.
+
+```text
+OrbStack/Ubuntu가 살아 있음 → 기존 환경 사용
+Reset되었거나 없음         → 필요한 항목만 재구성
+```
 
 공용 Mac에서는 OrbStack의 no-admin 지원 범위를 우선 검토하되, 기관의 MDM·앱 허용 정책이 실행 자체를 막으면 우회하지 않습니다.
 
@@ -451,14 +493,15 @@ Repository를 받은 뒤 사용할 기본 폴더는 다음 계열입니다.
 ---
 
 <a id="windows-wsl2"></a>
-# PART 2B — Windows 11 + WSL2 따라하기
+# PART 2B — WIN-V: Windows 11 + WSL2 따라하기
 
 ## WIN STEP 01 — WSL2 상태 확인하기
 
 ### 📍 실행 위치
 
 ```text
-Host       : Windows 11
+Runtime    : WIN-V
+Host       : Windows 11 Pro
 Terminal   : PowerShell
 Repository : 해당 없음
 권한       : 상태 확인은 일반 사용자 가능
@@ -497,6 +540,17 @@ wsl --install -d Ubuntu-24.04
 ```
 
 > 이 설치는 Windows 기능 활성화와 재부팅이 필요할 수 있습니다. 관리자 권한이나 조직 정책을 우회하지 않습니다.
+
+### Persistent 환경 규칙
+
+WIN-V는 기존 환경이 정상이라면 삭제·재설치하지 않습니다.
+
+```text
+상태 확인
+→ 정상 → 기존 WSL2 사용
+→ 문제 → 원인 확인 → 최소 Repair
+→ 재설치는 필요성이 확인될 때만
+```
 
 ### STOP / GO
 
@@ -607,7 +661,7 @@ code .
 ---
 
 <a id="common-ubuntu"></a>
-# PART 3 — macOS/Windows 공통 Ubuntu 단계
+# PART 3 — MAC-V/WIN-V 공통 Ubuntu 단계
 
 이제부터 아래 명령은 **macOS Host Terminal이나 Windows PowerShell이 아니라 Ubuntu Terminal에서 실행**합니다.
 
@@ -616,6 +670,7 @@ code .
 ### 📍 실행 위치
 
 ```text
+Runtime    : MAC-V 또는 WIN-V
 Host       : OrbStack Ubuntu 24.04 또는 WSL2 Ubuntu 24.04
 Terminal   : Ubuntu Bash
 Repository : 아직 없어도 됨
@@ -773,6 +828,18 @@ git status --short
 → 현재 수정된 파일이 있는지 짧은 형식으로 확인합니다.
 ```
 
+### 환경별 해석
+
+```text
+MAC-V
+→ 학교 Mac Reset 후 Repository가 없다면 clone
+→ 이미 있으면 기존 clone 상태부터 확인
+
+WIN-V
+→ Persistent 기존 clone을 우선 보존
+→ 정상 Repository를 매 작업마다 삭제/재clone하지 않음
+```
+
 ### 재실행 안전성
 
 ```text
@@ -799,6 +866,7 @@ git status --short  → 🟢 SAFE TO RERUN
 ### 📍 실행 위치
 
 ```text
+Runtime    : MAC-V 또는 WIN-V
 Terminal   : Ubuntu Bash
 Repository : $HOME/codyssey/codyssey-basic
 권한       : 일반 사용자로 시작
@@ -833,6 +901,18 @@ bash environments/ubuntu/bootstrap.sh --check
 ```bash
 bash environments/ubuntu/bootstrap.sh --install
 bash environments/ubuntu/bootstrap.sh --check
+```
+
+### 환경별 기본 원칙
+
+```text
+MAC-V
+→ Reset 가능성을 고려하되 무조건 install하지 않음
+→ --check에서 실제 누락이 있을 때만 설치
+
+WIN-V
+→ Persistent 환경 보존
+→ --check가 PASS이면 install을 실행하지 않음
 ```
 
 ### macOS 관리자 권한과 Ubuntu sudo 다시 구분
@@ -946,6 +1026,8 @@ git config --global ... → 🟡 CHECK BEFORE RERUN
 ❌ STOP
 → 인증 실패를 Token을 문서에 붙여 넣는 방식으로 우회하지 않습니다.
 ```
+
+> Bootstrap 또는 Identity PASS는 **Mission Runtime PASS가 아닙니다.** 플랫폼별 Mission 수행 상태는 실제 Runtime/Verification/Evidence 이후에만 갱신합니다.
 
 ---
 
@@ -1119,6 +1201,7 @@ AI가 만든 결과만으로 PASS/CLEAR/Evidence를 선언하지 않습니다.
 ### 📍 실행 위치
 
 ```text
+Runtime    : MAC-V 또는 WIN-V
 Terminal   : Ubuntu Bash
 Repository : 현재 작업할 Repository Root
 권한       : 일반 사용자
@@ -1184,6 +1267,7 @@ Python     → Python Mission이면 Ubuntu/repo-local 환경
 다음 항목을 확인합니다.
 
 ```text
+[ ] Current Runtime Context가 MAC-V 또는 WIN-V로 명확하다.
 [ ] Ubuntu 24.04 실행 환경(Runtime)을 사용한다.
 [ ] Repository가 $HOME/codyssey/...에 있다.
 [ ] Terminal은 Ubuntu Bash다.
@@ -1192,6 +1276,8 @@ Python     → Python Mission이면 Ubuntu/repo-local 환경
 [ ] Git/GitHub 사용자 상태를 확인했다.
 [ ] Python Mission이면 repo-local .venv를 사용한다.
 [ ] 선택 IDE를 써도 실행 환경 계약을 유지한다.
+[ ] MAC-V라면 Reset 후 현 상태를 추정하지 않고 실제 확인했다.
+[ ] WIN-V라면 정상 기존 환경을 불필요하게 재설치하지 않았다.
 [ ] 공용 Mac에서는 관리자/MDM 정책을 우회하지 않는다.
 [ ] AI CLI는 필요한 경우에만 선택했고 한 Worktree 동시 수정 규칙을 이해한다.
 ```
@@ -1224,12 +1310,16 @@ cat training/round-01-clear/NEXT-ACTIONS.md
    → Control Tower Repository로 이동합니다.
 
 2. cat .../NEXT-ACTIONS.md
-   → 현재 다음 수행 작업을 확인합니다.
+   → 현재 다음 수행 작업과 Runtime Context 규칙을 확인합니다.
 ```
 
 그 다음 메인 README의 **▶ 입문자 따라하기(Beginner Guide)** 링크에서 현재 Mission을 시작합니다.
 
-> 이 문서의 최종 검증(Verification)이 통과했다는 사실은 개발환경 준비의 근거일 뿐입니다. 실제 Mission `CLEAR`는 해당 미션의 **실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence)**이 있어야 합니다.
+플랫폼별 실제 수행 상태:
+
+- [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)
+
+> 이 문서의 최종 검증(Verification)이 통과했다는 사실은 개발환경 준비의 근거일 뿐입니다. 실제 Mission의 `MAC-V PASS`, `WIN-V PASS`, `CLEAR`는 해당 미션의 **실제 실행(Runtime) → 검증(Verification) → 증빙(Evidence)**이 있어야 합니다.
 
 ---
 
@@ -1240,6 +1330,7 @@ cat training/round-01-clear/NEXT-ACTIONS.md
 
 ```text
 증상 확인
+→ Current Runtime Context 확인
 → Host인가 Ubuntu인가 구분
 → pwd / HOME 확인
 → command -v 확인
@@ -1259,6 +1350,8 @@ FAIL 상태인데 다음 Step 계속 진행
 무작정 sudo 추가
 무작정 rm -rf
 무작정 git reset --hard
+MAC-V Reset 가능성만 보고 정상 환경까지 매번 재설치
+WIN-V 정상 환경을 이유 없이 삭제/재설치
 Secret 출력/공유
 다른 블로그 명령을 그대로 섞기
 ```
@@ -1298,6 +1391,10 @@ B6/B7 또는 AI API처럼 비용 가능성이 있는 단계에서는 실제 생�
 <a id="related-standards"></a>
 # 관련 기준
 
+- [`../WORKING-RULES.md`](../WORKING-RULES.md) — 작업 룰 진입점
+- [`../standards/CODYSSEY-WORKING-OPERATING-STANDARD.md`](../standards/CODYSSEY-WORKING-OPERATING-STANDARD.md) — 상위 작업 운영 표준
+- [`RUNTIME-PROFILES.md`](RUNTIME-PROFILES.md) — MAC-V/WIN-V 지원 실행환경 기준
+- [`../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md) — 플랫폼별 실제 수행 기록
 - [`../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md`](../standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md) — 목차 / 빠른 시작(Quick Start) 공통 기준
 - [`../standards/BEGINNER-TRAINING-STANDARD.md`](../standards/BEGINNER-TRAINING-STANDARD.md) — 입문자 학습·실행 안전 상위 기준
 - [`../standards/COMMAND-CODE-EXPLANATION-STANDARD.md`](../standards/COMMAND-CODE-EXPLANATION-STANDARD.md) — 명령·코드 줄별 해설 / 복사·붙여넣기(Copy-Paste) / 재실행(Rerun) 기준
@@ -1316,6 +1413,10 @@ B6/B7 또는 AI API처럼 비용 가능성이 있는 단계에서는 실제 생�
 이 문서를 따라간 입문자는 최소한 다음을 자기 말로 설명하고 직접 확인할 수 있어야 합니다.
 
 ```text
+내가 지금 MAC-V/WIN-V 중 어느 Runtime Context에서 작업하는지
+MAC-V와 WIN-V가 왜 합격 등급의 Primary/Secondary가 아닌지
+학교 Mac Reset 후 왜 먼저 상태를 확인하고 필요한 것만 재구성하는지
+WIN-V에서 왜 정상 환경을 매번 재설치하지 않는지
 내가 지금 macOS/Windows/Ubuntu 중 어디에서 작업하는지
 왜 Repository를 Ubuntu /home 아래에 두는지
 macOS 관리자 권한과 Ubuntu sudo가 왜 다른지
@@ -1326,6 +1427,7 @@ Python .venv를 왜 Repository마다 따로 쓰는지
 같은 명령을 다시 실행해도 되는지 어떻게 판단하는지
 AI CLI가 필수가 아니며 여러 Agent를 동시에 수정자로 쓰면 왜 위험한지
 현재 환경이 준비됐는지 무엇으로 검증하는지
+개발환경 준비 PASS와 Mission Runtime PASS가 왜 다른지
 ```
 
 문서를 읽었다는 사실만으로 `BEGINNER READY`를 선언하지 않습니다. 실제 환경에서 위 Golden Path를 처음부터 따라가고, 막힌 지점이 없는지 Dry Run으로 확인한 뒤 문서 감사 기준에 따라 판정합니다.
