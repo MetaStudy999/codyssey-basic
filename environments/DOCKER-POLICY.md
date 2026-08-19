@@ -9,8 +9,9 @@ Round 01에서 Docker를 **Mission CLEAR의 기본 필수조건이 아니라 선
 ## 한눈에 보기(Quick Read)
 
 ```text
-Mission CLEAR 먼저
-→ 보조 플랫폼 확인(Secondary Check)은 권장
+Current Runtime Context 선택(MAC-V 또는 WIN-V)
+→ Mission CLEAR 우선
+→ 필요하면 다른 지원 Runtime에서 교차 플랫폼 검증
 → Docker 실습(Docker Lab)은 선택
 ```
 
@@ -23,6 +24,8 @@ Docker 사용     ≠ 자동 CLEAR
 ```
 
 현재 Mission의 실제 실행은 [NEXT-ACTIONS.md](../training/round-01-clear/NEXT-ACTIONS.md)를 우선합니다.
+
+플랫폼별 실제 수행 현황은 [RUNTIME-EXECUTION-MATRIX.md](../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)를 사용합니다.
 
 ## 📑 목차
 
@@ -45,6 +48,12 @@ Mission CLEAR
 + 검증(Verification)
 + 증빙(Evidence)
 
+MAC-V / WIN-V
+= 동등한 지원 실행 환경(Supported Runtime)
+
+CROSS-PLATFORM VERIFIED
+= 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
+
 Docker 실습(Docker Lab)
 = 선택 학습
 + 격리
@@ -58,23 +67,34 @@ Docker 실습(Docker Lab)
 <a id="priority"></a>
 ## R01 우선순위
 
-1. 공식 Mission/Evaluation 요구 충족
-2. 기본 실행 환경(Primary Runtime)에서 실행
-3. 검증(Verification)
-4. 증빙(Evidence)
-5. `✅ 완료(CLEAR)`
-6. 필요하거나 학습 가치가 높은 경우 보조 플랫폼 확인(Secondary Platform Check)
-7. Docker 실습(Docker Lab)은 필요/시간/학습목표에 따라 선택 수행
+1. 공식 Mission/Evaluation 요구 확인
+2. 현재 실행 환경(Current Runtime Context)을 `MAC-V` 또는 `WIN-V`로 선택
+3. 선택한 지원 Runtime에서 실제 실행
+4. 검증(Verification)
+5. 증빙(Evidence)
+6. 플랫폼별 Runtime Record 갱신
+7. 조건 충족 시 `✅ 완료(CLEAR)`
+8. 필요하면 다른 지원 Runtime에서 실제 재수행하여 교차 플랫폼 검증 추가
+9. Docker 실습(Docker Lab)은 필요/시간/학습목표에 따라 선택 수행
 
-FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미룹니다.
+FAST TRACK에서는 Docker 또는 추가 교차 플랫폼 검증이 공식 CLEAR를 지연시키지 않도록 별도 품질/훈련 계층으로 관리합니다. 단, 공식 Mission/Evaluation이 이를 요구하면 공식 요구가 우선합니다.
 
 <a id="roles"></a>
 ## 환경 역할
 
-- `MAC-V`: macOS → OrbStack Ubuntu 24.04 직접 Linux Runtime. R01의 기본 Linux 실행 환경(Primary)
-- `WIN-V`: Windows 11 Pro → WSL2 Ubuntu 24.04 직접 Linux Runtime. 권장 보조/이식성(Secondary/Portability) 환경
+- `MAC-V`: 학교 macOS → OrbStack Ubuntu 24.04 직접 Linux Runtime. **지원 실행 환경**, Resettable / Ephemeral
+- `WIN-V`: 개인 Windows 11 Pro → WSL2 Ubuntu 24.04 직접 Linux Runtime. **지원 실행 환경**, Persistent
 - `MAC-D`: macOS → OrbStack Docker. 선택 Docker 실습(Docker Lab)
-- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker. 선택 Docker 이식성 실습(Portability Lab)
+- `WIN-D`: Windows 11 Pro → WSL2 Ubuntu 24.04 → Docker. 선택 Docker 실습(Docker Lab)
+
+운영 차이:
+
+```text
+MAC-V → CHECK BEFORE INSTALL
+WIN-V → VERIFY BEFORE REINSTALL
+```
+
+`MAC-V`와 `WIN-V`는 합격 등급의 Primary/Secondary 관계가 아닙니다.
 
 <a id="useful"></a>
 ## Docker가 특히 유용한 경우
@@ -97,14 +117,17 @@ FAST TRACK에서는 Docker가 CLEAR를 지연시키면 Docker Lab을 뒤로 미�
 - 실제 외부 AI Provider 호출
 - 실제 배포 URL/browser/team acceptance
 
+Docker Lab 결과를 MAC-V 또는 WIN-V 직접 Runtime PASS로 자동 변환하지 않습니다.
+
 <a id="r01-principles"></a>
 ## 현재 R01 운영 원칙
 
 ```text
-기본 미션 실제 실행(Primary Mission Runtime) = 필수
-보조 플랫폼 확인(Secondary Platform Check) = 권장
-Docker 실습(Docker Lab) = 선택
-공식 Docker 요구 = 공식 자료가 있을 때만 Gate
+MAC-V / WIN-V 지원 Mission Runtime = 공식 요구 수행 환경
+플랫폼별 Runtime Record             = 각각 실제 결과 기록
+CROSS-PLATFORM VERIFIED             = 두 환경 실제 PASS 시 추가 품질 상태
+Docker 실습(Docker Lab)             = 선택
+공식 Docker/특정 Runtime 요구        = 공식 자료가 있을 때만 Gate
 ```
 
 R01 전체 CLEAR 이후 Docker Foundation → Docker Compose → Multi-container → CI/CD → Kubernetes 등은 별도 Advanced/Portability Track으로 확장할 수 있습니다.
