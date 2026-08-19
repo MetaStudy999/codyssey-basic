@@ -9,6 +9,7 @@
 ```text
 공식 기준 확인
 → 현재 Repository main 확인
+→ 현재 실행 환경(Current Runtime Context) 선택
 → 문서/환경 진입 Gate 확인
 → 실행 전 점검(Preflight)
 → 한 단계 실제 실행(Runtime Execution)
@@ -16,6 +17,7 @@
 → STOP / GO 판정
 → 검증(Verification)
 → 증빙 자료(Evidence)
+→ 플랫폼별 Runtime Record 갱신
 → 평가(Evaluation)
 → 최종 교차검증(Cross-check)
 → 조건 충족 시에만 Mission CLEAR
@@ -30,6 +32,8 @@ Runtime PASS ≠ Verification PASS
 Verification PASS ≠ Evidence Complete
 Evidence Complete ≠ Mission CLEAR
 문서 구조 완료 ≠ Mission CLEAR
+MAC-V PASS ≠ WIN-V PASS
+한 플랫폼 PASS ≠ CROSS-PLATFORM VERIFIED
 ```
 
 ---
@@ -45,7 +49,7 @@ Evidence Complete ≠ Mission CLEAR
 - [6. 모듈 README와 세부 학습 문서 계약](#module-contract)
 - [7. 목차와 빠른 시작](#navigation)
 - [8. 명령어·코드 설명](#command-code)
-- [9. 실행 환경](#runtime-profile)
+- [9. 실행 환경과 플랫폼별 수행 기록](#runtime-profile)
 - [10. 실제 실행 프로토콜](#execution)
 - [11. 시스템 변경 안전](#safety)
 - [12. 보안·비밀정보](#security)
@@ -73,11 +77,12 @@ README / BEGINNER-GUIDE / guide / environment /
 docs / evidence / CHECKLIST                     = 주요 적용 문서
 ```
 
-이 표준의 목적은 다음 세 가지입니다.
+이 표준의 목적은 다음 네 가지입니다.
 
 1. 메인 레포와 미션 레포가 같은 작업 순서와 상태 언어를 사용합니다.
 2. 입문자가 어느 미션에 들어가도 같은 탐색·실행·검증 구조를 만납니다.
 3. 문서 개선과 실제 미션 수행을 분리하여 거짓 PASS/CLEAR를 방지합니다.
+4. `MAC-V`와 `WIN-V`의 실제 수행 이력을 각각 보존하면서 Mission CLEAR는 하나의 공식 완료 상태로 관리합니다.
 
 ---
 
@@ -99,6 +104,7 @@ docs / evidence / CHECKLIST                     = 주요 적용 문서
 - 내부 표준은 공식 평가기준을 추가·삭제·완화하지 않습니다.
 - 예상 출력, 예시 출력, 과거 Round 결과를 현재 실제 결과로 사용하지 않습니다.
 - 상세 실행 내용은 가능한 한 한 곳만 **단일 기준(Source of Truth)**으로 유지합니다.
+- 플랫폼 차이는 공식 요구와 결과 기준을 바꾸는 근거가 아니라 **실행 방법과 환경 준비 방식의 차이**로 관리합니다.
 
 ---
 
@@ -119,7 +125,7 @@ Mission CLEAR             공식 필수 Gate 최종 완료
 
 실제 수행 근거 없이 상위 상태로 승격하지 않습니다.
 
-Mission의 대표 진행 상태는 필요에 따라 다음 네 상태를 사용합니다.
+Mission의 대표 진행 상태:
 
 ```text
 ⬜ NOT STARTED
@@ -127,6 +133,25 @@ Mission의 대표 진행 상태는 필요에 따라 다음 네 상태를 사용�
 ⛔ BLOCKED
 ✅ CLEAR
 ```
+
+플랫폼별 실제 수행 기록(Runtime Record):
+
+```text
+⬜ NOT RUN
+🟡 PENDING
+✅ PASS
+❌ FAIL
+```
+
+현재 장비의 재현 상태는 필요한 경우 별도로 기록합니다.
+
+```text
+READY
+STALE
+REBUILD NEEDED
+```
+
+`STALE`은 과거의 추적 가능한 PASS Evidence를 무효화하지 않습니다. 과거 수행 이력과 현재 장비 상태를 분리합니다.
 
 ---
 
@@ -148,6 +173,7 @@ Mission의 대표 진행 상태는 필요에 따라 다음 네 상태를 사용�
 ```text
 접근 제어 목록(Access Control List, ACL)
 실행 환경(Runtime)
+현재 실행 환경(Current Runtime Context)
 검증(Verification)
 증빙 자료(Evidence)
 명령줄 인터페이스(Command-Line Interface, CLI)
@@ -297,20 +323,104 @@ Python, JavaScript, SQL, YAML, JSON, Nginx, systemd 등도 **의미 있는 코�
 ---
 
 <a id="runtime-profile"></a>
-## 9. 실행 환경
+## 9. 실행 환경과 플랫폼별 수행 기록
 
-R01 기본 프로필:
+### 9.1 지원 실행 환경(Supported Runtime)
+
+R01의 Linux 직접 실행 환경은 다음 두 프로필을 동등하게 지원합니다.
 
 ```text
-Primary
-macOS → OrbStack → Ubuntu 24.04 → Bash
+MAC-V
+학교 macOS → OrbStack → Ubuntu 24.04 → Bash
+환경 성격: Resettable / Ephemeral
 
-Secondary
-Windows 11 Pro → WSL2 → Ubuntu 24.04 → Bash
+WIN-V
+개인 노트북 Windows 11 Pro → WSL2 → Ubuntu 24.04 → Bash
+환경 성격: Persistent
 
-Docker
-선택 실습(Lab). 공식 미션이 요구하지 않으면 CLEAR Gate로 승격하지 않음
+MAC-D / WIN-D
+Docker 선택 실습(Lab). 공식 미션이 요구하지 않으면 CLEAR Gate 아님
 ```
+
+`MAC-V`와 `WIN-V`는 **합격 기준의 Primary/Secondary 관계가 아닙니다.** 공식 Mission/Evaluation, 코드·기능 품질, 검증, Evidence, Secret 보호, CLEAR 기준은 동일합니다.
+
+### 9.2 현재 실행 환경(Current Runtime Context)
+
+실제 작업 시작 시 사용자가 현재 수행 위치를 알려 주면 그 프로필을 선택합니다.
+
+```text
+학교 Mac에서 진행
+→ Current Runtime Context = MAC-V
+
+노트북 Win11에서 진행
+→ Current Runtime Context = WIN-V
+```
+
+한 작업 세션 안에서는 선택된 Runtime Context를 명확히 유지합니다. 중간에 환경을 바꾸면 새 Context로 기록하고 Preflight를 다시 수행합니다.
+
+### 9.3 학교 Mac — Resettable / Ephemeral
+
+학교 Mac은 자주 Reset될 수 있으므로 다음 원칙을 사용합니다.
+
+```text
+CHECK BEFORE INSTALL
+
+현재 환경 확인
+→ 살아 있으면 재설치 생략
+→ Reset되었으면 필요한 항목만 재구성
+→ Bootstrap / Identity 확인
+→ Mission Runtime
+```
+
+Repository도 존재 여부를 먼저 확인하고, 없을 때만 clone합니다.
+
+학교 Mac이 Reset되어도 이전에 확보한 추적 가능한 `MAC-V PASS`와 Evidence는 자동으로 FAIL이 되지 않습니다. 현재 장비 상태는 `STALE` 또는 `REBUILD NEEDED`로 별도 기록할 수 있습니다.
+
+### 9.4 Windows 11 노트북 — Persistent
+
+개인 노트북 WIN-V는 기존 상태 보존을 기본으로 합니다.
+
+```text
+VERIFY BEFORE REINSTALL
+
+기존 환경 확인
+→ Verification
+→ 정상이라면 그대로 사용
+→ 문제 있을 때만 최소 Repair
+→ Mission Runtime
+```
+
+정상적인 WSL2 Ubuntu, Repository, `.venv`, Git/GitHub 설정을 매 작업마다 재설치하지 않습니다.
+
+### 9.5 플랫폼별 Runtime Record
+
+각 Mission의 `MAC-V`와 `WIN-V` 수행 상태를 별도로 기록합니다.
+
+중앙 상태표:
+
+```text
+training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md
+```
+
+기본 관계:
+
+```text
+Mission CLEAR
+= 공식 Mission/Evaluation + 실제 Runtime + Verification + 필요한 Evidence
+
+MAC-V Runtime Record
+= MAC-V에서 실제 수행한 이력
+
+WIN-V Runtime Record
+= WIN-V에서 실제 수행한 이력
+
+CROSS-PLATFORM VERIFIED
+= 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
+```
+
+공식 Mission/Evaluation이 두 플랫폼을 요구하지 않는 한 **두 플랫폼 모두 PASS해야만 Mission CLEAR인 것은 아닙니다.** 한 지원 실행환경에서 공식 요구를 실제 충족하면 CLEAR가 가능할 수 있습니다.
+
+두 환경 모두 PASS하면 추가 내부 품질 상태로 `CROSS-PLATFORM VERIFIED`를 기록할 수 있습니다.
 
 기본 저장소 위치:
 
@@ -318,9 +428,9 @@ Docker
 $HOME/codyssey/<repository>
 ```
 
-항상 Host와 Linux Runtime, Repository, Branch, 권한, 가상환경(venv) 여부를 구분합니다.
+항상 Host, Linux Runtime, Current Runtime Context, Repository, Branch, Commit, 권한, 가상환경(venv) 여부를 구분합니다.
 
-세부 기준: `ENVIRONMENT-STANDARD.md`, `DEVELOPMENT-TOOLSET-STANDARD.md`, `VS-CODE-REMOTE-UBUNTU-STANDARD.md`
+세부 기준: `ENVIRONMENT-STANDARD.md`, `DEVELOPMENT-TOOLSET-STANDARD.md`, `VS-CODE-REMOTE-UBUNTU-STANDARD.md`, `environments/RUNTIME-PROFILES.md`
 
 ---
 
@@ -330,17 +440,20 @@ $HOME/codyssey/<repository>
 실제 Runtime에서는 **한 번에 하나의 의미 있는 단계**를 진행합니다.
 
 ```text
-1. Preflight
-2. 한 명령 또는 한 논리 블록 제시
-3. 명령 목적/위험/정상 기준 설명
-4. 사용자가 실제 실행
-5. 실제 출력 확보
-6. PASS / FAIL 판정
-7. PASS → 다음 단계
-8. FAIL → STOP → 원인 분석 → 최소 수정 → 재검증
+1. Current Runtime Context 확인
+2. Preflight
+3. 한 명령 또는 한 논리 블록 제시
+4. 명령 목적/위험/정상 기준 설명
+5. 사용자가 실제 실행
+6. 실제 출력 확보
+7. PASS / FAIL 판정
+8. PASS → 다음 단계
+9. FAIL → STOP → 원인 분석 → 최소 수정 → 재검증
 ```
 
 사용자의 실제 출력 없이 PASS/CLEAR를 추정하지 않습니다.
+
+플랫폼을 바꾸어 재수행하는 경우 새 Runtime Context에서 Preflight부터 다시 시작하고, 기존 플랫폼 Evidence를 새 실행의 실제 출력처럼 재사용하지 않습니다.
 
 ---
 
@@ -364,6 +477,8 @@ $HOME/codyssey/<repository>
 
 SSH, UFW, Cloud, DB, 사용자/권한, 삭제·Reset 작업에는 특히 이 순서를 우선합니다.
 
+학교 Mac Reset은 시스템 변경 안전 절차와 별개로 환경 재구성 가능성을 높이는 운영 특성입니다. Reset 후에는 이전 상태를 추정하지 않고 다시 Preflight합니다.
+
 ---
 
 <a id="security"></a>
@@ -381,6 +496,8 @@ Token/Password/API Key/Private Key를 Git 추적
 ```
 
 노출 이력이 있으면 단순 파일 삭제만으로 끝내지 않고 Secret 교체와 History 대응을 검토합니다.
+
+플랫폼별 Evidence를 분리하더라도 Secret 보호 기준은 동일합니다.
 
 ---
 
@@ -401,12 +518,34 @@ Requirement
 - 정적 검사와 실제 Runtime 검증을 구분합니다.
 - 자동 검증 범위 밖의 항목을 별도 실제 Evidence로 확인합니다.
 - `0 FAIL` 하나만으로 Mission CLEAR를 선언하지 않습니다.
+- MAC-V와 WIN-V의 검증 결과를 서로 대신하지 않습니다.
 
 증빙 자료(Evidence):
 - 현재 Round의 실제 결과만 사용합니다.
-- 예상 출력이나 과거 결과를 현재 Evidence로 사용하지 않습니다.
+- 예상 출력이나 과거 결과를 현재 실행의 Evidence로 사용하지 않습니다.
 - Repository/Branch/Commit/수집 시각과 연결합니다.
+- Runtime Profile(`MAC-V` 또는 `WIN-V`)을 기록합니다.
 - Secret을 제거한 뒤 보존합니다.
+- 실제 수행 시 필요에 따라 Mission Repository의 `evidence/mac-v/`, `evidence/win-v/`처럼 분리할 수 있습니다. 빈 형식만 맞추기 위해 사전에 대량 생성하지 않습니다.
+
+플랫폼별 PASS를 기록할 때 최소한 다음을 추적합니다.
+
+```text
+Runtime Profile
+Host / Linux Runtime
+Mission
+Repository / Branch / Commit
+Executed At
+Verification Result
+Evidence Path
+```
+
+교차 플랫폼 검증(Cross-platform Verification):
+- 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS해야 합니다.
+- 두 기록 모두 Commit과 Evidence를 추적할 수 있어야 합니다.
+- 가능하면 동일 구현 Commit을 두 환경에서 검증합니다.
+- 서로 다른 Commit이면 차이가 공식 요구 충족에 영향을 주지 않는지 확인하기 전에는 `CROSS-PLATFORM VERIFIED`로 승격하지 않습니다.
+- 공식 요구가 없다면 Cross-platform Verified는 Mission CLEAR와 별도의 내부 품질 상태입니다.
 
 평가(Evaluation):
 - 공식 평가문항을 우선합니다.
@@ -483,20 +622,32 @@ Runtime/CLEAR 상태의 사실성
 <a id="closeout"></a>
 ## 16. 공통 환경 마무리와 동결
 
-현재 공통 환경 마무리(Common Environment Closeout)는 다음 Gate를 사용합니다.
+공통 환경 마무리(Common Environment Closeout)는 **전역 문서/스크립트 Gate**와 **현재 Runtime Profile 준비 상태**를 분리합니다.
+
+전역 Gate:
 
 ```text
 Gate 1 — Documentation Drift
-Gate 2 — Primary Bootstrap Runtime Verification
-Gate 3 — Git/GitHub User Identity Readiness
 Gate 4 — Bash Static Syntax Validation
-        ↓
-COMMON ENVIRONMENT FREEZE
-        ↓
-Mission Runtime
 ```
 
-Freeze 이후에는 현재 Mission CLEAR를 막는 문제만 최소 수정하고, 비차단 고도화는 후속 개선으로 미룹니다.
+현재 선택한 Runtime Profile에서 확인할 준비 상태:
+
+```text
+Bootstrap Runtime Verification
+Git/GitHub User Identity Readiness
+```
+
+즉 `MAC-V`와 `WIN-V` 두 장비가 동시에 준비되어야만 Mission Runtime을 시작하는 구조가 아닙니다.
+
+```text
+현재 Runtime Context 선택
+→ 해당 환경 Bootstrap / Identity 확인
+→ READY
+→ Mission Runtime
+```
+
+공통 표준과 스크립트가 동결(Freeze)된 이후에는 현재 Mission CLEAR를 막는 문제만 최소 수정하고, 비차단 고도화는 후속 개선으로 미룹니다.
 
 ---
 
@@ -520,6 +671,7 @@ B4-2 → B5-2 → B5-3 → B7-2
 - 다음 Mission은 실제 진입 직전에 문서·환경·모듈화 Trigger를 감사합니다.
 - 현재 Mission이 CLEAR되기 전 다음 Mission Runtime을 정식 시작하지 않습니다.
 - 표준은 공통으로 사용하되 각 미션의 공식 요구와 기술 성격에 따라 모듈 수와 세부 구조를 조정합니다.
+- 한 Mission을 MAC-V에서 CLEAR한 뒤 나중에 WIN-V에서 재수행하여 교차 플랫폼 검증을 추가할 수 있습니다. 이 추가 검증 때문에 다음 Mission 진도를 자동으로 막지 않습니다.
 
 ---
 
@@ -528,10 +680,16 @@ B4-2 → B5-2 → B5-3 → B7-2
 
 ### 메인 레포(Control Tower)
 
-이 파일이 상위 작업 운영 기준입니다.
+상위 작업 운영 기준:
 
 ```text
 standards/CODYSSEY-WORKING-OPERATING-STANDARD.md
+```
+
+플랫폼별 Runtime 중앙 상태표:
+
+```text
+training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md
 ```
 
 전문 세부 규칙은 기존 `standards/*.md`를 사용합니다.
@@ -550,11 +708,13 @@ Mission Adapter의 역할:
 공식 Mission/Evaluation 우선 선언
 → Control Tower 상위 표준 링크
 → 현재 Mission의 Source/README/BEGINNER-GUIDE/CHECKLIST 연결
-→ 현재 상태와 Runtime Gate 확인
+→ 현재 Runtime Context와 Runtime Gate 확인
 → Mission 특화 예외/주의사항만 기록
 ```
 
-**상위 작업 표준 전문을 15개 저장소에 복사하지 않습니다.** 중앙 표준 하나를 유지하고 각 미션은 링크와 Mission-specific 차이만 갖습니다. 이렇게 해야 표준 변경 시 중복·Drift를 줄일 수 있습니다.
+**상위 작업 표준 전문을 15개 저장소에 복사하지 않습니다.** 중앙 표준 하나를 유지하고 각 미션은 링크와 Mission-specific 차이만 갖습니다.
+
+플랫폼별 실제 Evidence가 생길 때 해당 Mission 안에서 MAC-V/WIN-V 기록을 분리하며, 중앙 Matrix는 요약 상태만 관리합니다.
 
 ---
 
@@ -579,6 +739,8 @@ BEGINNER-GUIDE.md
 
 B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 않습니다. **Global Hub → Module TOC → Learning Unit**의 역할 분리와 실행 안전 원칙을 재사용합니다.
 
+플랫폼별 수행 기록 역시 B1-1에서 시작하되 모든 Mission에 공통으로 적용 가능한 중앙 정책을 사용합니다.
+
 ---
 
 <a id="change-management"></a>
@@ -591,7 +753,7 @@ B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 �
 2. 상위 표준 수정
 3. 관련 전문 표준과 충돌 확인
 4. 현재 Active Mission 영향 확인
-5. 필요한 Mission Adapter/문서에 APPLY
+5. 필요한 Control Tower / Mission Adapter / 상태표에 APPLY
 6. 실제 GitHub main에서 VERIFY
 7. Runtime blocker이면 즉시 최소 교정
 8. 비차단 개선은 실제 미션 순서에 맞춰 순차 반영
@@ -615,7 +777,9 @@ B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 �
 - `ENVIRONMENT-STANDARD.md`
 - `CROSS-PLATFORM-GIT-STANDARD.md`
 - `VS-CODE-REMOTE-UBUNTU-STANDARD.md`
+- `../environments/RUNTIME-PROFILES.md`
+- `../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`
 
 ## 최종 운영 문장
 
-> **공식 요구사항을 절대 우선하고, 문서는 전체 허브 → 모듈 목차 → 세부 학습 문서로 관리하며, 실제 작업은 실행 전 점검 → 한 단계 실행 → 실제 출력 확인 → 검증 → 증빙 → 평가 → 완료 순으로 진행하고, 실제 결과가 없는 상태에서는 PASS/CLEAR를 선언하지 않는다.**
+> **공식 요구사항을 절대 우선하고, 문서는 전체 허브 → 모듈 목차 → 세부 학습 문서로 관리하며, 실제 작업은 현재 실행 환경 확인 → 실행 전 점검 → 한 단계 실행 → 실제 출력 확인 → 검증 → 증빙 → 플랫폼별 수행 기록 → 평가 → 완료 순으로 진행하고, 실제 결과가 없는 상태에서는 PASS/CLEAR를 선언하지 않는다.**
