@@ -6,13 +6,18 @@
 
 ## 한눈에 보기(Quick Read)
 
+공통 작업을 시작하거나 기준 적용 순서를 판단할 때는 먼저 **상위 작업 운영 표준(Working Operating Standard)**을 확인합니다.
+
+- [CODYSSEY-WORKING-OPERATING-STANDARD.md](CODYSSEY-WORKING-OPERATING-STANDARD.md) — 메인 레포(Control Tower)와 모든 Mission Repository가 공통으로 사용하는 상위 운영 계약
+
 기준을 사용할 때 가장 중요한 순서는 다음입니다.
 
 ```text
 공식 Source 확인
+→ 상위 작업 운영 표준 확인
 → 현재 실제 상태 확인
 → 문서 역할 판단
-→ 필요한 기준만 적용
+→ 필요한 세부 기준만 적용
 → 실제 대상 문서 수정
 → 다시 열어 검증(VERIFY)
 ```
@@ -25,6 +30,7 @@ Control Tower 문서별 적용 현황은 다음 문서에서 관리합니다.
 
 ## 📑 목차
 
+- [0. 상위 작업 운영 표준](#operating-standard)
 - [기준 적용 우선순위](#priority)
 - [1. 입문자 훈련·문서 생성](#beginner-training)
 - [2. README 정보 구조](#readme-ia)
@@ -47,6 +53,33 @@ Control Tower 문서별 적용 현황은 다음 문서에서 관리합니다.
 
 ---
 
+<a id="operating-standard"></a>
+## 0. 상위 작업 운영 표준
+
+[CODYSSEY-WORKING-OPERATING-STANDARD.md](CODYSSEY-WORKING-OPERATING-STANDARD.md)
+
+이 문서는 Codyssey Basic에서 사용하는 세부 표준을 실제 작업 흐름으로 묶는 **상위 운영 계약(Operating Contract)**입니다. 공통 규칙 전문을 각 Mission Repository에 복제하지 않고 다음 구조로 사용합니다.
+
+```text
+메인 README.md
+→ ../WORKING-RULES.md
+→ CODYSSEY-WORKING-OPERATING-STANDARD.md
+→ 필요한 세부 Standard
+→ 각 Mission의 WORKING-RULES.md 어댑터
+→ Mission 공식 Source / BEGINNER-GUIDE / CHECKLIST
+→ Runtime → Verification → Evidence → Evaluation → CLEAR
+```
+
+적용 원칙:
+
+- 공통 작업 룰은 이 상위 표준에서 한 번만 관리합니다.
+- 각 Mission의 `WORKING-RULES.md`는 공통 규칙을 복제하지 않고 **미션별 차이·예외·공식 요구 연결**만 담당합니다.
+- 공식 Mission/Evaluation/제공 파일이 상위 표준보다 항상 우선합니다.
+- 상위 표준을 변경했더라도 모든 미션 문서를 기계적으로 일괄 재작성하지 않습니다. 현재 Active Mission부터 실제 사용 순서로 적용·검증합니다.
+- 문서 또는 운영 표준을 수정한 사실만으로 Runtime/Verification/Evidence/CLEAR 상태를 변경하지 않습니다.
+
+---
+
 <a id="priority"></a>
 ## 기준 적용 우선순위
 
@@ -57,7 +90,9 @@ Control Tower 문서별 적용 현황은 다음 문서에서 관리합니다.
         ↓
 Control Tower의 현재 운영 상태
         ↓
-이 standards/ 공통 기준
+상위 작업 운영 표준
+        ↓
+이 standards/ 세부 공통 기준
         ↓
 각 Mission의 README / BEGINNER-GUIDE / docs
 ```
@@ -363,35 +398,37 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
         ↓
 2. 현재 Repository/Runtime 상태 확인
         ↓
-3. 문서 역할 결정
+3. 상위 작업 운영 표준과 Mission WORKING-RULES 확인
         ↓
-4. BEGINNER-TRAINING-STANDARD 적용
+4. 문서 역할 결정
         ↓
-5. DOCUMENT-NAVIGATION-QUICK-START-STANDARD로 Quick Start/목차 적용 여부 결정
+5. BEGINNER-TRAINING-STANDARD 적용
         ↓
-6. BEGINNER-GUIDE-MODULARIZATION-STANDARD로 모듈화/3계층 구조 판정
+6. DOCUMENT-NAVIGATION-QUICK-START-STANDARD로 Quick Start/목차 적용 여부 결정
         ↓
-7. 실행 위치 / 실행 전 점검(Preflight) / STOP-GO / 재실행 안전성(Rerun Safety) 확인
+7. BEGINNER-GUIDE-MODULARIZATION-STANDARD로 모듈화/3계층 구조 판정
         ↓
-8. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
+8. 실행 위치 / 실행 전 점검(Preflight) / STOP-GO / 재실행 안전성(Rerun Safety) 확인
         ↓
-9. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
+9. 명령/코드가 있으면 COMMAND-CODE-EXPLANATION-STANDARD 적용
         ↓
-10. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
+10. 개발환경/Tool 문서라면 DEVELOPMENT-TOOLSET-STANDARD 적용
         ↓
-11. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
+11. AI CLI를 다루면 AI-CLI-TOOLSET-STANDARD 적용
         ↓
-12. TERMINOLOGY-STANDARD 적용
+12. README라면 README-INFORMATION-ARCHITECTURE-STANDARD 적용
         ↓
-13. 필요한 Environment/Canonical Standard 적용
+13. TERMINOLOGY-STANDARD 적용
         ↓
-14. 링크·명령·경로·상태 정합성 확인
+14. 필요한 Environment/Canonical Standard 적용
         ↓
-15. 실제 대상 문서를 다시 열어 검증(VERIFY)
+15. 링크·명령·경로·상태 정합성 확인
         ↓
-16. Beginner Documentation Audit
+16. 실제 대상 문서를 다시 열어 검증(VERIFY)
         ↓
-17. BEGINNER READY 또는 보완 필요
+17. Beginner Documentation Audit
+        ↓
+18. BEGINNER READY 또는 보완 필요
 ```
 
 ---
@@ -403,6 +440,9 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 
 | 문서 | 기본 역할 |
 |---|---|
+| `../WORKING-RULES.md` | Control Tower 작업 룰 진입점(Entry Point) |
+| `CODYSSEY-WORKING-OPERATING-STANDARD.md` | 메인 레포와 전체 Mission이 공유하는 상위 작업 운영 계약 |
+| 각 Mission `WORKING-RULES.md` | 공통 표준을 참조하고 미션별 공식 요구·예외·실행 문서로 연결하는 얇은 어댑터(Thin Adapter) |
 | `README.md` | 처음 진입, 지금 할 일, Quick Start/대표 경로, 탐색(Navigation) |
 | `BEGINNER-GUIDE.md` | Quick Start + 실제 수행의 전체 중앙 허브(Global Hub) |
 | `guide/<module>/README.md` | 연관 개념·STEP의 모듈 목차(Module TOC)와 이전/다음 탐색 |
@@ -482,7 +522,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 기준을 변경할 때는 다음 순서를 사용합니다.
 
 ```text
-기준 문서 수정
+상위 작업 운영 표준 또는 세부 기준 문서 수정
 → 관련 표준과 충돌 확인
 → 현재 미션(Active Mission)에 미치는 영향 확인
 → 실제 대상 문서에 적용(APPLY)
@@ -490,5 +530,7 @@ macOS/Windows의 VS Code UI와 Ubuntu 실제 Workspace/Terminal/Git/Python 실�
 → 실제 실행 차단 문제(Runtime blocker)/오판정은 즉시 교정
 → 나머지 기존 문서는 실제 사용 순서로 순차 반영
 ```
+
+공통 규칙은 `CODYSSEY-WORKING-OPERATING-STANDARD.md`에서 관리하고, Mission별 차이·공식 요구 연결은 각 저장소의 `WORKING-RULES.md`에서 관리합니다. 동일한 공통 규칙 전문을 15개 Mission Repository에 복제하지 않습니다.
 
 15개 미션 전체를 기준 변경만을 이유로 기계적으로 한 번에 재작성하지 않습니다. 대신 [BEGINNER-DOCUMENTATION-AUDIT.md](BEGINNER-DOCUMENTATION-AUDIT.md)에서 현재 미션부터 실행 순서에 맞춰 감사·교정합니다.
