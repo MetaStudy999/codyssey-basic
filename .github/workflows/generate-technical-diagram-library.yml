@@ -1,0 +1,137 @@
+name: Generate technical diagram library
+
+on:
+  pull_request:
+    paths:
+      - 'templates/presentations/diagrams/**/*.js'
+      - 'templates/presentations/diagrams/package.json'
+      - 'templates/presentations/diagrams/README.md'
+      - 'templates/presentations/diagrams/Codyssey_Technical_Diagram_Library_Guide.md'
+      - '.github/workflows/generate-technical-diagram-library.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'templates/presentations/diagrams/**/*.js'
+      - 'templates/presentations/diagrams/package.json'
+      - 'templates/presentations/diagrams/README.md'
+      - 'templates/presentations/diagrams/Codyssey_Technical_Diagram_Library_Guide.md'
+      - '.github/workflows/generate-technical-diagram-library.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install PowerPoint generator dependency
+        working-directory: templates/presentations/diagrams
+        run: npm install --no-audit --no-fund
+
+      - name: Generate editable PowerPoint library
+        working-directory: templates/presentations/diagrams
+        run: npm run generate
+
+      - name: Verify PowerPoint slide count
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          pptx = Path('templates/presentations/diagrams/Codyssey_Technical_Diagram_Master_Library.pptx')
+          if not pptx.exists():
+              raise SystemExit('PPTX was not generated')
+
+          with ZipFile(pptx) as zf:
+              slides = [
+                  name for name in zf.namelist()
+                  if name.startswith('ppt/slides/slide') and name.endswith('.xml')
+              ]
+
+          count = len(slides)
+          print(f'generated slide count: {count}')
+          if count != 20:
+              raise SystemExit(f'expected 20 slides, got {count}')
+          PY
+
+      - name: Install preview rendering tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice-impress poppler-utils fonts-noto-cjk
+          python -m pip install --disable-pip-version-check pillow
+
+      - name: Render preview montage
+        run: |
+          set -euo pipefail
+          PPTX='templates/presentations/diagrams/Codyssey_Technical_Diagram_Master_Library.pptx'
+          OUT='/tmp/codyssey-diagram-render'
+          mkdir -p "$OUT"
+          libreoffice --headless --convert-to pdf --outdir "$OUT" "$PPTX"
+          PDF="$OUT/Codyssey_Technical_Diagram_Master_Library.pdf"
+          pdftoppm -png -r 72 "$PDF" "$OUT/slide"
+
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+
+          src = Path('/tmp/codyssey-diagram-render')
+          files = sorted(src.glob('slide-*.png'), key=lambda p: int(p.stem.split('-')[-1]))
+          if len(files) != 20:
+              raise SystemExit(f'expected 20 rendered slides, got {len(files)}')
+
+          cols = 5
+          rows = 4
+          thumb_w = 400
+          gap = 12
+          border = 2
+
+          thumbs = []
+          for path in files:
+              img = Image.open(path).convert('RGB')
+              ratio = thumb_w / img.width
+              thumb = img.resize((thumb_w, round(img.height * ratio)), Image.Resampling.LANCZOS)
+              thumb = ImageOps.expand(thumb, border=border, fill=(215, 222, 232))
+              thumbs.append(thumb)
+
+          thumb_h = max(img.height for img in thumbs)
+          canvas = Image.new(
+              'RGB',
+              (cols * thumbs[0].width + (cols - 1) * gap,
+               rows * thumb_h + (rows - 1) * gap),
+              (247, 249, 252),
+          )
+
+          for idx, img in enumerate(thumbs):
+              x = (idx % cols) * (thumbs[0].width + gap)
+              y = (idx // cols) * (thumb_h + gap)
+              canvas.paste(img, (x, y))
+
+          out = Path('templates/presentations/diagrams/Codyssey_Technical_Diagram_Master_Montage.png')
+          canvas.save(out, optimize=True)
+          print(out)
+          PY
+
+      - name: Commit generated artifacts
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            templates/presentations/diagrams/Codyssey_Technical_Diagram_Master_Library.pptx \
+            templates/presentations/diagrams/Codyssey_Technical_Diagram_Master_Montage.png
+
+          if git diff --cached --quiet; then
+            echo 'Generated artifacts are already current.'
+          else
+            git commit -m 'chore: generate technical diagram library artifacts'
+            git push
+          fi

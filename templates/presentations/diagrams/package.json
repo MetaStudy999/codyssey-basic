@@ -1,0 +1,12 @@
+{
+  "name": "codyssey-technical-diagram-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reproducible PowerPoint generator for the Codyssey B1-1~B7-2 technical diagram library",
+  "scripts": {
+    "generate": "node Codyssey_Technical_Diagram_Master_Library_Generator.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.0"
+  }
+}
