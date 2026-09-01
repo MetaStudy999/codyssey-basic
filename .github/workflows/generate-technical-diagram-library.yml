@@ -1,6 +1,13 @@
 name: Generate technical diagram library
 
 on:
+  pull_request:
+    paths:
+      - 'templates/presentations/diagrams/**/*.js'
+      - 'templates/presentations/diagrams/package.json'
+      - 'templates/presentations/diagrams/README.md'
+      - 'templates/presentations/diagrams/Codyssey_Technical_Diagram_Library_Guide.md'
+      - '.github/workflows/generate-technical-diagram-library.yml'
   push:
     branches: [main]
     paths:
@@ -114,6 +121,7 @@ jobs:
           PY
 
       - name: Commit generated artifacts
+        if: github.event_name == 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
