@@ -10,13 +10,15 @@
 1. 실제 미션 발표는 `Codyssey_Mission_Evaluation_Core_22slides.pptx`를 복사해서 시작합니다.
 2. 보통 발표 시간에 맞춰 **12~16장**만 남깁니다.
 3. 전체 디자인·레이아웃·도메인별 선택 슬라이드가 필요하면 `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx`를 참고합니다.
-4. [`Codyssey_Mission_Presentation_Template_Guide.md`](Codyssey_Mission_Presentation_Template_Guide.md)의 미션별 강조 포인트를 적용합니다.
-5. 실제 실행하지 않은 항목은 PASS로 표시하지 않습니다.
-6. 스크린샷·로그·테스트 결과에는 **무엇을 증명하는 자료인지** 캡션을 붙입니다.
+4. 아키텍처·ERD·Cloud·Sequence·Research·Evidence 등 고급 기술 다이어그램이 필요하면 [`diagrams/`](diagrams/)의 Technical Diagram Library를 사용합니다.
+5. [`Codyssey_Mission_Presentation_Template_Guide.md`](Codyssey_Mission_Presentation_Template_Guide.md)의 미션별 강조 포인트를 적용합니다.
+6. 실제 실행하지 않은 항목은 PASS로 표시하지 않습니다.
+7. 스크린샷·로그·테스트 결과에는 **무엇을 증명하는 자료인지** 캡션을 붙입니다.
 
 ## 목차
 
 - [파일 구성](#files)
+- [고급 기술 다이어그램 라이브러리](#diagram-library)
 - [기준 발표 구조](#structure)
 - [미션별 강조 영역](#mission-map)
 - [디자인 기준](#design)
@@ -31,8 +33,48 @@
 | `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx` | 전체 기준 Master Reference | 디자인·레이아웃·도메인별 슬라이드 참고 |
 | `Codyssey_Mission_Evaluation_Core_22slides.pptx` | 실전 발표용 Core Template | 미션별 발표자료 복사 원본 |
 | `Codyssey_Mission_Presentation_Template_Guide.md` | 목차·미션별 강조·Master Prompt | 발표 기획 및 AI 작성 기준 |
+| [`diagrams/`](diagrams/) | 고급 Technical Diagram Library | Architecture·DFD·Sequence·State·ERD·Cloud·Research·Evidence 시각화 |
 
-> **Master는 기준본**, **Core는 작업본**으로 사용합니다. Master를 미션마다 직접 수정하여 원본 기준이 흔들리지 않도록 합니다.
+> **Master는 기준본**, **Core는 작업본**, **Diagram Library는 재사용 가능한 기술 시각화 기준본**으로 사용합니다. 기준본을 미션마다 직접 수정하여 원본 기준이 흔들리지 않도록 합니다.
+
+<a id="diagram-library"></a>
+## 고급 기술 다이어그램 라이브러리
+
+[`diagrams/README.md`](diagrams/README.md)에서 B1-1 ~ B7-2에 공통으로 사용할 수 있는 20장 Technical Diagram Master Library를 관리합니다.
+
+핵심 구성:
+
+```text
+System Architecture
+Data Flow Diagram (DFD, 데이터 흐름도)
+Sequence Diagram (순차 다이어그램)
+State Diagram (상태 다이어그램)
+Entity-Relationship Diagram (ERD, 개체-관계도)
+Cloud / Network Architecture
+Algorithm Visualization
+Git Collaboration Swimlane
+Troubleshooting / Root Cause Analysis (RCA)
+Security / Trust Boundary
+Before → After
+Evidence Traceability
+Research Pipeline
+Experimental Design
+End-to-End (E2E) Service Flow
+```
+
+미션별 우선 선택:
+
+```text
+B1 → Architecture / State / Troubleshooting
+B2 → Layered Architecture / Data Flow / Git Swimlane
+B3 → Data Structure / Algorithm / Complexity
+B4 → Event Flow / State / Before-After
+B5 → ERD / Sequence / Security Boundary
+B6 → Cloud Network / Trust Boundary / Pipeline
+B7 → End-to-End / Research / Evidence Traceability
+```
+
+다이어그램은 실제 구현과 검증 결과를 설명하기 위한 시각 도구이며, 공식 Mission / Evaluation에 없는 기능을 추가하는 근거로 사용하지 않습니다.
 
 <a id="structure"></a>
 ## 기준 발표 구조
@@ -156,7 +198,7 @@ presentation/
     └── evidence/
 ```
 
-공통 Master/Core PPTX를 15개 미션 폴더에 중복 복사하지 않습니다.
+공통 Master/Core PPTX와 Diagram Library를 15개 미션 폴더에 중복 복사하지 않습니다.
 
 ---
 
