@@ -1,0 +1,77 @@
+name: Generate presentation templates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - templates/presentations/generate_templates.py
+      - templates/presentations/requirements.txt
+      - templates/presentations/Codyssey_Mission_Presentation_Template_Guide.md
+      - .github/workflows/generate-presentation-templates.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build PowerPoint templates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r templates/presentations/requirements.txt
+
+      - name: Generate PowerPoint templates
+        run: python templates/presentations/generate_templates.py
+
+      - name: Verify generated slide counts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pptx import Presentation
+
+          base = Path("templates/presentations")
+          expected = {
+              "Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx": 34,
+              "Codyssey_Mission_Evaluation_Core_22slides.pptx": 22,
+          }
+
+          for name, expected_count in expected.items():
+              path = base / name
+              if not path.exists():
+                  raise SystemExit(f"missing generated file: {path}")
+              actual = len(Presentation(path).slides)
+              if actual != expected_count:
+                  raise SystemExit(
+                      f"unexpected slide count for {name}: {actual} != {expected_count}"
+                  )
+              print(f"PASS {name}: {actual} slides")
+          PY
+
+      - name: Commit generated PowerPoint files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            templates/presentations/Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx \
+            templates/presentations/Codyssey_Mission_Evaluation_Core_22slides.pptx
+
+          if git diff --cached --quiet; then
+            echo "Generated PowerPoint files are already up to date."
+            exit 0
+          fi
+
+          git commit -m "chore: generate presentation template artifacts"
+          git push
