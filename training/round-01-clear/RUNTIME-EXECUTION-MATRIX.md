@@ -2,7 +2,7 @@
 
 이 문서는 R01의 각 미션을 **어느 지원 실행 환경(Supported Runtime)에서 실제 수행했는지** 기록하는 중앙 상태표입니다.
 
-> 이 표는 플랫폼별 수행 기록(Runtime Record)을 관리합니다. 공식 미션 완료(Mission CLEAR) 판정은 하나이며, `MAC-V`와 `WIN-V`의 수행 여부와 별도로 관리합니다.
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 변경은 기존 Runtime Record(실행 기록)를 초기화하지 않습니다.
 
 ## 🚀 빠른 확인(Quick Read)
 
@@ -16,11 +16,11 @@ CROSS-PLATFORM VERIFIED     = 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
 현재 Workcell 포커스:
 
 ```text
-B1-1 = ⏸ PAUSED / READY TO RESUME
+B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
 B2-2 = 🟡 ACTIVE
 ```
 
-B1-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 문서/Simulation 준비도 실제 팀 Runtime PASS를 의미하지 않습니다.
+B4-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 문서/Simulation 준비도 실제 팀 Runtime PASS를 의미하지 않습니다.
 
 핵심 원칙:
 
@@ -88,23 +88,25 @@ MAC-V PASS + WIN-V PASS     → CROSS-PLATFORM VERIFIED 가능
 
 > 현재 표는 **미션 실제 실행(Runtime Execution) 기록**만 나타냅니다. 개발환경 Bootstrap, Git/GitHub Identity 확인, Simulation 문서 준비를 미션 Runtime PASS로 계산하지 않습니다.
 
-| 순서 | 미션 | MAC-V | WIN-V | 교차 플랫폼 | Mission / Workcell 상태 |
-|---:|---|---|---|---|---|
-| 1 | B1-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⏸ PAUSED / READY TO RESUME |
-| 2 | B1-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 3 | B2-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 4 | B2-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
-| 5 | B3-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 6 | B3-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 7 | B4-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 8 | B5-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 9 | B6-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 10 | B6-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 11 | B7-1 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 12 | B4-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 13 | B5-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 14 | B5-3 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 15 | B7-2 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+FAST TRACK의 기존 미션 **주제 기준 실행 순서**를 유지하고 현재 Mission ID로 재매핑합니다.
+
+| 실행순번 | 현재 미션 | 주제 | MAC-V | WIN-V | 교차 플랫폼 | Mission / Workcell 상태 |
+|---:|---|---|---|---|---|---|
+| 1 | **B4-1** | 시스템 관제 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⏸ PAUSED / READY TO RESUME |
+| 2 | **B4-2** | 시스템 장애 분석 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 3 | **B2-1** | 가계부 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 4 | **B2-2** | Git 팀 협업 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
+| 5 | **B5-1** | Mini Redis | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 6 | **B5-2** | Mini Git | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 7 | **B1-1** | 웹 포트폴리오 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 8 | **B6-1** | SQL 데이터베이스 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 9 | **B3-1** | 클라우드 인프라 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 10 | **B3-2** | AI Git 도우미 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 11 | **B7-1** | AI 챗봇 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 12 | **B1-2** | React SPA | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 13 | **B6-2** | FastAPI CRUD | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 14 | **B6-3** | FastAPI 인증·연관관계 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
+| 15 | **B7-2** | AI 챗봇 고도화 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 
 B2-2의 현재 5계정 MAC-V/WIN-V Simulation은 별도 학습 트랙입니다. 실제 Simulation Runtime이 시작되어도 공식 팀 Runtime Record와 Evidence를 자동으로 PASS 처리하지 않습니다.
 
@@ -174,8 +176,6 @@ Mission CLEAR는 공식 Mission/Evaluation의 필수 조건, 실제 Runtime, 검
 
 작업을 시작할 때 사용자가 현재 환경을 알려 주면 해당 프로필을 선택합니다.
 
-예:
-
 ```text
 "학교 Mac에서 진행합니다."
 → Current Runtime Context = MAC-V
@@ -184,17 +184,7 @@ Mission CLEAR는 공식 Mission/Evaluation의 필수 조건, 실제 Runtime, 검
 → Current Runtime Context = WIN-V
 ```
 
-선택된 환경에 맞춰 설치·검증 경로만 달라지고, 다음 기준은 동일합니다.
-
-```text
-공식 Mission 요구사항
-Evaluation
-코드/기능 기준
-Verification
-Evidence
-Secret 보호
-Mission CLEAR
-```
+선택된 환경에 맞춰 설치·검증 경로만 달라지고 공식 Mission 요구사항, Evaluation, Verification, Evidence, Secret 보호, Mission CLEAR 기준은 동일합니다.
 
 ---
 
@@ -211,11 +201,7 @@ MAC-V는 Reset 가능성을 기본 전제로 합니다.
 → Mission Runtime
 ```
 
-기본 원칙:
-
-```text
-CHECK BEFORE INSTALL
-```
+기본 원칙: `CHECK BEFORE INSTALL`
 
 Repository도 매번 Clone하지 않습니다.
 
@@ -241,11 +227,7 @@ WIN-V는 기존 상태 보존을 기본으로 합니다.
 → Mission Runtime
 ```
 
-기본 원칙:
-
-```text
-VERIFY BEFORE REINSTALL
-```
+기본 원칙: `VERIFY BEFORE REINSTALL`
 
 WSL2 Ubuntu, Repository, `.venv`, Git/GitHub 설정 등을 정상 상태인데도 매 작업마다 재설치하지 않습니다.
 
@@ -260,8 +242,8 @@ WSL2 Ubuntu, Repository, `.venv`, Git/GitHub 설정 등을 정상 상태인데�
 Runtime Profile : MAC-V 또는 WIN-V
 Host            : 실제 Host 정보
 Linux Runtime   : Ubuntu 버전/환경
-Mission         : Bx-x
-Repository      : 저장소
+Mission         : 현재 Bx-x
+Repository      : Canonical Repository
 Branch          : 실제 Branch
 Commit          : 실제 Commit SHA
 Executed At     : 실제 수행 시각
@@ -309,10 +291,10 @@ Secret, Token, Password, Private Key의 실제 값은 플랫폼별 Evidence에�
 플랫폼 상태는 실제 실행 결과가 있을 때만 변경합니다.
 
 ```text
-실제 실행 전        → NOT RUN
-실행/검증 진행 중   → PENDING
+실제 실행 전         → NOT RUN
+실행/검증 진행 중    → PENDING
 실제 PASS + Evidence → PASS
-실제 실패           → FAIL
+실제 실패            → FAIL
 ```
 
 Mission CLEAR와 플랫폼 기록을 동시에 추정하여 변경하지 않습니다.
@@ -332,7 +314,9 @@ Mission CLEAR와 플랫폼 기록을 동시에 추정하여 변경하지 않습�
 
 관련 기준:
 
+- `../../CURRENT-MISSION-MAP.md`
 - `../../WORKING-RULES.md`
 - `../../standards/CODYSSEY-WORKING-OPERATING-STANDARD.md`
 - `../../environments/RUNTIME-PROFILES.md`
-- `../../PROGRESS.md`
+- `PHASE-C-PREFLIGHT.md`
+- `PHASE-C-RUNBOOK.md`
