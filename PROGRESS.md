@@ -6,14 +6,16 @@
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
+> 현재 Mission ID(미션 번호)의 단일 기준은 [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)입니다. 번호 변경은 기존 Runtime/Workcell 상태를 초기화하지 않습니다.
+
 현재 Workcell 포커스:
 
 ```text
-B1-1 = ⏸ PAUSED / READY TO RESUME
+B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
 B2-2 = 🟡 ACTIVE
 ```
 
-> B1-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 5계정 Simulation 준비/실행도 실제 팀 Runtime PASS나 Mission CLEAR를 의미하지 않습니다.
+> B4-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 5계정 Simulation 준비/실행도 실제 팀 Runtime PASS나 Mission CLEAR를 의미하지 않습니다.
 
 `MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary가 아니라 **동등한 지원 실행 환경(Supported Runtime)**입니다. 실제 작업을 시작할 때 사용자가 현재 수행 환경을 알려 주면 그 환경을 **현재 실행 환경(Current Runtime Context)**으로 사용합니다.
 
@@ -22,7 +24,7 @@ B2-2 = 🟡 ACTIVE
 ```text
 현재 위치                   = R01 / Phase C / Stage 1
 현재 Workcell               = B2-2 🟡 ACTIVE
-B1-1                         = ⏸ PAUSED / READY TO RESUME
+B4-1                         = ⏸ PAUSED / READY TO RESUME
 Runtime CLEAR               = 0 / 15
 필수 경로                   = 0 / 11 CLEAR
 선택 경로                   = 0 / 4 CLEAR
@@ -52,10 +54,10 @@ Current Runtime Context     = MAC-V 우선 진행 예정
 
 B2-2 진입 문서:
 
-- [B2-2 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
-- [B2-2 MAC-V Run Now](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/environment/mac-v/RUN-NOW.md)
-- [B2-2 MAC-V Simulation](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/simulation/mac-v/README.md)
-- [Simulation Repository Setup](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/simulation/mac-v/SIMULATION-REPOSITORY-SETUP.md)
+- [B2-2 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+- [B2-2 MAC-V Run Now](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/environment/mac-v/RUN-NOW.md)
+- [B2-2 MAC-V Simulation](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/simulation/mac-v/README.md)
+- [Simulation Repository Setup](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/simulation/mac-v/SIMULATION-REPOSITORY-SETUP.md)
 
 ## 📑 목차
 
@@ -85,6 +87,7 @@ B2-2 진입 문서:
 
 핵심 문서:
 
+- `CURRENT-MISSION-MAP.md`
 - `README.md`
 - `WORKING-RULES.md`
 - `MISSION-INDEX.md`
@@ -166,41 +169,43 @@ CROSS-PLATFORM VERIFIED
 <a id="fast-track"></a>
 ## FAST TRACK
 
+기존 미션 주제의 수행 순서를 유지하고 현재 Mission ID로 재매핑합니다.
+
 ```text
 Stage 1 — REQUIRED CLEAR
-B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
-→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+B4-1 → B4-2 → B2-1 → B2-2 → B5-1 → B5-2
+→ B1-1 → B6-1 → B3-1 → B3-2 → B7-1
 
 Stage 2 — OPTIONAL CLEAR
-B4-2 → B5-2 → B5-3 → B7-2
+B1-2 → B6-2 → B6-3 → B7-2
 ```
 
-FAST TRACK의 정식 CLEAR 순서는 유지합니다. 현재 B2-2 Workcell을 먼저 학습·준비한다고 해서 B1-1/B1-2/B2-1을 CLEAR한 것으로 간주하지 않습니다.
+FAST TRACK의 주제 기준 CLEAR 순서는 유지합니다. 현재 B2-2 Workcell을 먼저 학습·준비한다고 해서 앞선 필수 미션을 CLEAR한 것으로 간주하지 않습니다.
 
-B1-1은 `⏸ PAUSED / READY TO RESUME`이며 후속에 다시 열어 실제 Runtime/Verification/Evidence를 이어갑니다.
+시스템 관제 미션은 번호 변경 전 `B1-1`이었으며, 현재는 **B4-1 `⏸ PAUSED / READY TO RESUME`** 상태로 이어집니다.
 
 ---
 
 <a id="mission-status"></a>
 ## 실제 실행 미션 상태
 
-| 순서 | Stage | 미션 | 구분 | Mission / Workcell 상태 |
+| 실행순번 | Stage | 현재 미션 | 구분 | Mission / Workcell 상태 |
 |---:|---|---|---|---|
-| 1 | Required | B1-1 | 필수 | ⏸ PAUSED / READY TO RESUME |
-| 2 | Required | B1-2 | 필수 | ⬜ NOT STARTED |
-| 3 | Required | B2-1 | 필수 | ⬜ NOT STARTED |
-| 4 | Required | B2-2 | 필수 | 🟡 ACTIVE |
-| 5 | Required | B3-1 | 필수 | ⬜ NOT STARTED |
-| 6 | Required | B3-2 | 필수 | ⬜ NOT STARTED |
-| 7 | Required | B4-1 | 필수 | ⬜ NOT STARTED |
-| 8 | Required | B5-1 | 필수 | ⬜ NOT STARTED |
-| 9 | Required | B6-1 | 필수 | ⬜ NOT STARTED |
-| 10 | Required | B6-2 | 필수 | ⬜ NOT STARTED |
-| 11 | Required | B7-1 | 필수 Term Project | ⬜ NOT STARTED |
-| 12 | Optional | B4-2 | 선택 | ⬜ NOT STARTED |
-| 13 | Optional | B5-2 | 선택 | ⬜ NOT STARTED |
-| 14 | Optional | B5-3 | 선택 | ⬜ NOT STARTED |
-| 15 | Optional | B7-2 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
+| 1 | Required | **B4-1** 시스템 관제 | 필수 | ⏸ PAUSED / READY TO RESUME |
+| 2 | Required | **B4-2** 시스템 장애 분석 | 필수 | ⬜ NOT STARTED |
+| 3 | Required | **B2-1** 가계부 | 필수 | ⬜ NOT STARTED |
+| 4 | Required | **B2-2** Git 팀 협업 | 필수 | 🟡 ACTIVE |
+| 5 | Required | **B5-1** Mini Redis | 필수 | ⬜ NOT STARTED |
+| 6 | Required | **B5-2** Mini Git | 필수 | ⬜ NOT STARTED |
+| 7 | Required | **B1-1** 웹 포트폴리오 | 필수 | ⬜ NOT STARTED |
+| 8 | Required | **B6-1** SQL 데이터베이스 | 필수 | ⬜ NOT STARTED |
+| 9 | Required | **B3-1** 클라우드 인프라 | 필수 | ⬜ NOT STARTED |
+| 10 | Required | **B3-2** AI Git 도우미 | 필수 | ⬜ NOT STARTED |
+| 11 | Required | **B7-1** AI 챗봇 | 필수 Term Project | ⬜ NOT STARTED |
+| 12 | Optional | **B1-2** React SPA | 선택 | ⬜ NOT STARTED |
+| 13 | Optional | **B6-2** FastAPI CRUD | 선택 | ⬜ NOT STARTED |
+| 14 | Optional | **B6-3** FastAPI 인증·연관관계 | 선택 | ⬜ NOT STARTED |
+| 15 | Optional | **B7-2** AI 챗봇 고도화 | 선택 Term Project / 고도화 | ⬜ NOT STARTED |
 
 ---
 
@@ -290,7 +295,7 @@ Phase A Reference Build          ✅ 15/15 CORE READY
 → Canonical Consistency Audit    ✅ PASS 15/15
 → Phase B Cross-Mission Audit    ✅ COMPLETE / BLOCKER 0
 → Phase C FAST TRACK             🟡 진행 중
-   ├─ B1-1 Workcell              ⏸ PAUSED / READY TO RESUME
+   ├─ B4-1 시스템 관제 Workcell  ⏸ PAUSED / READY TO RESUME
    ├─ B2-2 Workcell              🟡 ACTIVE
    ├─ Stage 1 Required CLEAR     0 / 11
    └─ Stage 2 Optional CLEAR     0 / 4
