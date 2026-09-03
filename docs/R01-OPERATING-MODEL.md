@@ -5,6 +5,8 @@
 이 문서는 Codyssey Basic의 `R01 — CLEAR`를 운영할 때 사용하는 내부 단계와 용어를 한곳에서 정의합니다.
 
 > **중요:** `Phase A / Phase B / Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR`는 코디세이 공식 교육과정의 공식 단계명이 아니라, 이 저장소에서 15개 미션을 일관되게 수행하기 위해 사용하는 **내부 운영 모델**입니다.
+>
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)입니다. Mission ID는 교육과정 개편에 따라 바뀔 수 있으며, Repository는 주제 기반 Canonical Repository를 유지합니다.
 
 공식 Mission/Evaluation이 언제나 최우선 기준(Source of Truth)이며, 이 운영 모델은 공식 요구사항을 바꾸거나 추가하지 않습니다.
 
@@ -111,7 +113,7 @@ Reference Build 완료
 - Secret 정책
 - Git/Branch 운영
 - 미션 간 선후관계
-- B5/B6/B7 연결 구조
+- Web / Python·Git / Cloud·AI / Linux·OS / 자료구조 / DB·Backend / Term Project 연결 구조
 - 중복 설정과 불필요한 반복
 - 검증(Verification)/증빙(Evidence) 기준의 일관성
 
@@ -149,7 +151,8 @@ Phase A/B에서 준비한 Reference, Guide, 실행 전 점검(Preflight), Runboo
 Phase C에서 한 미션의 기본 흐름은 다음과 같습니다.
 
 ```text
-실행 전 점검(Preflight)
+현재 Mission ID / Canonical Repository 확인
+→ 실행 전 점검(Preflight)
 → 시작 점검(START-CHECK, 있는 경우)
 → 입문자 가이드(BEGINNER-GUIDE)
 → 실제 실행(Runtime)
@@ -189,15 +192,27 @@ NO
 <a id="fast-track"></a>
 ## 5. FAST TRACK이란 무엇인가
 
-`FAST TRACK`은 **Phase C에서 미션을 어떤 순서로 실행할지** 정하는 운영 순서입니다.
+`FAST TRACK`은 **Phase C에서 미션을 어떤 순서로 실행할지** 정하는 내부 운영 순서입니다. 2026-09-03 미션 번호 재편 이후에도 기존에 정한 **미션 주제의 수행 순서**를 유지하고 현재 Mission ID로 표시합니다.
 
 ```text
 Stage 1 — REQUIRED CLEAR
-B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
-→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+B4-1 시스템 관제
+→ B4-2 시스템 장애 분석
+→ B2-1 가계부
+→ B2-2 Git 협업
+→ B5-1 Mini Redis
+→ B5-2 Mini Git
+→ B1-1 웹 포트폴리오
+→ B6-1 SQL 데이터베이스
+→ B3-1 클라우드 인프라
+→ B3-2 AI Git 도우미
+→ B7-1 웹 AI 챗봇
 
 Stage 2 — OPTIONAL CLEAR
-B4-2 → B5-2 → B5-3 → B7-2
+B1-2 React SPA
+→ B6-2 FastAPI CRUD
+→ B6-3 FastAPI 인증/관계
+→ B7-2 AI 챗봇 고도화
 ```
 
 즉:
@@ -208,7 +223,7 @@ B4-2 → B5-2 → B5-3 → B7-2
 선택 4개 이후
 ```
 
-FAST TRACK은 미션을 생략하는 방식이 아닙니다.
+FAST TRACK은 미션을 생략하는 방식이 아니며, **Mission ID의 숫자 순서와 동일하다는 뜻도 아닙니다.**
 
 ---
 
@@ -253,6 +268,8 @@ Mission 상태는 네 가지만 사용합니다.
 - `⛔ BLOCKED`
 - `✅ CLEAR`
 
+Mission ID가 변경되어도 같은 미션 주제와 Canonical Repository의 기존 Runtime/Verification/Evidence 상태를 임의로 초기화하지 않습니다.
+
 ---
 
 <a id="current-position"></a>
@@ -267,21 +284,24 @@ CODYSSEY BASIC
    ├─ Phase B — CROSS-MISSION AUDIT   ✅ 완료
    └─ Phase C — RUNTIME CLEAR         🟡 현재
       └─ FAST TRACK
-         ├─ Stage 1 — Required
-         │  └─ B1-1 🟡 ACTIVE
-         └─ Stage 2 — Optional
-            └─ 대기
+         ├─ B2-2 Git 협업             🟡 ACTIVE
+         ├─ B4-1 시스템 관제          ⏸ PAUSED / READY TO RESUME
+         └─ Runtime CLEAR             0 / 15
 ```
 
 따라서 현재의 핵심 행동은 다음입니다.
 
 ```text
-B1-1 실제 실행(Runtime)
-→ 검증(Verification)
-→ 증빙(Evidence)
-→ ✅ 완료(CLEAR)
-→ B1-2
+B2-2 현재 Workcell 수행
+→ 실제 팀 Runtime / Verification / Evidence 확보
+→ 조건 충족 시 ✅ CLEAR
+
+B4-1 시스템 관제
+→ 기존 PAUSED 상태를 유지
+→ 후속에 Runtime / Verification / Evidence 재개
 ```
+
+B2-2의 5계정 Simulation 준비나 수행은 실제 3~5인 팀 Mission CLEAR를 자동으로 의미하지 않습니다.
 
 ---
 
@@ -294,8 +314,10 @@ B1-1 실제 실행(Runtime)
 | `Phase A` | Reference Build | 모범답안·가이드 준비 |
 | `Phase B` | Cross-Mission Audit | 전체 사전점검 |
 | `Phase C` | Runtime CLEAR | 실제 실행해서 통과 |
-| `FAST TRACK` | 미션 실행 순서 | 필수 11 → 선택 4 |
+| `FAST TRACK` | 미션 주제 기반 내부 실행 순서 | 필수 11 → 선택 4 |
 | `FAST EXECUTE` | 실행 운영 방식 | 실행 우선, 필요할 때만 최소 수정 |
+| `Mission ID` | 교육과정의 현재 번호 | 바뀔 수 있는 Metadata |
+| `Canonical Repository` | 주제 기반 기준 저장소 | 번호가 바뀌어도 유지하는 저장소 |
 | `CLEAR` | 실제 완료 상태 | 실제 실행(Runtime) + 검증(Verification) + 증빙(Evidence) 완료 |
 
 ---
@@ -305,6 +327,7 @@ B1-1 실제 실행(Runtime)
 
 이 문서는 **용어와 운영 단계의 의미**를 설명합니다.
 
+- `CURRENT-MISSION-MAP.md` — 현재 Mission ID ↔ Canonical Repository 단일 기준
 - `README.md` — 현재 상태 Dashboard와 핵심 링크
 - `docs/R01-OPERATING-MODEL.md` — R01 단계/용어 설명
 - `MISSION-RUNBOOK.md` — 전체 수행 계약
@@ -314,4 +337,4 @@ B1-1 실제 실행(Runtime)
 - `training/round-01-clear/PHASE-C-RUNBOOK.md` — 15개 실제 실행(Runtime) 경로
 - `standards/DOCUMENT-NAVIGATION-QUICK-START-STANDARD.md` — 문서 탐색/빠른 시작(Quick Start) 적용 기준
 
-새 채팅이나 새 IDE/Agent에서 `Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR`의 의미가 불명확하면 이 문서를 먼저 확인합니다.
+새 채팅이나 새 IDE/Agent에서 `Phase C`, `FAST TRACK`, `FAST EXECUTE`, `CLEAR` 또는 현재 Mission 번호의 의미가 불명확하면 이 문서와 `CURRENT-MISSION-MAP.md`를 먼저 확인합니다.
