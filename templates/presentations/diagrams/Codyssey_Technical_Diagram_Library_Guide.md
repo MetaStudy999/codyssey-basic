@@ -1,21 +1,24 @@
 # Codyssey Technical Diagram Master Library
 
-코디세이 AI/SW 기초과정 B1-1 ~ B7-2 평가 발표와 학부·석박사·연구원·학회 발표에 공통으로 사용할 수 있는 **고급 기술 다이어그램(Technical Diagram) 표준 라이브러리**입니다.
+코디세이 AI/SW 기초과정의 현재 15개 미션 평가 발표와 학부·석박사·연구원·학회 발표에 공통으로 사용할 수 있는 **고급 기술 다이어그램(Technical Diagram) 표준 라이브러리**입니다.
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../../CURRENT-MISSION-MAP.md`](../../../CURRENT-MISSION-MAP.md)입니다. Mission ID가 변경되더라도 다이어그램은 미션 주제·실제 구현·Canonical Repository를 기준으로 적용합니다.
 
 ## 빠른 시작(Quick Start)
 
 1. `Codyssey_Technical_Diagram_Master_Library.pptx`를 복사합니다.
-2. 필요한 다이어그램 슬라이드만 선택합니다.
-3. 예시 노드의 이름과 책임을 실제 미션 구조로 교체합니다.
-4. 실제 검증(Verification)과 증빙 자료(Evidence)가 있는 경우 하단 Evidence 문구를 실제 결과로 바꿉니다.
-5. 공식 Mission / Evaluation과 실제 구현에 없는 내용을 추가하지 않습니다.
+2. `CURRENT-MISSION-MAP.md`에서 현재 Mission ID와 Canonical Repository를 확인합니다.
+3. 필요한 다이어그램 슬라이드만 선택합니다.
+4. 예시 노드의 이름과 책임을 실제 미션 구조로 교체합니다.
+5. 실제 검증(Verification)과 증빙 자료(Evidence)가 있는 경우 하단 Evidence 문구를 실제 결과로 바꿉니다.
+6. 공식 Mission / Evaluation과 실제 구현에 없는 내용을 추가하지 않습니다.
 
 ---
 
 ## 목차
 
 1. 다이어그램 설계 원칙
-2. B1-1 ~ B7-2 미션별 추천 다이어그램
+2. 현재 15개 미션별 추천 다이어그램
 3. 20개 슬라이드 구성
 4. 공통 시각 문법
 5. 발표 수준별 사용법
@@ -41,16 +44,16 @@ Evidence = 실제 검증 결과
 
 ---
 
-## 2. B1-1 ~ B7-2 미션별 추천 다이어그램
+## 2. 현재 15개 미션별 추천 다이어그램
 
-| 영역 | 대표 미션 | 1순위 | 2순위 | 3순위 | 발표 초점 |
+| 현재 영역 | 대표 미션 | 1순위 | 2순위 | 3순위 | 발표 초점 |
 |---|---|---|---|---|---|
-| Linux / OS | B1-1, B1-2 | Architecture | State | Troubleshooting | 운영·보안·관제·장애분석 |
+| Web / Front-end | B1-1, B1-2 | Event/Data Flow | State | Before/After | 상호작용·상태·UX·배포 |
 | Python / Git | B2-1, B2-2 | Layered Architecture | Data Flow | Git Swimlane | 구조·예외·협업 |
-| 자료구조 / 알고리즘 | B3-1, B3-2 | Data Structure | Algorithm Flow | Complexity | 연산·불변조건·시간복잡도 |
-| Web / Front-end | B4-1, B4-2 | Event/Data Flow | State | Before/After | 상호작용·상태·UX |
-| DB / Back-end | B5-1, B5-2, B5-3 | ERD | Sequence | Security Boundary | 관계·API·인증·인가 |
-| Cloud / AI API | B6-1, B6-2 | Cloud Network | Trust Boundary | Pipeline | 배포·권한·외부 API·실패 |
+| Cloud / AI API | B3-1, B3-2 | Cloud Network | Trust Boundary | Pipeline | 배포·권한·외부 API·실패 |
+| Linux / OS | B4-1, B4-2 | Architecture | State | Troubleshooting / RCA | 운영·보안·관제·장애분석 |
+| 자료구조 / 알고리즘 | B5-1, B5-2 | Data Structure | Algorithm Flow | Complexity | 연산·불변조건·시간복잡도 |
+| DB / Back-end | B6-1, B6-2, B6-3 | ERD | Sequence | Security Boundary | 관계·API·인증·인가 |
 | Term Project | B7-1, B7-2 | End-to-End | Research Pipeline | Evidence Traceability | 서비스 완성도·연구·배포 |
 
 ---
@@ -59,7 +62,7 @@ Evidence = 실제 검증 결과
 
 1. Cover — 고급 기술 다이어그램 라이브러리
 2. Design Language — 한 장 한 메시지, 결론형 제목, 역할 색상
-3. Mission Map — B1~B7 주력 다이어그램 선택표
+3. Mission Map — 현재 B1~B7 주력 다이어그램 선택표
 4. System Architecture — 컴포넌트 + 책임 + 경계
 5. Data Flow — 입력 → 검증 → 처리 → 저장 → 응답
 6. Sequence Diagram — 참여자 간 시간 순서 요청
@@ -175,12 +178,19 @@ Research Gap
 기술 발표 시각화 설계자(Technical Presentation Visualization Designer)
 
 [대상]
-코디세이 {MISSION_ID} 평가 / 학부 / 대학원 / 연구원 / 학회
+코디세이 {CURRENT_MISSION_ID} 평가 / 학부 / 대학원 / 연구원 / 학회
+
+[Mission 확인]
+- CURRENT-MISSION-MAP.md에서 현재 Mission ID와 미션 주제를 확인한다.
+- Canonical Repository는 주제 기반 이름을 사용한다.
+- 과거 Mission ID가 자료에 있으면 역사적 표기인지 현재 표기인지 구분한다.
 
 [목표]
 평가자 또는 청중이 10초 안에 구조와 핵심 판단을 이해하도록 한다.
 
 [입력]
+- 현재 Mission ID: {CURRENT_MISSION_ID}
+- Canonical Repository: {CANONICAL_REPOSITORY}
 - 공식 Mission 요구사항: {REQ}
 - 구현 구조: {ARCH}
 - 핵심 코드/설정: {IMPLEMENTATION}
@@ -199,6 +209,7 @@ Research Gap
 8. 실제 검증이 있다면 하단에 Evidence를 1줄로 연결한다.
 9. 색상만으로 의미를 구분하지 않고 라벨과 선 형태를 함께 사용한다.
 10. 16:9 PowerPoint 편집 가능한 벡터 형태로 구성한다.
+11. Mission ID 변경만으로 과거 실제 Evidence를 새 PASS로 재해석하지 않는다.
 ```
 
 ---
@@ -206,6 +217,8 @@ Research Gap
 ## 7. 최종 검수 체크리스트
 
 ```text
+[ ] 현재 Mission ID와 주제가 CURRENT-MISSION-MAP.md와 일치하는가?
+[ ] Canonical Repository가 주제 기반 이름인가?
 [ ] 한 장에 핵심 메시지가 하나인가?
 [ ] 제목만 읽어도 결론을 알 수 있는가?
 [ ] 노드가 4~7개 이내인가?
