@@ -1,10 +1,13 @@
 # R01 — Reference Build Audit
 
 감사일: 2026-08-17
+현재 번호 반영일: 2026-09-04
 
 ## 목적
 
-Phase A에서 B1-1~B7-2 기준 구현·학습자료·검증계획이 어디까지 준비되었는지 15개 미션 저장소의 당시 `main`과 `training/round-01-clear/`를 기준으로 점검한 기록입니다.
+Phase A에서 15개 미션의 기준 구현·학습자료·검증계획이 어디까지 준비되었는지 각 미션 저장소의 당시 `main`과 `training/round-01-clear/`를 기준으로 점검한 기록입니다.
+
+> 이 감사는 2026-08-17 당시 미션 번호로 수행되었습니다. 현재 표시 번호는 2026-09-03 재편된 Mission ID를 따르며, 번호 연결의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 감사 결과와 Git 이력은 미션 주제 기준으로 보존합니다.
 
 Reference Build 판정은 Runtime Mission 상태와 다릅니다. 실제 실행·검증·Evidence가 없으면 `✅ CLEAR`가 아닙니다.
 
@@ -17,7 +20,7 @@ Canonical Audit         = PASS 15 / 15
 Runtime CLEAR           = 0 / 15
 ```
 
-이 감사 이후 Phase B도 완료되었으며, **현재는 Phase C — Runtime CLEAR / B1-1 ACTIVE**입니다. 현재 행동은 [NEXT-ACTIONS.md](NEXT-ACTIONS.md)를 확인합니다.
+이 감사 이후 Phase B도 완료되었으며, **현재는 Phase C — Runtime CLEAR / B2-2 ACTIVE**입니다. 시스템 관제 미션은 현재 **B4-1 PAUSED / READY TO RESUME** 상태입니다. 현재 행동은 [NEXT-ACTIONS.md](NEXT-ACTIONS.md)를 확인합니다.
 
 ## 📑 목차
 
@@ -42,23 +45,23 @@ Runtime CLEAR           = 0 / 15
 <a id="results"></a>
 ## 15개 저장소 최종 결과
 
-| 미션 | Phase A 판정 | Runtime 잔여 |
-|---|---|---|
-| B1-1 | **CORE READY** | Linux/SSH/UFW/User/ACL/Agent/cron 실제 실행 |
-| B1-2 | **CORE READY** | 실제 장애 재현·진단·복구 |
-| B2-1 | **CORE READY** | 실제 CLI/persistence 흐름 |
-| B2-2 | **CORE READY** | 실제 팀 GitHub Issue/PR/Review/Protection |
-| B3-1 | **CORE READY** | 실제 REPL/경계조건 실행 |
-| B3-2 | **CORE READY** | 실제 Mini Git 실행/설명 |
-| B4-1 | **CORE READY** | Browser/API/GitHub Pages |
-| B5-1 | **CORE READY** | SQLite fresh DB/Query/Evidence |
-| B6-1 | **CORE READY** | 실제 AWS/SSH/Nginx/IAM/Cleanup |
-| B6-2 | **CORE READY** | 실제 AI API/Commit/PR |
-| B7-1 | **CORE READY** | Browser/AI/팀 협업/외부 배포 |
-| B4-2 | **CORE READY** | React/Supabase/배포 Runtime |
-| B5-2 | **CORE READY** | FastAPI CRUD Runtime |
-| B5-3 | **CORE READY** | Auth/관계/상태변경 Runtime |
-| B7-2 | **CORE READY** | Full-stack/Auth/AI/배포 Runtime |
+| 현재 미션 | 주제 | Phase A 판정 | Runtime 잔여 |
+|---|---|---|---|
+| B1-1 | 웹 포트폴리오 | **CORE READY** | Browser/API/GitHub Pages |
+| B1-2 | React SPA | **CORE READY** | React/Supabase/배포 Runtime |
+| B2-1 | 가계부 | **CORE READY** | 실제 CLI/persistence 흐름 |
+| B2-2 | Git 협업 | **CORE READY** | 실제 팀 GitHub Issue/PR/Review/Protection |
+| B3-1 | 클라우드 인프라 | **CORE READY** | 실제 AWS/SSH/Nginx/IAM/Cleanup |
+| B3-2 | AI Git 도우미 | **CORE READY** | 실제 AI API/Commit/PR |
+| B4-1 | 시스템 관제 | **CORE READY** | Linux/SSH/UFW/User/ACL/Agent/cron 실제 실행 |
+| B4-2 | 시스템 장애 분석 | **CORE READY** | 실제 장애 재현·진단·복구 |
+| B5-1 | Mini Redis | **CORE READY** | 실제 REPL/경계조건 실행 |
+| B5-2 | Mini Git | **CORE READY** | 실제 Mini Git 실행/설명 |
+| B6-1 | SQL 데이터베이스 | **CORE READY** | SQLite fresh DB/Query/Evidence |
+| B6-2 | FastAPI CRUD | **CORE READY** | FastAPI CRUD Runtime |
+| B6-3 | FastAPI 인증/관계 | **CORE READY** | Auth/관계/상태변경 Runtime |
+| B7-1 | 웹 AI 챗봇 | **CORE READY** | Browser/AI/팀 협업/외부 배포 |
+| B7-2 | AI 챗봇 고도화 | **CORE READY** | Full-stack/Auth/AI/배포 Runtime |
 
 <a id="totals"></a>
 ## 집계
@@ -89,13 +92,13 @@ Runtime CLEAR           = 0 / 15
 
 Phase A 완료 후 `CANONICAL-AUDIT.md`에서 15개 미션의 대표 진입점과 Source 표기를 추가 감사했습니다.
 
-발견·교정한 주요 문제:
+발견·교정한 주요 문제는 **당시 번호 기준**으로 기록합니다.
 
-- B6-2 canonical Beginner Guide/Checklist가 scaffold였던 문제 해결
-- B6-2 저장소에 존재하지 않는 `b6-2-evaluation.md` Source 표기 제거
+- 당시 B6-2(현재 **B3-2 AI Git 도우미**) canonical Beginner Guide/Checklist가 scaffold였던 문제 해결
+- 당시 B6-2 저장소에 존재하지 않는 `b6-2-evaluation.md` Source 표기 제거
 - B7-1 canonical Beginner Guide/Checklist가 scaffold였던 문제 해결
 - B7-1 저장소에 존재하지 않는 `b7-1-evaluation.md` Source 표기 제거
-- B6-2/B7-1 root README와 Reference Status 동기화
+- 당시 B6-2(현재 B3-2)/B7-1 root README와 Reference Status 동기화
 
 결과:
 
@@ -123,13 +126,15 @@ Reference Build ✅
 → Canonical Audit ✅
 → Cross-Mission Audit ✅
 → Phase C Runtime CLEAR 🟡
-→ B1-1 ACTIVE
+   ├─ B2-2 Git 협업 🟡 ACTIVE
+   └─ B4-1 시스템 관제 ⏸ PAUSED / READY TO RESUME
 ```
 
 현재 작업은 다음 문서를 사용합니다.
 
+- [현재 Mission ID 기준](../../CURRENT-MISSION-MAP.md)
 - [NEXT-ACTIONS.md](NEXT-ACTIONS.md)
 - [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)
 - [PHASE-C-RUNBOOK.md](PHASE-C-RUNBOOK.md)
 
-역사적 감사 결과는 보존하되, 과거의 “다음 단계”가 현재 지시로 오해되지 않도록 현재 Hand-off를 명시합니다.
+역사적 감사 결과는 보존하되, 과거 번호 또는 과거의 “다음 단계”가 현재 지시로 오해되지 않도록 현재 번호와 Hand-off를 명시합니다.
