@@ -1,6 +1,9 @@
 # R01 Phase C — 실행 전 점검(Runtime Preflight)
 
 동결일: 2026-08-17
+현재 번호 반영일: 2026-09-04
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. Repository(저장소)는 미션 번호와 분리된 주제 기반 Canonical Repository를 사용합니다.
 
 ## 목적
 
@@ -211,7 +214,7 @@ esac
 - 새 VS Code Terminal은 `${workspaceFolder}`에서 Bash로 시작하도록 설정
 - Python Mission은 repo-local `.venv`를 사용
 - 특정 Project `.venv`를 Global `~/.bashrc`에서 강제 활성화하지 않음
-- B1-1 MAC-V에서는 OrbStack built-in SSH `orb`와 Mission OpenSSH `sshd:20022`를 서로 다른 계층으로 구분
+- **B4-1 시스템 관제 미션**에서는 OrbStack built-in SSH `orb`와 Mission OpenSSH `sshd:20022`를 서로 다른 계층으로 구분
 
 상세 계약은 `standards/VS-CODE-REMOTE-UBUNTU-STANDARD.md`를 사용합니다.
 
@@ -386,7 +389,7 @@ ps -ef | grep -E 'uvicorn|vite|http.server|agent-app|agent.*leak' | grep -v grep
 원칙:
 
 - 이전 미션의 dev server가 남아 있으면 원인을 확인한 뒤 해당 프로세스만 종료
-- B1-1 공식 `20022`, `15034`는 임의 변경 금지
+- **B4-1 시스템 관제 미션의 공식 `20022`, `15034`는 임의 변경 금지**
 - FastAPI/HTTP/Vite는 순차 Runtime이므로 시작 전에 local port만 확인
 - 광범위한 `pkill -9`, `killall`, 재부팅으로 정리하지 않음
 
@@ -403,7 +406,7 @@ python3 --version 2>/dev/null || true
 다른 미션 `.venv`가 활성화되어 있으면 먼저 `deactivate` 후 현재 미션의 `.venv`를 사용합니다.
 
 ```text
-B5-2 .venv ≠ B5-3 .venv ≠ B7-1 .venv ≠ B7-2 .venv
+B6-2 .venv ≠ B6-3 .venv ≠ B7-1 .venv ≠ B7-2 .venv
 ```
 
 System Python에 FastAPI/SQLAlchemy 등을 일괄 설치하지 않습니다.
@@ -415,14 +418,14 @@ VS Code Python Environments를 사용하는 경우 Remote Ubuntu의 현재 Repos
 <a id="node"></a>
 ## 8. Node 환경 격리
 
-B4-2에서만 확인합니다.
+**B1-2 React SPA 미션**에서 확인합니다.
 
 ```bash
 node --version
 npm --version
 ```
 
-`node_modules`는 B4-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
+`node_modules`는 B1-2 Reference 내부에서만 사용합니다. 다른 미션으로 복사하거나 공유하지 않습니다.
 
 ---
 
@@ -448,7 +451,7 @@ cat t_secret.key
 set -x 상태에서 Secret 입력
 ```
 
-B5-3의 `SESSION_SECRET`, B4-2의 Supabase 변수도 같은 원칙을 적용합니다.
+**B6-3**의 `SESSION_SECRET`, **B1-2**의 Supabase 변수도 같은 원칙을 적용합니다.
 
 ---
 
@@ -470,11 +473,11 @@ find training/round-01-clear/reference -maxdepth 2 \
 <a id="cloud"></a>
 ## 11. Cloud / Remote resource 확인
 
-B4-2/B6-1/B7-1/B7-2에서만 적용합니다.
+**B1-2 / B3-1 / B7-1 / B7-2**에서만 적용합니다.
 
 - 사용 중인 project/account/region을 먼저 확인
 - 실제 production/shared resource와 실습 resource를 구분
-- B6-1은 `ap-northeast-2`
+- **B3-1 클라우드 인프라 미션은 `ap-northeast-2`**
 - AWS Access Key/Secret/Session Token/Private Key는 출력 금지
 - Supabase Service Role Key를 frontend에 사용 금지
 - Cleanup은 현재 미션이 생성한 자원만 대상
@@ -523,7 +526,8 @@ training/round-01-clear/evidence/
 
 ```text
 [ ] Current Runtime Context가 MAC-V 또는 WIN-V로 명확함
-[ ] 올바른 repository/branch
+[ ] 현재 Mission ID는 CURRENT-MISSION-MAP.md와 일치함
+[ ] 올바른 Canonical Repository / branch
 [ ] 보존해야 할 local 변경 확인
 [ ] VS Code Remote/Workspace가 선택한 Ubuntu의 $HOME 경로임
 [ ] Bash/PWD/HOME 상태 확인
