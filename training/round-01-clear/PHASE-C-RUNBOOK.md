@@ -1,6 +1,7 @@
 # R01 Phase C — 실제 실행 완료(Runtime CLEAR) Runbook
 
-동결일: 2026-08-17
+동결일: 2026-08-17  
+번호 재매핑: 2026-09-03
 
 ## 목적
 
@@ -8,17 +9,18 @@
 
 Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 PASS를 대신하지 않습니다.
 
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 변경으로 기존 Runtime 상태를 초기화하지 않습니다.
+
 ## 🚀 빠른 시작(Quick Start)
 
-현재 미션(Active Mission)은 **B1-1**입니다.
+현재 Workcell은 **B2-2 — Git 팀 협업**이며, 시스템 관제 미션은 현재 **B4-1 ⏸ PAUSED / READY TO RESUME**입니다.
 
 1. 현재 작업 위치를 `MAC-V` 또는 `WIN-V`로 지정합니다.
 2. [PHASE-C-PREFLIGHT.md](PHASE-C-PREFLIGHT.md)의 시작 판정(Start Gate)을 확인합니다.
-3. [B1-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)의 빠른 시작(Quick Start)과 STEP 01부터 진행합니다.
+3. [B2-2 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)의 빠른 시작(Quick Start)과 STEP 01부터 진행합니다.
 4. 실제 실행·검증·Evidence가 완료된 뒤 실행한 플랫폼의 Runtime Record를 갱신합니다.
 5. 공식 조건을 충족한 뒤에만 Mission을 `CLEAR`로 변경합니다.
 6. 필요하면 다른 지원 실행 환경에서도 같은 미션을 수행해 교차 플랫폼 검증(Cross-platform Verification)을 추가합니다.
-7. 다음 미션은 이 문서의 실제 실행표 순서로 이동합니다.
 
 ```text
 현재 실행 환경(Current Runtime Context) 선택
@@ -32,10 +34,9 @@ Reference 구현이나 정적 검증 결과는 실제 실행 환경(Runtime)의 
 → 완료 판정(CLEAR Gate)
 → 필요 시 다른 환경 재수행
 → 두 환경 PASS 시 CROSS-PLATFORM VERIFIED
-→ 다음 미션
 ```
 
-> 이 Runbook의 표는 **어디서 무엇을 시작하는지 찾는 색인**입니다. B1-1/B1-2/B2-2/B6-1처럼 시스템·팀·Cloud 상태를 다루는 미션은 표의 한 줄 명령으로 대체하지 않고 해당 Beginner Guide의 안전 절차를 따릅니다.
+> 이 Runbook의 표는 **어디서 무엇을 시작하는지 찾는 색인**입니다. 시스템·팀·Cloud 상태를 다루는 B4-1/B4-2/B2-2/B3-1은 표의 한 줄 명령으로 대체하지 않고 해당 Beginner Guide의 안전 절차를 따릅니다.
 
 ## 📑 목차
 
@@ -81,6 +82,7 @@ Current Runtime Context 선택
 - 실행 위치, Branch, PWD, `.venv`, Secret, 비용 자원은 각 미션 시작 전 확인합니다.
 - 실제 출력이 없는 항목은 Reference PASS를 실제 실행 PASS로 바꾸지 않습니다.
 - 한 플랫폼의 실제 출력을 다른 플랫폼 PASS로 재사용하지 않습니다.
+- Canonical Repository는 Mission ID와 분리된 주제 기반 이름을 사용합니다.
 
 ---
 
@@ -114,13 +116,7 @@ Mission CLEAR ≠ 두 플랫폼 모두 PASS 의무
 
 공식 Mission/Evaluation이 두 플랫폼 모두를 요구하지 않는 한 한 지원 실행환경에서 공식 요구를 충족하면 Mission CLEAR가 가능할 수 있습니다.
 
-두 환경 모두 같은 R01에서 실제 PASS하고 각각의 Repository/Branch/Commit/Verification/Evidence가 추적 가능하면 내부 품질 상태로:
-
-```text
-✅ CROSS-PLATFORM VERIFIED
-```
-
-를 사용할 수 있습니다.
+두 환경 모두 같은 R01에서 실제 PASS하고 각각의 Repository/Branch/Commit/Verification/Evidence가 추적 가능하면 내부 품질 상태로 `✅ CROSS-PLATFORM VERIFIED`를 사용할 수 있습니다.
 
 중앙 수행 기록:
 
@@ -133,23 +129,25 @@ Mission CLEAR ≠ 두 플랫폼 모두 PASS 의무
 <a id="runtime-table"></a>
 ## 15개 실제 실행(Runtime) 실행표
 
+FAST TRACK의 기존 **미션 주제 기준 실행 순서**를 유지하면서 현재 Mission ID와 Canonical Repository로 표시합니다.
+
 | 순서 | Mission / Repository | Working Directory | 실제 실행 시작 명령·경로 | 검증(Verification) | 증빙 위치(Evidence Root) |
 |---:|---|---|---|---|---|
-| 1 | B1-1 `codyssey-basic-b1-1-system-monitor` | repository root | `training/round-01-clear/BEGINNER-GUIDE.md`의 SSH→UFW→권한→Agent→monitor→cron 순서. 제공 ZIP은 Runtime에서 `uname -m`과 archive 내용을 확인한 후 선택 | `sudo bash training/round-01-clear/environment/verify.sh` | `training/round-01-clear/evidence/` |
-| 2 | B1-2 `codyssey-basic-b1-2-linux-troubleshooting` | repository root | `RUNTIME-SAFETY.md` 확인 후 `$HOME/b1-2-agent` 격리 경로에서 OOM→CPU→Deadlock controlled experiment | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` |
-| 3 | B2-1 `codyssey-basic-b2-1-budget-tracker` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"` 후 `python -m budget_app --help`; 실제 학습 데이터는 별도 `--data-dir` 권장 | `bash training/round-01-clear/environment/verify.sh` + 실제 CLI/persistence 확인 | `training/round-01-clear/evidence/` |
-| 4 | B2-2 `codyssey-basic-b2-2-git-team-collaboration` | mission repo + 실제 team repo | Git/GitHub 실제 팀 workflow 수행. local audit는 실제 team repo 경로를 인수로 전달 | `bash training/round-01-clear/environment/verify.sh --runtime <actual-team-repo-path>` + `docs/github-runtime-audit.md` | `training/round-01-clear/evidence/` + 실제 GitHub Issue/PR/Review URL |
-| 5 | B3-1 `codyssey-basic-b3-1-fast-data-store` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; `python3 training/round-01-clear/reference/main.py` | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` |
-| 6 | B3-2 `codyssey-basic-b3-2-file-change-tracker` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; `python3 training/round-01-clear/reference/main.py` | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
-| 7 | B4-1 `codyssey-basic-b4-1-portfolio` | `training/round-01-clear/reference` | `python3 -m http.server 8000` 후 실제 browser/API/GitHub Pages 확인 | repository root에서 `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
-| 8 | B5-1 `codyssey-basic-b5-1-database-design` | repository root | `bash training/round-01-clear/environment/run-reference.sh` 또는 Beginner Guide의 SQL 수동 실행 | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
-| 9 | B6-1 `codyssey-basic-b6-1-cloud-deployment` | repository root + 실제 EC2 shell | Beginner Guide에 따라 `ap-northeast-2`에서 VPC→Subnet→IGW→Route→SG→EC2→Nginx 순서. 생성은 수동, 검증은 read-only | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` + 실제 AWS/HTTP 증빙 |
-| 10 | B6-2 `codyssey-basic-b6-2-ai-code-summarizer` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; local shell에서 `AI_API_URL`, `AI_API_KEY` 설정 후 `python3 -m git_ai commit ...`, `python3 -m git_ai pr ...` | `bash training/round-01-clear/environment/verify.sh` + 실제 provider/Commit/PR 검증 | `training/round-01-clear/evidence/` + 실제 Commit/PR |
-| 11 | B7-1 `codyssey-basic-b7-1-web-ai-chatbot` | `training/round-01-clear/reference` | `python3 -m venv .venv`; `source .venv/bin/activate`; `pip install -r requirements.txt`; AI env 설정; `uvicorn app.main:app --reload --host 127.0.0.1 --port 8000` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + browser/two-user/AI/deploy/team acceptance | `training/round-01-clear/evidence/` + 실제 deployment/team URLs |
-| 12 | B4-2 `codyssey-basic-b4-2-interactive-web-app` | `training/round-01-clear/reference` | `npm install`; `cp .env.example .env`; local Supabase 값 입력; `npm run dev` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + 실제 Supabase CRUD/deploy | `training/round-01-clear/evidence/` |
-| 13 | B5-2 `codyssey-basic-b5-2-fastapi-crud-app` | `training/round-01-clear/reference` | 처음에는 수동 venv/install, 재현 시 `environment/setup.sh`; `source .venv/bin/activate`; `uvicorn app.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + browser CRUD/DB/PRG acceptance | `training/round-01-clear/evidence/` |
-| 14 | B5-3 `codyssey-basic-b5-3-fastapi-auth-service` | `training/round-01-clear/reference` | venv/install 후 `source .venv/bin/activate`; local-only `SESSION_SECRET`; `uvicorn app.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + login/protected route/relationship/toggle acceptance | `training/round-01-clear/evidence/` |
-| 15 | B7-2 `codyssey-basic-b7-2-advanced-ai-chatbot` | `training/round-01-clear/reference` | `python3 -m venv .venv`; activate; `python -m pip install -r requirements.txt`; `cp .env.example .env`; local env 입력; `uvicorn backend.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + ownership/AI/API/browser/deploy/team acceptance | `training/round-01-clear/evidence/` + 실제 deployment/team URLs |
+| 1 | **B4-1** `codyssey-basic-system-monitor` | repository root | `training/round-01-clear/BEGINNER-GUIDE.md`의 SSH→UFW→권한→Agent→monitor→cron 순서. 제공 ZIP은 Runtime에서 `uname -m`과 archive 내용을 확인한 후 선택 | `sudo bash training/round-01-clear/environment/verify.sh` | `training/round-01-clear/evidence/` |
+| 2 | **B4-2** `codyssey-basic-system-troubleshooting` | repository root | `RUNTIME-SAFETY.md` 확인 후 격리 경로에서 OOM→CPU→Deadlock controlled experiment | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` |
+| 3 | **B2-1** `codyssey-basic-budget-tracker` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"` 후 `python -m budget_app --help`; 실제 학습 데이터는 별도 `--data-dir` 권장 | `bash training/round-01-clear/environment/verify.sh` + 실제 CLI/persistence 확인 | `training/round-01-clear/evidence/` |
+| 4 | **B2-2** `codyssey-basic-git-collaboration` | mission repo + 실제 team repo | Git/GitHub 실제 팀 workflow 수행. local audit는 실제 team repo 경로를 인수로 전달 | `bash training/round-01-clear/environment/verify.sh --runtime <actual-team-repo-path>` + `docs/github-runtime-audit.md` | `training/round-01-clear/evidence/` + 실제 GitHub Issue/PR/Review URL |
+| 5 | **B5-1** `codyssey-basic-mini-redis` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; `python3 training/round-01-clear/reference/main.py` | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` |
+| 6 | **B5-2** `codyssey-basic-mini-git` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; `python3 training/round-01-clear/reference/main.py` | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
+| 7 | **B1-1** `codyssey-basic-web-portfolio` | `training/round-01-clear/reference` | `python3 -m http.server 8000` 후 실제 browser/API/GitHub Pages 확인 | repository root에서 `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
+| 8 | **B6-1** `codyssey-basic-sql-database` | repository root | `bash training/round-01-clear/environment/run-reference.sh` 또는 Beginner Guide의 SQL 수동 실행 | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/runtime/` |
+| 9 | **B3-1** `codyssey-basic-cloud-infrastructure` | repository root + 실제 EC2 shell | Beginner Guide에 따라 VPC→Subnet→IGW→Route→SG→EC2→Nginx 순서. 생성은 수동, 검증은 read-only | `bash training/round-01-clear/environment/verify.sh --runtime` | `training/round-01-clear/evidence/` + 실제 AWS/HTTP 증빙 |
+| 10 | **B3-2** `codyssey-basic-ai-git-assistant` | repository root | `export PYTHONPATH="$PWD/training/round-01-clear/reference"`; local shell에서 `AI_API_URL`, `AI_API_KEY` 설정 후 AI Git CLI 실행 | `bash training/round-01-clear/environment/verify.sh` + 실제 provider/Commit/PR 검증 | `training/round-01-clear/evidence/` + 실제 Commit/PR |
+| 11 | **B7-1** `codyssey-basic-ai-chatbot` | `training/round-01-clear/reference` | venv/install 후 AI env 설정, FastAPI 실행 | repository root에서 `bash training/round-01-clear/environment/verify.sh` + browser/two-user/AI/deploy/team acceptance | `training/round-01-clear/evidence/` + 실제 deployment/team URLs |
+| 12 | **B1-2** `codyssey-basic-react-spa` | `training/round-01-clear/reference` | `npm install`; `cp .env.example .env`; local Supabase 값 입력; `npm run dev` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + 실제 Supabase CRUD/deploy | `training/round-01-clear/evidence/` |
+| 13 | **B6-2** `codyssey-basic-fastapi-crud` | `training/round-01-clear/reference` | venv/install 후 `uvicorn app.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + browser CRUD/DB/PRG acceptance | `training/round-01-clear/evidence/` |
+| 14 | **B6-3** `codyssey-basic-fastapi-auth` | `training/round-01-clear/reference` | venv/install 후 local-only `SESSION_SECRET`; `uvicorn app.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + login/protected route/relationship/toggle acceptance | `training/round-01-clear/evidence/` |
+| 15 | **B7-2** `codyssey-basic-ai-chatbot-fullstack` | `training/round-01-clear/reference` | venv/install, `.env` 설정 후 `uvicorn backend.main:app --reload` | repository root에서 `bash training/round-01-clear/environment/verify.sh` + ownership/AI/API/browser/deploy/team acceptance | `training/round-01-clear/evidence/` + 실제 deployment/team URLs |
 
 실제 플랫폼 PASS를 기록할 때 Evidence Root 아래에 필요하면 `mac-v/`, `win-v/`를 만들어 분리합니다. 실제 실행 전 빈 디렉터리를 형식 때문에 대량 생성하지 않습니다.
 
@@ -158,12 +156,12 @@ Mission CLEAR ≠ 두 플랫폼 모두 PASS 의무
 <a id="complex-missions"></a>
 ## 실제 실행 명령이 하나로 고정되지 않는 미션
 
-B1-1, B1-2, B2-2, B6-1은 하나의 실행 명령으로 미션을 대체하지 않습니다.
+B4-1, B4-2, B2-2, B3-1은 하나의 실행 명령으로 미션을 대체하지 않습니다.
 
-- B1-1: system-level SSH/UFW/users/ACL/cron을 안전 순서대로 적용
-- B1-2: 장애 실험을 Before/After controlled experiment로 수행
+- B4-1: system-level SSH/UFW/users/ACL/cron을 안전 순서대로 적용
+- B4-2: 장애 실험을 Before/After controlled experiment로 수행
 - B2-2: GitHub server-side metadata가 실제 Evidence
-- B6-1: AWS resource 생성/설정/접속/HTTP 검증/cleanup이 실제 Runtime
+- B3-1: AWS resource 생성/설정/접속/HTTP 검증/cleanup이 실제 Runtime
 
 따라서 이 네 미션은 canonical `BEGINNER-GUIDE.md`가 실제 실행(Runtime)의 주 실행 절차입니다.
 
@@ -172,10 +170,10 @@ B1-1, B1-2, B2-2, B6-1은 하나의 실행 명령으로 미션을 대체하지 �
 <a id="port-policy"></a>
 ## Port 정책
 
-- B1-1 공식: SSH `20022`, Agent `15034`
-- B4-1 local HTTP: Reference guide의 `8000`
-- B5/B7 FastAPI: 기본 `8000`을 사용할 수 있으나 **한 번에 한 미션만 실행**
-- B4-2 Vite: Vite가 선택한 local dev port를 사용하며 시작 전 충돌 확인
+- B4-1 시스템 관제 공식: SSH `20022`, Agent `15034`
+- B1-1 웹 포트폴리오 local HTTP: Reference guide의 `8000`
+- B6/B7 FastAPI: 기본 `8000`을 사용할 수 있으나 **한 번에 한 미션만 실행**
+- B1-2 React/Vite: Vite가 선택한 local dev port를 사용하며 시작 전 충돌 확인
 
 새 미션마다 임의의 고정 포트 번호를 추가하지 않습니다.
 
@@ -195,11 +193,11 @@ AI_MODEL
 추가 변수:
 
 ```text
-B4-2  VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY
-B5-3  SESSION_SECRET
+B1-2  VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY
+B6-3  SESSION_SECRET
 B7-2  DATABASE_URL
-B1-1  AGENT_* + local-only t_secret.key
-B1-2  AGENT_* + local-only secret.key
+B4-1  AGENT_* + local-only t_secret.key
+B4-2  AGENT_* + local-only secret.key
 ```
 
 실제 값은 GitHub, 채팅, screenshot, 제출 Evidence에 기록하지 않습니다.
