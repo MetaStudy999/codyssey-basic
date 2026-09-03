@@ -6,6 +6,8 @@ macOS에서 VS Code를 사용하더라도 실제 Codyssey 개발 작업은 **Orb
 
 이 문서는 코디세이 공식 Mission/Evaluation을 변경하지 않는 내부 개발환경 표준입니다.
 
+> 현재 Mission ID(미션 번호)는 [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)를 기준으로 하며, Mission Repository는 번호와 분리된 주제 기반 Canonical Repository를 사용합니다.
+
 ## 핵심 원칙
 
 ```text
@@ -37,7 +39,7 @@ Linux 안에서도 Mac 파일을 다음처럼 볼 수 있습니다.
 
 따라서 VS Code가 Mac의 `/Users/...` Repository를 연 상태에서 Ubuntu shell을 실행하면, shell 자체는 Bash여도 작업 파일은 Mac shared filesystem에 있을 수 있습니다.
 
-R01의 기본 Linux 실행 환경(Primary Linux Runtime)에서는 이 구조를 기본 개발경로로 사용하지 않습니다.
+R01의 기본 Linux 실행 환경에서는 이 구조를 기본 개발경로로 사용하지 않습니다.
 
 ```text
 비권장 기본 작업공간(Primary Workspace)
@@ -97,10 +99,21 @@ cd "$HOME/codyssey"
 ```text
 $HOME/codyssey/
 ├── codyssey-basic/
-├── codyssey-basic-b1-1-system-monitor/
-├── codyssey-basic-b1-2-linux-troubleshooting/
-├── ...
-└── codyssey-basic-b7-2-advanced-ai-chatbot/
+├── codyssey-basic-web-portfolio/
+├── codyssey-basic-react-spa/
+├── codyssey-basic-budget-tracker/
+├── codyssey-basic-git-collaboration/
+├── codyssey-basic-cloud-infrastructure/
+├── codyssey-basic-ai-git-assistant/
+├── codyssey-basic-system-monitor/
+├── codyssey-basic-system-troubleshooting/
+├── codyssey-basic-mini-redis/
+├── codyssey-basic-mini-git/
+├── codyssey-basic-sql-database/
+├── codyssey-basic-fastapi-crud/
+├── codyssey-basic-fastapi-auth/
+├── codyssey-basic-ai-chatbot/
+└── codyssey-basic-ai-chatbot-fullstack/
 ```
 
 가능하면 한 VS Code 작업에서는 다음 두 저장소만 활성화합니다.
@@ -186,7 +199,7 @@ Remote Ubuntu의 **Remote User Settings**에서 다음 설정을 권장합니다
 정상 예:
 
 ```text
-(.venv) user@ubuntu:~/codyssey/codyssey-basic-b5-2-fastapi-crud-app$
+(.venv) user@ubuntu:~/codyssey/codyssey-basic-fastapi-crud$
 ```
 
 ### 하지 않는 것
@@ -274,19 +287,21 @@ fi
 
 ## 8. OrbStack SSH와 Mission SSH를 구분한다
 
-특히 B1-1에서 중요합니다.
+특히 현재 **B4-1 시스템 관제 미션**에서 중요합니다.
 
 ```text
 OrbStack built-in SSH (`orb`)
 = VS Code Remote 개발/관리 접속 경로
 
-B1-1 Ubuntu OpenSSH `sshd:20022`
+B4-1 Ubuntu OpenSSH `sshd:20022`
 = Mission에서 직접 구성하고 검증하는 대상
 ```
 
 둘을 같은 SSH로 취급하지 않습니다.
 
-OrbStack의 built-in SSH는 VS Code가 Ubuntu Machine에 들어가는 관리 채널이고, B1-1의 `sshd:20022`는 공식 Mission 실제 실행(Runtime) 검증 대상입니다.
+OrbStack의 built-in SSH는 VS Code가 Ubuntu Machine에 들어가는 관리 채널이고, B4-1의 `sshd:20022`는 공식 Mission 실제 실행(Runtime) 검증 대상입니다.
+
+> B4-1은 번호 변경 전 B1-1이었던 동일한 시스템 관제 미션입니다.
 
 ---
 

@@ -2,15 +2,25 @@
 
 모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 실제 실행 완료(Runtime CLEAR)를 분리**합니다.
 
+> 현재 Mission ID(미션 번호)의 단일 기준은 [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)입니다. Repository(저장소)는 번호와 분리된 주제 기반 Canonical Repository를 사용합니다.
+
 ## 🚀 빠른 시작(Quick Start)
 
-현재 R01은 **Phase C — RUNTIME CLEAR / FAST EXECUTE**이며 현재 미션(Active Mission)은 **B1-1**입니다.
+현재 R01은 **Phase C — RUNTIME CLEAR / FAST EXECUTE**입니다.
 
-처음 실행한다면 다음 세 문서만 순서대로 봅니다.
+현재 Workcell 포커스:
 
-1. [개발환경 Start Here](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
-2. [현재 Next Actions](training/round-01-clear/NEXT-ACTIONS.md)
-3. [B1-1 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-b1-1-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+```text
+B2-2 = 🟡 ACTIVE
+B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
+```
+
+처음 실행한다면 다음 문서를 순서대로 봅니다.
+
+1. [현재 Mission ID 기준표](CURRENT-MISSION-MAP.md)
+2. [개발환경 Start Here](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
+3. [현재 Next Actions](training/round-01-clear/NEXT-ACTIONS.md)
+4. [B2-2 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
 
 한 미션은 다음 흐름으로 처리합니다.
 
@@ -129,6 +139,7 @@ NO
 - SSH lockout, 데이터 손실, Cloud 과금/삭제 등 안전 문제
 - 검증 또는 증빙 오판정
 - Current Runtime Context를 잘못 해석하게 만드는 문서 오류
+- 현재 Mission ID와 Canonical Repository 연결을 잘못 안내하는 문서 오류
 
 후속으로 미루는 대상:
 
@@ -245,6 +256,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 5. 현재 Step에 필요한 용어 설명
 6. 핵심 개념과 필요한 개념도 제공
 7. 긴 실행형 Guide의 Quick Start와 목차 정합성 확인
+8. `MISSION-METADATA.yml`과 Control Tower의 현재 Mission ID 정합성 확인
 
 <a id="prepare"></a>
 ## 2. 준비(PREPARE)
@@ -258,6 +270,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 7. `START-CHECK.md`가 있으면 선행 조건 확인
 8. 실행 위치(Context), Preflight, STOP/GO, Rerun Safety 확인
 9. Docker는 선택 여부만 판단
+10. 현재 Mission ID와 주제 기반 Repository가 일치하는지 확인
 
 <a id="build"></a>
 ## 3. 구현(BUILD)
@@ -279,6 +292,7 @@ Docker 사용 여부 ≠ Mission CLEAR 판정
 - 코드·문서 일치성
 - Secret 노출
 - 실제 실행하지 않은 항목을 PASS로 표시하지 않았는지 확인
+- 현재 Mission ID ↔ Repository Metadata 정합성 확인
 
 ### 실제 실행 검증(Runtime Verification)
 
@@ -361,6 +375,7 @@ Mission 상태:
 ```text
 ⬜ NOT STARTED
 🟡 ACTIVE
+⏸ PAUSED / READY TO RESUME
 ⛔ BLOCKED
 ✅ CLEAR
 ```

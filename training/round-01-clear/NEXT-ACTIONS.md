@@ -4,10 +4,12 @@
 
 현재 실행 경로: **FAST TRACK — 필수 11개 → 선택 4개**
 
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 변경은 기존 Runtime/Workcell 상태를 초기화하지 않습니다.
+
 현재 Workcell 포커스:
 
 ```text
-B1-1 = ⏸ PAUSED / READY TO RESUME
+B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
 B2-2 = 🟡 ACTIVE
 ```
 
@@ -88,7 +90,7 @@ GitHub 학습 계정은 총 5개이며 동일한 A~E를 이후 WIN-V에서도 �
 
 상세 Runbook:
 
-- [B2-2 MAC-V README](https://github.com/MetaStudy999/codyssey-basic-b2-2-git-team-collaboration/blob/main/training/round-01-clear/environment/mac-v/README.md)
+- [B2-2 MAC-V README](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/environment/mac-v/README.md)
 
 ### 4. MAC-V 수행 순서
 
@@ -201,24 +203,26 @@ Current Runtime Context
 <a id="fast-track"></a>
 ## FAST TRACK
 
+기존 미션 주제의 R01 수행 순서는 유지하고 Mission ID만 현재 번호로 재매핑합니다.
+
 ```text
 Stage 1 — REQUIRED CLEAR
-B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
-→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+B4-1 → B4-2 → B2-1 → B2-2 → B5-1 → B5-2
+→ B1-1 → B6-1 → B3-1 → B3-2 → B7-1
 
 Stage 2 — OPTIONAL CLEAR
-B4-2 → B5-2 → B5-3 → B7-2
+B1-2 → B6-2 → B6-3 → B7-2
 ```
 
-현재 B2-2를 먼저 학습·준비하는 것은 Workcell 포커스 변경입니다. FAST TRACK의 공식 CLEAR 순서는 그대로 보존합니다.
+현재 B2-2를 먼저 학습·준비하는 것은 Workcell 포커스 변경입니다. FAST TRACK의 주제 기준 CLEAR 순서는 그대로 보존합니다.
 
 ```text
-B1-1 PAUSED
-≠ B1-1 FAIL
-≠ B1-1 CLEAR
+B4-1 PAUSED
+≠ B4-1 FAIL
+≠ B4-1 CLEAR
 
 B2-2 ACTIVE
-≠ B1-1/B1-2/B2-1 CLEAR
+≠ 앞선 필수 미션 CLEAR
 ```
 
 ---
@@ -236,7 +240,7 @@ B2-2 ACTIVE
 - [x] 플랫폼별 Runtime Record와 Mission CLEAR 분리
 - [x] Docker를 선택 Training Layer로 분리
 - [x] Ubuntu Developer Bootstrap 공통 Source of Truth 정의
-- [x] B1-1 3계층 입문자 문서 구조 적용
+- [x] B4-1(이전 B1-1 시스템 관제) 3계층 입문자 문서 구조 적용
 - [x] B2-2 3계층 입문자 문서 구조 적용
 - [x] B2-2 MAC-V 5계정 Runbook/Automation 준비
 
@@ -245,21 +249,29 @@ B2-2 ACTIVE
 <a id="current-workcell"></a>
 ## 현재 Workcell
 
-### B1-1
+### B4-1 — 시스템 관제
 
 ```text
 ⏸ PAUSED / READY TO RESUME
 ```
 
-B1-1은 FAIL/CLEAR가 아니며 후속에 다시 열어 실제 Runtime → Verification → Evidence를 이어갑니다.
+B4-1은 번호 변경 전 B1-1이었던 동일 미션입니다. FAIL/CLEAR가 아니며 후속에 다시 열어 실제 Runtime → Verification → Evidence를 이어갑니다.
 
-### B2-2
+Repository:
+
+- https://github.com/MetaStudy999/codyssey-basic-system-monitor
+
+### B2-2 — Git 팀 협업
 
 ```text
 🟡 ACTIVE
 ```
 
 현재 하위 포커스는 MAC-V 5계정 Simulation Runtime 준비입니다.
+
+Repository:
+
+- https://github.com/MetaStudy999/codyssey-basic-git-collaboration
 
 ---
 
@@ -272,7 +284,7 @@ B1-1은 FAIL/CLEAR가 아니며 후속에 다시 열어 실제 Runtime → Verif
 4. Ubuntu 내부 Control Tower Repository 확인
 5. `bootstrap.sh --check`
 6. 누락 시에만 `bootstrap.sh --install` 후 재검증
-7. B2-2 Repository 확인
+7. B2-2 Repository `codyssey-basic-git-collaboration` 확인
 8. `setup-users.sh`로 `codyssey01`~`codyssey05` 준비
 9. `verify.sh`로 사용자/HOME 구조 확인
 10. 사용자별 `gh auth login --web --git-protocol https`
@@ -376,8 +388,8 @@ B2-2 5계정 Simulation 상태는 실제 Mission Runtime Record와 별도로 관
 <a id="stage-transition"></a>
 ## Stage 전환 규칙
 
-- B1-1부터 B7-1까지 필수 11개가 모두 `✅ CLEAR`되기 전에는 Stage 2를 정식 실제 실행 대상으로 전환하지 않습니다.
-- B1-1 Workcell 일시정지는 Mission 실패가 아니며 후속에 재개합니다.
+- Stage 1의 필수 11개가 모두 `✅ CLEAR`되기 전에는 Stage 2를 정식 실제 실행 대상으로 전환하지 않습니다.
+- B4-1 시스템 관제 Workcell 일시정지는 Mission 실패가 아니며 후속에 재개합니다.
 - B2-2 Simulation 완료는 B2-2 공식 CLEAR가 아닙니다.
 - 공식 Mission CLEAR 후 필요하면 다른 지원 환경에서 Cross-platform Verification을 추가할 수 있습니다.
 - `CROSS-PLATFORM VERIFIED`는 내부 품질 상태이며 공식 요구가 없는 한 Mission CLEAR 필수 조건이 아닙니다.
