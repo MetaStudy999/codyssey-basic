@@ -11,8 +11,8 @@
 현재 Workcell 포커스:
 
 ```text
-B2-2 = 🟡 ACTIVE
-B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
+B4-1 = 🟡 ACTIVE   # 이전 B1-1 시스템 관제
+B2-2 = ⏸ PAUSED / TEAM WORK IN PROGRESS
 ```
 
 처음 실행한다면 다음 문서를 순서대로 봅니다.
@@ -20,7 +20,7 @@ B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
 1. [현재 Mission ID 기준표](CURRENT-MISSION-MAP.md)
 2. [개발환경 Start Here](environments/START-HERE-DEVELOPMENT-ENVIRONMENT.md)
 3. [현재 Next Actions](training/round-01-clear/NEXT-ACTIONS.md)
-4. [B2-2 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+4. [B4-1 입문자 따라하기](https://github.com/MetaStudy999/codyssey-basic-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
 
 한 미션은 다음 흐름으로 처리합니다.
 

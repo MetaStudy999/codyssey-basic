@@ -261,10 +261,11 @@ Mission `✅ CLEAR`는 문서 작성이나 Reference 준비만으로 부여하�
 = ✅ 완료(CLEAR)
 ```
 
-Mission 상태는 네 가지만 사용합니다.
+Mission/Workcell 상태는 다음을 사용합니다.
 
 - `⬜ NOT STARTED`
 - `🟡 ACTIVE`
+- `⏸ PAUSED`
 - `⛔ BLOCKED`
 - `✅ CLEAR`
 
@@ -284,24 +285,25 @@ CODYSSEY BASIC
    ├─ Phase B — CROSS-MISSION AUDIT   ✅ 완료
    └─ Phase C — RUNTIME CLEAR         🟡 현재
       └─ FAST TRACK
-         ├─ B2-2 Git 협업             🟡 ACTIVE
-         ├─ B4-1 시스템 관제          ⏸ PAUSED / READY TO RESUME
+         ├─ B4-1 시스템 관제          🟡 ACTIVE
+         ├─ B2-2 Git 협업             ⏸ PAUSED / TEAM WORK IN PROGRESS
          └─ Runtime CLEAR             0 / 15
 ```
 
 따라서 현재의 핵심 행동은 다음입니다.
 
 ```text
-B2-2 현재 Workcell 수행
-→ 실제 팀 Runtime / Verification / Evidence 확보
+B4-1 시스템 관제 현재 Workcell 수행
+→ Current Runtime Context 선택
+→ Runtime / Verification / Evidence 확보
 → 조건 충족 시 ✅ CLEAR
 
-B4-1 시스템 관제
-→ 기존 PAUSED 상태를 유지
-→ 후속에 Runtime / Verification / Evidence 재개
+B2-2 Git 협업
+→ 실제 팀과 별도 진행 중이므로 PAUSED 상태 유지
+→ 팀 진행 후 실제 Evidence를 검증하며 재개
 ```
 
-B2-2의 5계정 Simulation 준비나 수행은 실제 3~5인 팀 Mission CLEAR를 자동으로 의미하지 않습니다.
+B2-2의 기존 MAC-V Host/CORE 준비와 5계정 학습 상태는 보존되며, 실제 3~5인 팀 Mission Evidence와 분리합니다.
 
 ---
 
