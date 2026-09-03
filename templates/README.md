@@ -3,15 +3,18 @@
 코디세이 AI/SW 기초과정에서 반복해서 사용하는 공통 템플릿을 관리합니다.
 
 > 원칙: 공통 기준은 이 디렉터리에서 한 번만 관리하고, 각 미션 저장소에는 필요한 링크와 미션별 결과물만 둡니다.
+>
+> 현재 Mission ID와 Canonical Repository는 [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)를 기준으로 합니다. 템플릿은 번호가 아니라 미션 주제와 실제 요구사항에 맞춰 적용합니다.
 
 ## 빠른 시작(Quick Start)
 
 평가 발표자료를 만들려면 다음 경로에서 시작합니다.
 
-1. [`presentations/README.md`](presentations/README.md)를 엽니다.
-2. 실전 발표는 `Codyssey_Mission_Evaluation_Core_22slides.pptx`를 복사해서 시작합니다.
-3. 전체 설계 기준이 필요하면 `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx`를 참고합니다.
-4. 공식 Mission / Evaluation과 실제 증빙 자료(Evidence)에 맞게 필요한 슬라이드만 남깁니다.
+1. [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)에서 현재 Mission ID와 Canonical Repository를 확인합니다.
+2. [`presentations/README.md`](presentations/README.md)를 엽니다.
+3. 실전 발표는 `Codyssey_Mission_Evaluation_Core_22slides.pptx`를 복사해서 시작합니다.
+4. 전체 설계 기준이 필요하면 `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx`를 참고합니다.
+5. 공식 Mission / Evaluation과 실제 증빙 자료(Evidence)에 맞게 필요한 슬라이드만 남깁니다.
 
 ## 목차
 
@@ -24,6 +27,7 @@
 
 ```text
 공식 Mission / Evaluation
+→ CURRENT-MISSION-MAP에서 현재 Mission ID / Canonical Repository 확인
 → 공통 Template
 → 현재 Mission 내용 적용
 → 실제 실행(Runtime)
