@@ -13,9 +13,9 @@ const { pptx, C, safeOuterShadow, addTitle, card, pill, node, arrow, dotArrow, l
   s.addText('CODYSSEY', {x:0.7,y:0.72,w:2.0,h:0.3,fontFace:'Noto Sans CJK KR',fontSize:10,bold:true,color:C.blue2,charSpacing:1.2,margin:0});
   s.addText('고급 기술 다이어그램\n마스터 라이브러리', {x:0.7,y:1.45,w:6.8,h:1.35,fontFace:'Noto Sans CJK KR',fontSize:31,bold:true,color:'FFFFFF',margin:0,breakLine:false,fit:'shrink'});
   s.addText('Technical Diagram Master Library', {x:0.72,y:2.95,w:5.5,h:0.4,fontFace:'Noto Sans CJK KR',fontSize:14,color:'BFD7F5',margin:0});
-  s.addText('B1-1 ~ B7-2 평가 발표 · 학부 프로젝트 · 석박사 연구 · 학회 발표를 위한 편집 가능한 벡터 템플릿', {x:0.72,y:3.62,w:7.0,h:0.6,fontFace:'Noto Sans CJK KR',fontSize:11,color:'D9E5F2',margin:0,fit:'shrink'});
+  s.addText('현재 15개 미션 평가 발표 · 학부 프로젝트 · 석박사 연구 · 학회 발표를 위한 편집 가능한 벡터 템플릿', {x:0.72,y:3.62,w:7.0,h:0.6,fontFace:'Noto Sans CJK KR',fontSize:11,color:'D9E5F2',margin:0,fit:'shrink'});
   ['Architecture','Sequence','ERD','Cloud','Research','Evidence'].forEach((t,i)=>pill(s,0.72+i*1.12,4.57,1.0,t,'FFFFFF',i<3?'163B5B':'1C4D65'));
-  s.addText('v1.0 · 20 reusable layouts · editable PowerPoint vectors', {x:0.72,y:6.55,w:5.4,h:0.25,fontFace:'Noto Sans CJK KR',fontSize:8.6,color:'8FB4D9',margin:0});
+  s.addText('v1.1 · current Mission ID map · 20 reusable layouts · editable PowerPoint vectors', {x:0.72,y:6.55,w:6.4,h:0.25,fontFace:'Noto Sans CJK KR',fontSize:8.6,color:'8FB4D9',margin:0});
 }
 
 // 2 Design language
@@ -36,16 +36,16 @@ const { pptx, C, safeOuterShadow, addTitle, card, pill, node, arrow, dotArrow, l
 
 // 3 Mission map
 {
-  const s=pptx.addSlide('BASE'); addTitle(s,'B1-1 ~ B7-2는 기술 성격에 따라 “주력 다이어그램”이 달라집니다','같은 템플릿을 반복하지 않고, 미션의 핵심 평가 질문에 맞춰 다이어그램을 선택합니다','MISSION MAP'); addSectionTag(s,'02 MAPPING');
+  const s=pptx.addSlide('BASE'); addTitle(s,'현재 B1~B7은 기술 성격에 따라 “주력 다이어그램”이 달라집니다','Mission ID는 CURRENT-MISSION-MAP 기준 · 미션 주제의 핵심 평가 질문에 맞춰 다이어그램을 선택합니다','MISSION MAP'); addSectionTag(s,'02 MAPPING');
   const cols=[0.58,2.55,4.52,6.49,8.46,10.43];
   ['영역','대표 미션','주력 1','주력 2','주력 3','평가 초점'].forEach((t,i)=>{s.addShape(pptx.ShapeType.roundRect,{x:cols[i],y:1.92,w:i===0?1.85:1.83,h:0.42,rectRadius:0.05,fill:{color:C.navy},line:{color:C.navy}});s.addText(t,{x:cols[i]+0.05,y:2.04,w:(i===0?1.75:1.73),h:0.14,fontFace:'Noto Sans CJK KR',fontSize:7.4,bold:true,color:'FFFFFF',align:'center',margin:0});});
   const rows=[
-    ['Linux / OS','B1','Architecture','State','Troubleshoot','운영·보안·관제'],
+    ['Web / Front','B1','Event Flow','State','Before/After','상호작용·UX'],
     ['Python / Git','B2','Layered','Data Flow','Swimlane','구조·예외·협업'],
-    ['DS / Algo','B3','Structure','Algorithm','Complexity','연산·불변조건'],
-    ['Web / Front','B4','Event Flow','State','Before/After','상호작용·UX'],
-    ['DB / Backend','B5','ERD','Sequence','Trust','관계·API·인가'],
-    ['Cloud / AI API','B6','Network','Boundary','Pipeline','배포·권한·실패'],
+    ['Cloud / AI API','B3','Network','Boundary','Pipeline','배포·권한·실패'],
+    ['Linux / OS','B4','Architecture','State','Troubleshoot','운영·보안·관제'],
+    ['DS / Algo','B5','Structure','Algorithm','Complexity','연산·불변조건'],
+    ['DB / Backend','B6','ERD','Sequence','Trust','관계·API·인가'],
     ['Term Project','B7','E2E','Research','Evidence','서비스 완성도']
   ];
   rows.forEach((r,ri)=>{const y=2.42+ri*0.54; const bg=ri%2?C.paper:'F3F6FA'; s.addShape(pptx.ShapeType.rect,{x:0.58,y,w:11.68,h:0.50,fill:{color:bg},line:{color:C.line,width:0.4}}); r.forEach((t,ci)=>s.addText(t,{x:cols[ci]+0.04,y:y+0.16,w:(ci===0?1.77:1.75),h:0.15,fontFace:'Noto Sans CJK KR',fontSize:7.5,bold:ci<2,color:ci===0?C.ink:C.text,align:ci===0?'left':'center',margin:0,fit:'shrink'}));});
@@ -54,7 +54,7 @@ const { pptx, C, safeOuterShadow, addTitle, card, pill, node, arrow, dotArrow, l
 
 // 4 System Architecture
 {
-  const s=pptx.addSlide('BASE'); addTitle(s,'시스템 아키텍처는 “컴포넌트 + 책임 + 경계”를 한 화면에 보여줍니다','B5·B6·B7의 기본형 · 단순 나열보다 계층과 책임을 먼저 드러냅니다','SYSTEM ARCHITECTURE'); addSectionTag(s,'03 ARCHITECTURE');
+  const s=pptx.addSlide('BASE'); addTitle(s,'시스템 아키텍처는 “컴포넌트 + 책임 + 경계”를 한 화면에 보여줍니다','B3·B6·B7의 기본형 · 단순 나열보다 계층과 책임을 먼저 드러냅니다','SYSTEM ARCHITECTURE'); addSectionTag(s,'03 ARCHITECTURE');
   const bands=[['CLIENT / USER',1.95,0.62,C.blueSoft,C.blue],['APPLICATION',2.83,1.28,'F1F6FB',C.navy2],['DATA / PLATFORM',4.44,1.15,C.tealSoft,C.teal],['EXTERNAL',5.68,0.72,C.amberSoft,C.amber]];
   bands.forEach(([t,y,h,fill,col])=>{s.addShape(pptx.ShapeType.roundRect,{x:0.7,y,w:11.94,h,rectRadius:0.08,fill:{color:fill},line:{color:fill}});s.addText(t,{x:0.92,y:y+0.12,w:1.1,h:0.16,fontFace:'Noto Sans CJK KR',fontSize:6.7,bold:true,color:col,margin:0});});
   node(s,2.0,2.03,1.72,0.72,'User','Browser / Mobile',C.blue,'U');
