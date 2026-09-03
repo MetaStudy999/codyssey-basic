@@ -11,28 +11,28 @@
 현재 Workcell 포커스:
 
 ```text
-B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
-B2-2 = 🟡 ACTIVE
+B4-1 = 🟡 ACTIVE                       # 이전 B1-1 시스템 관제
+B2-2 = ⏸ PAUSED / TEAM WORK IN PROGRESS
 ```
 
-> B4-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 5계정 Simulation 준비/실행도 실제 팀 Runtime PASS나 Mission CLEAR를 의미하지 않습니다.
+> 사용자가 B2-2를 실제 팀과 별도로 진행 중이므로 이 Control Tower 실행에서는 B2-2를 보류하고 FAST TRACK의 첫 미션인 B4-1을 다시 활성화합니다. B2-2 보류는 FAIL/CLEAR가 아니며, 이미 확보한 MAC-V Host/CORE 준비 이력은 보존합니다.
 
-`MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary가 아니라 **동등한 지원 실행 환경(Supported Runtime)**입니다. 실제 작업을 시작할 때 사용자가 현재 수행 환경을 알려 주면 그 환경을 **현재 실행 환경(Current Runtime Context)**으로 사용합니다.
+`MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary가 아니라 **동등한 지원 실행 환경(Supported Runtime)**입니다. B4-1 실제 Runtime에 들어갈 때 사용자가 수행할 환경을 알려 주면 그 환경을 **현재 실행 환경(Current Runtime Context)**으로 확정합니다.
 
 ## 🚀 빠른 상태 확인(Quick Status)
 
 ```text
 현재 위치                   = R01 / Phase C / Stage 1
-현재 Workcell               = B2-2 🟡 ACTIVE
-B4-1                         = ⏸ PAUSED / READY TO RESUME
+현재 Workcell               = B4-1 🟡 ACTIVE
+B2-2                         = ⏸ PAUSED / TEAM WORK IN PROGRESS
 Runtime CLEAR               = 0 / 15
 필수 경로                   = 0 / 11 CLEAR
 선택 경로                   = 0 / 4 CLEAR
-B2-2 MAC-V Mission Record   = NOT RUN
-B2-2 WIN-V Mission Record   = NOT RUN
-B2-2 Cross-platform         = NOT VERIFIED
-B2-2 5계정 Simulation       = Documentation/Automation Ready / Runtime 미실행
-Current Runtime Context     = MAC-V 우선 진행 예정
+B2-2 MAC-V Host/CORE Prep   = PASS
+B2-2 Identity Gate 5/5      = NOT RUN
+B2-2 Simulation             = NOT RUN
+B2-2 Mission CLEAR          = NOT CLEAR
+B4-1 Current Runtime Context= TO SELECT (MAC-V or WIN-V)
 ```
 
 플랫폼별 실제 수행 현황의 단일 요약 기준:
@@ -41,23 +41,28 @@ Current Runtime Context     = MAC-V 우선 진행 예정
 
 현재 바로 할 일:
 
-1. 학교 Mac에서 B2-2 `mac-v-orchestrate.sh --prepare` 또는 동등 수동 절차로 MAC-V CORE를 실제 준비합니다.
-2. Control Tower Ubuntu Bootstrap을 공통 Source of Truth로 사용합니다.
-3. Ubuntu 내부 `codyssey01`~`codyssey05`와 GitHub 학습 Account A~E를 1:1로 인증합니다.
-4. Account Identity Gate 5/5를 실제 통과합니다.
-5. Account A에서 별도 `codyssey-b2-2-sim-mac-v` Simulation Repository seed를 생성합니다.
-6. Account B~E collaborator 수락과 `main` 보호 정책을 확인합니다.
-7. Repository Gate 0 FAIL 후 5개 독립 clone을 준비합니다.
-8. `TASK-MATRIX.md`에 따라 Issue 10+ / PR 10+ / Review 10+ / Feedback 5+를 실제 수행합니다.
-9. conflict 2+ / troubleshooting 4종 / Simulation SUBMISSION을 완료합니다.
-10. Simulation 기록은 실제 3~5인 팀 Evidence와 분리하고, 실제 팀 GitHub 기록 검증 전에는 B2-2 Mission CLEAR로 승격하지 않습니다.
+1. B4-1 `codyssey-basic-system-monitor`의 현재 Mission ID/Repository 경로 정합성을 먼저 확인합니다.
+2. 번호 변경 전 `B1-1`로 작성된 운영 문서의 현재 ID와 Stable Repository 경로를 B4-1 기준으로 정리합니다.
+3. B4-1 Runtime Preflight에서 Shell 문법, Repository 경로, Mission Metadata를 자동 검증하도록 준비합니다.
+4. 실제 Runtime은 `MAC-V` 또는 `WIN-V` 중 현재 사용 환경을 확정한 뒤 시작합니다.
+5. Runtime 시작 시 Control Tower Bootstrap → B4-1 Beginner Guide → Baseline → SSH/UFW 순으로 진행합니다.
+6. SSH/UFW는 현재 상태 백업과 새 접속 검증 없이 파괴적으로 변경하지 않습니다.
+7. 실제 Agent/monitor/cron/Verification/Evidence가 끝나기 전에는 B4-1을 CLEAR로 올리지 않습니다.
+8. B2-2는 팀 진행이 끝난 뒤 실제 팀 GitHub 기록과 현재 5계정 학습 기록을 분리하여 재개합니다.
 
-B2-2 진입 문서:
+B4-1 진입 문서:
 
-- [B2-2 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
-- [B2-2 MAC-V Run Now](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/environment/mac-v/RUN-NOW.md)
-- [B2-2 MAC-V Simulation](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/simulation/mac-v/README.md)
-- [Simulation Repository Setup](https://github.com/MetaStudy999/codyssey-basic-git-collaboration/blob/main/training/round-01-clear/simulation/mac-v/SIMULATION-REPOSITORY-SETUP.md)
+- [B4-1 Repository](https://github.com/MetaStudy999/codyssey-basic-system-monitor)
+- [B4-1 Beginner Guide](https://github.com/MetaStudy999/codyssey-basic-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
+- [B4-1 Checklist](https://github.com/MetaStudy999/codyssey-basic-system-monitor/blob/main/training/round-01-clear/CHECKLIST.md)
+
+B2-2 보류 기록:
+
+- [B2-2 Repository](https://github.com/MetaStudy999/codyssey-basic-git-collaboration)
+- B2-2 MAC-V Host/CORE 준비: **PASS**
+- `codyssey01` Account A Identity: 설정 완료 후보 / 전체 Identity Gate 전
+- 전체 Identity Gate 5/5: **NOT RUN**
+- Simulation: **NOT RUN**
 
 ## 📑 목차
 
@@ -66,7 +71,8 @@ B2-2 진입 문서:
 - [플랫폼별 수행 기록](#runtime-records)
 - [FAST TRACK](#fast-track)
 - [실제 실행 미션 상태](#mission-status)
-- [현재 B2-2 Workcell](#current-b2-2)
+- [현재 B4-1 Workcell](#current-b4-1)
+- [B2-2 보류 상태](#paused-b2-2)
 - [공통 정책](#common-policies)
 - [Phase C 실행 흐름](#phase-c-flow)
 - [R01 전체 흐름](#r01-flow)
@@ -126,18 +132,7 @@ WIN-V
 = VERIFY BEFORE REINSTALL
 ```
 
-현재 B2-2 CORE Simulation의 Ubuntu 내부 구조는 양쪽에서 동일하게 맞춥니다.
-
-```text
-Ubuntu 24.04
-├─ codyssey01 → GitHub A
-├─ codyssey02 → GitHub B
-├─ codyssey03 → GitHub C
-├─ codyssey04 → GitHub D
-└─ codyssey05 → GitHub E
-```
-
-독립 VM/Instance 5개 방식은 B2-2 ADVANCED Lab으로 분리합니다.
+B2-2의 5계정 구조는 B2-2 전용 학습 Simulation 상태로 보존하며 B4-1 Runtime과 혼합하지 않습니다.
 
 ---
 
@@ -162,8 +157,6 @@ CROSS-PLATFORM VERIFIED
 
 플랫폼별 상태의 단일 요약 기준은 [RUNTIME-EXECUTION-MATRIX.md](training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md)입니다.
 
-5계정 Simulation은 공식 B2-2 팀 Runtime Record와 별도 학습 상태로 관리합니다.
-
 ---
 
 <a id="fast-track"></a>
@@ -180,9 +173,9 @@ Stage 2 — OPTIONAL CLEAR
 B1-2 → B6-2 → B6-3 → B7-2
 ```
 
-FAST TRACK의 주제 기준 CLEAR 순서는 유지합니다. 현재 B2-2 Workcell을 먼저 학습·준비한다고 해서 앞선 필수 미션을 CLEAR한 것으로 간주하지 않습니다.
+현재는 FAST TRACK 첫 미션인 **B4-1 시스템 관제**를 다시 활성화합니다. B2-2는 실제 팀 진행이 끝날 때까지 보류하지만 순서나 완료 판정을 임의로 변경하지 않습니다.
 
-시스템 관제 미션은 번호 변경 전 `B1-1`이었으며, 현재는 **B4-1 `⏸ PAUSED / READY TO RESUME`** 상태로 이어집니다.
+시스템 관제 미션은 번호 변경 전 `B1-1`이었으며 현재 Mission ID는 **B4-1**입니다.
 
 ---
 
@@ -191,10 +184,10 @@ FAST TRACK의 주제 기준 CLEAR 순서는 유지합니다. 현재 B2-2 Workcel
 
 | 실행순번 | Stage | 현재 미션 | 구분 | Mission / Workcell 상태 |
 |---:|---|---|---|---|
-| 1 | Required | **B4-1** 시스템 관제 | 필수 | ⏸ PAUSED / READY TO RESUME |
+| 1 | Required | **B4-1** 시스템 관제 | 필수 | 🟡 ACTIVE |
 | 2 | Required | **B4-2** 시스템 장애 분석 | 필수 | ⬜ NOT STARTED |
 | 3 | Required | **B2-1** 가계부 | 필수 | ⬜ NOT STARTED |
-| 4 | Required | **B2-2** Git 팀 협업 | 필수 | 🟡 ACTIVE |
+| 4 | Required | **B2-2** Git 팀 협업 | 필수 | ⏸ PAUSED / TEAM WORK IN PROGRESS |
 | 5 | Required | **B5-1** Mini Redis | 필수 | ⬜ NOT STARTED |
 | 6 | Required | **B5-2** Mini Git | 필수 | ⬜ NOT STARTED |
 | 7 | Required | **B1-1** 웹 포트폴리오 | 필수 | ⬜ NOT STARTED |
@@ -209,40 +202,57 @@ FAST TRACK의 주제 기준 CLEAR 순서는 유지합니다. 현재 B2-2 Workcel
 
 ---
 
-<a id="current-b2-2"></a>
-## 현재 B2-2 Workcell
+<a id="current-b4-1"></a>
+## 현재 B4-1 Workcell
 
-현재 B2-2는 다음 두 트랙을 명확히 분리합니다.
+B4-1은 시스템 관제(System Monitoring) 미션입니다.
 
 ```text
-A. 실제 B2-2 Mission
-실제 3~5인 팀
-→ 실제 팀 Repository
-→ Issue / PR / Review / Merge
-→ Conflict / Troubleshooting
-→ SUBMISSION / Evidence
+현재 Mission ID    : B4-1
+이전 Mission ID    : B1-1
+Canonical Repository: MetaStudy999/codyssey-basic-system-monitor
+상태                : 🟡 ACTIVE
+Runtime Context     : TO SELECT
+```
+
+실행 흐름:
+
+```text
+Current Runtime Context 확정
+→ Control Tower Bootstrap 확인
+→ B4-1 Repository/Branch/Working Tree 확인
+→ Ubuntu 24.04 / systemd / architecture Baseline
+→ SSH 20022 안전 전환
+→ UFW 정책
+→ 사용자·그룹·ACL
+→ Agent Runtime 15034
+→ monitor.sh / log rotation
+→ cron / failure-warning tests
+→ Verification
+→ Evidence
 → Evaluation
-→ CLEAR
-
-B. 5계정 학습 Simulation
-동일 GitHub Account A~E
-→ MAC-V Ubuntu 24.04 + Linux User 5개
-→ Identity Gate 5/5
-→ 별도 Simulation Repository
-→ collaborator / main protection Gate
-→ 독립 clone 5개
-→ Issue / PR / Review / Feedback
-→ Conflict / Troubleshooting
-→ WIN-V 동일 구조 재현
-→ Cross-platform
-→ 독립 VM/Instance 5개 ADVANCED
+→ CLEAR 판정
 ```
+
+Repository Rename이나 Mission ID 변경 때문에 기존 Runtime 상태를 추정하지 않습니다. 실제 현재 환경을 다시 확인한 뒤 이어갑니다.
+
+---
+
+<a id="paused-b2-2"></a>
+## B2-2 보류 상태
+
+사용자가 B2-2를 다른 구성원과 실제 팀 방식으로 진행하고 있으므로 이 Workcell은 일시정지합니다.
 
 ```text
-Simulation PASS ≠ Runtime Mission PASS
-Simulation Evidence ≠ 실제 팀 Evidence
-Simulation CLEAR ≠ B2-2 Mission CLEAR
+B2-2 상태                   = ⏸ PAUSED / TEAM WORK IN PROGRESS
+MAC-V Host/CORE Prep        = ✅ PASS
+codyssey01 Account A        = Identity 설정 완료 후보
+Identity Gate 5/5           = ⬜ NOT RUN
+Simulation Repository       = ⬜ NOT RUN
+B2-2 Mission CLEAR          = ❌ 아님
 ```
+
+보류 상태는 지금까지의 기록을 삭제하거나 재설정하지 않습니다. 재개 시 실제 팀 Evidence와 학습 Simulation Evidence를 분리하여 검증합니다.
 
 ---
 
@@ -255,13 +265,13 @@ Simulation CLEAR ≠ B2-2 Mission CLEAR
 - Python package는 미션별 `.venv`
 - SQLite DB는 미션별 분리
 - Web local port는 시작 전 충돌 확인 후 사용
-- B2-2 각 Linux User는 별도 HOME / Git config / `gh` 인증 / Repository clone을 사용
+- B2-2 학습용 5계정 HOME/GitHub 상태를 B4-1 시스템 관제 Runtime 자산과 혼합하지 않음
 
 ### Secret
 
 - Secret/Token/Password/Private Key 실제 값은 Repository/Chat/Evidence에 저장하지 않음
 - `gh auth token`, `gh auth status --show-token` 결과를 Evidence에 남기지 않음
-- 공용 MAC-V 종료 시 `gh`와 브라우저 GitHub 세션 정리
+- 공용 MAC-V 종료 시 필요한 계정 세션을 정리
 
 ---
 
@@ -283,8 +293,6 @@ Simulation CLEAR ≠ B2-2 Mission CLEAR
 → 조건 충족 시에만 Mission CLEAR
 ```
 
-B2-2 Simulation에서는 공식 Mission Runtime Record를 올리지 않고 Simulation 상태만 별도로 기록합니다.
-
 ---
 
 <a id="r01-flow"></a>
@@ -295,8 +303,8 @@ Phase A Reference Build          ✅ 15/15 CORE READY
 → Canonical Consistency Audit    ✅ PASS 15/15
 → Phase B Cross-Mission Audit    ✅ COMPLETE / BLOCKER 0
 → Phase C FAST TRACK             🟡 진행 중
-   ├─ B4-1 시스템 관제 Workcell  ⏸ PAUSED / READY TO RESUME
-   ├─ B2-2 Workcell              🟡 ACTIVE
+   ├─ B4-1 시스템 관제 Workcell  🟡 ACTIVE
+   ├─ B2-2 Git 협업 Workcell     ⏸ PAUSED / TEAM WORK IN PROGRESS
    ├─ Stage 1 Required CLEAR     0 / 11
    └─ Stage 2 Optional CLEAR     0 / 4
 ```
@@ -310,7 +318,7 @@ Mission / Workcell 상태:
 
 - ⬜ `NOT STARTED`: 아직 해당 Workcell 실제 수행 미시작
 - 🟡 `ACTIVE`: 현재 수행/검증의 주 Workcell
-- ⏸ `PAUSED / READY TO RESUME`: 일시정지되었지만 FAIL/CLEAR가 아니며 재개 가능
+- ⏸ `PAUSED / READY TO RESUME` 또는 `PAUSED / TEAM WORK IN PROGRESS`: 일시정지되었지만 FAIL/CLEAR가 아니며 재개 가능
 - ⛔ `BLOCKED`: 실제 의존성 때문에 진행 불가
 - ✅ `CLEAR`: 공식 요구 + 실제 검증 + 필요한 Evidence 완료
 
