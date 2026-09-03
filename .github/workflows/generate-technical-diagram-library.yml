@@ -21,12 +21,21 @@ on:
 permissions:
   contents: write
 
+# Both presentation workflows can write generated binary artifacts back to main.
+# Serialize those writers and rebase immediately before push so a sibling workflow
+# cannot cause a non-fast-forward failure.
+concurrency:
+  group: codyssey-presentation-artifact-writer
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -123,6 +132,7 @@ jobs:
       - name: Commit generated artifacts
         if: github.event_name == 'push'
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
@@ -133,5 +143,7 @@ jobs:
             echo 'Generated artifacts are already current.'
           else
             git commit -m 'chore: generate technical diagram library artifacts'
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
