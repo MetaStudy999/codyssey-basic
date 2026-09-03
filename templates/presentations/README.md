@@ -1,7 +1,9 @@
 # 코디세이 미션 평가 발표 템플릿
 
-대상: **B1-1 ~ B7-2**  
+대상: **현재 15개 미션(B1-1 ~ B7-2, B6-3 포함)**  
 용도: 코디세이 미션 평가, 학부 프로젝트 발표, 석·박사 과정 프로젝트 발표, 연구실 발표, 학회형 기술 발표
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 발표 템플릿도 번호보다 **미션 주제와 실제 구현·검증·증빙**을 기준으로 사용합니다.
 
 이 디렉터리는 미션별 발표자료를 매번 새로 설계하지 않고, **요구사항 → 설계 → 구현 → 검증 → 증빙 → 설명**의 동일한 평가 논리로 발표할 수 있도록 만든 공통 기준입니다.
 
@@ -12,8 +14,9 @@
 3. 전체 디자인·레이아웃·도메인별 선택 슬라이드가 필요하면 `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx`를 참고합니다.
 4. 아키텍처·ERD·Cloud·Sequence·Research·Evidence 등 고급 기술 다이어그램이 필요하면 [`diagrams/`](diagrams/)의 Technical Diagram Library를 사용합니다.
 5. [`Codyssey_Mission_Presentation_Template_Guide.md`](Codyssey_Mission_Presentation_Template_Guide.md)의 미션별 강조 포인트를 적용합니다.
-6. 실제 실행하지 않은 항목은 PASS로 표시하지 않습니다.
-7. 스크린샷·로그·테스트 결과에는 **무엇을 증명하는 자료인지** 캡션을 붙입니다.
+6. 현재 Mission ID와 Canonical Repository를 `CURRENT-MISSION-MAP.md`에서 먼저 확인합니다.
+7. 실제 실행하지 않은 항목은 PASS로 표시하지 않습니다.
+8. 스크린샷·로그·테스트 결과에는 **무엇을 증명하는 자료인지** 캡션을 붙입니다.
 
 ## 목차
 
@@ -40,7 +43,7 @@
 <a id="diagram-library"></a>
 ## 고급 기술 다이어그램 라이브러리
 
-[`diagrams/README.md`](diagrams/README.md)에서 B1-1 ~ B7-2에 공통으로 사용할 수 있는 20장 Technical Diagram Master Library를 관리합니다.
+[`diagrams/README.md`](diagrams/README.md)에서 현재 15개 미션에 공통으로 사용할 수 있는 20장 Technical Diagram Master Library를 관리합니다.
 
 핵심 구성:
 
@@ -62,16 +65,29 @@ Experimental Design
 End-to-End (E2E) Service Flow
 ```
 
-미션별 우선 선택:
+현재 번호 기준 미션별 우선 선택:
 
 ```text
-B1 → Architecture / State / Troubleshooting
-B2 → Layered Architecture / Data Flow / Git Swimlane
-B3 → Data Structure / Algorithm / Complexity
-B4 → Event Flow / State / Before-After
-B5 → ERD / Sequence / Security Boundary
-B6 → Cloud Network / Trust Boundary / Pipeline
-B7 → End-to-End / Research / Evidence Traceability
+B1 — Web / Frontend
+     → Event Flow / State / Before-After
+
+B2 — Python / Git Collaboration
+     → Layered Architecture / Data Flow / Git Swimlane
+
+B3 — Cloud / AI Git
+     → Cloud Network / Trust Boundary / Pipeline
+
+B4 — Linux / OS
+     → Architecture / State / Troubleshooting / RCA
+
+B5 — Data Structure / Algorithm
+     → Data Structure / Algorithm / Complexity
+
+B6 — Database / Backend
+     → ERD / Sequence / Security Boundary
+
+B7 — Term Project
+     → End-to-End / Research / Evidence Traceability
 ```
 
 다이어그램은 실제 구현과 검증 결과를 설명하기 위한 시각 도구이며, 공식 Mission / Evaluation에 없는 기능을 추가하는 근거로 사용하지 않습니다.
@@ -108,21 +124,21 @@ B7 → End-to-End / Research / Evidence Traceability
 <a id="mission-map"></a>
 ## 미션별 강조 영역
 
-| 미션 | 발표에서 특히 강조할 내용 |
+| 현재 미션 | 발표에서 특히 강조할 내용 |
 |---|---|
-| B1-1 | Linux/OS, SSH/UFW, 계정·권한, `monitor.sh`, cron, 로그 자동화 |
-| B1-2 | OOM, CPU Spike, Deadlock, Root Cause Analysis, Before & After |
+| B1-1 | HTML/CSS/JavaScript, DOM, Responsive, GitHub API, GitHub Pages |
+| B1-2 | React, SPA, Routing, State, useEffect, CRUD, Supabase |
 | B2-1 | Python CLI, 영속화, Generator, Decorator, Type Hint, import/export |
 | B2-2 | Issue → Branch → PR → Review → Merge, 충돌 해결, 협업 증빙 |
-| B3-1 | Hash Map, Doubly Linked List, Heap, LRU, TTL, 시간복잡도 |
-| B3-2 | DAG, 탐색, 정렬, Inverted Index, 커밋 그래프 |
-| B4-1 | HTML/CSS/JavaScript, DOM, Responsive, GitHub API |
-| B4-2 | React, SPA, Routing, State, useEffect, CRUD |
-| B5-1 | SQL, PK/FK, JOIN, GROUP BY, ERD, 무결성 |
-| B5-2 | FastAPI, SSR, ORM, CRUD, PRG, Layering |
-| B5-3 | Authentication/Authorization, Relationship, State Change |
-| B6-1 | VPC, Subnet, Route, IGW, EC2, Security Group, IAM |
-| B6-2 | AI API, git diff, Prompt, Parameters, Validation, Error Handling |
+| B3-1 | VPC, Subnet, Route, IGW, EC2, Security Group, IAM, Nginx |
+| B3-2 | AI API, git diff, Prompt, Parameters, Validation, Error Handling |
+| B4-1 | Linux/OS, SSH/UFW, 계정·권한, `monitor.sh`, cron, 로그 자동화 |
+| B4-2 | OOM, CPU Spike, Deadlock, Root Cause Analysis, Before & After |
+| B5-1 | Hash Map, Doubly Linked List, Heap, LRU, TTL, 시간복잡도 |
+| B5-2 | DAG, 탐색, 정렬, Inverted Index, 커밋 그래프 |
+| B6-1 | SQL, PK/FK, JOIN, GROUP BY, ERD, 무결성 |
+| B6-2 | FastAPI, SSR, ORM, CRUD, PRG, Layering |
+| B6-3 | Authentication/Authorization, Relationship, Session, State Change |
 | B7-1 | AI Chatbot, FastAPI, Auth, DB Log, 팀 협업, End-to-End 흐름 |
 | B7-2 | Full-stack, User Ownership, REST API, ERD, Cloud Deployment |
 
@@ -181,6 +197,7 @@ Requirement
 - 이미지·로그·터미널 캡처에는 증명 목적을 적습니다.
 - Secret, API Key, Token, 개인정보는 반드시 제거합니다.
 - 학습자는 구현 내용을 자기 말로 설명할 수 있어야 합니다.
+- 발표 파일 이름에 Mission ID를 넣더라도 Repository 자체 이름은 주제 기반 Canonical Repository를 사용합니다.
 
 <a id="mission-output"></a>
 ## 미션별 실제 발표자료 관리 권장안
@@ -197,6 +214,8 @@ presentation/
     ├── speaker-notes.md
     └── evidence/
 ```
+
+Mission ID가 추후 다시 변경되더라도 발표 산출물의 역사적 파일명은 필요 시 보존하고, 현재 발표의 표지/Metadata는 `CURRENT-MISSION-MAP.md` 기준으로 갱신합니다.
 
 공통 Master/Core PPTX와 Diagram Library를 15개 미션 폴더에 중복 복사하지 않습니다.
 
