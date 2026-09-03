@@ -2,7 +2,9 @@
 
 ## 목적
 
-B1-1~B7-2의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, 프로젝트 내부 의존성을 분리합니다.
+현재 15개 Mission/Project의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, 프로젝트 내부 의존성을 분리합니다.
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 변경은 패키지 요구 자체를 바꾸지 않으며, 동일 미션 주제의 기존 패키지 구성을 현재 ID로 재매핑합니다.
 
 ## 한눈에 보기(Quick Read)
 
@@ -19,18 +21,10 @@ B1-1~B7-2의 Ubuntu 24.04 공통 개발도구, 미션별 시스템 패키지, �
 Mission package                 ≠ Project library
 ```
 
-현재 Mission package는 각 저장소의 `training/round-01-clear/environment/ubuntu-packages.txt`가 기준(Source of Truth)입니다.
-
-## 📑 목차
-
-- [계층 구조](#layers)
-- [15개 Mission Package Matrix](#matrix)
-- [중요한 해석](#interpretation)
-- [Mission package file](#package-file)
+현재 Mission package는 각 Canonical Repository의 `training/round-01-clear/environment/ubuntu-packages.txt`가 기준(Source of Truth)입니다.
 
 ---
 
-<a id="layers"></a>
 ## 계층 구조
 
 ```text
@@ -55,33 +49,35 @@ Layer 4 — 프로젝트(Project)
 
 공식 Mission/Evaluation이 특정 도구나 버전을 요구하면 공식 자료가 최우선입니다. 이 Matrix는 R01 실행을 위한 내부 설치 지도입니다.
 
-<a id="matrix"></a>
+---
+
 ## 15개 Mission Package Matrix
 
-| Mission | Mission APT 추가 패키지 | Project/Runtime dependency 방향 |
-|---|---|---|
-| **B1-1** | `openssh-server ufw acl cron procps iproute2 util-linux` | `file`, `unzip`, SSH client 등은 Base 사용. Agent binary/Bash monitor는 Mission Runtime에서 관리 |
-| **B1-2** | `procps psmisc lsof strace` | 장애 재현 코드/스크립트는 Repository에서 관리 |
-| **B2-1** | `python3 python3-venv` | Python project dependency는 `.venv` 내부 |
-| **B2-2** | 추가 APT 없음 | Git/SSH client/`gh`는 공통 개발계층 사용. Issue/PR/Review는 GitHub server-side workflow |
-| **B3-1** | `python3 python3-venv` | Python 구현/테스트는 `.venv` 또는 표준 Python 환경 |
-| **B3-2** | `python3 python3-venv` | Git은 Base 사용, Python 구현은 project layer |
-| **B4-1** | `python3` | static site; 필요 시 `python3 -m http.server` 사용 |
-| **B4-2** | 추가 APT 없음 | Node runtime은 별도 version/runtime 관리, npm dependency는 `package.json`/lock file |
-| **B5-1** | `sqlite3` | SQL 파일/DB schema/query는 Repository에서 관리 |
-| **B5-2** | `python3 python3-venv` | FastAPI/Jinja2/SQLAlchemy 등은 `.venv` 내부 |
-| **B5-3** | `python3 python3-venv` | FastAPI/Auth/Session/SQLAlchemy 등은 `.venv` 내부 |
-| **B6-1** | `nginx` | SSH client는 Base 사용. 실제 AWS/VPC/EC2/SG 증빙(Evidence)이 최종 기준; AWS CLI는 필요 시 별도 설치 정책 |
-| **B6-2** | `python3 python3-venv` | AI API client/project dependency는 `.venv`; Git/`gh`는 공통 개발계층 |
-| **B7-1** | `python3 python3-venv` | FastAPI/DB/AI package는 `.venv`; 실제 deploy/provider 별도 |
-| **B7-2** | `python3 python3-venv` | Backend/AI/DB project dependency는 `.venv`; frontend dependency는 project manifest |
+| 현재 Mission | 주제 | Mission APT 추가 패키지 | Project/Runtime dependency 방향 |
+|---|---|---|---|
+| **B1-1** | 웹 포트폴리오 | `python3` | static site; 필요 시 `python3 -m http.server` 사용 |
+| **B1-2** | React SPA | 추가 APT 없음 | Node runtime은 별도 version/runtime 관리, npm dependency는 `package.json`/lock file |
+| **B2-1** | 가계부 | `python3 python3-venv` | Python project dependency는 `.venv` 내부 |
+| **B2-2** | Git 팀 협업 | 추가 APT 없음 | Git/SSH client/`gh`는 공통 개발계층 사용. Issue/PR/Review는 GitHub server-side workflow |
+| **B3-1** | 클라우드 인프라 | `nginx` | SSH client는 Base 사용. 실제 AWS/VPC/EC2/SG 증빙(Evidence)이 최종 기준; AWS CLI는 필요 시 별도 설치 정책 |
+| **B3-2** | AI Git 도우미 | `python3 python3-venv` | AI API client/project dependency는 `.venv`; Git/`gh`는 공통 개발계층 |
+| **B4-1** | 시스템 관제 | `openssh-server ufw acl cron procps iproute2 util-linux` | `file`, `unzip`, SSH client 등은 Base 사용. Agent binary/Bash monitor는 Mission Runtime에서 관리 |
+| **B4-2** | 시스템 장애 분석 | `procps psmisc lsof strace` | 장애 재현 코드/스크립트는 Repository에서 관리 |
+| **B5-1** | Mini Redis | `python3 python3-venv` | Python 구현/테스트는 `.venv` 또는 표준 Python 환경 |
+| **B5-2** | Mini Git | `python3 python3-venv` | Git은 Base 사용, Python 구현은 project layer |
+| **B6-1** | SQL 데이터베이스 | `sqlite3` | SQL 파일/DB schema/query는 Repository에서 관리 |
+| **B6-2** | FastAPI CRUD | `python3 python3-venv` | FastAPI/Jinja2/SQLAlchemy 등은 `.venv` 내부 |
+| **B6-3** | FastAPI 인증·연관관계 | `python3 python3-venv` | FastAPI/Auth/Session/SQLAlchemy 등은 `.venv` 내부 |
+| **B7-1** | AI 챗봇 | `python3 python3-venv` | FastAPI/DB/AI package는 `.venv`; 실제 deploy/provider 별도 |
+| **B7-2** | AI 챗봇 고도화 | `python3 python3-venv` | Backend/AI/DB project dependency는 `.venv`; frontend dependency는 project manifest |
 
-<a id="interpretation"></a>
+---
+
 ## 중요한 해석
 
-### B1-1
+### B4-1 — 시스템 관제
 
-`openssh-client`, `file`, `unzip`은 여러 미션에서 반복 사용하므로 공통 기본도구(Common Base)로 승격했습니다. B1-1의 Mission package file에는 **서버 역할과 시스템 실습에 실제로 추가 필요한 패키지만** 남깁니다.
+`openssh-client`, `file`, `unzip`은 여러 미션에서 반복 사용하므로 공통 기본도구(Common Base)입니다. B4-1의 Mission package file에는 **서버 역할과 시스템 실습에 실제로 추가 필요한 패키지만** 남깁니다.
 
 ```text
 openssh-server
@@ -93,19 +89,19 @@ iproute2
 util-linux
 ```
 
-### B2-2
+### B2-2 — Git 팀 협업
 
 Ubuntu에 GitHub 자체를 설치하는 것이 아닙니다. Git과 SSH client는 Base, `gh`는 GitHub CLI 공식 APT repository를 사용하는 공통 Developer CLI입니다. Issue/PR/Review/Branch Protection 같은 요구는 GitHub 서버에서 확인합니다.
 
 `gh` 설치와 `gh auth login`은 분리합니다. 인증은 자동화하지 않습니다.
 
-### B4-2
+### B1-2 — React SPA
 
 Node/npm의 버전 요구는 프로젝트와 당시 공식 Mission 기준을 확인해 결정합니다. Ubuntu `apt install nodejs npm`을 모든 환경의 고정 정답으로 만들지 않습니다.
 
-### B6-1
+### B3-1 — 클라우드 인프라
 
-`openssh-client`는 Common Base이므로 B6-1 추가 목록에서는 제거하고 `nginx`만 남깁니다. 로컬 Ubuntu의 `nginx`/SSH rehearsal은 실제 AWS resource와 배포 증빙(Evidence)을 대체하지 않습니다.
+`openssh-client`는 Common Base이므로 B3-1 추가 목록에서는 제거하고 `nginx`만 남깁니다. 로컬 Ubuntu의 `nginx`/SSH rehearsal은 실제 AWS resource와 배포 증빙(Evidence)을 대체하지 않습니다.
 
 ### Python Missions
 
@@ -122,10 +118,11 @@ AI SDK
 
 Repository-local `.venv`를 사용합니다.
 
-<a id="package-file"></a>
+---
+
 ## Mission package file
 
-각 Mission 저장소에는 다음 파일을 둡니다.
+각 Mission Repository에는 다음 파일을 둡니다.
 
 ```text
 training/round-01-clear/environment/ubuntu-packages.txt
