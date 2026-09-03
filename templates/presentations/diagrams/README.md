@@ -1,17 +1,20 @@
 # 코디세이 고급 기술 다이어그램 라이브러리
 
-대상: **B1-1 ~ B7-2**  
+대상: **현재 15개 미션(B1-1 ~ B7-2, B6-3 포함)**  
 용도: 코디세이 평가 발표, 학부 프로젝트 발표, 석·박사 과정 발표, 연구실·연구원·학회형 기술 발표
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../../CURRENT-MISSION-MAP.md`](../../../CURRENT-MISSION-MAP.md)입니다. 다이어그램 선택도 번호 자체가 아니라 현재 미션의 **주제·구조·실제 구현**을 기준으로 합니다.
 
 이 디렉터리는 발표용 다이어그램을 매번 새로 그리지 않고, **구조(Architecture)·흐름(Flow)·상태(State)·관계(Relationship)·보안 경계(Security Boundary)·검증(Verification)·증빙 자료(Evidence)**를 동일한 시각 문법으로 표현하기 위한 기준 라이브러리입니다.
 
 ## 빠른 시작(Quick Start)
 
 1. `Codyssey_Technical_Diagram_Master_Library.pptx`에서 필요한 슬라이드를 복사합니다.
-2. 예시 노드의 이름과 책임을 실제 미션 구조로 교체합니다.
-3. 실제 미션에 없는 구성요소는 추가하지 않습니다.
-4. 하단의 Verification / Evidence 문구는 실제 수행 결과가 있을 때만 교체합니다.
-5. 공식 Mission / Evaluation이 내부 템플릿보다 항상 우선합니다.
+2. `CURRENT-MISSION-MAP.md`에서 현재 Mission ID와 Canonical Repository를 확인합니다.
+3. 예시 노드의 이름과 책임을 실제 미션 구조로 교체합니다.
+4. 실제 미션에 없는 구성요소는 추가하지 않습니다.
+5. 하단의 Verification / Evidence 문구는 실제 수행 결과가 있을 때만 교체합니다.
+6. 공식 Mission / Evaluation이 내부 템플릿보다 항상 우선합니다.
 
 ## 파일 구성
 
@@ -19,7 +22,7 @@
 |---|---|
 | `Codyssey_Technical_Diagram_Master_Library.pptx` | 20장 편집 가능한 고급 기술 다이어그램 기준본 |
 | `Codyssey_Technical_Diagram_Master_Montage.png` | GitHub에서 빠르게 확인하는 전체 미리보기 |
-| `Codyssey_Technical_Diagram_Library_Guide.md` | B1~B7 적용법, 시각 문법, 발표 수준별 사용법, Master Prompt |
+| `Codyssey_Technical_Diagram_Library_Guide.md` | 현재 B1~B7 적용법, 시각 문법, 발표 수준별 사용법, Master Prompt |
 | `Codyssey_Technical_Diagram_Master_Library_Generator.js` | PowerPoint 재현 생성기 |
 | `package.json` | 생성기 의존성 고정 |
 
@@ -46,16 +49,16 @@
 19. Style Guide
 20. Master Prompt
 
-## B1~B7 우선 적용
+## 현재 B1~B7 우선 적용
 
-| 영역 | 권장 다이어그램 |
+| 현재 영역 | 권장 다이어그램 |
 |---|---|
-| B1 Linux / OS | Architecture → State → Troubleshooting |
+| B1 Web / Front-end | Event/Data Flow → State → Before/After |
 | B2 Python / Git | Layered Architecture → Data Flow → Git Swimlane |
-| B3 자료구조·알고리즘 | Data Structure → Algorithm Flow → Complexity |
-| B4 Web / Front-end | Event/Data Flow → State → Before/After |
-| B5 DB / Back-end | ERD → Sequence → Security Boundary |
-| B6 Cloud / AI API | Cloud Network → Trust Boundary → Pipeline |
+| B3 Cloud / AI API | Cloud Network → Trust Boundary → Pipeline |
+| B4 Linux / OS | Architecture → State → Troubleshooting / RCA |
+| B5 자료구조·알고리즘 | Data Structure → Algorithm Flow → Complexity |
+| B6 DB / Back-end | ERD → Sequence → Security Boundary |
 | B7 Term Project | End-to-End → Research Pipeline → Evidence Traceability |
 
 ## 핵심 시각 문법
