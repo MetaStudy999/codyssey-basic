@@ -3,6 +3,8 @@
 이 문서는 Codyssey Basic의 **15개 Mission/Term Project 입문자 가이드가 실제 수행 경로로 연결되어 있고, 현재 상태·환경·공식 요구와 모순 없이 입문자가 따라갈 수 있는지 관리하는 감사표**입니다.
 
 > 이 문서는 코디세이 공식 Mission/Evaluation을 대체하지 않습니다. `BEGINNER READY`는 내부 문서 품질 상태이며 공식 Mission `CLEAR`와 별개입니다.
+>
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)입니다. 2026-08-19에 작성된 개별 감사 기록은 당시 Mission ID를 역사적 식별자로 보존하되, 현재 ID와 함께 표기합니다.
 
 ## 1. 감사 목표
 
@@ -58,32 +60,34 @@
 
 ## 2. 현재 15개 가이드 존재 및 연결 상태
 
-2026-08-19 기준으로 각 Mission Repository의 `training/round-01-clear/BEGINNER-GUIDE.md` 존재를 확인했습니다. 메인 README에서는 각 미션의 `시작` 행에서 Repository와 Beginner Guide로 직접 이동하도록 관리합니다.
+2026-08-19 기준으로 각 Mission Repository의 `training/round-01-clear/BEGINNER-GUIDE.md` 존재를 확인했습니다. 2026-09-04에는 미션 주제를 유지한 채 현재 Mission ID로 재매핑했습니다. 메인 README에서는 각 미션의 `시작` 행에서 Repository와 Beginner Guide로 직접 이동하도록 관리합니다.
 
-| 실행 순번 | 미션 | 구분 | Beginner Guide | 문서 내용 감사 | 우선순위 |
+| 실행 순번 | 현재 미션 | 구분 | Beginner Guide | 문서 내용 감사 | 우선순위/현재 상태 |
 |---:|---|---|---|---|---|
-| 1 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | ✅ **3계층 구조 APPLIED & VERIFIED / Runtime 진입을 잘못 이끄는 blocker 수준 Documentation Drift 없음. 전체 용어·줄별 해설 polishing은 JIT 감사로 지속** | **P0 — 현재 미션** |
-| 2 | B1-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 1 | B4-1 | 필수 | ✅ 존재 / 메인 직접 연결 | ✅ **3계층 구조 APPLIED & VERIFIED / Runtime 진입을 잘못 이끄는 blocker 수준 Documentation Drift 없음. 전체 용어·줄별 해설 polishing은 JIT 감사로 지속** | ⏸ PAUSED / READY TO RESUME |
+| 2 | B4-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
 | 3 | B2-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 5 | B3-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 6 | B3-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 7 | B4-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 8 | B5-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 9 | B6-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 10 | B6-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 4 | B2-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | **P0 — CURRENT ACTIVE** |
+| 5 | B5-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 6 | B5-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 7 | B1-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 8 | B6-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 9 | B3-1 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
+| 10 | B3-2 | 필수 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
 | 11 | B7-1 | 필수 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P1 |
-| 12 | B4-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
-| 13 | B5-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
-| 14 | B5-3 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
+| 12 | B1-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
+| 13 | B6-2 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
+| 14 | B6-3 | 선택 | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
 | 15 | B7-2 | 선택 Term Project | ✅ 존재 / 메인 직접 연결 | 🟡 정합성·탐색·용어·줄별 해설·실행안전·3계층 구조 감사 필요 | P2 |
 
-### B1-1 실제 적용 확인 — 2026-08-19
+### 이전 B1-1 → 현재 B4-1 시스템 관제 실제 적용 확인 — 2026-08-19
 
-B1-1은 기준만 추가한 상태가 아니라 실제 `BEGINNER-GUIDE.md`, 모듈 목차, 세부 학습 문서를 수정하고 GitHub `main`에서 재확인했습니다.
+이 절은 2026-08-19 당시 **B1-1**로 관리되던 시스템 관제 미션의 감사 기록입니다. 현재 Mission ID는 **B4-1**이며 Canonical Repository는 `codyssey-basic-system-monitor`입니다. 당시 감사 사실과 실제 적용 이력은 보존하고, 현재 운영 상태는 `PROGRESS.md`와 `CURRENT-MISSION-MAP.md`를 따릅니다.
+
+당시 B1-1(현재 B4-1)은 기준만 추가한 상태가 아니라 실제 `BEGINNER-GUIDE.md`, 모듈 목차, 세부 학습 문서를 수정하고 GitHub `main`에서 재확인했습니다.
 
 ```text
-APPLIED & VERIFIED — 현재까지
+APPLIED & VERIFIED — 당시 B1-1 / 현재 B4-1 시스템 관제
 - 안전한 Quick Start 추가
 - 전체 중앙 허브에서 모듈 README로 직접 이동
 - 00~08 모듈별 README 지역 목차(Local TOC) 생성
@@ -100,7 +104,7 @@ APPLIED & VERIFIED — 현재까지
 - 플랫폼별 Runtime Record와 Mission CLEAR를 분리
 - 두 환경 실제 PASS 시 CROSS-PLATFORM VERIFIED를 별도 내부 품질 상태로 정의
 - Docker를 선택 Lab으로 구분
-- 공통 Bootstrap과 B1-1 Mission package 계층 구분
+- 공통 Bootstrap과 시스템 관제 Mission package 계층 구분
 - Quick Start에서 SSH/UFW 변경을 하지 않도록 제한
 - SSH 변경은 backup → 20022 사전 허용 → sshd 문법/최종 설정 검증 → reload → 실제 새 세션 → 기존 경로 정리 순서로 고정
 - UFW 변경은 체크포인트 → 20022/15034 선허용 → 기본 정책 → 활성화/재적용 → 실제 20022 유지 → 불필요 ALLOW IN 개별 정리 순서로 고정
@@ -108,19 +112,27 @@ APPLIED & VERIFIED — 현재까지
 - Verification / Evidence / Evaluation / CLEAR 상태를 서로 분리
 ```
 
-현재 B1-1의 **3계층 정보 구조(Information Architecture, IA) 마이그레이션은 완료**되었습니다. 중앙 허브 → 00~08 모듈 README → 실행형 세부 학습 문서가 연결되며, STEP 01~15의 주 학습 경로는 새 Learning Unit입니다. 기존 평면 파일은 오래된 링크가 즉시 깨지지 않게 하는 호환 안내만 유지합니다.
+이 2026-08-19 감사 대상의 **3계층 정보 구조(Information Architecture, IA) 마이그레이션은 완료**되었습니다. 중앙 허브 → 00~08 모듈 README → 실행형 세부 학습 문서가 연결되며, STEP 01~15의 주 학습 경로는 새 Learning Unit입니다. 기존 평면 파일은 오래된 링크가 즉시 깨지지 않게 하는 호환 안내만 유지합니다.
 
-또한 실제 Runtime 진입 직전 blocker 수준 감사에서 **현재 B1-1 실행을 잘못 이끌 수 있는 상태/환경/경로/SSH·UFW 안전/Secret/Verification·Evidence 판정 Drift는 발견되지 않았습니다.** 따라서 공통 환경 마무리(Common Environment Closeout)의 Gate 1은 blocker 기준으로 PASS할 수 있습니다.
+또한 당시 실제 Runtime 진입 직전 blocker 수준 감사에서 **시스템 관제 미션 실행을 잘못 이끌 수 있는 상태/환경/경로/SSH·UFW 안전/Secret/Verification·Evidence 판정 Drift는 발견되지 않았습니다.** 따라서 공통 환경 마무리(Common Environment Closeout)의 Gate 1은 당시 blocker 기준으로 PASS할 수 있었습니다.
 
-단, **Gate 1 blocker PASS가 B1-1 전체 `BEGINNER READY`, 플랫폼별 Runtime PASS 또는 Mission `CLEAR`를 뜻하지는 않습니다.** 한국어 중심 용어와 영어 원어의 세부 품사, 모든 비위험 설명 줄의 표현 일관성, 추가적인 가독성 polishing은 실제 실행 중 JIT 감사 대상으로 계속 관리합니다. 실제 Runtime/Verification/Evidence가 없으면 플랫폼 PASS와 Mission CLEAR도 아닙니다.
+단, **Gate 1 blocker PASS가 현재 B4-1 전체 `BEGINNER READY`, 플랫폼별 Runtime PASS 또는 Mission `CLEAR`를 뜻하지는 않습니다.** 한국어 중심 용어와 영어 원어의 세부 품사, 모든 비위험 설명 줄의 표현 일관성, 추가적인 가독성 polishing은 실제 실행 중 JIT 감사 대상으로 계속 관리합니다. 실제 Runtime/Verification/Evidence가 없으면 플랫폼 PASS와 Mission CLEAR도 아닙니다.
 
-B1-1의 실제 미션 Runtime 기록은 현재 다음처럼 유지합니다.
+2026-08-19 당시 Runtime 기록은 다음과 같았습니다.
 
 ```text
 MAC-V = NOT RUN
 WIN-V = NOT RUN
 CROSS-PLATFORM = NOT VERIFIED
 Mission = ACTIVE / NOT CLEAR
+```
+
+현재 운영 상태는 별도로 관리합니다.
+
+```text
+B4-1 시스템 관제 = ⏸ PAUSED / READY TO RESUME
+B2-2 Git 협업     = 🟡 ACTIVE
+Runtime CLEAR     = 0 / 15
 ```
 
 ## 3. 알려진 Documentation Drift 유형
@@ -314,7 +326,7 @@ Cloud/API/AI Provider가 포함되면 추가로 확인합니다.
 15개 가이드를 표준 변경만을 이유로 한꺼번에 기계적으로 다시 쓰지 않습니다.
 
 ```text
-P0 현재 Active Mission
+P0 현재 Active Mission = B2-2
 → Runtime을 막거나 오판정을 만드는 문서 오류 즉시 수정
 → Current Runtime Context / Supported Runtime 정합성 확인
 → 목차/Quick Start를 실제 문서 역할에 맞게 적용
@@ -333,6 +345,8 @@ P1 다음 필수 미션
 P2 선택 미션
 → Stage 2 진입 전에 순차 감사
 ```
+
+> `P0 현재 Active Mission` 값은 고정된 표준이 아니라 현재 운영 상태입니다. 향후 Workcell이 바뀌면 `PROGRESS.md`를 기준으로 갱신합니다.
 
 즉, **모든 가이드의 존재와 진입 링크는 확보하되, 내용 감사·교정은 실제 실행 순서에 맞춰 깊게 수행**합니다.
 
