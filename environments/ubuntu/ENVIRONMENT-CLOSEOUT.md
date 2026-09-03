@@ -4,7 +4,7 @@
 
 R01 Phase C에서 공통 환경 설계를 계속 확장하지 않고, **공통 문서·스크립트는 동결(Freeze)하고 실제 사용하는 실행 환경(Runtime Profile)은 작업 시점에 개별 확인**한 뒤 Mission Runtime으로 진입합니다.
 
-> 현재 Mission ID의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 재편 전 B1-1이었던 시스템 관제 미션은 현재 **B4-1**이며, 현재 Workcell 포커스는 **B2-2**입니다.
+> 현재 Mission ID의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 번호 재편 전 B1-1이었던 시스템 관제 미션은 현재 **B4-1**이며, 현재 Workcell 포커스는 **B4-1**입니다. B2-2 Git 협업은 사용자가 실제 팀과 별도로 진행 중이므로 이 Control Tower 실행에서는 일시 보류합니다.
 
 `MAC-V`와 `WIN-V`는 합격 우선순위의 Primary/Secondary 관계가 아니라 동등한 **지원 실행 환경(Supported Runtime)**입니다.
 
@@ -39,8 +39,8 @@ Mission Runtime
 Gate 1 — Documentation Drift           ✅ PASS — 공통 blocker-level audit complete
 Gate 4 — Bash Static Syntax Validation ✅ PASS — 11 PASS / 0 FAIL
 Common Environment Design Freeze       ✅ FROZEN
-Current Workcell                       B2-2 🟡 ACTIVE
-B4-1 시스템 관제                       ⏸ PAUSED / READY TO RESUME
+Current Workcell                       B4-1 🟡 ACTIVE
+B2-2 Git 협업                           ⏸ PAUSED / TEAM WORK IN PROGRESS
 ```
 
 ### 프로필별 알려진 준비 기록
@@ -57,7 +57,7 @@ WIN-V
 - 특성     : Persistent
 ```
 
-> 위 준비 기록은 **Mission Runtime PASS가 아닙니다.** B2-2와 B4-1을 포함한 각 미션의 MAC-V/WIN-V 실제 수행 기록은 `training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`에서 별도로 관리합니다.
+> 위 준비 기록은 **Mission Runtime PASS가 아닙니다.** B4-1의 현재 Runtime과 B2-2의 보류된 팀/Simulation 상태를 포함한 각 미션 수행 기록은 `training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`에서 별도로 관리합니다.
 
 작업을 시작할 때 사용자가 현재 환경을 알려 주면 다음 두 명령으로 선택 환경을 확인합니다.
 
@@ -116,7 +116,7 @@ training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md
 
 **✅ PASS — 현재 Phase C를 잘못 이끌 수 있는 공통 blocker 수준 Documentation Drift 없음.**
 
-번호 재편 전 B1-1(현재 **B4-1 시스템 관제**)에서 검증한 3계층 문서 구조, SSH/UFW 안전 절차, Secret 보호, Verification/Evidence/CLEAR 분리 기준은 역사적 패턴으로 유지합니다. 현재 B2-2에는 Git/GitHub 협업 Runtime과 Simulation 분리 기준을 적용합니다.
+번호 재편 전 B1-1(현재 **B4-1 시스템 관제**)에서 검증한 3계층 문서 구조, SSH/UFW 안전 절차, Secret 보호, Verification/Evidence/CLEAR 분리 기준을 현재 B4-1 Runtime에 적용합니다. B2-2의 Git/GitHub 협업 Runtime과 Simulation 분리 기준은 보류 상태로 보존합니다.
 
 환경 관련 운영 기준은 다음처럼 유지합니다.
 
@@ -330,23 +330,24 @@ ShellCheck 공통 필수화
 
 ```text
 현재 Workcell
-→ B2-2 Git 협업 🟡 ACTIVE
-→ Repository: codyssey-basic-git-collaboration
+→ B4-1 시스템 관제 🟡 ACTIVE
+→ Repository: codyssey-basic-system-monitor
 
 학교 Mac에서 작업
 → MAC-V
 → Bootstrap / Identity 현재 상태 확인
-→ B2-2 Runtime / Simulation 준비
+→ B4-1 Preflight / Runtime
 
 노트북 Win11에서 작업
 → WIN-V
 → 기존 환경 Verification / Identity 확인
-→ B2-2 Runtime / Simulation 준비
+→ B4-1 Preflight / Runtime
 
-B4-1 시스템 관제
-→ ⏸ PAUSED / READY TO RESUME
-→ Repository: codyssey-basic-system-monitor
-→ 재개 시 해당 Runtime Context에서 Preflight부터 수행
+B2-2 Git 협업
+→ ⏸ PAUSED / TEAM WORK IN PROGRESS
+→ Repository: codyssey-basic-git-collaboration
+→ 기존 MAC-V Host/CORE 준비 기록 보존
+→ 실제 팀 진행 후 Evidence 검증 시 재개
 ```
 
 플랫폼별 실제 수행 결과는 다음 파일에서 별도로 기록합니다.

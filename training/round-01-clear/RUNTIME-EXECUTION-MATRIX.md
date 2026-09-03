@@ -16,11 +16,11 @@ CROSS-PLATFORM VERIFIED     = 같은 R01에서 MAC-V와 WIN-V 모두 실제 PASS
 현재 Workcell 포커스:
 
 ```text
-B4-1 = ⏸ PAUSED / READY TO RESUME   # 이전 B1-1 시스템 관제
-B2-2 = 🟡 ACTIVE
+B4-1 = 🟡 ACTIVE   # 이전 B1-1 시스템 관제
+B2-2 = ⏸ PAUSED / TEAM WORK IN PROGRESS
 ```
 
-B4-1 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2의 현재 문서/Simulation 준비도 실제 팀 Runtime PASS를 의미하지 않습니다.
+B2-2 일시정지는 FAIL 또는 CLEAR가 아닙니다. B2-2에서 확보한 MAC-V Host/CORE 준비 기록은 보존하며, 현재 B4-1 Runtime은 별도로 실제 실행·검증합니다.
 
 핵심 원칙:
 
@@ -92,10 +92,10 @@ FAST TRACK의 기존 미션 **주제 기준 실행 순서**를 유지하고 현�
 
 | 실행순번 | 현재 미션 | 주제 | MAC-V | WIN-V | 교차 플랫폼 | Mission / Workcell 상태 |
 |---:|---|---|---|---|---|---|
-| 1 | **B4-1** | 시스템 관제 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⏸ PAUSED / READY TO RESUME |
+| 1 | **B4-1** | 시스템 관제 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
 | 2 | **B4-2** | 시스템 장애 분석 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 3 | **B2-1** | 가계부 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
-| 4 | **B2-2** | Git 팀 협업 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | 🟡 ACTIVE |
+| 4 | **B2-2** | Git 팀 협업 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⏸ PAUSED / TEAM WORK IN PROGRESS |
 | 5 | **B5-1** | Mini Redis | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 6 | **B5-2** | Mini Git | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
 | 7 | **B1-1** | 웹 포트폴리오 | ⬜ NOT RUN | ⬜ NOT RUN | ⬜ NOT VERIFIED | ⬜ NOT STARTED |
