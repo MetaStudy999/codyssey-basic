@@ -8,7 +8,8 @@
 - 목표: 미션 번호가 변경되어도 Repository URL을 유지할 수 있도록 **주제 기반 이름**으로 전환
 - 중복 검사: **PASS**
 - 실제 Rename: **PASS — 15개 Repository 주제 기반 이름 변경 완료**
-- Mission ID 재편: **반영 중 — 현재 번호 기준은 `CURRENT-MISSION-MAP.md`**
+- Mission ID 재편: **PASS — `CURRENT-MISSION-MAP.md` 기준 반영**
+- Mission Metadata: **PASS — 15개 Canonical Repository에 `MISSION-METADATA.yml` 반영**
 
 > Repository Naming 정책은 [`standards/REPOSITORY-NAMING-STANDARD.md`](standards/REPOSITORY-NAMING-STANDARD.md), 현재 Mission ID의 단일 기준은 [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)를 따른다.
 
@@ -37,8 +38,6 @@
 ---
 
 ## 2. 현재 Mission ID 재매핑
-
-Repository 이름 변경 이후 교육과정 Mission ID가 다음과 같이 재편되었다.
 
 | 현재 ID | 미션 주제 | 이전 ID | Canonical Repository |
 |---|---|---|---|
@@ -80,28 +79,53 @@ Control Tower = Mission ID ↔ Repository 매핑의 단일 기준
 
 ---
 
-## 4. 현재 Reference Migration 범위
+## 4. Mission Repository Metadata
 
-Repository Rename은 완료되었지만 현재 운영 문서에는 과거 번호 기반 URL이나 옛 Mission ID가 남아 있을 수 있다.
+15개 Canonical Repository 루트에 `MISSION-METADATA.yml`을 추가했다.
 
-대표 갱신 대상:
+예:
 
-- `README.md`
-- `MISSION-INDEX.md`
-- `PROGRESS.md`
-- `MISSION-RUNBOOK.md`
-- `training/round-01-clear/**`
-- Workcell Prompt
-- `environments/**`
-- `standards/**`
-- 발표/평가 템플릿
-- 각 Mission Repository의 현재 Mission Metadata
+```yaml
+schema_version: 1
+current_mission_id: B1-1
+previous_mission_ids:
+  - B4-1
+stable_topic_id: web-portfolio
+official_title_ko: "나를 소개하는 웹페이지 처음부터 만들기"
+repository: MetaStudy999/codyssey-basic-web-portfolio
+control_tower_map: https://github.com/MetaStudy999/codyssey-basic/blob/main/CURRENT-MISSION-MAP.md
+numbering_updated_at: "2026-09-03"
+```
 
-역사적 Migration 문서에서 과거 Repository 이름을 설명하기 위한 표기는 유지할 수 있다.
+이 파일은 각 Repository가 현재 어느 Mission ID에 연결되어 있는지 확인하는 경량 Metadata다.
 
 ---
 
-## 5. 로컬 clone 사용자의 Remote 갱신
+## 5. 현재 Reference Migration 범위
+
+핵심 Control Tower 문서는 현재 번호로 갱신했다.
+
+- [x] `README.md`
+- [x] `CURRENT-MISSION-MAP.md`
+- [x] `MISSION-INDEX.md`
+- [x] `PROGRESS.md`
+- [x] Repository Naming Standard
+- [x] 15개 Mission Repository Metadata
+
+아직 현행 참조 여부를 구분해 점검해야 할 영역:
+
+- [ ] `MISSION-RUNBOOK.md`
+- [ ] `training/round-01-clear/**`
+- [ ] Workcell Prompt
+- [ ] `environments/**`
+- [ ] 일부 `standards/**`
+- [ ] 발표/평가 템플릿
+
+과거 Migration 기록에서 과거 Repository 이름을 설명하기 위한 표기는 유지할 수 있다.
+
+---
+
+## 6. 로컬 clone 사용자의 Remote 갱신
 
 기존 clone은 GitHub Redirect로 동작할 수 있으나 명시적으로 새 주소를 설정하는 것을 권장한다.
 
@@ -118,7 +142,7 @@ git remote -v
 
 ---
 
-## 6. 완료 Gate
+## 7. 완료 Gate
 
 ### Gate A — Naming Audit
 
@@ -140,34 +164,44 @@ git remote -v
 - [x] B5-3 → B6-3 변경 반영
 - [x] `CURRENT-MISSION-MAP.md` 생성
 - [x] `MISSION-INDEX.md` 현재 번호 기준으로 갱신
+- [x] `README.md` 현재 번호 기준으로 갱신
+- [x] `PROGRESS.md` 기존 수행 상태를 주제 기준으로 재매핑
 
-### Gate D — Reference Migration
+### Gate D — Mission Metadata
 
-- [ ] Control Tower의 모든 현재 링크 갱신
+- [x] 15개 Canonical Repository에 `MISSION-METADATA.yml` 생성
+- [x] Current ID / Previous ID / Stable Topic / Repository 연결 기록
+- [x] Control Tower Map 링크 기록
+
+### Gate E — Remaining Reference Cleanup
+
 - [ ] Workcell Prompt의 현재 ID/Repository 갱신
-- [ ] Quick Start / clone 명령 갱신
-- [ ] 각 Mission Repository 현재 Metadata 갱신
+- [ ] Quick Start / clone 명령 전수 점검
+- [ ] `training/round-01-clear/**` 현행 참조 갱신
+- [ ] `environments/**` 현행 참조 갱신
 - [ ] 과거 URL 잔존 검색 후 역사 기록과 현행 참조 구분
 
-### Gate E — Verification
+### Gate F — Verification
 
 - [x] Canonical Repository 15개 존재 확인
-- [ ] README 첫 진입 링크 현재 번호와 일치
-- [ ] Mission Index 전체 링크 최종 확인
-- [ ] 주요 Runbook/Progress 링크 최종 확인
-- [ ] 현행 링크 404 없음 확인
+- [x] README 현재 진입 링크가 새 Repository를 사용
+- [x] Mission Index 현재 번호와 Repository 연결 확인
+- [ ] 주요 Runbook/Training/Environment 링크 최종 확인
+- [ ] 현행 링크 404 없음 최종 확인
 
 ---
 
-## 7. 현재 판정
+## 8. 현재 판정
 
 ```text
-NAMING POLICY      : PASS
-COLLISION AUDIT    : PASS
-REPOSITORY RENAME  : PASS
-MISSION ID REMAP   : IMPLEMENTED
-REFERENCE MIGRATION: IN PROGRESS
-OVERALL            : IMPLEMENTED / NEEDS-REFERENCE-CLEANUP
+NAMING POLICY       : PASS
+COLLISION AUDIT     : PASS
+REPOSITORY RENAME   : PASS
+MISSION ID REMAP    : PASS
+MISSION METADATA    : PASS
+CORE CONTROL TOWER  : PASS
+REFERENCE CLEANUP   : IN PROGRESS
+OVERALL             : CORE APPLIED / NEEDS-REFERENCE-CLEANUP
 ```
 
-Repository 이름은 더 이상 Mission ID 변경에 맞춰 Rename하지 않는다. 이후 번호가 바뀌면 `CURRENT-MISSION-MAP.md`와 현재 운영 Metadata를 갱신한다.
+Repository 이름은 더 이상 Mission ID 변경에 맞춰 Rename하지 않는다. 이후 번호가 바뀌면 `CURRENT-MISSION-MAP.md`와 각 Repository의 `MISSION-METADATA.yml`을 갱신한다.
