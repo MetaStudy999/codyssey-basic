@@ -2,6 +2,8 @@
 
 이 문서는 Codyssey Basic의 장기 훈련 차수(Round)를 **기초 완주 → 재구축 → 디버깅/운영 → 통합 → 전문화 → 외부 기여**로 확장하는 로드맵입니다.
 
+> 현재 Mission ID(미션 번호)와 Canonical Repository의 단일 기준은 [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)입니다. Round 설계는 미션 주제를 기준으로 이어가며, 번호가 다시 변경되어도 학습 이력과 Repository를 초기화하지 않습니다.
+
 ## 한눈에 보기(At a Glance)
 
 현재 활성 Round는 **R01 — CLEAR**입니다. 다음 Round를 미리 수행하지 않고, 현재 Round를 검증 가능한 상태로 완료한 뒤 다음 단계로 이동합니다.
@@ -25,7 +27,7 @@ R11 DEEP MASTERY → R12 ARCHITECT → R13 CONTRIBUTE → R14 EXPERT VALIDATION
 IMPACT CYCLE
 ```
 
-현재 실제 실행은 [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)와 [PROGRESS.md](PROGRESS.md)를 확인합니다.
+현재 실제 실행은 [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md), [PROGRESS.md](PROGRESS.md), [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)를 확인합니다.
 
 ## 📑 목차
 
@@ -47,13 +49,14 @@ IMPACT CYCLE
 - 다음 Round의 실제 폴더는 해당 Round를 시작할 때 생성합니다.
 - 차수가 올라갈수록 미션 수는 줄이고 독립성·난이도·깊이는 높입니다.
 - Round 완료는 횟수가 아니라 검증된 역량으로 판정합니다.
+- Mission ID는 가변 Metadata로 취급하고 미션 주제·Canonical Repository·Evidence의 연속성을 보존합니다.
 - 기준(Standard)은 현재 Round에서 학습자의 실패·오판을 줄이는 데 사용하고, 미래 Round의 과도한 설계로 현재 실행을 지연시키지 않습니다.
 
 <a id="phase-1"></a>
 ## Phase 1 — FOUNDATION
 
 ### R01 — CLEAR
-입문자가 상세 가이드를 따라 필수 → 선택 전체 미션을 완료합니다.
+입문자가 상세 가이드를 따라 필수 → 선택 전체 15개 미션/프로젝트를 완료합니다.
 
 ### R02 — REBUILD
 완성본 의존도를 줄이고 요구사항을 보고 다시 구축합니다.

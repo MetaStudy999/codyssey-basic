@@ -2,15 +2,18 @@
 
 이 문서는 메인 레포(Control Tower)에서 사용하는 작업 운영 규칙의 **진입점(Entry Point)**입니다.
 
+> 현재 Mission ID(미션 번호) ↔ 미션 주제 ↔ Canonical Repository의 단일 기준은 [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)입니다. Mission ID는 가변 Metadata이고, Repository는 주제 기반 Stable Identity를 유지합니다.
+
 ## 빠른 적용(Quick Apply)
 
 작업을 시작할 때 다음 순서를 사용합니다.
 
 ```text
 공식 Mission / Evaluation / 제공 파일 확인
+→ CURRENT-MISSION-MAP에서 현재 Mission ID / Canonical Repository 확인
 → 현재 Repository main 확인
 → 상위 작업 운영 표준 확인
-→ 현재 Active Mission의 WORKING-RULES.md 확인
+→ 현재 Active Mission의 MISSION-METADATA.yml / WORKING-RULES.md 확인
 → 현재 실행 환경(Current Runtime Context) 선택
 → BEGINNER-GUIDE / CHECKLIST / environment / evidence 확인
 → 실제 실행(Runtime Execution)
@@ -34,8 +37,10 @@
 ## 상위 작업 운영 표준
 
 - [`standards/CODYSSEY-WORKING-OPERATING-STANDARD.md`](standards/CODYSSEY-WORKING-OPERATING-STANDARD.md)
+- [`standards/REPOSITORY-NAMING-STANDARD.md`](standards/REPOSITORY-NAMING-STANDARD.md)
+- [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)
 
-이 문서가 메인 레포와 각 미션 레포에서 공통으로 사용하는 상위 작업 운영 기준입니다.
+이 문서들이 메인 레포와 각 미션 레포에서 공통으로 사용하는 상위 작업 운영·식별 기준입니다.
 
 세부 문서 표준은 `standards/` 아래의 전문 표준을 사용합니다.
 
@@ -45,6 +50,7 @@
 메인 레포는 다음을 관리합니다.
 
 ```text
+현재 Mission ID ↔ Stable Topic ↔ Canonical Repository 매핑
 공통 작업 표준
 환경 계약과 Runtime Profile
 현재 실행 환경(Current Runtime Context)
@@ -109,10 +115,14 @@ CROSS-PLATFORM VERIFIED
 <a id="mission-adapter"></a>
 ## 각 미션 레포 적용 방식
 
-각 미션 레포의 루트 `WORKING-RULES.md`는 상위 표준의 **얇은 어댑터(Thin Adapter)** 역할을 합니다.
+각 Canonical Mission Repository는 번호가 없는 주제 기반 Repository 이름을 사용하고, 루트의 `MISSION-METADATA.yml`에서 현재 Mission ID를 관리합니다.
 
 ```text
-Control Tower 상위 표준
+CURRENT-MISSION-MAP.md
+        ↓
+Canonical Mission Repository
+        ↓
+MISSION-METADATA.yml
         ↓
 Mission WORKING-RULES.md
         ↓
@@ -147,6 +157,7 @@ Documentation Ready
 MAC-V PASS ≠ WIN-V PASS
 한 플랫폼 PASS ≠ CROSS-PLATFORM VERIFIED
 CROSS-PLATFORM VERIFIED ≠ 별도의 공식 Mission CLEAR
+Mission ID 변경 ≠ Runtime/CLEAR 상태 초기화
 ```
 
 실제 수행 결과가 없는 상태에서 PASS/CLEAR를 기록하지 않습니다.
@@ -160,4 +171,6 @@ POLICY
 → VERIFY
 ```
 
-변경 전에는 최신 `main`과 대상 파일을 확인하고, 변경 후에는 실제 GitHub `main`을 다시 열어 링크·경로·상태를 확인합니다.
+변경 전에는 최신 `main`, `CURRENT-MISSION-MAP.md`, 대상 파일을 확인하고, 변경 후에는 실제 GitHub `main`을 다시 열어 Mission ID·Repository 링크·경로·상태를 확인합니다.
+
+과거 Commit/PR/Issue의 당시 Mission ID는 역사 기록으로 보존하며, 현재 운영 문서와 `MISSION-METADATA.yml`만 현재 번호로 갱신합니다.

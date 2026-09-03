@@ -3,11 +3,14 @@
 이 문서는 Codyssey Basic의 **메인 레포(Control Tower)와 각 미션 레포에서 공통으로 사용하는 상위 작업 운영 표준**입니다.
 
 > 이 문서는 공식 미션(Mission), 평가(Evaluation), 제공 파일을 대체하지 않습니다. 세부 기준은 `standards/`의 전문 표준에 위임하며, 이 문서는 그 기준들을 실제 작업 순서로 묶는 **상위 운영 계약(Operating Contract)**입니다.
+>
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../CURRENT-MISSION-MAP.md`](../CURRENT-MISSION-MAP.md)입니다. Mission ID는 가변 Metadata이고, 각 Mission Repository는 주제 기반 Stable Identity를 사용합니다.
 
 ## 한눈에 보기(Quick Read)
 
 ```text
 공식 기준 확인
+→ 현재 Mission ID / Canonical Repository 확인
 → 현재 Repository main 확인
 → 현재 실행 환경(Current Runtime Context) 선택
 → 문서/환경 진입 Gate 확인
@@ -34,6 +37,7 @@ Evidence Complete ≠ Mission CLEAR
 문서 구조 완료 ≠ Mission CLEAR
 MAC-V PASS ≠ WIN-V PASS
 한 플랫폼 PASS ≠ CROSS-PLATFORM VERIFIED
+Mission ID 변경 ≠ Repository 변경
 ```
 
 ---
@@ -59,7 +63,7 @@ MAC-V PASS ≠ WIN-V PASS
 - [16. 공통 환경 마무리와 동결](#closeout)
 - [17. 미션 진행 순서](#mission-order)
 - [18. 메인 레포와 미션 레포 적용 방식](#adoption)
-- [19. B1-1 기준 패턴](#reference-pattern)
+- [19. 모듈화 기준 패턴](#reference-pattern)
 - [20. 변경 관리](#change-management)
 
 ---
@@ -71,18 +75,20 @@ MAC-V PASS ≠ WIN-V PASS
 
 ```text
 MetaStudy999/codyssey-basic                     = 메인 레포 / Control Tower
-MetaStudy999/codyssey-basic-b*-*                = 각 Mission Repository
+MetaStudy999/codyssey-basic-<stable-topic>      = 각 Canonical Mission Repository
+CURRENT-MISSION-MAP.md                          = 현재 Mission ID ↔ Repository 단일 기준
 training/round-01-clear/                        = 현재 R01 실행·학습 단위
 README / BEGINNER-GUIDE / guide / environment /
 docs / evidence / CHECKLIST                     = 주요 적용 문서
 ```
 
-이 표준의 목적은 다음 네 가지입니다.
+이 표준의 목적은 다음 다섯 가지입니다.
 
 1. 메인 레포와 미션 레포가 같은 작업 순서와 상태 언어를 사용합니다.
 2. 입문자가 어느 미션에 들어가도 같은 탐색·실행·검증 구조를 만납니다.
 3. 문서 개선과 실제 미션 수행을 분리하여 거짓 PASS/CLEAR를 방지합니다.
 4. `MAC-V`와 `WIN-V`의 실제 수행 이력을 각각 보존하면서 Mission CLEAR는 하나의 공식 완료 상태로 관리합니다.
+5. 교육과정 번호가 바뀌어도 주제 기반 Repository와 Git 이력은 유지하고 Mission ID만 재매핑합니다.
 
 ---
 
@@ -92,7 +98,7 @@ docs / evidence / CHECKLIST                     = 주요 적용 문서
 ```text
 1. 공식 Mission / Evaluation / 제공 파일
 2. 해당 Mission Repository 실제 main
-3. Control Tower 실제 main
+3. Control Tower CURRENT-MISSION-MAP.md / 실제 main
 4. Control Tower standards/
 5. Mission README / BEGINNER-GUIDE / guide / docs
 6. 참고 자료
@@ -102,6 +108,7 @@ docs / evidence / CHECKLIST                     = 주요 적용 문서
 
 - 공식 요구사항과 내부 표준이 충돌하면 공식 요구사항이 우선입니다.
 - 내부 표준은 공식 평가기준을 추가·삭제·완화하지 않습니다.
+- 현재 Mission ID와 Repository 연결은 `CURRENT-MISSION-MAP.md`를 기준으로 합니다.
 - 예상 출력, 예시 출력, 과거 Round 결과를 현재 실제 결과로 사용하지 않습니다.
 - 상세 실행 내용은 가능한 한 한 곳만 **단일 기준(Source of Truth)**으로 유지합니다.
 - 플랫폼 차이는 공식 요구와 결과 기준을 바꾸는 근거가 아니라 **실행 방법과 환경 준비 방식의 차이**로 관리합니다.
@@ -430,7 +437,7 @@ $HOME/codyssey/<repository>
 
 항상 Host, Linux Runtime, Current Runtime Context, Repository, Branch, Commit, 권한, 가상환경(venv) 여부를 구분합니다.
 
-세부 기준: `ENVIRONMENT-STANDARD.md`, `DEVELOPMENT-TOOLSET-STANDARD.md`, `VS-CODE-REMOTE-UBUNTU-STANDARD.md`, `environments/RUNTIME-PROFILES.md`
+세부 기준: `ENVIRONMENT-STANDARD.md`, `DEVELOPMENT-TOOLSET-STANDARD.md`, `VS-CODE-REMOTE-UBUNTU-STANDARD.md`, `../environments/RUNTIME-PROFILES.md`
 
 ---
 
@@ -440,15 +447,16 @@ $HOME/codyssey/<repository>
 실제 Runtime에서는 **한 번에 하나의 의미 있는 단계**를 진행합니다.
 
 ```text
-1. Current Runtime Context 확인
-2. Preflight
-3. 한 명령 또는 한 논리 블록 제시
-4. 명령 목적/위험/정상 기준 설명
-5. 사용자가 실제 실행
-6. 실제 출력 확보
-7. PASS / FAIL 판정
-8. PASS → 다음 단계
-9. FAIL → STOP → 원인 분석 → 최소 수정 → 재검증
+1. Current Mission ID / Canonical Repository 확인
+2. Current Runtime Context 확인
+3. Preflight
+4. 한 명령 또는 한 논리 블록 제시
+5. 명령 목적/위험/정상 기준 설명
+6. 사용자가 실제 실행
+7. 실제 출력 확보
+8. PASS / FAIL 판정
+9. PASS → 다음 단계
+10. FAIL → STOP → 원인 분석 → 최소 수정 → 재검증
 ```
 
 사용자의 실제 출력 없이 PASS/CLEAR를 추정하지 않습니다.
@@ -525,6 +533,7 @@ Requirement
 - 예상 출력이나 과거 결과를 현재 실행의 Evidence로 사용하지 않습니다.
 - Repository/Branch/Commit/수집 시각과 연결합니다.
 - Runtime Profile(`MAC-V` 또는 `WIN-V`)을 기록합니다.
+- Mission ID가 변경된 경우 현재 ID와 필요 시 이전 ID를 함께 추적하되, Repository는 Canonical Repository를 기록합니다.
 - Secret을 제거한 뒤 보존합니다.
 - 실제 수행 시 필요에 따라 Mission Repository의 `evidence/mac-v/`, `evidence/win-v/`처럼 분리할 수 있습니다. 빈 형식만 맞추기 위해 사전에 대량 생성하지 않습니다.
 
@@ -533,8 +542,8 @@ Requirement
 ```text
 Runtime Profile
 Host / Linux Runtime
-Mission
-Repository / Branch / Commit
+Current Mission ID
+Canonical Repository / Branch / Commit
 Executed At
 Verification Result
 Evidence Path
@@ -588,10 +597,12 @@ POLICY → APPLY → VERIFY
 <a id="migration"></a>
 ## 15. 기존 문서 마이그레이션과 내용 무결성
 
-기존 대형 문서를 분할할 때:
+기존 대형 문서를 분할하거나 Mission ID를 재매핑할 때:
 
 ```text
 기존 본문 분석
+→ 미션 주제/Canonical Repository 확인
+→ 현재 Mission ID 재매핑
 → 모듈 경계 결정
 → 모듈 README 생성
 → Learning Unit으로 이동/분할
@@ -613,9 +624,10 @@ Rerun Safety
 Secret 보호
 Verification / Evidence 연결
 Runtime/CLEAR 상태의 사실성
+Git History / 기존 PR / Issue의 역사적 Mission ID
 ```
 
-호환 파일은 오래된 링크를 위한 안내만 유지하고 상세 본문을 중복하지 않습니다.
+호환 파일은 오래된 링크를 위한 안내만 유지하고 상세 본문을 중복하지 않습니다. 과거 Commit/PR/Issue의 당시 Mission ID는 이력으로 보존하며, 현재 운영 문서만 현재 번호로 갱신합니다.
 
 ---
 
@@ -654,15 +666,27 @@ Git/GitHub User Identity Readiness
 <a id="mission-order"></a>
 ## 17. 미션 진행 순서
 
-R01 FAST TRACK:
+R01 FAST TRACK은 **기존에 정한 미션 주제 수행 순서**를 유지하고, 2026-09-03 이후의 현재 Mission ID로 표시합니다.
 
 ```text
 Stage 1 — Required
-B1-1 → B1-2 → B2-1 → B2-2 → B3-1 → B3-2
-→ B4-1 → B5-1 → B6-1 → B6-2 → B7-1
+B4-1 시스템 관제
+→ B4-2 시스템 장애 분석
+→ B2-1 가계부
+→ B2-2 Git 협업
+→ B5-1 Mini Redis
+→ B5-2 Mini Git
+→ B1-1 웹 포트폴리오
+→ B6-1 SQL 데이터베이스
+→ B3-1 클라우드 인프라
+→ B3-2 AI Git 도우미
+→ B7-1 웹 AI 챗봇
 
 Stage 2 — Optional
-B4-2 → B5-2 → B5-3 → B7-2
+B1-2 React SPA
+→ B6-2 FastAPI CRUD
+→ B6-3 FastAPI 인증/관계
+→ B7-2 AI 챗봇 고도화
 ```
 
 운영 원칙:
@@ -670,6 +694,7 @@ B4-2 → B5-2 → B5-3 → B7-2
 - 현재 Active Mission을 먼저 닫습니다.
 - 다음 Mission은 실제 진입 직전에 문서·환경·모듈화 Trigger를 감사합니다.
 - 현재 Mission이 CLEAR되기 전 다음 Mission Runtime을 정식 시작하지 않습니다.
+- 숫자 순서가 곧 내부 FAST TRACK의 수행 순서라는 뜻은 아닙니다.
 - 표준은 공통으로 사용하되 각 미션의 공식 요구와 기술 성격에 따라 모듈 수와 세부 구조를 조정합니다.
 - 한 Mission을 MAC-V에서 CLEAR한 뒤 나중에 WIN-V에서 재수행하여 교차 플랫폼 검증을 추가할 수 있습니다. 이 추가 검증 때문에 다음 Mission 진도를 자동으로 막지 않습니다.
 
@@ -679,6 +704,12 @@ B4-2 → B5-2 → B5-3 → B7-2
 ## 18. 메인 레포와 미션 레포 적용 방식
 
 ### 메인 레포(Control Tower)
+
+현재 Mission ID ↔ Repository 단일 기준:
+
+```text
+CURRENT-MISSION-MAP.md
+```
 
 상위 작업 운영 기준:
 
@@ -696,7 +727,13 @@ training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md
 
 ### 각 미션 레포
 
-각 Mission Repository에는 다음의 얇은 어댑터(Thin Adapter)를 둡니다.
+각 Mission Repository에는 현재 번호와 Stable Topic 연결을 위한 다음 메타데이터를 둡니다.
+
+```text
+MISSION-METADATA.yml
+```
+
+그리고 다음의 얇은 어댑터(Thin Adapter)를 둡니다.
 
 ```text
 WORKING-RULES.md
@@ -706,6 +743,7 @@ Mission Adapter의 역할:
 
 ```text
 공식 Mission/Evaluation 우선 선언
+→ CURRENT-MISSION-MAP / MISSION-METADATA 확인
 → Control Tower 상위 표준 링크
 → 현재 Mission의 Source/README/BEGINNER-GUIDE/CHECKLIST 연결
 → 현재 Runtime Context와 Runtime Gate 확인
@@ -719,9 +757,9 @@ Mission Adapter의 역할:
 ---
 
 <a id="reference-pattern"></a>
-## 19. B1-1 기준 패턴
+## 19. 모듈화 기준 패턴
 
-B1-1에서 검증한 문서 구조는 후속 Mission의 참고 패턴입니다.
+초기 시스템 관제 Workcell에서 검증한 문서 구조는 후속 Mission의 참고 패턴입니다. 해당 미션은 번호 개편 전 B1-1이었고 현재는 **B4-1**입니다.
 
 ```text
 BEGINNER-GUIDE.md
@@ -737,9 +775,9 @@ BEGINNER-GUIDE.md
         └── 01-final-clear.md
 ```
 
-B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 않습니다. **Global Hub → Module TOC → Learning Unit**의 역할 분리와 실행 안전 원칙을 재사용합니다.
+B4-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 않습니다. **Global Hub → Module TOC → Learning Unit**의 역할 분리와 실행 안전 원칙을 재사용합니다.
 
-플랫폼별 수행 기록 역시 B1-1에서 시작하되 모든 Mission에 공통으로 적용 가능한 중앙 정책을 사용합니다.
+플랫폼별 수행 기록도 특정 Mission 번호에 종속시키지 않고 모든 Mission에 공통으로 적용 가능한 중앙 정책을 사용합니다.
 
 ---
 
@@ -750,13 +788,14 @@ B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 �
 
 ```text
 1. 공식 요구와 충돌 여부 확인
-2. 상위 표준 수정
-3. 관련 전문 표준과 충돌 확인
-4. 현재 Active Mission 영향 확인
-5. 필요한 Control Tower / Mission Adapter / 상태표에 APPLY
-6. 실제 GitHub main에서 VERIFY
-7. Runtime blocker이면 즉시 최소 교정
-8. 비차단 개선은 실제 미션 순서에 맞춰 순차 반영
+2. 현재 Mission ID / Canonical Repository 매핑 확인
+3. 상위 표준 수정
+4. 관련 전문 표준과 충돌 확인
+5. 현재 Active Mission 영향 확인
+6. 필요한 Control Tower / Mission Adapter / 상태표에 APPLY
+7. 실제 GitHub main에서 VERIFY
+8. Runtime blocker이면 즉시 최소 교정
+9. 비차단 개선은 실제 미션 순서에 맞춰 순차 반영
 ```
 
 이 표준 자체가 실제 미션 수행보다 큰 병목이 되지 않도록 합니다.
@@ -777,9 +816,11 @@ B1-1의 파일 수나 모듈 이름을 다른 미션에 그대로 강제하지 �
 - `ENVIRONMENT-STANDARD.md`
 - `CROSS-PLATFORM-GIT-STANDARD.md`
 - `VS-CODE-REMOTE-UBUNTU-STANDARD.md`
+- `REPOSITORY-NAMING-STANDARD.md`
+- `../CURRENT-MISSION-MAP.md`
 - `../environments/RUNTIME-PROFILES.md`
 - `../training/round-01-clear/RUNTIME-EXECUTION-MATRIX.md`
 
 ## 최종 운영 문장
 
-> **공식 요구사항을 절대 우선하고, 문서는 전체 허브 → 모듈 목차 → 세부 학습 문서로 관리하며, 실제 작업은 현재 실행 환경 확인 → 실행 전 점검 → 한 단계 실행 → 실제 출력 확인 → 검증 → 증빙 → 플랫폼별 수행 기록 → 평가 → 완료 순으로 진행하고, 실제 결과가 없는 상태에서는 PASS/CLEAR를 선언하지 않는다.**
+> **공식 요구사항을 절대 우선하고, 현재 Mission ID와 Canonical Repository를 먼저 확인하며, 문서는 전체 허브 → 모듈 목차 → 세부 학습 문서로 관리하고, 실제 작업은 현재 실행 환경 확인 → 실행 전 점검 → 한 단계 실행 → 실제 출력 확인 → 검증 → 증빙 → 플랫폼별 수행 기록 → 평가 → 완료 순으로 진행하며, 실제 결과가 없는 상태에서는 PASS/CLEAR를 선언하지 않는다.**

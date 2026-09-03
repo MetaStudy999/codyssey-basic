@@ -1,25 +1,28 @@
 # 코디세이 AI/SW 기초 미션 평가 발표 기준 템플릿 가이드
 
-대상: B1-1 ~ B7-2  
+대상: 현재 15개 미션(B1-1 ~ B7-2, B6-3 포함)  
 용도: 미션 평가, 학부 프로젝트 발표, 석·박사 과정 프로젝트 발표, 연구실 내부 발표, 학회형 기술 발표  
 화면비: 16:9  
 기본 글꼴: Noto Sans CJK KR
+
+> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 발표 자료를 만들기 전에 현재 Mission ID와 주제 기반 Canonical Repository를 먼저 확인합니다.
 
 ---
 
 ## 빠른 시작(Quick Start)
 
 1. 실제 발표는 `Codyssey_Mission_Evaluation_Core_22slides.pptx` 복사본으로 시작합니다.
-2. 공식 Mission / Evaluation에서 **필수 결과물·기능·제약·증빙·설명 항목**을 먼저 추출합니다.
-3. 아래 기준 목차에서 필요한 슬라이드만 선택하여 일반적으로 12~16장으로 구성합니다.
-4. 각 PASS 판단에는 실제 실행 결과 또는 추적 가능한 증빙 자료(Evidence)를 연결합니다.
-5. 발표 대상과 시간에 따라 기술 깊이를 조정합니다.
+2. [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)에서 현재 Mission ID와 Canonical Repository를 확인합니다.
+3. 공식 Mission / Evaluation에서 **필수 결과물·기능·제약·증빙·설명 항목**을 먼저 추출합니다.
+4. 아래 기준 목차에서 필요한 슬라이드만 선택하여 일반적으로 12~16장으로 구성합니다.
+5. 각 PASS 판단에는 실제 실행 결과 또는 추적 가능한 증빙 자료(Evidence)를 연결합니다.
+6. 발표 대상과 시간에 따라 기술 깊이를 조정합니다.
 
 ## 목차
 
 - [1. 기준 목차](#1-기준-목차--1218장)
 - [2. 발표 대상별 깊이 조정](#2-발표-대상별-깊이-조정)
-- [3. B1-1 ~ B7-2 미션별 강조 슬라이드](#3-b1-1--b7-2-미션별-강조-슬라이드)
+- [3. 현재 15개 미션별 강조 슬라이드](#3-현재-15개-미션별-강조-슬라이드)
 - [4. 슬라이드 제목 작성 규칙](#4-슬라이드-제목-작성-규칙)
 - [5. Master Prompt](#5-master-prompt--실제-미션-발표자료-생성용)
 - [6. 디자인 규격](#6-디자인-규격)
@@ -84,23 +87,23 @@
 
 ---
 
-## 3. B1-1 ~ B7-2 미션별 강조 슬라이드
+## 3. 현재 15개 미션별 강조 슬라이드
 
-| 미션 | 핵심 발표 포인트 | 반드시 시각화할 것 |
+| 현재 미션 | 핵심 발표 포인트 | 반드시 시각화할 것 |
 |---|---|---|
-| B1-1 | Linux/OS, 권한, SSH/UFW, monitor.sh, cron, 로그 | 시스템 구성도, 권한표, 관제 로그, 자동화 흐름 |
-| B1-2 | OOM, CPU Spike, Deadlock, Root Cause Analysis | 시간축 로그, Before/After, 원인-조치-검증 |
+| B1-1 | HTML/CSS/JS, DOM, GitHub API, Responsive, GitHub Pages | 모바일/데스크톱 화면, 이벤트→DOM 흐름, 배포 결과 |
+| B1-2 | React, SPA, Routing, State, useEffect, CRUD, Supabase | Component tree, Event→State→Render 흐름 |
 | B2-1 | Python CLI, 파일 영속화, Generator, Decorator, Type Hint | CLI 실행, 계층 구조, 오류 처리, import/export |
 | B2-2 | GitHub Flow, PR, Review, Conflict | Issue→Branch→PR→Review→Merge, 충돌 해결 증빙 |
-| B3-1 | Hash Map, Doubly Linked List, Heap, LRU, TTL | 자료구조 연결도, 복잡도, 불변조건 |
-| B3-2 | DAG, BFS/탐색, 정렬, Inverted Index | 커밋 그래프, 탐색 경로, 복잡도 |
-| B4-1 | HTML/CSS/JS, DOM, GitHub API, Responsive | 모바일/데스크톱 화면, 이벤트→DOM 흐름 |
-| B4-2 | React, SPA, Routing, State, useEffect, CRUD | Component tree, Event→State→Render 흐름 |
-| B5-1 | SQL, PK/FK, JOIN, GROUP BY, Integrity | ERD, 핵심 SQL, 실행 결과 |
-| B5-2 | FastAPI, SSR, ORM, CRUD, PRG, Layering | Request→Router→Service→Repository→DB |
-| B5-3 | Authentication/Authorization, Relationship, State Change | 인증/인가 흐름, 보호 경로, ERD, 상태 변경 |
-| B6-1 | VPC, Subnet, Route, IGW, EC2, SG, IAM | 클라우드 아키텍처, 트래픽 흐름, 최소권한 |
-| B6-2 | AI API, git diff, Prompt, Parameters, Error Handling | Git diff→Prompt→API→Validation 파이프라인 |
+| B3-1 | VPC, Subnet, Route, IGW, EC2, SG, IAM, Nginx | 클라우드 아키텍처, 트래픽 흐름, 최소권한 |
+| B3-2 | AI API, git diff, Prompt, Parameters, Error Handling | Git diff→Prompt→API→Validation 파이프라인 |
+| B4-1 | Linux/OS, 권한, SSH/UFW, monitor.sh, cron, 로그 | 시스템 구성도, 권한표, 관제 로그, 자동화 흐름 |
+| B4-2 | OOM, CPU Spike, Deadlock, Root Cause Analysis | 시간축 로그, Before/After, 원인-조치-검증 |
+| B5-1 | Hash Map, Doubly Linked List, Heap, LRU, TTL | 자료구조 연결도, 복잡도, 불변조건 |
+| B5-2 | DAG, BFS/탐색, 정렬, Inverted Index | 커밋 그래프, 탐색 경로, 복잡도 |
+| B6-1 | SQL, PK/FK, JOIN, GROUP BY, Integrity | ERD, 핵심 SQL, 실행 결과 |
+| B6-2 | FastAPI, SSR, ORM, CRUD, PRG, Layering | Request→Router→Service→Repository→DB |
+| B6-3 | Authentication/Authorization, Relationship, Session, State Change | 인증/인가 흐름, 보호 경로, ERD, 상태 변경 |
 | B7-1 | AI Chatbot, FastAPI, Auth, DB Log, Team Collaboration | End-to-End 서비스 파이프라인, 팀 역할/PR |
 | B7-2 | Full-stack, User Ownership, Board CRUD, REST, Cloud | 전체 아키텍처, ERD, API, 배포, 데이터 소유권 |
 
@@ -131,7 +134,9 @@
 학습자의 이해 수준을 확인할 수 있는 PowerPoint를 설계한다.
 
 [입력]
-- 미션: B?-?
+- 현재 미션 ID: B?-?
+- Current Mission Map: CURRENT-MISSION-MAP.md
+- Canonical Repository: codyssey-basic-<stable-topic>
 - 공식 Mission PDF / Evaluation
 - GitHub Repository
 - README
@@ -140,6 +145,12 @@
 - 실제 실행 로그 및 스크린샷
 - 발표 시간: __분
 - 발표 대상: 코디세이 평가자 / 학부 / 대학원 / 연구원 / 학회
+
+[Mission ID 확인]
+1. CURRENT-MISSION-MAP.md에서 현재 Mission ID와 미션 주제를 확인한다.
+2. Repository 이름은 번호가 아닌 주제 기반 Canonical Repository를 사용한다.
+3. 과거 Mission ID가 자료에 남아 있으면 역사적 표기인지 현재 표기인지 구분한다.
+4. 미션 번호 변경만으로 과거 실제 Runtime/Evidence를 삭제하거나 새 PASS로 재작성하지 않는다.
 
 [Source of Truth]
 1. 공식 Mission PDF
@@ -225,6 +236,8 @@
 
 ## 7. 발표 전 최종 체크리스트
 
+- 현재 Mission ID와 미션 주제가 `CURRENT-MISSION-MAP.md`와 일치하는가
+- Canonical Repository가 번호 기반의 과거 주소가 아닌가
 - 공식 요구사항 누락이 없는가
 - 모든 PASS에 실제 증빙이 있는가
 - 예상 결과와 실제 결과를 구분했는가
