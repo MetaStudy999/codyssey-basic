@@ -1,8 +1,10 @@
 # Current Mission Map — 현재 미션 번호 기준표
 
-> 기준일: 2026-09-03
+> 운영 매핑 기준일: 2026-09-03
 >
-> 이 문서는 코디세이 AI/SW 기초과정의 **현재 Mission ID(미션 번호) ↔ 미션 주제 ↔ Canonical Repository(기준 저장소)** 연결을 관리하는 Control Tower의 단일 기준표입니다.
+> 이 문서는 **기준 레포(Canonical Control Repository) `MetaStudy999/codyssey-basic`**에서 현재 Mission ID ↔ 미션 주제 ↔ Canonical Repository 연결을 관리하는 운영 매핑표입니다.
+>
+> **공식 Mission ID·제목·내용·요구사항의 최우선 기준은 제2기 현재 Mission PDF입니다.** 이 문서는 공식 PDF를 대체하지 않으며, 공식 자료가 변경되면 그 기준에 맞춰 갱신합니다.
 
 ## 핵심 원칙
 
