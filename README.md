@@ -19,26 +19,18 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 개
 <a id="quick-start"></a>
 ## 🚀 빠른 시작(Quick Start)
 
-### 현재 상태
+### 현재 제2기 기준
 
 ```text
-현재 Round      : R01 — CLEAR
-현재 Phase      : Phase C — RUNTIME CLEAR / FAST EXECUTE
-현재 Workcell   : B4-1 🟡 ACTIVE
-B2-2 Git 협업   : ⏸ PAUSED / TEAM WORK IN PROGRESS
-Runtime CLEAR   : 0 / 15
+운영 기준 레포 : MetaStudy999/codyssey-basic
+신규 수행 Round: round-02-clear
+R01 역할       : 기존 참고자료 보존
+현재 Workcell  : 미션 시작 시 선택
 ```
 
-현재 B4-1 미션:
+미션을 시작할 때는 [Round 02 실행 허브](training/round-02-clear/README.md)에서 해당 Mission Repository를 확인하고, 각 Repository의 `training/round-02-clear/README.md`와 `CHECKLIST.md`를 사용합니다.
 
-**B4-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**
-
-- [B4-1 Repository](https://github.com/MetaStudy999/codyssey-basic-system-monitor)
-- [▶ B4-1 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
-- [현재 진행 상태(PROGRESS)](PROGRESS.md)
-- [현재 Mission ID 기준표](CURRENT-MISSION-MAP.md)
-
-> B2-2는 사용자가 실제 팀과 별도로 진행 중이므로 이 Control Tower 작업에서는 일시 보류합니다. 이미 확보한 B2-2 MAC-V Host/CORE 준비 이력은 보존하며, 재개 시 현재 상태를 다시 검증한 뒤 이어서 수행합니다.
+> R01의 기존 진행 상태와 Evidence는 역사적 참고자료로 보존하며, R02의 실제 PASS/CLEAR를 대신하지 않습니다.
 
 ### 개발환경이 아직 준비되지 않은 경우
 
