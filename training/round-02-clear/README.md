@@ -26,6 +26,7 @@
 - [작업 운영 룰](../../WORKING-RULES.md)
 - [현재 Mission Map](../../CURRENT-MISSION-MAP.md)
 - [2주 초압축 수행 계획](ACCELERATED-2WEEK-PLAN.md)
+- [Round 02 진행 매트릭스](PROGRESS-MATRIX.md)
 
 ## 가장 빠른 실행 흐름
 
