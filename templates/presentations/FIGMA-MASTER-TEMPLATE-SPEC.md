@@ -1,5 +1,9 @@
 # CODYSSEY Figma Master Template Specification
 
+> **Actual Figma Slides Master:** https://www.figma.com/slides/MbDKgyckrGGPLDECvbUmun  
+> **Team:** `박영세's team`  
+> **Deck:** Core 7 Slides + B7 Term Project 12 Slides
+
 ## 목적
 
 B1-1 ~ B7-2의 발표자료를 매번 새로 디자인하지 않고, 하나의 Figma Master를 재사용하기 위한 설계 규격이다.
