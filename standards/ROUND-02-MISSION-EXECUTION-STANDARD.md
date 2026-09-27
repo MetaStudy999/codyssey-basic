@@ -39,7 +39,16 @@ Round는 Repository 내부 **훈련 차수(Training Round)** 이며 코디세이
 
 Round 01은 삭제·덮어쓰기하지 않는다. Round 02는 기존 자료를 참고하되 실제 실행(Runtime Execution), 검증(Verification), 증빙(Evidence)을 새로 수행한다.
 
-## 3. 가장 효율적인 미션 수행 순서
+## 3. 초압축 수행 모드
+
+2주 집중 수행이 필요한 경우 [2주 초압축 수행 계획](../training/round-02-clear/ACCELERATED-2WEEK-PLAN.md)을 함께 적용한다.
+
+- 공식 학습시간은 변경하지 않는다.
+- 내부 목표는 필수 11개 약 100시간, 선택 4개 약 50시간, 전체 15개 약 150시간이다.
+- 시간 단축은 Round 01 재사용·중복 제거·최소 통과 경로 집중으로 달성한다.
+- Runtime, Verification, Evidence, Secret 점검, 평가 설명은 시간 단축 대상으로 삼지 않는다.
+
+## 4. 가장 효율적인 미션 수행 순서
 
 모든 미션은 다음 8단계를 기본 흐름으로 사용한다.
 
@@ -167,7 +176,7 @@ WHAT(무엇)
 + Secret 노출 없음
 ```
 
-## 4. Round 02 최소 문서 계약
+## 5. Round 02 최소 문서 계약
 
 각 Mission Repository의 `training/round-02-clear/`는 처음에는 최소한 다음만 둔다.
 
@@ -187,7 +196,7 @@ evidence/
 
 빈 형식을 맞추기 위해 디렉터리와 Evidence를 미리 대량 생성하지 않는다.
 
-## 5. 오류 처리
+## 6. 오류 처리
 
 오류 발생 시 무조건 재설치하지 않는다.
 
@@ -205,13 +214,13 @@ evidence/
 
 기존 환경을 최대한 보존한다.
 
-## 6. 보안
+## 7. 보안
 
 Password, API Key, Token, Private Key, Secret, Cloud Credential을 Repository·Chat·Evidence에 노출하지 않는다.
 
 예시는 `<API_KEY>`, `<TOKEN>`, `<SECRET>` 같은 Placeholder를 사용한다.
 
-## 7. 운영 책임 분리
+## 8. 운영 책임 분리
 
 ```text
 제2기 Mission PDF
@@ -233,6 +242,6 @@ round-02-clear
 = 현재 제2기 신규 수행자료
 ```
 
-## 8. 최종 원칙
+## 9. 최종 원칙
 
 > **평가 기준을 먼저 알고 → 필요한 것만 구현하고 → 한 단계씩 실제 실행하고 → 검증하면서 증빙을 같이 모으고 → 마지막에 자기 말로 설명할 수 있게 만든다.**
