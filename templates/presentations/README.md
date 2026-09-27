@@ -3,9 +3,25 @@
 대상: **현재 15개 미션(B1-1 ~ B7-2, B6-3 포함)**  
 용도: 코디세이 미션 평가, 학부 프로젝트 발표, 석·박사 과정 프로젝트 발표, 연구실 발표, 학회형 기술 발표
 
-> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 발표 템플릿도 번호보다 **미션 주제와 실제 구현·검증·증빙**을 기준으로 사용합니다.
+> **기준 레포(Canonical Control Repository):** `MetaStudy999/codyssey-basic`  
+> 공식 Mission ID·제목·내용은 제2기 현재 Mission PDF가 최우선이며, `CURRENT-MISSION-MAP.md`는 운영 매핑표로 사용합니다. 발표 템플릿도 **미션 주제와 실제 구현·검증·증빙**을 기준으로 사용합니다.
 
 이 디렉터리는 미션별 발표자료를 매번 새로 설계하지 않고, **요구사항 → 설계 → 구현 → 검증 → 증빙 → 설명**의 동일한 평가 논리로 발표할 수 있도록 만든 공통 기준입니다.
+
+## 권장 제작 체계
+
+```text
+Mission Repository = 사실 / 코드 / 실제 Evidence
+ChatGPT           = 스토리라인 / 대본 / Diagram / 개념 이미지
+Figma             = 편집 가능한 Master / 최종 디자인
+PDF / PPT         = 제출·발표용 Export
+```
+
+- [Round 02 발표자료 생성 표준](../../standards/ROUND-02-PRESENTATION-STANDARD.md)
+- [Figma Master Template Specification](FIGMA-MASTER-TEMPLATE-SPEC.md)
+- [Mission Presentation Pack Template](MISSION-PRESENTATION-PACK-TEMPLATE.md)
+
+일반 미션은 **7장 Core Deck**, B7-1/B7-2는 **10~12장 Term Project Deck**을 기본으로 한다. 실제 Runtime Screenshot과 Evidence를 우선하고, AI 생성 이미지는 개념 설명용 Asset으로만 사용한다.
 
 ## 빠른 시작(Quick Start)
 
