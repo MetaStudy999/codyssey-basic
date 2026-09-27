@@ -5,9 +5,23 @@
 화면비: 16:9  
 기본 글꼴: Noto Sans CJK KR
 
-> 현재 Mission ID(미션 번호)의 단일 기준은 [`../../CURRENT-MISSION-MAP.md`](../../CURRENT-MISSION-MAP.md)입니다. 발표 자료를 만들기 전에 현재 Mission ID와 주제 기반 Canonical Repository를 먼저 확인합니다.
+> 공식 Mission ID·제목·내용은 **제2기 현재 Mission PDF**가 최우선 기준이며, `CURRENT-MISSION-MAP.md`는 Repository 운영 매핑표로 사용합니다. 발표 자료를 만들기 전에 현재 Mission과 주제 기반 Canonical Repository를 확인합니다.
 
 ---
+
+## 0. Round 02 권장 제작 흐름
+
+```text
+Repository Evidence
+→ ChatGPT Outline / Script / Diagram / Concept Asset
+→ Figma Master Template
+→ Mission Deck
+→ PDF / PPT Export
+```
+
+일반 미션은 먼저 7장 Core Deck으로 완성하고, 공식 평가 또는 발표시간에 따라 필요한 슬라이드만 확장한다. B7 Term Project는 10~12장을 기본으로 한다.
+
+AI 생성 이미지는 실제 Runtime Screenshot이나 Evidence를 대체하지 않는다.
 
 ## 빠른 시작(Quick Start)
 
