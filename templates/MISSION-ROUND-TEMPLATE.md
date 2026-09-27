@@ -1,56 +1,65 @@
 # Mission Round Template
 
-> 미래 Round 폴더를 미리 만들지 않습니다. 현재 Round를 시작할 때 이 템플릿을 적용합니다.
+> **기준 레포(Canonical Control Repository):** `MetaStudy999/codyssey-basic`  
+> 현재 제2기 신규 수행은 `training/round-02-clear/`를 사용한다. `round-01-clear`는 참고자료로 보존한다.
 
 ## Round Metadata
 
-- Mission:
-- Round:
-- Goal:
+- Current Mission ID:
+- Current Title:
+- Repository:
+- Previous Mission ID:
+- Round: `round-02-clear`
 - Required / Optional:
+- Official Source:
+- Legacy Evaluation:
 - Status: `NOT STARTED | ACTIVE | BLOCKED | CLEAR`
 
-## BEGINNER-GUIDE 기본 목차 — R01
+## 가장 효율적인 실행 순서
 
-1. 미션 한눈에 보기
-2. 필수/선택 여부
-3. 무엇을 만드는가
-4. 완성 결과
-5. 평가자가 확인하는 것
-6. 사전 준비
-7. 반드시 알아야 할 용어
-8. 핵심 개념
-9. 전체 개념도
-10. 환경 확인
-11. 환경 설정
-12. 따라하기 Step 1..N
-13. 전체 실행
-14. 테스트
-15. 정상 결과 확인
-16. 자주 발생하는 오류
-17. 문제 해결
-18. 평가 기준과 구현 연결
-19. Evidence
-20. 예상 질문과 답변
-21. Mission Clear Checklist
-22. 다음 미션
+1. **기준 확정** — 제2기 Mission PDF → 오리엔테이션 → Repository → 기존 Mission/Evaluation → R01
+2. **평가항목 먼저** — Requirement → Implementation → Verification → Evidence → Evaluation
+3. **최소 통과 경로** — 필수 요구만 우선
+4. **적시 학습(JIT Learning)** — 지금 필요한 개념만 학습
+5. **한 단계씩 실행** — 실제 출력 확인 후 다음 단계
+6. **검증 + Evidence 동시 확보**
+7. **평가 설명 준비** — WHAT → WHY → HOW → VERIFY → LIMITATION
+8. **모의평가 + 최종 CLEAR 점검**
+
+## Round 02 최소 파일
+
+```text
+training/round-02-clear/
+├── README.md
+└── CHECKLIST.md
+```
+
+필요할 때만 `BEGINNER-GUIDE.md`, `docs/`, `environment/`, `evidence/`를 추가한다.
 
 ## Step Template
 
 ### Step N — 제목
 
-**왜 하나요?**
-
 **지금 무엇을 하나요?**
 
-**필요한 용어/개념**
+**왜 필요한가요?**
 
-**명령 또는 코드**
+**핵심 용어**
+
+**실행 위치(Context)**
+
+**실행 전 확인(Preflight)**
+
+**복사 가능한 명령 또는 코드**
+
+**명령·코드 설명**
 
 **예상 결과**
 
-**결과의 의미**
+**PASS / FAIL 기준**
 
 **오류가 발생하면**
+
+**평가와의 연결**
 
 **완료 확인**
