@@ -1,10 +1,18 @@
 # Codyssey Basic Training System — 코디세이 기초 훈련 시스템
 
-Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 개발환경 준비 → 미션 수행 → 검증(Verification) → 증빙(Evidence) → 완료(CLEAR)**까지 따라갈 수 있도록 만든 통합 저장소(Control Tower)입니다.
+Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 개발환경 준비 → 미션 수행 → 검증(Verification) → 증빙(Evidence) → 평가 설명 → 완료(CLEAR)**까지 따라갈 수 있도록 만든 **기준 레포(Canonical Control Repository)** 입니다.
 
-> **2026-09-03 Mission ID(미션 번호)가 재편되었습니다.**
-> 현재 번호의 단일 기준은 [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)입니다.
-> Mission Repository(미션 저장소)는 번호가 아닌 **주제 기반 Stable Identity(안정 식별자)**를 사용하므로 Repository 이름은 다시 변경하지 않습니다.
+> **운영 기준 레포:** `MetaStudy999/codyssey-basic`
+>
+> 공식 미션의 현재 번호·제목·내용·요구사항은 **제2기 현재 Mission PDF**가 최우선 기준(Source of Truth)입니다. 제2기 오리엔테이션 PDF는 과정 구조·필수/선택·학습 목표·평가 운영 기준으로 사용합니다. 이 레포의 `CURRENT-MISSION-MAP.md`는 공식 기준을 Repository 운영에 반영하는 매핑표입니다.
+>
+> **현재 제2기 신규 수행 기본 Round:** `training/round-02-clear/`  
+> **기존 참고자료:** `training/round-01-clear/`
+>
+> Mission Repository는 번호가 아닌 **주제 기반 Stable Identity(안정 식별자)**를 사용하므로 번호 변경만으로 Repository를 다시 만들거나 Rename하지 않습니다.
+
+- [Round 02 미션 수행·평가 표준](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)
+- [Round 02 실행 허브](training/round-02-clear/README.md)
 
 ---
 
