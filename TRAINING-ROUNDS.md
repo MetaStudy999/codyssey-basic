@@ -1,16 +1,17 @@
 # 훈련 차수(Training Rounds)
 
-이 문서는 Codyssey Basic의 장기 훈련 차수(Round)를 **기초 완주 → 재구축 → 디버깅/운영 → 통합 → 전문화 → 외부 기여**로 확장하는 로드맵입니다.
+이 문서는 Codyssey Basic의 훈련 차수(Round)를 관리합니다. **R01은 기존 수행·참고자료, R02는 2026 제2기 현재 Mission PDF 기준 신규 수행**에 사용하며, 이후 차수는 디버깅·운영·통합·전문화로 확장합니다.
 
-> 현재 Mission ID(미션 번호)와 Canonical Repository의 단일 기준은 [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)입니다. Round 설계는 미션 주제를 기준으로 이어가며, 번호가 다시 변경되어도 학습 이력과 Repository를 초기화하지 않습니다.
+> **기준 레포(Canonical Control Repository):** `MetaStudy999/codyssey-basic`  
+> 공식 Mission ID·제목·내용은 제2기 현재 Mission PDF가 최우선이며, `CURRENT-MISSION-MAP.md`는 이를 Repository 운영에 반영하는 매핑표입니다.
 
 ## 한눈에 보기(At a Glance)
 
-현재 활성 Round는 **R01 — CLEAR**입니다. 다음 Round를 미리 수행하지 않고, 현재 Round를 검증 가능한 상태로 완료한 뒤 다음 단계로 이동합니다.
+현재 제2기 신규 수행의 기본 Round는 **R02 — CURRENT CLEAR**입니다. `round-01-clear`는 기존 참고자료로 보존하고, `round-02-clear`에서 실제 실행·검증·증빙을 새로 만든다.
 
 ```text
 FOUNDATION
-R01 CLEAR → R02 REBUILD
+R01 LEGACY CLEAR → R02 CURRENT CLEAR
         ↓
 ENGINEERING
 R03 DEBUG & TEST → R04 HARDEN → R05 PRODUCTION
@@ -27,7 +28,7 @@ R11 DEEP MASTERY → R12 ARCHITECT → R13 CONTRIBUTE → R14 EXPERT VALIDATION
 IMPACT CYCLE
 ```
 
-현재 실제 실행은 [NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md), [PROGRESS.md](PROGRESS.md), [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)를 확인합니다.
+현재 제2기 실행 기준은 [Round 02 실행 허브](training/round-02-clear/README.md), [Round 02 미션 수행·평가 표준](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md), [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)를 확인합니다. R01 진행 이력은 기존 문서에서 보존합니다.
 
 ## 📑 목차
 
@@ -55,11 +56,13 @@ IMPACT CYCLE
 <a id="phase-1"></a>
 ## Phase 1 — FOUNDATION
 
-### R01 — CLEAR
-입문자가 상세 가이드를 따라 필수 → 선택 전체 15개 미션/프로젝트를 완료합니다.
+### R01 — LEGACY CLEAR
+기존 1기 수행·학습·평가 자료를 보존하는 참고 Round입니다. `training/round-01-clear/`를 삭제하거나 현재 수행 결과로 덮어쓰지 않습니다.
 
-### R02 — REBUILD
-완성본 의존도를 줄이고 요구사항을 보고 다시 구축합니다.
+### R02 — CURRENT CLEAR
+2026 제2기 현재 Mission PDF 기준으로 B1-1 ~ B7-2를 신규 수행합니다. 기존 Mission/Evaluation과 R01 자료는 참고하되, Runtime·Verification·Evidence는 R02에서 새로 확보합니다.
+
+R02의 기본 전략은 **평가항목 먼저 → 최소 통과 경로 → 적시 학습 → 단계별 실행 → 검증+증빙 → 평가 설명 → 모의평가**입니다.
 
 <a id="phase-2"></a>
 ## Phase 2 — ENGINEERING
@@ -126,8 +129,8 @@ Web, Backend, DB, Cloud, AI 등 여러 기술을 하나의 시스템으로 연�
 
 | Round | 권장 대상 |
 |---|---|
-| R01 | 전체 15개 |
-| R02 | 약 8~10개 대표/취약 미션 |
+| R01 | 기존 15개 참고자료 보존 |
+| R02 | 제2기 B1-1 ~ B7-2 전체 15개 신규 수행 |
 | R03 | 약 6~8개 |
 | R04 | 약 4~6개 |
 | R05 | 약 3~5개 |
