@@ -27,6 +27,8 @@
 - [현재 Mission Map](../../CURRENT-MISSION-MAP.md)
 - [2주 초압축 수행 계획](ACCELERATED-2WEEK-PLAN.md)
 - [Round 02 진행 매트릭스](PROGRESS-MATRIX.md)
+- [Round 02 발표자료 생성 표준](../../standards/ROUND-02-PRESENTATION-STANDARD.md)
+- [Figma Master Template Specification](../../templates/presentations/FIGMA-MASTER-TEMPLATE-SPEC.md)
 
 ## 가장 빠른 실행 흐름
 
