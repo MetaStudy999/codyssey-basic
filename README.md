@@ -13,6 +13,8 @@ Codyssey Basic 기초과정의 전체 미션을 관리하고, **입문자가 개
 
 - [Round 02 미션 수행·평가 표준](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)
 - [Round 02 실행 허브](training/round-02-clear/README.md)
+- [2주 초압축 수행 계획](training/round-02-clear/ACCELERATED-2WEEK-PLAN.md)
+- [Round 02 진행 매트릭스](training/round-02-clear/PROGRESS-MATRIX.md)
 
 ---
 
@@ -29,6 +31,16 @@ R01 역할       : 기존 참고자료 보존
 ```
 
 미션을 시작할 때는 [Round 02 실행 허브](training/round-02-clear/README.md)에서 해당 Mission Repository를 확인하고, 각 Repository의 `training/round-02-clear/README.md`와 `CHECKLIST.md`를 사용합니다.
+
+초압축 내부 시간 목표:
+
+```text
+필수 11개 목표 : 약 100h
+선택 4개 목표  : 약 50h
+전체 15개 목표 : 약 150h
+```
+
+이 시간은 공식 학습시간이 아니라 Round 01 재사용과 최소 통과 경로를 전제로 한 내부 실행 예산입니다.
 
 > R01의 기존 진행 상태와 Evidence는 역사적 참고자료로 보존하며, R02의 실제 PASS/CLEAR를 대신하지 않습니다.
 
