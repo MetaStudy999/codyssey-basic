@@ -1,5 +1,9 @@
 # 미션 색인(Mission Index)
 
+> **Round 02 현재 제2기 실행:** [training/round-02-clear/README.md](training/round-02-clear/README.md)  
+> **공통 수행·평가 표준:** [standards/ROUND-02-MISSION-EXECUTION-STANDARD.md](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)  
+> 아래 R01 FAST TRACK 설명은 기존 수행 전략 기록이며, 현재 제2기 신규 수행은 Round 02 기준을 우선합니다.
+
 Round 01의 **빠른 실행 경로(FAST TRACK)**는 **필수 미션 11개를 먼저 모두 완료한 뒤 선택 경로 4개를 수행**하는 경로입니다.
 
 > 현재 Mission ID(미션 번호)의 단일 기준은 [CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)입니다. Repository(저장소)는 번호와 분리된 주제 기반 Stable Identity(안정 식별자)를 사용합니다.
