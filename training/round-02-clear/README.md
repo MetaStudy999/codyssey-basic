@@ -25,6 +25,7 @@
 - [Round 02 미션 수행·평가 표준](../../standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)
 - [작업 운영 룰](../../WORKING-RULES.md)
 - [현재 Mission Map](../../CURRENT-MISSION-MAP.md)
+- [2주 초압축 수행 계획](ACCELERATED-2WEEK-PLAN.md)
 
 ## 가장 빠른 실행 흐름
 
@@ -38,6 +39,16 @@
 7. 평가 설명 준비
 8. 모의평가 + 최종 CLEAR 점검
 ```
+
+## 초압축 시간 목표
+
+```text
+필수 11개  ≈ 100h
+선택 4개   ≈ 50h
+전체 15개  ≈ 150h
+```
+
+이는 공식 학습시간을 대체하지 않는 내부 실행 목표다. 자세한 미션별 시간 예산과 단축 금지 항목은 [ACCELERATED-2WEEK-PLAN.md](ACCELERATED-2WEEK-PLAN.md)를 따른다.
 
 ## 15개 Mission/Project
 
