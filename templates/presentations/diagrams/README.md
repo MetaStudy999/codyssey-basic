@@ -7,6 +7,30 @@
 
 이 디렉터리는 발표용 다이어그램을 매번 새로 그리지 않고, **구조(Architecture)·흐름(Flow)·상태(State)·관계(Relationship)·보안 경계(Security Boundary)·검증(Verification)·증빙 자료(Evidence)**를 동일한 시각 문법으로 표현하기 위한 기준 라이브러리입니다.
 
+## 실제 Figma Diagram Library
+
+- **Figma Slides Master:** https://www.figma.com/slides/MbDKgyckrGGPLDECvbUmun
+- **Section:** `Diagram Library`
+- **편집 가능한 다이어그램 템플릿:** 13장
+
+포함 항목:
+
+1. System Architecture
+2. Data Flow Diagram (DFD)
+3. Sequence Diagram
+4. State Diagram
+5. Entity-Relationship Diagram (ERD)
+6. Cloud / Network Architecture
+7. Algorithm Visualization
+8. Git Collaboration Swimlane
+9. Troubleshooting / Root Cause Analysis (RCA)
+10. Security / Trust Boundary
+11. Before → After
+12. Evidence Traceability
+13. End-to-End (E2E) Service Flow
+
+Repository의 20종 고급 라이브러리는 전체 Reference로 유지하고, Figma Slides에서는 발표에 가장 자주 쓰는 13종을 편집 가능한 Core Diagram Template으로 운영합니다.
+
 ## 빠른 시작(Quick Start)
 
 1. `Codyssey_Technical_Diagram_Master_Library.pptx`에서 필요한 슬라이드를 복사합니다.
