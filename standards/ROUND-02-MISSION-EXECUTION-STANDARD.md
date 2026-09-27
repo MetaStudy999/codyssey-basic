@@ -176,6 +176,21 @@ WHAT(무엇)
 + Secret 노출 없음
 ```
 
+### Gate 9 — 발표자료 패키지
+미션이 CLEAR 또는 Evaluation Ready가 되면 [Round 02 발표자료 생성 표준](ROUND-02-PRESENTATION-STANDARD.md)을 적용한다.
+
+```text
+Repository Evidence
+→ OUTLINE
+→ EVIDENCE-MAP
+→ SCRIPT
+→ Diagram / Image Asset
+→ Figma Master
+→ PDF/PPT Export
+```
+
+일반 미션은 7장 Core Deck, B7 Term Project는 10~12장을 기본으로 한다. 실제 Screenshot/Evidence를 우선하며 AI 생성 이미지를 실제 증빙처럼 사용하지 않는다.
+
 ## 5. Round 02 최소 문서 계약
 
 각 Mission Repository의 `training/round-02-clear/`는 처음에는 최소한 다음만 둔다.
