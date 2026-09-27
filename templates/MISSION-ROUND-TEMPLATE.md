@@ -13,7 +13,15 @@
 - Required / Optional:
 - Official Source:
 - Legacy Evaluation:
+- Official Learning Time:
+- Accelerated Target:
 - Status: `NOT STARTED | ACTIVE | BLOCKED | CLEAR`
+
+## 초압축 모드
+
+- 공통 계획: [ACCELERATED-2WEEK-PLAN.md](../training/round-02-clear/ACCELERATED-2WEEK-PLAN.md)
+- 공식 학습시간은 그대로 기록한다.
+- Accelerated Target은 내부 시간 예산이며 공식 요구를 축소하지 않는다.
 
 ## 가장 효율적인 실행 순서
 
