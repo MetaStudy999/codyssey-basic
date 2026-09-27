@@ -1,26 +1,30 @@
 # Codyssey Basic 작업 룰(Working Rules)
 
-이 문서는 메인 레포(Control Tower)에서 사용하는 작업 운영 규칙의 **진입점(Entry Point)**입니다.
+이 문서는 **기준 레포(Canonical Control Repository) `MetaStudy999/codyssey-basic`**에서 사용하는 작업 운영 규칙의 진입점(Entry Point)입니다.
 
-> 현재 Mission ID(미션 번호) ↔ 미션 주제 ↔ Canonical Repository의 단일 기준은 [`CURRENT-MISSION-MAP.md`](CURRENT-MISSION-MAP.md)입니다. Mission ID는 가변 Metadata이고, Repository는 주제 기반 Stable Identity를 유지합니다.
+> **중요:** 이 레포는 전체 미션의 운영 기준(Control Tower)입니다. 공식 미션의 현재 번호·제목·내용·요구사항은 **제2기 현재 Mission PDF**가 최우선 기준(Source of Truth)이며, 제2기 오리엔테이션 PDF가 과정 구조·필수/선택·학습 목표·평가 운영의 다음 기준입니다. `CURRENT-MISSION-MAP.md`는 이 공식 기준을 Repository 운영에 반영하는 매핑표입니다.
+
+현재 제2기 신규 수행은 `training/round-02-clear/`를 기본 작업 위치로 사용하고, 기존 `training/round-01-clear/`는 참고자료로 보존합니다.
+
+- [Round 02 미션 수행·평가 표준](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)
+- [Round 02 실행 허브](training/round-02-clear/README.md)
 
 ## 빠른 적용(Quick Apply)
 
-작업을 시작할 때 다음 순서를 사용합니다.
+현재 제2기 미션은 다음 순서를 사용합니다.
 
 ```text
-공식 Mission / Evaluation / 제공 파일 확인
-→ CURRENT-MISSION-MAP에서 현재 Mission ID / Canonical Repository 확인
-→ 현재 Repository main 확인
-→ 상위 작업 운영 표준 확인
-→ 현재 Active Mission의 MISSION-METADATA.yml / WORKING-RULES.md 확인
-→ 현재 실행 환경(Current Runtime Context) 선택
-→ BEGINNER-GUIDE / CHECKLIST / environment / evidence 확인
-→ 실제 실행(Runtime Execution)
-→ 검증(Verification)
-→ 증빙 자료(Evidence)
-→ 플랫폼별 Runtime Record 갱신
-→ 평가(Evaluation)
+제2기 현재 Mission PDF
+→ 제2기 오리엔테이션
+→ CURRENT-MISSION-MAP 운영 매핑 확인
+→ 동일 주제 Canonical Mission Repository
+→ 기존 Mission / Evaluation
+→ round-01-clear 참고
+→ 평가항목 먼저 정리
+→ 최소 통과 경로 확정
+→ round-02-clear에서 한 단계씩 실제 수행
+→ Verification + Evidence 동시 확보
+→ 평가 설명 + 모의평가
 → 조건 충족 시에만 Mission CLEAR
 ```
 
