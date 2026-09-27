@@ -17,6 +17,15 @@
 
 이 파일을 미션별로 복제하여 실제 Evidence와 Screenshot을 채우는 방식으로 사용합니다.
 
+현재 Figma Slides Master 구성:
+
+```text
+Core 7 Slides        = 일반 미션 발표 템플릿
+B7 Term Project      = 12장 Term Project 템플릿
+Diagram Library      = 13장 편집 가능 도식 템플릿
+전체                  = 32 Slides
+```
+
 ## 권장 제작 체계
 
 ```text
