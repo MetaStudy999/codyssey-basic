@@ -8,6 +8,15 @@
 
 이 디렉터리는 미션별 발표자료를 매번 새로 설계하지 않고, **요구사항 → 설계 → 구현 → 검증 → 증빙 → 설명**의 동일한 평가 논리로 발표할 수 있도록 만든 공통 기준입니다.
 
+## 실제 Figma Master
+
+- **CODYSSEY Round 02 Mission Presentation Master**
+- Figma Slides: https://www.figma.com/slides/MbDKgyckrGGPLDECvbUmun
+- Team: `박영세's team`
+- 구성: **Core 7 Slides + B7 Term Project 12 Slides = 19 Slides**
+
+이 파일을 미션별로 복제하여 실제 Evidence와 Screenshot을 채우는 방식으로 사용합니다.
+
 ## 권장 제작 체계
 
 ```text
