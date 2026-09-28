@@ -5,6 +5,8 @@
 목표는 문서마다 기준이 달라지는 것을 막고, 입문자가 어느 미션을 열어도 같은 원칙으로 이해·실행·검증할 수 있게 하는 것입니다.
 
 > **현재 제2기 실행 기준:** [ROUND-02-MISSION-EXECUTION-STANDARD.md](ROUND-02-MISSION-EXECUTION-STANDARD.md) — 제2기 PDF 우선순위, Round 01/02 분리, 평가항목 우선, 최소 구현, 검증·증빙·평가 준비 표준
+>
+> **버전형 미션 실행 템플릿:** [../templates/mission-execution/README.md](../templates/mission-execution/README.md) — CURRENT Stable / NEXT Candidate / Immutable Version Snapshot으로 점진 개선
 
 ## 한눈에 보기(Quick Read)
 
