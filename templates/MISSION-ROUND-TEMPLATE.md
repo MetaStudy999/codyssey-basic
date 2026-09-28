@@ -2,6 +2,10 @@
 
 > **기준 레포(Canonical Control Repository):** `MetaStudy999/codyssey-basic`  
 > 현재 제2기 신규 수행은 `training/round-02-clear/`를 사용한다. `round-01-clear`는 참고자료로 보존한다.
+>
+> **Versioned Mission Execution Template:** [mission-execution/CURRENT.md](mission-execution/CURRENT.md)
+>
+> 이 파일은 기존 호환 진입점이다. 신규 Active Mission의 실행 순서는 버전형 CURRENT 템플릿을 우선 참고하고, 개선 후보는 mission-execution/NEXT.md에 기록한다.
 
 ## Round Metadata
 
