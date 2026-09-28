@@ -191,6 +191,34 @@ Repository Evidence
 
 일반 미션은 7장 Core Deck, B7 Term Project는 10~12장을 기본으로 한다. 실제 Screenshot/Evidence를 우선하며 AI 생성 이미지를 실제 증빙처럼 사용하지 않는다.
 
+## 4.1 버전형 실행 템플릿
+
+실제 Mission 수행 순서를 반복 개선하기 위해 다음 Versioned Template을 사용한다.
+
+- Registry: [templates/mission-execution/README.md](../templates/mission-execution/README.md)
+- Current Stable: [templates/mission-execution/CURRENT.md](../templates/mission-execution/CURRENT.md)
+- Next Candidate: [templates/mission-execution/NEXT.md](../templates/mission-execution/NEXT.md)
+- Changelog: [templates/mission-execution/CHANGELOG.md](../templates/mission-execution/CHANGELOG.md)
+- Immutable Versions: `templates/mission-execution/versions/`
+
+운영 원칙:
+
+```text
+현재 Stable Version
+→ Active Mission 적용
+→ 실제 Runtime에서 개선점 발견
+→ NEXT 후보 기록
+→ 다음 Mission 또는 재실행에서 검증
+→ 검증된 변경만 새 Version으로 승격
+→ 과거 Snapshot 보존
+```
+
+- 현재 기준을 모든 Mission에 한 번에 일괄 반영하지 않는다.
+- 현재 Active Mission과 다음 Active Mission 순서로 점진 적용한다.
+- 문서 버전 변경만으로 Runtime / Evidence / CLEAR 상태를 변경하지 않는다.
+- 공식 Mission PDF / Evaluation은 Versioned Template보다 항상 우선한다.
+- 과거 Version Snapshot은 수정하지 않는다.
+
 ## 5. Round 02 최소 문서 계약
 
 각 Mission Repository의 `training/round-02-clear/`는 처음에는 최소한 다음만 둔다.
