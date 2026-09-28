@@ -19,7 +19,8 @@
 ## 목차
 
 - [평가 발표 템플릿(Presentation Templates)](presentations/README.md)
-- [미션 라운드 템플릿(Mission Round Template)](MISSION-ROUND-TEMPLATE.md)
+- [버전형 미션 실행 템플릿(Versioned Mission Execution Template)](mission-execution/README.md) — CURRENT / NEXT / immutable versions 관리
+- [미션 라운드 템플릿(Mission Round Template)](MISSION-ROUND-TEMPLATE.md) — 기존 호환 진입점
 - [이중 실행환경 실습 템플릿(Dual Runtime Lab Template)](DUAL-RUNTIME-LAB-TEMPLATE.md)
 - [VS Code Remote Linux 설정](vscode-remote-linux-settings.json)
 
@@ -37,3 +38,22 @@
 ```
 
 템플릿이 존재한다는 사실만으로 구현·검증·평가 상태를 PASS 또는 CLEAR로 기록하지 않습니다.
+
+
+## 버전형 실행 템플릿 운영
+
+현재 안정 버전은 [mission-execution/CURRENT.md](mission-execution/CURRENT.md)에서 확인합니다.
+
+개선사항은 현재 Active Mission에서 실제로 검증한 뒤 [mission-execution/NEXT.md](mission-execution/NEXT.md)에 후보로 기록하고, 충분히 검증된 변경만 새 Stable Version으로 승격합니다.
+
+```text
+CURRENT
+→ Active Mission 적용
+→ 개선 후보 발견
+→ NEXT
+→ 재검증
+→ versions/vX.Y.Z.md
+→ CURRENT 갱신
+```
+
+기준 변경만을 이유로 모든 Mission Repository를 한 번에 일괄 수정하지 않습니다.
