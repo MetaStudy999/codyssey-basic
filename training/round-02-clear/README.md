@@ -30,18 +30,36 @@
 - [Round 02 발표자료 생성 표준](../../standards/ROUND-02-PRESENTATION-STANDARD.md)
 - [Figma Master Template Specification](../../templates/presentations/FIGMA-MASTER-TEMPLATE-SPEC.md)
 
+## 현재 실행 템플릿 버전
+
+- Stable: **Mission Execution Template v1.0.0**
+- Current: [templates/mission-execution/CURRENT.md](../../templates/mission-execution/CURRENT.md)
+- Next Candidate: [templates/mission-execution/NEXT.md](../../templates/mission-execution/NEXT.md)
+- Version Registry: [templates/mission-execution/README.md](../../templates/mission-execution/README.md)
+
+현재 Active Mission부터 v1.0.0을 적용한다. 이후 개선점은 NEXT에 누적하고 실제 Mission에서 검증한 뒤 새 버전으로 승격한다. 기존 Mission 전체를 한 번에 일괄 재작성하지 않는다.
+
 ## 가장 빠른 실행 흐름
 
+v1.0.0의 기본 흐름:
+
 ```text
-1. 현재 미션 기준 확정
-2. 평가항목 먼저 확인
-3. 최소 통과 경로 확정
-4. 필요한 개념만 학습
-5. 한 단계씩 실제 수행
-6. 검증 + Evidence 동시 확보
-7. 평가 설명 준비
-8. 모의평가 + 최종 CLEAR 점검
+01 기준 확정
+→ 02 요구사항·평가항목 매핑
+→ 03 Minimum Passing Path
+→ 04 핵심 기능 통합 구현
+→ 05 통합 Runtime 검증
+→ 06 UX·포트폴리오 고도화
+→ 07 공식 Bonus / Optional
+→ 08 Troubleshooting
+→ 09 최종 회귀검증
+→ 10 Evidence·문서화
+→ 11 평가 설명 준비
+→ 12 모의평가
+→ 13 CLEAR
 ```
+
+상세 절차는 CURRENT 템플릿을 기준으로 하고, 다음 버전 후보는 NEXT에서 관리한다.
 
 ## 초압축 시간 목표
 
