@@ -529,3 +529,50 @@ Draft
 ```
 
 발표 품질 개선은 감상 수준에서 끝내지 않고 [Presentation Quality Evolution](../templates/presentations/PRESENTATION-QUALITY-EVOLUTION.md)에 기록한다.
+
+
+### 15.7 Truth Replacement Gate
+
+Image-First 시안이 시각적으로 완성되어도 다음 항목이 AI 생성/가상 Mockup 상태이면 **FINAL/EVIDENCE READY로 승격하지 않는다.**
+
+```text
+AI Mockup
+→ Truth Replacement
+→ Accuracy Check
+→ Evidence Check
+→ FINAL
+```
+
+반드시 실제 Source로 교체할 항목:
+
+- 실제 Runtime Screenshot
+- 실제 Repository/PR/CI 화면
+- 실제 Code Snippet
+- 실제 Log / Test Result
+- 정확한 Requirement ID / Evaluation 문구
+- URL / Commit SHA / 수치 / 날짜
+- Architecture Component의 공식/실제 명칭
+
+#### Badge 규칙
+
+- `AI-VISUAL`: 생성 이미지·개념 Mockup·만화
+- `CODE`: 실제 Repository Code에서 추출
+- `RUNTIME`: 실제 실행 환경 화면
+- `EVIDENCE`: 실제 검증 근거
+- `OFFICIAL`: 공식 Mission/Evaluation Source
+- `MOCKUP`: 실제 결과처럼 보일 수 있는 시안 이미지
+
+**AI 생성 화면에는 `REAL EVIDENCE`, `PASS`, `실제 검증` 같은 사실성 표현을 붙이지 않는다.**
+
+### 15.8 Evidence Integrity Final Gate
+
+최종 Export 전 다음 질문에 모두 YES여야 한다.
+
+1. `EVIDENCE` 표시가 붙은 모든 화면은 실제 Source인가?
+2. 실제 Screenshot을 AI가 다시 그린 이미지로 대체하지 않았는가?
+3. Code는 실제 Repository에서 추출했는가?
+4. Requirement / PASS / 수치가 실제 검증 문서와 일치하는가?
+5. 생성 이미지와 실제 자료가 시각적으로 명확히 구분되는가?
+6. 각 Evidence가 기준 Commit SHA / Path로 역추적 가능한가?
+
+하나라도 NO이면 `DRAFT` 또는 `MOCKUP` 상태를 유지한다.
