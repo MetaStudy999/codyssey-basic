@@ -13,15 +13,15 @@
 - **CODYSSEY Round 02 Mission Presentation Master**
 - Figma Slides: https://www.figma.com/slides/MbDKgyckrGGPLDECvbUmun
 - Team: `박영세's team`
-- 구성: **Core 7 Slides + B7 Term Project 12 Slides = 19 Slides**
+- 기존 Figma Master 구성은 Core 7 + B7 12장이며, **Round 02 확장 표준은 일반 12~14장 / B7 15~18장**이다. 기존 Master Component를 재사용하여 확장한다.
 
 이 파일을 미션별로 복제하여 실제 Evidence와 Screenshot을 채우는 방식으로 사용합니다.
 
 현재 Figma Slides Master 구성:
 
 ```text
-Core 7 Slides        = 일반 미션 발표 템플릿
-B7 Term Project      = 12장 Term Project 템플릿
+Core 7 Slides        = 기존 Legacy Core Component Set
+B7 Term Project      = 기존 Legacy 12장 Component Set
 Diagram Library      = 13장 편집 가능 도식 템플릿
 전체                  = 32 Slides
 ```
@@ -39,12 +39,12 @@ PDF / PPT         = 제출·발표용 Export
 - [Figma Master Template Specification](FIGMA-MASTER-TEMPLATE-SPEC.md)
 - [Mission Presentation Pack Template](MISSION-PRESENTATION-PACK-TEMPLATE.md)
 
-일반 미션은 **7장 Core Deck**, B7-1/B7-2는 **10~12장 Term Project Deck**을 기본으로 한다. 실제 Runtime Screenshot과 Evidence를 우선하고, AI 생성 이미지는 개념 설명용 Asset으로만 사용한다.
+Round 02 신규 발표는 **일반 12~14장 Learning & Evaluation Deck**, B7-1/B7-2는 **15~18장 Term Project Deck**을 기본으로 한다. 발표 시간이 짧으면 슬라이드를 합치되 필수 정보는 유지한다. 실제 Runtime Screenshot과 Evidence를 우선하고, AI 생성 이미지는 개념 설명용 Asset으로만 사용한다.
 
 ## 빠른 시작(Quick Start)
 
 1. 실제 미션 발표는 `Codyssey_Mission_Evaluation_Core_22slides.pptx`를 복사해서 시작합니다.
-2. 보통 발표 시간에 맞춰 **12~16장**만 남깁니다.
+2. 보통 발표 시간에 맞춰 **12~16장 수준으로 압축**하되, Mission Map·개념·구조·데이터 흐름·Evidence·Evaluation 정보는 유지합니다.
 3. 전체 디자인·레이아웃·도메인별 선택 슬라이드가 필요하면 `Codyssey_B1-B7_Mission_Evaluation_Master_Template.pptx`를 참고합니다.
 4. 아키텍처·ERD·Cloud·Sequence·Research·Evidence 등 고급 기술 다이어그램이 필요하면 [`diagrams/`](diagrams/)의 Technical Diagram Library를 사용합니다.
 5. [`Codyssey_Mission_Presentation_Template_Guide.md`](Codyssey_Mission_Presentation_Template_Guide.md)의 미션별 강조 포인트를 적용합니다.
