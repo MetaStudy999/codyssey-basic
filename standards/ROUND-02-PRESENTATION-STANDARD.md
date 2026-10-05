@@ -132,23 +132,23 @@ B1-1 ~ B6-3의 일반 미션은 **12~14장 Learning & Evaluation Core Deck**을 
 
 B7-1 / B7-2는 일반 미션의 모든 필수 정보를 포함하되 서비스 전체를 평가할 수 있도록 **15~18장**으로 확장한다.
 
-1. Mission / Executive Summary
-2. 문제 정의 / 목표
-3. Requirement → Evidence Matrix
-4. System Architecture
-5. DB / ERD
-6. API / Data Flow
-7. AI API / 핵심 로직
-8. UI / 실제 Runtime
-9. Verification / Test / Evidence
-10. Team / Git / PR / 역할
-11. Troubleshooting / Security / Limitation
-12. Security / Privacy / Trust Boundary
-13. Failure / Recovery / Reliability
-14. Performance / Observability / Cost (해당 시)
+1. Hero Cover / Executive Summary
+2. Mission Map / 한눈에 보는 전체 흐름
+3. Problem / Goal / User Scenario
+4. 핵심 용어·개념 / 4컷 만화
+5. Requirement → Evaluation → Evidence Matrix
+6. System Architecture / Trust Boundary
+7. DB / ERD / Data Model
+8. API / End-to-End Data Flow / Sequence
+9. Module / Class / Method Structure
+10. AI / Core Logic / 핵심 Code / Function IPO
+11. UI / 실제 Runtime / Demo
+12. Normal Flow / Failure Flow / Security / Recovery
+13. Troubleshooting / Before-After / Trade-off
+14. Performance / Observability / Cost / NFR (해당 시)
 15. Team / Git / PR / 역할
-16. Verification / Evidence Traceability
-17. Evaluation Explanation / Limitation / Learning
+16. Verification / Test / Evidence Traceability
+17. Evaluation Explanation / Learning / Limitation
 18. Conclusion / Q&A
 
 필요에 따라 15~18장으로 축약·확장하되, 공식 요구사항과 평가 근거가 사라지지 않게 한다.
