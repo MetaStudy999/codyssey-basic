@@ -4,7 +4,7 @@
 >
 > **기준 레포(Canonical Control Repository):** `MetaStudy999/codyssey-basic`
 >
-> 발표자료는 미션 완료 후 별도 장식 작업이 아니라 **Requirement → Implementation → Verification → Evidence → Evaluation Explanation**을 짧고 명확하게 보여주는 평가 패키지다.
+> 발표자료는 미션 완료 후 별도 장식 작업이 아니라 **학습(용어·개념) → 구조(클래스·함수·데이터 흐름) → 구현 → 실제 실행 → 검증 → 증빙 → 평가 설명**을 한눈에 연결하는 평가·학습 패키지다. 발표본만 보아도 전체 흐름을 다시 복원할 수 있어야 한다.
 
 ## 1. 역할 분리
 
@@ -42,53 +42,95 @@ Mission CLEAR 또는 Evaluation Ready
 
 공식 평가 일정 때문에 CLEAR 전에 발표자료가 필요하면, 완료되지 않은 항목을 PASS처럼 표현하지 않고 `PENDING`으로 표시한다.
 
-## 3. 일반 미션 기본 7장
+## 3. 일반 미션 기본 12~14장
 
-B1-1 ~ B6-3의 일반 미션은 먼저 **7장 Core Deck**을 만든다.
+B1-1 ~ B6-3의 일반 미션은 **12~14장 Learning & Evaluation Core Deck**을 기본으로 한다. 발표 시간이 짧으면 슬라이드를 합칠 수 있지만 아래 정보 자체를 생략하지 않는다.
 
-1. **Mission / 한눈에 보기**
+1. **Hero Cover**
    - 현재 Mission ID·제목
-   - 무엇을 만들었는가
-   - 미션 목적
+   - 한 문장 핵심 성과
+   - 고품질 대표 이미지 또는 실제 결과 화면
 
-2. **문제와 핵심 개념**
-   - 왜 이 미션을 하는가
+2. **Mission Map / 한눈에 보는 전체 흐름**
+   - 목표, 입력, 핵심 처리, 출력, 기술스택, 검증, 평가 포인트
+   - 이 한 장만 보아도 전체 미션을 다시 설명할 수 있어야 한다.
+
+3. **Problem / Goal / User Scenario**
+   - 해결하려는 문제
+   - 사용자 관점의 목표
+   - 성공 조건
+
+4. **핵심 용어·개념 + 4컷 만화**
    - 핵심 용어 3~7개
-   - 한글명(English Full Name, 약어)
+   - `한글명(English Full Name, 약어)`
+   - 한 줄 정의, 왜 필요한가, 언제 쓰는가
+   - 어려운 개념 1~3개는 4컷 만화로 설명한다.
+   - 만화는 `문제 → 개념 등장 → 실제 적용 → 기술적 결론` 흐름을 권장한다.
 
-3. **Requirement → Implementation**
+5. **Requirement → Evaluation → Evidence Map**
    - 공식 요구사항
-   - 실제 구현 파일/함수/설정
-   - 평가항목 연결
+   - 평가문항 또는 평가준비 항목
+   - 구현 위치
+   - 검증 방법
+   - Evidence 위치
 
-4. **System / Data Flow**
-   - 아키텍처
-   - 데이터 흐름
-   - 이벤트/상태/요청 흐름
-   - 미션 특성에 맞는 다이어그램 1개
+6. **System Architecture**
+   - 주요 Module / Component
+   - 외부 시스템
+   - Trust Boundary가 있으면 함께 표시
 
-5. **Runtime Result**
-   - 실제 실행 화면·CLI·배포 화면
-   - 핵심 기능 시연
-   - 실제 Screenshot 우선
+7. **End-to-End Data / Event / State Flow**
+   - 입력(Input) → 처리(Process) → 저장/상태변화 → 출력(Output)
+   - 사용자 요청부터 최종 결과까지 전체 흐름
+   - 주요 데이터가 어디에서 생성·변환·저장되는지 표시
 
-6. **Verification / Evidence**
-   - PASS/FAIL
-   - 테스트
-   - 로그
-   - Commit/PR/배포 URL 등 실제 증빙
-   - 각 Evidence가 무엇을 증명하는지 캡션
+8. **Module / Class / Method Structure**
+   - Module 책임
+   - Class 책임·관계·주요 속성
+   - 핵심 Method/Function은 IPO(Input → Process → Output)로 설명
+   - 클래스가 없는 미션은 File/Module/Function 구조로 대체
 
-7. **Evaluation Explanation**
-   - WHAT → WHY → HOW → VERIFY → LIMITATION
-   - 30초 핵심 설명
-   - 예상 질문 2~5개
+9. **Core Code / Feature Deep Dive**
+   - 전체 코드를 붙이지 않고 핵심 코드만 제시
+   - 코드 위치(path), 역할, 호출 흐름, 주요 분기 설명
+   - 필요 시 줄별 또는 블록별 해설
+   - 기능을 사용자 관점과 개발자 관점으로 각각 설명
 
-발표 시간이 길거나 평가 요구가 있으면 Troubleshooting, Security, Collaboration, Limitations 등을 추가한다.
+10. **Normal Flow / Failure Flow / Security**
+    - 정상 경로(Happy Path)
+    - 오류·예외 경로(Failure Path)
+    - 복구 또는 Fail-safe 동작
+    - Secret, 권한, 입력검증, Trust Boundary 등 보안 포인트
 
-## 4. B7 Term Project 기본 10~12장
+11. **Troubleshooting / Before → After / Trade-off**
+    - Problem → Evidence → Root Cause → Fix → Re-verify
+    - 개선 전·후 실제 측정값이 있으면 비교
+    - 기술 선택 이유와 대안(Alternative), 상충관계(Trade-off)
+    - 측정값이 없으면 수치를 만들지 않는다.
 
-B7-1 / B7-2는 다음 구조를 사용한다.
+12. **Runtime / Demo**
+    - 실제 Browser / CLI / API / DB / Cloud 결과
+    - 1~3분 Demo Scenario
+    - 실제 Screenshot 우선
+
+13. **Verification / Evidence / Quality**
+    - 정상·경계·오류 Test Case
+    - PASS/FAIL
+    - 성능·보안·신뢰성·접근성 등 해당 미션의 비기능 요구사항
+    - Commit/PR/배포 URL/Log/Screenshot 등 추적 가능한 Evidence
+
+14. **Evaluation Summary / Learning / Limitation**
+    - WHAT → WHY → HOW → VERIFY → LIMITATION
+    - 10초 / 30초 / 1분 답변
+    - 예상 질문 2~5개
+    - 현재 한계와 Production 개선 방향
+    - 이번 미션에서 배운 핵심 3가지
+
+발표 시간이 짧으면 4+5, 8+9, 10+11, 13+14를 합칠 수 있다.
+
+## 4. B7 Term Project 기본 15~18장
+
+B7-1 / B7-2는 일반 미션의 모든 필수 정보를 포함하되 서비스 전체를 평가할 수 있도록 **15~18장**으로 확장한다.
 
 1. Mission / Executive Summary
 2. 문제 정의 / 목표
@@ -101,9 +143,15 @@ B7-1 / B7-2는 다음 구조를 사용한다.
 9. Verification / Test / Evidence
 10. Team / Git / PR / 역할
 11. Troubleshooting / Security / Limitation
-12. Evaluation Explanation / Conclusion / Q&A
+12. Security / Privacy / Trust Boundary
+13. Failure / Recovery / Reliability
+14. Performance / Observability / Cost (해당 시)
+15. Team / Git / PR / 역할
+16. Verification / Evidence Traceability
+17. Evaluation Explanation / Limitation / Learning
+18. Conclusion / Q&A
 
-필요에 따라 10~12장으로 축약·확장한다.
+필요에 따라 15~18장으로 축약·확장하되, 공식 요구사항과 평가 근거가 사라지지 않게 한다.
 
 ## 5. 시각자료 우선순위
 
@@ -118,12 +166,89 @@ B7-1 / B7-2는 다음 구조를 사용한다.
 
 ChatGPT 생성 이미지는 **Evidence가 아니다**. 실제 UI를 AI로 재현한 이미지를 실제 실행 화면처럼 사용하지 않는다.
 
-## 6. Figma Master 원칙
+## 6. 학습·설명 규칙
+
+### 6.1 용어 카드
+각 핵심 용어는 가능하면 다음 형식을 사용한다.
+
+```text
+한글명
+English Full Name
+약어(Acronym)
+한 줄 정의
+왜 필요한가
+이번 미션에서 어디에 쓰였는가
+관련 개념
+```
+
+### 6.2 3단계 설명
+중요 개념은 다음 세 단계로 설명할 수 있어야 한다.
+
+```text
+Level 1 초보자 비유
+→ Level 2 정확한 기술 정의
+→ Level 3 내 구현에서의 실제 적용
+```
+
+### 6.3 4컷 만화
+4컷 만화는 모든 용어에 만들지 않는다. 이해 난도가 높은 개념을 미션당 1~3개 선정한다.
+
+```text
+1컷 문제 상황
+→ 2컷 핵심 개념 등장
+→ 3컷 실제 시스템 적용
+→ 4컷 기술적 결론 + 실제 Flow 연결
+```
+
+AI 생성 만화는 `개념 설명 이미지`로 표시하고 Evidence로 사용하지 않는다.
+
+## 7. 재현성·출처·평가 provenance
+
+각 발표본은 최소 다음을 기록한다.
+
+- Repository
+- Round
+- 기준 Commit SHA
+- Runtime Environment
+- Evidence Path
+- 실제 실행 일시(필요 시)
+- Evaluation Source Classification
+
+Evaluation Source Classification:
+
+```text
+A = 실제 평가 화면/PDF 등과 대조 확인
+B = 구체적 평가문항 존재, 현재 공식 평가와 대조 필요
+C = 공식 문항 미확보, Requirement 기반 Evaluation Preparation
+D = 평가자료 미확보
+```
+
+슬라이드의 중요한 주장에는 필요 시 Source Badge를 사용한다.
+
+```text
+OFFICIAL   공식 Mission/Evaluation
+CODE       실제 구현
+RUNTIME    실제 실행
+EVIDENCE   검증 증거
+EXPLAIN    설명/해석
+AI-VISUAL  AI 생성 개념 시각자료
+```
+
+## 8. Figma Master 원칙
 
 Figma에는 미션마다 새 디자인을 만들지 않고 공통 Master를 사용한다.
 
 필수 Components:
 - Cover
+- Mission Map / One-page Summary
+- Glossary / Concept Card
+- 4-Panel Concept Comic
+- Module / Class Diagram Frame
+- Function IPO Card
+- Normal / Failure Flow Compare
+- Security / Trust Boundary Frame
+- Before / After Frame
+- Source / Evidence Provenance Badge
 - Section Header
 - Claim Title
 - Requirement/Evidence Matrix
@@ -140,7 +265,7 @@ Layout:
 - 한 슬라이드 = 한 주장
 - 제목만 읽어도 전체 발표 논리가 이어지게 작성
 
-## 7. 디자인 토큰
+## 9. 디자인 토큰
 
 - Navy `#081B2F` — 표지 / 결론
 - Blue `#2F80ED` — 구조 / 검증
@@ -152,7 +277,7 @@ Layout:
 
 텍스트는 한국어 중심으로 작성하고, 기술 용어 첫 등장 시 `한글명(English Full Name, 약어)`를 사용한다.
 
-## 8. Repository Presentation Pack
+## 10. Repository Presentation Pack
 
 각 Mission의 Round 02에서 실제 발표자료를 만들 때 다음 구조를 사용한다.
 
@@ -162,22 +287,30 @@ training/round-02-clear/presentation/
 ├── OUTLINE.md
 ├── SCRIPT.md
 ├── EVIDENCE-MAP.md
+├── GLOSSARY.md       # 핵심 용어·개념·4컷 만화 기획
+├── CODE-MAP.md       # Module/Class/Method/Function/핵심 코드 연결
+├── DEMO-RUNBOOK.md   # 1~3분 실제 시연 순서와 실패 대비
 └── assets/          # 실제 필요할 때 생성
 ```
 
 - `OUTLINE.md`: 슬라이드별 주장·내용·시각자료
 - `SCRIPT.md`: 발표 대본 / 30초·1분 설명
-- `EVIDENCE-MAP.md`: Slide ↔ Requirement ↔ Implementation ↔ Evidence 연결
+- `EVIDENCE-MAP.md`: Slide ↔ Requirement ↔ Implementation ↔ Verification ↔ Evidence ↔ Evaluation 연결
+- `GLOSSARY.md`: 용어·개념·쉬운 비유·정의·실제 적용·4컷 만화 기획
+- `CODE-MAP.md`: File/Module/Class/Method/Function과 데이터 흐름 연결
+- `DEMO-RUNBOOK.md`: Demo 순서, 기대 결과, 실패 시 확인 순서
 - `assets/`: 실제 Screenshot·Diagram·생성 이미지
 
 빈 형식을 맞추기 위해 assets를 미리 대량 생성하지 않는다.
 
-## 9. Evidence Map 최소 형식
+## 11. Evidence Map 최소 형식
 
 ```text
 Slide
 → Requirement
+→ Evaluation Source/Class
 → Implementation
+→ Code/Function
 → Verification
 → Evidence Path
 → 발표 설명
@@ -194,7 +327,7 @@ Slide 5
 → "미디어 쿼리로 3개 화면 크기를 대응했습니다."
 ```
 
-## 10. 발표 완료 기준
+## 12. 발표 완료 기준
 
 - 현재 제2기 Mission ID·제목 사용
 - 공식 요구사항과 발표 내용이 일치
@@ -202,10 +335,78 @@ Slide 5
 - 실제 Runtime Screenshot 포함
 - PASS 주장에 Evidence 존재
 - Secret·개인정보 제거
+- Mission Map 한 장으로 전체 흐름 설명 가능
+- 핵심 용어·개념을 쉬운 말과 정확한 정의로 설명 가능
+- 주요 Class/Method/Function 또는 Module/Function 구조 연결
+- End-to-End 데이터 흐름 설명 가능
+- 정상/오류/복구 흐름 설명 가능
 - WHY 설명 포함
-- 30초 핵심 설명 준비
+- 비기능 요구사항(보안/성능/신뢰성/접근성 중 해당 항목) 확인
+- Evaluation Source Classification 표시
+- 기준 Commit SHA와 Evidence 재현 경로 기록
+- 10초/30초/1분 핵심 설명 준비
+- 1~3분 Demo Runbook 준비
 - 예상 질문 준비
 - Figma 원본 또는 편집 가능한 원본 보존
 - PDF/PPT Export 검토 완료
 
 > **Repository가 사실의 원본이고, ChatGPT가 설명과 시각화를 만들며, Figma가 최종 발표 디자인을 관리한다.**
+
+
+## 13. 추가 품질 기준
+
+### 13.1 비기능 요구사항(Non-functional Requirements, NFR)
+미션 성격에 맞는 항목만 선택하여 검증한다.
+
+- 성능(Performance)
+- 보안(Security)
+- 신뢰성(Reliability)
+- 관찰성(Observability)
+- 접근성(Accessibility)
+- 비용(Cost)
+- 유지보수성(Maintainability)
+
+### 13.2 기술 의사결정
+중요한 기술 선택은 다음을 남긴다.
+
+```text
+선택한 방법
+→ 선택 이유
+→ 고려한 대안
+→ Trade-off
+→ 현재 한계
+→ 향후 개선
+```
+
+### 13.3 Demo 재현성
+발표 Demo는 즉흥적으로 하지 않는다.
+
+```text
+Preflight
+→ Demo 시작 상태
+→ Step 1~N
+→ 기대 결과
+→ 실패 시 확인 순서
+→ Recovery
+```
+
+### 13.4 Cross-Mission Skill Map
+15개 미션을 진행하면서 습득 기술을 누적한다.
+
+```text
+B1 Web
+→ B2 Python/Git
+→ B3 Cloud/AI API
+→ B4 Linux/OS
+→ B5 Data Structure/Algorithm
+→ B6 DB/Backend
+→ B7 Full-stack/AI Service
+```
+
+최종 종합 발표에서는 미션별 결과뿐 아니라 이 누적 기술지도를 통해 성장 흐름을 보여준다.
+
+### 13.5 발표 접근성
+- 본문과 코드 글자가 발표 화면에서 읽힐 크기인지 확인
+- 색만으로 PASS/FAIL을 구분하지 않음
+- 이미지·다이어그램에 짧은 설명 캡션 제공
+- 긴 코드 대신 핵심 블록과 호출 흐름 사용
