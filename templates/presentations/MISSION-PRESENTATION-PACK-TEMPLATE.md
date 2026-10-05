@@ -186,6 +186,29 @@
 | Slide | Requirement | Evaluation Class/Question | Implementation | Code/Function | Verification | Evidence | 설명 |
 |---|---|---|---|---|---|---|---|
 
+## QUICK-REVIEW.md
+
+- Mission 한 문장:
+- 핵심 용어 5개:
+- 전체 Flow:
+- 핵심 Module/Class/Function:
+- 대표 Code:
+- 대표 Evidence:
+- 평가 질문 3개:
+- 현재 한계:
+- 다음 개선:
+
+## APPENDIX.md
+
+- 추가 Glossary:
+- 추가 4컷 만화:
+- Class/Method/Function 상세:
+- Code 상세:
+- Test Case 전체:
+- Error/Recovery 상세:
+- Security/Performance/Trade-off:
+- Evaluation Q&A:
+
 ## 최종 체크
 
 - [ ] Mission Map 한 장으로 전체 흐름 설명 가능
@@ -212,4 +235,7 @@
 - [ ] 예상 질문
 - [ ] 한계와 개선 방향
 - [ ] Figma 편집 원본 보존
+- [ ] Main Deck 과밀 여부 확인
+- [ ] Learning/Evaluation Appendix 준비
+- [ ] Quick Review Sheet 1장 준비
 - [ ] PDF/PPT Export 검토
