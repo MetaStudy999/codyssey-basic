@@ -2,7 +2,8 @@
 
 > **Actual Figma Slides Master:** https://www.figma.com/slides/MbDKgyckrGGPLDECvbUmun  
 > **Team:** `박영세's team`  
-> **Deck:** Core 12~14 Slides + B7 Term Project 15~18 Slides
+> **Status:** Repository specification updated; actual Figma Master may still contain the legacy 7 + 12 frame set until expanded.  
+> **Target Deck Specification:** Core 12~14 Slides + B7 Term Project 15~18 Slides
 
 ## 목적
 
