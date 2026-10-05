@@ -76,22 +76,22 @@ B1-1 ~ B7-2의 발표자료를 매번 새로 디자인하지 않고, 하나의 F
 
 ## Term Project 15~18 Slides
 
-1. Executive Summary
-2. Problem / Objective
-3. Requirement → Evidence
-4. Architecture
-5. ERD / Data Model
-6. API / Sequence
-7. AI / Core Logic
-8. UI / Runtime
-9. Verification
-10. Collaboration
-11. Troubleshooting / Security / Limitation
-12. Security / Privacy / Trust Boundary
-13. Failure / Recovery / Reliability
-14. Performance / Observability / Cost
+1. Hero Cover / Executive Summary
+2. Mission Map / One-page Summary
+3. Problem / Goal / User Scenario
+4. Terms / Concepts / 4-Panel Comic
+5. Requirement → Evaluation → Evidence
+6. System Architecture / Trust Boundary
+7. ERD / Data Model
+8. API / End-to-End Data Flow / Sequence
+9. Module / Class / Method Structure
+10. AI / Core Logic / Code / Function IPO
+11. UI / Runtime / Demo
+12. Normal / Failure / Security / Recovery
+13. Troubleshooting / Before-After / Trade-off
+14. Performance / Observability / Cost / NFR
 15. Collaboration / Git / PR
-16. Verification / Evidence Traceability
+16. Verification / Test / Evidence Traceability
 17. Evaluation / Learning / Limitation
 18. Conclusion / Q&A
 
