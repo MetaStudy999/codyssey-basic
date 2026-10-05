@@ -28,6 +28,19 @@ Diagram Library      = 13장 편집 가능 도식 템플릿
 
 ## 권장 제작 체계
 
+고품질 Golden Learning Deck은 기존 Figma/PPT-native 방식에 더해 **Image-First Precision Composite**를 사용할 수 있다.
+
+```text
+Repository Truth
+→ Storyboard
+→ AI Visual
+→ 정확한 Text/Code/Evidence 합성
+→ 4K Final Slide Image
+→ PPT / PDF
+```
+
+PowerPoint는 반드시 디자인 원본일 필요가 없으며, 완성된 고해상도 Slide Image를 담는 발표 컨테이너로 사용할 수 있다.
+
 ```text
 Mission Repository = 사실 / 코드 / 실제 Evidence
 ChatGPT           = 스토리라인 / 대본 / Diagram / 개념 이미지
@@ -38,6 +51,8 @@ PDF / PPT         = 제출·발표용 Export
 - [Round 02 발표자료 생성 표준](../../standards/ROUND-02-PRESENTATION-STANDARD.md)
 - [Figma Master Template Specification](FIGMA-MASTER-TEMPLATE-SPEC.md)
 - [Mission Presentation Pack Template](MISSION-PRESENTATION-PACK-TEMPLATE.md)
+- [Presentation Quality Evolution](PRESENTATION-QUALITY-EVOLUTION.md)
+- [Presentation Changelog](CHANGELOG.md)
 
 Round 02 신규 발표는 **일반 12~14장 Learning & Evaluation Deck**, B7-1/B7-2는 **15~18장 Term Project Deck**을 기본으로 한다. 발표 시간이 짧으면 슬라이드를 합치되 필수 정보는 유지한다. 실제 Runtime Screenshot과 Evidence를 우선하고, AI 생성 이미지는 개념 설명용 Asset으로만 사용한다.
 
