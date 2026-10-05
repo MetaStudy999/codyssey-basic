@@ -239,3 +239,27 @@
 - [ ] Learning/Evaluation Appendix 준비
 - [ ] Quick Review Sheet 1장 준비
 - [ ] PDF/PPT Export 검토
+
+
+## IMAGE-FIRST-PRECISION-COMPOSITE.md
+
+- Visual Mode: `PPT-NATIVE | HYBRID | IMAGE-FIRST`
+- Master Resolution: `3840x2160 | 1920x1080`
+- AI Visual Assets:
+- Exact Text Overlay Source:
+- Exact Code Source:
+- Runtime Screenshot Source:
+- Evidence Source:
+- Provenance Badge:
+- Final Composite:
+- PowerPoint Overlay:
+- Accessibility Text:
+
+### Image-First QA
+- [ ] AI 생성 텍스트를 최종 사실 정보로 사용하지 않음
+- [ ] 코드/숫자/URL/SHA는 Source에서 정확히 합성
+- [ ] 실제 Runtime Screenshot을 AI 재현 이미지로 대체하지 않음
+- [ ] AI-VISUAL / CODE / RUNTIME / EVIDENCE Badge 구분
+- [ ] Full-screen에서 본문과 코드 가독성 확인
+- [ ] 4K 또는 1080p 이상 최종 Render 확인
+- [ ] Evidence의 원본 경로와 기준 Commit SHA 추적 가능
