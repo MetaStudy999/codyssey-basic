@@ -70,8 +70,8 @@ Final 4K Slide Image
 | ID | 발견 | 개선 후보 | 검증 대상 | 상태 |
 |---|---|---|---|---|
 | P-C001 | PPT-native에서 PhotoReal/Cinematic 깊이감 부족 | Image-First 도입 | B1-1 | TESTING |
-| P-C002 | AI 생성 한글·코드 정확성 불안정 | 정확한 Text/Code 후합성 | B1-1/B1-2 | TESTING |
-| P-C003 | AI Runtime UI가 Evidence처럼 보일 위험 | AI-VISUAL / RUNTIME / EVIDENCE Badge 강제 | B1-1 | TESTING |
+| P-C002 | AI 생성 한글·코드 정확성 불안정 | 정확한 Text/Code 후합성 | B1-1에서 위험 확인, B1-2에서 재검증 | ACCEPTED-AS-RULE |
+| P-C003 | AI Runtime UI가 Evidence처럼 보일 위험 | Truth Replacement Gate + Badge 강제 | B1-1에서 실제 위험 확인 | ACCEPTED-AS-RULE |
 | P-C004 | 만화가 많으면 기술 발표가 가벼워질 수 있음 | Comic 20~25%, Technical/Evidence 비중 확대 | B1-1/B1-2 | TESTING |
 | P-C005 | 6-up Thumbnail에서는 좋아 보이나 단일 화면 가독성 미검증 | Slide-by-slide Full-screen QA | B1-1 | OPEN |
 | P-C006 | 이미지형 PPT는 접근성·편집성이 약해짐 | Speaker Notes / Alt Text / 최소 PPT Overlay | B1-2 | OPEN |
@@ -90,3 +90,29 @@ IDEA
 ```
 
 하나의 멋진 샘플만으로 Stable 승격하지 않는다. 최소 B1-1과 다음 성격이 다른 Mission에서 재검증한다.
+
+
+## B1-1 Image-First Review Result — 2026-10-06
+
+### 확인된 장점
+- PPT-native 조립보다 PhotoReal / Cinematic / Comic 시각 완성도가 높음
+- Problem → Architecture → Data Flow → Evidence → Journey의 시각적 스토리텔링이 강함
+- Concept Comic과 Technical UI의 혼합이 학습 친화성과 전문성을 동시에 높임
+
+### 실제로 확인된 결함
+- AI가 생성한 작은 한글·영문·코드는 정확성을 보장할 수 없음
+- AI가 그린 Runtime Mockup이 실제 Evidence처럼 보일 수 있음
+- 생성된 PASS 표·Terminal·수치는 실제 Repository Truth와 다를 수 있음
+
+### 확정된 운영 규칙
+1. AI Visual은 디자인/비유/분위기를 담당한다.
+2. 정확한 Text/Code/URL/SHA/Requirement는 Source에서 후합성한다.
+3. Runtime/Evidence는 실제 원본만 사용한다.
+4. AI Mockup에는 `MOCKUP` 또는 `AI-VISUAL`을 붙인다.
+5. Truth Replacement Gate 통과 전에는 `REAL EVIDENCE` 또는 `FINAL`로 표시하지 않는다.
+
+### 현재 판정
+- P3 Image-First Precision Composite: **계속 TESTING**
+- P-C002: **ACCEPTED-AS-RULE**
+- P-C003: **ACCEPTED-AS-RULE**
+- Stable 승격: **B1-2 또는 다른 성격 Mission 재검증 후 결정**
