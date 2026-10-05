@@ -30,3 +30,24 @@ AI 생성 이미지가 긴 한글·코드·수치·Evidence를 직접 표현할 
 
 ### Not Yet Stable
 B1-2 또는 다른 유형 Mission에서 재검증 전까지 Image-First Precision Composite는 Candidate로 유지한다.
+
+
+## 2026-10-06 — B1-1 Image-First Review
+
+Status: **VALIDATION UPDATE**
+
+### Observed
+- 시각 품질은 Golden Deck 목표 수준에 근접
+- AI 생성 한글·코드의 미세 오류 가능성 확인
+- AI Runtime Mockup이 실제 Evidence로 오인될 수 있는 문제 확인
+
+### Changed
+- Truth Replacement Gate를 필수화
+- AI Mockup에 `REAL EVIDENCE` 표현 금지
+- `MOCKUP` provenance badge 추가
+- 실제 Screenshot / Code / Log / Requirement / SHA를 Source에서 후합성하도록 확정
+- Evidence Integrity Final Gate 추가
+
+### Candidate Status
+Image-First Precision Composite는 계속 **CANDIDATE / TESTING** 상태로 유지한다.
+B1-2 또는 다른 유형 Mission에서 Accuracy/Evidence QA를 재검증한 뒤 Stable 승격 여부를 결정한다.
