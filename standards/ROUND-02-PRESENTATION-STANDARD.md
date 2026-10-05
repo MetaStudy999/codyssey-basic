@@ -410,3 +410,42 @@ B1 Web
 - 색만으로 PASS/FAIL을 구분하지 않음
 - 이미지·다이어그램에 짧은 설명 캡션 제공
 - 긴 코드 대신 핵심 블록과 호출 흐름 사용
+
+
+## 14. 3층 발표 패키지
+
+정보를 모두 담되 발표가 과밀해지지 않도록 결과물을 3층으로 분리한다.
+
+### Layer 1 — Main Deck
+- 실제 발표용
+- 일반 미션 12~14장, B7 15~18장
+- 한 슬라이드 한 주장
+- 핵심 Flow와 Evidence 중심
+- 발표 시간에 맞춰 압축 가능
+
+### Layer 2 — Learning / Evaluation Appendix
+- 발표 중 질문이 나오면 바로 펼쳐볼 수 있는 상세 부록
+- 전체 Glossary
+- 추가 4컷 만화
+- Class / Method / Function 상세
+- 코드 블록 해설
+- 전체 Test Case
+- 오류·복구 상세
+- 보안·성능·Trade-off
+- 평가 예상질문과 답변
+
+### Layer 3 — Quick Review Sheet
+미션당 1장으로 만든다.
+
+```text
+Mission 한 문장
+핵심 용어 5개
+전체 Flow
+핵심 Class/Function
+대표 코드
+대표 Evidence
+평가 질문 3개
+한계 / 개선 1개
+```
+
+평가 직전에는 Quick Review Sheet → Main Deck → Appendix 순서로 복습한다.
