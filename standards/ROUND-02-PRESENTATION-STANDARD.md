@@ -449,3 +449,83 @@ Mission 한 문장
 ```
 
 평가 직전에는 Quick Review Sheet → Main Deck → Appendix 순서로 복습한다.
+
+
+## 15. Image-First Precision Composite 제작 모델
+
+고품질 Golden Learning Deck은 필요 시 **Image-First Precision Composite** 방식을 사용한다.
+
+### 15.1 핵심 원칙
+
+```text
+Repository Truth
+→ Storyboard
+→ AI Visual Generation
+→ Precision Composite
+→ 4K Final Slide Image
+→ PowerPoint / PDF
+```
+
+- AI 생성은 배경·조명·캐릭터·분위기·카드 Frame·Cinematic Visual 등 **시각 표현**을 담당한다.
+- 정확성이 필요한 한글/영문, 코드, 수치, URL, Commit SHA, 평가항목, Architecture Label은 **정확한 텍스트 렌더링으로 후합성**한다.
+- Runtime/Evidence는 AI로 재현하지 않고 **실제 Screenshot/Log/Code**를 원본으로 사용한다.
+- 최종 슬라이드는 16:9 기준 Full-Bleed 고해상도 이미지로 만들 수 있으며, PowerPoint는 발표·전달 컨테이너로 사용한다.
+- 필요한 경우 페이지 번호, Hyperlink, QR, Speaker Notes, Accessibility Text만 PowerPoint Overlay로 유지한다.
+
+### 15.2 권장 해상도
+
+- Working Master: 3840 × 2160 (4K, 16:9)
+- Delivery: 1920 × 1080 이상
+- 긴 코드/표는 이미지에 직접 생성하지 않고 Source에서 정확히 렌더링한다.
+
+### 15.3 Visual / Truth 분리
+
+```text
+AI-VISUAL = 설명·분위기·비유
+CODE      = 실제 Repository Code
+RUNTIME   = 실제 실행 화면
+EVIDENCE  = 실제 검증 자료
+OFFICIAL  = 공식 Mission/Evaluation
+```
+
+AI가 생성한 UI, 코드, 로그, 숫자는 실제 Evidence로 사용하지 않는다.
+
+### 15.4 슬라이드 제작 품질 게이트
+
+각 슬라이드는 다음을 통과해야 한다.
+
+1. **Visual Impact** — 한 장의 작품처럼 읽히는가
+2. **Technical Accuracy** — 용어·코드·흐름이 실제 구현과 일치하는가
+3. **Evidence Integrity** — 실제 증거와 생성 이미지를 혼동하지 않는가
+4. **Learning Value** — 초보자 비유에서 정확한 기술 설명까지 연결되는가
+5. **Presentation Value** — 전체 화면 발표에서 글자·코드·도식이 읽히는가
+6. **Traceability** — Requirement → Code → Verification → Evidence가 추적 가능한가
+
+### 15.5 권장 Visual Mix
+
+미션 성격에 따라 조정하되 다음을 기본 참고값으로 한다.
+
+```text
+Comic / Illustration       ≈ 20~25%
+Technical Diagram / UI     ≈ 30~35%
+Code / Engineering Visual  ≈ 15~20%
+Real Runtime / Evidence    ≈ 20~30%
+```
+
+만화 캐릭터는 문제·개념·오류·학습·마무리에 집중하고,
+Architecture / Code / Security / Test / Evidence에서는 전문 기술 시각화와 실제 자료를 우선한다.
+
+### 15.6 Golden Deck 개선 루프
+
+```text
+Draft
+→ Visual Review
+→ Accuracy Review
+→ Evidence Review
+→ Presentation Review
+→ Improvement Candidate 기록
+→ 다음 Mission에서 검증
+→ Accepted Standard 승격
+```
+
+발표 품질 개선은 감상 수준에서 끝내지 않고 [Presentation Quality Evolution](../templates/presentations/PRESENTATION-QUALITY-EVOLUTION.md)에 기록한다.
