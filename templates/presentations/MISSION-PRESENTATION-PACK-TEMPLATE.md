@@ -263,3 +263,7 @@
 - [ ] Full-screen에서 본문과 코드 가독성 확인
 - [ ] 4K 또는 1080p 이상 최종 Render 확인
 - [ ] Evidence의 원본 경로와 기준 Commit SHA 추적 가능
+- [ ] AI Mockup에 REAL EVIDENCE / PASS / 실제 검증 표현을 사용하지 않음
+- [ ] 실제 Evidence 영역은 실제 Screenshot/Log/Code로 Truth Replacement 완료
+- [ ] Requirement ID / URL / SHA / 수치가 Source와 일치
+- [ ] Truth Replacement Gate 통과 후에만 FINAL/EVIDENCE READY 표시
