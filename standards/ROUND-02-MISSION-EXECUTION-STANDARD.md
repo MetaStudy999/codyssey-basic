@@ -84,7 +84,7 @@ Requirement(요구사항)
 - 현재 평가와 무관한 기능 확장은 뒤로 미룬다
 
 ### Gate 4 — 필요한 개념만 학습
-적시 학습(Just-In-Time Learning, JIT Learning)을 사용한다.
+적시 학습(Just-In-Time Learning, JIT Learning)을 사용한다. 발표자료에서 다시 학습할 수 있도록 핵심 용어·개념·구조를 동시에 정리한다.
 
 ```text
 쉬운 한 문장
@@ -96,6 +96,20 @@ Requirement(요구사항)
 ```
 
 기술 용어 첫 등장 시 가능하면 `한글명(English Full Name, 약어)` 형식을 사용한다.
+
+추가 학습 산출물:
+
+```text
+핵심 용어
+→ 쉬운 한 문장
+→ 정확한 정의
+→ 왜 필요한가
+→ 이번 미션 적용
+→ 관련 Class/Method/Function
+→ 어려운 개념은 4컷 만화
+```
+
+4컷 만화는 개념 설명용이며 실제 Evidence로 사용하지 않는다.
 
 ### Gate 5 — 한 단계씩 실제 수행
 한 번에 하나의 의미 있는 Step만 진행한다.
@@ -189,7 +203,7 @@ Repository Evidence
 → PDF/PPT Export
 ```
 
-일반 미션은 7장 Core Deck, B7 Term Project는 10~12장을 기본으로 한다. 실제 Screenshot/Evidence를 우선하며 AI 생성 이미지를 실제 증빙처럼 사용하지 않는다.
+일반 미션은 12~14장 Learning & Evaluation Core Deck, B7 Term Project는 15~18장을 기본으로 한다. 발표 시간이 짧으면 슬라이드를 합칠 수 있으나 Mission Map, 용어·개념, 구조, 데이터 흐름, 코드, 정상/오류 흐름, 보안, Troubleshooting, Verification/Evidence, Evaluation 설명 정보는 유지한다. 실제 Screenshot/Evidence를 우선하며 AI 생성 이미지와 4컷 만화는 개념 설명용으로만 사용한다.
 
 ## 4.1 버전형 실행 템플릿
 
