@@ -186,3 +186,48 @@ NOT_STARTED
 5. Mission별 특성은 `_shared/MISSION-QUALITY-PROFILES.md`를 따른다.
 
 > 핵심: **중앙은 관리하고, 각 Mission Repository는 실행한다. 경로는 표준화하되 실제 내용은 Mission 특성에 맞게 다르게 한다.**
+
+
+## 11. Five-Contract Mission Gate
+
+모든 Mission은 실제 실행 전에 다음 5개 Contract(계약)를 중앙 Control Plane에 정의할 수 있다.
+
+```text
+MISSION-CONTRACT
+→ 무엇을 해야 하는가
+
+ENVIRONMENT-CONTRACT
+→ 어디서 무엇으로 실행하는가
+
+VERIFICATION-CONTRACT
+→ 무엇을 확인해야 PASS인가
+
+EVIDENCE-CONTRACT
+→ 어떤 실제 증빙을 남겨야 하는가
+
+EVALUATION-CONTRACT
+→ 무엇을 자기 말로 설명할 수 있어야 하는가
+```
+
+첫 적용 대상은 B1-1이며, B1-1에서 유효성을 검증한 후 다음 Mission에 점진적으로 적용한다.
+
+Contract가 존재한다는 사실만으로 Mission을 시작하거나 PASS/CLEAR를 선언하지 않는다.
+
+## 12. Profile Binding
+
+각 Mission Registry는 다음 내부 Profile을 가질 수 있다.
+
+```yaml
+quality_profile: ...
+risk_level: LOW | MEDIUM | HIGH
+security_profile: ...
+evidence_profile: ...
+recommended_predecessors: [...]
+```
+
+- `quality_profile`: 기술 분야별 품질 보완
+- `security_profile`: 권한·Secret·Trust Boundary 등 보안 검증
+- `evidence_profile`: Mission 특성에 맞는 증빙 종류
+- `recommended_predecessors`: APOS 내부 학습/재사용 권고 관계이며 공식 선행조건이 아님
+
+세부 정의는 `training/apos/round-03/_shared/` 문서를 따른다.
