@@ -22,6 +22,7 @@ contracts:
   evaluation: training/apos/round-03/B1-1/EVALUATION-CONTRACT.yml
 execution_plan: training/apos/round-03/B1-1/EXECUTION-PLAN.md
 review_summary: training/apos/round-03/B1-1/REVIEW-SUMMARY.md
+table_of_contents: training/apos/round-03/B1-1/TABLE-OF-CONTENTS.md
 tracks:
   core: NOT_STARTED
   bonus: NOT_STARTED
