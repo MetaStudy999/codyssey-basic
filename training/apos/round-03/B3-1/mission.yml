@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B3-1
+title: "내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기"
+stable_topic: cloud-infrastructure
+canonical_repository: MetaStudy999/codyssey-basic-cloud-infrastructure
+requirement: REQUIRED
+control_path: training/apos/round-03/B3-1
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: CLOUD_INFRA
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."
