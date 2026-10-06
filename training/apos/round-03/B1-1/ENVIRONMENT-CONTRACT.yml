@@ -1,0 +1,50 @@
+schema_version: 1
+contract_type: ENVIRONMENT
+mission_id: B1-1
+execution_root: training/round-03-apos
+status: PRE_START
+
+runtime:
+  authoritative_local_readback_required: true
+  preferred_profile: imac-orbstack-ubuntu
+  browser_required: true
+  local_http_server_required: true
+  git_required: true
+  github_cli_optional: true
+
+start_readback:
+  required:
+    - host_identity
+    - guest_or_container_identity
+    - current_user
+    - current_repository
+    - remote_origin
+    - main_head
+    - worktree_cleanliness
+    - browser_availability
+    - runtime_versions
+    - network_reachability_if_needed
+
+proposed_branch:
+  name: round-03/b1-1-apos
+  create_only_after_owner_start_approval: true
+
+host_mutation:
+  mode: HITL_MANUAL_ONLY
+  forbidden_without_explicit_approval:
+    - sudoers_change
+    - service_change
+    - firewall_change
+    - package_removal
+    - runner_change
+    - macos_admin_change
+
+recovery:
+  before_mutation:
+    - record_main_head
+    - record_branch
+    - record_git_status
+  rollback:
+    - preserve_round_01
+    - preserve_round_02
+    - isolate_round_03_changes
