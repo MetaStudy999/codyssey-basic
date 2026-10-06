@@ -1,0 +1,42 @@
+schema_version: 1
+contract_type: EVALUATION
+mission_id: B1-1
+official_evaluation_readback_required: true
+legacy_evaluation_role: REFERENCE_ONLY
+legacy_reference: b4-1-evaluation.md
+
+traceability:
+  required_chain:
+    - requirement
+    - concept
+    - implementation_location
+    - demo_method
+    - verification_result
+    - evidence
+
+answer_format:
+  sequence:
+    - WHAT
+    - WHY
+    - HOW
+    - VERIFY
+    - LIMITATION
+  durations:
+    - 10_seconds
+    - 30_seconds
+    - 60_seconds
+
+learning_outputs:
+  - key_terms
+  - one_sentence_explanations
+  - accurate_definitions
+  - html_css_javascript_role_map
+  - architecture_and_data_flow
+  - normal_and_error_flow
+  - likely_followup_questions
+
+ready_rule:
+  official_items_mapped: true
+  user_can_explain_in_own_words: true
+  demo_is_reproducible: true
+  evidence_is_linked: true
