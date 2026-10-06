@@ -5,6 +5,10 @@ profile: WEB_RUNTIME_VISUAL
 fresh_evidence_required: true
 prior_round_evidence_role: REFERENCE_ONLY
 root: training/round-03-apos/06-evidence
+layout:
+  core: training/round-03-apos/06-evidence/core
+  bonus: training/round-03-apos/06-evidence/bonus
+  apos_enhancement: training/round-03-apos/06-evidence/apos-enhancement
 
 evidence_sets:
   requirement_mapping:
@@ -49,3 +53,12 @@ forbidden:
   - private_key
   - fabricated_runtime_output
   - round_02_evidence_labeled_as_round_03
+
+
+bonus_evidence:
+  source_contract: training/apos/round-03/B1-1/BONUS-CONTRACT.yml
+  required_per_item:
+    - runtime_result
+    - verification_result
+    - tested_candidate_sha
+  rule: "Round 02 Bonus PASS/Evidence is reference-only and cannot substitute for Round 03 evidence."
