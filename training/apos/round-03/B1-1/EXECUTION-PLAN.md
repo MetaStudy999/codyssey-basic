@@ -187,7 +187,38 @@ Local Server
 
 Tested Commit SHA를 Evidence에 묶는다.
 
-## Phase 7 — Security / Recovery Gate
+## Phase 7 — Official Bonus Track
+
+CORE 필수 요구사항의 후보가 확보되면 공식 Bonus를 별도 Track으로 수행한다.
+
+Round 03에서 다시 검증할 공식 Bonus 4개:
+
+| ID | Bonus | 새 검증 |
+|---|---|---|
+| BONUS-01 | 언어별 프로젝트 필터 | 버튼 클릭 → 프로젝트 목록/개수 변경 |
+| BONUS-02 | Hero 타이핑 효과 | 최초 로드 타이핑 + Reduced Motion |
+| BONUS-03 | Formspree 실제 전송 | 실제 Submission + 성공/실패 UI + 외부 연동 확인 |
+| BONUS-04 | 시스템 다크 모드 감지 | System/Light/Dark + 시스템 테마 변화 반영 |
+
+원칙:
+
+- Round 02에서 4개가 PASS였다는 사실은 참고자료로 보존한다.
+- Round 03 PASS는 새 Candidate에서 새 Runtime/Evidence로 판단한다.
+- Bonus는 CORE 공식 CLEAR 조건과 분리한다.
+- APOS 자체 보완 기능을 공식 Bonus라고 부르지 않는다.
+
+Evidence는 가능하면:
+
+```text
+06-evidence/
+├── core/
+├── bonus/
+└── apos-enhancement/
+```
+
+로 분리한다.
+
+## Phase 8 — Security / Recovery Gate
 
 B1-1 Security Profile:
 
@@ -206,7 +237,7 @@ Risk: LOW
 - Round 03 변경만 독립 Rollback 가능
 - 배포 실패 시 이전 안정 상태로 복귀 가능
 
-## Phase 8 — Evidence Package
+## Phase 9 — Evidence Package
 
 새 Evidence Root:
 
@@ -225,7 +256,7 @@ training/round-03-apos/06-evidence/
 - Candidate Commit SHA
 - Evidence Index
 
-## Phase 9 — Evaluation & Presentation
+## Phase 10 — Evaluation & Presentation
 
 평가 설명은 다음 구조로 준비한다.
 
@@ -247,7 +278,7 @@ WHAT
 
 발표자료는 실제 구현과 Evidence를 기반으로 구성하며, 존재하지 않는 기능을 슬라이드에 넣지 않는다.
 
-## Phase 10 — QA_SEC / Close Gate
+## Phase 11 — QA_SEC / Close Gate
 
 독립 QA_SEC에서 최소 확인:
 
@@ -283,6 +314,9 @@ Preflight
 → Static/Negative Test
 → Browser Runtime
 → Evidence
+→ CORE Verification
+→ Official Bonus 4
+→ APOS Enhancement
 → Security/Recovery
 → Evaluation
 → Presentation
