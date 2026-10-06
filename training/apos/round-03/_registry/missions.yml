@@ -13,6 +13,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-web-portfolio
     requirement: REQUIRED
     quality_profile: WEB_STATIC
+    risk_level: LOW
+    security_profile: WEB_PUBLIC_BASELINE
+    evidence_profile: WEB_RUNTIME_VISUAL
+    recommended_predecessors: []
 
   - id: B1-2
     title: "버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기"
@@ -20,6 +24,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-react-spa
     requirement: OPTIONAL
     quality_profile: WEB_SPA
+    risk_level: MEDIUM
+    security_profile: SPA_PUBLIC_BASELINE
+    evidence_profile: SPA_BUILD_RUNTIME
+    recommended_predecessors: [B1-1]
 
   - id: B2-1
     title: "나만의 용돈 기입장 프로그램 만들기"
@@ -27,6 +35,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-budget-tracker
     requirement: REQUIRED
     quality_profile: PYTHON_DATA_APP
+    risk_level: LOW
+    security_profile: LOCAL_DATA_BASELINE
+    evidence_profile: DATA_APP_TEST
+    recommended_predecessors: []
 
   - id: B2-2
     title: "친구 3~5명과 함께 프로그램 만드는 법 연습하기"
@@ -34,6 +46,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-git-collaboration
     requirement: REQUIRED
     quality_profile: GIT_COLLAB
+    risk_level: MEDIUM
+    security_profile: SCM_COLLAB_GOVERNANCE
+    evidence_profile: GIT_COLLAB_TRACE
+    recommended_predecessors: []
 
   - id: B3-1
     title: "내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기"
@@ -41,6 +57,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-cloud-infrastructure
     requirement: REQUIRED
     quality_profile: CLOUD_INFRA
+    risk_level: HIGH
+    security_profile: CLOUD_IAM_NETWORK
+    evidence_profile: CLOUD_DEPLOYMENT
+    recommended_predecessors: [B1-1]
 
   - id: B3-2
     title: "내가 고친 코드 설명을 AI가 대신 써주는 도우미 만들기"
@@ -48,6 +68,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-ai-git-assistant
     requirement: REQUIRED
     quality_profile: AI_DEV_TOOL
+    risk_level: HIGH
+    security_profile: AI_API_HITL
+    evidence_profile: AI_DIFF_RUNTIME
+    recommended_predecessors: [B2-2]
 
   - id: B4-1
     title: "컴퓨터가 알아서 자기 상태를 점검하게 만들기"
@@ -55,6 +79,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-system-monitor
     requirement: REQUIRED
     quality_profile: SYSTEM_MONITOR
+    risk_level: HIGH
+    security_profile: HOST_PRIVILEGE_MONITOR
+    evidence_profile: HOST_MONITOR_RUNTIME
+    recommended_predecessors: []
 
   - id: B4-2
     title: "컴퓨터가 갑자기 느려지거나 멈췄을 때 원인 찾아 고치기"
@@ -62,6 +90,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-system-troubleshooting
     requirement: REQUIRED
     quality_profile: TROUBLESHOOTING
+    risk_level: HIGH
+    security_profile: HOST_DIAGNOSTIC_SAFETY
+    evidence_profile: TROUBLESHOOT_BEFORE_AFTER
+    recommended_predecessors: [B4-1]
 
   - id: B5-1
     title: "정보를 엄청 빠르게 찾아주는 작은 저장소 만들기"
@@ -69,6 +101,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-mini-redis
     requirement: REQUIRED
     quality_profile: DATA_STRUCTURE_SERVER
+    risk_level: MEDIUM
+    security_profile: SERVICE_MEMORY_SAFETY
+    evidence_profile: DATA_STRUCTURE_BENCHMARK
+    recommended_predecessors: []
 
   - id: B5-2
     title: "파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기"
@@ -76,6 +112,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-mini-git
     requirement: REQUIRED
     quality_profile: VERSION_CONTROL_CORE
+    risk_level: MEDIUM
+    security_profile: VCS_INTEGRITY
+    evidence_profile: VCS_OBJECT_INTEGRITY
+    recommended_predecessors: [B2-2]
 
   - id: B6-1
     title: "정보를 깔끔하게 정리하는 디지털 서랍장 만들기"
@@ -83,6 +123,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-sql-database
     requirement: REQUIRED
     quality_profile: SQL_DATABASE
+    risk_level: MEDIUM
+    security_profile: DATABASE_INTEGRITY
+    evidence_profile: DB_SCHEMA_QUERY
+    recommended_predecessors: []
 
   - id: B6-2
     title: "글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기"
@@ -90,6 +134,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-fastapi-crud
     requirement: OPTIONAL
     quality_profile: BACKEND_CRUD
+    risk_level: HIGH
+    security_profile: API_INPUT_DB
+    evidence_profile: API_CRUD_RUNTIME
+    recommended_predecessors: [B6-1]
 
   - id: B6-3
     title: "로그인이 되고 회원끼리 연결되는 웹 서비스 만들기"
@@ -97,6 +145,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-fastapi-auth
     requirement: OPTIONAL
     quality_profile: BACKEND_AUTH
+    risk_level: HIGH
+    security_profile: AUTHN_AUTHZ_HIGH
+    evidence_profile: AUTH_SECURITY_RUNTIME
+    recommended_predecessors: [B6-2]
 
   - id: B7-1
     title: "웹 기반 AI 챗봇 서비스 개발 프로젝트"
@@ -104,6 +156,10 @@ missions:
     repository: MetaStudy999/codyssey-basic-ai-chatbot
     requirement: REQUIRED_TERM_PROJECT
     quality_profile: AI_SERVICE
+    risk_level: HIGH
+    security_profile: AI_SERVICE_SAFETY
+    evidence_profile: AI_SERVICE_E2E
+    recommended_predecessors: [B1-1, B3-2, B6-1]
 
   - id: B7-2
     title: "웹 기반 AI 챗봇 서비스 고도화 프로젝트"
@@ -111,3 +167,7 @@ missions:
     repository: MetaStudy999/codyssey-basic-ai-chatbot-fullstack
     requirement: OPTIONAL_TERM_PROJECT
     quality_profile: AI_FULLSTACK
+    risk_level: HIGH
+    security_profile: AI_FULLSTACK_HIGH
+    evidence_profile: AI_FULLSTACK_E2E
+    recommended_predecessors: [B7-1, B1-2, B6-3]
