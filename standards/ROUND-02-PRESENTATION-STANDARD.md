@@ -576,3 +576,240 @@ AI Mockup
 6. 각 Evidence가 기준 Commit SHA / Path로 역추적 가능한가?
 
 하나라도 NO이면 `DRAFT` 또는 `MOCKUP` 상태를 유지한다.
+
+## 16. Golden Master v3 — Truth-First Learning System Profile
+
+고품질 기준작(Golden Reference Deck)은 단순 발표자료가 아니라 **학습·설계·구현·검증·증거·재현·설명·전이**를 연결하는 학습 시스템으로 제작한다.
+
+### 16.1 상위 제작 흐름
+
+```text
+Repository Truth Lock
+→ Content Model
+→ Easy Concept
+→ 4-Panel Concept Comic
+→ Technical Mental Model
+→ Architecture
+→ Data / Event / State Flow
+→ Actual Code
+→ Runtime
+→ Verification
+→ Evidence
+→ Design Decision / Trade-off
+→ Troubleshooting
+→ Reproduction
+→ Explain
+→ Evaluate
+→ Mastery
+→ Transfer
+```
+
+미션 완료(PASS)와 학습 숙달(Mastery)은 동일하지 않다.
+
+```text
+Mission Completion
+!=
+Technical Understanding
+!=
+Human Mastery
+```
+
+### 16.2 Truth-First 규칙
+
+Golden Master 후보는 시각 디자인보다 먼저 실제 Source를 잠근다.
+
+각 핵심 슬라이드의 사실 정보는 가능한 범위에서 다음 Provenance를 추적 가능하게 유지한다.
+
+- Source Type
+- Repository
+- Commit SHA
+- File Path
+- Class / Function / Method
+- Requirement ID
+- Verification
+- Evidence Path
+
+AI는 **설명·비유·분위기·개념 시각화**를 담당할 수 있지만 다음을 사실처럼 생성하지 않는다.
+
+- 실제 Code
+- 실제 Terminal / Log
+- 실제 PASS 결과
+- 실제 GitHub / PR / CI 화면
+- 실제 Runtime Screenshot
+- Commit SHA / URL / Requirement 수치
+
+### 16.3 Comic → Diagram → Code → Evidence 연결
+
+어려운 핵심 개념은 다음 4단 연결을 우선한다.
+
+```text
+4-Panel Comic
+→ Technical Diagram
+→ Actual Code
+→ Actual Runtime / Evidence
+```
+
+예: Event → Handler → State → Render
+
+1. Comic: 사용자가 클릭하고 상태가 바뀌는 장면
+2. Diagram: Event Listener → State Update → Render
+3. Code: 실제 Repository 함수
+4. Evidence: 실제 Browser Runtime
+
+만화는 학습 장치이며 Evidence가 아니다.
+
+### 16.4 3-Level Architecture 설명
+
+중요 Architecture는 동일 구조를 난이도별로 반복 설명할 수 있다.
+
+```text
+Level 1 — Beginner View
+사용자 → 웹/서비스 → 외부 시스템 → 결과
+
+Level 2 — Technical View
+Presentation → Application → Integration → Delivery
+
+Level 3 — Code Trace View
+File / Event / Function → State → External Call → Render / Output
+```
+
+목표는 “보았다”가 아니라 “쉬운 말과 기술 언어와 실제 코드로 같은 구조를 설명할 수 있다”이다.
+
+### 16.5 Design Decision / Defense
+
+중요 기술 선택은 기존 WHAT → WHY → HOW → VERIFY → LIMITATION에 다음을 추가한다.
+
+```text
+WHAT
+→ WHY
+→ HOW
+→ VERIFY
+→ LIMITATION
+→ ALTERNATIVE
+→ TRADE-OFF
+```
+
+평가 질문은 난이도를 단계적으로 준비한다.
+
+- Level A: 사실 확인
+- Level B: 동작 원리
+- Level C: 설계 판단
+- Level D: 반론 / 한계
+- Level E: 확장 / Production 전환
+
+### 16.6 Claim–Evidence Pair
+
+Evidence 슬라이드는 “PASS”라는 문장보다 **어떤 원본이 어떤 주장을 증명하는가**를 우선한다.
+
+```text
+Claim
+↕
+Requirement
+↕
+Implementation / Code
+↕
+Verification
+↕
+Evidence
+```
+
+각 주요 Claim은 실제 Source와 연결되어야 한다.
+
+### 16.7 Reproduction Gate
+
+Golden Learning Deck은 사용자의 재현 능력을 별도로 확인한다.
+
+```text
+L1  코드를 보며 설명
+L2  Diagram만 보고 설명
+L3  아무것도 보지 않고 설명
+L4  빈 프로젝트에서 재현
+L5  새로운 문제에 응용
+```
+
+Mission PASS만으로 MASTER를 선언하지 않는다.
+
+### 16.8 3-Layer Deliverable
+
+Golden Profile은 정보 과밀을 막기 위해 다음 세 층으로 구성한다.
+
+#### A. Main Presentation
+- 권장 14~16장
+- 발표용 핵심 Story / Architecture / Code / Runtime / Evidence / Learning
+- 발표 시간에 따라 기존 Core 12~14장 규칙으로 압축 가능
+
+#### B. Technical Appendix
+- 권장 15~25장
+- Glossary, Code Map, Function IPO, Error/Recovery, Security/NFR, 전체 Test, Trade-off, Evaluation Defense
+
+#### C. Quick Review Sheet
+- 1장
+- Mission, 핵심 용어, Architecture, Flow, 대표 Code/Evidence, 예상 질문, 한계, 다음 단계
+
+### 16.9 Hybrid Editable Composite
+
+Image-First를 사용하더라도 최종 PowerPoint는 가능하면 다음 Layer를 분리한다.
+
+```text
+Background Art Layer
++
+Editable Typography Layer
++
+Editable Diagram Layer
++
+Actual Code Layer
++
+Actual Evidence Layer
++
+Accessibility Layer
+```
+
+정확한 텍스트·코드·Evidence는 편집 가능한 객체 또는 정확한 Source Rendering을 우선한다.
+
+### 16.10 Full-screen QA
+
+Thumbnail 품질만으로 승인하지 않는다.
+
+최종 검토는 최소 다음 조건에서 슬라이드별로 수행한다.
+
+- 16:9 전체 화면
+- 1920×1080 이상
+- 제목 / 본문 / Code / Caption 가독성
+- URL / SHA / Requirement / 수치 / 날짜 정확성
+- 생성 Visual과 실제 Evidence 구분
+- 발표실 Projection을 고려한 대비와 글자 크기
+
+### 16.11 Golden Master 10-Gate
+
+다음 Gate가 모두 PASS해야 Golden Master로 판정한다.
+
+```text
+G1  Visual Impact
+G2  Technical Accuracy
+G3  Evidence Integrity
+G4  Traceability
+G5  Learning Value
+G6  Reproduction
+G7  Explanation
+G8  Evaluation Defense
+G9  Full-screen Readability
+G10 Accessibility
+```
+
+하나라도 FAIL 또는 INSUFFICIENT_EVIDENCE이면 `FINAL` / `GOLDEN MASTER`로 승격하지 않는다.
+
+### 16.12 Cross-Mission Promotion Rule
+
+B1-1은 Golden Master Profile의 첫 기준작이다.
+
+```text
+B1-1 validation
+→ Truth Replacement
+→ Full-screen QA
+→ Golden Master Gate
+→ B1-2 또는 다른 성격 Mission 재검증
+→ Stable Standard 승격 여부 결정
+```
+
+하나의 시각적으로 좋은 샘플만으로 Stable 표준으로 승격하지 않는다.
+

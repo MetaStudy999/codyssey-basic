@@ -5,8 +5,8 @@
 ## Current Model
 
 - Stable baseline: **Round 02 Presentation Standard**
-- Current candidate: **Image-First Precision Composite**
-- Candidate status: **TESTING**
+- Current candidate: **Golden Master v3 — Truth-First Learning System**
+- Candidate status: **TESTING — B1-1 → B1-2 cross-mission validation required**
 - First validation target: **B1-1 Golden Learning Deck**
 - Next validation target: **B1-2**
 
@@ -17,7 +17,7 @@
 | P0 | PPT-native component assembly | 편집성, 구조화 | Cinematic/PhotoReal 시각 완성도 제한 | REFERENCE |
 | P1 | Hybrid Golden Learning Deck | Comic + Diagram + Code + Evidence 구조 확립 | 시각 언어가 카드형 PPT에 치우침 | VALIDATED ON B1-1 |
 | P2 | Cinematic Hybrid | PhotoReal Hero, Comic, Trade-off, Evidence Wall 강화 | AI 생성 텍스트/코드 정확성 위험 | VALIDATED VISUALLY |
-| P3 | Image-First Precision Composite | AI Visual 품질 + 정확한 Text/Code/Evidence 후합성 | 편집성 감소, 합성 QA 필요 | TESTING |
+| P3 | Image-First Precision Composite | AI Visual 품질 + 정확한 Text/Code/Evidence 후합성 | 편집성 감소, 합성 QA 필요 | VALIDATED-AS-BASE |\n| P4 | Golden Master v3 — Truth-First Learning System | Truth Lock + Comic→Diagram→Code→Evidence + Reproduction/Defense Gate | Main/Appendix 구조와 Full-screen QA 운영 비용 증가 | TESTING |
 
 ## P3 Design Decision
 
@@ -173,3 +173,68 @@ Current Art Layer
 → Full-screen QA
 → Golden Master Verdict
 ```
+
+## P4 Golden Master v3 Decision — 2026-10-06
+
+### 목표
+
+P3의 시각 품질을 유지하면서 다음 약점을 보완한다.
+
+- Art-first 작업으로 실제 Source 치환이 늦어지는 문제
+- Mission PASS와 Human Mastery가 혼동되는 문제
+- 만화/Diagram/Code/Evidence가 서로 단절되는 문제
+- Thumbnail에서는 좋아 보이나 발표 전체 화면 가독성이 불확실한 문제
+- 기술 선택의 WHY / Alternative / Trade-off / Defense가 약한 문제
+
+### P4 Core Pipeline
+
+```text
+Repository Truth Lock
+→ Story / Concept
+→ Comic
+→ Technical Diagram
+→ Actual Code
+→ Runtime
+→ Verification
+→ Evidence
+→ Decision / Trade-off
+→ Reproduction
+→ Explanation
+→ Evaluation Defense
+→ Mastery / Transfer
+```
+
+### P4 Accepted Rules
+
+1. AI Visual은 설명용이며 Evidence가 아니다.
+2. 핵심 Concept은 가능하면 `Comic → Diagram → Code → Evidence`로 연결한다.
+3. Architecture는 Beginner / Technical / Code Trace 3단계로 설명할 수 있어야 한다.
+4. Evidence는 Claim–Requirement–Code–Verification–Evidence의 추적 사슬을 유지한다.
+5. 기술 선택은 `WHAT → WHY → HOW → VERIFY → LIMITATION → ALTERNATIVE → TRADE-OFF`로 설명한다.
+6. Mission PASS와 Human Mastery를 분리한다.
+7. Reproduction Gate와 Evaluation Defense를 Main/Appendix에 포함한다.
+8. Image-First를 사용해도 Text/Diagram/Code/Evidence의 정확한 Layer를 분리한다.
+9. Full-screen slide-by-slide QA를 Final Gate에 포함한다.
+10. Golden Master는 10개 품질 Gate가 모두 PASS해야 한다.
+
+### Golden Master 10-Gate
+
+| Gate | Question |
+|---|---|
+| G1 Visual Impact | 작품 수준의 시각적 집중도가 있는가? |
+| G2 Technical Accuracy | 실제 구현과 정확히 일치하는가? |
+| G3 Evidence Integrity | AI Visual과 실제 Evidence가 분리되는가? |
+| G4 Traceability | Requirement → Code → Verification → Evidence가 이어지는가? |
+| G5 Learning Value | 비유 → 정의 → 적용으로 학습 가능한가? |
+| G6 Reproduction | 도움 없이 재현할 수 있는가? |
+| G7 Explanation | 자신의 말로 설명할 수 있는가? |
+| G8 Evaluation Defense | 반론·한계·대안 질문에 답할 수 있는가? |
+| G9 Full-screen Readability | 실제 발표 화면에서 읽히는가? |
+| G10 Accessibility | 색/텍스트/대체 설명 등 접근성을 확보했는가? |
+
+### Promotion
+
+P4는 **Stable이 아니다**.
+
+B1-1에서 Truth Replacement / Full-screen QA / Reproduction·Defense 검증을 완료하고, B1-2 또는 성격이 다른 Mission에서 재검증한 뒤 Stable 승격 여부를 판단한다.
+
