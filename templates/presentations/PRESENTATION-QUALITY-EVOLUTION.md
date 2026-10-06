@@ -116,3 +116,60 @@ IDEA
 - P-C002: **ACCEPTED-AS-RULE**
 - P-C003: **ACCEPTED-AS-RULE**
 - Stable 승격: **B1-2 또는 다른 성격 Mission 재검증 후 결정**
+
+
+## B1-1 Truth Review Result — 2026-10-06
+
+### Review Verdict
+
+```text
+Visual Quality       = PASS
+Technical Accuracy  = PARTIAL
+Evidence Integrity  = FAIL
+Golden Deck FINAL   = NOT YET
+```
+
+### 구체적으로 확인된 Truth Gap
+
+1. 표지/섹션의 일부 표현이 공식 Mission 제목과 다를 수 있음
+   - 공식 제목: `B1-1 — 나를 소개하는 웹페이지 처음부터 만들기`
+   - 짧은 마케팅 문구는 허용하되 OFFICIAL 제목과 혼동하지 않는다.
+
+2. Data Flow / Code 영역의 AI 생성 코드
+   - 실제 `js/script.js`의 `loadProjects()`, `setProjectsState()`, `renderProjects()` 흐름으로 교체한다.
+
+3. REAL EVIDENCE 영역의 AI 생성 Desktop/Mobile Mockup
+   - 실제 Evidence Screenshot 5장으로 교체한다.
+
+4. 날짜/수치/URL/Commit 표현
+   - Repository Source가 직접 뒷받침하는 값만 표시한다.
+   - 불명확한 `2026-10-05 기준` 같은 날짜는 삭제하거나 실제 Evidence/Commit 기준으로 대체한다.
+
+5. R01~R15 Verification
+   - `docs/requirements-mapping.md`의 실제 R01~R15 문구와 상태를 그대로 사용한다.
+
+6. verify / terminal
+   - AI 생성 Terminal이 아니라 실제 `evidence/verify.txt` 또는 실제 출력 렌더링을 사용한다.
+
+7. Architecture
+   - 실제 B1-1 State인 `theme / projects / form` 및 실제 External Service인 GitHub REST API / Formspree / GitHub Pages를 기준으로 작성한다.
+
+8. Vanilla JavaScript vs React
+   - 자유 선택 비교가 아니라 B1-1의 공식 제약과 학습 목적을 먼저 설명한다.
+   - React는 대안/다음 학습 단계로만 표현한다.
+
+### Next Validation
+
+B1-1의 다음 단계는 **Art Redesign이 아니라 Truth Replacement**이다.
+
+```text
+Current Art Layer
+→ Exact Typography
+→ Actual Code
+→ Actual Runtime Screenshots
+→ Actual R01~R15
+→ Actual verify.txt
+→ URL/SHA/Date Check
+→ Full-screen QA
+→ Golden Master Verdict
+```
