@@ -59,3 +59,16 @@ result_vocabulary:
   - PASS
   - FAIL
   - INSUFFICIENT_EVIDENCE
+
+
+bonus_gate:
+  id: VBONUS
+  name: OFFICIAL_BONUS_TRACK
+  required_for_core_clear: false
+  fresh_round_03_verification_required: true
+  items:
+    - BONUS-01_LANGUAGE_PROJECT_FILTER
+    - BONUS-02_HERO_TYPING_EFFECT
+    - BONUS-03_FORMSPREE_REAL_SUBMISSION
+    - BONUS-04_SYSTEM_DARK_MODE_DETECTION
+  rule: "Each Bonus receives its own PASS/FAIL/INSUFFICIENT_EVIDENCE result."
