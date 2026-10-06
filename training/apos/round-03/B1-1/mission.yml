@@ -9,6 +9,17 @@ control_path: training/apos/round-03/B1-1
 execution_round: round-03-apos
 execution_root: training/round-03-apos
 quality_profile: WEB_STATIC
+risk_level: LOW
+security_profile: WEB_PUBLIC_BASELINE
+evidence_profile: WEB_RUNTIME_VISUAL
+recommended_predecessors: []
+contracts:
+  mission: training/apos/round-03/B1-1/MISSION-CONTRACT.yml
+  environment: training/apos/round-03/B1-1/ENVIRONMENT-CONTRACT.yml
+  verification: training/apos/round-03/B1-1/VERIFICATION-CONTRACT.yml
+  evidence: training/apos/round-03/B1-1/EVIDENCE-CONTRACT.yml
+  evaluation: training/apos/round-03/B1-1/EVALUATION-CONTRACT.yml
+execution_plan: training/apos/round-03/B1-1/EXECUTION-PLAN.md
 status: NOT_STARTED
 owner_start_approval: PENDING
 mission_execution: NOT_STARTED
