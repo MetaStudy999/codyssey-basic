@@ -1,0 +1,61 @@
+schema_version: 1
+contract_type: VERIFICATION
+mission_id: B1-1
+profile: WEB_STATIC
+fresh_round_03_verification_required: true
+
+gates:
+  - id: V1
+    name: SOURCE_AND_REQUIREMENT_BINDING
+    checks:
+      - official_requirements_mapped
+      - official_evaluation_mapped
+
+  - id: V2
+    name: STATIC_STRUCTURE
+    checks:
+      - html_structure
+      - css_load
+      - javascript_load
+      - local_links
+      - asset_paths
+      - form_labels_and_basic_semantics
+
+  - id: V3
+    name: FUNCTIONAL_RUNTIME
+    checks:
+      - initial_page_load
+      - required_interactions
+      - required_form_behavior
+      - required_javascript_behavior
+      - error_or_negative_path
+
+  - id: V4
+    name: RESPONSIVE_AND_ACCESSIBILITY
+    checks:
+      - desktop_view
+      - mobile_view
+      - keyboard_basic_check
+      - image_alt_or_equivalent
+      - visible_focus_or_equivalent
+    note: "공식 요구와 현재 구현에 맞게 구체 항목을 Start Gate 후 확정"
+
+  - id: V5
+    name: DEPLOYMENT
+    conditional: true
+    checks:
+      - deployed_url_reachable
+      - deployed_assets_load
+      - deployed_runtime_matches_candidate
+
+  - id: V6
+    name: REGRESSION
+    checks:
+      - fresh_round_03_only
+      - prior_round_pass_not_substituted
+      - no_secret_exposure
+
+result_vocabulary:
+  - PASS
+  - FAIL
+  - INSUFFICIENT_EVIDENCE
