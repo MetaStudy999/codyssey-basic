@@ -1,8 +1,9 @@
 # 미션 색인(Mission Index)
 
-> **Round 02 현재 제2기 실행:** [training/round-02-clear/README.md](training/round-02-clear/README.md)  
-> **공통 수행·평가 표준:** [standards/ROUND-02-MISSION-EXECUTION-STANDARD.md](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)  
-> 아래 R01 FAST TRACK 설명은 기존 수행 전략 기록이며, 현재 제2기 신규 수행은 Round 02 기준을 우선합니다.
+> **APOS Round 03 신규 수행 준비:** [training/apos/round-03/README.md](training/apos/round-03/README.md)  
+> **APOS 디렉터리·이름 표준:** [standards/APOS-ROUND-03-DIRECTORY-NAMING-STANDARD.md](standards/APOS-ROUND-03-DIRECTORY-NAMING-STANDARD.md)  
+> **Round 02 기존 수행·평가 표준:** [standards/ROUND-02-MISSION-EXECUTION-STANDARD.md](standards/ROUND-02-MISSION-EXECUTION-STANDARD.md)  
+> 아래 R01 FAST TRACK 설명은 과거 수행 전략 기록이며, 현재 APOS 신규 시작 Mission은 Owner Directive에 따라 B1-1입니다.
 
 Round 01의 **빠른 실행 경로(FAST TRACK)**는 **필수 미션 11개를 먼저 모두 완료한 뒤 선택 경로 4개를 수행**하는 경로입니다.
 
@@ -10,14 +11,16 @@ Round 01의 **빠른 실행 경로(FAST TRACK)**는 **필수 미션 11개를 먼
 
 ## 🚀 빠른 진입(Quick Navigation)
 
-현재 진행 중인 미션 주제는 기존 B1-1에서 번호가 변경된 **B4-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기**입니다.
+현재 APOS 신규 수행 시작 Mission은 **B1-1 — 나를 소개하는 웹페이지 처음부터 만들기**입니다.
 
 - [현재 Mission ID 기준표 — CURRENT-MISSION-MAP.md](CURRENT-MISSION-MAP.md)
-- [현재 진행 상태 — PROGRESS.md](PROGRESS.md)
-- [지금 해야 할 일 — NEXT-ACTIONS.md](training/round-01-clear/NEXT-ACTIONS.md)
-- [B4-1 저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-system-monitor)
-- [▶ B4-1 입문자 따라하기(Beginner Guide)](https://github.com/MetaStudy999/codyssey-basic-system-monitor/blob/main/training/round-01-clear/BEGINNER-GUIDE.md)
-- [미션 선후관계 — MISSION-DEPENDENCY-MAP.md](training/round-01-clear/MISSION-DEPENDENCY-MAP.md)
+- [APOS Round 03 중앙 Control — training/apos/round-03/](training/apos/round-03/README.md)
+- [15개 Mission Registry — missions.yml](training/apos/round-03/_registry/missions.yml)
+- [Mission별 품질 보완 — MISSION-QUALITY-PROFILES.md](training/apos/round-03/_shared/MISSION-QUALITY-PROFILES.md)
+- [B1-1 저장소(Repository)](https://github.com/MetaStudy999/codyssey-basic-web-portfolio)
+- 실제 APOS 신규 실행 루트: `training/round-03-apos/`
+
+> 현재 B1-1은 Preflight(사전점검) 단계이며 실제 Mission 실행 상태는 `NOT_STARTED`입니다.
 
 > 이 문서는 **15개 미션의 현재 번호, 실행 순서와 저장소를 찾는 색인**입니다. 실제 미션 명령은 각 Repository의 `BEGINNER-GUIDE.md`에서 수행합니다.
 
@@ -47,7 +50,7 @@ B7 — Term Project
 
 특히 기존 **B5-3 FastAPI 인증 미션은 현재 B6-3**입니다.
 
-번호 변경은 수행 이력을 초기화하지 않습니다. 현재 R01에서 진행 중이던 시스템 관제 미션은 **이전 B1-1 → 현재 B4-1**로 이어서 관리합니다.
+번호 변경은 수행 이력을 초기화하지 않습니다. 과거 R01의 시스템 관제 수행 이력은 **이전 B1-1 → 현재 B4-1**로 보존합니다. 현재 APOS Round 03 신규 시작점은 별도로 **B1-1 웹 포트폴리오**입니다.
 
 ---
 

@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B6-2
+title: "글을 쓰고·보고·고치고·지울 수 있는 게시판형 웹 서비스 만들기"
+stable_topic: fastapi-crud
+canonical_repository: MetaStudy999/codyssey-basic-fastapi-crud
+requirement: OPTIONAL
+control_path: training/apos/round-03/B6-2
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: BACKEND_CRUD
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."

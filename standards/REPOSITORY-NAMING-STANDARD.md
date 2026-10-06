@@ -235,3 +235,38 @@ REPOSITORY RENAME : PASS
 MISSION REMAP     : IMPLEMENTED
 REFERENCE MIGRATION: IN PROGRESS
 ```
+
+
+---
+
+## 11. APOS Round 03 디렉터리 이름 표준
+
+APOS 기반 신규 수행에서는 Repository 이름뿐 아니라 Control/Execution 경로도 표준화한다.
+
+```text
+Central Control Root:
+training/apos/round-03/
+
+Mission Control:
+training/apos/round-03/<MISSION-ID>/
+
+Mission Repository Execution Root:
+training/round-03-apos/
+```
+
+기존 `training/apos-round01/`, `training/round-01-clear/`, `training/round-02-clear/`는 과거 이력과 비교 기준을 위해 보존한다.
+
+세부 표준:
+
+- [APOS Round 03 Directory & Naming Standard](APOS-ROUND-03-DIRECTORY-NAMING-STANDARD.md)
+- [APOS Round 03 Mission Registry](../training/apos/round-03/_registry/missions.yml)
+- [Mission Quality Profiles](../training/apos/round-03/_shared/MISSION-QUALITY-PROFILES.md)
+
+핵심 분리:
+
+```text
+Control Plane  = codyssey-basic
+Execution Plane = 각 Canonical Mission Repository
+```
+
+폴더가 생성되었다는 사실만으로 Mission 시작·PASS·CLEAR를 선언하지 않는다.

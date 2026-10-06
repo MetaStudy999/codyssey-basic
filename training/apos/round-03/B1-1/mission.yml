@@ -1,0 +1,35 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B1-1
+title: "나를 소개하는 웹페이지 처음부터 만들기"
+stable_topic: web-portfolio
+canonical_repository: MetaStudy999/codyssey-basic-web-portfolio
+requirement: REQUIRED
+control_path: training/apos/round-03/B1-1
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: WEB_STATIC
+risk_level: LOW
+security_profile: WEB_PUBLIC_BASELINE
+evidence_profile: WEB_RUNTIME_VISUAL
+recommended_predecessors: []
+contracts:
+  mission: training/apos/round-03/B1-1/MISSION-CONTRACT.yml
+  environment: training/apos/round-03/B1-1/ENVIRONMENT-CONTRACT.yml
+  verification: training/apos/round-03/B1-1/VERIFICATION-CONTRACT.yml
+  evidence: training/apos/round-03/B1-1/EVIDENCE-CONTRACT.yml
+  bonus: training/apos/round-03/B1-1/BONUS-CONTRACT.yml
+  evaluation: training/apos/round-03/B1-1/EVALUATION-CONTRACT.yml
+execution_plan: training/apos/round-03/B1-1/EXECUTION-PLAN.md
+review_summary: training/apos/round-03/B1-1/REVIEW-SUMMARY.md
+table_of_contents: training/apos/round-03/B1-1/TABLE-OF-CONTENTS.md
+tracks:
+  core: NOT_STARTED
+  bonus: NOT_STARTED
+  apos_enhancement: NOT_STARTED
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."

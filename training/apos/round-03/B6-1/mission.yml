@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B6-1
+title: "정보를 깔끔하게 정리하는 디지털 서랍장 만들기"
+stable_topic: sql-database
+canonical_repository: MetaStudy999/codyssey-basic-sql-database
+requirement: REQUIRED
+control_path: training/apos/round-03/B6-1
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: SQL_DATABASE
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."

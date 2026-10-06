@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B2-2
+title: "친구 3~5명과 함께 프로그램 만드는 법 연습하기"
+stable_topic: git-collaboration
+canonical_repository: MetaStudy999/codyssey-basic-git-collaboration
+requirement: REQUIRED
+control_path: training/apos/round-03/B2-2
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: GIT_COLLAB
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."

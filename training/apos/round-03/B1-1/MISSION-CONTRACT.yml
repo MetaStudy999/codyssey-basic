@@ -1,0 +1,66 @@
+schema_version: 1
+contract_type: MISSION
+mission_id: B1-1
+title: "나를 소개하는 웹페이지 처음부터 만들기"
+generation: "CODYSSEY Round 02 / 제2기"
+stable_topic: web-portfolio
+canonical_repository: MetaStudy999/codyssey-basic-web-portfolio
+execution_root: training/round-03-apos
+status: NOT_STARTED
+owner_start_approval: PENDING
+
+authority_order:
+  - "현재 제2기 공식 Mission PDF"
+  - "현재 제2기 공식 Evaluation / Orientation 자료"
+  - "MetaStudy999/codyssey-basic CURRENT-MISSION-MAP.md"
+  - "Mission Repository MISSION-METADATA.yml"
+  - "기존 round-02-clear 자료 (REFERENCE ONLY)"
+
+tracks:
+  core:
+    status: NOT_STARTED
+    affects_official_clear: true
+  bonus:
+    status: NOT_STARTED
+    required_for_core_clear: false
+    contract: training/apos/round-03/B1-1/BONUS-CONTRACT.yml
+  apos_enhancement:
+    status: NOT_STARTED
+    affects_official_clear: false
+
+requirements:
+  official_requirements_readback: REQUIRED_AT_START
+  official_evaluation_readback: REQUIRED_AT_START
+  prior_round_pass_reuse_as_current_pass: false
+  baseline_technology_from_current_repository:
+    - HTML
+    - CSS
+    - Vanilla JavaScript
+  baseline_technology_must_be_revalidated_against_official_source: true
+
+scope_boundary:
+  before_owner_start_approval:
+    allowed:
+      - read_only_preflight
+      - plan
+      - contract_definition
+      - environment_readback
+    forbidden:
+      - mission_implementation
+      - mission_runtime_execution
+      - mission_evidence_claim
+      - clear_claim
+  after_start_gate:
+    execute_only_under: training/round-03-apos
+
+completion_rule:
+  folder_exists_is_not_started: true
+  code_exists_is_not_clear: true
+  clear_requires:
+    - official_requirements_satisfied
+    - fresh_runtime_verification
+    - fresh_evidence
+    - essential_learning_gate
+    - evaluation_readiness
+    - security_check
+    - independent_qa

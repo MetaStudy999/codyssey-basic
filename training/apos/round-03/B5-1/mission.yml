@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B5-1
+title: "정보를 엄청 빠르게 찾아주는 작은 저장소 만들기"
+stable_topic: mini-redis
+canonical_repository: MetaStudy999/codyssey-basic-mini-redis
+requirement: REQUIRED
+control_path: training/apos/round-03/B5-1
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: DATA_STRUCTURE_SERVER
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."
