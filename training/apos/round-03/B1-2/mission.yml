@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B1-2
+title: "버튼 누르면 화면이 스르륵 바뀌는 요즘 웹사이트 만들기"
+stable_topic: react-spa
+canonical_repository: MetaStudy999/codyssey-basic-react-spa
+requirement: OPTIONAL
+control_path: training/apos/round-03/B1-2
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: WEB_SPA
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."
