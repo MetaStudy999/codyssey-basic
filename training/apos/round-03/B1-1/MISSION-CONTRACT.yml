@@ -60,6 +60,7 @@ completion_rule:
     - official_requirements_satisfied
     - fresh_runtime_verification
     - fresh_evidence
+    - essential_learning_gate
     - evaluation_readiness
     - security_check
     - independent_qa
