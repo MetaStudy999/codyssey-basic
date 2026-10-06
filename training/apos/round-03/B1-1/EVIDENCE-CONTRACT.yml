@@ -1,0 +1,51 @@
+schema_version: 1
+contract_type: EVIDENCE
+mission_id: B1-1
+profile: WEB_RUNTIME_VISUAL
+fresh_evidence_required: true
+prior_round_evidence_role: REFERENCE_ONLY
+root: training/round-03-apos/06-evidence
+
+evidence_sets:
+  requirement_mapping:
+    required: true
+    examples:
+      - requirement_to_implementation
+      - requirement_to_verification
+
+  runtime:
+    required: true
+    examples:
+      - local_server_result
+      - browser_runtime_result
+      - negative_or_error_case
+
+  visual:
+    required: true
+    examples:
+      - desktop
+      - mobile
+    conditional:
+      - dark_mode_if_implemented_or_required
+      - interaction_state_if_relevant
+
+  deployment:
+    required_if_official_scope_requires_deployment: true
+    examples:
+      - deployed_url
+      - http_or_browser_check
+
+  integrity:
+    required: true
+    examples:
+      - commit_sha
+      - tested_sha
+      - evidence_index
+
+forbidden:
+  - secret
+  - token
+  - password
+  - private_key
+  - fabricated_runtime_output
+  - round_02_evidence_labeled_as_round_03
