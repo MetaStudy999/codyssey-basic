@@ -40,3 +40,31 @@ ready_rule:
   user_can_explain_in_own_words: true
   demo_is_reproducible: true
   evidence_is_linked: true
+
+
+learning_minimum_gate:
+  purpose: "AI가 구현을 도와도 사용자가 핵심 구조와 동작을 자기 말로 이해했는지 확인"
+  required_before_evaluation_ready: true
+  checks:
+    - id: L1
+      name: "HTML/CSS/JavaScript 역할 구분"
+      pass_when: "각 기술이 무엇을 담당하고 서로 어떻게 연결되는지 자기 말로 설명 가능"
+    - id: L2
+      name: "한 기능의 End-to-End 흐름 추적"
+      pass_when: "사용자 동작 → Event → JavaScript → DOM/CSS → 화면 결과를 실제 코드 위치와 함께 설명 가능"
+    - id: L3
+      name: "오류/Negative Case 이해"
+      pass_when: "최소 한 개 실패 사례의 원인, 확인 방법, 수정/대응을 설명 가능"
+    - id: L4
+      name: "내가 바꾼 코드 이해"
+      pass_when: "핵심 변경 한 건의 변경 전/후와 이유를 설명 가능"
+  conditional_bonus_learning:
+    BONUS-01:
+      concept: "Array.filter()와 데이터 필터링"
+    BONUS-02:
+      concept: "타이머/DOM 갱신과 prefers-reduced-motion"
+    BONUS-03:
+      concept: "비동기 HTTP POST, 성공/실패 상태"
+    BONUS-04:
+      concept: "prefers-color-scheme, matchMedia(), 상태 지속"
+  anti_overhead_rule: "별도 시험 문서를 늘리기보다 Evaluation 준비 과정에서 짧게 확인한다."
