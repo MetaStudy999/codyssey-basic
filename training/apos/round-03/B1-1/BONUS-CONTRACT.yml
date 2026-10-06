@@ -1,0 +1,91 @@
+schema_version: 1
+contract_type: BONUS
+mission_id: B1-1
+generation: "CODYSSEY Round 02 / 제2기"
+source_role: "Round 02 requirements mapping / final verification reference"
+status: NOT_STARTED
+required_for_core_clear: false
+fresh_round_03_verification_required: true
+prior_round_bonus_pass_role: REFERENCE_ONLY
+
+tracks:
+  core:
+    description: "공식 필수 요구사항"
+    status: NOT_STARTED
+    affects_official_clear: true
+
+  bonus:
+    description: "공식 보너스 과제"
+    status: NOT_STARTED
+    affects_official_core_clear: false
+    items:
+      - id: BONUS-01
+        name: "언어별 프로젝트 필터"
+        reference_implementation: "GitHub language 값 + array.filter()"
+        round_03_verification:
+          - "언어 버튼 클릭"
+          - "프로젝트 목록 변경"
+          - "프로젝트 개수 변경"
+        evidence_required:
+          - "runtime_result"
+          - "visual_or_state_evidence"
+
+      - id: BONUS-02
+        name: "Hero 타이핑 효과"
+        reference_implementation: "Vanilla JavaScript 타이핑 + Reduced Motion 대응"
+        round_03_verification:
+          - "최초 로드에서 글자 단위 표시"
+          - "Reduced Motion 조건 확인"
+        evidence_required:
+          - "runtime_result"
+          - "visual_or_state_evidence"
+
+      - id: BONUS-03
+        name: "폼 실제 전송"
+        reference_implementation: "Formspree AJAX POST + 전송 중/성공/실패 UI"
+        round_03_verification:
+          - "실제 Submission 생성"
+          - "성공/실패 UI"
+          - "실제 메일 수신 또는 공식 요구에 맞는 외부 연동 확인"
+        evidence_required:
+          - "runtime_result"
+          - "external_integration_evidence"
+        security_notes:
+          - "Secret/Token을 Repository나 Evidence에 저장하지 않음"
+
+      - id: BONUS-04
+        name: "시스템 다크 모드 감지"
+        reference_implementation: "System/Light/Dark 순환 + prefers-color-scheme + matchMedia()"
+        round_03_verification:
+          - "System/Light/Dark 전환"
+          - "OS 또는 브라우저 테마 변화 반영"
+          - "필요 시 reload persistence 확인"
+        evidence_required:
+          - "runtime_result"
+          - "visual_or_state_evidence"
+
+  apos_enhancement:
+    description: "APOS 자체 품질 보완"
+    status: NOT_STARTED
+    affects_official_clear: false
+    examples:
+      - "접근성 보완"
+      - "Negative Test 확대"
+      - "Evidence Traceability"
+      - "Presentation 품질 향상"
+      - "자동화/관측성 보완"
+
+ordering:
+  - "CORE 요구사항 확인 및 최소 통과 경로"
+  - "CORE 구현·검증"
+  - "CORE PASS 후보"
+  - "공식 BONUS 4개 구현·검증"
+  - "APOS-ENHANCEMENT"
+  - "Evaluation / Presentation"
+  - "QA_SEC"
+
+rules:
+  - "Bonus 코드가 존재한다는 이유만으로 PASS를 선언하지 않는다."
+  - "Round 02 Bonus PASS는 Round 03 PASS로 승계하지 않는다."
+  - "각 Bonus는 Round 03 Candidate에서 새 Runtime과 Evidence가 있어야 PASS다."
+  - "Bonus 미완료만으로 CORE 공식 CLEAR를 자동 FAIL 처리하지 않는다."
