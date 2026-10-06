@@ -16,6 +16,18 @@ authority_order:
   - "Mission Repository MISSION-METADATA.yml"
   - "기존 round-02-clear 자료 (REFERENCE ONLY)"
 
+tracks:
+  core:
+    status: NOT_STARTED
+    affects_official_clear: true
+  bonus:
+    status: NOT_STARTED
+    required_for_core_clear: false
+    contract: training/apos/round-03/B1-1/BONUS-CONTRACT.yml
+  apos_enhancement:
+    status: NOT_STARTED
+    affects_official_clear: false
+
 requirements:
   official_requirements_readback: REQUIRED_AT_START
   official_evaluation_readback: REQUIRED_AT_START
