@@ -38,3 +38,22 @@ B1-1 실제 실행은 별도 Start Gate와 Owner 승인 후 진행한다.
 - `../../../standards/APOS-ROUND-03-DIRECTORY-NAMING-STANDARD.md`: 디렉터리·이름 표준
 
 기존 `training/apos-round01/`은 과거 수행 이력으로 보존한다.
+
+
+## B1-1 Pilot Documents
+
+B1-1은 APOS Round 03 Harness(하네스, 반복 실행 틀)의 첫 검증 Pilot이다.
+
+- `B1-1/MISSION-CONTRACT.yml`
+- `B1-1/ENVIRONMENT-CONTRACT.yml`
+- `B1-1/VERIFICATION-CONTRACT.yml`
+- `B1-1/EVIDENCE-CONTRACT.yml`
+- `B1-1/EVALUATION-CONTRACT.yml`
+- `B1-1/EXECUTION-PLAN.md`
+
+공통 Profile:
+
+- `_shared/MISSION-QUALITY-PROFILES.md`
+- `_shared/SECURITY-EVIDENCE-DEPENDENCY-PROFILES.md`
+
+B1-1의 실제 Mission Repository `training/round-03-apos/` 생성·구현은 Owner Start Approval 후 별도 단계에서 수행한다.
