@@ -68,28 +68,31 @@ B5-3 → B6-3  FastAPI 인증·연관관계
 
 ---
 
-## 현재 R01 실행 상태와 번호 변경
+## 과거 R01 실행 상태와 현재 APOS 시작점
 
-미션 번호 변경은 기존 수행 이력을 초기화하지 않습니다.
+과거 R01에서 진행되던 **시스템 관제 자동화 미션**은 당시 현재 번호 B4-1로 재매핑되어 수행 이력을 유지했습니다.
 
-현재 R01에서 진행 중이던 **시스템 관제 자동화 미션**은 이전 번호 B1-1에서 **현재 번호 B4-1**로 재매핑합니다.
+이 기록은 Historical Truth(과거 사실)로 보존합니다.
+
+현재 Owner Directive(소유자 최신 지시)에 따른 APOS 신규 수행 시작점은 다음입니다.
 
 ```text
-기존 Active Mission
-B1-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기
-
-현재 Active Mission
-B4-1 — 컴퓨터가 알아서 자기 상태를 점검하게 만들기
-Repository: codyssey-basic-system-monitor
+Generation: CODYSSEY Round 02 / 제2기
+Current Start Mission: B1-1
+Title: 나를 소개하는 웹페이지 처음부터 만들기
+Repository: codyssey-basic-web-portfolio
+APOS Execution Round: round-03-apos
+Execution Root: training/round-03-apos/
+Mission Execution: NOT_STARTED
 ```
 
-즉, 번호만 변경하고 수행 상태·Commit History(커밋 이력)·PR·Issue·Evidence(증빙)는 유지합니다.
+따라서 B4-1은 과거 R01 수행/계획 문맥에서는 유효하지만, **현재 APOS Round 03의 시작 Mission으로 사용하지 않습니다.**
 
 ---
 
 ## FAST TRACK 실행 순서
 
-FAST TRACK의 기존 실행 전략은 **미션 주제의 수행 순서를 유지**하고, Mission ID만 현재 번호로 재매핑합니다.
+아래 FAST TRACK은 **과거 R01 실행 전략 기록**입니다. 현재 APOS Round 03의 시작점은 Owner Directive에 따라 **B1-1**이며, 신규 실행은 `training/round-03-apos/` 표준을 사용합니다.
 
 ```text
 Stage 1 — 필수 완료(REQUIRED CLEAR)
