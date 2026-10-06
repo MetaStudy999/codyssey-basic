@@ -51,3 +51,27 @@ Status: **VALIDATION UPDATE**
 ### Candidate Status
 Image-First Precision Composite는 계속 **CANDIDATE / TESTING** 상태로 유지한다.
 B1-2 또는 다른 유형 Mission에서 Accuracy/Evidence QA를 재검증한 뒤 Stable 승격 여부를 결정한다.
+
+
+## 2026-10-06 — B1-1 Truth Review / Precision Composite
+
+Status: **VALIDATION UPDATE / BLOCKING GATE**
+
+### Verdict
+- Visual Quality: PASS
+- Technical Accuracy: PARTIAL
+- Evidence Integrity: FAIL
+- Golden Deck FINAL: BLOCKED
+
+### Blocking Corrections
+- 공식 Mission 제목 병기
+- AI 생성 Code → 실제 `js/script.js`
+- AI Runtime Mockup → 실제 Screenshot 5장
+- AI Verification Table → 실제 R01~R15
+- AI Terminal → 실제 `verify.txt`
+- 불확실한 날짜/수치 제거
+- Architecture를 실제 `theme/projects/form`, GitHub REST API, Formspree, GitHub Pages 기준으로 정렬
+- Vanilla JS vs React를 공식 제약/학습 목표 중심으로 재프레이밍
+
+### Decision
+Art Direction은 고정한다. 다음 작업은 디자인 재탐색이 아니라 **Truth Replacement + Full-screen QA**다.
