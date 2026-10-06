@@ -48,3 +48,16 @@ recovery:
     - preserve_round_01
     - preserve_round_02
     - isolate_round_03_changes
+
+
+source_of_truth:
+  round_03_authoring_root: training/round-03-apos/04-src
+  prior_root_implementation_role: REFERENCE_ONLY
+  prior_round_02_role: REFERENCE_ONLY
+  dual_writable_source_forbidden: true
+  deployment_method: REVALIDATE_AT_START
+  default_github_pages_preview_if_main_root_serves_repository: "/training/round-03-apos/04-src/"
+  rules:
+    - "Round 03 authoring source와 repository root 기존 구현을 동시에 수정하지 않는다."
+    - "배포 방식이 확정되기 전 root로 코드를 복사해 두 개의 기준원을 만들지 않는다."
+    - "배포 결과는 Tested Candidate와 연결해 검증한다."
