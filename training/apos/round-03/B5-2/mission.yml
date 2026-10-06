@@ -1,0 +1,17 @@
+schema_version: 1
+generation: "CODYSSEY Round 02 / 제2기"
+mission_id: B5-2
+title: "파일이 언제 어떻게 바뀌었는지 기록하는 작은 프로그램 만들기"
+stable_topic: mini-git
+canonical_repository: MetaStudy999/codyssey-basic-mini-git
+requirement: REQUIRED
+control_path: training/apos/round-03/B5-2
+execution_round: round-03-apos
+execution_root: training/round-03-apos
+quality_profile: VERSION_CONTROL_CORE
+status: NOT_STARTED
+owner_start_approval: PENDING
+mission_execution: NOT_STARTED
+notes:
+  - "Control metadata only; this file does not start the Mission."
+  - "Official Mission requirements/evaluation remain authoritative."
