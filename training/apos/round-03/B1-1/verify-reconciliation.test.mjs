@@ -57,3 +57,11 @@ negative('quoted duplicate bonus mapping key',f=>f.control=f.control.replace('  
 negative('duplicate reconciliation section',f=>f.control+='\nreconciliation:\n  bonus_status: NOT_VERIFIED','MISSING_OR_DUPLICATE:reconciliation');
 negative('duplicate source runtime section',f=>f.source+='\nruntime:\n  status: FAIL','MISSING_OR_DUPLICATE:runtime');
 negative('duplicate registry entry mapping key',f=>f.registry=f.registry.replace('    stable_topic: web-portfolio','    stable_topic: web-portfolio\n    stable_topic: wrong'),'MISSING_OR_DUPLICATE:missions[].stable_topic');
+
+// Additional adversarial syntax cases: reject noncanonical YAML rather than ignoring it.
+negative('escaped duplicate bonus key rejects YAML decoding ambiguity',f=>f.control=f.control.replace("  bonus: NOT_STARTED","  bonus: NOT_STARTED\n  \"b\\u006fnus\": CLEAR"),'UNSUPPORTED_YAML_KEY_ESCAPE');
+negative('escaped runtime status key rejects ambiguity',f=>f.source=f.source.replace("runtime:","runtime:\n  \"st\\u0061tus\": FAIL"),'UNSUPPORTED_YAML_KEY_ESCAPE');
+negative('multiple YAML documents are unsupported',f=>f.control+='\n---\ntracks:\n  bonus: CLEAR','UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
+negative('YAML directive is unsupported',f=>f.control='\n%YAML 1.2\n'+f.control,'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
+negative('invalid scalar list item fails closed',f=>f.registry+='\ninvalid_list:\n  - :','UNSUPPORTED_YAML_LIST_ITEM:2');
+negative('unterminated flow list is unsupported',f=>f.registry+='\ninvalid_list:\n  - [unfinished','UNSUPPORTED_YAML_LIST_ITEM:2');
