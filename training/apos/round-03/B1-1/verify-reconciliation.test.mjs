@@ -5,6 +5,7 @@ const SHA='da8822cbbe54c47539f65571327e324ce675eeb4';
 const CAND='95b5dd8283a611e27c0c0a9185060a213e53ada9';
 function sample(){return {
   mainSha:SHA,
+  ancestry:{status:'identical',base_commit:{sha:SHA},merge_base_commit:{sha:SHA},files:[]},
   control:[
     'mission_id: B1-1','canonical_repository: MetaStudy999/codyssey-basic-web-portfolio',
     'stable_topic: web-portfolio','execution_round: round-03-apos',
@@ -40,7 +41,7 @@ test('positive fixture',()=>assert.equal(verify(sample()).result,'CROSS_REPO_MET
 negative('false CLEAR: source state',f=>f.source=f.source.replace('mission_state: CLEAR','mission_state: IN_PROGRESS'),'SOURCE_NOT_CLEAR');
 negative('false CLEAR: clear gate',f=>f.source=f.source.replace('  status: PASS\n  remaining:','  status: FAIL\n  remaining:'),'CLEAR_GATE_NOT_PASS');
 negative('wrong source main SHA',f=>f.control=f.control.replace('source_main_sha: '+SHA,'source_main_sha: '+'0'.repeat(40)),'MAIN_SHA_MISMATCH');
-negative('wrong PR merge SHA',f=>f.pr.merge_commit_sha='0'.repeat(40),'PR_MERGE_SHA_MISMATCH');
+negative('wrong PR merge SHA',f=>f.pr.merge_commit_sha='0'.repeat(40),'MAIN_SHA_MISMATCH');
 negative('wrong control mission ID',f=>f.control=f.control.replace('mission_id: B1-1','mission_id: B4-1'),'CONTROL_MISSION_ID_MISMATCH');
 negative('wrong source mission ID',f=>f.source=f.source.replace('mission_id: B1-1','mission_id: B1-2'),'SOURCE_MISSION_ID_MISMATCH');
 negative('unmerged PR',f=>f.pr.merged=false,'SOURCE_PR_NOT_MERGED');
@@ -76,3 +77,46 @@ negative('invalid inline YAML flow map',f=>f.control+='\ninvalid: {key: value}',
 negative('invalid nested flow list',f=>f.control+='\ninvalid: [[bad]]','UNSUPPORTED_YAML_VALUE:0');
 negative('misaligned YAML indentation',f=>f.control+='\n   bogus: yes','UNSUPPORTED_YAML_STRUCTURE:3');
 negative('YAML TAG directive is unsupported',f=>f.control='%TAG !e! tag:example.com,2026:\n'+f.control,'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
+
+const NEXT='b'.repeat(40);
+function descendant(){
+  const f=sample();
+  f.mainSha=NEXT;
+  f.ancestry={status:'ahead',base_commit:{sha:SHA},merge_base_commit:{sha:SHA},
+    files:[{filename:'training/round-03-apos/06-evidence/RETENTION-REPRODUCTION.md'}]};
+  return f;
+}
+test('valid later source main accepts historical CORE baseline after documentation-only merge',()=>{
+  const r=verify(descendant());
+  assert.equal(r.result,'CROSS_REPO_METADATA_PASS');
+  assert.equal(r.source_main_sha,NEXT);
+  assert.equal(r.verified_core_merge_sha,SHA);
+});
+test('future source commit cannot masquerade as original public CI SHA',()=>{
+  const f=descendant();f.publicRun.head_sha=NEXT;
+  assert.throws(()=>verify(f),{message:'POST_MERGE_CI_MISMATCH'});
+});
+test('source main that does not descend from CORE is rejected',()=>{
+  const f=descendant();f.ancestry.merge_base_commit.sha='0'.repeat(40);
+  assert.throws(()=>verify(f),{message:'SOURCE_MAIN_ANCESTRY_UNVERIFIED'});
+});
+test('source main behind CORE must fail closed',()=>{
+  const f=descendant();f.ancestry.status='behind';
+  assert.throws(()=>verify(f),{message:'SOURCE_MAIN_ANCESTRY_UNVERIFIED'});
+});
+test('omitted GitHub compare data must fail closed',()=>{
+  const f=sample();delete f.ancestry;
+  assert.throws(()=>verify(f),{message:'SOURCE_MAIN_ANCESTRY_UNVERIFIED'});
+});
+test('unverified implementation change under 04-src is not silently accepted',()=>{
+  const f=descendant();f.ancestry.files.push({filename:'training/round-03-apos/04-src/index.html'});
+  assert.throws(()=>verify(f),{message:'VERIFIED_CORE_SOURCE_CHANGED'});
+});
+test('source mission witness changes require a fresh reconciliation',()=>{
+  const f=descendant();f.ancestry.files.push({filename:'training/round-03-apos/mission.yml'});
+  assert.throws(()=>verify(f),{message:'VERIFIED_CORE_SOURCE_CHANGED'});
+});
+test('untrusted source compare file entries reject missing filenames',()=>{
+  const f=descendant();f.ancestry.files.push({});
+  assert.throws(()=>verify(f),{message:'VERIFIED_CORE_SOURCE_CHANGED'});
+});
