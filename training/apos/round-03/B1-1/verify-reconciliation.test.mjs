@@ -50,10 +50,10 @@ negative('duplicate mission ID',f=>f.source+='\nmission_id: B1-1','MISSING_OR_DU
 
 negative('false BONUS CLEAR in tracks',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: CLEAR'),'PREMATURE_BONUS_TRACK');
 negative('unverified bonus status transition in tracks',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: IN_PROGRESS'),'PREMATURE_BONUS_TRACK');
-negative('missing bonus track',f=>f.control=f.control.replace('  bonus: NOT_STARTED\\n',''),'MISSING_OR_DUPLICATE:tracks.bonus');
-negative('duplicate tracks section with false bonus CLEAR',f=>f.control+='\\ntracks:\\n  core: NOT_STARTED\\n  bonus: CLEAR','MISSING_OR_DUPLICATE:tracks');
-negative('duplicate bonus mapping key',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\\n  bonus: CLEAR'),'MISSING_OR_DUPLICATE:tracks.bonus');
-negative('quoted duplicate bonus mapping key',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\\n  "bonus": CLEAR'),'MISSING_OR_DUPLICATE:tracks.bonus');
-negative('duplicate reconciliation section',f=>f.control+='\\nreconciliation:\\n  bonus_status: NOT_VERIFIED','MISSING_OR_DUPLICATE:reconciliation');
-negative('duplicate source runtime section',f=>f.source+='\\nruntime:\\n  status: FAIL','MISSING_OR_DUPLICATE:runtime');
-negative('duplicate registry entry mapping key',f=>f.registry=f.registry.replace('    stable_topic: web-portfolio','    stable_topic: web-portfolio\\n    stable_topic: wrong'),'MISSING_OR_DUPLICATE:missions[].stable_topic');
+negative('missing bonus track',f=>f.control=f.control.replace('  bonus: NOT_STARTED\n',''),'MISSING_OR_DUPLICATE:tracks.bonus');
+negative('duplicate tracks section with false bonus CLEAR',f=>f.control+='\ntracks:\n  core: NOT_STARTED\n  bonus: CLEAR','MISSING_OR_DUPLICATE:tracks');
+negative('duplicate bonus mapping key',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\n  bonus: CLEAR'),'MISSING_OR_DUPLICATE:tracks.bonus');
+negative('quoted duplicate bonus mapping key',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\n  "bonus": CLEAR'),'MISSING_OR_DUPLICATE:tracks.bonus');
+negative('duplicate reconciliation section',f=>f.control+='\nreconciliation:\n  bonus_status: NOT_VERIFIED','MISSING_OR_DUPLICATE:reconciliation');
+negative('duplicate source runtime section',f=>f.source+='\nruntime:\n  status: FAIL','MISSING_OR_DUPLICATE:runtime');
+negative('duplicate registry entry mapping key',f=>f.registry=f.registry.replace('    stable_topic: web-portfolio','    stable_topic: web-portfolio\n    stable_topic: wrong'),'MISSING_OR_DUPLICATE:missions[].stable_topic');
