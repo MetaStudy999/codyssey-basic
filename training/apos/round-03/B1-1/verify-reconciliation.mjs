@@ -20,11 +20,77 @@ export function get(yaml,path){
   insist(matches.length===1 && matches[0][1]!=='','MISSING_OR_DUPLICATE:'+path);
   return matches[0][1].trim().replace(/^["']|["']$/g,'');
 }
+// This contract accepts only a limited, unambiguous YAML mapping/list profile.
+function assertYamlProfileValue(value,code){
+  const text=value.trim();
+  if(!text || text.startsWith('#')) return false;
+  if(text.startsWith('"')){
+    insist(/^"(?:[^"\\]|\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4}))*"(?:\s+#.*)?$/.test(text),code);
+    return true;
+  }
+  if(text.startsWith("'")){
+    insist(/^'(?:[^']|'')*'(?:\s+#.*)?$/.test(text),code);
+    return true;
+  }
+  const bare=text.replace(/\s+#.*$/,'').trimEnd();
+  if(bare.startsWith('[')){
+    insist(/^\[[^\[\]{}]*\]$/.test(bare),code);
+    const entries=bare.slice(1,-1).trim();
+    if(entries) for(const part of entries.split(',')){
+      const scalar=part.trim();
+      insist(Boolean(scalar) && !/^[?:,&*!|>%@"'{}\[\]#]/.test(scalar) &&
+        !/:\s/.test(scalar) && !/#\S/.test(scalar),code);
+    }
+    return true;
+  }
+  insist(Boolean(bare) && !/^[?:,&*!|>%@"'{}\[\]#]/.test(bare) &&
+    !/[\[\]{}]/.test(bare) && !/:\s/.test(bare) &&
+    !/#\S/.test(bare) && !/\t/.test(bare) &&
+    bare!=='-' && !bare.startsWith('- '),code);
+  return true;
+}
+function assertYamlStructure(yaml){
+  const stack=[{indent:-2,kind:'map'}];
+  const mapping=/^(?:"(?:[^"\\]|\\.)+"|'(?:[^']|'')+'|[A-Za-z_][A-Za-z0-9_-]*):(?:\s+(.*)|$)/;
+  for(const raw of yaml.split(/\r?\n/)){
+    if(!raw.trim() || raw.trimStart().startsWith('#')) continue;
+    const line=raw.trim();
+    insist(!/^(?:---|\.\.\.)(?:\s|$)/.test(line) &&
+      !line.startsWith('%'),'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
+    insist(!/^ *\t/.test(raw),'YAML_TAB_INDENT');
+    const indent=raw.match(/^ */)[0].length;
+    while(stack.length>1 && stack[stack.length-1].indent>=indent) stack.pop();
+    const parent=stack[stack.length-1];
+    insist(indent===parent.indent+2,'UNSUPPORTED_YAML_STRUCTURE:'+indent);
+    const item=line==='-' || line.startsWith('- ');
+    if(parent.kind==='unknown') parent.kind=item?'seq':'map';
+    insist(parent.kind===(item?'seq':'map'),'UNSUPPORTED_YAML_STRUCTURE:'+indent);
+    if(item){
+      const rest=line.slice(1).trimStart();
+      insist(rest.length>0,'UNSUPPORTED_YAML_LIST_ITEM:'+indent);
+      const key=rest.match(mapping);
+      if(key){
+        stack.push({indent,kind:'map'});
+        const scalar=assertYamlProfileValue(key[1]??'','UNSUPPORTED_YAML_LIST_ITEM:'+indent);
+        stack.push({indent:indent+2,kind:scalar?'scalar':'unknown'});
+      }else{
+        assertYamlProfileValue(rest,'UNSUPPORTED_YAML_LIST_ITEM:'+indent);
+      }
+    }else{
+      const key=line.match(mapping);
+      insist(Boolean(key),'UNSUPPORTED_YAML_SYNTAX:'+indent);
+      const scalar=assertYamlProfileValue(key[1]??'','UNSUPPORTED_YAML_VALUE:'+indent);
+      stack.push({indent,kind:scalar?'scalar':'unknown'});
+    }
+  }
+}
+
 // Fail closed for duplicate YAML mapping keys, including repeated root sections.
 // This intentionally supports the simple mapping/list profile used by B1-1.
 // Unexpected syntax is rejected rather than silently ignored.
 export function assertUniqueYamlKeys(yaml){
   insist(typeof yaml==='string','INVALID_YAML_INPUT');
+  assertYamlStructure(yaml);
   const frames=[{indent:-1,path:'',keys:new Set()}];
   for(const raw of yaml.split(/\r?\n/)){
     if(!raw.trim() || raw.trimStart().startsWith('#')) continue;
