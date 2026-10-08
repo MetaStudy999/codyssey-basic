@@ -131,13 +131,27 @@ export function assertUniqueYamlKeys(yaml){
   }
 }
 function eq(yaml,key,want,code){insist(get(yaml,key)===String(want),code);}
-export function verify({control,source,registry,mainSha,pr,publicRun}){
+export function verify({control,source,registry,mainSha,pr,publicRun,ancestry}){
   assertUniqueYamlKeys(control);
   assertUniqueYamlKeys(source);
   assertUniqueYamlKeys(registry);
   const sha=/^[a-f0-9]{40}$/;
   insist(sha.test(mainSha),'MAIN_SHA_INVALID');
-  eq(control,'reconciliation.source_main_sha',mainSha,'MAIN_SHA_MISMATCH');
+  // source_main_sha is the immutable CORE-clear merge baseline (PR #15), not a
+  // perpetual assertion that the source branch must never advance.
+  const coreMergeSha=pr?.merge_commit_sha;
+  insist(typeof coreMergeSha==='string' && sha.test(coreMergeSha),'CORE_BASELINE_SHA_INVALID');
+  eq(control,'reconciliation.source_main_sha',coreMergeSha,'MAIN_SHA_MISMATCH');
+  // New source main must descend from CORE-clear and must not modify its verified
+  // runtime implementation or source mission metadata without fresh evidence.
+  insist(ancestry && ['ahead','identical'].includes(ancestry.status) &&
+    ancestry.base_commit?.sha===coreMergeSha &&
+    ancestry.merge_base_commit?.sha===coreMergeSha &&
+    Array.isArray(ancestry.files),'SOURCE_MAIN_ANCESTRY_UNVERIFIED');
+  insist(!ancestry.files.some(f=>typeof f.filename!=='string' ||
+    f.filename==='training/round-03-apos/mission.yml' ||
+    f.filename.startsWith('training/round-03-apos/04-src/')),
+    'VERIFIED_CORE_SOURCE_CHANGED');
   eq(control,'mission_id','B1-1','CONTROL_MISSION_ID_MISMATCH');
   eq(source,'mission_id','B1-1','SOURCE_MISSION_ID_MISMATCH');
   eq(control,'canonical_repository',REPO,'CONTROL_REPO_MISMATCH');
@@ -177,15 +191,15 @@ export function verify({control,source,registry,mainSha,pr,publicRun}){
   eq(control,'reconciliation.source_pr',PR,'CONTROL_PR_ID_MISMATCH');
   insist(pr.number===PR && pr.state==='closed' && pr.merged===true,'SOURCE_PR_NOT_MERGED');
   insist(pr.base?.ref==='main' && pr.base?.repo?.full_name===REPO,'SOURCE_PR_BASE_MISMATCH');
-  insist(pr.merge_commit_sha===mainSha,'PR_MERGE_SHA_MISMATCH');
-  insist(publicRun.id===RUN && publicRun.head_sha===mainSha &&
+  insist(pr.merge_commit_sha===coreMergeSha,'PR_MERGE_SHA_MISMATCH');
+  insist(publicRun.id===RUN && publicRun.head_sha===coreMergeSha &&
     publicRun.head_branch==='main' && publicRun.event==='push' &&
     publicRun.status==='completed' && publicRun.conclusion==='success',
     'POST_MERGE_CI_MISMATCH');
   eq(control,'reconciliation.harness_status','QA_PENDING','PREMATURE_HARNESS_PROMOTION');
   eq(control,'reconciliation.presentation_status','NOT_STARTED','PREMATURE_PRESENTATION');
   eq(control,'reconciliation.bonus_status','NOT_VERIFIED','PREMATURE_BONUS');
-  return {result:'CROSS_REPO_METADATA_PASS',source_main_sha:mainSha,source_pr:PR,
+  return {result:'CROSS_REPO_METADATA_PASS',source_main_sha:mainSha,verified_core_merge_sha:coreMergeSha,source_pr:PR,
     post_merge_run:RUN,not_verified:['original artifact binary integrity','independent QA_SEC',
     'harness universal capability','bonus','presentation']};
 }
@@ -209,7 +223,11 @@ export async function live(){
   const source=await response.text();
   const control=await readFile(new URL('./mission.yml',import.meta.url),'utf8');
   const registry=await readFile(new URL('../_registry/missions.yml',import.meta.url),'utf8');
-  return verify({control,source,registry,mainSha,pr,publicRun});
+  const coreMergeSha=pr?.merge_commit_sha;
+  insist(typeof coreMergeSha==='string' && /^[a-f0-9]{40}$/.test(coreMergeSha),
+    'CORE_BASELINE_SHA_INVALID');
+  const ancestry=await api(endpoint+'/compare/'+coreMergeSha+'...'+mainSha);
+  return verify({control,source,registry,mainSha,pr,publicRun,ancestry});
 }
 if(process.argv[1] && fileURLToPath(import.meta.url)===resolve(process.argv[1])){
   live().then(v=>console.log(JSON.stringify(v,null,2))).catch(e=>{
