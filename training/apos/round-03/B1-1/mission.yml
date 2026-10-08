@@ -24,12 +24,26 @@ execution_plan: training/apos/round-03/B1-1/EXECUTION-PLAN.md
 review_summary: training/apos/round-03/B1-1/REVIEW-SUMMARY.md
 table_of_contents: training/apos/round-03/B1-1/TABLE-OF-CONTENTS.md
 tracks:
-  core: NOT_STARTED
+  core: CLEAR
   bonus: NOT_STARTED
-  apos_enhancement: NOT_STARTED
-status: NOT_STARTED
-owner_start_approval: PENDING
-mission_execution: NOT_STARTED
+  apos_enhancement: IN_PROGRESS
+status: CLEAR
+owner_start_approval: APPROVED
+mission_execution: RUNTIME_PASS
 notes:
   - "Control metadata only; this file does not start the Mission."
   - "Official Mission requirements/evaluation remain authoritative."
+
+reconciliation:
+  observed_at: "2026-10-08"
+  source_repository: MetaStudy999/codyssey-basic-web-portfolio
+  source_main_sha: da8822cbbe54c47539f65571327e324ce675eeb4
+  source_pr: 15
+  core_clear: PASS
+  learning_minimum: PASS
+  chromium_run_id: 37582457341
+  runtime_candidate_sha: 95b5dd8283a611e27c0c0a9185060a213e53ada9
+  harness_pr: 16
+  harness_status: QA_PENDING
+  presentation_status: NOT_STARTED
+  bonus_status: NOT_VERIFIED

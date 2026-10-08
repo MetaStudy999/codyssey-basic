@@ -402,3 +402,9 @@ Bonus를 수행하면 해당 Bonus 핵심 개념도 짧게 설명한다.
 ```
 
 각 단계에서 새 문서를 만드는 것보다 기존 CHECKLIST/Evidence에 결과를 누적한다.
+
+
+## 2026-10-08 실행 이후 상태 주석
+이 문서는 B1-1 착수 전에 수립한 계획 원본으로 보존한다. 본문 `NOT_STARTED`는 **작성 당시 계획 상태**이며 현재 상태가 아니다.
+현재 CORE CLEAR는 `B1-1/mission.yml`과 실제 Mission repo `training/round-03-apos/mission.yml`을 확인한다.
+Round 03 독립 범용 하네스는 미션 PR #16의 `13-harness/` 파일럿이며 QA 전. Bonus·Slide·Cross-domain은 별도 Gate.
