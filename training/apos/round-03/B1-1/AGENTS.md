@@ -15,3 +15,4 @@ Round 01/02 결과 복사, 본 중앙 Control에 실제 소스 중복 저장, PR
 - 첫 명령은 잘못된 CLEAR·SHA·Mission ID 등 고의 실패를 검증한다. 둘째 명령은 GitHub 실제 main/PR #15/병합 후 Run을 조회하므로 네트워크/API 오류도 FAIL-CLOSED다.
 - `.github/workflows/round03-control-reconciliation.yml`의 `verify-round03-control`을 현 PR **정확한 HEAD**에서 성공시킨다. 이전 HEAD의 PASS를 재사용하지 않는다.
 - 이 자동검증은 원본 아티팩트 Binary 해시·B1-1 범용 Harness·학습 개선 검증까지 인증하지 않는다. 독립 QA_SEC 전 병합 금지.
+- 중앙·미션 저장소의 실제 main 보호가 비활성 상태면 독립 QA에서 보호 위험을 별도 Finding으로 기록한다. Maker는 Ruleset을 변경하지 않는다.
