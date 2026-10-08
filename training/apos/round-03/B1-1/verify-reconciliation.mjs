@@ -27,8 +27,10 @@ export function assertUniqueYamlKeys(yaml){
   insist(typeof yaml==='string','INVALID_YAML_INPUT');
   const frames=[{indent:-1,path:'',keys:new Set()}];
   for(const raw of yaml.split(/\r?\n/)){
-    if(!raw.trim() || raw.trimStart().startsWith('#') ||
-      raw.trim()==='---' || raw.trim()==='...') continue;
+    if(!raw.trim() || raw.trimStart().startsWith('#')) continue;
+    // Only one YAML mapping document belongs to this profile.
+    insist(raw.trim()!=='---' && raw.trim()!=='...' &&
+      !raw.trimStart().startsWith('%YAML'),'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
     insist(!/^ *\t/.test(raw),'YAML_TAB_INDENT');
     const indent=raw.match(/^ */)[0].length;
     let line=raw.slice(indent).trimEnd();
@@ -38,10 +40,22 @@ export function assertUniqueYamlKeys(yaml){
       const parent=frames[frames.length-1];
       frames.push({indent,path:parent.path+'[]',keys:new Set()});
       line=line.slice(1).trimStart();
-      if(!line || !/^(?:(?:"[^"]+"|'[^']+'|[A-Za-z_][\w-]*):(?:\s|$))/.test(line)) continue;
+      if(!line) continue;
+      if(!/^(?:(?:"[^"]+"|'[^']+'|[A-Za-z_][\w-]*):(?:\s|$))/.test(line)){
+        // A simple scalar sequence is supported; malformed/complex YAML is not.
+        const bad='UNSUPPORTED_YAML_LIST_ITEM:'+indent;
+        if(line.startsWith('"')) insist(/^"(?:[^"\\]|\\.)*"(?:\s+#.*)?$/.test(line),bad);
+        else if(line.startsWith("'")) insist(/^'(?:[^']|'')*'(?:\s+#.*)?$/.test(line),bad);
+        else insist(!/^[\[\]{},:?&*!|>%@`]/.test(line) &&
+          !/:\s/.test(line) && !/#\S/.test(line),bad);
+        continue;
+      }
     }
     const match=line.match(/^(?:"([^"]+)"|'([^']+)'|([A-Za-z_][A-Za-z0-9_-]*)):\s*(.*)$/);
     insist(Boolean(match),'UNSUPPORTED_YAML_SYNTAX:'+indent);
+    // Do not compare raw escaped keys: e.g. "b\\u006fnus" decodes to "bonus".
+    // This strict profile rejects escaped mapping keys instead of misparsing them.
+    insist(match[1]===undefined || !match[1].includes('\\'),'UNSUPPORTED_YAML_KEY_ESCAPE');
     const key=match[1]??match[2]??match[3];
     const parent=frames[frames.length-1];
     const path=parent.path?parent.path+'.'+key:key;
