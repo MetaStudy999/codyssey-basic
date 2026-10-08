@@ -1,0 +1,49 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {verify} from './verify-reconciliation.mjs';
+const SHA='da8822cbbe54c47539f65571327e324ce675eeb4';
+const CAND='95b5dd8283a611e27c0c0a9185060a213e53ada9';
+function sample(){return {
+  mainSha:SHA,
+  control:[
+    'mission_id: B1-1','canonical_repository: MetaStudy999/codyssey-basic-web-portfolio',
+    'stable_topic: web-portfolio','execution_round: round-03-apos',
+    'execution_root: training/round-03-apos','status: CLEAR','owner_start_approval: APPROVED',
+    'mission_execution: RUNTIME_PASS','tracks:','  core: CLEAR','reconciliation:',
+    '  source_repository: MetaStudy999/codyssey-basic-web-portfolio',
+    '  source_main_sha: '+SHA,'  source_pr: 15','  core_clear: PASS',
+    '  runtime_candidate_sha: '+CAND,'  chromium_run_id: 37582457341',
+    '  harness_status: QA_PENDING','  presentation_status: NOT_STARTED',
+    '  bonus_status: NOT_VERIFIED'].join('\n'),
+  source:[
+    'mission_id: B1-1','repository: MetaStudy999/codyssey-basic-web-portfolio',
+    'stable_topic: web-portfolio','execution_round: round-03-apos',
+    'execution_root: training/round-03-apos','mission_state: CLEAR',
+    'owner_start_approval: APPROVED','mission_execution: RUNTIME_PASS',
+    'clear_gate:','  status: PASS','  remaining: []',
+    'runtime:','  status: PASS','  result: PASS','  visual_review: PASS',
+    '  source_mutation: false','  exact_candidate: '+CAND,
+    '  run_id: 37582457341'].join('\n'),
+  registry:['missions:','  - id: B1-1',
+    '    repository: MetaStudy999/codyssey-basic-web-portfolio',
+    '    stable_topic: web-portfolio','  - id: B1-2','    repository: another'].join('\n'),
+  pr:{number:15,state:'closed',merged:true,merge_commit_sha:SHA,
+    base:{ref:'main',repo:{full_name:'MetaStudy999/codyssey-basic-web-portfolio'}}},
+  publicRun:{id:37774449939,head_sha:SHA,head_branch:'main',event:'push',
+    status:'completed',conclusion:'success'}
+};}
+function negative(title,mutate,code){test(title,()=>{
+  const f=sample();mutate(f);
+  assert.throws(()=>verify(f),e=>e.message===code);
+});}
+test('positive fixture',()=>assert.equal(verify(sample()).result,'CROSS_REPO_METADATA_PASS'));
+negative('false CLEAR: source state',f=>f.source=f.source.replace('mission_state: CLEAR','mission_state: IN_PROGRESS'),'SOURCE_NOT_CLEAR');
+negative('false CLEAR: clear gate',f=>f.source=f.source.replace('  status: PASS\n  remaining:','  status: FAIL\n  remaining:'),'CLEAR_GATE_NOT_PASS');
+negative('wrong source main SHA',f=>f.control=f.control.replace('source_main_sha: '+SHA,'source_main_sha: '+'0'.repeat(40)),'MAIN_SHA_MISMATCH');
+negative('wrong PR merge SHA',f=>f.pr.merge_commit_sha='0'.repeat(40),'PR_MERGE_SHA_MISMATCH');
+negative('wrong control mission ID',f=>f.control=f.control.replace('mission_id: B1-1','mission_id: B4-1'),'CONTROL_MISSION_ID_MISMATCH');
+negative('wrong source mission ID',f=>f.source=f.source.replace('mission_id: B1-1','mission_id: B1-2'),'SOURCE_MISSION_ID_MISMATCH');
+negative('unmerged PR',f=>f.pr.merged=false,'SOURCE_PR_NOT_MERGED');
+negative('stale public CI',f=>f.publicRun.head_sha='0'.repeat(40),'POST_MERGE_CI_MISMATCH');
+negative('premature harness PASS',f=>f.control=f.control.replace('harness_status: QA_PENDING','harness_status: PASS'),'PREMATURE_HARNESS_PROMOTION');
+negative('duplicate mission ID',f=>f.source+='\nmission_id: B1-1','MISSING_OR_DUPLICATE:mission_id');

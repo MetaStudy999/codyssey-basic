@@ -1,0 +1,34 @@
+name: Round 03 Control Reconciliation
+on:
+  pull_request:
+    paths:
+      - "training/apos/round-03/B1-1/**"
+      - "training/apos/round-03/_registry/missions.yml"
+      - ".github/workflows/round03-control-reconciliation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "training/apos/round-03/B1-1/**"
+      - "training/apos/round-03/_registry/missions.yml"
+      - ".github/workflows/round03-control-reconciliation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-round03-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact source HEAD
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Assert checkout identity
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Adversarial and positive offline fixtures
+        run: node --test training/apos/round-03/B1-1/verify-reconciliation.test.mjs
+      - name: Live source, merged PR and public CI
+        run: node training/apos/round-03/B1-1/verify-reconciliation.mjs
