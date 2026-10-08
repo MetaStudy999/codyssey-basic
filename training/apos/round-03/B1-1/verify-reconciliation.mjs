@@ -20,8 +20,41 @@ export function get(yaml,path){
   insist(matches.length===1 && matches[0][1]!=='','MISSING_OR_DUPLICATE:'+path);
   return matches[0][1].trim().replace(/^["']|["']$/g,'');
 }
+// Fail closed for duplicate YAML mapping keys, including repeated root sections.
+// This intentionally supports the simple mapping/list profile used by B1-1.
+// Unexpected syntax is rejected rather than silently ignored.
+export function assertUniqueYamlKeys(yaml){
+  insist(typeof yaml==='string','INVALID_YAML_INPUT');
+  const frames=[{indent:-1,path:'',keys:new Set()}];
+  for(const raw of yaml.split(/\r?\n/)){
+    if(!raw.trim() || raw.trimStart().startsWith('#') ||
+      raw.trim()==='---' || raw.trim()==='...') continue;
+    insist(!/^ *\t/.test(raw),'YAML_TAB_INDENT');
+    const indent=raw.match(/^ */)[0].length;
+    let line=raw.slice(indent).trimEnd();
+    const item=line==='-' || line.startsWith('- ');
+    while(frames.length>1 && frames[frames.length-1].indent>=indent) frames.pop();
+    if(item){
+      const parent=frames[frames.length-1];
+      frames.push({indent,path:parent.path+'[]',keys:new Set()});
+      line=line.slice(1).trimStart();
+      if(!line || !/^(?:(?:"[^"]+"|'[^']+'|[A-Za-z_][\w-]*):(?:\s|$))/.test(line)) continue;
+    }
+    const match=line.match(/^(?:"([^"]+)"|'([^']+)'|([A-Za-z_][A-Za-z0-9_-]*)):\s*(.*)$/);
+    insist(Boolean(match),'UNSUPPORTED_YAML_SYNTAX:'+indent);
+    const key=match[1]??match[2]??match[3];
+    const parent=frames[frames.length-1];
+    const path=parent.path?parent.path+'.'+key:key;
+    insist(!parent.keys.has(key),'MISSING_OR_DUPLICATE:'+path);
+    parent.keys.add(key);
+    frames.push({indent:item?indent+2:indent,path,keys:new Set()});
+  }
+}
 function eq(yaml,key,want,code){insist(get(yaml,key)===String(want),code);}
 export function verify({control,source,registry,mainSha,pr,publicRun}){
+  assertUniqueYamlKeys(control);
+  assertUniqueYamlKeys(source);
+  assertUniqueYamlKeys(registry);
   const sha=/^[a-f0-9]{40}$/;
   insist(sha.test(mainSha),'MAIN_SHA_INVALID');
   eq(control,'reconciliation.source_main_sha',mainSha,'MAIN_SHA_MISMATCH');
@@ -44,6 +77,7 @@ export function verify({control,source,registry,mainSha,pr,publicRun}){
     && /^\s{4}stable_topic: web-portfolio$/m.test(part),'REGISTRY_IDENTITY_MISMATCH');
   eq(control,'status','CLEAR','FALSE_CONTROL_CLEAR');
   eq(control,'tracks.core','CLEAR','FALSE_CORE_CLEAR');
+  eq(control,'tracks.bonus','NOT_STARTED','PREMATURE_BONUS_TRACK');
   eq(control,'reconciliation.core_clear','PASS','FALSE_CLEAR_WITNESS');
   eq(control,'owner_start_approval','APPROVED','CONTROL_APPROVAL_MISMATCH');
   eq(control,'mission_execution','RUNTIME_PASS','CONTROL_EXECUTION_MISMATCH');
