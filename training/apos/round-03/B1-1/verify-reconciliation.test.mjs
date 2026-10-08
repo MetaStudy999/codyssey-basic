@@ -65,3 +65,14 @@ negative('multiple YAML documents are unsupported',f=>f.control+='\n---\ntracks:
 negative('YAML directive is unsupported',f=>f.control='\n%YAML 1.2\n'+f.control,'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
 negative('invalid scalar list item fails closed',f=>f.registry+='\ninvalid_list:\n  - :','UNSUPPORTED_YAML_LIST_ITEM:2');
 negative('unterminated flow list is unsupported',f=>f.registry+='\ninvalid_list:\n  - [unfinished','UNSUPPORTED_YAML_LIST_ITEM:2');
+
+negative('malformed root-level YAML sequence',f=>f.control+='\n- status: FAIL','UNSUPPORTED_YAML_STRUCTURE:0');
+negative('mixed mapping and sequence at tracks',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\n  - bonus: CLEAR'),'UNSUPPORTED_YAML_STRUCTURE:2');
+negative('unterminated flow value in mapping',f=>f.control+='\ninvalid: [unfinished','UNSUPPORTED_YAML_VALUE:0');
+negative('unterminated double-quoted scalar',f=>f.control+='\ninvalid: "unterminated','UNSUPPORTED_YAML_VALUE:0');
+negative('unterminated single-quoted scalar',f=>f.control+="\ninvalid: 'unterminated",'UNSUPPORTED_YAML_VALUE:0');
+negative('unexpected child under scalar value',f=>f.control=f.control.replace('  bonus: NOT_STARTED','  bonus: NOT_STARTED\n    injected: CLEAR'),'UNSUPPORTED_YAML_STRUCTURE:4');
+negative('invalid inline YAML flow map',f=>f.control+='\ninvalid: {key: value}','UNSUPPORTED_YAML_VALUE:0');
+negative('invalid nested flow list',f=>f.control+='\ninvalid: [[bad]]','UNSUPPORTED_YAML_VALUE:0');
+negative('misaligned YAML indentation',f=>f.control+='\n   bogus: yes','UNSUPPORTED_YAML_STRUCTURE:3');
+negative('YAML TAG directive is unsupported',f=>f.control='%TAG !e! tag:example.com,2026:\n'+f.control,'UNSUPPORTED_YAML_DOCUMENT_BOUNDARY');
