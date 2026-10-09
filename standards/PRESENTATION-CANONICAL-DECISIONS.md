@@ -261,7 +261,7 @@ Canonical Context Set:
 
 ## D13 — B1-1 Current Visual Direction
 
-**Decision: KEEP**
+**Decision: KEEP AS HISTORICAL ART REFERENCE; latest Owner D15 takes precedence (2026-10-09)**
 
 현재 B1-1에서 확인한 시각 언어:
 
@@ -293,6 +293,45 @@ Canonical Context Set:
 10. G10 Accessibility
 
 하나라도 FAIL 또는 INSUFFICIENT_EVIDENCE이면 `GOLDEN MASTER FINAL`로 표시하지 않는다.
+
+---
+
+## D15 — EVERY PAGE Image-Generated, Cover-Grade, Minimal Compositing (2026-10-09 Owner 최신 결정)
+
+**Decision: ACTIVE / HIGHEST CURRENT VISUAL PRECEDENCE**
+
+`표지만 고품질로 생성하고 본문을 일반 PPT-native 카드·번호 원형·도형 템플릿으로 대량 조립`하는 제작 로직은 **명시적으로 폐기**한다.
+
+1. **표지뿐 아니라 학습본·본문·부록·평가 발표본의 모든 페이지**에 각각의 목적에 맞는 **독립적인 생성형 이미지 장면**을 제작한다. 시네마틱 사진·인포그래픽·4컷 만화·기술 다이어그램·보고서형 본문 모두 동일하게 `COVER-GRADE` 시각 완성도를 목표로 한다. 서로 다른 내용에 같은 카드 구도를 복제해 장수만 늘리는 작업을 금지한다.
+2. 최신 Owner가 검토한 레퍼런스를 적용한다. **기업형 히어로 표지 + 공공·연구기관급 밝은 본문 가독성 + 고밀도지만 명료한 현대적 인포그래픽 + 실제 코드/실행 증빙의 큰 시각화**. 기존 D13의 산악 여정·남색/청록/호박색은 적합한 장면에서 보존하되, 어두운 네온을 본문 전체에 강제하지 않는다.
+3. `IMAGE_GENERATE(scene-specific prompt + reference + audience learning outcome)` → **실제 큰 이미지에서 QA** → `MINIMAL_TRUTH_COMPOSITE` → Export. 수정은 **정확한 한국어·코드·수식·용어·검증 출처·가독성** 등 사실 보장을 위한 최소한의 합성/교체를 원칙으로 한다. 큰 카드/배경을 수작업으로 다시 만드는 제작 파이프라인으로 회귀 금지.
+4. 이미지 생성이 만든 **함수 이름·브라우저 UI·데이터·성공 수치·날짜·시험 결과는 신뢰하지 않는다.** 실제 `CODE/RUNTIME/EVIDENCE` 주장 부분은 공식 문서·저장소/정확한 Commit·원본 스크린샷·Run/Artifact로 검증해 원본을 합성한다. 실제 데이터는 AI의 상상으로 만들지 않으며 `AI-VISUAL/MOCKUP`을 명시한다.
+5. `SlideID → Generated Base (file + hash + prompt/revision source) → Minimal Overlay → Final Composition (file + hash) → Official Evaluation/Bonus → Actual Code/Run/Evidence → Speaker Note/Practice → Visual QA` 연결을 유지한다. 이미지에 허위 PASS가 들어 있으면 교체·마스킹 후 사실을 재검증하고, 원본 생성 페이지를 그대로 제출하지 않는다.
+6. 실질적인 **사용자 이해·30초 구술·직접 재현**을 먼저 검증한다. 30~45장 일괄 생성 전에 어려운 개념 한 묶음의 장면을 제작·실물 검토하고, FAIL인 경우 원인 수정·동일 산출물 재렌더·재검증을 수행한다. 이미 불합격된 디자인을 템플릿으로 증식하면 FAIL이다.
+
+**예외:** 배경 없이 원본 증거 한 장만 전체 화면에 제시해야 하는 정확성/접근성 장면은 Owner가 그 예외를 명시적으로 승인하고 `EVIDENCE_ONLY_EXCEPTION`으로 출처·사유를 기록한 때만 허용. 침묵을 승인으로 해석하지 않는다.
+
+---
+
+## D16 — Fail-Closed Slide Regression + User Learning Delivery Loop (2026-10-09)
+
+**Decision: ACTIVE**
+
+```text
+Official Evaluation + Source Lock
+→ One Image-Generated Scene per Slide
+→ Actual Code/Evidence Minimal Overlay
+→ Full-screen Visual QA + Source/Claim QA
+→ FAIL? Reproduce → Root Cause → Minimal Repair → Re-render SAME Slide → Recheck
+→ Owner View + 30-second Explain + Live Demo
+→ Only Then Expand / Publish / Submit
+```
+
+- **정적 계약 PASS는 고품질 그림 PASS가 아니다.** 총 장수, 파일 해시, 발표자 노트 존재, 19개 평가 ID 기재는 필요조건 일부일 뿐이며 품질 완성 조건이 아니다.
+- 서로 다른 학습 장면의 **기존 반복 카드 패턴·동일 캐릭터 복제·인식 불가능한 실제 캡처·비정확한 코드/문구**는 결함으로 판정한다. 감지 실패한 품질 회귀에 맞추어 재현 가능한 고의 실패 테스트를 추가한다.
+- 매 페이지의 실제 풀스크린 이미지·원본 이미지·최소 수정 영역·텍스트 가독성·실행 증거와 사용자가 말할 구술 설명이 기록되어야 한다. 미측정 시 `PENDING`, 재현된 오류 시 `FAIL`이며 Golden G1~G10 전체 PASS 전 `FINAL` 금지.
+- HERMES 실행 여부는 사실 그대로 `NOT_VERIFIED` 또는 추적 가능한 `EXECUTED`를 사용하고, 사용하지 않았다는 이유만으로 공식 미션 제출을 인질로 삼지 않는다. 승인된 동일 품질의 대체 도구+검증 경로를 허용한다.
+- 코디세이 공식 미션·학교 평가/제출을 최우선으로 하며 시각 도구 구축·문서 양산에 시간을 빼앗기지 않는다.
 
 ---
 
