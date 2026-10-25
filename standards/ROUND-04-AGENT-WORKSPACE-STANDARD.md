@@ -7,7 +7,10 @@
 ## 기준 위치
 
 - 신규 소스: `training/round-04-agent/04-src/`
-- 계획: `training/round-04-agent/00-plan/`
+- 전체 계획·승인: `training/round-04-agent/00-plan/`
+- 공식 요구·평가 기준: `training/round-04-agent/01-requirements/`
+- 기존 코드·환경·증빙 비교: `training/round-04-agent/02-analysis/`
+- 신규 소스·화면·인터페이스 설계: `training/round-04-agent/03-design/`
 - 시험: `training/round-04-agent/05-tests/`
 - 실제 증빙: `training/round-04-agent/06-evidence/`
 - 평가: `training/round-04-agent/07-evaluation/`
@@ -24,4 +27,10 @@
 
 ## 정합성 검사
 
-각 저장소는 `README.md`, `AGENTS.md`, `mission.yml`, 7개 하위 작업 폴더 README의 존재 및 등록표 `mission_id`·`repository`·`authoring_root` 일치를 확인해야 합니다. 각 단계별 PASS/FAIL은 **파일이 아닌 실제 검증 결과**에서만 부여합니다.
+각 저장소는 `README.md`, `AGENTS.md`, `mission.yml`, 10개 하위 작업 폴더(00~09) README의 존재 및 등록표 `mission_id`·`repository`·`authoring_root` 일치를 확인해야 합니다. 각 단계별 PASS/FAIL은 **파일이 아닌 실제 검증 결과**에서만 부여합니다.
+
+## 경로 완전성 원칙 (2026-10-26)
+
+신규 미션에서는 00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 순서로 구획을 명시합니다. 각 미션 저장소에 `01-requirements/README.md`, `02-analysis/README.md`, `03-design/README.md`를 포함하며, `mission.yml`의 `requirements_root`, `analysis_root`, `design_root`와 실제 파일 경로가 일치해야 합니다. 중간 번호를 건너뛰지 않습니다.
+
+폴더·관리 문서 생성 자체는 B1-1~B7-2 미션 개발 착수나 신규 기능 검증을 뜻하지 않습니다. 기존 PASS와 이전 차수 데이터는 그대로 보존합니다.

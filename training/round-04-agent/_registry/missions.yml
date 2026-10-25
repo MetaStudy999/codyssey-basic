@@ -3,6 +3,10 @@ generation: "CODYSSEY Round 02 / 제2기"
 control_repository: MetaStudy999/codyssey-basic
 execution_round: round-04-agent
 execution_root: training/round-04-agent
+planning_root: training/round-04-agent/00-plan
+requirements_root: training/round-04-agent/01-requirements
+analysis_root: training/round-04-agent/02-analysis
+design_root: training/round-04-agent/03-design
 code_root: training/round-04-agent/04-src
 owner_path_directive: APPROVED_2026-10-25
 owner_mission_development_approval: PENDING
