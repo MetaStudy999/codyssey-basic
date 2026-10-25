@@ -1,3 +1,5 @@
+> **[2026-10-25 신규 작성 경로 지시]** B1-1~B7-2 **15개 미션의 신규 Agent 작업은 각 전용 저장소의 `training/round-04-agent/` 안에서 진행합니다.** 코드는 `04-src/`에만 작성하며, 사용자 미션 개발 승인은 별도로 필요합니다. 중앙 기준: [Round 04 Agent 허브](training/round-04-agent/README.md) · [15개 미션 등록표](training/round-04-agent/_registry/missions.yml). 이전 Round 01~03 및 본 문서의 과거 차수 실행 서술은 이력/참고로 보존하고, 새 미션 작업 경로로 사용하지 않습니다. 학습 차수 `R04 HARDEN`과 이 실행 폴더명은 별개의 개념입니다.
+
 # Mission Runbook
 
 모든 미션은 같은 원칙으로 진행합니다. Round 01은 속도와 학습 품질을 함께 확보하기 위해 **Reference Build와 실제 실행 완료(Runtime CLEAR)를 분리**합니다.
