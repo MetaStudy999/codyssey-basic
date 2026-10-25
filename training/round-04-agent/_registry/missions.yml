@@ -12,6 +12,14 @@ owner_path_directive: APPROVED_2026-10-25
 owner_mission_development_approval: PENDING
 mission_execution: NOT_STARTED
 legacy_rounds: REFERENCE_ONLY
+slide_package_approval: APPROVED_2026-10-26
+slide_package_status: PLAN_ONLY
+slide_main_target: 16
+slide_learning_target: 45
+slide_appendix_target: 15-25
+slide_quick_review_target: 1-2
+slide_package_root: training/round-04-agent/08-presentation
+slide_package_standard: standards/ROUND-04-AGENT-SLIDE-PACKAGE-STANDARD.md
 missions:
   - id: B1-1
     title: "나를 소개하는 웹페이지 처음부터 만들기"

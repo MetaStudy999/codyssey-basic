@@ -14,7 +14,7 @@
 - 시험: `training/round-04-agent/05-tests/`
 - 실제 증빙: `training/round-04-agent/06-evidence/`
 - 평가: `training/round-04-agent/07-evaluation/`
-- 발표 PPTX/PDF: `training/round-04-agent/08-presentation/`
+- 발표·학습 4종 PPTX/PDF 계획: `training/round-04-agent/08-presentation/` (세부 표준: `standards/ROUND-04-AGENT-SLIDE-PACKAGE-STANDARD.md`)
 - 인계: `training/round-04-agent/09-handoff/`
 
 ## 승인·보존 원칙

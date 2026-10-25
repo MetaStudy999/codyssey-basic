@@ -271,3 +271,7 @@ Mission ID가 추후 다시 변경되더라도 발표 산출물의 역사적 파
 ---
 
 상위 템플릿 허브: [`../README.md`](../README.md)
+
+## Round 04 Agent 4종 학습·발표 패키지 (2026-10-26)
+
+B1-1~B7-2는 기존 Round 02 발표 템플릿을 **참고**하되, 신규 `training/round-04-agent/08-presentation/`에는 ① 발표용 16장 ② 학습용 45장 ③ 기술 부록 15~25장 ④ 핵심 복습 1~2장과 ⑤ 공통 `05-assets/`를 분리합니다. 공식 미션별 증빙이 확보된 이후 제작하고, 이전 차수의 결과를 신규 증빙으로 주장하지 않습니다. [공통 표준](../../standards/ROUND-04-AGENT-SLIDE-PACKAGE-STANDARD.md)을 따릅니다. 이 추가 문단은 **신규 Round 04 기준**이며 과거 Round 02 본문·기록은 그대로 둡니다.
