@@ -75,3 +75,7 @@
 각 자료의 **내용 정확도 / 출처 및 실제 증빙 무결성 / 평가 요구 매핑 / 가독성 / 학습 가치 / 재현성 / 접근성 / PPTX↔PDF 일치** 확인. 장수만 채웠다는 사실로 `FINAL` 또는 `GOLDEN MASTER`를 선언하지 않습니다.
 
 관련 표준: `standards/ROUND-04-AGENT-WORKSPACE-STANDARD.md` / `training/round-04-agent/_registry/missions.yml`.
+
+## 학습자 중심 교육체계 보완 (2026-10-26)
+
+4종 슬라이드의 분량·목적은 유지하고, 학습 방법/실습/평가의 정합성을 [학습자 중심 AI 교육·학습 공통 표준](LEARNER-CENTERED-AI-LEARNING-STANDARD.md)에 따라 확장합니다. 추가 학습 실습 자료는 45장 본문에 무리하게 채우지 않고 `08-presentation/06-learning-activities/`로 연결합니다. 이 보완 계획 승인 자체가 실제 콘텐츠 품질검증 PASS는 아닙니다.
