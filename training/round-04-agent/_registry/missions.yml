@@ -14,6 +14,12 @@ mission_execution: NOT_STARTED
 legacy_rounds: REFERENCE_ONLY
 learning_system_approval: APPROVED_2026-10-26
 learning_system_standard: standards/LEARNER-CENTERED-AI-LEARNING-STANDARD.md
+mandatory_process_standard: standards/ROUND-04-AGENT-MISSION-PROCESS-STANDARD.md
+mandatory_process_scope: ALL_15_MISSIONS_B1-1_TO_B7-2
+mandatory_process_steps: PROMPT_V0_1_REVIEW_V1_0_DESIGN_BEGINNER_QA_HANDOFF
+mandatory_stage03_substeps: 03-1_TO_03-8
+authoring_requires_owner_approval: true
+mandatory_process_status: POLICY_APPLIED_PLAN_ONLY
 learning_system_status: PLAN_ONLY
 learning_method_count: 16
 learning_quality_gate_count: 8
