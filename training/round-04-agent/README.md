@@ -64,3 +64,9 @@ B1-1부터 B7-2까지 **제2기 공식 15개 미션 전체**에 적용합니다.
 - [학습자 중심 AI 교육·학습 공통 표준](../../standards/LEARNER-CENTERED-AI-LEARNING-STANDARD.md)
 - [중앙 학습체계 실행계획](LEARNING-SYSTEM-PLAN.md)
 - [8개 필수 품질 게이트](QUALITY-GATES.md)
+
+## 기술 학습 9요소 보완 (2026-10-26)
+
+기존 16가지 학습 방법·PRIMM·L1~L5에 **용어 → 개념 → 비유 → 아키텍처 → 주요 코드 → 실행 흐름 → 오류 해결 → 실습 → 평가**를 통합합니다. 상세 기준은 [중앙 학습 표준](../../standards/LEARNER-CENTERED-AI-LEARNING-STANDARD.md) 11절입니다.
+
+[B1-1 00단계 기술 학습자료](https://github.com/MetaStudy999/codyssey-basic-web-portfolio/tree/main/training/round-04-agent/00-plan)는 5개 신규 교육 문서에 개념·코드 예시·Mermaid 도식을 우선 작성합니다. 다른 14개 미션은 **개별 기술에 맞춘 상세 교안 준비 전**이며, 새 미션 코드 개발·실행·학습자 평가 결과는 아직 없습니다.
